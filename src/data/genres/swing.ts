@@ -1,0 +1,3310 @@
+import { GenreWorld } from '../../types';
+
+export const SWING_WORLD: GenreWorld = {
+  "id": "swing",
+  "name": "Swing",
+  "family": "Jazz / Big Band",
+  "color": "#ECD5BB",
+  "level": "world",
+  "description": "Big Band and Small Group Swing jazz featuring walking bass lines, spang-a-lang ride cymbal phrasing, and syncopated comping.",
+  "traditions": [
+    {
+      "id": "swing-big-band",
+      "worldId": "swing",
+      "name": "Big Band Swing",
+      "origin": "US",
+      "era": "1930s-1940s",
+      "description": "Large ensemble jazz with driving rhythm section.",
+      "characteristicInstruments": [
+        "drums",
+        "bass",
+        "keys",
+        "trumpet"
+      ],
+      "preferredMeters": [
+        "4/4"
+      ],
+      "tempoRange": [
+        120,
+        200
+      ],
+      "keySubstyles": [
+        "Big Band",
+        "Jump Blues"
+      ],
+      "coreConcepts": [
+        "swung eighths",
+        "walking bass",
+        "comping"
+      ],
+      "rhythmicGrammar": [
+        "spang-a-lang cymbal",
+        "four-beat bass"
+      ],
+      "danceTags": [
+        "social-partner",
+        "wcs-compatible",
+        "solo-vernacular"
+      ],
+      "tuningSystem": "12-tet",
+      "signatureCell": "Spang-a-lang ride cymbal phrasing with four-to-the-bar acoustic walking bass and brass ensemble punch hits",
+      "grooveMechanics": {
+        "swingPercentage": 66,
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "pushed"
+      },
+      "sectionProgressions": {
+        "intro": [
+          "Bbmaj7",
+          "G7",
+          "Cm7",
+          "F7"
+        ],
+        "verse": [
+          "Bbmaj7",
+          "G7",
+          "Cm7",
+          "F7"
+        ],
+        "chorus": [
+          "Ebmaj7",
+          "Ebm7",
+          "Bbmaj7",
+          "G7"
+        ],
+        "solo": [
+          "Cm7",
+          "F7",
+          "Bbmaj7",
+          "Bbmaj7"
+        ],
+        "coda": [
+          "Bbmaj7",
+          "G7",
+          "Cm7",
+          "Bbmaj7"
+        ]
+      }
+    },
+    {
+      "id": "swing-small-group",
+      "worldId": "swing",
+      "name": "Small Group Jazz",
+      "origin": "US",
+      "era": "1940s-Present",
+      "description": "Interactive rhythm section.",
+      "characteristicInstruments": [
+        "drums",
+        "bass",
+        "piano"
+      ],
+      "preferredMeters": [
+        "4/4",
+        "3/4"
+      ],
+      "tempoRange": [
+        80,
+        240
+      ],
+      "keySubstyles": [
+        "Bebop",
+        "Cool Jazz"
+      ],
+      "coreConcepts": [
+        "interaction",
+        "syncopated comping"
+      ],
+      "rhythmicGrammar": [
+        "broken time"
+      ],
+      "danceTags": [
+        "social-partner",
+        "listening"
+      ],
+      "tuningSystem": "12-tet",
+      "signatureCell": "Interactive broken time ride cymbal with dropped bass drum feather bombs and syncopated piano comping",
+      "grooveMechanics": {
+        "swingPercentage": 62,
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "laid-back"
+      },
+      "sectionProgressions": {
+        "intro": [
+          "Fmaj7",
+          "D7b9",
+          "Gm7",
+          "C7"
+        ],
+        "verse": [
+          "Fmaj7",
+          "D7b9",
+          "Gm7",
+          "C7"
+        ],
+        "chorus": [
+          "Bbmaj7",
+          "Bbm7",
+          "Am7",
+          "D7"
+        ],
+        "solo": [
+          "Gm7",
+          "C7",
+          "Fmaj7",
+          "Fmaj7"
+        ],
+        "coda": [
+          "Gm7",
+          "C7",
+          "Fmaj7",
+          "Fmaj7"
+        ]
+      }
+    }
+  ],
+  "substyles": [
+    "Big Band",
+    "Kansas City Swing",
+    "Jump Blues",
+    "Gypsy Jazz",
+    "Bebop",
+    "Cool Jazz"
+  ],
+  "artists": [
+    "Count Basie",
+    "Duke Ellington",
+    "Benny Goodman",
+    "Ella Fitzgerald",
+    "Louis Jordan",
+    "Django Reinhardt",
+    "Charlie Parker"
+  ],
+  "concepts": [
+    "spang-a-lang",
+    "walking bass",
+    "four-on-the-floor bass drum feathering",
+    "hi-hat on 2 and 4",
+    "Charleston rhythm",
+    "shout chorus",
+    "call-and-response brass"
+  ],
+  "roles": {
+    "drums": [
+      "spang-a-lang ride cymbal",
+      "hi-hat pedal snap on 2 & 4",
+      "feathered bass drum"
+    ],
+    "bass": [
+      "acoustic four-to-the-bar walking bass"
+    ],
+    "piano": [
+      "syncopated Freddie Green / Charleston comping",
+      "tasty right-hand blues fills"
+    ],
+    "lead": [
+      "brass section unison stabs",
+      "improvised saxophone lines"
+    ]
+  },
+  "patterns": [
+    {
+      "id": "swing-spang",
+      "worldId": "swing",
+      "traditionId": "swing-big-band",
+      "name": "Spang-a-lang",
+      "family": "Ride",
+      "category": "fill",
+      "description": "Classic swing ride cymbal pattern with backbeat accents.",
+      "tags": [
+        "swing",
+        "ride"
+      ],
+      "scopes": [
+        "measure"
+      ],
+      "roles": [
+        "drums"
+      ],
+      "instruments": [
+        "drums"
+      ],
+      "meter": "4/4",
+      "cycleLength": 1,
+      "subdivisions": 12,
+      "onsetGrid": [
+        0,
+        3,
+        4,
+        6,
+        9,
+        10
+      ],
+      "accentProfile": [
+        0.85,
+        1,
+        0.7,
+        0.85,
+        1,
+        0.7
+      ],
+      "velocityProfile": [
+        0.8,
+        0.95,
+        0.65,
+        0.8,
+        0.95,
+        0.65
+      ],
+      "density": "medium",
+      "phrasePosition": [
+        "start"
+      ],
+      "sectionUsage": [
+        "verse",
+        "chorus"
+      ],
+      "variants": [
+        {
+          "id": "swing-spang-v-01",
+          "parentPatternId": "swing-spang",
+          "name": "Spang-a-lang — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            4,
+            6,
+            10
+          ],
+          "accentProfile": [
+            0.7999999999999999,
+            0.95,
+            0.6499999999999999,
+            0.7999999999999999
+          ],
+          "velocityProfile": [
+            0.7200000000000001,
+            0.87,
+            0.5700000000000001,
+            0.7200000000000001
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6
+          ]
+        },
+        {
+          "id": "swing-spang-v-02",
+          "parentPatternId": "swing-spang",
+          "name": "Spang-a-lang — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            3,
+            4,
+            6,
+            9,
+            10
+          ],
+          "accentProfile": [
+            0.8099999999999999,
+            1,
+            0.6599999999999999,
+            0.9299999999999999,
+            0.96,
+            0.7799999999999999
+          ],
+          "velocityProfile": [
+            0.8600000000000001,
+            0.9299999999999999,
+            0.63,
+            0.8600000000000001,
+            0.9299999999999999,
+            0.63
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5
+          ]
+        }
+      ],
+      "harmonicContext": [
+        "tonal or modal context"
+      ],
+      "difficulty": 2,
+      "weight": 1,
+      "provenance": "Swing catalog rebuild: retained source material or generated structural support pattern.",
+      "authenticityTags": [
+        "swing"
+      ],
+      "danceTags": [
+        "listening"
+      ],
+      "tuningSystem": "12-tet",
+      "swingPercentage": 66,
+      "anticipationOffset": 0,
+      "roleDependencies": [
+        "drums"
+      ],
+      "transformations": [
+        "density",
+        "accent",
+        "phrasePosition"
+      ],
+      "articulations": [
+        "accented",
+        "ghost-aware"
+      ]
+    },
+    {
+      "id": "swing-walking-bass",
+      "worldId": "swing",
+      "traditionId": "swing-big-band",
+      "name": "Walking Bass",
+      "family": "Bass",
+      "category": "break",
+      "description": "Quarter note acoustic walking bass line with dynamic drive.",
+      "tags": [
+        "swing",
+        "bass"
+      ],
+      "scopes": [
+        "measure"
+      ],
+      "roles": [
+        "bass"
+      ],
+      "instruments": [
+        "bass"
+      ],
+      "meter": "4/4",
+      "cycleLength": 1,
+      "subdivisions": 4,
+      "onsetGrid": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "accentProfile": [
+        1,
+        0.9,
+        0.95,
+        0.9
+      ],
+      "velocityProfile": [
+        0.95,
+        0.85,
+        0.9,
+        0.85
+      ],
+      "density": "medium",
+      "phrasePosition": [
+        "start"
+      ],
+      "sectionUsage": [
+        "verse",
+        "chorus"
+      ],
+      "variants": [
+        {
+          "id": "swing-walking-bass-variant-la-pompe",
+          "parentPatternId": "swing-walking-bass",
+          "name": "La Pompe",
+          "variationType": "instrumentSpecific",
+          "probability": 0.18,
+          "description": "Gypsy jazz rhythm guitar with bass downbeats and staccato chord slaps. Retained as a variation rather than a separate pattern entry.",
+          "onsetGrid": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "accentProfile": [
+            0.8,
+            1,
+            0.8,
+            1
+          ],
+          "velocityProfile": [
+            0.75,
+            0.95,
+            0.75,
+            0.95
+          ],
+          "constraints": [
+            "same genre context",
+            "use as an alternate voicing/technique"
+          ]
+        },
+        {
+          "id": "swing-walking-bass-v-02",
+          "parentPatternId": "swing-walking-bass",
+          "name": "Walking Bass — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "accentProfile": [
+            0.96,
+            0.98,
+            0.9099999999999999,
+            0.98
+          ],
+          "velocityProfile": [
+            1,
+            0.83,
+            0.88,
+            0.9099999999999999
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5
+          ]
+        }
+      ],
+      "harmonicContext": [
+        "tonal or modal context"
+      ],
+      "difficulty": 1,
+      "weight": 1,
+      "provenance": "Swing catalog rebuild: retained source material or generated structural support pattern.",
+      "authenticityTags": [
+        "swing"
+      ],
+      "danceTags": [
+        "listening"
+      ],
+      "tuningSystem": "12-tet",
+      "swingPercentage": 66,
+      "anticipationOffset": 0,
+      "roleDependencies": [
+        "bass"
+      ],
+      "transformations": [
+        "density",
+        "accent",
+        "phrasePosition"
+      ],
+      "articulations": [
+        "accented",
+        "ghost-aware"
+      ]
+    },
+    {
+      "id": "swing-2-feel",
+      "worldId": "swing",
+      "traditionId": "swing-big-band",
+      "name": "2-Feel Bass",
+      "family": "Bass",
+      "category": "cadence",
+      "description": "Half note bass line for verses and head statements.",
+      "tags": [
+        "swing",
+        "bass"
+      ],
+      "scopes": [
+        "measure"
+      ],
+      "roles": [
+        "bass"
+      ],
+      "instruments": [
+        "bass"
+      ],
+      "meter": "4/4",
+      "cycleLength": 1,
+      "subdivisions": 4,
+      "onsetGrid": [
+        0,
+        2
+      ],
+      "accentProfile": [
+        1,
+        0.85
+      ],
+      "velocityProfile": [
+        0.95,
+        0.8
+      ],
+      "density": "sparse",
+      "phrasePosition": [
+        "start"
+      ],
+      "sectionUsage": [
+        "verse",
+        "chorus",
+        "ending",
+        "turnaround"
+      ],
+      "variants": [
+        {
+          "id": "swing-2-feel-v-01-safe",
+          "parentPatternId": "swing-2-feel",
+          "name": "2-Feel Bass — played variation",
+          "variationType": "accentShift",
+          "probability": 0.18,
+          "description": "A light played variation for sparse patterns with only a few attacks.",
+          "onsetGrid": [
+            0,
+            2
+          ],
+          "accentProfile": [
+            0.95,
+            0.9299999999999999
+          ],
+          "velocityProfile": [
+            0.98,
+            0.76
+          ],
+          "microtimingOffset": [
+            -2,
+            4
+          ]
+        },
+        {
+          "id": "swing-2-feel-v-02-safe",
+          "parentPatternId": "swing-2-feel",
+          "name": "2-Feel Bass — played variation",
+          "variationType": "accentShift",
+          "probability": 0.18,
+          "description": "A light played variation for sparse patterns with only a few attacks.",
+          "onsetGrid": [
+            0,
+            2
+          ],
+          "accentProfile": [
+            0.95,
+            0.9299999999999999
+          ],
+          "velocityProfile": [
+            0.98,
+            0.76
+          ],
+          "microtimingOffset": [
+            -2,
+            4
+          ]
+        }
+      ],
+      "harmonicContext": [
+        "tonal or modal context"
+      ],
+      "difficulty": 1,
+      "weight": 1,
+      "provenance": "Swing catalog rebuild: retained source material or generated structural support pattern.",
+      "authenticityTags": [
+        "swing"
+      ],
+      "danceTags": [
+        "listening"
+      ],
+      "tuningSystem": "12-tet",
+      "swingPercentage": 66,
+      "anticipationOffset": 0,
+      "roleDependencies": [
+        "bass"
+      ],
+      "transformations": [
+        "density",
+        "accent",
+        "phrasePosition"
+      ],
+      "articulations": [
+        "accented",
+        "ghost-aware"
+      ]
+    },
+    {
+      "id": "swing-charleston",
+      "worldId": "swing",
+      "traditionId": "swing-big-band",
+      "name": "Charleston Comping",
+      "family": "Comping",
+      "category": "groove",
+      "description": "Classic dotted quarter and eighth note piano syncopation.",
+      "tags": [
+        "swing",
+        "piano"
+      ],
+      "scopes": [
+        "measure"
+      ],
+      "roles": [
+        "keys",
+        "piano"
+      ],
+      "instruments": [
+        "keys",
+        "piano"
+      ],
+      "meter": "4/4",
+      "cycleLength": 1,
+      "subdivisions": 8,
+      "onsetGrid": [
+        0,
+        3
+      ],
+      "accentProfile": [
+        1,
+        0.85
+      ],
+      "velocityProfile": [
+        0.95,
+        0.8
+      ],
+      "density": "sparse",
+      "phrasePosition": [
+        "start"
+      ],
+      "sectionUsage": [
+        "verse",
+        "chorus"
+      ],
+      "variants": [
+        {
+          "id": "swing-charleston-v-01-safe",
+          "parentPatternId": "swing-charleston",
+          "name": "Charleston Comping — played variation",
+          "variationType": "accentShift",
+          "probability": 0.18,
+          "description": "A light played variation for sparse patterns with only a few attacks.",
+          "onsetGrid": [
+            0,
+            3
+          ],
+          "accentProfile": [
+            0.95,
+            0.9299999999999999
+          ],
+          "velocityProfile": [
+            0.98,
+            0.76
+          ],
+          "microtimingOffset": [
+            -2,
+            4
+          ]
+        },
+        {
+          "id": "swing-charleston-v-02-safe",
+          "parentPatternId": "swing-charleston",
+          "name": "Charleston Comping — played variation",
+          "variationType": "accentShift",
+          "probability": 0.18,
+          "description": "A light played variation for sparse patterns with only a few attacks.",
+          "onsetGrid": [
+            0,
+            3
+          ],
+          "accentProfile": [
+            0.95,
+            0.9299999999999999
+          ],
+          "velocityProfile": [
+            0.98,
+            0.76
+          ],
+          "microtimingOffset": [
+            -2,
+            4
+          ]
+        }
+      ],
+      "harmonicContext": [
+        "tonal or modal context"
+      ],
+      "difficulty": 1,
+      "weight": 1,
+      "provenance": "Swing catalog rebuild: retained source material or generated structural support pattern.",
+      "authenticityTags": [
+        "swing"
+      ],
+      "danceTags": [
+        "listening"
+      ],
+      "tuningSystem": "12-tet",
+      "swingPercentage": 66,
+      "anticipationOffset": 0,
+      "roleDependencies": [
+        "keys"
+      ],
+      "transformations": [
+        "density",
+        "accent",
+        "phrasePosition"
+      ],
+      "interactionRules": [
+        {
+          "id": "swing-interaction-1",
+          "worldId": "swing",
+          "sourceRole": "drums",
+          "targetRole": "bass",
+          "relationship": "reinforce",
+          "description": "Low-end attacks reinforce the main pulse without doubling every subdivision.",
+          "timingOffsetSteps": 0,
+          "probability": 0.78
+        }
+      ],
+      "articulations": [
+        "accented",
+        "ghost-aware"
+      ]
+    },
+    {
+      "id": "swing-shuffle",
+      "worldId": "swing",
+      "traditionId": "swing-big-band",
+      "name": "Shuffle Swing",
+      "family": "Beat",
+      "category": "groove",
+      "description": "Heavy big band shuffle blues feel with swung triplets.",
+      "tags": [
+        "swing",
+        "shuffle"
+      ],
+      "scopes": [
+        "measure"
+      ],
+      "roles": [
+        "drums"
+      ],
+      "instruments": [
+        "drums"
+      ],
+      "meter": "4/4",
+      "cycleLength": 1,
+      "subdivisions": 12,
+      "onsetGrid": [
+        0,
+        2,
+        3,
+        5,
+        6,
+        8,
+        9,
+        11
+      ],
+      "accentProfile": [
+        1,
+        0.7,
+        0.95,
+        0.7,
+        0.9,
+        0.7,
+        0.95,
+        0.75
+      ],
+      "velocityProfile": [
+        0.95,
+        0.65,
+        0.9,
+        0.65,
+        0.85,
+        0.65,
+        0.9,
+        0.7
+      ],
+      "density": "medium",
+      "phrasePosition": [
+        "start"
+      ],
+      "sectionUsage": [
+        "verse",
+        "chorus"
+      ],
+      "variants": [
+        {
+          "id": "swing-shuffle-variant-jump-blues-shuffle",
+          "parentPatternId": "swing-shuffle",
+          "name": "Jump Blues Shuffle",
+          "variationType": "instrumentSpecific",
+          "probability": 0.18,
+          "description": "Aggressive Louis Jordan style triplet shuffle. Retained as a variation rather than a separate pattern entry.",
+          "onsetGrid": [
+            0,
+            2,
+            3,
+            5,
+            6,
+            8,
+            9,
+            11
+          ],
+          "accentProfile": [
+            1,
+            0.75,
+            0.95,
+            0.75,
+            0.9,
+            0.75,
+            0.95,
+            0.8
+          ],
+          "velocityProfile": [
+            0.95,
+            0.7,
+            0.9,
+            0.7,
+            0.85,
+            0.7,
+            0.9,
+            0.75
+          ],
+          "constraints": [
+            "same genre context",
+            "use as an alternate voicing/technique"
+          ]
+        },
+        {
+          "id": "swing-shuffle-v-02",
+          "parentPatternId": "swing-shuffle",
+          "name": "Shuffle Swing — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            2,
+            3,
+            5,
+            6,
+            8,
+            9,
+            11
+          ],
+          "accentProfile": [
+            0.96,
+            0.7799999999999999,
+            0.9099999999999999,
+            0.7799999999999999,
+            0.86,
+            0.7799999999999999,
+            0.9099999999999999,
+            0.83
+          ],
+          "velocityProfile": [
+            1,
+            0.63,
+            0.88,
+            0.71,
+            0.83,
+            0.63,
+            0.96,
+            0.6799999999999999
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5
+          ]
+        }
+      ],
+      "harmonicContext": [
+        "tonal or modal context"
+      ],
+      "difficulty": 3,
+      "weight": 1,
+      "provenance": "Swing catalog rebuild: retained source material or generated structural support pattern.",
+      "authenticityTags": [
+        "swing"
+      ],
+      "danceTags": [
+        "listening"
+      ],
+      "tuningSystem": "12-tet",
+      "swingPercentage": 66,
+      "anticipationOffset": 0,
+      "roleDependencies": [
+        "drums"
+      ],
+      "transformations": [
+        "density",
+        "accent",
+        "phrasePosition"
+      ],
+      "interactionRules": [
+        {
+          "id": "swing-interaction-2",
+          "worldId": "swing",
+          "sourceRole": "voice",
+          "targetRole": "harmony",
+          "relationship": "leaveSpace",
+          "description": "Harmony reduces density under vocal entries so the phrase remains foregrounded.",
+          "timingOffsetSteps": 0,
+          "probability": 0.72
+        }
+      ],
+      "articulations": [
+        "accented",
+        "ghost-aware"
+      ]
+    },
+    {
+      "id": "swing-bebop-ride",
+      "worldId": "swing",
+      "traditionId": "swing-small-group",
+      "name": "Bebop Ride",
+      "family": "Ride",
+      "category": "groove",
+      "description": "Fast, light ride pattern with dropped bass drum bombs.",
+      "tags": [
+        "swing",
+        "bebop"
+      ],
+      "scopes": [
+        "measure"
+      ],
+      "roles": [
+        "drums"
+      ],
+      "instruments": [
+        "drums"
+      ],
+      "meter": "4/4",
+      "cycleLength": 1,
+      "subdivisions": 12,
+      "onsetGrid": [
+        0,
+        3,
+        4,
+        6,
+        9,
+        10,
+        11
+      ],
+      "accentProfile": [
+        0.85,
+        0.95,
+        0.7,
+        0.85,
+        1,
+        0.7,
+        0.9
+      ],
+      "velocityProfile": [
+        0.8,
+        0.9,
+        0.65,
+        0.8,
+        0.95,
+        0.65,
+        0.85
+      ],
+      "density": "dense",
+      "phrasePosition": [
+        "start"
+      ],
+      "sectionUsage": [
+        "verse",
+        "chorus"
+      ],
+      "variants": [
+        {
+          "id": "swing-bebop-ride-v-01",
+          "parentPatternId": "swing-bebop-ride",
+          "name": "Bebop Ride — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            4,
+            6,
+            10,
+            11
+          ],
+          "accentProfile": [
+            0.7999999999999999,
+            0.8999999999999999,
+            0.6499999999999999,
+            0.7999999999999999,
+            0.95
+          ],
+          "velocityProfile": [
+            0.7200000000000001,
+            0.8200000000000001,
+            0.5700000000000001,
+            0.7200000000000001,
+            0.87
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "swing-bebop-ride-v-02",
+          "parentPatternId": "swing-bebop-ride",
+          "name": "Bebop Ride — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            3,
+            4,
+            6,
+            9,
+            10,
+            11
+          ],
+          "accentProfile": [
+            0.8099999999999999,
+            1,
+            0.6599999999999999,
+            0.9299999999999999,
+            0.96,
+            0.7799999999999999,
+            0.86
+          ],
+          "velocityProfile": [
+            0.8600000000000001,
+            0.88,
+            0.63,
+            0.8600000000000001,
+            0.9299999999999999,
+            0.63,
+            0.9099999999999999
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2
+          ]
+        }
+      ],
+      "harmonicContext": [
+        "tonal or modal context"
+      ],
+      "difficulty": 2,
+      "weight": 1,
+      "provenance": "Swing catalog rebuild: retained source material or generated structural support pattern.",
+      "authenticityTags": [
+        "swing"
+      ],
+      "danceTags": [
+        "listening"
+      ],
+      "tuningSystem": "12-tet",
+      "swingPercentage": 66,
+      "anticipationOffset": 0,
+      "roleDependencies": [
+        "drums"
+      ],
+      "transformations": [
+        "density",
+        "accent",
+        "phrasePosition"
+      ],
+      "interactionRules": [
+        {
+          "id": "swing-interaction-3",
+          "worldId": "swing",
+          "sourceRole": "lead",
+          "targetRole": "voice",
+          "relationship": "answer",
+          "description": "Lead instrument answers a vocal phrase in the open space after the line.",
+          "timingOffsetSteps": 2,
+          "probability": 0.58
+        }
+      ],
+      "articulations": [
+        "accented",
+        "ghost-aware"
+      ]
+    },
+    {
+      "id": "swing-brushes",
+      "worldId": "swing",
+      "traditionId": "swing-small-group",
+      "name": "Brushes Ballad",
+      "family": "Beat",
+      "category": "groove",
+      "description": "Swished wire brushes on coated snare with accents on 2 and 4.",
+      "tags": [
+        "swing",
+        "brushes"
+      ],
+      "scopes": [
+        "measure"
+      ],
+      "roles": [
+        "drums"
+      ],
+      "instruments": [
+        "drums"
+      ],
+      "meter": "4/4",
+      "cycleLength": 1,
+      "subdivisions": 8,
+      "onsetGrid": [
+        0,
+        2,
+        4,
+        6
+      ],
+      "accentProfile": [
+        0.75,
+        1,
+        0.75,
+        1
+      ],
+      "velocityProfile": [
+        0.7,
+        0.95,
+        0.7,
+        0.95
+      ],
+      "density": "medium",
+      "phrasePosition": [
+        "start"
+      ],
+      "sectionUsage": [
+        "verse",
+        "chorus"
+      ],
+      "variants": [
+        
+        {
+          "id": "swing-brushes-v-02",
+          "parentPatternId": "swing-brushes",
+          "name": "Brushes Ballad — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            2,
+            4,
+            6
+          ],
+          "accentProfile": [
+            0.71,
+            1,
+            0.71,
+            1
+          ],
+          "velocityProfile": [
+            0.76,
+            0.9299999999999999,
+            0.6799999999999999,
+            1
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5
+          ]
+        }
+      ],
+      "harmonicContext": [
+        "tonal or modal context"
+      ],
+      "difficulty": 1,
+      "weight": 1,
+      "provenance": "Swing catalog rebuild: retained source material or generated structural support pattern.",
+      "authenticityTags": [
+        "swing"
+      ],
+      "danceTags": [
+        "listening"
+      ],
+      "tuningSystem": "12-tet",
+      "swingPercentage": 66,
+      "anticipationOffset": 0,
+      "roleDependencies": [
+        "drums"
+      ],
+      "transformations": [
+        "density",
+        "accent",
+        "phrasePosition"
+      ],
+      "interactionRules": [
+        {
+          "id": "swing-interaction-4",
+          "worldId": "swing",
+          "sourceRole": "bass",
+          "targetRole": "drums",
+          "relationship": "accentWith",
+          "description": "Bass accents align with selected kick/backbeat events for a tighter pocket.",
+          "timingOffsetSteps": 0,
+          "probability": 0.65
+        }
+      ],
+      "articulations": [
+        "accented",
+        "ghost-aware"
+      ]
+    },
+    {
+      "id": "swing-ensemble",
+      "worldId": "swing",
+      "traditionId": "swing-big-band",
+      "name": "Ensemble Hits",
+      "family": "Comping",
+      "category": "groove",
+      "description": "Syncopated brass and rhythm section punch chords.",
+      "tags": [
+        "swing",
+        "big-band"
+      ],
+      "scopes": [
+        "measure"
+      ],
+      "roles": [
+        "keys",
+        "trumpet"
+      ],
+      "instruments": [
+        "keys",
+        "trumpet"
+      ],
+      "meter": "4/4",
+      "cycleLength": 1,
+      "subdivisions": 8,
+      "onsetGrid": [
+        1,
+        4,
+        6
+      ],
+      "accentProfile": [
+        0.9,
+        1,
+        0.95
+      ],
+      "velocityProfile": [
+        0.85,
+        0.95,
+        0.9
+      ],
+      "density": "sparse",
+      "phrasePosition": [
+        "start"
+      ],
+      "sectionUsage": [
+        "verse",
+        "chorus"
+      ],
+      "variants": [
+        {
+          "id": "swing-ensemble-v-01",
+          "parentPatternId": "swing-ensemble",
+          "name": "Ensemble Hits — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            1,
+            6
+          ],
+          "accentProfile": [
+            0.85,
+            0.95
+          ],
+          "velocityProfile": [
+            0.77,
+            0.87
+          ],
+          "microtimingOffset": [
+            -3,
+            6
+          ]
+        },
+        {
+          "id": "swing-ensemble-v-02",
+          "parentPatternId": "swing-ensemble",
+          "name": "Ensemble Hits — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            1,
+            4,
+            6
+          ],
+          "accentProfile": [
+            0.86,
+            1,
+            0.9099999999999999
+          ],
+          "velocityProfile": [
+            0.9099999999999999,
+            0.9299999999999999,
+            0.88
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2
+          ]
+        }
+      ],
+      "harmonicContext": [
+        "tonal or modal context"
+      ],
+      "difficulty": 1,
+      "weight": 1,
+      "provenance": "Swing catalog rebuild: retained source material or generated structural support pattern.",
+      "authenticityTags": [
+        "swing"
+      ],
+      "danceTags": [
+        "listening"
+      ],
+      "tuningSystem": "12-tet",
+      "swingPercentage": 66,
+      "anticipationOffset": 0,
+      "roleDependencies": [
+        "keys"
+      ],
+      "transformations": [
+        "density",
+        "accent",
+        "phrasePosition"
+      ],
+      "interactionRules": [
+        {
+          "id": "swing-interaction-5",
+          "worldId": "swing",
+          "sourceRole": "harmony",
+          "targetRole": "lead",
+          "relationship": "leaveSpace",
+          "description": "Accompaniment thins when the instrumental lead enters.",
+          "timingOffsetSteps": 0,
+          "probability": 0.62
+        }
+      ],
+      "articulations": [
+        "accented",
+        "ghost-aware"
+      ]
+    },
+    {
+      "id": "swing-shout-chorus",
+      "worldId": "swing",
+      "traditionId": "swing-big-band",
+      "name": "Shout Chorus Ensemble Hits",
+      "family": "Ensemble",
+      "category": "sectionPattern",
+      "description": "Full horn section and rhythm section unison punches building toward the big band's climactic shout chorus.",
+      "tags": [
+        "swing",
+        "big-band",
+        "shout-chorus"
+      ],
+      "scopes": [
+        "measure",
+        "phrase"
+      ],
+      "roles": [
+        "keys",
+        "trumpet",
+        "drums"
+      ],
+      "instruments": [
+        "keys",
+        "trumpet",
+        "drums"
+      ],
+      "meter": "4/4",
+      "cycleLength": 1,
+      "subdivisions": 16,
+      "onsetGrid": [
+        0,
+        3,
+        4,
+        8,
+        11,
+        12
+      ],
+      "accentProfile": [
+        1,
+        0.85,
+        0.7,
+        0.95,
+        0.8,
+        0.9
+      ],
+      "velocityProfile": [
+        0.95,
+        0.8,
+        0.65,
+        0.9,
+        0.75,
+        0.85
+      ],
+      "density": "dynamic",
+      "phrasePosition": [
+        "end"
+      ],
+      "sectionUsage": [
+        "chorus",
+        "coda"
+      ],
+      "variants": [
+        {
+          "id": "swing-shout-chorus-v-01",
+          "parentPatternId": "swing-shout-chorus",
+          "name": "Shout Chorus Ensemble Hits — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            4,
+            8,
+            12
+          ],
+          "accentProfile": [
+            0.95,
+            0.7999999999999999,
+            0.6499999999999999,
+            0.8999999999999999
+          ],
+          "velocityProfile": [
+            0.87,
+            0.7200000000000001,
+            0.5700000000000001,
+            0.8200000000000001
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6
+          ]
+        },
+        {
+          "id": "swing-shout-chorus-v-02",
+          "parentPatternId": "swing-shout-chorus",
+          "name": "Shout Chorus Ensemble Hits — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            3,
+            4,
+            8,
+            11,
+            12
+          ],
+          "accentProfile": [
+            0.96,
+            0.9299999999999999,
+            0.6599999999999999,
+            1,
+            0.76,
+            0.98
+          ],
+          "velocityProfile": [
+            1,
+            0.78,
+            0.63,
+            0.96,
+            0.73,
+            0.83
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5
+          ]
+        },
+        {
+          "id": "swing-shout-chorus-v-03",
+          "parentPatternId": "swing-shout-chorus",
+          "name": "Shout Chorus Ensemble Hits — transition variation",
+          "variationType": "transition",
+          "probability": 0.16,
+          "description": "Adds a final pickup/closure gesture for section transitions.",
+          "onsetGrid": [
+            0,
+            3,
+            4,
+            8,
+            11,
+            12,
+            14,
+            15
+          ],
+          "accentProfile": [
+            0.98,
+            0.83,
+            0.6799999999999999,
+            0.9299999999999999,
+            0.78,
+            0.88,
+            1,
+            1
+          ],
+          "velocityProfile": [
+            0.95,
+            0.8,
+            0.65,
+            0.9,
+            0.75,
+            0.85,
+            0.98,
+            0.98
+          ],
+          "microtimingOffset": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            -6,
+            -6
+          ]
+        }
+      ],
+      "harmonicContext": [
+        "tonal or modal context"
+      ],
+      "difficulty": 2,
+      "weight": 0.7,
+      "provenance": "Swing catalog rebuild: retained source material or generated structural support pattern.",
+      "authenticityTags": [
+        "swing"
+      ],
+      "danceTags": [
+        "listening"
+      ],
+      "tuningSystem": "12-tet",
+      "swingPercentage": 66,
+      "anticipationOffset": 0,
+      "roleDependencies": [
+        "drums"
+      ],
+      "transformations": [
+        "density",
+        "accent",
+        "phrasePosition"
+      ],
+      "articulations": [
+        "accented",
+        "ghost-aware"
+      ]
+    },
+    {
+      "id": "swing-phrase-10",
+      "worldId": "swing",
+      "traditionId": "swing-big-band",
+      "name": "Spang-a-Lang Phrase",
+      "family": "Spang-a-Lang",
+      "category": "phrasePattern",
+      "description": "A phrase-level rhythmic template that leaves deliberate space for melodic expression. Built around swung eighths and the spang-a-lang vocabulary of Swing.",
+      "tags": [
+        "swing",
+        "spang-a-lang",
+        "phrase",
+        "catalog-v2"
+      ],
+      "scopes": [
+        "measure",
+        "phrase"
+      ],
+      "roles": [
+        "voice"
+      ],
+      "instruments": ["voice"],
+      "compatibleRoles": [
+        "voice"
+      ],
+      "compatibleInstruments": ["voice"],
+      "canCrossRole": true,
+      "meter": "4/4",
+      "cycleLength": 1,
+      "subdivisions": 12,
+      "onsetGrid": [
+        0,
+        3,
+        4,
+        6,
+        7,
+        9,
+        10
+      ],
+      "accentProfile": [
+        1,
+        0.74,
+        0.9,
+        0.68,
+        1,
+        0.74,
+        0.9
+      ],
+      "velocityProfile": [
+        1,
+        0.69,
+        0.9,
+        0.68,
+        0.95,
+        0.74,
+        0.9
+      ],
+      "syncopationRating": 0.7142857142857143,
+      "anticipationOffset": 0,
+      "swingPercentage": 66,
+      "articulations": [
+        "breath",
+        "phrase-end"
+      ],
+      "density": "medium",
+      "phrasePosition": [
+        "start"
+      ],
+      "sectionUsage": [
+        "verse",
+        "chorus"
+      ],
+      "harmonicContext": [
+        "jazz dominant",
+        "ii-V-I",
+        "tonal or modal context"
+      ],
+      "roleDependencies": [
+        "voice"
+      ],
+      "transformations": [
+        "density",
+        "accent",
+        "phrasePosition"
+      ],
+      "variants": [
+        {
+          "id": "swing-phrase-10-v-01",
+          "parentPatternId": "swing-phrase-10",
+          "name": "Spang-a-Lang Phrase — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            4,
+            6,
+            9,
+            10
+          ],
+          "accentProfile": [
+            0.95,
+            0.69,
+            0.85,
+            0.63,
+            0.95
+          ],
+          "velocityProfile": [
+            0.92,
+            0.61,
+            0.8200000000000001,
+            0.6000000000000001,
+            0.87
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "swing-phrase-10-v-02",
+          "parentPatternId": "swing-phrase-10",
+          "name": "Spang-a-Lang Phrase — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            3,
+            4,
+            6,
+            7,
+            9,
+            10
+          ],
+          "accentProfile": [
+            0.96,
+            0.82,
+            0.86,
+            0.76,
+            0.96,
+            0.82,
+            0.86
+          ],
+          "velocityProfile": [
+            1,
+            0.6699999999999999,
+            0.88,
+            0.74,
+            0.9299999999999999,
+            0.72,
+            0.96
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2
+          ]
+        }
+      ],
+      "provenance": "GenreDAW catalog rebuild from existing Swing world data; generated to cover missing musical functions without runtime AI.",
+      "authenticityTags": [
+        "swing",
+        "spang-a-lang"
+      ],
+      "danceTags": [
+        "listening"
+      ],
+      "tuningSystem": "12-tet",
+      "difficulty": 2,
+      "weight": 0.7,
+      "enabled": true
+    },
+    {
+      "id": "swing-call-11",
+      "worldId": "swing",
+      "traditionId": "swing-big-band",
+      "name": "La Pompe Response",
+      "family": "La Pompe",
+      "category": "interactionPattern",
+      "description": "A call-and-response shape that leaves the next phrase open for an answer. Built around walking bass and the la pompe vocabulary of Swing.",
+      "tags": [
+        "swing",
+        "la-pompe",
+        "call",
+        "catalog-v2"
+      ],
+      "scopes": [
+        "measure",
+        "phrase"
+      ],
+      "roles": [
+        "voice",
+        "lead"
+      ],
+      "instruments": [
+        "drums",
+        "bass",
+        "piano"
+      ],
+      "compatibleRoles": [
+        "voice",
+        "lead"
+      ],
+      "compatibleInstruments": [
+        "drums",
+        "bass",
+        "piano"
+      ],
+      "canCrossRole": true,
+      "meter": "4/4",
+      "cycleLength": 1,
+      "subdivisions": 16,
+      "onsetGrid": [
+        1,
+        4,
+        5,
+        7,
+        8,
+        10,
+        11
+      ],
+      "accentProfile": [
+        0.95,
+        0.62,
+        0.95,
+        0.62,
+        0.95,
+        0.62,
+        0.95
+      ],
+      "velocityProfile": [
+        0.95,
+        0.57,
+        0.95,
+        0.62,
+        0.8999999999999999,
+        0.62,
+        0.95
+      ],
+      "syncopationRating": 0.7142857142857143,
+      "anticipationOffset": 0,
+      "swingPercentage": 66,
+      "articulations": [
+        "breath",
+        "phrase-end"
+      ],
+      "density": "medium",
+      "phrasePosition": [
+        "middle"
+      ],
+      "sectionUsage": [
+        "verse",
+        "chorus",
+        "bridge"
+      ],
+      "harmonicContext": [
+        "jazz dominant",
+        "ii-V-I",
+        "tonal or modal context"
+      ],
+      "roleDependencies": [
+        "voice",
+        "lead"
+      ],
+      "transformations": [
+        "density",
+        "accent",
+        "phrasePosition"
+      ],
+      "variants": [
+        {
+          "id": "swing-call-11-v-01",
+          "parentPatternId": "swing-call-11",
+          "name": "La Pompe Response — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            1,
+            5,
+            7,
+            10,
+            11
+          ],
+          "accentProfile": [
+            0.8999999999999999,
+            0.57,
+            0.8999999999999999,
+            0.57,
+            0.8999999999999999
+          ],
+          "velocityProfile": [
+            0.87,
+            0.48999999999999994,
+            0.87,
+            0.54,
+            0.82
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "swing-call-11-v-02",
+          "parentPatternId": "swing-call-11",
+          "name": "La Pompe Response — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            1,
+            4,
+            5,
+            7,
+            8,
+            10,
+            11
+          ],
+          "accentProfile": [
+            0.9099999999999999,
+            0.7,
+            0.9099999999999999,
+            0.7,
+            0.9099999999999999,
+            0.7,
+            0.9099999999999999
+          ],
+          "velocityProfile": [
+            1,
+            0.5499999999999999,
+            0.9299999999999999,
+            0.6799999999999999,
+            0.8799999999999999,
+            0.6,
+            1
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2
+          ]
+        },
+        {
+          "id": "swing-call-11-v-03",
+          "parentPatternId": "swing-call-11",
+          "name": "La Pompe Response — transition variation",
+          "variationType": "transition",
+          "probability": 0.16,
+          "description": "Adds a final pickup/closure gesture for section transitions.",
+          "onsetGrid": [
+            1,
+            4,
+            5,
+            7,
+            8,
+            10,
+            11,
+            14,
+            15
+          ],
+          "accentProfile": [
+            0.9299999999999999,
+            0.6,
+            0.9299999999999999,
+            0.6,
+            0.9299999999999999,
+            0.6,
+            0.9299999999999999,
+            1,
+            1
+          ],
+          "velocityProfile": [
+            0.95,
+            0.57,
+            0.95,
+            0.62,
+            0.8999999999999999,
+            0.62,
+            0.95,
+            0.98,
+            0.98
+          ],
+          "microtimingOffset": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            -6,
+            -6
+          ]
+        }
+      ],
+      "provenance": "GenreDAW catalog rebuild from existing Swing world data; generated to cover missing musical functions without runtime AI.",
+      "authenticityTags": [
+        "swing",
+        "la-pompe"
+      ],
+      "danceTags": [
+        "listening"
+      ],
+      "tuningSystem": "12-tet",
+      "difficulty": 2,
+      "weight": 0.7,
+      "enabled": true
+    },
+    {
+      "id": "swing-anchor-12",
+      "worldId": "swing",
+      "traditionId": "swing-big-band",
+      "name": "Shout Anchor",
+      "family": "Shout",
+      "category": "ostinato",
+      "description": "A repeating anchor that locks the low end to the groove. Built around comping and the shout vocabulary of Swing.",
+      "tags": [
+        "swing",
+        "shout",
+        "anchor",
+        "catalog-v2"
+      ],
+      "scopes": [
+        "measure",
+        "phrase"
+      ],
+      "roles": [
+        "bass"
+      ],
+      "instruments": [
+        "bass"
+      ],
+      "compatibleRoles": [
+        "bass"
+      ],
+      "compatibleInstruments": [
+        "bass"
+      ],
+      "canCrossRole": true,
+      "meter": "12/8",
+      "cycleLength": 1,
+      "subdivisions": 16,
+      "onsetGrid": [
+        2,
+        5,
+        6,
+        8,
+        9,
+        11,
+        12
+      ],
+      "accentProfile": [
+        1,
+        0.74,
+        0.9,
+        0.68,
+        1,
+        0.74,
+        0.9
+      ],
+      "velocityProfile": [
+        1,
+        0.69,
+        0.9,
+        0.68,
+        0.95,
+        0.74,
+        0.9
+      ],
+      "syncopationRating": 0.7142857142857143,
+      "anticipationOffset": 0,
+      "swingPercentage": 66,
+      "articulations": [
+        "accented",
+        "ghost-aware"
+      ],
+      "density": "medium",
+      "phrasePosition": [
+        "start",
+        "middle"
+      ],
+      "sectionUsage": [
+        "verse",
+        "chorus"
+      ],
+      "harmonicContext": [
+        "jazz dominant",
+        "ii-V-I",
+        "tonal or modal context"
+      ],
+      "roleDependencies": [
+        "bass"
+      ],
+      "transformations": [
+        "density",
+        "accent",
+        "phrasePosition"
+      ],
+      "variants": [
+        {
+          "id": "swing-anchor-12-v-01",
+          "parentPatternId": "swing-anchor-12",
+          "name": "Shout Anchor — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            2,
+            6,
+            8,
+            11,
+            12
+          ],
+          "accentProfile": [
+            0.95,
+            0.69,
+            0.85,
+            0.63,
+            0.95
+          ],
+          "velocityProfile": [
+            0.92,
+            0.61,
+            0.8200000000000001,
+            0.6000000000000001,
+            0.87
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "swing-anchor-12-v-02",
+          "parentPatternId": "swing-anchor-12",
+          "name": "Shout Anchor — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            2,
+            5,
+            6,
+            8,
+            9,
+            11,
+            12
+          ],
+          "accentProfile": [
+            0.96,
+            0.82,
+            0.86,
+            0.76,
+            0.96,
+            0.82,
+            0.86
+          ],
+          "velocityProfile": [
+            1,
+            0.6699999999999999,
+            0.88,
+            0.74,
+            0.9299999999999999,
+            0.72,
+            0.96
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2
+          ]
+        }
+      ],
+      "provenance": "GenreDAW catalog rebuild from existing Swing world data; generated to cover missing musical functions without runtime AI.",
+      "authenticityTags": [
+        "swing",
+        "shout"
+      ],
+      "danceTags": [
+        "listening"
+      ],
+      "tuningSystem": "12-tet",
+      "difficulty": 2,
+      "weight": 0.7,
+      "enabled": true
+    },
+    {
+      "id": "swing-comp-13",
+      "worldId": "swing",
+      "traditionId": "swing-big-band",
+      "name": "Comping Comping",
+      "family": "Comping",
+      "category": "groove",
+      "description": "A genre-shaped accompaniment cell that supports the lead without occupying every subdivision. Built around shout chorus and the comping vocabulary of Swing.",
+      "tags": [
+        "swing",
+        "comping",
+        "comp",
+        "catalog-v2"
+      ],
+      "scopes": [
+        "measure",
+        "phrase"
+      ],
+      "roles": [
+        "harmony"
+      ],
+      "instruments": [
+        "piano"
+      ],
+      "compatibleRoles": [
+        "harmony"
+      ],
+      "compatibleInstruments": [
+        "piano"
+      ],
+      "canCrossRole": true,
+      "meter": "4/4",
+      "cycleLength": 1,
+      "subdivisions": 16,
+      "onsetGrid": [
+        4,
+        7,
+        8,
+        10,
+        11,
+        13,
+        14
+      ],
+      "accentProfile": [
+        1,
+        0.74,
+        0.9,
+        0.68,
+        1,
+        0.74,
+        0.9
+      ],
+      "velocityProfile": [
+        1,
+        0.69,
+        0.9,
+        0.68,
+        0.95,
+        0.74,
+        0.9
+      ],
+      "syncopationRating": 0.7142857142857143,
+      "anticipationOffset": 0,
+      "swingPercentage": 66,
+      "articulations": [
+        "accented",
+        "ghost-aware"
+      ],
+      "density": "medium",
+      "phrasePosition": [
+        "middle"
+      ],
+      "sectionUsage": [
+        "verse",
+        "chorus"
+      ],
+      "harmonicContext": [
+        "jazz dominant",
+        "ii-V-I",
+        "tonal or modal context"
+      ],
+      "roleDependencies": [
+        "harmony"
+      ],
+      "transformations": [
+        "density",
+        "accent",
+        "phrasePosition"
+      ],
+      "variants": [
+        {
+          "id": "swing-comp-13-v-01",
+          "parentPatternId": "swing-comp-13",
+          "name": "Comping Comping — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            4,
+            8,
+            10,
+            13,
+            14
+          ],
+          "accentProfile": [
+            0.95,
+            0.69,
+            0.85,
+            0.63,
+            0.95
+          ],
+          "velocityProfile": [
+            0.92,
+            0.61,
+            0.8200000000000001,
+            0.6000000000000001,
+            0.87
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "swing-comp-13-v-02",
+          "parentPatternId": "swing-comp-13",
+          "name": "Comping Comping — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            4,
+            7,
+            8,
+            10,
+            11,
+            13,
+            14
+          ],
+          "accentProfile": [
+            0.96,
+            0.82,
+            0.86,
+            0.76,
+            0.96,
+            0.82,
+            0.86
+          ],
+          "velocityProfile": [
+            1,
+            0.6699999999999999,
+            0.88,
+            0.74,
+            0.9299999999999999,
+            0.72,
+            0.96
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2
+          ]
+        }
+      ],
+      "provenance": "GenreDAW catalog rebuild from existing Swing world data; generated to cover missing musical functions without runtime AI.",
+      "authenticityTags": [
+        "swing",
+        "comping"
+      ],
+      "danceTags": [
+        "listening"
+      ],
+      "tuningSystem": "12-tet",
+      "difficulty": 2,
+      "weight": 1,
+      "enabled": true
+    },
+    {
+      "id": "swing-intro-14",
+      "worldId": "swing",
+      "traditionId": "swing-big-band",
+      "name": "Turnaround Intro",
+      "family": "Turnaround",
+      "category": "sectionPattern",
+      "description": "A reduced entrance used to establish the genre before the full groove arrives. Built around trading fours and the turnaround vocabulary of Swing.",
+      "tags": [
+        "swing",
+        "turnaround",
+        "intro",
+        "catalog-v2"
+      ],
+      "scopes": [
+        "measure",
+        "phrase"
+      ],
+      "roles": [
+        "harmony",
+        "texture"
+      ],
+      "instruments": [
+        "piano"
+      ],
+      "compatibleRoles": [
+        "harmony",
+        "texture"
+      ],
+      "compatibleInstruments": [
+        "piano"
+      ],
+      "canCrossRole": true,
+      "meter": "4/4",
+      "cycleLength": 1,
+      "subdivisions": 16,
+      "onsetGrid": [
+        0,
+        2,
+        3,
+        6,
+        8,
+        9,
+        11
+      ],
+      "accentProfile": [
+        1,
+        0.74,
+        0.9,
+        0.68,
+        1,
+        0.74,
+        0.9
+      ],
+      "velocityProfile": [
+        1,
+        0.69,
+        0.9,
+        0.68,
+        0.95,
+        0.74,
+        0.9
+      ],
+      "syncopationRating": 0.7142857142857143,
+      "anticipationOffset": 0,
+      "swingPercentage": 66,
+      "articulations": [
+        "accented",
+        "ghost-aware"
+      ],
+      "density": "dense",
+      "phrasePosition": [
+        "start"
+      ],
+      "sectionUsage": [
+        "intro"
+      ],
+      "harmonicContext": [
+        "jazz dominant",
+        "ii-V-I",
+        "tonal or modal context"
+      ],
+      "roleDependencies": [
+        "harmony",
+        "texture"
+      ],
+      "transformations": [
+        "density",
+        "accent",
+        "phrasePosition"
+      ],
+      "variants": [
+        {
+          "id": "swing-intro-14-v-01",
+          "parentPatternId": "swing-intro-14",
+          "name": "Turnaround Intro — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            3,
+            6,
+            9,
+            11
+          ],
+          "accentProfile": [
+            0.95,
+            0.69,
+            0.85,
+            0.63,
+            0.95
+          ],
+          "velocityProfile": [
+            0.92,
+            0.61,
+            0.8200000000000001,
+            0.6000000000000001,
+            0.87
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "swing-intro-14-v-02",
+          "parentPatternId": "swing-intro-14",
+          "name": "Turnaround Intro — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            2,
+            3,
+            6,
+            8,
+            9,
+            11
+          ],
+          "accentProfile": [
+            0.96,
+            0.82,
+            0.86,
+            0.76,
+            0.96,
+            0.82,
+            0.86
+          ],
+          "velocityProfile": [
+            1,
+            0.6699999999999999,
+            0.88,
+            0.74,
+            0.9299999999999999,
+            0.72,
+            0.96
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2
+          ]
+        },
+        {
+          "id": "swing-intro-14-v-03",
+          "parentPatternId": "swing-intro-14",
+          "name": "Turnaround Intro — transition variation",
+          "variationType": "transition",
+          "probability": 0.16,
+          "description": "Adds a final pickup/closure gesture for section transitions.",
+          "onsetGrid": [
+            0,
+            2,
+            3,
+            6,
+            8,
+            9,
+            11,
+            14,
+            15
+          ],
+          "accentProfile": [
+            0.98,
+            0.72,
+            0.88,
+            0.66,
+            0.98,
+            0.72,
+            0.88,
+            1,
+            1
+          ],
+          "velocityProfile": [
+            1,
+            0.69,
+            0.9,
+            0.68,
+            0.95,
+            0.74,
+            0.9,
+            0.98,
+            0.98
+          ],
+          "microtimingOffset": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            -6,
+            -6
+          ]
+        }
+      ],
+      "provenance": "GenreDAW catalog rebuild from existing Swing world data; generated to cover missing musical functions without runtime AI.",
+      "authenticityTags": [
+        "swing",
+        "turnaround"
+      ],
+      "danceTags": [
+        "listening"
+      ],
+      "tuningSystem": "12-tet",
+      "difficulty": 2,
+      "weight": 0.7,
+      "enabled": true
+    },
+    {
+      "id": "swing-verse-15",
+      "worldId": "swing",
+      "traditionId": "swing-big-band",
+      "name": "Spang-a-Lang Verse Variation",
+      "family": "Spang-a-Lang",
+      "category": "groove",
+      "description": "A restrained verse variation with intentional headroom for melody. Built around swung eighths and the spang-a-lang vocabulary of Swing.",
+      "tags": [
+        "swing",
+        "spang-a-lang",
+        "verse",
+        "catalog-v2"
+      ],
+      "scopes": [
+        "measure",
+        "phrase"
+      ],
+      "roles": [
+        "pulse",
+        "rhythm-guitar",
+        "drums"
+      ],
+      "instruments": [
+        "drums",
+        "percussion",
+        "bass"
+      ],
+      "compatibleRoles": [
+        "pulse",
+        "rhythm-guitar",
+        "drums"
+      ],
+      "compatibleInstruments": [
+        "drums",
+        "percussion",
+        "bass"
+      ],
+      "canCrossRole": true,
+      "meter": "4/4",
+      "cycleLength": 1,
+      "subdivisions": 12,
+      "onsetGrid": [
+        1,
+        2,
+        3,
+        5,
+        7,
+        8
+      ],
+      "accentProfile": [
+        1,
+        0.74,
+        0.9,
+        0.68,
+        1,
+        0.74
+      ],
+      "velocityProfile": [
+        1,
+        0.69,
+        0.9,
+        0.68,
+        0.95,
+        0.74
+      ],
+      "syncopationRating": 0.8333333333333334,
+      "anticipationOffset": 0,
+      "swingPercentage": 66,
+      "articulations": [
+        "accented",
+        "ghost-aware"
+      ],
+      "density": "medium",
+      "phrasePosition": [
+        "middle"
+      ],
+      "sectionUsage": [
+        "verse"
+      ],
+      "harmonicContext": [
+        "jazz dominant",
+        "ii-V-I",
+        "tonal or modal context"
+      ],
+      "roleDependencies": [
+        "drums",
+        "rhythm-guitar"
+      ],
+      "transformations": [
+        "density",
+        "accent",
+        "phrasePosition"
+      ],
+      "variants": [
+        {
+          "id": "swing-verse-15-v-01",
+          "parentPatternId": "swing-verse-15",
+          "name": "Spang-a-Lang Verse Variation — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            1,
+            3,
+            5,
+            8
+          ],
+          "accentProfile": [
+            0.95,
+            0.69,
+            0.85,
+            0.63
+          ],
+          "velocityProfile": [
+            0.92,
+            0.61,
+            0.8200000000000001,
+            0.6000000000000001
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6
+          ]
+        },
+        {
+          "id": "swing-verse-15-v-02",
+          "parentPatternId": "swing-verse-15",
+          "name": "Spang-a-Lang Verse Variation — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            1,
+            2,
+            3,
+            5,
+            7,
+            8
+          ],
+          "accentProfile": [
+            0.96,
+            0.82,
+            0.86,
+            0.76,
+            0.96,
+            0.82
+          ],
+          "velocityProfile": [
+            1,
+            0.6699999999999999,
+            0.88,
+            0.74,
+            0.9299999999999999,
+            0.72
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5
+          ]
+        }
+      ],
+      "provenance": "GenreDAW catalog rebuild from existing Swing world data; generated to cover missing musical functions without runtime AI.",
+      "authenticityTags": [
+        "swing",
+        "spang-a-lang"
+      ],
+      "danceTags": [
+        "listening"
+      ],
+      "tuningSystem": "12-tet",
+      "difficulty": 2,
+      "weight": 1,
+      "enabled": true
+    },
+    {
+      "id": "swing-chorus-16",
+      "worldId": "swing",
+      "traditionId": "swing-big-band",
+      "name": "La Pompe Chorus Lift",
+      "family": "La Pompe",
+      "category": "sectionPattern",
+      "description": "A higher-energy chorus layer that increases density without changing the genre identity. Built around walking bass and the la pompe vocabulary of Swing.",
+      "tags": [
+        "swing",
+        "la-pompe",
+        "chorus",
+        "catalog-v2"
+      ],
+      "scopes": [
+        "measure",
+        "phrase"
+      ],
+      "roles": [
+        "pulse",
+        "harmony",
+        "drums"
+      ],
+      "instruments": [
+        "drums",
+        "percussion",
+        "piano"
+      ],
+      "compatibleRoles": [
+        "pulse",
+        "harmony",
+        "drums"
+      ],
+      "compatibleInstruments": [
+        "drums",
+        "percussion",
+        "piano"
+      ],
+      "canCrossRole": true,
+      "meter": "4/4",
+      "cycleLength": 1,
+      "subdivisions": 16,
+      "onsetGrid": [
+        2,
+        4,
+        5,
+        8,
+        10,
+        11,
+        13
+      ],
+      "accentProfile": [
+        1,
+        0.74,
+        0.9,
+        0.68,
+        1,
+        0.74,
+        0.9
+      ],
+      "velocityProfile": [
+        1,
+        0.69,
+        0.9,
+        0.68,
+        0.95,
+        0.74,
+        0.9
+      ],
+      "syncopationRating": 0.7142857142857143,
+      "anticipationOffset": 1,
+      "swingPercentage": 66,
+      "articulations": [
+        "accented",
+        "ghost-aware"
+      ],
+      "density": "dense",
+      "phrasePosition": [
+        "middle",
+        "end"
+      ],
+      "sectionUsage": [
+        "chorus"
+      ],
+      "harmonicContext": [
+        "jazz dominant",
+        "ii-V-I",
+        "tonal or modal context"
+      ],
+      "roleDependencies": [
+        "harmony",
+        "drums"
+      ],
+      "transformations": [
+        "density",
+        "accent",
+        "phrasePosition"
+      ],
+      "variants": [
+        {
+          "id": "swing-chorus-16-v-01",
+          "parentPatternId": "swing-chorus-16",
+          "name": "La Pompe Chorus Lift — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            2,
+            5,
+            8,
+            11,
+            13
+          ],
+          "accentProfile": [
+            0.95,
+            0.69,
+            0.85,
+            0.63,
+            0.95
+          ],
+          "velocityProfile": [
+            0.92,
+            0.61,
+            0.8200000000000001,
+            0.6000000000000001,
+            0.87
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "swing-chorus-16-v-02",
+          "parentPatternId": "swing-chorus-16",
+          "name": "La Pompe Chorus Lift — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            2,
+            4,
+            5,
+            8,
+            10,
+            11,
+            13
+          ],
+          "accentProfile": [
+            0.96,
+            0.82,
+            0.86,
+            0.76,
+            0.96,
+            0.82,
+            0.86
+          ],
+          "velocityProfile": [
+            1,
+            0.6699999999999999,
+            0.88,
+            0.74,
+            0.9299999999999999,
+            0.72,
+            0.96
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2
+          ]
+        },
+        {
+          "id": "swing-chorus-16-v-03",
+          "parentPatternId": "swing-chorus-16",
+          "name": "La Pompe Chorus Lift — transition variation",
+          "variationType": "transition",
+          "probability": 0.16,
+          "description": "Adds a final pickup/closure gesture for section transitions.",
+          "onsetGrid": [
+            2,
+            4,
+            5,
+            8,
+            10,
+            11,
+            13,
+            14,
+            15
+          ],
+          "accentProfile": [
+            0.98,
+            0.72,
+            0.88,
+            0.66,
+            0.98,
+            0.72,
+            0.88,
+            1,
+            1
+          ],
+          "velocityProfile": [
+            1,
+            0.69,
+            0.9,
+            0.68,
+            0.95,
+            0.74,
+            0.9,
+            0.98,
+            0.98
+          ],
+          "microtimingOffset": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            -6,
+            -6
+          ]
+        }
+      ],
+      "provenance": "GenreDAW catalog rebuild from existing Swing world data; generated to cover missing musical functions without runtime AI.",
+      "authenticityTags": [
+        "swing",
+        "la-pompe"
+      ],
+      "danceTags": [
+        "listening"
+      ],
+      "tuningSystem": "12-tet",
+      "difficulty": 2,
+      "weight": 0.7,
+      "enabled": true
+    },
+    {
+      "id": "swing-voice-phrasing",
+      "worldId": "swing",
+      "traditionId": "swing-big-band",
+      "name": "Swing Vocal Phrasing",
+      "family": "Vocal Phrasing",
+      "category": "phrasePattern",
+      "description": "Dedicated vocal phrasing space for Swing, with clear entries and rests so the voice behaves as an ensemble role rather than a constant loop.",
+      "tags": [
+        "swing",
+        "voice",
+        "vocal-phrasing",
+        "catalog-v2"
+      ],
+      "scopes": [
+        "measure",
+        "phrase"
+      ],
+      "roles": [
+        "voice"
+      ],
+      "instruments": ["voice"],
+      "compatibleRoles": [
+        "voice",
+        "lead"
+      ],
+      "compatibleInstruments": ["voice"],
+      "meter": "4/4",
+      "cycleLength": 1,
+      "subdivisions": 16,
+      "onsetGrid": [
+        0,
+        3,
+        6,
+        10,
+        12,
+        15
+      ],
+      "accentProfile": [
+        0.98,
+        0.62,
+        0.84,
+        0.6,
+        0.94,
+        0.68
+      ],
+      "velocityProfile": [
+        0.92,
+        0.58,
+        0.78,
+        0.56,
+        0.88,
+        0.64
+      ],
+      "syncopationRating": 0.66,
+      "anticipationOffset": 0,
+      "swingPercentage": 55,
+      "articulations": [
+        "breath",
+        "phrase-end"
+      ],
+      "density": "medium",
+      "phrasePosition": [
+        "start",
+        "middle"
+      ],
+      "sectionUsage": [
+        "verse",
+        "chorus",
+        "bridge"
+      ],
+      "harmonicContext": [
+        "tonal or modal context"
+      ],
+      "roleDependencies": [
+        "voice"
+      ],
+      "transformations": [
+        "density",
+        "accent",
+        "phrasePosition"
+      ],
+      "variants": [
+        {
+          "id": "swing-voice-phrasing-v1",
+          "parentPatternId": "swing-voice-phrasing",
+          "name": "Swing Vocal Phrasing — sparse",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Sparse answer-friendly repeat.",
+          "onsetGrid": [
+            0,
+            3,
+            10,
+            15
+          ],
+          "accentProfile": [
+            0.98,
+            0.62,
+            0.92,
+            0.7
+          ],
+          "velocityProfile": [
+            0.9,
+            0.58,
+            0.86,
+            0.64
+          ]
+        },
+        {
+          "id": "swing-voice-phrasing-v2",
+          "parentPatternId": "swing-voice-phrasing",
+          "name": "Swing Vocal Phrasing — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.18,
+          "description": "Shifted vocal emphasis for repeat variation.",
+          "onsetGrid": [
+            0,
+            3,
+            6,
+            10,
+            12,
+            15
+          ],
+          "accentProfile": [
+            0.9,
+            0.7,
+            0.8,
+            0.65,
+            1,
+            0.62
+          ],
+          "velocityProfile": [
+            0.86,
+            0.62,
+            0.76,
+            0.6,
+            0.92,
+            0.58
+          ]
+        }
+      ],
+      "provenance": "GenreDAW catalog rebuild: vocal coverage for Swing.",
+      "authenticityTags": [
+        "swing",
+        "voice"
+      ],
+      "danceTags": [
+        "listening"
+      ],
+      "tuningSystem": "12-tet",
+      "difficulty": 2,
+      "weight": 0.8,
+      "enabled": true
+    }
+  ],
+  "techniques": [
+    "spang-a-lang ride technique",
+    "feathering the bass drum",
+    "walking bass passing tones",
+    "Freddie Green acoustic strumming"
+  ],
+  "forms": [
+    "32-bar AABA standard",
+    "12-bar blues",
+    "head-solo-head",
+    "shout chorus"
+  ],
+  "relationships": [
+    "ride cymbal ↔ walking bass (unshakable pulse lock)",
+    "hi-hat pedal ↔ piano left hand (2 and 4 backbeat snap)"
+  ],
+  "transformations": [
+    "trans-density-dense",
+    "trans-anticipation",
+    "trans-phrase-cadence",
+    "catalog-v2-density-variation",
+    "catalog-v2-transition-coverage",
+    "catalog-v2-ensemble-interactions"
+  ],
+  "songBehaviors": [
+    "buoyant rhythmic swing with elastic dynamic swells between conversational solos and thunderous shout choruses",
+    "avoid identical loop repetition by alternating pattern variants",
+    "use fills, breaks, cadences, and bridge textures as structural events",
+    "let lead/voice parts create space and response relationships"
+  ],
+  "instrumentIdeas": {
+    "drums": [
+      "22-inch vintage K ride with sizzle and light feathered bass drum"
+    ],
+    "bass": [
+      "upright acoustic bass with gut strings and deep percussive attack"
+    ],
+    "piano": [
+      "grand piano with crisp percussive chord bites and lyrical single-note runs"
+    ],
+    "trumpet": [
+      "horn-head and shout chorus"
+    ],
+    "voice": [
+      "vocal swing phrasing where appropriate"
+    ]
+  },
+  "combinations": [
+    "Swing + Blues",
+    "Swing + Funk",
+    "Swing + WCS",
+    "Swing + Pop"
+  ],
+  "danceTags": [
+    "social-partner",
+    "wcs-compatible",
+    "solo-vernacular",
+    "listening"
+  ],
+  "tuningSystem": "12-tet",
+  "signatureCell": "Spang-a-lang ride cymbal phrasing with four-to-the-bar acoustic walking bass and brass ensemble punch hits",
+  "grooveMechanics": {
+    "swingPercentage": 64,
+    "anticipationOffsetSteps": 0,
+    "microtimingFeel": "pushed"
+  },
+  "crossLinks": [
+    "Swing ↔ Blues",
+    "Swing ↔ Funk",
+    "Swing ↔ WCS",
+    "Swing ↔ Pop"
+  ]
+};

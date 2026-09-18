@@ -1,0 +1,305 @@
+export const PITCH_CLASS: Record<string, number> = {
+  C: 0, 'C#': 1, Db: 1, D: 2, 'D#': 3, Eb: 3, E: 4, Fb: 4, 'E#': 5,
+  F: 5, 'F#': 6, Gb: 6, G: 7, 'G#': 8, Ab: 8, A: 9, 'A#': 10, Bb: 10,
+  B: 11, Cb: 11, 'B#': 0,
+};
+
+export const SHARP_NAMES = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
+export const FLAT_NAMES  = ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B'];
+
+export type ChordQuality =
+  | 'major' | 'minor' | 'dominant' | 'diminished' | 'halfDiminished'
+  | 'augmented' | 'suspended' | 'power';
+
+export interface ParsedChord {
+  /** the original symbol */
+  symbol: string;
+  /** 0..11 */
+  rootPc: number;
+  rootName: string;
+  quality: ChordQuality;
+  /** semitone offsets above the root, ascending, root first */
+  intervals: number[];
+  /** the intervals that carry the chord's identity — third and seventh, mostly */
+  guideTones: number[];
+  /** colour notes it is safe to drop when space is tight */
+  tensions: number[];
+  /** explicit bass note pitch class for slash chords */
+  bassPc: number;
+  /** true when the symbol had no third at all */
+  isPower: boolean;
+  /** scale to improvise over, as semitone offsets from the root */
+  scale: number[];
+  /** how much tension this chord carries, 0..1 — drives voicing spread and dynamics */
+  tension: number;
+}
+
+const QUALITY_TENSION: Record<ChordQuality, number> = {
+  major: 0.1, minor: 0.25, suspended: 0.4, power: 0.15,
+  dominant: 0.7, halfDiminished: 0.8, diminished: 0.9, augmented: 0.85,
+};
+
+/* scale shapes as semitone offsets from the chord root */
+const IONIAN     = [0, 2, 4, 5, 7, 9, 11];
+const DORIAN     = [0, 2, 3, 5, 7, 9, 10];
+const AEOLIAN    = [0, 2, 3, 5, 7, 8, 10];
+const MIXOLYDIAN = [0, 2, 4, 5, 7, 9, 10];
+const LYDIAN     = [0, 2, 4, 6, 7, 9, 11];
+const PHRYGIAN_D = [0, 1, 4, 5, 7, 8, 10];   // the flamenco/andalusian colour
+const ALTERED    = [0, 1, 3, 4, 6, 8, 10];
+const LOCRIAN    = [0, 1, 3, 5, 6, 8, 10];
+const WHOLE_TONE = [0, 2, 4, 6, 8, 10];
+const DIMINISHED = [0, 2, 3, 5, 6, 8, 9, 11];
+const MIXO_B9B13 = [0, 1, 4, 5, 7, 8, 10];
+const MAJ_PENTA  = [0, 2, 4, 7, 9];
+
+const cache = new Map<string, ParsedChord>();
+
+/**
+ * Parse a chord symbol. Handles triads, sixths, sevenths, ninths, elevenths,
+ * thirteenths, alterations (b5 #5 b9 #9 #11 b13), sus2/sus4, add9, power
+ * chords and slash bass notes.
+ */
+export function parseChord(symbol: string): ParsedChord {
+  const hit = cache.get(symbol);
+  if (hit) return hit;
+  const parsed = doParse(symbol);
+  cache.set(symbol, parsed);
+  return parsed;
+}
+
+function doParse(symbolRaw: string): ParsedChord {
+  const symbol = (symbolRaw ?? '').trim();
+
+  // slash bass
+  let body = symbol;
+  let bassPc = -1;
+  const slash = symbol.match(/^(.*?)\/([A-G](?:#|b)?)$/);
+  if (slash) {
+    body = slash[1];
+    bassPc = PITCH_CLASS[slash[2]] ?? -1;
+  }
+
+  const rootMatch = body.match(/^([A-G](?:#|b)?)/);
+  const rootName = rootMatch ? rootMatch[1] : 'A';
+  const rootPc = PITCH_CLASS[rootName] ?? 9;
+  let rest = body.slice(rootMatch ? rootMatch[1].length : 0);
+
+  // normalise a few common spellings
+  rest = rest.replace(/^-/, 'm').replace(/Δ/g, 'maj').replace(/ø/g, 'm7b5').replace(/°/g, 'dim');
+
+  const has = (re: RegExp) => re.test(rest);
+
+  const isPower = /^5(?![0-9])/.test(rest) || /^\(?no3\)?/.test(rest);
+  const sus2 = has(/sus2/);
+  const sus4 = has(/sus4?(?!\d)/) && !sus2;
+  const dim = has(/dim|o7|o(?![a-z])/i);
+  const halfDim = has(/m7b5|m7\(b5\)/);
+  const aug = has(/aug|\+(?!\d)/);
+  const maj7 = has(/maj7|maj9|maj11|maj13|M7|M9|ma7/);
+  const minor = !dim && !halfDim && /^m(?!aj|a7)/.test(rest);
+
+  const six = has(/(^|[^b#0-9])6/);
+  const thirteen = has(/13/);
+  const eleven = has(/11/) && !has(/#11/) === false ? has(/11/) : has(/11/);
+  const nine = has(/9/);
+  const add9 = has(/add9/);
+  const add11 = has(/add11/);
+  const seven = has(/7/) || thirteen || (nine && !add9) || (eleven && !add11);
+
+  const b5 = has(/b5/) || halfDim;
+  const s5 = has(/#5/) || aug;
+  const b9 = has(/b9/);
+  const s9 = has(/#9/);
+  const s11 = has(/#11/);
+  const b13 = has(/b13/);
+
+  let quality: ChordQuality;
+  if (isPower) quality = 'power';
+  else if (dim) quality = 'diminished';
+  else if (halfDim) quality = 'halfDiminished';
+  else if (aug) quality = 'augmented';
+  else if (sus2 || sus4) quality = 'suspended';
+  else if (minor) quality = 'minor';
+  else if (seven && !maj7) quality = 'dominant';
+  else quality = 'major';
+
+  /* ---- build the interval set ------------------------------------------ */
+  const set = new Set<number>([0]);
+
+  // third
+  if (!isPower) {
+    if (sus2) set.add(2);
+    else if (sus4) set.add(5);
+    else if (minor || dim || halfDim) set.add(3);
+    else set.add(4);
+  }
+
+  // fifth
+  if (b5) set.add(6);
+  else if (s5) set.add(8);
+  else set.add(7);
+
+  // sixth / seventh
+  if (dim && (seven || six)) set.add(9);              // fully diminished 7th
+  else if (six) set.add(9);
+  else if (maj7) set.add(11);
+  else if (seven) set.add(10);
+
+  // extensions
+  const guideTones: number[] = [];
+  const tensions: number[] = [];
+  if (!isPower) {
+    const third = sus2 ? 2 : sus4 ? 5 : (minor || dim || halfDim) ? 3 : 4;
+    guideTones.push(third);
+    if (maj7) guideTones.push(11);
+    else if (dim && (seven || six)) guideTones.push(9);
+    else if (seven) guideTones.push(10);
+    else if (six) guideTones.push(9);
+  }
+
+  if (b9) { set.add(13); tensions.push(13); }
+  else if (s9) { set.add(15); tensions.push(15); }
+  else if (nine || add9) { set.add(14); tensions.push(14); }
+
+  if (s11) { set.add(18); tensions.push(18); }
+  else if (eleven || add11) { set.add(17); tensions.push(17); }
+
+  if (b13) { set.add(20); tensions.push(20); }
+  else if (thirteen) { set.add(21); tensions.push(21); }
+
+  const intervals = [...set].sort((a, b) => a - b);
+
+  /* ---- a scale to play over it ------------------------------------------ */
+  let scale: number[];
+  if (isPower) scale = MAJ_PENTA.concat([10]);
+  else if (dim) scale = DIMINISHED;
+  else if (halfDim) scale = LOCRIAN;
+  else if (aug) scale = WHOLE_TONE;
+  else if (quality === 'suspended') scale = MIXOLYDIAN;
+  else if (quality === 'dominant') {
+    if (b9 || s9 || b13) scale = b9 && b13 ? MIXO_B9B13 : ALTERED;
+    else if (s11) scale = [0, 2, 4, 6, 7, 9, 10];
+    else scale = MIXOLYDIAN;
+  } else if (quality === 'minor') {
+    scale = six || nine ? DORIAN : AEOLIAN;
+  } else {
+    scale = s11 ? LYDIAN : IONIAN;
+  }
+  // the flamenco world leans on the phrygian dominant; a major triad built on
+  // the fifth degree of a minor tune is the usual carrier for it
+  if (/phryg/i.test(rest)) scale = PHRYGIAN_D;
+
+  let tension = QUALITY_TENSION[quality];
+  tension += tensions.length * 0.06;
+  if (b9 || s9 || s11 || b13 || s5 || b5) tension += 0.12;
+  tension = Math.max(0, Math.min(1, tension));
+
+  return {
+    symbol, rootPc, rootName, quality, intervals,
+    guideTones: guideTones.length ? guideTones : [7],
+    tensions,
+    bassPc: bassPc >= 0 ? bassPc : rootPc,
+    isPower,
+    scale,
+    tension,
+  };
+}
+
+/* --- note helpers --------------------------------------------------------- */
+
+export function midiOf(pc: number, octave: number): number {
+  return (octave + 1) * 12 + ((pc % 12) + 12) % 12;
+}
+
+export function pcOf(midi: number): number {
+  return ((midi % 12) + 12) % 12;
+}
+
+export function noteName(midi: number, flats = false): string {
+  const names = flats ? FLAT_NAMES : SHARP_NAMES;
+  return `${names[pcOf(midi)]}${Math.floor(midi / 12) - 1}`;
+}
+
+/** Nearest midi note with the given pitch class to a reference note. */
+export function nearestPc(pc: number, reference: number): number {
+  const target = ((pc % 12) + 12) % 12;
+  const base = Math.floor(reference / 12) * 12 + target;
+  const options = [base - 12, base, base + 12];
+  let best = options[0];
+  for (const o of options) if (Math.abs(o - reference) < Math.abs(best - reference)) best = o;
+  return best;
+}
+
+/** Is this midi note in the chord? */
+export function isChordTone(midi: number, chord: ParsedChord): boolean {
+  const rel = ((midi - chord.rootPc) % 12 + 12) % 12;
+  return chord.intervals.some(i => i % 12 === rel);
+}
+
+/** Snap a note to the nearest tone of a set of semitone offsets from a root. */
+export function snapTo(midi: number, rootPc: number, offsets: number[]): number {
+  const pcs = new Set(offsets.map(o => ((rootPc + o) % 12 + 12) % 12));
+  for (let d = 0; d <= 6; d++) {
+    if (pcs.has(pcOf(midi - d))) return midi - d;
+    if (pcs.has(pcOf(midi + d))) return midi + d;
+  }
+  return midi;
+}
+
+/* --- key inference -------------------------------------------------------- */
+
+export interface KeyInfo {
+  tonicPc: number;
+  minor: boolean;
+  /** pitch classes of the scale */
+  pcs: number[];
+  name: string;
+}
+
+/**
+ * Work out the key of a progression by scoring every candidate tonic against
+ * how well the chords' roots and thirds fit. Cheap, and right often enough to
+ * make melodies and approach notes behave.
+ */
+export function inferKey(chords: string[]): KeyInfo {
+  const MAJ = [0, 2, 4, 5, 7, 9, 11];
+  const MIN = [0, 2, 3, 5, 7, 8, 10];
+  let best: KeyInfo | null = null;
+  let bestScore = -Infinity;
+
+  for (let tonic = 0; tonic < 12; tonic++) {
+    for (const minor of [false, true]) {
+      const shape = minor ? MIN : MAJ;
+      const pcs = shape.map(s => (tonic + s) % 12);
+      let score = 0;
+      chords.forEach((c, i) => {
+        const p = parseChord(c);
+        const weight = i === 0 || i === chords.length - 1 ? 1.6 : 1;
+        for (const iv of p.intervals) {
+          if (pcs.includes((p.rootPc + iv) % 12)) score += 1 * weight;
+          else score -= 1.1 * weight;
+        }
+        if (p.rootPc === tonic) score += 2.5 * weight;
+        if (p.rootPc === (tonic + 7) % 12 && p.quality === 'dominant') score += 2.5;
+        if (minor && p.rootPc === tonic && p.quality === 'minor') score += 2;
+        if (!minor && p.rootPc === tonic && p.quality === 'major') score += 2;
+      });
+      if (score > bestScore) {
+        bestScore = score;
+        best = {
+          tonicPc: tonic, minor, pcs,
+          name: `${SHARP_NAMES[tonic]}${minor ? 'm' : ''}`,
+        };
+      }
+    }
+  }
+  return best ?? { tonicPc: 9, minor: true, pcs: MIN.map(s => (9 + s) % 12), name: 'Am' };
+}
+
+/** Semitone distance from a chord root to the next chord root, shortest way. */
+export function rootMotion(from: ParsedChord, to: ParsedChord): number {
+  let d = (to.rootPc - from.rootPc + 12) % 12;
+  if (d > 6) d -= 12;
+  return d;
+}

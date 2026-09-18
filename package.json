@@ -1,0 +1,37 @@
+{
+  "name": "mixgenres",
+  "description": "Build a song in one of dozens of musical genres, then rework its parts, chords, rhythms and instruments and export it as an MP3. Runs entirely in your browser.",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "build:static": "vite build",
+    "predeploy": "npm run build:static",
+    "deploy": "gh-pages -d dist",
+    "preview": "vite preview",
+    "clean": "rm -rf dist",
+    "lint": "tsc --noEmit",
+    "test": "tsx scripts/test-filter.ts"
+  },
+  "dependencies": {
+    "@breezystack/lamejs": "^1.2.7",
+    "spessasynth_core": "^4.3.22",
+    "@tailwindcss/vite": "^4.1.14",
+    "@vitejs/plugin-react": "^5.0.4",
+    "lucide-react": "^0.546.0",
+    "motion": "^12.23.24",
+    "react": "^19.0.1",
+    "react-dom": "^19.0.1",
+    "spessasynth_lib": "^4.3.14",
+    "vite": "^6.2.3"
+  },
+  "devDependencies": {
+    "@types/node": "^22.14.0",
+    "gh-pages": "^6.3.0",
+    "tailwindcss": "^4.1.14",
+    "tsx": "^4.23.13",
+    "typescript": "~5.8.2"
+  }
+}

@@ -1,0 +1,3860 @@
+import { GenreWorld } from '../../types';
+
+export const AFROBEATS_WORLD: GenreWorld = {
+  "id": "afrobeats",
+  "name": "Afrobeats",
+  "family": "West African Pop / Global Groove",
+  "color": "#d48834",
+  "level": "world",
+  "description": "Vibrant West African dance music continuum: from classic 1970s Afrobeat horn vamps and Highlife clean guitar picking to modern Afropop syncopated pockets and South African Amapiano log-drum basslines.",
+  "traditions": [
+    {
+      "id": "afrobeats-modern",
+      "worldId": "afrobeats",
+      "name": "Afrobeats & Afropop",
+      "origin": "Nigeria / Ghana / UK",
+      "era": "2010s–Present",
+      "description": "Modern West African pop defined by syncopated kick/clap pockets, deep 808/log drum basslines, bright clean guitar chops, and infectious vocal hooks.",
+      "characteristicInstruments": [
+        "drums",
+        "bass",
+        "guitar",
+        "synth",
+        "percussion",
+        "voice"
+      ],
+      "preferredMeters": [
+        "4/4"
+      ],
+      "tempoRange": [
+        98,
+        115
+      ],
+      "keySubstyles": [
+        "Naija Pop (Burna Boy, Wizkid)",
+        "Afro-Fusion",
+        "Afro-Swing",
+        "Afro-R&B"
+      ],
+      "coreConcepts": [
+        "syncopated kick/snare pocket",
+        "log drum pitched bass rolls",
+        "clean single-note guitar licks",
+        "shekere / shaker perpetual motion"
+      ],
+      "rhythmicGrammar": [
+        "kick on 1, 1-and, 3-and with sharp snare clap on 4-and or beat 3"
+      ],
+      "danceTags": [
+        "social-partner",
+        "festival-fusion"
+      ],
+      "tuningSystem": "12-tet",
+      "signatureCell": "Syncopated Afrobeats pocket kick [0, 6, 10] with offbeat snare clap",
+      "grooveMechanics": {
+        "swingPercentage": 54,
+        "anticipationOffsetSteps": 1,
+        "microtimingFeel": "laid-back"
+      },
+      "sectionProgressions": {
+        "intro": [
+          "Fmaj7",
+          "G",
+          "Em7",
+          "Am7"
+        ],
+        "verse": [
+          "Fmaj7",
+          "G",
+          "Em7",
+          "Am7"
+        ],
+        "chorus": [
+          "Dm7",
+          "Em7",
+          "Fmaj7",
+          "G"
+        ],
+        "coda": [
+          "Am7",
+          "G",
+          "Fmaj7",
+          "Em7"
+        ]
+      }
+    },
+    {
+      "id": "afrobeat-fela",
+      "worldId": "afrobeats",
+      "name": "Afrobeat (Fela Kuti Lineage)",
+      "origin": "Lagos, Nigeria",
+      "era": "1970s–1980s",
+      "description": "Monumental political big-band funk pioneered by Fela Kuti and Tony Allen: complex polyrhythmic kit drumming, interlocking rhythm guitars, hypnotic bass vamps, and fiery horn section hits.",
+      "characteristicInstruments": [
+        "drums",
+        "bass",
+        "electric-guitar",
+        "brass",
+        "percussion"
+      ],
+      "preferredMeters": [
+        "4/4"
+      ],
+      "tempoRange": [
+        110,
+        130
+      ],
+      "keySubstyles": [
+        "Classic Afrobeat (Africa 70, Egypt 80)",
+        "Afrobeat Revival (Antibalas, Seun Kuti)"
+      ],
+      "coreConcepts": [
+        "Tony Allen 4-limb polyrhythm",
+        "dual interlocking rhythm guitars (tenor and rhythm)",
+        "relentless minor vamp",
+        "punchy horn stabs"
+      ],
+      "rhythmicGrammar": [
+        "hi-hat 16th pulse, syncopated snare cross-stick, bass pedal ostinato"
+      ],
+      "danceTags": [
+        "social-partner",
+        "festival-fusion"
+      ],
+      "tuningSystem": "12-tet",
+      "signatureCell": "Two interlocking guitars weaving around steady minor modal bass vamp",
+      "grooveMechanics": {
+        "swingPercentage": 52,
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "straight"
+      },
+      "sectionProgressions": {
+        "intro": [
+          "Dm7",
+          "Dm7",
+          "Dm7",
+          "Dm7"
+        ],
+        "verse": [
+          "Dm7",
+          "G7",
+          "Dm7",
+          "G7"
+        ],
+        "solo": [
+          "Dm7",
+          "G7",
+          "Dm7",
+          "G7"
+        ],
+        "coda": [
+          "Dm7",
+          "Dm7",
+          "Dm7",
+          "Dm7"
+        ]
+      }
+    },
+    {
+      "id": "afrobeats-amapiano",
+      "worldId": "afrobeats",
+      "name": "Amapiano Crossover",
+      "origin": "South Africa",
+      "era": "2018–Present",
+      "description": "South African house fusion characterized by deep pitched FM log-drum baselines, jazzy airy Rhodes piano chords, slow-burning four-on-the-floor tempo, and minimalist shakers.",
+      "characteristicInstruments": [
+        "synth",
+        "drums",
+        "keys",
+        "percussion",
+        "bass"
+      ],
+      "preferredMeters": [
+        "4/4"
+      ],
+      "tempoRange": [
+        112,
+        118
+      ],
+      "keySubstyles": [
+        "Amapiano",
+        "Afro-House",
+        "Private School Amapiano"
+      ],
+      "coreConcepts": [
+        "pitched log drum rolls",
+        "jazzy 9th and 11th Rhodes voicings",
+        "four-on-floor ghost kicks",
+        "high metallic shaker"
+      ],
+      "rhythmicGrammar": [
+        "log drum sliding and pitching between octave drops on upbeat 16ths"
+      ],
+      "danceTags": [
+        "social-partner",
+        "festival-fusion"
+      ],
+      "tuningSystem": "12-tet",
+      "signatureCell": "Pitched log drum roll dropping on unexpected syncopated subdivisions",
+      "grooveMechanics": {
+        "swingPercentage": 50,
+        "anticipationOffsetSteps": -1,
+        "microtimingFeel": "laid-back"
+      },
+      "sectionProgressions": {
+        "intro": [
+          "Abmaj7",
+          "Gm7",
+          "Fm7",
+          "Ebmaj7"
+        ],
+        "verse": [
+          "Abmaj7",
+          "Gm7",
+          "Fm7",
+          "Ebmaj7"
+        ],
+        "chorus": [
+          "Dbmaj7",
+          "Eb",
+          "Fm7",
+          "Gm7"
+        ],
+        "coda": [
+          "Abmaj7",
+          "Gm7",
+          "Fm7",
+          "Ebmaj7"
+        ]
+      }
+    }
+  ],
+  "substyles": [
+    "Afropop",
+    "Afro-Fusion",
+    "Classic Afrobeat (Fela)",
+    "Amapiano Crossover",
+    "Highlife",
+    "Afro-Swing"
+  ],
+  "artists": [
+    "Burna Boy",
+    "Wizkid",
+    "Fela Kuti",
+    "Tony Allen",
+    "Davido",
+    "Tiwa Savage",
+    "Kabza De Small",
+    "Rema"
+  ],
+  "concepts": [
+    "syncopated kick/clap pocket",
+    "log-drum pitched bass rolls",
+    "clean highlife guitar picking",
+    "shekere continuous groove",
+    "horn section punch",
+    "vocal hook repetition"
+  ],
+  "roles": {
+    "bass": [
+      "pitched log-drum bass rolls",
+      "Fela minor vamp bass",
+      "sub 808 pulse"
+    ],
+    "drums": [
+      "syncopated Afropop kick/clap pocket",
+      "Tony Allen polyrhythmic snare",
+      "Amapiano ghost kick"
+    ],
+    "guitar": [
+      "highlife fingerstyle arpeggios",
+      "rhythm muted chops"
+    ],
+    "percussion": [
+      "shekere shaker rattle",
+      "talking drum accents",
+      "conga syncopations"
+    ],
+    "lead": [
+      "horn section stabs",
+      "vocal hook lines"
+    ],
+    "harmony": [
+      "airy Rhodes 9th chords",
+      "warm pad washes"
+    ]
+  },
+  "patterns": [
+    {
+      "id": "afro-log-drum-bass",
+      "worldId": "afrobeats",
+      "traditionId": "afrobeats-modern",
+      "name": "Pitched Log Drum Bass Groove",
+      "family": "Log Drum",
+      "category": "groove",
+      "description": "Resonant FM synth log drum bassline providing harmonic weight and syncopated rhythmic propulsion.",
+      "tags": [
+        "afrobeats",
+        "bass",
+        "log-drum",
+        "amapiano",
+        "sub"
+      ],
+      "scopes": [
+        "measure",
+        "phrase",
+        "region",
+        "track",
+        "song"
+      ],
+      "roles": [
+        "bass",
+        "pulse"
+      ],
+      "instruments": [
+        "bass",
+        "synth"
+      ],
+      "meter": "4/4",
+      "cycleLength": 1,
+      "subdivisions": 16,
+      "onsetGrid": [
+        0,
+        3,
+        6,
+        8,
+        11,
+        14
+      ],
+      "accentProfile": [
+        1,
+        0.85,
+        0.95,
+        0.75,
+        0.9,
+        0.85
+      ],
+      "velocityProfile": [
+        0.95,
+        0.8,
+        0.9,
+        0.7,
+        0.85,
+        0.8
+      ],
+      "density": "medium",
+      "phrasePosition": [
+        "start",
+        "middle"
+      ],
+      "sectionUsage": [
+        "verse",
+        "chorus",
+        "solo"
+      ],
+      "variants": [
+        {
+          "id": "afro-log-drum-bass-v-01",
+          "parentPatternId": "afro-log-drum-bass",
+          "name": "Pitched Log Drum Bass Groove — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            6,
+            8,
+            14
+          ],
+          "accentProfile": [
+            0.95,
+            0.7999999999999999,
+            0.8999999999999999,
+            0.7
+          ],
+          "velocityProfile": [
+            0.87,
+            0.7200000000000001,
+            0.8200000000000001,
+            0.62
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6
+          ]
+        },
+        {
+          "id": "afro-log-drum-bass-v-02",
+          "parentPatternId": "afro-log-drum-bass",
+          "name": "Pitched Log Drum Bass Groove — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            3,
+            6,
+            8,
+            11,
+            14
+          ],
+          "accentProfile": [
+            0.96,
+            0.9299999999999999,
+            0.9099999999999999,
+            0.83,
+            0.86,
+            0.9299999999999999
+          ],
+          "velocityProfile": [
+            1,
+            0.78,
+            0.88,
+            0.76,
+            0.83,
+            0.78
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5
+          ]
+        }
+      ],
+      "harmonicContext": [
+        "tonal or modal context"
+      ],
+      "difficulty": 2,
+      "weight": 1,
+      "provenance": "Afrobeats catalog rebuild: retained source material or generated structural support pattern.",
+      "authenticityTags": [
+        "afrobeats"
+      ],
+      "danceTags": [
+        "listening"
+      ],
+      "tuningSystem": "12-tet",
+      "swingPercentage": 50,
+      "anticipationOffset": 0,
+      "roleDependencies": [
+        "bass"
+      ],
+      "transformations": [
+        "density",
+        "accent",
+        "phrasePosition"
+      ],
+      "interactionRules": [
+        {
+          "id": "afrobeats-interaction-1",
+          "worldId": "afrobeats",
+          "sourceRole": "drums",
+          "targetRole": "bass",
+          "relationship": "reinforce",
+          "description": "Low-end attacks reinforce the main pulse without doubling every subdivision.",
+          "timingOffsetSteps": 0,
+          "probability": 0.78
+        }
+      ],
+      "articulations": [
+        "accented",
+        "ghost-aware"
+      ]
+    },
+    {
+      "id": "afro-syncopated-kit",
+      "worldId": "afrobeats",
+      "traditionId": "afrobeats-modern",
+      "name": "Modern Afropop Kick & Rim Pocket",
+      "family": "Afrobeats Drums",
+      "category": "groove",
+      "description": "Signature Afrobeats syncopated kick placement with crisp wooden rimshot and shaker engine.",
+      "tags": [
+        "afrobeats",
+        "drums",
+        "kick",
+        "rimshot"
+      ],
+      "scopes": [
+        "measure",
+        "phrase",
+        "region",
+        "track",
+        "song"
+      ],
+      "roles": [
+        "drums",
+        "pulse"
+      ],
+      "instruments": [
+        "drums"
+      ],
+      "meter": "4/4",
+      "cycleLength": 1,
+      "subdivisions": 16,
+      "onsetGrid": [
+        0,
+        6,
+        10,
+        12,
+        14
+      ],
+      "accentProfile": [
+        1,
+        0.9,
+        0.95,
+        0.75,
+        0.85
+      ],
+      "velocityProfile": [
+        0.95,
+        0.85,
+        0.9,
+        0.7,
+        0.8
+      ],
+      "density": "medium",
+      "phrasePosition": [
+        "start",
+        "middle"
+      ],
+      "sectionUsage": [
+        "intro",
+        "verse",
+        "chorus"
+      ],
+      "variants": [
+        {
+          "id": "afro-syncopated-kit-v-01",
+          "parentPatternId": "afro-syncopated-kit",
+          "name": "Modern Afropop Kick & Rim Pocket — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            10,
+            12
+          ],
+          "accentProfile": [
+            0.95,
+            0.85,
+            0.8999999999999999
+          ],
+          "velocityProfile": [
+            0.87,
+            0.77,
+            0.8200000000000001
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "afro-syncopated-kit-v-02",
+          "parentPatternId": "afro-syncopated-kit",
+          "name": "Modern Afropop Kick & Rim Pocket — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            6,
+            10,
+            12,
+            14
+          ],
+          "accentProfile": [
+            0.96,
+            0.98,
+            0.9099999999999999,
+            0.83,
+            0.8099999999999999
+          ],
+          "velocityProfile": [
+            1,
+            0.83,
+            0.88,
+            0.76,
+            0.78
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2
+          ]
+        }
+      ],
+      "harmonicContext": [
+        "tonal or modal context"
+      ],
+      "difficulty": 2,
+      "weight": 1,
+      "provenance": "Afrobeats catalog rebuild: retained source material or generated structural support pattern.",
+      "authenticityTags": [
+        "afrobeats"
+      ],
+      "danceTags": [
+        "listening"
+      ],
+      "tuningSystem": "12-tet",
+      "swingPercentage": 50,
+      "anticipationOffset": 0,
+      "roleDependencies": [
+        "drums"
+      ],
+      "transformations": [
+        "density",
+        "accent",
+        "phrasePosition"
+      ],
+      "interactionRules": [
+        {
+          "id": "afrobeats-interaction-2",
+          "worldId": "afrobeats",
+          "sourceRole": "voice",
+          "targetRole": "harmony",
+          "relationship": "leaveSpace",
+          "description": "Harmony reduces density under vocal entries so the phrase remains foregrounded.",
+          "timingOffsetSteps": 0,
+          "probability": 0.72
+        }
+      ],
+      "articulations": [
+        "accented",
+        "ghost-aware"
+      ]
+    },
+    {
+      "id": "afro-highlife-guitar",
+      "worldId": "afrobeats",
+      "traditionId": "afrobeats-modern",
+      "name": "Highlife Fingerstyle Clean Guitar",
+      "family": "Highlife Guitar",
+      "category": "ostinato",
+      "description": "Bright clean electric guitar playing rhythmic two-finger arpeggiated chops.",
+      "tags": [
+        "afrobeats",
+        "guitar",
+        "highlife",
+        "clean"
+      ],
+      "scopes": [
+        "measure",
+        "phrase"
+      ],
+      "roles": [
+        "harmony",
+        "guitar"
+      ],
+      "instruments": [
+        "guitar",
+        "electric-guitar"
+      ],
+      "meter": "4/4",
+      "cycleLength": 1,
+      "subdivisions": 16,
+      "onsetGrid": [
+        2,
+        4,
+        7,
+        8,
+        11,
+        13,
+        15
+      ],
+      "accentProfile": [
+        0.85,
+        0.95,
+        0.75,
+        0.9,
+        0.8,
+        0.95,
+        0.7
+      ],
+      "velocityProfile": [
+        0.8,
+        0.9,
+        0.7,
+        0.85,
+        0.75,
+        0.9,
+        0.65
+      ],
+      "density": "medium",
+      "phrasePosition": [
+        "start",
+        "middle"
+      ],
+      "sectionUsage": [
+        "verse",
+        "chorus"
+      ],
+      "variants": [
+        {
+          "id": "afro-highlife-guitar-v-01",
+          "parentPatternId": "afro-highlife-guitar",
+          "name": "Highlife Fingerstyle Clean Guitar — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            2,
+            7,
+            8,
+            13,
+            15
+          ],
+          "accentProfile": [
+            0.7999999999999999,
+            0.8999999999999999,
+            0.7,
+            0.85,
+            0.75
+          ],
+          "velocityProfile": [
+            0.7200000000000001,
+            0.8200000000000001,
+            0.62,
+            0.77,
+            0.67
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "afro-highlife-guitar-v-02",
+          "parentPatternId": "afro-highlife-guitar",
+          "name": "Highlife Fingerstyle Clean Guitar — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            2,
+            4,
+            7,
+            8,
+            11,
+            13,
+            15
+          ],
+          "accentProfile": [
+            0.8099999999999999,
+            1,
+            0.71,
+            0.98,
+            0.76,
+            1,
+            0.6599999999999999
+          ],
+          "velocityProfile": [
+            0.8600000000000001,
+            0.88,
+            0.6799999999999999,
+            0.9099999999999999,
+            0.73,
+            0.88,
+            0.71
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2
+          ]
+        }
+      ],
+      "harmonicContext": [
+        "tonal or modal context"
+      ],
+      "difficulty": 2,
+      "weight": 0.7,
+      "provenance": "Afrobeats catalog rebuild: retained source material or generated structural support pattern.",
+      "authenticityTags": [
+        "afrobeats"
+      ],
+      "danceTags": [
+        "listening"
+      ],
+      "tuningSystem": "12-tet",
+      "swingPercentage": 50,
+      "anticipationOffset": 0,
+      "roleDependencies": [
+        "harmony",
+        "guitar"
+      ],
+      "transformations": [
+        "density",
+        "accent",
+        "phrasePosition"
+      ],
+      "interactionRules": [
+        {
+          "id": "afrobeats-interaction-3",
+          "worldId": "afrobeats",
+          "sourceRole": "lead",
+          "targetRole": "voice",
+          "relationship": "answer",
+          "description": "Lead instrument answers a vocal phrase in the open space after the line.",
+          "timingOffsetSteps": 2,
+          "probability": 0.58
+        }
+      ],
+      "articulations": [
+        "accented",
+        "ghost-aware"
+      ]
+    },
+    {
+      "id": "afro-shekere-shaker",
+      "worldId": "afrobeats",
+      "traditionId": "afrobeat-fela",
+      "name": "Shekere & Gourd Shaker Engine",
+      "family": "Afro Percussion",
+      "category": "groove",
+      "description": "Continuous 16th-note gourd shaker rattle with accented palm drops on beats 1 and 3.",
+      "tags": [
+        "afrobeat",
+        "percussion",
+        "shekere",
+        "shaker"
+      ],
+      "scopes": [
+        "measure"
+      ],
+      "roles": [
+        "percussion",
+        "hand-percussion"
+      ],
+      "instruments": [
+        "percussion",
+        "guiro"
+      ],
+      "meter": "4/4",
+      "cycleLength": 1,
+      "subdivisions": 16,
+      "onsetGrid": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "accentProfile": [
+        1,
+        0.5,
+        0.75,
+        0.5,
+        0.85,
+        0.5,
+        0.75,
+        0.5,
+        0.95,
+        0.5,
+        0.75,
+        0.5,
+        0.85,
+        0.5,
+        0.75,
+        0.55
+      ],
+      "velocityProfile": [
+        0.95,
+        0.45,
+        0.7,
+        0.45,
+        0.8,
+        0.45,
+        0.7,
+        0.45,
+        0.9,
+        0.45,
+        0.7,
+        0.45,
+        0.8,
+        0.45,
+        0.7,
+        0.5
+      ],
+      "density": "dense",
+      "phrasePosition": [
+        "start"
+      ],
+      "sectionUsage": [
+        "intro",
+        "verse",
+        "chorus",
+        "solo"
+      ],
+      "variants": [
+        {
+          "id": "afro-shekere-shaker-v-01",
+          "parentPatternId": "afro-shekere-shaker",
+          "name": "Shekere & Gourd Shaker Engine — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            2,
+            3,
+            5,
+            6,
+            8,
+            9,
+            11,
+            12,
+            14,
+            15
+          ],
+          "accentProfile": [
+            0.95,
+            0.45,
+            0.7,
+            0.45,
+            0.7999999999999999,
+            0.45,
+            0.7,
+            0.45,
+            0.8999999999999999,
+            0.45,
+            0.7
+          ],
+          "velocityProfile": [
+            0.87,
+            0.4,
+            0.62,
+            0.4,
+            0.7200000000000001,
+            0.4,
+            0.62,
+            0.4,
+            0.8200000000000001,
+            0.4,
+            0.62
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6,
+            -3,
+            6,
+            -3,
+            6,
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "afro-shekere-shaker-v-02",
+          "parentPatternId": "afro-shekere-shaker",
+          "name": "Shekere & Gourd Shaker Engine — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15
+          ],
+          "accentProfile": [
+            0.96,
+            0.58,
+            0.71,
+            0.58,
+            0.8099999999999999,
+            0.58,
+            0.71,
+            0.58,
+            0.9099999999999999,
+            0.58,
+            0.71,
+            0.58,
+            0.8099999999999999,
+            0.58,
+            0.71,
+            0.63
+          ],
+          "velocityProfile": [
+            1,
+            0.43,
+            0.6799999999999999,
+            0.51,
+            0.78,
+            0.43,
+            0.76,
+            0.43,
+            0.88,
+            0.51,
+            0.6799999999999999,
+            0.43,
+            0.8600000000000001,
+            0.43,
+            0.6799999999999999,
+            0.56
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5
+          ]
+        }
+      ],
+      "harmonicContext": [
+        "tonal or modal context"
+      ],
+      "difficulty": 5,
+      "weight": 1,
+      "provenance": "Afrobeats catalog rebuild: retained source material or generated structural support pattern.",
+      "authenticityTags": [
+        "afrobeats"
+      ],
+      "danceTags": [
+        "listening"
+      ],
+      "tuningSystem": "12-tet",
+      "swingPercentage": 50,
+      "anticipationOffset": 0,
+      "roleDependencies": [
+        "percussion"
+      ],
+      "transformations": [
+        "density",
+        "accent",
+        "phrasePosition"
+      ],
+      "interactionRules": [
+        {
+          "id": "afrobeats-interaction-4",
+          "worldId": "afrobeats",
+          "sourceRole": "bass",
+          "targetRole": "drums",
+          "relationship": "accentWith",
+          "description": "Bass accents align with selected kick/backbeat events for a tighter pocket.",
+          "timingOffsetSteps": 0,
+          "probability": 0.65
+        }
+      ],
+      "articulations": [
+        "accented",
+        "ghost-aware"
+      ]
+    },
+    {
+      "id": "afro-horn-stabs",
+      "worldId": "afrobeats",
+      "traditionId": "afrobeat-fela",
+      "name": "Fela Afrobeat Horn Section Stabs",
+      "family": "Afro Horns",
+      "category": "cadence",
+      "description": "Pungent brass section horn stabs locking with the kit snare.",
+      "tags": [
+        "afrobeat",
+        "horns",
+        "brass",
+        "fela"
+      ],
+      "scopes": [
+        "phrase",
+        "region"
+      ],
+      "roles": [
+        "lead",
+        "brass"
+      ],
+      "instruments": [
+        "trumpet",
+        "brass",
+        "sax"
+      ],
+      "meter": "4/4",
+      "cycleLength": 1,
+      "subdivisions": 16,
+      "onsetGrid": [
+        3,
+        7,
+        11,
+        14
+      ],
+      "accentProfile": [
+        0.95,
+        0.9,
+        0.95,
+        1
+      ],
+      "velocityProfile": [
+        0.9,
+        0.85,
+        0.9,
+        0.95
+      ],
+      "density": "sparse",
+      "phrasePosition": [
+        "middle",
+        "end"
+      ],
+      "sectionUsage": [
+        "chorus",
+        "solo",
+        "coda"
+      ],
+      "variants": [
+        {
+          "id": "afro-horn-stabs-v-01",
+          "parentPatternId": "afro-horn-stabs",
+          "name": "Fela Afrobeat Horn Section Stabs — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            3,
+            11,
+            14
+          ],
+          "accentProfile": [
+            0.8999999999999999,
+            0.85,
+            0.8999999999999999
+          ],
+          "velocityProfile": [
+            0.8200000000000001,
+            0.77,
+            0.8200000000000001
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "afro-horn-stabs-v-02",
+          "parentPatternId": "afro-horn-stabs",
+          "name": "Fela Afrobeat Horn Section Stabs — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            3,
+            7,
+            11,
+            14
+          ],
+          "accentProfile": [
+            0.9099999999999999,
+            0.98,
+            0.9099999999999999,
+            1
+          ],
+          "velocityProfile": [
+            0.96,
+            0.83,
+            0.88,
+            1
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5
+          ]
+        },
+        {
+          "id": "afro-horn-stabs-v-03",
+          "parentPatternId": "afro-horn-stabs",
+          "name": "Fela Afrobeat Horn Section Stabs — transition variation",
+          "variationType": "transition",
+          "probability": 0.16,
+          "description": "Adds a final pickup/closure gesture for section transitions.",
+          "onsetGrid": [
+            3,
+            7,
+            11,
+            14,
+            15
+          ],
+          "accentProfile": [
+            0.9299999999999999,
+            0.88,
+            0.9299999999999999,
+            1,
+            1
+          ],
+          "velocityProfile": [
+            0.9,
+            0.85,
+            0.9,
+            0.98,
+            0.98
+          ],
+          "microtimingOffset": [
+            0,
+            0,
+            0,
+            -6,
+            -6
+          ]
+        }
+      ],
+      "harmonicContext": [
+        "tonal or modal context"
+      ],
+      "difficulty": 1,
+      "weight": 0.7,
+      "provenance": "Afrobeats catalog rebuild: retained source material or generated structural support pattern.",
+      "authenticityTags": [
+        "afrobeats"
+      ],
+      "danceTags": [
+        "listening"
+      ],
+      "tuningSystem": "12-tet",
+      "swingPercentage": 50,
+      "anticipationOffset": 0,
+      "roleDependencies": [
+        "lead"
+      ],
+      "transformations": [
+        "density",
+        "accent",
+        "phrasePosition"
+      ],
+      "articulations": [
+        "legato"
+      ]
+    },
+    {
+      "id": "afro-amapiano-pad",
+      "worldId": "afrobeats",
+      "traditionId": "afrobeats-amapiano",
+      "name": "Airy Rhodes & Synth Pad Comping",
+      "family": "Amapiano Keys",
+      "category": "groove",
+      "description": "Spacious, warm electric piano voicings floating over the deep log drum baseline.",
+      "tags": [
+        "amapiano",
+        "keys",
+        "rhodes",
+        "pad"
+      ],
+      "scopes": [
+        "measure"
+      ],
+      "roles": [
+        "harmony",
+        "texture"
+      ],
+      "instruments": [
+        "keys",
+        "piano",
+        "synth"
+      ],
+      "meter": "4/4",
+      "cycleLength": 1,
+      "subdivisions": 16,
+      "onsetGrid": [
+        0,
+        8,
+        14
+      ],
+      "accentProfile": [
+        0.85,
+        0.9,
+        0.8
+      ],
+      "velocityProfile": [
+        0.8,
+        0.85,
+        0.75
+      ],
+      "density": "sparse",
+      "phrasePosition": [
+        "start"
+      ],
+      "sectionUsage": [
+        "intro",
+        "verse",
+        "chorus"
+      ],
+      "variants": [
+        {
+          "id": "afro-amapiano-pad-v-01",
+          "parentPatternId": "afro-amapiano-pad",
+          "name": "Airy Rhodes & Synth Pad Comping — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            14
+          ],
+          "accentProfile": [
+            0.7999999999999999,
+            0.85
+          ],
+          "velocityProfile": [
+            0.7200000000000001,
+            0.77
+          ],
+          "microtimingOffset": [
+            -3,
+            6
+          ]
+        },
+        {
+          "id": "afro-amapiano-pad-v-02",
+          "parentPatternId": "afro-amapiano-pad",
+          "name": "Airy Rhodes & Synth Pad Comping — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            8,
+            14
+          ],
+          "accentProfile": [
+            0.8099999999999999,
+            0.98,
+            0.76
+          ],
+          "velocityProfile": [
+            0.8600000000000001,
+            0.83,
+            0.73
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2
+          ]
+        }
+      ],
+      "harmonicContext": [
+        "tonal or modal context"
+      ],
+      "difficulty": 1,
+      "weight": 1,
+      "provenance": "Afrobeats catalog rebuild: retained source material or generated structural support pattern.",
+      "authenticityTags": [
+        "afrobeats"
+      ],
+      "danceTags": [
+        "listening"
+      ],
+      "tuningSystem": "12-tet",
+      "swingPercentage": 50,
+      "anticipationOffset": 0,
+      "roleDependencies": [
+        "harmony",
+        "texture"
+      ],
+      "transformations": [
+        "density",
+        "accent",
+        "phrasePosition"
+      ],
+      "interactionRules": [
+        {
+          "id": "afrobeats-interaction-5",
+          "worldId": "afrobeats",
+          "sourceRole": "harmony",
+          "targetRole": "lead",
+          "relationship": "leaveSpace",
+          "description": "Accompaniment thins when the instrumental lead enters.",
+          "timingOffsetSteps": 0,
+          "probability": 0.62
+        }
+      ],
+      "articulations": [
+        "accented",
+        "ghost-aware"
+      ]
+    },
+    {
+      "id": "afrobeats-call-7",
+      "worldId": "afrobeats",
+      "traditionId": "afrobeats-modern",
+      "name": "Shekere Response",
+      "family": "Shekere",
+      "category": "interactionPattern",
+      "description": "A call-and-response shape that leaves the next phrase open for an answer. Built around highlife guitar and the shekere vocabulary of Afrobeats.",
+      "tags": [
+        "afrobeats",
+        "shekere",
+        "call",
+        "catalog-v2"
+      ],
+      "scopes": [
+        "measure",
+        "phrase"
+      ],
+      "roles": [
+        "voice"
+      ],
+      "instruments": ["voice"],
+      "compatibleRoles": [
+        "voice"
+      ],
+      "compatibleInstruments": ["voice"],
+      "canCrossRole": true,
+      "meter": "4/4",
+      "cycleLength": 1,
+      "subdivisions": 16,
+      "onsetGrid": [
+        1,
+        4,
+        7,
+        9,
+        12,
+        15
+      ],
+      "accentProfile": [
+        0.95,
+        0.62,
+        0.95,
+        0.62,
+        0.95,
+        0.62
+      ],
+      "velocityProfile": [
+        0.95,
+        0.57,
+        0.95,
+        0.62,
+        0.8999999999999999,
+        0.62
+      ],
+      "syncopationRating": 0.6666666666666666,
+      "anticipationOffset": 0,
+      "swingPercentage": 50,
+      "articulations": [
+        "breath",
+        "phrase-end"
+      ],
+      "density": "medium",
+      "phrasePosition": [
+        "middle"
+      ],
+      "sectionUsage": [
+        "verse",
+        "chorus",
+        "bridge"
+      ],
+      "harmonicContext": [
+        "tonal",
+        "section-dependent",
+        "tonal or modal context"
+      ],
+      "roleDependencies": [
+        "voice"
+      ],
+      "transformations": [
+        "density",
+        "accent",
+        "phrasePosition"
+      ],
+      "variants": [
+        {
+          "id": "afrobeats-call-7-v-01",
+          "parentPatternId": "afrobeats-call-7",
+          "name": "Shekere Response — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            1,
+            7,
+            9,
+            15
+          ],
+          "accentProfile": [
+            0.8999999999999999,
+            0.57,
+            0.8999999999999999,
+            0.57
+          ],
+          "velocityProfile": [
+            0.87,
+            0.48999999999999994,
+            0.87,
+            0.54
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6
+          ]
+        },
+        {
+          "id": "afrobeats-call-7-v-02",
+          "parentPatternId": "afrobeats-call-7",
+          "name": "Shekere Response — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            1,
+            4,
+            7,
+            9,
+            12,
+            15
+          ],
+          "accentProfile": [
+            0.9099999999999999,
+            0.7,
+            0.9099999999999999,
+            0.7,
+            0.9099999999999999,
+            0.7
+          ],
+          "velocityProfile": [
+            1,
+            0.5499999999999999,
+            0.9299999999999999,
+            0.6799999999999999,
+            0.8799999999999999,
+            0.6
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5
+          ]
+        },
+        {
+          "id": "afrobeats-call-7-v-03",
+          "parentPatternId": "afrobeats-call-7",
+          "name": "Shekere Response — transition variation",
+          "variationType": "transition",
+          "probability": 0.16,
+          "description": "Adds a final pickup/closure gesture for section transitions.",
+          "onsetGrid": [
+            1,
+            4,
+            7,
+            9,
+            12,
+            14,
+            15
+          ],
+          "accentProfile": [
+            0.9299999999999999,
+            0.6,
+            0.9299999999999999,
+            0.6,
+            0.9299999999999999,
+            1,
+            1
+          ],
+          "velocityProfile": [
+            0.95,
+            0.57,
+            0.95,
+            0.62,
+            0.8999999999999999,
+            0.98,
+            0.98
+          ],
+          "microtimingOffset": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            -6,
+            -6
+          ]
+        }
+      ],
+      "provenance": "GenreDAW catalog rebuild from existing Afrobeats world data; generated to cover missing musical functions without runtime AI.",
+      "authenticityTags": [
+        "afrobeats",
+        "shekere"
+      ],
+      "danceTags": [
+        "listening",
+        "social-partner"
+      ],
+      "tuningSystem": "12-tet",
+      "difficulty": 2,
+      "weight": 0.7,
+      "enabled": true
+    },
+    {
+      "id": "afrobeats-anchor-8",
+      "worldId": "afrobeats",
+      "traditionId": "afrobeats-modern",
+      "name": "Hook Anchor",
+      "family": "Hook",
+      "category": "ostinato",
+      "description": "A repeating anchor that locks the low end to the groove. Built around shekere and the hook vocabulary of Afrobeats.",
+      "tags": [
+        "afrobeats",
+        "hook",
+        "anchor",
+        "catalog-v2"
+      ],
+      "scopes": [
+        "measure",
+        "phrase"
+      ],
+      "roles": [
+        "bass"
+      ],
+      "instruments": [
+        "bass"
+      ],
+      "compatibleRoles": [
+        "bass"
+      ],
+      "compatibleInstruments": [
+        "bass"
+      ],
+      "canCrossRole": true,
+      "meter": "4/4",
+      "cycleLength": 1,
+      "subdivisions": 16,
+      "onsetGrid": [
+        0,
+        2,
+        5,
+        8,
+        10,
+        13
+      ],
+      "accentProfile": [
+        1,
+        0.74,
+        0.9,
+        0.68,
+        1,
+        0.74
+      ],
+      "velocityProfile": [
+        1,
+        0.69,
+        0.9,
+        0.68,
+        0.95,
+        0.74
+      ],
+      "syncopationRating": 0.6666666666666666,
+      "anticipationOffset": 0,
+      "swingPercentage": 50,
+      "articulations": [
+        "accented",
+        "ghost-aware"
+      ],
+      "density": "medium",
+      "phrasePosition": [
+        "start",
+        "middle"
+      ],
+      "sectionUsage": [
+        "verse",
+        "chorus"
+      ],
+      "harmonicContext": [
+        "tonal",
+        "section-dependent",
+        "tonal or modal context"
+      ],
+      "roleDependencies": [
+        "bass"
+      ],
+      "transformations": [
+        "density",
+        "accent",
+        "phrasePosition"
+      ],
+      "variants": [
+        {
+          "id": "afrobeats-anchor-8-v-01",
+          "parentPatternId": "afrobeats-anchor-8",
+          "name": "Hook Anchor — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            5,
+            8,
+            13
+          ],
+          "accentProfile": [
+            0.95,
+            0.69,
+            0.85,
+            0.63
+          ],
+          "velocityProfile": [
+            0.92,
+            0.61,
+            0.8200000000000001,
+            0.6000000000000001
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6
+          ]
+        },
+        {
+          "id": "afrobeats-anchor-8-v-02",
+          "parentPatternId": "afrobeats-anchor-8",
+          "name": "Hook Anchor — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            2,
+            5,
+            8,
+            10,
+            13
+          ],
+          "accentProfile": [
+            0.96,
+            0.82,
+            0.86,
+            0.76,
+            0.96,
+            0.82
+          ],
+          "velocityProfile": [
+            1,
+            0.6699999999999999,
+            0.88,
+            0.74,
+            0.9299999999999999,
+            0.72
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5
+          ]
+        }
+      ],
+      "provenance": "GenreDAW catalog rebuild from existing Afrobeats world data; generated to cover missing musical functions without runtime AI.",
+      "authenticityTags": [
+        "afrobeats",
+        "hook"
+      ],
+      "danceTags": [
+        "listening",
+        "social-partner"
+      ],
+      "tuningSystem": "12-tet",
+      "difficulty": 2,
+      "weight": 0.7,
+      "enabled": true
+    },
+    {
+      "id": "afrobeats-comp-9",
+      "worldId": "afrobeats",
+      "traditionId": "afrobeats-modern",
+      "name": "Horn Comping",
+      "family": "Horn",
+      "category": "groove",
+      "description": "A genre-shaped accompaniment cell that supports the lead without occupying every subdivision. Built around vocal hook and the horn vocabulary of Afrobeats.",
+      "tags": [
+        "afrobeats",
+        "horn",
+        "comp",
+        "catalog-v2"
+      ],
+      "scopes": [
+        "measure",
+        "phrase"
+      ],
+      "roles": [
+        "harmony"
+      ],
+      "instruments": [
+        "guitar"
+      ],
+      "compatibleRoles": [
+        "harmony"
+      ],
+      "compatibleInstruments": [
+        "guitar"
+      ],
+      "canCrossRole": true,
+      "meter": "4/4",
+      "cycleLength": 1,
+      "subdivisions": 16,
+      "onsetGrid": [
+        2,
+        4,
+        7,
+        10,
+        12,
+        15
+      ],
+      "accentProfile": [
+        1,
+        0.74,
+        0.9,
+        0.68,
+        1,
+        0.74
+      ],
+      "velocityProfile": [
+        1,
+        0.69,
+        0.9,
+        0.68,
+        0.95,
+        0.74
+      ],
+      "syncopationRating": 0.6666666666666666,
+      "anticipationOffset": 0,
+      "swingPercentage": 50,
+      "articulations": [
+        "accented",
+        "ghost-aware"
+      ],
+      "density": "medium",
+      "phrasePosition": [
+        "middle"
+      ],
+      "sectionUsage": [
+        "verse",
+        "chorus"
+      ],
+      "harmonicContext": [
+        "tonal",
+        "section-dependent",
+        "tonal or modal context"
+      ],
+      "roleDependencies": [
+        "harmony"
+      ],
+      "transformations": [
+        "density",
+        "accent",
+        "phrasePosition"
+      ],
+      "variants": [
+        {
+          "id": "afrobeats-comp-9-v-01",
+          "parentPatternId": "afrobeats-comp-9",
+          "name": "Horn Comping — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            2,
+            7,
+            10,
+            15
+          ],
+          "accentProfile": [
+            0.95,
+            0.69,
+            0.85,
+            0.63
+          ],
+          "velocityProfile": [
+            0.92,
+            0.61,
+            0.8200000000000001,
+            0.6000000000000001
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6
+          ]
+        },
+        {
+          "id": "afrobeats-comp-9-v-02",
+          "parentPatternId": "afrobeats-comp-9",
+          "name": "Horn Comping — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            2,
+            4,
+            7,
+            10,
+            12,
+            15
+          ],
+          "accentProfile": [
+            0.96,
+            0.82,
+            0.86,
+            0.76,
+            0.96,
+            0.82
+          ],
+          "velocityProfile": [
+            1,
+            0.6699999999999999,
+            0.88,
+            0.74,
+            0.9299999999999999,
+            0.72
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5
+          ]
+        }
+      ],
+      "provenance": "GenreDAW catalog rebuild from existing Afrobeats world data; generated to cover missing musical functions without runtime AI.",
+      "authenticityTags": [
+        "afrobeats",
+        "horn"
+      ],
+      "danceTags": [
+        "listening",
+        "social-partner"
+      ],
+      "tuningSystem": "12-tet",
+      "difficulty": 2,
+      "weight": 1,
+      "enabled": true
+    },
+    {
+      "id": "afrobeats-intro-10",
+      "worldId": "afrobeats",
+      "traditionId": "afrobeats-modern",
+      "name": "Afrobeat Intro",
+      "family": "Afrobeat",
+      "category": "sectionPattern",
+      "description": "A reduced entrance used to establish the genre before the full groove arrives. Built around syncopated pocket and the afrobeat vocabulary of Afrobeats.",
+      "tags": [
+        "afrobeats",
+        "afrobeat",
+        "intro",
+        "catalog-v2"
+      ],
+      "scopes": [
+        "measure",
+        "phrase"
+      ],
+      "roles": [
+        "harmony",
+        "texture"
+      ],
+      "instruments": [
+        "guitar"
+      ],
+      "compatibleRoles": [
+        "harmony",
+        "texture"
+      ],
+      "compatibleInstruments": [
+        "guitar"
+      ],
+      "canCrossRole": true,
+      "meter": "4/4",
+      "cycleLength": 1,
+      "subdivisions": 16,
+      "onsetGrid": [
+        1,
+        3,
+        4,
+        6,
+        9,
+        11,
+        12,
+        14
+      ],
+      "accentProfile": [
+        1,
+        0.74,
+        0.9,
+        0.68,
+        1,
+        0.74,
+        0.9,
+        0.68
+      ],
+      "velocityProfile": [
+        1,
+        0.69,
+        0.9,
+        0.68,
+        0.95,
+        0.74,
+        0.9,
+        0.63
+      ],
+      "syncopationRating": 0.75,
+      "anticipationOffset": 0,
+      "swingPercentage": 50,
+      "articulations": [
+        "accented",
+        "ghost-aware"
+      ],
+      "density": "dense",
+      "phrasePosition": [
+        "start"
+      ],
+      "sectionUsage": [
+        "intro"
+      ],
+      "harmonicContext": [
+        "tonal",
+        "section-dependent",
+        "tonal or modal context"
+      ],
+      "roleDependencies": [
+        "harmony",
+        "texture"
+      ],
+      "transformations": [
+        "density",
+        "accent",
+        "phrasePosition"
+      ],
+      "variants": [
+        {
+          "id": "afrobeats-intro-10-v-01",
+          "parentPatternId": "afrobeats-intro-10",
+          "name": "Afrobeat Intro — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            1,
+            4,
+            6,
+            11,
+            12
+          ],
+          "accentProfile": [
+            0.95,
+            0.69,
+            0.85,
+            0.63,
+            0.95
+          ],
+          "velocityProfile": [
+            0.92,
+            0.61,
+            0.8200000000000001,
+            0.6000000000000001,
+            0.87
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "afrobeats-intro-10-v-02",
+          "parentPatternId": "afrobeats-intro-10",
+          "name": "Afrobeat Intro — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            1,
+            3,
+            4,
+            6,
+            9,
+            11,
+            12,
+            14
+          ],
+          "accentProfile": [
+            0.96,
+            0.82,
+            0.86,
+            0.76,
+            0.96,
+            0.82,
+            0.86,
+            0.76
+          ],
+          "velocityProfile": [
+            1,
+            0.6699999999999999,
+            0.88,
+            0.74,
+            0.9299999999999999,
+            0.72,
+            0.96,
+            0.61
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5
+          ]
+        },
+        {
+          "id": "afrobeats-intro-10-v-03",
+          "parentPatternId": "afrobeats-intro-10",
+          "name": "Afrobeat Intro — transition variation",
+          "variationType": "transition",
+          "probability": 0.16,
+          "description": "Adds a final pickup/closure gesture for section transitions.",
+          "onsetGrid": [
+            1,
+            3,
+            4,
+            6,
+            9,
+            11,
+            12,
+            14,
+            15
+          ],
+          "accentProfile": [
+            0.98,
+            0.72,
+            0.88,
+            0.66,
+            0.98,
+            0.72,
+            0.88,
+            1,
+            1
+          ],
+          "velocityProfile": [
+            1,
+            0.69,
+            0.9,
+            0.68,
+            0.95,
+            0.74,
+            0.9,
+            0.98,
+            0.98
+          ],
+          "microtimingOffset": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            -6,
+            -6
+          ]
+        }
+      ],
+      "provenance": "GenreDAW catalog rebuild from existing Afrobeats world data; generated to cover missing musical functions without runtime AI.",
+      "authenticityTags": [
+        "afrobeats",
+        "afrobeat"
+      ],
+      "danceTags": [
+        "listening",
+        "social-partner"
+      ],
+      "tuningSystem": "12-tet",
+      "difficulty": 3,
+      "weight": 0.7,
+      "enabled": true
+    },
+    {
+      "id": "afrobeats-verse-11",
+      "worldId": "afrobeats",
+      "traditionId": "afrobeats-modern",
+      "name": "Log Drum Verse Variation",
+      "family": "Log Drum",
+      "category": "groove",
+      "description": "A restrained verse variation with intentional headroom for melody. Built around log drum in Afrobeats.",
+      "tags": [
+        "afrobeats",
+        "log-drum",
+        "verse",
+        "catalog-v2"
+      ],
+      "scopes": [
+        "measure",
+        "phrase"
+      ],
+      "roles": [
+        "pulse",
+        "rhythm-guitar",
+        "drums"
+      ],
+      "instruments": [
+        "drums",
+        "percussion",
+        "bass"
+      ],
+      "compatibleRoles": [
+        "pulse",
+        "rhythm-guitar",
+        "drums"
+      ],
+      "compatibleInstruments": [
+        "drums",
+        "percussion",
+        "bass"
+      ],
+      "canCrossRole": true,
+      "meter": "4/4",
+      "cycleLength": 1,
+      "subdivisions": 16,
+      "onsetGrid": [
+        2,
+        4,
+        5,
+        7,
+        10,
+        12,
+        13,
+        15
+      ],
+      "accentProfile": [
+        1,
+        0.74,
+        0.9,
+        0.68,
+        1,
+        0.74,
+        0.9,
+        0.68
+      ],
+      "velocityProfile": [
+        1,
+        0.69,
+        0.9,
+        0.68,
+        0.95,
+        0.74,
+        0.9,
+        0.63
+      ],
+      "syncopationRating": 0.75,
+      "anticipationOffset": 0,
+      "swingPercentage": 50,
+      "articulations": [
+        "accented",
+        "ghost-aware"
+      ],
+      "density": "medium",
+      "phrasePosition": [
+        "middle"
+      ],
+      "sectionUsage": [
+        "verse"
+      ],
+      "harmonicContext": [
+        "tonal",
+        "section-dependent",
+        "tonal or modal context"
+      ],
+      "roleDependencies": [
+        "drums",
+        "rhythm-guitar"
+      ],
+      "transformations": [
+        "density",
+        "accent",
+        "phrasePosition"
+      ],
+      "variants": [
+        {
+          "id": "afrobeats-verse-11-v-01",
+          "parentPatternId": "afrobeats-verse-11",
+          "name": "Log Drum Verse Variation — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            2,
+            5,
+            7,
+            12,
+            13
+          ],
+          "accentProfile": [
+            0.95,
+            0.69,
+            0.85,
+            0.63,
+            0.95
+          ],
+          "velocityProfile": [
+            0.92,
+            0.61,
+            0.8200000000000001,
+            0.6000000000000001,
+            0.87
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "afrobeats-verse-11-v-02",
+          "parentPatternId": "afrobeats-verse-11",
+          "name": "Log Drum Verse Variation — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            2,
+            4,
+            5,
+            7,
+            10,
+            12,
+            13,
+            15
+          ],
+          "accentProfile": [
+            0.96,
+            0.82,
+            0.86,
+            0.76,
+            0.96,
+            0.82,
+            0.86,
+            0.76
+          ],
+          "velocityProfile": [
+            1,
+            0.6699999999999999,
+            0.88,
+            0.74,
+            0.9299999999999999,
+            0.72,
+            0.96,
+            0.61
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5
+          ]
+        }
+      ],
+      "provenance": "GenreDAW catalog rebuild from existing Afrobeats world data; generated to cover missing musical functions without runtime AI.",
+      "authenticityTags": [
+        "afrobeats",
+        "log-drum"
+      ],
+      "danceTags": [
+        "listening",
+        "social-partner"
+      ],
+      "tuningSystem": "12-tet",
+      "difficulty": 3,
+      "weight": 1,
+      "enabled": true
+    },
+    {
+      "id": "afrobeats-chorus-12",
+      "worldId": "afrobeats",
+      "traditionId": "afrobeats-modern",
+      "name": "Shekere Chorus Lift",
+      "family": "Shekere",
+      "category": "sectionPattern",
+      "description": "A higher-energy chorus layer that increases density without changing the genre identity. Built around highlife guitar and the shekere vocabulary of Afrobeats.",
+      "tags": [
+        "afrobeats",
+        "shekere",
+        "chorus",
+        "catalog-v2"
+      ],
+      "scopes": [
+        "measure",
+        "phrase"
+      ],
+      "roles": [
+        "pulse",
+        "harmony",
+        "drums"
+      ],
+      "instruments": [
+        "drums",
+        "percussion",
+        "guitar"
+      ],
+      "compatibleRoles": [
+        "pulse",
+        "harmony",
+        "drums"
+      ],
+      "compatibleInstruments": [
+        "drums",
+        "percussion",
+        "guitar"
+      ],
+      "canCrossRole": true,
+      "meter": "4/4",
+      "cycleLength": 1,
+      "subdivisions": 16,
+      "onsetGrid": [
+        0,
+        3,
+        5,
+        6,
+        8,
+        11,
+        13,
+        14
+      ],
+      "accentProfile": [
+        1,
+        0.74,
+        0.9,
+        0.68,
+        1,
+        0.74,
+        0.9,
+        0.68
+      ],
+      "velocityProfile": [
+        1,
+        0.69,
+        0.9,
+        0.68,
+        0.95,
+        0.74,
+        0.9,
+        0.63
+      ],
+      "syncopationRating": 0.75,
+      "anticipationOffset": 1,
+      "swingPercentage": 50,
+      "articulations": [
+        "accented",
+        "ghost-aware"
+      ],
+      "density": "dynamic",
+      "phrasePosition": [
+        "middle",
+        "end"
+      ],
+      "sectionUsage": [
+        "chorus"
+      ],
+      "harmonicContext": [
+        "tonal",
+        "section-dependent",
+        "tonal or modal context"
+      ],
+      "roleDependencies": [
+        "harmony",
+        "drums"
+      ],
+      "transformations": [
+        "density",
+        "accent",
+        "phrasePosition"
+      ],
+      "variants": [
+        {
+          "id": "afrobeats-chorus-12-v-01",
+          "parentPatternId": "afrobeats-chorus-12",
+          "name": "Shekere Chorus Lift — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            5,
+            6,
+            11,
+            13
+          ],
+          "accentProfile": [
+            0.95,
+            0.69,
+            0.85,
+            0.63,
+            0.95
+          ],
+          "velocityProfile": [
+            0.92,
+            0.61,
+            0.8200000000000001,
+            0.6000000000000001,
+            0.87
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "afrobeats-chorus-12-v-02",
+          "parentPatternId": "afrobeats-chorus-12",
+          "name": "Shekere Chorus Lift — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            3,
+            5,
+            6,
+            8,
+            11,
+            13,
+            14
+          ],
+          "accentProfile": [
+            0.96,
+            0.82,
+            0.86,
+            0.76,
+            0.96,
+            0.82,
+            0.86,
+            0.76
+          ],
+          "velocityProfile": [
+            1,
+            0.6699999999999999,
+            0.88,
+            0.74,
+            0.9299999999999999,
+            0.72,
+            0.96,
+            0.61
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5
+          ]
+        },
+        {
+          "id": "afrobeats-chorus-12-v-03",
+          "parentPatternId": "afrobeats-chorus-12",
+          "name": "Shekere Chorus Lift — transition variation",
+          "variationType": "transition",
+          "probability": 0.16,
+          "description": "Adds a final pickup/closure gesture for section transitions.",
+          "onsetGrid": [
+            0,
+            3,
+            5,
+            6,
+            8,
+            11,
+            13,
+            14,
+            15
+          ],
+          "accentProfile": [
+            0.98,
+            0.72,
+            0.88,
+            0.66,
+            0.98,
+            0.72,
+            0.88,
+            1,
+            1
+          ],
+          "velocityProfile": [
+            1,
+            0.69,
+            0.9,
+            0.68,
+            0.95,
+            0.74,
+            0.9,
+            0.98,
+            0.98
+          ],
+          "microtimingOffset": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            -6,
+            -6
+          ]
+        }
+      ],
+      "provenance": "GenreDAW catalog rebuild from existing Afrobeats world data; generated to cover missing musical functions without runtime AI.",
+      "authenticityTags": [
+        "afrobeats",
+        "shekere"
+      ],
+      "danceTags": [
+        "listening",
+        "social-partner"
+      ],
+      "tuningSystem": "12-tet",
+      "difficulty": 3,
+      "weight": 0.7,
+      "enabled": true
+    },
+    {
+      "id": "afrobeats-bridge-13",
+      "worldId": "afrobeats",
+      "traditionId": "afrobeats-modern",
+      "name": "Hook Bridge",
+      "family": "Hook",
+      "category": "sectionPattern",
+      "description": "A contrasting bridge texture designed to reset repetition before the final return. Built around shekere and the hook vocabulary of Afrobeats.",
+      "tags": [
+        "afrobeats",
+        "hook",
+        "bridge",
+        "catalog-v2"
+      ],
+      "scopes": [
+        "measure",
+        "phrase"
+      ],
+      "roles": [
+        "harmony",
+        "lead"
+      ],
+      "instruments": [
+        "guitar"
+      ],
+      "compatibleRoles": [
+        "harmony",
+        "lead"
+      ],
+      "compatibleInstruments": [
+        "guitar"
+      ],
+      "canCrossRole": true,
+      "meter": "4/4",
+      "cycleLength": 1,
+      "subdivisions": 16,
+      "onsetGrid": [
+        0,
+        2,
+        5,
+        7,
+        8,
+        10,
+        13,
+        15
+      ],
+      "accentProfile": [
+        1,
+        0.74,
+        0.9,
+        0.68,
+        1,
+        0.74,
+        0.9,
+        0.68
+      ],
+      "velocityProfile": [
+        1,
+        0.69,
+        0.9,
+        0.68,
+        0.95,
+        0.74,
+        0.9,
+        0.63
+      ],
+      "syncopationRating": 0.75,
+      "anticipationOffset": 0,
+      "swingPercentage": 50,
+      "articulations": [
+        "legato"
+      ],
+      "density": "dense",
+      "phrasePosition": [
+        "middle"
+      ],
+      "sectionUsage": [
+        "bridge",
+        "interlude",
+        "development"
+      ],
+      "harmonicContext": [
+        "tonal",
+        "section-dependent",
+        "tonal or modal context"
+      ],
+      "roleDependencies": [
+        "harmony",
+        "lead"
+      ],
+      "transformations": [
+        "density",
+        "accent",
+        "phrasePosition"
+      ],
+      "variants": [
+        {
+          "id": "afrobeats-bridge-13-v-01",
+          "parentPatternId": "afrobeats-bridge-13",
+          "name": "Hook Bridge — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            5,
+            7,
+            10,
+            13
+          ],
+          "accentProfile": [
+            0.95,
+            0.69,
+            0.85,
+            0.63,
+            0.95
+          ],
+          "velocityProfile": [
+            0.92,
+            0.61,
+            0.8200000000000001,
+            0.6000000000000001,
+            0.87
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "afrobeats-bridge-13-v-02",
+          "parentPatternId": "afrobeats-bridge-13",
+          "name": "Hook Bridge — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            2,
+            5,
+            7,
+            8,
+            10,
+            13,
+            15
+          ],
+          "accentProfile": [
+            0.96,
+            0.82,
+            0.86,
+            0.76,
+            0.96,
+            0.82,
+            0.86,
+            0.76
+          ],
+          "velocityProfile": [
+            1,
+            0.6699999999999999,
+            0.88,
+            0.74,
+            0.9299999999999999,
+            0.72,
+            0.96,
+            0.61
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5
+          ]
+        },
+        {
+          "id": "afrobeats-bridge-13-v-03",
+          "parentPatternId": "afrobeats-bridge-13",
+          "name": "Hook Bridge — transition variation",
+          "variationType": "transition",
+          "probability": 0.16,
+          "description": "Adds a final pickup/closure gesture for section transitions.",
+          "onsetGrid": [
+            0,
+            2,
+            5,
+            7,
+            8,
+            10,
+            13,
+            14,
+            15
+          ],
+          "accentProfile": [
+            0.98,
+            0.72,
+            0.88,
+            0.66,
+            0.98,
+            0.72,
+            0.88,
+            1,
+            1
+          ],
+          "velocityProfile": [
+            1,
+            0.69,
+            0.9,
+            0.68,
+            0.95,
+            0.74,
+            0.9,
+            0.98,
+            0.98
+          ],
+          "microtimingOffset": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            -6,
+            -6
+          ]
+        }
+      ],
+      "provenance": "GenreDAW catalog rebuild from existing Afrobeats world data; generated to cover missing musical functions without runtime AI.",
+      "authenticityTags": [
+        "afrobeats",
+        "hook"
+      ],
+      "danceTags": [
+        "listening",
+        "social-partner"
+      ],
+      "tuningSystem": "12-tet",
+      "difficulty": 3,
+      "weight": 0.7,
+      "enabled": true
+    },
+    {
+      "id": "afrobeats-fill-14",
+      "worldId": "afrobeats",
+      "traditionId": "afrobeats-modern",
+      "name": "Horn Fill",
+      "family": "Horn",
+      "category": "fill",
+      "description": "A short transition fill that signals the next section instead of looping the main groove unchanged. Built around vocal hook and the horn vocabulary of Afrobeats.",
+      "tags": [
+        "afrobeats",
+        "horn",
+        "fill",
+        "catalog-v2"
+      ],
+      "scopes": [
+        "measure",
+        "phrase"
+      ],
+      "roles": [
+        "fill",
+        "drums"
+      ],
+      "instruments": [
+        "drums",
+        "percussion"
+      ],
+      "compatibleRoles": [
+        "fill",
+        "drums"
+      ],
+      "compatibleInstruments": [
+        "drums",
+        "percussion"
+      ],
+      "canCrossRole": true,
+      "meter": "4/4",
+      "cycleLength": 1,
+      "subdivisions": 16,
+      "onsetGrid": [
+        0,
+        4,
+        6,
+        10,
+        12,
+        14
+      ],
+      "accentProfile": [
+        0.72,
+        0.78,
+        0.84,
+        0.72,
+        1,
+        1
+      ],
+      "velocityProfile": [
+        0.72,
+        0.73,
+        0.84,
+        0.72,
+        0.95,
+        1
+      ],
+      "syncopationRating": 0.5,
+      "anticipationOffset": 1,
+      "swingPercentage": 50,
+      "articulations": [
+        "fill"
+      ],
+      "density": "dense",
+      "phrasePosition": [
+        "end"
+      ],
+      "sectionUsage": [
+        "pre-chorus",
+        "turnaround",
+        "ending"
+      ],
+      "harmonicContext": [
+        "tonal",
+        "section-dependent",
+        "tonal or modal context"
+      ],
+      "roleDependencies": [
+        "drums"
+      ],
+      "transformations": [
+        "density",
+        "accent",
+        "phrasePosition"
+      ],
+      "variants": [
+        {
+          "id": "afrobeats-fill-14-v-01",
+          "parentPatternId": "afrobeats-fill-14",
+          "name": "Horn Fill — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            6,
+            10,
+            14
+          ],
+          "accentProfile": [
+            0.6699999999999999,
+            0.73,
+            0.7899999999999999,
+            0.6699999999999999
+          ],
+          "velocityProfile": [
+            0.64,
+            0.65,
+            0.76,
+            0.64
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6
+          ]
+        },
+        {
+          "id": "afrobeats-fill-14-v-02",
+          "parentPatternId": "afrobeats-fill-14",
+          "name": "Horn Fill — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            4,
+            6,
+            10,
+            12,
+            14
+          ],
+          "accentProfile": [
+            0.6799999999999999,
+            0.86,
+            0.7999999999999999,
+            0.7999999999999999,
+            0.96,
+            1
+          ],
+          "velocityProfile": [
+            0.78,
+            0.71,
+            0.82,
+            0.78,
+            0.9299999999999999,
+            0.98
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5
+          ]
+        },
+        {
+          "id": "afrobeats-fill-14-v-03",
+          "parentPatternId": "afrobeats-fill-14",
+          "name": "Horn Fill — transition variation",
+          "variationType": "transition",
+          "probability": 0.16,
+          "description": "Adds a final pickup/closure gesture for section transitions.",
+          "onsetGrid": [
+            0,
+            4,
+            6,
+            10,
+            12,
+            14,
+            15
+          ],
+          "accentProfile": [
+            0.7,
+            0.76,
+            0.82,
+            0.7,
+            0.98,
+            1,
+            1
+          ],
+          "velocityProfile": [
+            0.72,
+            0.73,
+            0.84,
+            0.72,
+            0.95,
+            0.98,
+            0.98
+          ],
+          "microtimingOffset": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            -6,
+            -6
+          ]
+        }
+      ],
+      "provenance": "GenreDAW catalog rebuild from existing Afrobeats world data; generated to cover missing musical functions without runtime AI.",
+      "authenticityTags": [
+        "afrobeats",
+        "horn"
+      ],
+      "danceTags": [
+        "listening",
+        "social-partner"
+      ],
+      "tuningSystem": "12-tet",
+      "difficulty": 2,
+      "weight": 0.7,
+      "enabled": true
+    },
+    {
+      "id": "afrobeats-break-15",
+      "worldId": "afrobeats",
+      "traditionId": "afrobeats-modern",
+      "name": "Afrobeat Break",
+      "family": "Afrobeat",
+      "category": "break",
+      "description": "A deliberate drop in density for a breakdown or stop-time moment. Built around syncopated pocket and the afrobeat vocabulary of Afrobeats.",
+      "tags": [
+        "afrobeats",
+        "afrobeat",
+        "break",
+        "catalog-v2"
+      ],
+      "scopes": [
+        "measure",
+        "phrase"
+      ],
+      "roles": [
+        "drums",
+        "bass"
+      ],
+      "instruments": [
+        "drums",
+        "percussion",
+        "bass"
+      ],
+      "compatibleRoles": [
+        "drums",
+        "bass"
+      ],
+      "compatibleInstruments": [
+        "drums",
+        "percussion",
+        "bass"
+      ],
+      "canCrossRole": true,
+      "meter": "4/4",
+      "cycleLength": 1,
+      "subdivisions": 16,
+      "onsetGrid": [
+        1,
+        5,
+        7,
+        11,
+        13,
+        15
+      ],
+      "accentProfile": [
+        1,
+        0.55,
+        0.55,
+        0.55,
+        1,
+        1
+      ],
+      "velocityProfile": [
+        1,
+        0.5,
+        0.55,
+        0.55,
+        0.95,
+        1
+      ],
+      "syncopationRating": 1,
+      "anticipationOffset": 0,
+      "swingPercentage": 50,
+      "articulations": [
+        "accented"
+      ],
+      "density": "sparse",
+      "phrasePosition": [
+        "middle",
+        "end"
+      ],
+      "sectionUsage": [
+        "breakdown",
+        "stop-time"
+      ],
+      "harmonicContext": [
+        "tonal",
+        "section-dependent",
+        "tonal or modal context"
+      ],
+      "roleDependencies": [
+        "drums",
+        "bass"
+      ],
+      "transformations": [
+        "density",
+        "accent",
+        "phrasePosition"
+      ],
+      "variants": [
+        {
+          "id": "afrobeats-break-15-v-01",
+          "parentPatternId": "afrobeats-break-15",
+          "name": "Afrobeat Break — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            1,
+            7,
+            11,
+            15
+          ],
+          "accentProfile": [
+            0.95,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "velocityProfile": [
+            0.92,
+            0.42,
+            0.47000000000000003,
+            0.47000000000000003
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6
+          ]
+        },
+        {
+          "id": "afrobeats-break-15-v-02",
+          "parentPatternId": "afrobeats-break-15",
+          "name": "Afrobeat Break — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            1,
+            5,
+            7,
+            11,
+            13,
+            15
+          ],
+          "accentProfile": [
+            0.96,
+            0.63,
+            0.51,
+            0.63,
+            0.96,
+            1
+          ],
+          "velocityProfile": [
+            1,
+            0.48,
+            0.53,
+            0.6100000000000001,
+            0.9299999999999999,
+            0.98
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5
+          ]
+        },
+        {
+          "id": "afrobeats-break-15-v-03",
+          "parentPatternId": "afrobeats-break-15",
+          "name": "Afrobeat Break — transition variation",
+          "variationType": "transition",
+          "probability": 0.16,
+          "description": "Adds a final pickup/closure gesture for section transitions.",
+          "onsetGrid": [
+            1,
+            5,
+            7,
+            11,
+            13,
+            14,
+            15
+          ],
+          "accentProfile": [
+            0.98,
+            0.53,
+            0.53,
+            0.53,
+            0.98,
+            1,
+            1
+          ],
+          "velocityProfile": [
+            1,
+            0.5,
+            0.55,
+            0.55,
+            0.95,
+            0.98,
+            0.98
+          ],
+          "microtimingOffset": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            -6,
+            -6
+          ]
+        }
+      ],
+      "provenance": "GenreDAW catalog rebuild from existing Afrobeats world data; generated to cover missing musical functions without runtime AI.",
+      "authenticityTags": [
+        "afrobeats",
+        "afrobeat"
+      ],
+      "danceTags": [
+        "listening",
+        "social-partner"
+      ],
+      "tuningSystem": "12-tet",
+      "difficulty": 2,
+      "weight": 0.7,
+      "enabled": true
+    },
+    {
+      "id": "afrobeats-cadence-16",
+      "worldId": "afrobeats",
+      "traditionId": "afrobeats-modern",
+      "name": "Log Drum Cadence",
+      "family": "Log Drum",
+      "category": "cadence",
+      "description": "A phrase-ending cadence that gives the arrangement a clear point of release. Built around log drum in Afrobeats.",
+      "tags": [
+        "afrobeats",
+        "log-drum",
+        "cadence",
+        "catalog-v2"
+      ],
+      "scopes": [
+        "measure",
+        "phrase"
+      ],
+      "roles": [
+        "harmony",
+        "bass"
+      ],
+      "instruments": [
+        "guitar",
+        "bass"
+      ],
+      "compatibleRoles": [
+        "harmony",
+        "bass"
+      ],
+      "compatibleInstruments": [
+        "guitar",
+        "bass"
+      ],
+      "canCrossRole": true,
+      "meter": "4/4",
+      "cycleLength": 1,
+      "subdivisions": 16,
+      "onsetGrid": [
+        0,
+        2,
+        6,
+        8,
+        12,
+        14
+      ],
+      "accentProfile": [
+        1,
+        0.74,
+        0.9,
+        0.68,
+        1,
+        0.74
+      ],
+      "velocityProfile": [
+        1,
+        0.69,
+        0.9,
+        0.68,
+        0.95,
+        0.74
+      ],
+      "syncopationRating": 0.5,
+      "anticipationOffset": 0,
+      "swingPercentage": 50,
+      "articulations": [
+        "accented",
+        "ghost-aware"
+      ],
+      "density": "sparse",
+      "phrasePosition": [
+        "end"
+      ],
+      "sectionUsage": [
+        "turnaround",
+        "ending",
+        "coda",
+        "remate",
+        "cierre"
+      ],
+      "harmonicContext": [
+        "dominant",
+        "turnaround",
+        "tonal or modal context"
+      ],
+      "roleDependencies": [
+        "harmony",
+        "bass"
+      ],
+      "transformations": [
+        "density",
+        "accent",
+        "phrasePosition"
+      ],
+      "variants": [
+        {
+          "id": "afrobeats-cadence-16-v-01",
+          "parentPatternId": "afrobeats-cadence-16",
+          "name": "Log Drum Cadence — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            6,
+            8,
+            14
+          ],
+          "accentProfile": [
+            0.95,
+            0.69,
+            0.85,
+            0.63
+          ],
+          "velocityProfile": [
+            0.92,
+            0.61,
+            0.8200000000000001,
+            0.6000000000000001
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6
+          ]
+        },
+        {
+          "id": "afrobeats-cadence-16-v-02",
+          "parentPatternId": "afrobeats-cadence-16",
+          "name": "Log Drum Cadence — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            2,
+            6,
+            8,
+            12,
+            14
+          ],
+          "accentProfile": [
+            0.96,
+            0.82,
+            0.86,
+            0.76,
+            0.96,
+            0.82
+          ],
+          "velocityProfile": [
+            1,
+            0.6699999999999999,
+            0.88,
+            0.74,
+            0.9299999999999999,
+            0.72
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5
+          ]
+        },
+        {
+          "id": "afrobeats-cadence-16-v-03",
+          "parentPatternId": "afrobeats-cadence-16",
+          "name": "Log Drum Cadence — transition variation",
+          "variationType": "transition",
+          "probability": 0.16,
+          "description": "Adds a final pickup/closure gesture for section transitions.",
+          "onsetGrid": [
+            0,
+            2,
+            6,
+            8,
+            12,
+            14,
+            15
+          ],
+          "accentProfile": [
+            0.98,
+            0.72,
+            0.88,
+            0.66,
+            0.98,
+            1,
+            1
+          ],
+          "velocityProfile": [
+            1,
+            0.69,
+            0.9,
+            0.68,
+            0.95,
+            0.98,
+            0.98
+          ],
+          "microtimingOffset": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            -6,
+            -6
+          ]
+        }
+      ],
+      "provenance": "GenreDAW catalog rebuild from existing Afrobeats world data; generated to cover missing musical functions without runtime AI.",
+      "authenticityTags": [
+        "afrobeats",
+        "log-drum"
+      ],
+      "danceTags": [
+        "listening",
+        "social-partner"
+      ],
+      "tuningSystem": "12-tet",
+      "difficulty": 2,
+      "weight": 0.7,
+      "enabled": true
+    },
+    {
+      "id": "afrobeats-voice-phrasing",
+      "worldId": "afrobeats",
+      "traditionId": "afrobeats-modern",
+      "name": "Afrobeats Vocal Phrasing",
+      "family": "Vocal Phrasing",
+      "category": "phrasePattern",
+      "description": "Hook-driven vocal placement designed around syncopated pocket, log-drum movement, and call-response space.",
+      "tags": [
+        "afrobeats",
+        "voice",
+        "vocal-phrasing",
+        "catalog-v2"
+      ],
+      "scopes": [
+        "measure",
+        "phrase"
+      ],
+      "roles": [
+        "voice"
+      ],
+      "instruments": ["voice"],
+      "compatibleRoles": [
+        "voice",
+        "lead"
+      ],
+      "compatibleInstruments": ["voice"],
+      "meter": "4/4",
+      "cycleLength": 1,
+      "subdivisions": 16,
+      "onsetGrid": [
+        0,
+        3,
+        5,
+        8,
+        11,
+        14
+      ],
+      "accentProfile": [
+        0.94,
+        0.62,
+        0.94,
+        0.62,
+        0.94,
+        0.62
+      ],
+      "velocityProfile": [
+        0.9,
+        0.58,
+        0.9,
+        0.58,
+        0.9,
+        0.58
+      ],
+      "syncopationRating": 0.6666666666666666,
+      "anticipationOffset": 0,
+      "swingPercentage": 50,
+      "articulations": [
+        "breath",
+        "phrase-end"
+      ],
+      "density": "medium",
+      "phrasePosition": [
+        "start",
+        "middle"
+      ],
+      "sectionUsage": [
+        "verse",
+        "chorus",
+        "bridge"
+      ],
+      "harmonicContext": [
+        "tonal or modal context"
+      ],
+      "roleDependencies": [
+        "voice"
+      ],
+      "transformations": [
+        "density",
+        "accent",
+        "phrasePosition"
+      ],
+      "variants": [
+        {
+          "id": "afrobeats-voice-phrasing-v-voice-alt",
+          "parentPatternId": "afrobeats-voice-phrasing",
+          "name": "Afrobeats Vocal Phrasing — alternate phrasing",
+          "variationType": "phraseStart",
+          "probability": 0.2,
+          "description": "Alternate vocal entry placement for a second pass through the phrase.",
+          "onsetGrid": [
+            0,
+            3,
+            5,
+            8,
+            11,
+            14
+          ],
+          "accentProfile": [
+            0.92,
+            0.62,
+            0.92,
+            0.62,
+            0.92,
+            0.62
+          ],
+          "velocityProfile": [
+            0.88,
+            0.58,
+            0.88,
+            0.58,
+            0.88,
+            0.58
+          ],
+          "microtimingOffset": [
+            2,
+            -4,
+            2,
+            -4,
+            2,
+            -4
+          ]
+        },
+        {
+          "id": "afrobeats-voice-phrasing-v-final-accent",
+          "parentPatternId": "afrobeats-voice-phrasing",
+          "name": "Afrobeats Vocal Phrasing — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.18,
+          "description": "Same rhythmic shape with shifted emphasis on the repeat.",
+          "onsetGrid": [
+            0,
+            3,
+            5,
+            8,
+            11,
+            14
+          ],
+          "accentProfile": [
+            0.8999999999999999,
+            0.7,
+            0.8999999999999999,
+            0.7,
+            0.8999999999999999,
+            0.7
+          ],
+          "velocityProfile": [
+            0.9,
+            0.58,
+            0.9,
+            0.58,
+            0.9,
+            0.58
+          ],
+          "microtimingOffset": [
+            2,
+            -4,
+            2,
+            -4,
+            2,
+            -4
+          ]
+        }
+      ],
+      "provenance": "GenreDAW catalog rebuild: dedicated vocal phrasing coverage for Afrobeats.",
+      "authenticityTags": [
+        "afrobeats",
+        "voice"
+      ],
+      "danceTags": [
+        "listening"
+      ],
+      "tuningSystem": "12-tet",
+      "difficulty": 2,
+      "weight": 0.9,
+      "enabled": true
+    }
+  ],
+  "techniques": [
+    "log-drum pitch bending",
+    "clean single-coil guitar muting",
+    "hand-held shekere rolling",
+    "horn section unisons"
+  ],
+  "forms": [
+    "intro",
+    "verse",
+    "chorus",
+    "verse",
+    "chorus",
+    "solo",
+    "coda"
+  ],
+  "relationships": [
+    "shekere ↔ log drum (perpetual anchor interlock)",
+    "guitar ↔ bass (counterpoint conversation)",
+    "horns ↔ drums (accent punctuation)"
+  ],
+  "transformations": [
+    "trans-density-dense",
+    "trans-anticipation",
+    "trans-phrase-cadence",
+    "catalog-v2-density-variation",
+    "catalog-v2-transition-coverage",
+    "catalog-v2-ensemble-interactions"
+  ],
+  "songBehaviors": [
+    "irresistible dance groove build with infectious sing-along melodic hooks and hypnotic log-drum drops",
+    "avoid identical loop repetition by alternating pattern variants",
+    "use fills, breaks, cadences, and bridge textures as structural events",
+    "let lead/voice parts create space and response relationships"
+  ],
+  "instrumentIdeas": {
+    "drums": [
+      "snappy snare clap, dry punchy kick, and crisp tambourine/shekere shaker"
+    ],
+    "bass": [
+      "round wooden log drum with FM synth bass low sub resonance"
+    ],
+    "guitar": [
+      "ultra-clean Stratocaster in bridge/middle position through light chorus"
+    ],
+    "voice": [
+      "hook-led vocal phrasing"
+    ]
+  },
+  "combinations": [
+    "Afrobeats + Kizomba",
+    "Afrobeats + Hip-Hop",
+    "Afrobeat + Jazz Fusion"
+  ],
+  "danceTags": [
+    "social-partner",
+    "festival-fusion"
+  ],
+  "tuningSystem": "12-tet",
+  "signatureCell": "Syncopated Afrobeats pocket kick [0, 6, 10] with offbeat snare clap",
+  "grooveMechanics": {
+    "swingPercentage": 54,
+    "anticipationOffsetSteps": 1,
+    "microtimingFeel": "laid-back"
+  },
+  "crossLinks": [
+    "Kizomba ↔ Afrobeats (Afro-Kiz festival room)",
+    "Afrobeats ↔ Global Urban Beat",
+    "Afrobeats ↔ Funk (Fela Kuti / James Brown shared DNA)"
+  ]
+};
