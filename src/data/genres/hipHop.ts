@@ -9,88 +9,95 @@ export const HIP_HOP_WORLD: GenreWorld = {
   "description": "Unified global urban beat continuum spanning classic 90s Boom-Bap vinyl breaks, Atlanta Trap 808 slides and rolling hats, Caribbean Reggaeton / Dembow riddims, and Afro-Urban crossover pockets.",
   "traditions": [
     {
-      "id": "hiphop-boombap",
+      "id": "hip-hop-boom-bap",
       "worldId": "hip-hop",
-      "name": "Boom Bap & Golden Era",
-      "origin": "US East Coast (New York)",
-      "era": "1980s–1990s",
-      "description": "Sample-based production rooted in classic funk drum breaks, swung hi-hats, acoustic/sampled upright basslines, and punchy backbeat snares.",
+      "name": "Boom Bap",
+      "origin": "New York City",
+      "era": "1990s",
+      "description": "Punchy • 4/4 MPC • Head-nod\nGritty vinyl samples and hard drums.\nDJ Premier · Nas",
       "characteristicInstruments": [
+        "sampler",
         "drums",
         "bass",
-        "keys"
+        "turntables",
+        "piano",
+        "voice"
       ],
       "preferredMeters": [
         "4/4"
       ],
       "tempoRange": [
-        84,
-        98
+        86,
+        96
       ],
       "keySubstyles": [
-        "East Coast Boom Bap",
-        "Golden Era Hip Hop",
-        "Jazz Rap"
+        "East Coast Golden Age",
+        "SP1200 / MPC60 Boom Bap"
       ],
       "coreConcepts": [
-        "chopped vinyl drum breaks",
-        "swung 16th-note pocket",
-        "sampled upright bass loop",
-        "crisp backbeat snare on 2 and 4"
+        "12-bit SP-1200 / MPC punchy drum chop",
+        "acoustic snare crack on 2 and 4 (the Bap)",
+        "heavy filtered jazz bassline sample",
+        "intricate multisyllabic lyricism and vocal scratches"
       ],
       "rhythmicGrammar": [
-        "heavy kick on 1 and syncopated upbeat kicks leading to 3"
+        "swung 16th-note drum swing (MPC 58-62% swing) with heavy kick on 1 and syncopated kick before 3"
       ],
       "danceTags": [
         "social-partner",
-        "festival-fusion",
-        "listening"
+        "wcs-compatible"
       ],
       "tuningSystem": "12-tet",
-      "signatureCell": "Swung vinyl kick-snare pocket with walking sampled bass",
+      "signatureCell": "Hard vinyl kick-snare pocket with filtered jazz bassline and vocal turntable scratch",
       "grooveMechanics": {
         "swingPercentage": 58,
-        "anticipationOffsetSteps": 1,
-        "microtimingFeel": "laid-back"
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "swung"
       },
       "sectionProgressions": {
         "intro": [
-          "Cm7",
-          "Fm7",
-          "Gm7",
-          "Cm7"
+          "Am7",
+          "Dm7",
+          "Em7",
+          "Am7"
         ],
         "verse": [
-          "Cm7",
-          "Fm7",
-          "Gm7",
-          "Cm7"
+          "Am7",
+          "Dm7",
+          "Em7",
+          "Am7",
+          "Am7",
+          "Dm7",
+          "Em7",
+          "Am7"
         ],
-        "chorus": [
-          "Abmaj7",
-          "Gm7",
-          "Fm7",
-          "Bb7"
+        "scratch": [
+          "Am7",
+          "Dm7",
+          "Fmaj7",
+          "Em7"
         ],
         "coda": [
-          "Cm7",
-          "Fm7",
-          "Cm7",
-          "Cm7"
+          "Am7",
+          "Dm7",
+          "Am7",
+          "Am7"
         ]
       }
     },
     {
-      "id": "hiphop-trap",
+      "id": "hip-hop-trap",
       "worldId": "hip-hop",
-      "name": "Modern Trap & 808",
-      "origin": "US South (Atlanta)",
+      "name": "Trap",
+      "origin": "Atlanta, Georgia",
       "era": "2000s–Present",
-      "description": "Low-end dominant modern beat production: pitched sliding 808 sub-bass, rapid 32nd-note rolling hi-hats, half-time snare placement, and dark minor-key pads.",
+      "description": "808 • Fast Hi-Hats • Dark\nRolling hi-hats and heavy sub bass.\nFuture · Metro Boomin",
       "characteristicInstruments": [
+        "sub-bass",
         "drums",
-        "bass",
-        "synth"
+        "synth",
+        "sampler",
+        "voice"
       ],
       "preferredMeters": [
         "4/4"
@@ -100,26 +107,23 @@ export const HIP_HOP_WORLD: GenreWorld = {
         160
       ],
       "keySubstyles": [
-        "Trap",
-        "Drill",
-        "Plugg"
+        "Atlanta Trap",
+        "Dark 808 Trap"
       ],
       "coreConcepts": [
-        "pitched 808 slides",
-        "rolling 32nd and triplet hi-hats",
-        "half-time snare hit on beat 3",
-        "minimal dark pads"
+        "tuned distorted 808 sub-bass glides",
+        "rapid-fire 32nd and 64th-note triplet hi-hat rolls",
+        "half-time snare clap on beat 3",
+        "dark minor bell/synth melodies"
       ],
       "rhythmicGrammar": [
-        "half-time feel: kick anchors downbeat while snare lands strictly on beat 3"
+        "half-time feel: kick on 1, snare clap on 3, with frantic stuttering hi-hat rolls"
       ],
       "danceTags": [
-        "social-partner",
-        "festival-fusion",
-        "listening"
+        "festival-fusion"
       ],
       "tuningSystem": "12-tet",
-      "signatureCell": "Booming 808 sub slide with fast rolling hi-hat bursts",
+      "signatureCell": "Sliding 808 sub-bass pitch glide locked with 32nd-note triplet hi-hat roll and snare on 3",
       "grooveMechanics": {
         "swingPercentage": 50,
         "anticipationOffsetSteps": 0,
@@ -127,122 +131,542 @@ export const HIP_HOP_WORLD: GenreWorld = {
       },
       "sectionProgressions": {
         "intro": [
-          "Am",
-          "F",
-          "Dm",
-          "E7"
+          "Fm",
+          "Db",
+          "Bbm",
+          "C7"
         ],
         "verse": [
-          "Am",
-          "F",
-          "Dm",
-          "E7"
+          "Fm",
+          "Db",
+          "Bbm",
+          "C7",
+          "Fm",
+          "Db",
+          "Bbm",
+          "C7"
         ],
-        "chorus": [
-          "F",
-          "G",
-          "Am",
-          "Am"
+        "hook": [
+          "Fm",
+          "Fm",
+          "Db",
+          "C7",
+          "Fm",
+          "Fm",
+          "Db",
+          "C7"
         ],
         "coda": [
-          "Am",
-          "Am",
-          "Am",
-          "Am"
+          "Db",
+          "C7",
+          "Fm",
+          "Fm"
         ]
       }
     },
     {
-      "id": "hiphop-dembow",
+      "id": "hip-hop-lo-fi",
       "worldId": "hip-hop",
-      "name": "Reggaeton & Dembow",
-      "origin": "Puerto Rico / Dominican Republic / Jamaica",
-      "era": "1990s–Present",
-      "description": "The ubiquitous global Latin urban riddim: syncopated dembow snare pattern locked with 4-on-the-floor kick, deep sub-bass, and driving vocal hooks.",
+      "name": "Lo-Fi",
+      "origin": "Tokyo / Internet / Global",
+      "era": "2010s–Present",
+      "description": "Warm • Vinyl Noise • Relaxed\nJazzy, dusty beats to study to.\nJ Dilla · Nujabes",
       "characteristicInstruments": [
+        "sampler",
+        "piano",
         "drums",
         "bass",
-        "synth",
-        "percussion"
+        "guitar"
       ],
       "preferredMeters": [
         "4/4"
       ],
       "tempoRange": [
-        90,
-        105
+        74,
+        88
       ],
       "keySubstyles": [
-        "Reggaeton Clásico",
-        "Urbano Latino",
-        "Dembow Dominicano"
+        "Chillhop",
+        "Lo-Fi Hip Hop"
       ],
       "coreConcepts": [
-        "dembow riddim ([3, 3, 2] syncopation)",
-        "steady four-on-the-floor kick",
-        "heavy offbeat rim/snare hits",
-        "sub-bass pocket"
+        "drunk unquantized J Dilla swing timing",
+        "dusty vinyl surface noise and wow/flutter",
+        "warm jazz 7th/9th Rhodes and piano chords",
+        "mellow sidechain pumping"
       ],
       "rhythmicGrammar": [
-        "kick on [0, 4, 8, 12] with snare answering on [3, 6, 11, 14]"
+        "unquantized loose hi-hats and late snare backbeat creating relaxed human head-nod"
       ],
       "danceTags": [
-        "social-partner",
-        "sensual-fusion",
-        "festival-fusion"
+        "listening"
       ],
       "tuningSystem": "12-tet",
-      "signatureCell": "The classic Dembow riddim: steady kick with syncopated offbeat snares [3, 6, 11, 14]",
+      "signatureCell": "Unquantized drunk kick/snare pocket rolling under warm Rhodes major 7th chord with vinyl crackle",
       "grooveMechanics": {
-        "swingPercentage": 50,
-        "anticipationOffsetSteps": 0,
-        "microtimingFeel": "straight"
+        "swingPercentage": 62,
+        "anticipationOffsetSteps": 1,
+        "microtimingFeel": "laid-back"
       },
       "sectionProgressions": {
         "intro": [
-          "Bm",
-          "G",
-          "D",
-          "A"
+          "Ebmaj7",
+          "Cm7",
+          "Fm7",
+          "Bb7"
         ],
         "verse": [
-          "Bm",
-          "G",
-          "D",
-          "A"
+          "Ebmaj7",
+          "Cm7",
+          "Fm7",
+          "Bb7",
+          "Ebmaj7",
+          "Cm7",
+          "Fm7",
+          "Bb7"
         ],
         "chorus": [
-          "G",
-          "A",
-          "Bm",
-          "F#m"
+          "Abmaj7",
+          "Gm7",
+          "Fm7",
+          "Bb7",
+          "Abmaj7",
+          "Gm7",
+          "Fm7",
+          "Ebmaj7"
         ],
         "coda": [
-          "Bm",
-          "G",
-          "D",
-          "A"
+          "Abmaj7",
+          "Bb7",
+          "Ebmaj7",
+          "Ebmaj7"
+        ]
+      }
+    },
+    {
+      "id": "hip-hop-drill",
+      "worldId": "hip-hop",
+      "name": "Drill",
+      "origin": "Chicago / London / Brooklyn",
+      "era": "2010s–Present",
+      "description": "Sliding 808s • Syncopated Snare • Aggressive\nDark, sliding bassline street sound.\nPop Smoke · Central Cee",
+      "characteristicInstruments": [
+        "sub-bass",
+        "drums",
+        "synth",
+        "piano",
+        "voice"
+      ],
+      "preferredMeters": [
+        "4/4"
+      ],
+      "tempoRange": [
+        138,
+        146
+      ],
+      "keySubstyles": [
+        "UK Drill",
+        "Brooklyn Drill",
+        "Chicago Drill"
+      ],
+      "coreConcepts": [
+        "extreme sliding 808 sub-bass octaves and pitch bends",
+        "syncopated counter-snare on beat 3 and beat 4-and",
+        "haunting minor piano/vocal sample loops",
+        "aggressive syncopated hi-hat gallop"
+      ],
+      "rhythmicGrammar": [
+        "kick on 1, snare on 3 with delayed secondary snare on 4-and creating iconic drill skip"
+      ],
+      "danceTags": [
+        "festival-fusion"
+      ],
+      "tuningSystem": "12-tet",
+      "signatureCell": "Extreme sliding 808 octave jump landing on syncopated counter-snare and hi-hat triplet skip",
+      "grooveMechanics": {
+        "swingPercentage": 50,
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "pushed"
+      },
+      "sectionProgressions": {
+        "intro": [
+          "Dm",
+          "Bb",
+          "Gm",
+          "A7"
+        ],
+        "verse": [
+          "Dm",
+          "Bb",
+          "Gm",
+          "A7",
+          "Dm",
+          "Bb",
+          "Gm",
+          "A7"
+        ],
+        "hook": [
+          "Dm",
+          "Dm",
+          "Bb",
+          "A7",
+          "Dm",
+          "Dm",
+          "Gm",
+          "A7"
+        ],
+        "coda": [
+          "Bb",
+          "A7",
+          "Dm",
+          "Dm"
+        ]
+      }
+    },
+    {
+      "id": "hip-hop-g-funk",
+      "worldId": "hip-hop",
+      "name": "G-Funk",
+      "origin": "Los Angeles / Long Beach, California",
+      "era": "1990s",
+      "description": "Laid-back • Whiny Synth • Funk Bass\nWest Coast P-Funk infused rap.\nDr. Dre · Snoop Dogg",
+      "characteristicInstruments": [
+        "synth",
+        "bass",
+        "drums",
+        "electric-guitar",
+        "voice",
+        "piano"
+      ],
+      "preferredMeters": [
+        "4/4"
+      ],
+      "tempoRange": [
+        88,
+        98
+      ],
+      "keySubstyles": [
+        "West Coast G-Funk",
+        "Gangsta Rap"
+      ],
+      "coreConcepts": [
+        "high-pitched sine wave portamento synth lead (\"whistle\")",
+        "heavy live-sounding P-Funk slap basslines",
+        "relaxed laid-back pocket groove",
+        "lush female vocal choruses"
+      ],
+      "rhythmicGrammar": [
+        "relaxed 4/4 funk groove with heavy kick, crisp handclap snare, and lazy hi-hat swing"
+      ],
+      "danceTags": [
+        "social-partner",
+        "wcs-compatible"
+      ],
+      "tuningSystem": "12-tet",
+      "signatureCell": "High whiny portamento sine synth lead gliding over fat funk bassline and lazy clap backbeat",
+      "grooveMechanics": {
+        "swingPercentage": 56,
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "laid-back"
+      },
+      "sectionProgressions": {
+        "intro": [
+          "Em7",
+          "A7",
+          "Em7",
+          "A7"
+        ],
+        "verse": [
+          "Em7",
+          "A7",
+          "Em7",
+          "A7",
+          "Em7",
+          "A7",
+          "Em7",
+          "A7"
+        ],
+        "chorus": [
+          "Cmaj7",
+          "Bm7",
+          "Am7",
+          "B7",
+          "Cmaj7",
+          "Bm7",
+          "Em7",
+          "Em7"
+        ],
+        "coda": [
+          "Cmaj7",
+          "Bm7",
+          "Em7",
+          "Em7"
+        ]
+      }
+    },
+    {
+      "id": "hip-hop-experimental",
+      "worldId": "hip-hop",
+      "name": "Experimental",
+      "origin": "Sacramento / Los Angeles / Underground",
+      "era": "2010s–Present",
+      "description": "Abrasive • Industrial • Glitchy\nDistorted avant-garde hip-hop soundscapes.\nDeath Grips · JPEGMAFIA",
+      "characteristicInstruments": [
+        "sampler",
+        "drums",
+        "sub-bass",
+        "synth",
+        "voice"
+      ],
+      "preferredMeters": [
+        "4/4",
+        "5/4"
+      ],
+      "tempoRange": [
+        110,
+        160
+      ],
+      "keySubstyles": [
+        "Industrial Hip Hop",
+        "Glitch Rap",
+        "Noise Rap"
+      ],
+      "coreConcepts": [
+        "blown-out digital distortion and clipping",
+        "erratic rhythm changes and sudden time signature shifts",
+        "aggressive punk vocal screams and frantic flow",
+        "anarchic audio collage"
+      ],
+      "rhythmicGrammar": [
+        "fractured industrial percussion colliding with explosive distorted bass hits"
+      ],
+      "danceTags": [
+        "festival-fusion"
+      ],
+      "tuningSystem": "12-tet",
+      "signatureCell": "Blown-out distorted sub-kick erupting into frantic glitched industrial noise bursts",
+      "grooveMechanics": {
+        "swingPercentage": 50,
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "pushed"
+      },
+      "sectionProgressions": {
+        "intro": [
+          "Dm",
+          "Dm",
+          "Dm",
+          "Dm"
+        ],
+        "verse": [
+          "Dm",
+          "D#dim",
+          "Dm",
+          "D#dim"
+        ],
+        "drop": [
+          "Dm",
+          "Dm",
+          "Bb",
+          "C#dim"
+        ],
+        "coda": [
+          "Dm",
+          "Dm",
+          "Dm",
+          "Dm"
+        ]
+      }
+    },
+    {
+      "id": "hip-hop-cloud-rap",
+      "worldId": "hip-hop",
+      "name": "Cloud Rap",
+      "origin": "Stockholm / Internet / Houston",
+      "era": "2010s–Present",
+      "description": "Ethereal • Reverb • Dreamy\nSpacey, ambient-sampled rap vibe.\nYung Lean · Clams Casino",
+      "characteristicInstruments": [
+        "synth",
+        "sampler",
+        "sub-bass",
+        "drums",
+        "voice"
+      ],
+      "preferredMeters": [
+        "4/4"
+      ],
+      "tempoRange": [
+        120,
+        140
+      ],
+      "keySubstyles": [
+        "Sad Boys Aesthetic",
+        "Vapor Trap",
+        "Ambient Trap"
+      ],
+      "coreConcepts": [
+        "heavily washed ambient synth pads and reverb",
+        "floating pitched-down vocal samples",
+        "half-time slow 808 percussion",
+        "melancholic detached delivery"
+      ],
+      "rhythmicGrammar": [
+        "slow half-time trap beat muffled in cavernous reverb with gentle floating hats"
+      ],
+      "danceTags": [
+        "listening"
+      ],
+      "tuningSystem": "12-tet",
+      "signatureCell": "Ethereal vocal chop drowning in massive reverb over soft half-time 808 bass kick",
+      "grooveMechanics": {
+        "swingPercentage": 50,
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "laid-back"
+      },
+      "sectionProgressions": {
+        "intro": [
+          "Dbmaj7",
+          "Bbm7",
+          "Fm",
+          "Ab"
+        ],
+        "verse": [
+          "Dbmaj7",
+          "Bbm7",
+          "Fm",
+          "Ab",
+          "Dbmaj7",
+          "Bbm7",
+          "Fm",
+          "Ab"
+        ],
+        "chorus": [
+          "Gbmaj7",
+          "Ab",
+          "Bbm7",
+          "Fm",
+          "Gbmaj7",
+          "Ab",
+          "Dbmaj7",
+          "Dbmaj7"
+        ],
+        "coda": [
+          "Gbmaj7",
+          "Ab",
+          "Dbmaj7",
+          "Dbmaj7"
+        ]
+      }
+    },
+    {
+      "id": "hip-hop-jazz-rap",
+      "worldId": "hip-hop",
+      "name": "Jazz Rap",
+      "origin": "Queens / Brooklyn / Chicago",
+      "era": "1990s–Present",
+      "description": "Upright Bass • Horns • Conscious\nLyrical flow with sophisticated jazz chords.\nA Tribe Called Quest · Noname",
+      "characteristicInstruments": [
+        "upright-bass",
+        "brass",
+        "drums",
+        "piano",
+        "sampler",
+        "voice"
+      ],
+      "preferredMeters": [
+        "4/4"
+      ],
+      "tempoRange": [
+        88,
+        100
+      ],
+      "keySubstyles": [
+        "Native Tongues Sound",
+        "Conscious Hip Hop",
+        "Neo-Soul Rap"
+      ],
+      "coreConcepts": [
+        "walking acoustic upright basslines",
+        "warm trumpet and saxophone horn riffs",
+        "extended jazz chords (m9, maj7, 13th)",
+        "socially conscious poetic lyricism"
+      ],
+      "rhythmicGrammar": [
+        "deeply swung jazz drum pocket with warm brushed snare and relaxed kick syncopation"
+      ],
+      "danceTags": [
+        "social-partner",
+        "wcs-compatible"
+      ],
+      "tuningSystem": "12-tet",
+      "signatureCell": "Warm upright bass walking line locked with jazzy snare rimshot and muted trumpet lick",
+      "grooveMechanics": {
+        "swingPercentage": 60,
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "swung"
+      },
+      "sectionProgressions": {
+        "intro": [
+          "Cm9",
+          "F13",
+          "Bbmaj7",
+          "G7b9"
+        ],
+        "verse": [
+          "Cm9",
+          "F13",
+          "Bbmaj7",
+          "G7b9",
+          "Cm9",
+          "F13",
+          "Bbmaj7",
+          "G7b9"
+        ],
+        "chorus": [
+          "Ebm9",
+          "Ab13",
+          "Dbmaj7",
+          "G7b9",
+          "Cm9",
+          "F13",
+          "Bbmaj7",
+          "Bbmaj7"
+        ],
+        "coda": [
+          "Cm9",
+          "F13",
+          "Bbmaj7",
+          "Bbmaj7"
         ]
       }
     }
   ],
   "substyles": [
-    "Boom-Bap",
-    "Modern Trap",
-    "Reggaeton & Dembow",
+    "Boom Bap",
+    "Trap",
+    "Lo-Fi",
     "Drill",
-    "Lo-Fi Hip Hop",
-    "G-Funk"
+    "G-Funk",
+    "Experimental",
+    "Cloud Rap",
+    "Jazz Rap"
   ],
   "artists": [
-    "J Dilla",
     "DJ Premier",
+    "Nas",
+    "Future",
     "Metro Boomin",
-    "Bad Bunny",
-    "Daddy Yankee",
+    "J Dilla",
+    "Nujabes",
+    "Pop Smoke",
+    "Central Cee",
     "Dr. Dre",
-    "Kanye West",
-    "Kendrick Lamar"
+    "Snoop Dogg",
+    "Death Grips",
+    "JPEGMAFIA",
+    "Yung Lean",
+    "Clams Casino",
+    "A Tribe Called Quest",
+    "Noname"
   ],
   "concepts": [
     "808 sub glide",
@@ -2577,11 +3001,15 @@ export const HIP_HOP_WORLD: GenreWorld = {
       "roles": [
         "voice"
       ],
-      "instruments": ["voice"],
+      "instruments": [
+        "voice"
+      ],
       "compatibleRoles": [
         "voice"
       ],
-      "compatibleInstruments": ["voice"],
+      "compatibleInstruments": [
+        "voice"
+      ],
       "canCrossRole": true,
       "meter": "4/4",
       "cycleLength": 1,
@@ -2968,11 +3396,15 @@ export const HIP_HOP_WORLD: GenreWorld = {
       "roles": [
         "voice"
       ],
-      "instruments": ["voice"],
+      "instruments": [
+        "voice"
+      ],
       "compatibleRoles": [
         "voice"
       ],
-      "compatibleInstruments": ["voice"],
+      "compatibleInstruments": [
+        "voice"
+      ],
       "meter": "4/4",
       "cycleLength": 1,
       "subdivisions": 16,

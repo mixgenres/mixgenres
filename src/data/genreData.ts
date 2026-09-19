@@ -32,10 +32,11 @@ export const INSTRUMENTS: { id: InstrumentKind; name: string; role: string }[] =
 ];
 
 const tracks: Track[] = [
+  { id: 'voice', name: 'Voice', role: 'voice', instrument: 'Voice', kind: 'voice', muted: false, volume: 0.78, lensIds: [] },
   { id: 'guitar', name: 'Guitar', role: 'harmony', instrument: 'Acoustic Guitar', kind: 'guitar', muted: false, volume: 0.9, lensIds: [] },
   { id: 'bass', name: 'Bass', role: 'bass', instrument: 'Bass', kind: 'bass', muted: false, volume: 0.85, lensIds: [] },
-  { id: 'piano', name: 'Piano', role: 'harmony', instrument: 'Piano', kind: 'piano', muted: false, volume: 0.7, lensIds: [] },
-  { id: 'drums', name: 'Drums', role: 'percussion', instrument: 'Drums', kind: 'drums', muted: false, volume: 0.72, lensIds: [] }
+  { id: 'piano', name: 'Keys', role: 'harmony', instrument: 'Piano', kind: 'piano', muted: false, volume: 0.7, lensIds: [] },
+  { id: 'drums', name: 'Percussion', role: 'percussion', instrument: 'Drums', kind: 'drums', muted: false, volume: 0.72, lensIds: [] }
 ];
 
 const regions = [
@@ -56,6 +57,7 @@ export function createInitialSong(): Song {
     chord: chords[i % chords.length],
     root: chords[i % chords.length].replace(/[^A-G]/g, ''),
     patternByTrack: {
+      voice: 'lead',
       guitar: 'comp',
       bass: 'root',
       piano: 'chords',

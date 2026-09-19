@@ -10,107 +10,163 @@ export const TIMBA_WORLD: GenreWorld = {
   "description": "High-energy modern Cuban popular music: dynamic gear changes (marcha, presión, bomba, pedal), songo drum grooves, funk-slap displaced basslines, piano bloques, and tight horn stabs.",
   "traditions": [
     {
-      "id": "timba-havana-modern",
+      "id": "timba-timba-habanera",
       "worldId": "timba",
-      "name": "Timba Habanera (Modern Cuban Groove)",
+      "name": "Timba Habanera",
       "origin": "Havana, Cuba",
-      "era": "1989–Present",
-      "description": "Electrifying modern Cuban popular music combining songo, funk, hip-hop, and jazz with explosive gear changes (marcha, presión, bomba, pedal).",
+      "era": "1990s–Present",
+      "description": "Funk Slap Bass • Gear Shifts • Clave 3-2\nCuba's explosive polyrhythmic salsa revolution.\nLos Van Van · NG La Banda",
       "characteristicInstruments": [
-        "piano",
-        "bass",
         "drums",
         "timbales",
         "congas",
-        "trumpet",
-        "sax",
-        "synth"
+        "bass",
+        "piano",
+        "brass",
+        "voice"
       ],
       "preferredMeters": [
         "4/4"
       ],
       "tempoRange": [
         92,
-        115
+        108
       ],
       "keySubstyles": [
-        "Timba Pesada",
-        "Songo Moderno",
-        "Cuban Funk",
-        "Timba Romántica"
+        "Classic 90s Timba",
+        "Songo-Timba"
       ],
       "coreConcepts": [
-        "gear changes (engranajes)",
-        "bomba (bass slap/synth breakdown)",
-        "bloque tutti",
-        "pedal (drone bass)",
-        "piano percussive bloque"
+        "bomba gear shifts with virtuosic slap-bass passages",
+        "drum kit and timbales played together by one drummer",
+        "two-handed syncopated piano tumbaos",
+        "intense call-and-response coros and street slang"
       ],
       "rhythmicGrammar": [
-        "songo drum grooves",
-        "displaced syncopated slap bass",
-        "complex polyrhythmic montunos"
+        "dynamic gear shifts: marchando -> pedal -> bomba -> presión with complex polyrhythmic breaks"
       ],
       "danceTags": [
         "social-partner",
-        "festival-fusion",
-        "listening"
+        "festival-fusion"
       ],
       "tuningSystem": "12-tet",
-      "signatureCell": "Timba 4-gear system (Marcha → Presión → Bomba → Pedal) with songo drums",
+      "signatureCell": "Explosive transition into bomba gear: slap-bass slide, conga slap frenzy, and brass shout",
       "grooveMechanics": {
         "swingPercentage": 50,
-        "anticipationOffsetSteps": 1,
+        "anticipationOffsetSteps": 0,
         "microtimingFeel": "pushed"
       },
       "sectionProgressions": {
         "intro": [
-          "Dm7",
-          "G7",
-          "Cmaj7",
-          "A7alt"
+          "Fm7",
+          "Bbm7",
+          "C7alt",
+          "Fm7"
         ],
-        "verse": [
-          "Dm7",
-          "G7",
-          "Cmaj7",
-          "A7alt"
+        "canto": [
+          "Fm7",
+          "Bbm7",
+          "Eb7",
+          "Abmaj7",
+          "Dbmaj7",
+          "Bbm7",
+          "C7",
+          "Fm7"
         ],
-        "chorus": [
-          "Fmaj7",
-          "G7",
-          "Em7",
-          "Am7"
-        ],
-        "solo": [
-          "Dm7",
-          "G7",
-          "Cmaj7",
-          "A7alt"
+        "montuno": [
+          "Bbm7",
+          "C7",
+          "Fm7",
+          "Fm7"
         ],
         "coda": [
-          "Dm7",
-          "Dm7",
-          "Dm7",
-          "Dm7"
+          "Bbm7",
+          "C7",
+          "Fm7",
+          "Fm7"
+        ]
+      }
+    },
+    {
+      "id": "timba-songo",
+      "worldId": "timba",
+      "name": "Songo",
+      "origin": "Havana, Cuba (Los Van Van)",
+      "era": "1970s–1980s",
+      "description": "Changuito Drum Groove • Cowbell • Funk-Son\nFoundational rhythmic fusion created by Changuito.\nChanguito · Juan Formell",
+      "characteristicInstruments": [
+        "drums",
+        "congas",
+        "bass",
+        "piano",
+        "flute",
+        "voice"
+      ],
+      "preferredMeters": [
+        "4/4"
+      ],
+      "tempoRange": [
+        95,
+        115
+      ],
+      "keySubstyles": [
+        "Classic Van Van Songo",
+        "Afro-Funk Cuban"
+      ],
+      "coreConcepts": [
+        "Changuito innovative hybrid drum kit and timbale rhythm",
+        "linear cowbell and woodblock patterns",
+        "syncopated electric bass playing around the downbeat",
+        "charanga flute blending with brass and electronics"
+      ],
+      "rhythmicGrammar": [
+        "songo linear drum pattern with bass drum on 1, 1-and-a, 3 and continuous cowbell syncopation"
+      ],
+      "danceTags": [
+        "social-partner"
+      ],
+      "tuningSystem": "12-tet",
+      "signatureCell": "Changuito songo drum-kit groove locking with syncopated electric bass and charanga flute",
+      "grooveMechanics": {
+        "swingPercentage": 50,
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "laid-back"
+      },
+      "sectionProgressions": {
+        "intro": [
+          "Gm7",
+          "C7",
+          "Gm7",
+          "C7"
+        ],
+        "groove": [
+          "Gm7",
+          "C7",
+          "Gm7",
+          "C7",
+          "Fmaj7",
+          "Bbmaj7",
+          "A7",
+          "D7"
+        ],
+        "coda": [
+          "Gm7",
+          "C7",
+          "Gm7",
+          "Gm7"
         ]
       }
     }
   ],
   "substyles": [
-    "Timba Pesada",
-    "Songo",
-    "Cuban Funk",
-    "Timba-Jazz"
+    "Timba Habanera",
+    "Songo"
   ],
   "artists": [
     "Los Van Van",
     "NG La Banda",
-    "Irakere",
-    "Issac Delgado",
-    "Paulito FG",
-    "Alexander Abreu & Havana D’Primera",
-    "Cimafunk"
+    "Changuito",
+    "Juan Formell"
   ],
   "concepts": [
     "engranajes (gear changes)",
@@ -1958,11 +2014,15 @@ export const TIMBA_WORLD: GenreWorld = {
       "roles": [
         "voice"
       ],
-      "instruments": ["voice"],
+      "instruments": [
+        "voice"
+      ],
       "compatibleRoles": [
         "voice"
       ],
-      "compatibleInstruments": ["voice"],
+      "compatibleInstruments": [
+        "voice"
+      ],
       "canCrossRole": true,
       "meter": "4/4",
       "cycleLength": 1,
@@ -2139,11 +2199,15 @@ export const TIMBA_WORLD: GenreWorld = {
       "roles": [
         "voice"
       ],
-      "instruments": ["voice"],
+      "instruments": [
+        "voice"
+      ],
       "compatibleRoles": [
         "voice"
       ],
-      "compatibleInstruments": ["voice"],
+      "compatibleInstruments": [
+        "voice"
+      ],
       "canCrossRole": true,
       "meter": "4/4",
       "cycleLength": 1,
@@ -2964,12 +3028,16 @@ export const TIMBA_WORLD: GenreWorld = {
       "roles": [
         "voice"
       ],
-      "instruments": ["voice"],
+      "instruments": [
+        "voice"
+      ],
       "compatibleRoles": [
         "voice",
         "lead"
       ],
-      "compatibleInstruments": ["voice"],
+      "compatibleInstruments": [
+        "voice"
+      ],
       "meter": "4/4",
       "cycleLength": 1,
       "subdivisions": 16,

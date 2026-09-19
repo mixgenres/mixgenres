@@ -9,16 +9,17 @@ export const MATH_ROCK_WORLD: GenreWorld = {
   "description": "Intricate, rhythmically adventurous guitar-forward music defined by two-hand fretboard tapping, odd time signatures (7/8, 11/8, 5/4), interlocking polymetric riffs, conversational bass counterpoint, and dynamic post-rock crescendos.",
   "traditions": [
     {
-      "id": "math-rock-midwest",
+      "id": "math-rock-midwest-tapping",
       "worldId": "math-rock",
-      "name": "Midwest Math Rock & Tapping",
-      "origin": "American Midwest / Japan",
-      "era": "1990s–Present",
-      "description": "Clean-toned, open-tuned guitars with intricate two-hand tapping, complex time signatures (7/8, 11/8), conversational basslines, and jazz-influenced dynamic phrasing.",
+      "name": "Midwest Tapping",
+      "origin": "American Midwest (Urbana / Chicago)",
+      "era": "Late 1990s–2000s",
+      "description": "Twinkly • Clean Tapping • Emo\nPolymetric clean two-hand guitar tapping.\nAmerican Football · TTNG",
       "characteristicInstruments": [
         "electric-guitar",
         "bass",
-        "drums"
+        "drums",
+        "trumpet"
       ],
       "preferredMeters": [
         "7/8",
@@ -30,25 +31,24 @@ export const MATH_ROCK_WORLD: GenreWorld = {
         140
       ],
       "keySubstyles": [
-        "Midwest Emo Math",
-        "Japanese Math Rock (Toe, Tricot)",
-        "Clean Tapping Instrumental"
+        "Twinkle Daddies",
+        "Midwest Emo Math"
       ],
       "coreConcepts": [
-        "two-hand fretboard tapping",
-        "odd-meter cycles (7/8, 5/8)",
-        "open alternate tunings (FACGCE)",
-        "interlocking polymetric guitar counterpoint"
+        "two-handed clean fretboard tapping in open tunings (FACGCE)",
+        "frequent time signature modulations (7/8 to 6/8 to 4/4)",
+        "melancholic nostalgic vocal melodies and trumpet lines",
+        "snappy intricate drum accents"
       ],
       "rhythmicGrammar": [
-        "7/8 grouped as 2+2+3 or 3+2+2",
-        "syncopated ghost-snare accents between tapped notes"
+        "asymmetric odd-meter bar groupings (3+2+2) with displaced snare rimshots"
       ],
       "danceTags": [
-        "listening"
+        "listening",
+        "festival-fusion"
       ],
-      "tuningSystem": "just-intonation",
-      "signatureCell": "Additive odd-meter 7/8 cell [2+2+3] with clean tapped arpeggios",
+      "tuningSystem": "12-tet",
+      "signatureCell": "Clean open-tuned two-handed fretboard tapping run in 7/8 with off-grid snare rimshot",
       "grooveMechanics": {
         "swingPercentage": 50,
         "anticipationOffsetSteps": 0,
@@ -56,125 +56,55 @@ export const MATH_ROCK_WORLD: GenreWorld = {
       },
       "sectionProgressions": {
         "intro": [
-          "Fmaj7",
-          "G6",
+          "Fmaj9",
           "Am9",
-          "Em7"
+          "Gadd9",
+          "Cadd9"
         ],
         "verse": [
-          "Fmaj7",
-          "Cmaj7",
+          "Fmaj9",
+          "Am9",
+          "Gadd9",
+          "Cadd9",
+          "Fmaj9",
+          "Am9",
           "Dm9",
           "Gadd9"
         ],
         "chorus": [
+          "Dm9",
+          "Em7",
+          "Fmaj9",
+          "Gadd9",
+          "Dm9",
+          "Em7",
           "Am9",
-          "Fmaj7",
-          "C",
-          "G"
+          "Am9"
         ],
-        "solo": [
-          "Fmaj7",
-          "G",
-          "Am",
-          "Em"
-        ],
-        "ending": [
-          "Fmaj7",
-          "Fmaj7",
-          "Cmaj7",
-          "Cmaj7"
+        "coda": [
+          "Fmaj9",
+          "Gadd9",
+          "Cadd9",
+          "Cadd9"
         ]
       }
     },
     {
-      "id": "math-rock-post-rock",
+      "id": "math-rock-noise-rock",
       "worldId": "math-rock",
-      "name": "Post-Rock Instrumental Build",
-      "origin": "US / UK / Iceland",
-      "era": "1990s–Present",
-      "description": "Cinematic dynamic arches transitioning from whisper-quiet ambient guitar delay swells to thunderous, heavy climactic crescendos.",
+      "name": "Noise Rock",
+      "origin": "Chicago / Providence / New York",
+      "era": "1990s",
+      "description": "Aggressive • Dissonant • Angular\nHeavy angular math with blistering feedback.\nShellac · The Jesus Lizard",
       "characteristicInstruments": [
         "electric-guitar",
         "bass",
         "drums",
-        "synth"
-      ],
-      "preferredMeters": [
-        "4/4",
-        "6/8"
-      ],
-      "tempoRange": [
-        75,
-        115
-      ],
-      "keySubstyles": [
-        "Cinematic Post-Rock",
-        "Crescendo-Core",
-        "Ambient Instrumental Rock"
-      ],
-      "coreConcepts": [
-        "extreme dynamic range (pp to fff)",
-        "reverb and delay wall-of-sound",
-        "slow narrative pacing",
-        "drum crescendo"
-      ],
-      "rhythmicGrammar": [
-        "sparse downbeats expanding into relentless rolling tom patterns"
-      ],
-      "danceTags": [
-        "listening",
-        "festival-fusion"
-      ],
-      "tuningSystem": "12-tet",
-      "signatureCell": "Slow 16-bar crescendo from single guitar harmonic to full-band explosion",
-      "grooveMechanics": {
-        "swingPercentage": 50,
-        "anticipationOffsetSteps": 0,
-        "microtimingFeel": "rubato"
-      },
-      "sectionProgressions": {
-        "intro": [
-          "C",
-          "G",
-          "Am",
-          "F"
-        ],
-        "verse": [
-          "C",
-          "Em",
-          "Am",
-          "Fmaj7"
-        ],
-        "chorus": [
-          "Am",
-          "F",
-          "C",
-          "G"
-        ],
-        "coda": [
-          "Fmaj7",
-          "Fmaj7",
-          "C",
-          "C"
-        ]
-      }
-    },
-    {
-      "id": "math-rock-prog-fusion",
-      "worldId": "math-rock",
-      "name": "Progressive & Polymetric Fusion",
-      "origin": "International",
-      "era": "2000s–Present",
-      "description": "Heavy, virtuosic polymeter: 4/4 drums against 5/8 guitar riffs, low-register 8-string thumping, and sudden metric modulations.",
-      "characteristicInstruments": [
-        "electric-guitar",
-        "bass",
-        "drums"
+        "voice"
       ],
       "preferredMeters": [
         "5/4",
-        "7/8",
+        "7/4",
         "4/4"
       ],
       "tempoRange": [
@@ -182,24 +112,254 @@ export const MATH_ROCK_WORLD: GenreWorld = {
         160
       ],
       "keySubstyles": [
-        "Djent-adjacent Math",
-        "Instrumental Prog Fusion",
-        "Polymetric Groove"
+        "Albini Sound",
+        "Angular Noise Math"
       ],
       "coreConcepts": [
-        "polymeter (3 against 4, 5 against 4)",
-        "metric modulation",
-        "slap/thump bass techniques",
-        "accent unisons"
+        "abrasive treble-heavy aluminum guitar tones",
+        "punishing metronomic Steve Albini drum punch",
+        "dissonant major-second and tritone chord bites",
+        "tense sardonic spoken/shouted vocals"
       ],
       "rhythmicGrammar": [
-        "guitar cycling 5-step motif against 4/4 kick-snare grid until resolution"
+        "punishing odd-meter stops and starts with absolute silence between violent chord hits"
+      ],
+      "danceTags": [
+        "festival-fusion"
+      ],
+      "tuningSystem": "12-tet",
+      "signatureCell": "Abrasive dissonant guitar screech puncturing punishing odd-meter bass and drum impact",
+      "grooveMechanics": {
+        "swingPercentage": 50,
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "pushed"
+      },
+      "sectionProgressions": {
+        "intro": [
+          "D5",
+          "D#5",
+          "D5",
+          "G#5"
+        ],
+        "verse": [
+          "D5",
+          "D#5",
+          "D5",
+          "G#5",
+          "D5",
+          "F5",
+          "E5",
+          "D#5"
+        ],
+        "climax": [
+          "D5",
+          "D5",
+          "G#5",
+          "G#5"
+        ],
+        "coda": [
+          "D5",
+          "D5",
+          "D5",
+          "D5"
+        ]
+      }
+    },
+    {
+      "id": "math-rock-japanese-math",
+      "worldId": "math-rock",
+      "name": "Japanese Math",
+      "origin": "Tokyo / Kyoto, Japan",
+      "era": "2000s–Present",
+      "description": "Intricate • Melodic • High-Speed\nHyper-precise technical Japanese math rock.\ntoe · Tricot",
+      "characteristicInstruments": [
+        "electric-guitar",
+        "bass",
+        "drums",
+        "acoustic-guitar",
+        "voice"
+      ],
+      "preferredMeters": [
+        "5/8",
+        "7/8",
+        "13/8",
+        "4/4"
+      ],
+      "tempoRange": [
+        125,
+        165
+      ],
+      "keySubstyles": [
+        "Japanese Instrumental Math",
+        "J-Math Pop"
+      ],
+      "coreConcepts": [
+        "hyper-athletic ghost-note drum mastery (Kashikura Takashi style)",
+        "interlocking dual clean and driven guitars",
+        "lyrical emotional melodic phrasing amidst metric chaos",
+        "seamless transitions between odd meters"
+      ],
+      "rhythmicGrammar": [
+        "rapid-fire 16th-note ghost snare drumming weaving through shifting 5/8 and 7/8 bar phrases"
+      ],
+      "danceTags": [
+        "festival-fusion",
+        "listening"
+      ],
+      "tuningSystem": "12-tet",
+      "signatureCell": "Blisteringly fast ghost-snare drum roll underpinning intricate dual-guitar metric counterpoint",
+      "grooveMechanics": {
+        "swingPercentage": 50,
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "pushed"
+      },
+      "sectionProgressions": {
+        "intro": [
+          "Dbmaj7",
+          "Ebm7",
+          "Fm7",
+          "Gbmaj7"
+        ],
+        "verse": [
+          "Dbmaj7",
+          "Ebm7",
+          "Fm7",
+          "Gbmaj7",
+          "Bbm7",
+          "Ab",
+          "Gbmaj7",
+          "Gbmaj7"
+        ],
+        "chorus": [
+          "Gbmaj7",
+          "Ab",
+          "Bbm7",
+          "Fm7",
+          "Gbmaj7",
+          "Ab",
+          "Dbmaj7",
+          "Dbmaj7"
+        ],
+        "coda": [
+          "Gbmaj7",
+          "Ab",
+          "Dbmaj7",
+          "Dbmaj7"
+        ]
+      }
+    },
+    {
+      "id": "math-rock-mathcore",
+      "worldId": "math-rock",
+      "name": "Mathcore",
+      "origin": "New Jersey / Massachusetts",
+      "era": "Late 1990s–2000s",
+      "description": "Chaotic • Breakneck • Polytonal\nMetalcore pushed to mathematical extremes.\nThe Dillinger Escape Plan · Converge",
+      "characteristicInstruments": [
+        "electric-guitar",
+        "bass",
+        "drums",
+        "voice"
+      ],
+      "preferredMeters": [
+        "13/16",
+        "7/8",
+        "9/8",
+        "11/16"
+      ],
+      "tempoRange": [
+        180,
+        240
+      ],
+      "keySubstyles": [
+        "Extreme Mathcore",
+        "Chaotic Hardcore"
+      ],
+      "coreConcepts": [
+        "16th-note odd-meter time signatures (13/16, 17/16)",
+        "polytonal panic chords and pick-scrapes",
+        "blistering blast beats and technical jazz fills",
+        "ferocious vocal screaming"
+      ],
+      "rhythmicGrammar": [
+        "erratic polyrhythmic metric shifts changing every 1-2 bars at extreme speeds"
+      ],
+      "danceTags": [
+        "festival-fusion"
+      ],
+      "tuningSystem": "12-tet",
+      "signatureCell": "13/16 panic-chord guitar flurry colliding with lightning blast beat and screeching vocal scream",
+      "grooveMechanics": {
+        "swingPercentage": 50,
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "pushed"
+      },
+      "sectionProgressions": {
+        "intro": [
+          "F#5",
+          "G5",
+          "F#5",
+          "C5"
+        ],
+        "chaos": [
+          "F#5",
+          "G5",
+          "F#5",
+          "C5",
+          "F#5",
+          "F5",
+          "E5",
+          "Eb5"
+        ],
+        "coda": [
+          "F#5",
+          "F#5",
+          "F#5",
+          "F#5"
+        ]
+      }
+    },
+    {
+      "id": "math-rock-post-rock",
+      "worldId": "math-rock",
+      "name": "Post-Rock",
+      "origin": "Chicago / Louisville / UK",
+      "era": "1990s–Present",
+      "description": "Dynamic • Crescendo • Instrumental\nLong-form dynamic mathematical compositions.\nDon Caballero · Tortoise",
+      "characteristicInstruments": [
+        "electric-guitar",
+        "bass",
+        "drums",
+        "vibraphone",
+        "synth"
+      ],
+      "preferredMeters": [
+        "4/4",
+        "5/4",
+        "7/8"
+      ],
+      "tempoRange": [
+        90,
+        130
+      ],
+      "keySubstyles": [
+        "Chicago Post-Rock",
+        "Instrumental Math"
+      ],
+      "coreConcepts": [
+        "Damon Che powerhouse polymetric drumming",
+        "layered looping guitar motifs building into massive walls of sound",
+        "vibraphone and synth textural countermelodies",
+        "cinematic dynamic architecture"
+      ],
+      "rhythmicGrammar": [
+        "cyclical polymetric loops (e.g. 4 over 3) gradually developing over extended durations"
       ],
       "danceTags": [
         "listening"
       ],
       "tuningSystem": "12-tet",
-      "signatureCell": "Polymetric phrase phase-shifting across measure barlines",
+      "signatureCell": "Polymetric drum ostinato supporting slowly unfolding guitar loop into explosive crescendo",
       "grooveMechanics": {
         "swingPercentage": 50,
         "anticipationOffsetSteps": 0,
@@ -208,47 +368,312 @@ export const MATH_ROCK_WORLD: GenreWorld = {
       "sectionProgressions": {
         "intro": [
           "Em9",
-          "Cmaj7#11",
-          "Am11",
-          "B7alt"
-        ],
-        "verse": [
-          "Em7",
-          "D/F#",
+          "Cmaj7",
           "G",
-          "Cmaj7"
+          "D"
         ],
-        "chorus": [
+        "build": [
+          "Em9",
+          "Cmaj7",
+          "G",
+          "D",
+          "Em9",
+          "Cmaj7",
+          "Am7",
+          "B7"
+        ],
+        "climax": [
           "Cmaj7",
           "D",
           "Em9",
-          "G/B"
+          "G",
+          "Cmaj7",
+          "D",
+          "Em9",
+          "Em9"
+        ],
+        "coda": [
+          "Cmaj7",
+          "D",
+          "Em9",
+          "Em9"
+        ]
+      }
+    },
+    {
+      "id": "math-rock-math-pop",
+      "worldId": "math-rock",
+      "name": "Math-Pop",
+      "origin": "Oxford, UK / Global",
+      "era": "2000s–Present",
+      "description": "Danceable • Catchy • Polyrhythmic\nBright pop melodies over complex time signatures.\nFoals · Minus the Bear",
+      "characteristicInstruments": [
+        "electric-guitar",
+        "synth",
+        "bass",
+        "drums",
+        "voice"
+      ],
+      "preferredMeters": [
+        "4/4",
+        "7/8",
+        "5/4"
+      ],
+      "tempoRange": [
+        120,
+        145
+      ],
+      "keySubstyles": [
+        "Indie Math Pop",
+        "Glitch Pop Math"
+      ],
+      "coreConcepts": [
+        "interlocking clean staccato guitar patterns",
+        "driving dance-punk four-on-the-floor hi-hat beats",
+        "catchy anthemic vocal hooks over metric shifts",
+        "bright uplifting tonality"
+      ],
+      "rhythmicGrammar": [
+        "danceable 4/4 drum pocket underlying interlocking 7/8 or 5/4 guitar riffs"
+      ],
+      "danceTags": [
+        "social-partner",
+        "festival-fusion"
+      ],
+      "tuningSystem": "12-tet",
+      "signatureCell": "Catchy bright guitar interlocking riff dancing over driving four-on-the-floor hi-hat groove",
+      "grooveMechanics": {
+        "swingPercentage": 50,
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "straight"
+      },
+      "sectionProgressions": {
+        "intro": [
+          "A",
+          "F#m",
+          "D",
+          "E"
+        ],
+        "verse": [
+          "A",
+          "F#m",
+          "D",
+          "E",
+          "A",
+          "F#m",
+          "D",
+          "E"
+        ],
+        "chorus": [
+          "D",
+          "E",
+          "A",
+          "F#m",
+          "D",
+          "E",
+          "A",
+          "A"
+        ],
+        "coda": [
+          "D",
+          "E",
+          "A",
+          "A"
+        ]
+      }
+    },
+    {
+      "id": "math-rock-shoegaze",
+      "worldId": "math-rock",
+      "name": "Shoegaze",
+      "origin": "UK / Japan / USA",
+      "era": "2010s–Present",
+      "description": "Reverb • Odd Meters • Wall of Sound\nAtmospheric wall-of-sound with tapping.\nCovet · Delta Sleep",
+      "characteristicInstruments": [
+        "electric-guitar",
+        "bass",
+        "drums",
+        "synth",
+        "voice"
+      ],
+      "preferredMeters": [
+        "7/8",
+        "6/8",
+        "4/4"
+      ],
+      "tempoRange": [
+        100,
+        130
+      ],
+      "keySubstyles": [
+        "Mathgaze",
+        "Dream Math"
+      ],
+      "coreConcepts": [
+        "Yvette Young clean fingerstyle tapping saturated in lush shimmering reverb and chorus",
+        "dreamy ethereal vocals",
+        "dynamic contrast between soft sparkle and heavy fuzz distortion",
+        "expressive odd-meter phrasing"
+      ],
+      "rhythmicGrammar": [
+        "flowing 6/8 and 7/8 compound meters enveloped in shimmering guitar delay repeats"
+      ],
+      "danceTags": [
+        "listening",
+        "festival-fusion"
+      ],
+      "tuningSystem": "12-tet",
+      "signatureCell": "Shimmering two-hand tapped melody floating through lush reverb into massive fuzzy wall of sound",
+      "grooveMechanics": {
+        "swingPercentage": 52,
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "straight"
+      },
+      "sectionProgressions": {
+        "intro": [
+          "Cmaj7#11",
+          "Em9",
+          "Fmaj7",
+          "Gadd9"
+        ],
+        "verse": [
+          "Cmaj7#11",
+          "Em9",
+          "Fmaj7",
+          "Gadd9",
+          "Cmaj7#11",
+          "Em9",
+          "Dm9",
+          "Gadd9"
+        ],
+        "chorus": [
+          "Fmaj7",
+          "Gadd9",
+          "Em9",
+          "Am9",
+          "Fmaj7",
+          "Gadd9",
+          "Cmaj7",
+          "Cmaj7"
+        ],
+        "coda": [
+          "Fmaj7",
+          "Gadd9",
+          "Cmaj7",
+          "Cmaj7"
+        ]
+      }
+    },
+    {
+      "id": "math-rock-progressive-rock",
+      "worldId": "math-rock",
+      "name": "Progressive Rock",
+      "origin": "UK / USA",
+      "era": "1970s–Present",
+      "description": "Virtuosic • Complex Form • Heavy Riffs\nInstrumental prog rock precision.\nKing Crimson · CHON",
+      "characteristicInstruments": [
+        "electric-guitar",
+        "bass",
+        "drums",
+        "synth"
+      ],
+      "preferredMeters": [
+        "5/8",
+        "7/8",
+        "11/8",
+        "12/8"
+      ],
+      "tempoRange": [
+        115,
+        150
+      ],
+      "keySubstyles": [
+        "Technical Instrumental Prog",
+        "Neo-Prog Math"
+      ],
+      "coreConcepts": [
+        "blistering dual-guitar sweep picking and hybrid picking runs",
+        "Robert Fripp interlocking polymetric guitars",
+        "complex multi-part suite compositions",
+        "virtuosic slap and tap electric basslines"
+      ],
+      "rhythmicGrammar": [
+        "complex polymetric counterpoint (e.g. 5/8 against 7/8) executed with surgical synchronization"
+      ],
+      "danceTags": [
+        "listening",
+        "festival-fusion"
+      ],
+      "tuningSystem": "12-tet",
+      "signatureCell": "Blisteringly synchronized dual-guitar sweep-picked arpeggio executing in 11/8 with drum crash",
+      "grooveMechanics": {
+        "swingPercentage": 50,
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "straight"
+      },
+      "sectionProgressions": {
+        "intro": [
+          "E5",
+          "G5",
+          "A5",
+          "Bb5"
+        ],
+        "riff": [
+          "E5",
+          "G5",
+          "A5",
+          "Bb5",
+          "E5",
+          "G5",
+          "F5",
+          "D#5"
         ],
         "solo": [
+          "Em9",
+          "Fmaj7#11",
           "Am9",
-          "Bm7",
-          "Cmaj7",
-          "D9"
+          "B7alt",
+          "Em9",
+          "Fmaj7#11",
+          "Cmaj7#11",
+          "D7"
+        ],
+        "coda": [
+          "E5",
+          "Bb5",
+          "E5",
+          "E5"
         ]
       }
     }
   ],
   "substyles": [
-    "Midwest Math Rock",
-    "Japanese Math Rock",
-    "Post-Rock Instrumental",
-    "Progressive Fusion",
-    "Djent-adjacent Math"
+    "Midwest Tapping",
+    "Noise Rock",
+    "Japanese Math",
+    "Mathcore",
+    "Post-Rock",
+    "Math-Pop",
+    "Shoegaze",
+    "Progressive Rock"
   ],
   "artists": [
     "American Football",
-    "Toe",
+    "TTNG",
+    "Shellac",
+    "The Jesus Lizard",
+    "toe",
     "Tricot",
-    "Tera Melos",
+    "The Dillinger Escape Plan",
+    "Converge",
+    "Don Caballero",
+    "Tortoise",
+    "Foals",
+    "Minus the Bear",
     "Covet",
-    "TTNG (This Town Needs Guns)",
-    "Chon",
-    "Explosions in the Sky"
+    "Delta Sleep",
+    "King Crimson",
+    "CHON"
   ],
   "concepts": [
     "two-hand tapping",
@@ -362,7 +787,6 @@ export const MATH_ROCK_WORLD: GenreWorld = {
         "solo"
       ],
       "variants": [
-
         {
           "id": "math-tapping-7-8-v-02",
           "parentPatternId": "math-tapping-7-8",
@@ -1398,11 +1822,15 @@ export const MATH_ROCK_WORLD: GenreWorld = {
       "roles": [
         "voice"
       ],
-      "instruments": ["voice"],
+      "instruments": [
+        "voice"
+      ],
       "compatibleRoles": [
         "voice"
       ],
-      "compatibleInstruments": ["voice"],
+      "compatibleInstruments": [
+        "voice"
+      ],
       "canCrossRole": true,
       "meter": "4/4",
       "cycleLength": 1,

@@ -9,131 +9,127 @@ export const CHINESE_ROCK_WORLD: GenreWorld = {
   "description": "Chinese-language rock and pop continuum: from Hong Kong’s passionate 1980s–90s Canto-rock (Beyond) to Taiwanese Mandopop arena-rock anthems (Mayday 五月天), featuring intimate acoustic verses, soaring electric guitar leads, and monumental chorus builds.",
   "traditions": [
     {
-      "id": "chinese-rock-mandopop",
+      "id": "chinese-rock-yaogun",
       "worldId": "chinese-rock",
-      "name": "Taiwanese Mandopop & Arena Rock",
-      "origin": "Taiwan / Pan-Chinese",
-      "era": "1990s–Present",
-      "description": "Emotive arena rock pioneered by Mayday (五月天) and Jonathan Lee: gentle acoustic guitar / piano verses building into massive, sing-along distorted chorus crescendos.",
+      "name": "Yaogun",
+      "origin": "Beijing, China",
+      "era": "1986–1990s",
+      "description": "Gravelly Voice • Red Horn • Revolution\nThe birth of Chinese rock music.\nCui Jian · Dou Wei",
       "characteristicInstruments": [
         "electric-guitar",
-        "guitar",
+        "suona",
+        "trumpet",
         "bass",
         "drums",
-        "piano",
-        "strings"
-      ],
-      "preferredMeters": [
-        "4/4"
-      ],
-      "tempoRange": [
-        75,
-        125
-      ],
-      "keySubstyles": [
-        "Arena Rock (Mayday / 五月天)",
-        "Campus Folk / Xinyao",
-        "Mandopop Power Ballad"
-      ],
-      "coreConcepts": [
-        "dynamic layering (sparse acoustic verse to explosive arena chorus)",
-        "anthemic pentatonic melodic hooks",
-        "sing-along vocal phrasing",
-        "string swells"
-      ],
-      "rhythmicGrammar": [
-        "open acoustic guitar strum verse shifting to driving eighth-note power chords and crash cymbals"
-      ],
-      "danceTags": [
-        "listening",
-        "festival-fusion"
-      ],
-      "tuningSystem": "12-tet",
-      "signatureCell": "Dynamic acoustic verse arpeggio blossoming into soaring anthemic chorus",
-      "grooveMechanics": {
-        "swingPercentage": 50,
-        "anticipationOffsetSteps": 0,
-        "microtimingFeel": "straight"
-      },
-      "sectionProgressions": {
-        "intro": [
-          "C",
-          "G/B",
-          "Am",
-          "Em/G",
-          "F",
-          "C/E",
-          "Dm7",
-          "G7"
-        ],
-        "verse": [
-          "C",
-          "G/B",
-          "Am",
-          "Em/G",
-          "F",
-          "C/E",
-          "Dm7",
-          "G7"
-        ],
-        "chorus": [
-          "F",
-          "G",
-          "Em",
-          "Am",
-          "Dm7",
-          "G7",
-          "C",
-          "C7"
-        ],
-        "solo": [
-          "Am",
-          "F",
-          "C",
-          "G"
-        ]
-      }
-    },
-    {
-      "id": "chinese-rock-cantorock",
-      "worldId": "chinese-rock",
-      "name": "Cantopop & Canto-Rock (Beyond Lineage)",
-      "origin": "Hong Kong",
-      "era": "1980s–1990s",
-      "description": "Golden era Hong Kong rock defined by Wong Ka Kui and Beyond: driving rock rhythms, passionate vocal melodies, soaring electric guitar leads, and resonant chorus pads.",
-      "characteristicInstruments": [
-        "electric-guitar",
-        "bass",
-        "drums",
-        "keys",
         "voice"
       ],
       "preferredMeters": [
         "4/4"
       ],
       "tempoRange": [
-        80,
-        130
+        110,
+        135
       ],
       "keySubstyles": [
-        "Classic Canto-Rock (Beyond)",
-        "Hong Kong Alt-Rock",
-        "Canto-Pop Rock Ballad"
+        "Classic Beijing Yaogun",
+        "Pioneering Chinese Rock"
       ],
       "coreConcepts": [
-        "soaring pentatonic guitar leads (Glorious Days / Hai Kuo Tian Kong)",
-        "driving 8th-note rock bass",
-        "reverb-drenched clean picking"
+        "Cui Jian passionate vocal delivery of generational truth",
+        "piercing suona and brass horn countermelodies",
+        "driving post-punk power chords",
+        "poetic social awakening"
       ],
       "rhythmicGrammar": [
-        "straight rock backbeat with expressive crash cymbal punctuation"
+        "driving 4/4 rock beat with four-on-the-floor bass drum and piercing snare on 2 and 4"
+      ],
+      "danceTags": [
+        "festival-fusion"
+      ],
+      "tuningSystem": "12-tet",
+      "signatureCell": "Piercing suona horn cry answering Cui Jian vocal over driving hard rock guitar power chord",
+      "grooveMechanics": {
+        "swingPercentage": 50,
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "pushed"
+      },
+      "sectionProgressions": {
+        "intro": [
+          "Am",
+          "G",
+          "F",
+          "E7"
+        ],
+        "verse": [
+          "Am",
+          "G",
+          "F",
+          "E7",
+          "Am",
+          "G",
+          "F",
+          "E7"
+        ],
+        "chorus": [
+          "F",
+          "G",
+          "Am",
+          "Em",
+          "F",
+          "G",
+          "Am",
+          "Am"
+        ],
+        "coda": [
+          "F",
+          "E7",
+          "Am",
+          "Am"
+        ]
+      }
+    },
+    {
+      "id": "chinese-rock-folk-rock",
+      "worldId": "chinese-rock",
+      "name": "Folk Rock",
+      "origin": "Beijing / Lanzhou / Inner Mongolia",
+      "era": "2000s–Present",
+      "description": "Matouqin • Throat Singing • Desert Rock\nNomadic folk instruments with heavy rock.\nHanggai · Omnipotent Youth Society",
+      "characteristicInstruments": [
+        "morin-khuur",
+        "erhu",
+        "acoustic-guitar",
+        "electric-guitar",
+        "drums",
+        "voice"
+      ],
+      "preferredMeters": [
+        "4/4",
+        "6/8"
+      ],
+      "tempoRange": [
+        90,
+        128
+      ],
+      "keySubstyles": [
+        "Mongolian Nomad Rock",
+        "Hebei Chamber Folk Rock"
+      ],
+      "coreConcepts": [
+        "horsehead fiddle (morin khuur) and throat singing (khoomei)",
+        "poetic literary Chinese lyrics",
+        "chamber rock orchestrations",
+        "sweeping nostalgic melancholy"
+      ],
+      "rhythmicGrammar": [
+        "galloping compound 6/8 and 4/4 nomadic rhythms driving underneath soaring folk strings"
       ],
       "danceTags": [
         "listening",
         "festival-fusion"
       ],
-      "tuningSystem": "12-tet",
-      "signatureCell": "Soaring major-pentatonic electric guitar lead with octave bends",
+      "tuningSystem": "just-intonation",
+      "signatureCell": "Deep khoomei throat singing and horsehead fiddle lead driving into powerful rock chorus",
       "grooveMechanics": {
         "swingPercentage": 50,
         "anticipationOffsetSteps": 0,
@@ -141,58 +137,218 @@ export const CHINESE_ROCK_WORLD: GenreWorld = {
       },
       "sectionProgressions": {
         "intro": [
-          "F",
-          "C",
           "Dm",
-          "Am",
+          "C",
           "Bb",
-          "F",
-          "Gm",
-          "C"
+          "A"
         ],
         "verse": [
-          "F",
-          "C",
           "Dm",
-          "Am",
+          "C",
           "Bb",
-          "F",
-          "Gm",
-          "C"
+          "A",
+          "Dm",
+          "C",
+          "Bb",
+          "Dm"
         ],
         "chorus": [
           "F",
           "C",
           "Dm",
+          "Am",
           "Bb",
-          "F",
           "C",
-          "F",
-          "F"
-        ],
-        "solo": [
           "Dm",
+          "Dm"
+        ],
+        "coda": [
           "Bb",
           "C",
-          "Am"
+          "Dm",
+          "Dm"
+        ]
+      }
+    },
+    {
+      "id": "chinese-rock-punk-yaogun",
+      "worldId": "chinese-rock",
+      "name": "Punk Yaogun",
+      "origin": "Beijing (Wudaokou / D-22)",
+      "era": "Late 1990s–2000s",
+      "description": "Fast Downstrokes • Raw Energy • D-22\nBeijing underground punk rebellion.\nReflector · Brain Failure",
+      "characteristicInstruments": [
+        "electric-guitar",
+        "bass",
+        "drums",
+        "voice"
+      ],
+      "preferredMeters": [
+        "4/4"
+      ],
+      "tempoRange": [
+        165,
+        210
+      ],
+      "keySubstyles": [
+        "Beijing Skate Punk",
+        "Wudaokou Hardcore"
+      ],
+      "coreConcepts": [
+        "high-speed 8th-note downpicked guitar power chords",
+        "urgent shouted vocals in Mandarin and English",
+        "snappy drum beat with fast snare cracks on 2 and 4",
+        "youthful defiance"
+      ],
+      "rhythmicGrammar": [
+        "fast straight 4/4 punk beat with relentless open hi-hat and driving bass downpicks"
+      ],
+      "danceTags": [
+        "festival-fusion"
+      ],
+      "tuningSystem": "12-tet",
+      "signatureCell": "Rapid \"Yi-Er-San-Si!\" count-in launching into blistering 190 BPM three-chord punk anthem",
+      "grooveMechanics": {
+        "swingPercentage": 50,
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "pushed"
+      },
+      "sectionProgressions": {
+        "intro": [
+          "C",
+          "F",
+          "G",
+          "C"
+        ],
+        "verse": [
+          "C",
+          "F",
+          "G",
+          "C",
+          "C",
+          "F",
+          "G",
+          "C"
+        ],
+        "chorus": [
+          "F",
+          "G",
+          "C",
+          "Am",
+          "F",
+          "G",
+          "C",
+          "C"
+        ],
+        "coda": [
+          "F",
+          "G",
+          "C",
+          "C"
+        ]
+      }
+    },
+    {
+      "id": "chinese-rock-pop-rock",
+      "worldId": "chinese-rock",
+      "name": "Pop Rock",
+      "origin": "Hong Kong / Taipei / Beijing",
+      "era": "1980s–Present",
+      "description": "Stadium Anthems • Acoustic & Electric • Singalong\nGreater China stadium rock anthems.\nBeyond · Mayday",
+      "characteristicInstruments": [
+        "electric-guitar",
+        "acoustic-guitar",
+        "bass",
+        "drums",
+        "piano",
+        "voice"
+      ],
+      "preferredMeters": [
+        "4/4"
+      ],
+      "tempoRange": [
+        95,
+        125
+      ],
+      "keySubstyles": [
+        "Cantorock",
+        "Mandopop Stadium Rock"
+      ],
+      "coreConcepts": [
+        "unforgettable melodic vocal anthems (\"Boundless Oceans, Vast Skies\")",
+        "soaring pentatonic electric guitar solos",
+        "acoustic rhythm guitar layering with grand piano chords",
+        "themes of freedom and perseverance"
+      ],
+      "rhythmicGrammar": [
+        "steady uplifting 4/4 stadium rock beat with driving snare and sparkling ride cymbal"
+      ],
+      "danceTags": [
+        "social-partner",
+        "festival-fusion"
+      ],
+      "tuningSystem": "12-tet",
+      "signatureCell": "Triumphant stadium chorus vocal anthem singing out over crying Stratocaster lead and power chords",
+      "grooveMechanics": {
+        "swingPercentage": 50,
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "straight"
+      },
+      "sectionProgressions": {
+        "intro": [
+          "C",
+          "G",
+          "Am",
+          "Em",
+          "F",
+          "C",
+          "F",
+          "G"
+        ],
+        "verse": [
+          "C",
+          "G",
+          "Am",
+          "Em",
+          "F",
+          "C",
+          "F",
+          "G"
+        ],
+        "chorus": [
+          "F",
+          "G",
+          "Em",
+          "Am",
+          "F",
+          "G",
+          "C",
+          "C7"
+        ],
+        "coda": [
+          "F",
+          "G",
+          "C",
+          "C"
         ]
       }
     }
   ],
   "substyles": [
-    "Taiwanese Arena Rock",
-    "Hong Kong Canto-Rock",
-    "Mandopop Power Ballad",
-    "Campus Folk / Xinyao",
-    "Chinese Indie Rock"
+    "Yaogun",
+    "Folk Rock",
+    "Punk Yaogun",
+    "Pop Rock"
   ],
   "artists": [
-    "Beyond (黄家驹)",
-    "Mayday (五月天)",
-    "Jonathan Lee (李宗盛)",
-    "Cui Jian (崔健)",
-    "Omnipotent Youth Society (万能青年旅店)",
-    "No Party For Cao Dong (草东没有派对)"
+    "Cui Jian",
+    "Dou Wei",
+    "Hanggai",
+    "Omnipotent Youth Society",
+    "Reflector",
+    "Brain Failure",
+    "Beyond",
+    "Mayday"
   ],
   "concepts": [
     "extreme verse-to-chorus dynamic layering",
@@ -1426,11 +1582,15 @@ export const CHINESE_ROCK_WORLD: GenreWorld = {
       "roles": [
         "voice"
       ],
-      "instruments": ["voice"],
+      "instruments": [
+        "voice"
+      ],
       "compatibleRoles": [
         "voice"
       ],
-      "compatibleInstruments": ["voice"],
+      "compatibleInstruments": [
+        "voice"
+      ],
       "canCrossRole": true,
       "meter": "4/4",
       "cycleLength": 1,
@@ -3389,12 +3549,16 @@ export const CHINESE_ROCK_WORLD: GenreWorld = {
       "roles": [
         "voice"
       ],
-      "instruments": ["voice"],
+      "instruments": [
+        "voice"
+      ],
       "compatibleRoles": [
         "voice",
         "lead"
       ],
-      "compatibleInstruments": ["voice"],
+      "compatibleInstruments": [
+        "voice"
+      ],
       "meter": "4/4",
       "cycleLength": 1,
       "subdivisions": 16,

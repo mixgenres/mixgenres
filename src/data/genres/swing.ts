@@ -9,175 +9,252 @@ export const SWING_WORLD: GenreWorld = {
   "description": "Big Band and Small Group Swing jazz featuring walking bass lines, spang-a-lang ride cymbal phrasing, and syncopated comping.",
   "traditions": [
     {
-      "id": "swing-big-band",
+      "id": "swing-big-band-swing",
       "worldId": "swing",
       "name": "Big Band Swing",
-      "origin": "US",
-      "era": "1930s-1940s",
-      "description": "Large ensemble jazz with driving rhythm section.",
+      "origin": "New York / Kansas City / Chicago",
+      "era": "1930s–1940s",
+      "description": "Four-on-the-Floor • Horn Riffs • Lindy Hop\nThe triumphant golden sound of the swing era.\nBenny Goodman · Count Basie",
       "characteristicInstruments": [
+        "brass",
+        "clarinet",
+        "piano",
+        "upright-bass",
         "drums",
-        "bass",
-        "keys",
-        "trumpet"
+        "guitar"
       ],
       "preferredMeters": [
         "4/4"
       ],
       "tempoRange": [
-        120,
-        200
+        140,
+        185
       ],
       "keySubstyles": [
-        "Big Band",
-        "Jump Blues"
+        "Kansas City Swing",
+        "Harlem Big Band"
       ],
       "coreConcepts": [
-        "swung eighths",
-        "walking bass",
-        "comping"
+        "driving four-on-the-floor bass drum pulse and Freddie Green acoustic guitar chomp",
+        "call-and-response horn section riffs (trumpets vs reeds)",
+        "virtuosic clarinet and saxophone improvisations",
+        "high-flying Lindy Hop dance energy"
       ],
       "rhythmicGrammar": [
-        "spang-a-lang cymbal",
-        "four-beat bass"
+        "shuffled ride cymbal [ding-spang-a-lang] over unamplified acoustic four-beat rhythm section"
       ],
       "danceTags": [
         "social-partner",
-        "wcs-compatible",
-        "solo-vernacular"
+        "wcs-compatible"
       ],
       "tuningSystem": "12-tet",
-      "signatureCell": "Spang-a-lang ride cymbal phrasing with four-to-the-bar acoustic walking bass and brass ensemble punch hits",
+      "signatureCell": "Benny Goodman soaring clarinet glissando over swinging big band brass shout chorus and ride cymbal",
       "grooveMechanics": {
-        "swingPercentage": 66,
+        "swingPercentage": 62,
         "anticipationOffsetSteps": 0,
         "microtimingFeel": "pushed"
       },
       "sectionProgressions": {
         "intro": [
-          "Bbmaj7",
-          "G7",
-          "Cm7",
-          "F7"
-        ],
-        "verse": [
-          "Bbmaj7",
+          "Bb",
           "G7",
           "Cm7",
           "F7"
         ],
         "chorus": [
-          "Ebmaj7",
+          "Bb",
+          "Eb7",
+          "Bb",
+          "Bb7",
+          "Eb7",
           "Ebm7",
-          "Bbmaj7",
-          "G7"
-        ],
-        "solo": [
-          "Cm7",
-          "F7",
-          "Bbmaj7",
-          "Bbmaj7"
-        ],
-        "coda": [
-          "Bbmaj7",
+          "Bb",
           "G7",
           "Cm7",
-          "Bbmaj7"
+          "F7",
+          "Bb",
+          "F7"
+        ],
+        "coda": [
+          "Cm7",
+          "F7",
+          "Bb",
+          "Bb"
         ]
       }
     },
     {
-      "id": "swing-small-group",
+      "id": "swing-gypsy-jazz",
       "worldId": "swing",
-      "name": "Small Group Jazz",
-      "origin": "US",
-      "era": "1940s-Present",
-      "description": "Interactive rhythm section.",
+      "name": "Gypsy Jazz (Manouche)",
+      "origin": "Paris, France",
+      "era": "1930s–1950s",
+      "description": "La Pompe • Selmer Guitars • Virtuosic Violin\nDjango Reinhardt's dazzling acoustic swing.\nDjango Reinhardt · Stéphane Grappelli",
       "characteristicInstruments": [
-        "drums",
-        "bass",
-        "piano"
+        "acoustic-guitar",
+        "violin",
+        "upright-bass",
+        "clarinet"
       ],
       "preferredMeters": [
-        "4/4",
-        "3/4"
+        "4/4"
       ],
       "tempoRange": [
-        80,
+        160,
         240
       ],
       "keySubstyles": [
-        "Bebop",
-        "Cool Jazz"
+        "Jazz Manouche",
+        "Swing Parisien"
       ],
       "coreConcepts": [
-        "interaction",
-        "syncopated comping"
+        "\"La Pompe\" percussive acoustic rhythm guitar strumming (dry bass hit on 1 & 3, crisp chop on 2 & 4)",
+        "dazzling chromatic two-finger Django guitar solos",
+        "soaring romantic violin phrasing (Stéphane Grappelli)",
+        "purely acoustic string ensemble format without drums"
       ],
       "rhythmicGrammar": [
-        "broken time"
+        "La Pompe: [bass-downbeat, crisp-chop-backbeat] driving relentlessly at blazing tempos"
       ],
       "danceTags": [
         "social-partner",
-        "listening"
+        "wcs-compatible"
       ],
       "tuningSystem": "12-tet",
-      "signatureCell": "Interactive broken time ride cymbal with dropped bass drum feather bombs and syncopated piano comping",
+      "signatureCell": "Dazzling Django chromatic guitar arpeggio flying over relentless La Pompe rhythm guitar chop",
       "grooveMechanics": {
-        "swingPercentage": 62,
+        "swingPercentage": 58,
         "anticipationOffsetSteps": 0,
-        "microtimingFeel": "laid-back"
+        "microtimingFeel": "pushed"
       },
       "sectionProgressions": {
         "intro": [
-          "Fmaj7",
-          "D7b9",
-          "Gm7",
-          "C7"
+          "Am",
+          "E7",
+          "Am",
+          "E7"
         ],
-        "verse": [
-          "Fmaj7",
-          "D7b9",
-          "Gm7",
-          "C7"
+        "theme": [
+          "Am",
+          "Dm",
+          "E7",
+          "Am",
+          "C",
+          "G7",
+          "C",
+          "E7",
+          "Am",
+          "Dm",
+          "E7",
+          "Am"
         ],
-        "chorus": [
-          "Bbmaj7",
-          "Bbm7",
-          "Am7",
-          "D7"
-        ],
-        "solo": [
-          "Gm7",
-          "C7",
-          "Fmaj7",
-          "Fmaj7"
+        "bridge": [
+          "A7",
+          "Dm",
+          "G7",
+          "C",
+          "B7",
+          "E7",
+          "Am",
+          "E7"
         ],
         "coda": [
-          "Gm7",
+          "Dm",
+          "E7",
+          "Am",
+          "Am"
+        ]
+      }
+    },
+    {
+      "id": "swing-jump-blues",
+      "worldId": "swing",
+      "name": "Jump Blues",
+      "origin": "Los Angeles / Kansas City",
+      "era": "Late 1940s–1950s",
+      "description": "Honking Tenor Sax • Boogying Bass • Shouted Vocals\nUp-tempo predecessor of rock and roll.\nLouis Jordan · Wynonie Harris",
+      "characteristicInstruments": [
+        "tenor-sax",
+        "brass",
+        "piano",
+        "upright-bass",
+        "drums",
+        "electric-guitar",
+        "voice"
+      ],
+      "preferredMeters": [
+        "4/4"
+      ],
+      "tempoRange": [
+        135,
+        175
+      ],
+      "keySubstyles": [
+        "Proto-Rock and Roll",
+        "Jumpin' Swing"
+      ],
+      "coreConcepts": [
+        "honking, screaming tenor saxophone solos and riffs",
+        "shuffled boogie-woogie piano and walking basslines",
+        "humorous, energetic shouted vocal storytelling",
+        "proto-rock rhythmic power"
+      ],
+      "rhythmicGrammar": [
+        "fast swinging 12-bar blues shuffle with aggressive backbeat snare rimshots on 2 and 4"
+      ],
+      "danceTags": [
+        "social-partner",
+        "wcs-compatible"
+      ],
+      "tuningSystem": "12-tet",
+      "signatureCell": "Honking tenor saxophone squeal over roaring boogie-woogie piano shuffle and jump blues shout",
+      "grooveMechanics": {
+        "swingPercentage": 60,
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "pushed"
+      },
+      "sectionProgressions": {
+        "intro": [
+          "G",
           "C7",
-          "Fmaj7",
-          "Fmaj7"
+          "G",
+          "D7"
+        ],
+        "blues": [
+          "G7",
+          "G7",
+          "G7",
+          "G7",
+          "C7",
+          "C7",
+          "G7",
+          "G7",
+          "D7",
+          "C7",
+          "G7",
+          "D7"
+        ],
+        "coda": [
+          "D7",
+          "C7",
+          "G7",
+          "G7"
         ]
       }
     }
   ],
   "substyles": [
-    "Big Band",
-    "Kansas City Swing",
-    "Jump Blues",
-    "Gypsy Jazz",
-    "Bebop",
-    "Cool Jazz"
+    "Big Band Swing",
+    "Gypsy Jazz (Manouche)",
+    "Jump Blues"
   ],
   "artists": [
-    "Count Basie",
-    "Duke Ellington",
     "Benny Goodman",
-    "Ella Fitzgerald",
-    "Louis Jordan",
+    "Count Basie",
     "Django Reinhardt",
-    "Charlie Parker"
+    "Stéphane Grappelli",
+    "Louis Jordan",
+    "Wynonie Harris"
   ],
   "concepts": [
     "spang-a-lang",
@@ -1193,7 +1270,6 @@ export const SWING_WORLD: GenreWorld = {
         "chorus"
       ],
       "variants": [
-        
         {
           "id": "swing-brushes-v-02",
           "parentPatternId": "swing-brushes",
@@ -1643,11 +1719,15 @@ export const SWING_WORLD: GenreWorld = {
       "roles": [
         "voice"
       ],
-      "instruments": ["voice"],
+      "instruments": [
+        "voice"
+      ],
       "compatibleRoles": [
         "voice"
       ],
-      "compatibleInstruments": ["voice"],
+      "compatibleInstruments": [
+        "voice"
+      ],
       "canCrossRole": true,
       "meter": "4/4",
       "cycleLength": 1,
@@ -3100,12 +3180,16 @@ export const SWING_WORLD: GenreWorld = {
       "roles": [
         "voice"
       ],
-      "instruments": ["voice"],
+      "instruments": [
+        "voice"
+      ],
       "compatibleRoles": [
         "voice",
         "lead"
       ],
-      "compatibleInstruments": ["voice"],
+      "compatibleInstruments": [
+        "voice"
+      ],
       "meter": "4/4",
       "cycleLength": 1,
       "subdivisions": 16,

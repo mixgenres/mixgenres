@@ -9,15 +9,105 @@ export const BACHATA_WORLD: GenreWorld = {
   "description": "Dominican and Latin dance tradition defined by Bachata’s 3 structural gears (Derecho verse, Majao chorus, Mambo solo breakdown), lead requinto picking, Merengue tambora/sax jaleos, and hypnotic Colombian Cumbia grooves.",
   "traditions": [
     {
-      "id": "latin-bachata",
+      "id": "bachata-urbana",
       "worldId": "bachata",
-      "name": "Bachata Tradicional & Dominicana",
-      "origin": "Dominican Republic",
-      "era": "1960s–Present",
-      "description": "The romantic guitar dance tradition structured around 3 distinct performance gears: Derecho (verse picking), Majao (driving syncopated chorus), and Mambo (virtuosic instrumental breakdown).",
+      "name": "Urbana",
+      "origin": "Bronx, New York / Dominican Republic",
+      "era": "1999–Present",
+      "description": "Smooth • 4/4 • Guitar-driven\nPop and R&B infused.\nAventura · Romeo Santos",
       "characteristicInstruments": [
         "guitar",
-        "electric-guitar",
+        "bass",
+        "bongos",
+        "guiro",
+        "voice",
+        "synth"
+      ],
+      "preferredMeters": [
+        "4/4"
+      ],
+      "tempoRange": [
+        124,
+        136
+      ],
+      "keySubstyles": [
+        "Urban Bachata",
+        "Bachata Pop",
+        "Bachata R&B"
+      ],
+      "coreConcepts": [
+        "high-register requinto arpeggiations with chorus FX",
+        "melodic 5-string electric bass runs",
+        "bongó martillo patterns",
+        "poignant bilingual vocals"
+      ],
+      "rhythmicGrammar": [
+        "requinto continuous 16th-note arpeggiation over syncopated bass on beat 4 and martillo bongo accent on 4"
+      ],
+      "danceTags": [
+        "social-partner"
+      ],
+      "tuningSystem": "12-tet",
+      "signatureCell": "Requinto chorus-effect arpeggio dancing over syncopated bongo martillo",
+      "grooveMechanics": {
+        "swingPercentage": 50,
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "straight"
+      },
+      "sectionProgressions": {
+        "intro": [
+          "Am",
+          "F",
+          "C",
+          "G"
+        ],
+        "derecho": [
+          "Am",
+          "F",
+          "C",
+          "G",
+          "Am",
+          "F",
+          "C",
+          "G"
+        ],
+        "majao": [
+          "Dm",
+          "G",
+          "C",
+          "Am",
+          "Dm",
+          "E7",
+          "Am",
+          "Am"
+        ],
+        "mambo": [
+          "F",
+          "G",
+          "Em",
+          "Am",
+          "F",
+          "G",
+          "Am",
+          "Am"
+        ],
+        "coda": [
+          "Am",
+          "F",
+          "C",
+          "G"
+        ]
+      }
+    },
+    {
+      "id": "bachata-tradicional",
+      "worldId": "bachata",
+      "name": "Tradicional",
+      "origin": "Dominican Republic (Campesino Roots)",
+      "era": "1960s–1980s",
+      "description": "Fast • Arpeggiated • Raw\nAcoustic guitar and bongos.\nLuis Vargas · Anthony Santos",
+      "characteristicInstruments": [
+        "guitar",
         "bass",
         "bongos",
         "guiro",
@@ -27,225 +117,591 @@ export const BACHATA_WORLD: GenreWorld = {
         "4/4"
       ],
       "tempoRange": [
-        120,
-        145
+        130,
+        148
       ],
       "keySubstyles": [
-        "Bachata Tradicional (Luis Vargas, Antony Santos)",
-        "Bachata Urbana (Aventura, Romeo Santos)",
-        "Bachata Sensual (Dembow fusion)"
+        "Bachata Clásica",
+        "Amargue",
+        "Guitarra y Bongó"
       ],
       "coreConcepts": [
-        "3 bachata gears: derecho (verse), majao (chorus), mambo (instrumental breakdown)",
-        "requinto ornamentation",
-        "bongo martillo to campana",
-        "anticipated bass pulse"
+        "acoustic requinto with thumb-pick punch",
+        "driving wooden güira rhythm",
+        "raw amargue vocal delivery",
+        "fast syncopated basslines"
       ],
       "rhythmicGrammar": [
-        "güira repique 16th scrape with accents on downbeats",
-        "bass anticipation on 4th beat leading into downbeat"
+        "fast derecho to majao shifts with high-tempo martillo and bongo repiques"
+      ],
+      "danceTags": [
+        "social-partner"
+      ],
+      "tuningSystem": "12-tet",
+      "signatureCell": "Punchy acoustic requinto syncopations over fast wooden güiro scraping",
+      "grooveMechanics": {
+        "swingPercentage": 50,
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "straight"
+      },
+      "sectionProgressions": {
+        "intro": [
+          "Dm",
+          "A7",
+          "Dm",
+          "A7"
+        ],
+        "derecho": [
+          "Dm",
+          "Gm",
+          "A7",
+          "Dm",
+          "Gm",
+          "C7",
+          "F",
+          "A7"
+        ],
+        "majao": [
+          "Gm",
+          "C7",
+          "F",
+          "Dm",
+          "Gm",
+          "A7",
+          "Dm",
+          "Dm"
+        ],
+        "mambo": [
+          "A7",
+          "A7",
+          "Dm",
+          "Dm",
+          "A7",
+          "A7",
+          "Dm",
+          "Dm"
+        ],
+        "coda": [
+          "A7",
+          "A7",
+          "Dm",
+          "Dm"
+        ]
+      }
+    },
+    {
+      "id": "bachata-sensual",
+      "worldId": "bachata",
+      "name": "Sensual",
+      "origin": "Cadiz, Spain / European Social Circuit",
+      "era": "2005–Present",
+      "description": "Slow • Expressive • Body rolls\nModern European social style.\nDani J · DJ Tronky",
+      "characteristicInstruments": [
+        "guitar",
+        "bass",
+        "synth",
+        "bongos",
+        "guiro",
+        "voice"
+      ],
+      "preferredMeters": [
+        "4/4"
+      ],
+      "tempoRange": [
+        115,
+        126
+      ],
+      "keySubstyles": [
+        "Bachata Sensual",
+        "European Social Bachata",
+        "Remix Sensual"
+      ],
+      "coreConcepts": [
+        "expressive dynamic breaks and pauses",
+        "deep sub-bass frequency support",
+        "fluid requinto passages",
+        "dramatic vocal rubato"
+      ],
+      "rhythmicGrammar": [
+        "smooth continuous 4-beat pulse with dramatic silence cuts and body-roll rhythm cues"
       ],
       "danceTags": [
         "social-partner",
         "sensual-fusion"
       ],
       "tuningSystem": "12-tet",
-      "signatureCell": "3 gears: Derecho (verse), Majao (chorus), Mambo (instrumental breakdown)",
+      "signatureCell": "Smooth legato requinto phrasing followed by dramatic bass pause and drop",
       "grooveMechanics": {
-        "swingPercentage": 50,
-        "anticipationOffsetSteps": -1,
-        "microtimingFeel": "pushed"
+        "swingPercentage": 52,
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "laid-back"
       },
       "sectionProgressions": {
-        "derecho": [
-          "Bm",
-          "G",
-          "D",
-          "A"
+        "intro": [
+          "Fm",
+          "Db",
+          "Ab",
+          "Eb"
         ],
         "verse": [
-          "Bm",
-          "G",
-          "D",
-          "A"
-        ],
-        "majao": [
-          "G",
-          "A",
-          "D",
-          "Bm"
+          "Fm",
+          "Db",
+          "Ab",
+          "Eb",
+          "Fm",
+          "Db",
+          "Ab",
+          "Eb"
         ],
         "chorus": [
-          "G",
-          "A",
-          "D",
-          "Bm"
+          "Dbmaj7",
+          "Eb",
+          "Fm",
+          "Cm",
+          "Dbmaj7",
+          "Eb",
+          "Fm",
+          "Fm"
         ],
-        "mambo": [
-          "Em",
-          "F#7",
-          "Bm",
-          "Bm"
+        "breakdown": [
+          "Db",
+          "Eb",
+          "Fm",
+          "Fm"
         ],
-        "solo": [
-          "Em",
-          "F#7",
-          "Bm",
-          "Bm"
+        "coda": [
+          "Db",
+          "Eb",
+          "Fm",
+          "Fm"
         ]
       }
     },
     {
-      "id": "latin-merengue",
+      "id": "bachata-moderna",
       "worldId": "bachata",
-      "name": "Merengue Típico & Orquesta",
-      "origin": "Dominican Republic",
-      "era": "1850s–Present",
-      "description": "Fast, high-octane 2/2 dance rhythm driven by two-sided tambora drumming, metallic güira, frantic accordion / sax jaleos, and rolling bass.",
+      "name": "Bachata Moderna",
+      "origin": "Dominican Republic / USA",
+      "era": "2000s–2010s",
+      "description": "Balanced • Pop-infused • Clear Syncopation\nVersatile pop turn-pattern timing.\nJohnny Sky · Toby Love",
       "characteristicInstruments": [
-        "percussion",
+        "guitar",
         "bass",
-        "accordion",
-        "sax",
-        "trumpet",
-        "guiro"
+        "bongos",
+        "guiro",
+        "synth",
+        "voice"
       ],
       "preferredMeters": [
-        "2/2",
         "4/4"
       ],
       "tempoRange": [
-        130,
-        175
+        122,
+        134
       ],
       "keySubstyles": [
-        "Merengue Típico (Perico Ripiao)",
-        "Merengue de Orquesta (Juan Luis Guerra)",
-        "Mambo Urbano"
+        "Pop Bachata",
+        "Turn-Pattern Bachata"
       ],
       "coreConcepts": [
-        "tambora golpe (wood rim and head slap)",
-        "güira continuous drive",
-        "sax jaleos",
-        "merengue bass gallop"
+        "clean modern studio production",
+        "balanced derecho/majao transitions",
+        "catchy pop hooks",
+        "crisp metal güira accents"
       ],
       "rhythmicGrammar": [
-        "tambora [rim, slap, head, head]",
-        "sax syncopated 16th jaleos"
+        "clear 4-beat pulse with defined syncopation on beat 4 and bright requinto ornamentation"
       ],
       "danceTags": [
         "social-partner"
       ],
       "tuningSystem": "12-tet",
-      "signatureCell": "Tambora fast gallop rim-slap ostinato",
+      "signatureCell": "Crisp pop guitar hooks blending with tight modern bongo-güira groove",
       "grooveMechanics": {
         "swingPercentage": 50,
         "anticipationOffsetSteps": 0,
-        "microtimingFeel": "pushed"
+        "microtimingFeel": "straight"
       },
       "sectionProgressions": {
+        "intro": [
+          "C",
+          "G",
+          "Am",
+          "F"
+        ],
         "verse": [
+          "C",
+          "G",
+          "Am",
+          "F",
+          "C",
+          "G",
+          "Am",
+          "F"
+        ],
+        "chorus": [
+          "F",
+          "G",
+          "Em",
+          "Am",
+          "F",
+          "G",
+          "C",
+          "C"
+        ],
+        "coda": [
+          "Am",
+          "F",
+          "G",
+          "C"
+        ]
+      }
+    },
+    {
+      "id": "bachata-bolero",
+      "worldId": "bachata",
+      "name": "Bolero Bachata",
+      "origin": "Santo Domingo, Dominican Republic",
+      "era": "1950s–1960s",
+      "description": "Slow • Vintage • Lyrical\n50s romantic precursor style.\nJose Manuel Calderon · Leonardo Paniagua",
+      "characteristicInstruments": [
+        "guitar",
+        "upright-bass",
+        "bongos",
+        "maracas",
+        "voice"
+      ],
+      "preferredMeters": [
+        "4/4"
+      ],
+      "tempoRange": [
+        96,
+        114
+      ],
+      "keySubstyles": [
+        "Bolero Campesino",
+        "Early Bachata"
+      ],
+      "coreConcepts": [
+        "nylon string guitar fingerpicking",
+        "warm acoustic upright bass",
+        "romantic sentimental lyrical themes",
+        "soft wooden bongo accompaniment"
+      ],
+      "rhythmicGrammar": [
+        "gentle bolero syncopation with delicate bongo martillo and soft maraca shimmer"
+      ],
+      "danceTags": [
+        "social-partner",
+        "listening"
+      ],
+      "tuningSystem": "12-tet",
+      "signatureCell": "Romantic nylon-string guitar arpeggios over soft acoustic bolero pulse",
+      "grooveMechanics": {
+        "swingPercentage": 52,
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "laid-back"
+      },
+      "sectionProgressions": {
+        "intro": [
+          "Em",
+          "B7",
+          "Em",
+          "B7"
+        ],
+        "verse": [
+          "Em",
+          "Am",
+          "D7",
+          "G",
+          "C",
+          "F#7",
+          "B7",
+          "Em"
+        ],
+        "chorus": [
+          "Am",
+          "D7",
+          "G",
+          "C",
+          "Am",
+          "B7",
+          "Em",
+          "Em"
+        ],
+        "coda": [
+          "Am",
+          "B7",
+          "Em",
+          "Em"
+        ]
+      }
+    },
+    {
+      "id": "bachata-bachatango",
+      "worldId": "bachata",
+      "name": "Bachatango",
+      "origin": "Buenos Aires / Dominican Republic / Europe",
+      "era": "2000s–Present",
+      "description": "Dramatic • Bandoneón • Fusion\nTango strings with bachata rhythm.\nGrace Jones · Steve Morrill",
+      "characteristicInstruments": [
+        "bandoneon",
+        "violin",
+        "guitar",
+        "bass",
+        "bongos",
+        "guiro"
+      ],
+      "preferredMeters": [
+        "4/4"
+      ],
+      "tempoRange": [
+        118,
+        130
+      ],
+      "keySubstyles": [
+        "Tango-Bachata Crossover",
+        "Dramatic Bachatango"
+      ],
+      "coreConcepts": [
+        "bandoneón dramatic fraseo & arrastres",
+        "staccato violin fills",
+        "bachata derecho bongo rhythm",
+        "minor harmonic progressions"
+      ],
+      "rhythmicGrammar": [
+        "tango staccato accents layered over driving 4-beat bachata bongo/güira groove"
+      ],
+      "danceTags": [
+        "social-partner",
+        "sensual-fusion"
+      ],
+      "tuningSystem": "12-tet",
+      "signatureCell": "Dramatic bandoneón drag resolving into driving bachata bongo beat",
+      "grooveMechanics": {
+        "swingPercentage": 50,
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "straight"
+      },
+      "sectionProgressions": {
+        "intro": [
+          "Dm",
+          "A7",
+          "Dm",
+          "A7"
+        ],
+        "verse": [
+          "Dm",
+          "Gm",
+          "A7",
+          "Dm",
+          "Bb",
+          "E7",
+          "A7",
+          "Dm"
+        ],
+        "chorus": [
+          "F",
+          "C7",
+          "F",
+          "A7",
+          "Dm",
+          "Gm",
+          "A7",
+          "Dm"
+        ],
+        "coda": [
+          "A7",
+          "A7",
+          "Dm",
+          "Dm"
+        ]
+      }
+    },
+    {
+      "id": "bachata-campestre",
+      "worldId": "bachata",
+      "name": "Campestre",
+      "origin": "Rural Cibao, Dominican Republic",
+      "era": "1970s–1980s",
+      "description": "Raw • Unpolished • Folk\nHinterland Dominican guitar roots.\nEdilio Paredes · Leonardo Paniagua",
+      "characteristicInstruments": [
+        "guitar",
+        "bass",
+        "bongos",
+        "guiro",
+        "voice"
+      ],
+      "preferredMeters": [
+        "4/4"
+      ],
+      "tempoRange": [
+        125,
+        142
+      ],
+      "keySubstyles": [
+        "Música de Guardia",
+        "Bachata Rural"
+      ],
+      "coreConcepts": [
+        "unfiltered acoustic guitar bite",
+        "intense amargue emotion",
+        "relentless guira scraping",
+        "folk storytelling lyrics"
+      ],
+      "rhythmicGrammar": [
+        "fast earthy derecho and energetic mambo guitar picados"
+      ],
+      "danceTags": [
+        "social-partner"
+      ],
+      "tuningSystem": "12-tet",
+      "signatureCell": "Sharp rustic requinto picados over earthy driving Cibao percussion",
+      "grooveMechanics": {
+        "swingPercentage": 50,
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "straight"
+      },
+      "sectionProgressions": {
+        "intro": [
+          "Am",
+          "E7",
+          "Am",
+          "E7"
+        ],
+        "verse": [
+          "Am",
+          "Dm",
+          "E7",
+          "Am",
+          "Dm",
+          "G",
+          "C",
+          "E7"
+        ],
+        "chorus": [
+          "Dm",
+          "G",
+          "C",
+          "Am",
+          "Dm",
+          "E7",
+          "Am",
+          "Am"
+        ],
+        "coda": [
+          "E7",
+          "E7",
+          "Am",
+          "Am"
+        ]
+      }
+    },
+    {
+      "id": "bachata-merengue-de-guitarra",
+      "worldId": "bachata",
+      "name": "Merengue de Guitarra",
+      "origin": "Dominican Republic",
+      "era": "1970s–Present",
+      "description": "Fast • Driving Tambora • Guitar-led\nHigh-tempo fingerpicked guitar rhythm.\nJoan Soriano · Antony Santos",
+      "characteristicInstruments": [
+        "guitar",
+        "bass",
+        "drums",
+        "guiro",
+        "voice"
+      ],
+      "preferredMeters": [
+        "2/4"
+      ],
+      "tempoRange": [
+        140,
+        165
+      ],
+      "keySubstyles": [
+        "Guitar Merengue",
+        "Merengue Campesino"
+      ],
+      "coreConcepts": [
+        "rapid 16th-note requinto lead riffs",
+        "driving tambora repique patterns",
+        "energetic bass walking lines",
+        "fiesta party atmosphere"
+      ],
+      "rhythmicGrammar": [
+        "fast 2/4 tambora galloping rhythm with high-speed guitar ostinatos"
+      ],
+      "danceTags": [
+        "social-partner"
+      ],
+      "tuningSystem": "12-tet",
+      "signatureCell": "High-speed requinto arpeggio over fast galloping tambora drum groove",
+      "grooveMechanics": {
+        "swingPercentage": 50,
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "straight"
+      },
+      "sectionProgressions": {
+        "intro": [
           "C",
           "G7",
           "C",
           "G7"
         ],
-        "chorus": [
-          "F",
+        "verse": [
+          "C",
           "G7",
           "C",
+          "G7",
+          "F",
+          "C",
+          "G7",
           "C"
         ],
         "mambo": [
           "C",
           "F",
           "G7",
-          "C"
-        ]
-      }
-    },
-    {
-      "id": "latin-cumbia",
-      "worldId": "bachata",
-      "name": "Cumbia (Colombiana & Pan-Latina)",
-      "origin": "Caribbean coast of Colombia & Pan-Latin America",
-      "era": "1800s–Present",
-      "description": "Hypnotic swaying 2/4 rhythm featuring the scraping guacharaca/maracón, syncopated bass on beat 2-and, and cheerful accordion or flute counterlines.",
-      "characteristicInstruments": [
-        "accordion",
-        "flute",
-        "bass",
-        "percussion",
-        "guitar",
-        "guiro"
-      ],
-      "preferredMeters": [
-        "2/4",
-        "4/4"
-      ],
-      "tempoRange": [
-        85,
-        110
-      ],
-      "keySubstyles": [
-        "Cumbia Tradicional (Gaita)",
-        "Cumbia Colombiana",
-        "Cumbia Villera",
-        "Cumbia Sonidera"
-      ],
-      "coreConcepts": [
-        "guacharaca / maracón scrape",
-        "llamador offbeat pulse",
-        "tambor alegre improvisation",
-        "walking cumbia bass"
-      ],
-      "rhythmicGrammar": [
-        "bass landing heavily on beat 2-and (syncopated lift)",
-        "guacharaca chucu-chucu scrape"
-      ],
-      "danceTags": [
-        "social-partner"
-      ],
-      "tuningSystem": "12-tet",
-      "signatureCell": "Bass hit on beat 2-and syncopated lift",
-      "grooveMechanics": {
-        "swingPercentage": 52,
-        "anticipationOffsetSteps": 1,
-        "microtimingFeel": "laid-back"
-      },
-      "sectionProgressions": {
-        "verse": [
-          "Am",
-          "Dm",
-          "E7",
-          "Am"
-        ],
-        "chorus": [
           "C",
-          "G",
+          "C",
           "F",
-          "E7"
+          "G7",
+          "C"
+        ],
+        "coda": [
+          "G7",
+          "G7",
+          "C",
+          "C"
         ]
       }
     }
   ],
   "substyles": [
-    "Bachata Tradicional",
-    "Bachata Urbana",
-    "Bachata Sensual",
-    "Merengue Típico",
-    "Merengue de Orquesta",
-    "Cumbia Colombiana",
-    "Cumbia Villera"
+    "Urbana",
+    "Tradicional",
+    "Sensual",
+    "Bachata Moderna",
+    "Bolero Bachata",
+    "Bachatango",
+    "Campestre",
+    "Merengue de Guitarra"
   ],
   "artists": [
-    "Romeo Santos",
     "Aventura",
-    "Antony Santos",
+    "Romeo Santos",
     "Luis Vargas",
-    "Juan Luis Guerra",
-    "Los Hermanos Rosario",
-    "Celso Piña"
+    "Anthony Santos",
+    "Dani J",
+    "DJ Tronky",
+    "Johnny Sky",
+    "Toby Love",
+    "Jose Manuel Calderon",
+    "Leonardo Paniagua",
+    "Grace Jones",
+    "Steve Morrill",
+    "Edilio Paredes",
+    "Joan Soriano"
   ],
   "concepts": [
     "3 gears: derecho (verse), majao (chorus), mambo (breakdown)",
@@ -2228,11 +2684,15 @@ export const BACHATA_WORLD: GenreWorld = {
       "roles": [
         "voice"
       ],
-      "instruments": ["voice"],
+      "instruments": [
+        "voice"
+      ],
       "compatibleRoles": [
         "voice"
       ],
-      "compatibleInstruments": ["voice"],
+      "compatibleInstruments": [
+        "voice"
+      ],
       "canCrossRole": true,
       "meter": "4/4",
       "cycleLength": 1,
@@ -3499,12 +3959,16 @@ export const BACHATA_WORLD: GenreWorld = {
       "roles": [
         "voice"
       ],
-      "instruments": ["voice"],
+      "instruments": [
+        "voice"
+      ],
       "compatibleRoles": [
         "voice",
         "lead"
       ],
-      "compatibleInstruments": ["voice"],
+      "compatibleInstruments": [
+        "voice"
+      ],
       "meter": "4/4",
       "cycleLength": 1,
       "subdivisions": 16,

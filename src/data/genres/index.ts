@@ -12,7 +12,6 @@ import { KIZOMBA_WORLD } from './kizomba';
 import { FUNK_WORLD } from './funk';
 import { METAL_WORLD } from './metal';
 import { BACHATA_WORLD } from './bachata';
-import { FOLK_WORLD } from './folk';
 import { HIP_HOP_WORLD } from './hipHop';
 import { ELECTRONIC_WORLD } from './electronic';
 import { COUNTRY_WORLD } from './country';
@@ -33,6 +32,9 @@ import { REGGAE_DUB_WORLD } from './reggaeDub';
 import { SKA_WORLD } from './ska';
 import { SAMBA_BOSSA_WORLD } from './sambaBossa';
 import { CELTIC_TRAD_WORLD } from './celticTrad';
+import { FOLK_WORLD } from './folk';
+import { CHINESE_TRADITIONAL_WORLD } from './chineseTraditional';
+import { JAPANESE_TRADITIONAL_WORLD } from './japaneseTraditional';
 
 
 export function cleanPatternName(name: string, shortName?: string): string {
@@ -189,59 +191,86 @@ export function cleanGenreName(id: string, name?: string): string {
     .trim();
 }
 
-const RAW_GENRE_WORLDS: GenreWorld[] = [
-  TANGO_WORLD,
-  SALSA_WORLD,
-  TIMBA_WORLD,
-  FLAMENCO_WORLD,
-  JAZZ_WORLD,
-  BLUES_WORLD,
-  ROCK_WORLD,
-  ROCK_EN_ESPANOL_WORLD,
-  ZOUK_WORLD,
-  KIZOMBA_WORLD,
-  FUNK_WORLD,
-  METAL_WORLD,
-  BACHATA_WORLD,
-  FOLK_WORLD,
-  HIP_HOP_WORLD,
-  ELECTRONIC_WORLD,
-  COUNTRY_WORLD,
-  SWING_WORLD,
-  MATH_ROCK_WORLD,
-  AFROBEATS_WORLD,
-  JPOP_WORLD,
-  CHINESE_ROCK_WORLD,
-  FUSION_AMBIENT_WORLD,
-  CHINESE_TRADITIONAL_WORLD,
-  JAPANESE_TRADITIONAL_WORLD,
-  REGGAETON_DEMBOW_WORLD,
-  CUMBIA_WORLD,
-  TROVA_WORLD,
-  FOLCLORICO_WORLD,
-  HOUSE_TECHNO_WORLD,
-  REGGAE_DUB_WORLD,
-  SKA_WORLD,
-  SAMBA_BOSSA_WORLD,
-  CELTIC_TRAD_WORLD
+const SOURCE_WORLDS: Record<string, GenreWorld> = Object.fromEntries([
+  TANGO_WORLD, FLAMENCO_WORLD, SALSA_WORLD, TIMBA_WORLD, BACHATA_WORLD,
+  CUMBIA_WORLD, REGGAETON_DEMBOW_WORLD, ZOUK_WORLD, KIZOMBA_WORLD,
+  BLUES_WORLD, JAZZ_WORLD, SWING_WORLD, FUNK_WORLD, ROCK_WORLD,
+  ROCK_EN_ESPANOL_WORLD, METAL_WORLD, HIP_HOP_WORLD, HOUSE_TECHNO_WORLD,
+  ELECTRONIC_WORLD, AFROBEATS_WORLD, SAMBA_BOSSA_WORLD,
+].map(world => [world.id, world]));
+
+type TaxonomySpec = {
+  id: string;
+  name: string;
+  family: string;
+  description: string;
+  sourceIds: string[];
+  substyles: string[];
+};
+
+// One intentionally small top-level taxonomy. Existing detailed worlds remain
+// the source of truth for their musical grammar, patterns, traditions and
+// engine profiles; this layer only groups them for discovery.
+const TAXONOMY: TaxonomySpec[] = [
+  { id: 'latin', name: 'Latin', family: 'Latin', description: 'Cyclical rhythm, interlocking percussion, syncopation.', sourceIds: ['salsa', 'timba', 'bachata', 'cumbia', 'reggaeton-dembow'], substyles: ['Salsa', 'Timba', 'Bachata', 'Cumbia', 'Merengue', 'Reggaeton', 'Vallenato'] },
+  { id: 'flamenco', name: 'Flamenco', family: 'Flamenco', description: FLAMENCO_WORLD.description, sourceIds: ['flamenco'], substyles: ['Soleá', 'Bulería', 'Tangos', 'Fandangos', 'Rumba', 'Nuevo Flamenco'] },
+  { id: 'blues', name: 'Blues', family: 'Blues', description: 'Cycles, call-and-response, expressive phrasing.', sourceIds: ['blues'], substyles: ['Delta', 'Chicago', 'Slow Blues', 'Shuffle', 'Boogie', 'Soul Blues'] },
+  { id: 'zouk', name: 'Zouk', family: 'Zouk', description: 'Elastic groove, flow, sensual phrasing.', sourceIds: ['zouk'], substyles: ['Zouk', 'Lambada', 'Zouk Pop', 'Zouk R&B', 'Neo Zouk', 'Ghetto Zouk'] },
+  { id: 'kizomba', name: 'Kizomba', family: 'Kizomba', description: 'Grounded groove, space, close rhythmic phrasing.', sourceIds: ['kizomba'], substyles: ['Kizomba', 'Semba', 'Tarraxinha', 'Ghetto Zouk', 'Urban Kiz', 'Kizomba Fusion'] },
+  { id: 'tango', name: 'Tango', family: 'Tango', description: TANGO_WORLD.description, sourceIds: ['tango'], substyles: ['Tango', 'Milonga', 'Vals', 'Nuevo Tango', 'Electro Tango', 'Contemporary Tango'] },
+  { id: 'jazz', name: 'Jazz', family: 'Jazz', description: 'Improvisation, harmonic movement, musical conversation.', sourceIds: ['jazz', 'swing'], substyles: ['Swing', 'Bebop', 'Cool', 'Modal', 'Fusion', 'Free Jazz'] },
+  { id: 'funk', name: 'Funk', family: 'Funk', description: 'Pocket, syncopation, bass and drum interlock.', sourceIds: ['funk'], substyles: ['Funk', 'P Funk', 'Boogie', 'Disco', 'Neo Soul', 'R&B'] },
+  { id: 'rock', name: 'Rock', family: 'Rock', description: 'Riffs, backbeat, distortion, dynamic impact.', sourceIds: ['rock', 'rock-en-espanol', 'metal'], substyles: ['Classic Rock', 'Garage', 'Punk', 'Alternative', 'Psychedelic', 'Post Rock'] },
+  { id: 'hip-hop', name: 'Hip Hop', family: 'Hip Hop', description: 'Loops, sampling, pocket, rhythmic vocal phrasing.', sourceIds: ['hip-hop'], substyles: ['Boom Bap', 'G Funk', 'Trap', 'Drill', 'Lo Fi', 'Experimental'] },
+  { id: 'club', name: 'Club', family: 'Club', description: 'Continuous beat, layering, repetition, tension and release.', sourceIds: ['house-techno'], substyles: ['House', 'Techno', 'Trance', 'Deep House', 'Electro', 'Nu Disco'] },
+  { id: 'electronic', name: 'Electronic', family: 'Electronic', description: 'Texture, synthesis, repetition, transformation.', sourceIds: ['electronic'], substyles: ['Ambient', 'IDM', 'Downtempo', 'Glitch', 'Drone', 'Experimental'] },
+  { id: 'traditional', name: 'Traditional', family: 'Traditional', description: 'Folkloric melody, cyclical rhythm, regional ornament, drones and acoustic interlocking.', sourceIds: ['folk', 'celtic-trad', 'chinese-traditional', 'japanese-traditional'], substyles: ['Indian Traditional', 'Celtic', 'Chacarera', 'Marimba Traditions', 'Andean Folk', 'Balkan Folk', 'Appalachian', 'East Asian Traditional'] },
+  { id: 'groove', name: 'Groove', family: 'Groove', description: 'Polyrhythm, layered percussion, syncopated bass movement.', sourceIds: ['afrobeats', 'samba-bossa'], substyles: ['Afrobeats', 'Amapiano', 'Highlife', 'Afro House', 'Afro Funk', 'Kuduro'] },
 ];
 
-export const GENRE_WORLDS: GenreWorld[] = RAW_GENRE_WORLDS.map(w => ({
-  ...w,
-  name: cleanGenreName(w.id, w.name),
-  traditions: w.traditions.map(t => ({
-    ...t,
-    name: cleanPatternName(t.name),
-  })),
-  patterns: w.patterns.map(p => ({
-    ...p,
-    name: cleanPatternName(p.name, p.shortName),
-    variants: p.variants?.map(v => ({
-      ...v,
-      name: cleanPatternName(v.name, v.shortName),
+function buildTaxonomyWorld(spec: TaxonomySpec): GenreWorld {
+  const sources = spec.sourceIds.map(id => SOURCE_WORLDS[id]).filter(Boolean);
+  const base = sources[0];
+  const patterns = sources.flatMap(world => world.patterns).map(pattern => ({ ...pattern, worldId: spec.id }));
+  const traditions = sources.flatMap(world => world.traditions).map(tradition => ({ ...tradition, worldId: spec.id }));
+  return {
+    ...base,
+    id: spec.id,
+    name: spec.name,
+    family: spec.family,
+    description: spec.description,
+    level: 'world',
+    substyles: spec.substyles,
+    patterns,
+    traditions,
+    concepts: [...new Set(sources.flatMap(world => world.concepts))],
+    techniques: [...new Set(sources.flatMap(world => world.techniques))],
+    forms: [...new Set(sources.flatMap(world => world.forms))],
+    relationships: [...new Set(sources.flatMap(world => world.relationships))],
+    transformations: [...new Set(sources.flatMap(world => world.transformations))],
+    songBehaviors: [...new Set(sources.flatMap(world => world.songBehaviors))],
+    combinations: [...new Set(sources.flatMap(world => world.combinations ?? []))],
+  };
+}
+
+const RAW_GENRE_WORLDS: GenreWorld[] = TAXONOMY.map(spec =>
+  spec.id === 'tango' ? TANGO_WORLD : spec.id === 'flamenco' ? FLAMENCO_WORLD : buildTaxonomyWorld(spec)
+);
+
+export const GENRE_WORLDS: GenreWorld[] = RAW_GENRE_WORLDS.map(w => {
+  // The user explicitly requested that these two mature catalogs remain intact.
+  if (w.id === 'tango' || w.id === 'flamenco') return w;
+  return {
+    ...w,
+    name: cleanGenreName(w.id, w.name),
+    traditions: w.traditions.map(t => ({ ...t, name: t.name })),
+    patterns: w.patterns.map(p => ({
+      ...p,
+      name: cleanPatternName(p.name, p.shortName),
+      variants: p.variants?.map(v => ({ ...v, name: cleanPatternName(v.name, v.shortName) })),
     })),
-  })),
-}));
+  };
+});
 
 export const GENRE_WORLDS_BY_ID: Record<string, GenreWorld> = Object.fromEntries(
   GENRE_WORLDS.map(w => [w.id, w])
@@ -276,80 +305,31 @@ export const ALL_TRADITIONS = GENRE_WORLDS.flatMap(w => w.traditions);
 /*  catalog. A pattern keeps living in its home genre; it just also shows up  */
 /*  here when it's a good fit for the mood.                                   */
 /* ========================================================================== */
-export type PatternFeel =
-  | 'chaotic' | 'funny' | 'quirky'
-  | 'hypnotic' | 'frantic' | 'laid-back' | 'bouncy'
-  | 'cinematic' | 'mischievous' | 'rolling' | 'spacious';
+export type PatternFeel = 'laid-back' | 'bouncy' | 'rolling' | 'hypnotic' | 'cinematic';
 
 export const FEEL_LABELS: Record<PatternFeel, string> = {
-  chaotic: 'Chaotic',
-  funny: 'Funny',
-  quirky: 'Quirky',
-  hypnotic: 'Hypnotic',
-  frantic: 'Frantic',
   'laid-back': 'Laid-back',
   bouncy: 'Bouncy',
-  cinematic: 'Cinematic',
-  mischievous: 'Mischievous',
   rolling: 'Rolling',
-  spacious: 'Spacious',
+  hypnotic: 'Hypnotic',
+  cinematic: 'Cinematic',
 };
 
 // Alphabetical by label, so the filter chips read the same way every other
 // picklist in the app does.
-export const FEEL_ORDER: PatternFeel[] = (Object.keys(FEEL_LABELS) as PatternFeel[]).sort((a, b) =>
-  FEEL_LABELS[a].localeCompare(FEEL_LABELS[b])
-);
+export const FEEL_ORDER: PatternFeel[] = ['laid-back', 'bouncy', 'rolling', 'hypnotic', 'cinematic'];
 
 const PATTERN_FEELS: Record<string, PatternFeel[]> = {
-  // chaotic — irregular, tumbling, hard to predict
-  'metal-prog-odd-meter': ['chaotic'],
-  'math-odd-meter-drums': ['chaotic'],
-  'math-polymeter-interlock': ['chaotic'],
-  'rock-odd-meter': ['chaotic'],
-
-  // quirky — playful, oddball, but still tightly controlled
-  'math-tapping-7-8': ['quirky'],
-  'country-chicken': ['quirky'],
-  'zouk-ti-bwa': ['quirky'],
-  'cu-guacharaca': ['quirky'],
-  'kizomba-dikanza-scraper': ['quirky'],
-  'ht-acid-303': ['quirky'],
-
-  // hypnotic — repeating, trance-like, circular motion
-  'jazz-walking-bass': ['hypnotic'],
-  'elec-offbeat-hats': ['hypnotic'],
-  'ct-uilleann-drone': ['hypnotic'],
-  // frantic — urgent, high-density, barely-contained momentum
-  'hiphop-trap-hats': ['frantic'],
-  // laid-back — behind-the-beat, spacious pocket
   'sb-bossa-bass': ['laid-back'],
   'rd-one-drop': ['laid-back'],
   'kizomba-batida-groove': ['laid-back'],
-  // bouncy — elastic, buoyant, danceable
   'flam-abanico-strum-variant-rumba-strum': ['bouncy'],
   'sk-11-two-tone-guitar-pulse': ['bouncy'],
-  // cinematic — broad, dramatic, scene-setting
+  'jazz-walking-bass': ['hypnotic'],
+  'elec-offbeat-hats': ['hypnotic'],
+  'ct-uilleann-drone': ['hypnotic'],
   'fusion-deep-granular-pad': ['cinematic'],
-  'fusion-ambient-guitar-swells': ['cinematic'],
-  'flam-falseta-tremolo-swell': ['cinematic'],
-  // mischievous — cheeky accents, unexpected little turns
-  // rolling — continuous, flowing forward motion
-  'afro-highlife-guitar': ['rolling'],
-  'sb-pandeiro': ['rolling'],
-  'ct-reel-drive': ['rolling'],
-  // spacious — sparse, open, breathing
-  'fusion-sub-drone-bass': ['spacious'],
-  'folk-68-arpeggio': ['spacious'],
-  'ct-air-breath': ['spacious'],
-
-  // funny — novelty, cartoonish, a little goofy
-  'funk-chicken-scratch-guitar': ['funny', 'mischievous'],
-  'country-boom-chuck': ['funny', 'bouncy'],
-  'cu-14-cumbia-stop-break': ['funny', 'mischievous'],
-  'ct-opera-cue': ['funny'],
-  'elec-acid-303': ['funny'],
-  'hiphop-bounce': ['funny'],
+  'hiphop-trap-hats': ['rolling'],
 };
 
 export function feelsForPattern(id: string): PatternFeel[] {

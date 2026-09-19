@@ -9,172 +9,647 @@ export const FUNK_WORLD: GenreWorld = {
   "description": "The masters of groove: \"The One\" downbeat architecture, 16th-note syncopated slap bass, chicken-scratch 9th guitar chords, Clyde Stubblefield breakbeats, and warm Neo-Soul/Motown harmonic pockets.",
   "traditions": [
     {
-      "id": "funk-pfunk-neworleans",
+      "id": "funk-p-funk",
       "worldId": "funk",
-      "name": "Funk & Second Line (James Brown, P-Funk, New Orleans)",
-      "origin": "New Orleans, Detroit, Cincinnati",
-      "era": "1965–Present",
-      "description": "The root of all groove: \"The One\" (heavy downbeat on 1), 16th-note syncopated slap bass, chicken-scratch 9th guitar chords, and crisp horn stabs.",
+      "name": "P-Funk",
+      "origin": "Plainfield, NJ / Detroit",
+      "era": "1970s",
+      "description": "Heavy On The One • Space Bass • Psychedelic\nGeorge Clinton's cosmic funk universe.\nParliament · Funkadelic",
       "characteristicInstruments": [
         "bass",
-        "electric-guitar",
         "drums",
-        "keys",
-        "trumpet",
-        "sax"
+        "electric-guitar",
+        "synth",
+        "brass",
+        "voice"
       ],
       "preferredMeters": [
         "4/4"
       ],
       "tempoRange": [
-        90,
-        118
+        96,
+        116
       ],
       "keySubstyles": [
-        "P-Funk",
-        "Deep Funk (The Meters)",
-        "New Orleans Second Line",
-        "Go-Go",
-        "Funk Rock"
+        "Parliament Funk",
+        "Space Funk",
+        "Psychedelic Funk Rock"
       ],
       "coreConcepts": [
-        "The One (downbeat emphasis)",
-        "chicken-scratch guitar muting",
-        "ghost notes",
-        "clavinet syncopated ostinatos"
+        "absolute emphasis on \"The One\"",
+        "Mu-Tron envelope filtered bass (Bootsy Collins)",
+        "Bernie Worrell Minimoog squelches",
+        "layered humorous party chants"
       ],
       "rhythmicGrammar": [
-        "16th-note syncopated grid",
-        "bass slap on 1 followed by syncopated offbeat pops"
+        "explosive accent on downbeat 1 followed by intricate syncopated 16th-note subdivisions"
       ],
       "danceTags": [
         "social-partner",
-        "wcs-compatible",
-        "festival-fusion",
-        "solo-vernacular"
+        "wcs-compatible"
       ],
       "tuningSystem": "12-tet",
-      "signatureCell": "Explosive root slap on The One with syncopated 16th ghost notes and chicken-scratch 9th guitar",
+      "signatureCell": "Massive downbeat \"ONE\" followed by Bootsy envelope-filter bass bubble and synth squelch",
       "grooveMechanics": {
-        "swingPercentage": 54,
+        "swingPercentage": 58,
         "anticipationOffsetSteps": 0,
-        "microtimingFeel": "laid-back"
+        "microtimingFeel": "swung"
       },
       "sectionProgressions": {
         "intro": [
-          "E9",
-          "E9",
-          "E9",
-          "E9"
+          "E7#9",
+          "E7#9",
+          "E7#9",
+          "E7#9"
         ],
-        "verse": [
-          "E9",
-          "A13",
-          "E9",
-          "B7#9"
+        "groove": [
+          "E7#9",
+          "E7#9",
+          "A7",
+          "E7#9",
+          "E7#9",
+          "E7#9",
+          "B7",
+          "E7#9"
         ],
-        "chorus": [
-          "A13",
-          "G13",
-          "A13",
-          "E9"
-        ],
-        "solo": [
-          "E9",
-          "E9",
-          "E9",
-          "E9"
+        "break": [
+          "A7",
+          "A7",
+          "E7#9",
+          "E7#9",
+          "B7",
+          "A7",
+          "E7#9",
+          "E7#9"
         ],
         "coda": [
-          "E9",
-          "E9",
-          "E9",
-          "E9"
+          "E7#9",
+          "E7#9",
+          "E7#9",
+          "E7#9"
         ]
       }
     },
     {
-      "id": "soul-motown-neosoul",
+      "id": "funk-deep-funk",
       "worldId": "funk",
-      "name": "R&B, Motown & Neo-Soul (J Dilla / D’Angelo)",
-      "origin": "Detroit, Memphis, Philadelphia, New York",
-      "era": "1960–Present",
-      "description": "Warm, emotional groove music: Motown 4-on-the-floor tambourine, Stax horn punch, and Dilla-style swung \"drunken\" backbeats.",
+      "name": "Deep Funk",
+      "origin": "New Orleans / Cincinnati",
+      "era": "Late 1960s–1970s",
+      "description": "Raw • Syncopated • Tight\nAnalog rhythm section workouts.\nThe Meters · Sharon Jones & The Dap-Kings",
       "characteristicInstruments": [
-        "bass",
-        "piano",
         "drums",
+        "bass",
         "electric-guitar",
-        "strings",
-        "voice"
+        "organ",
+        "brass"
       ],
       "preferredMeters": [
-        "4/4",
-        "6/8"
+        "4/4"
       ],
       "tempoRange": [
-        75,
-        105
+        88,
+        108
       ],
       "keySubstyles": [
-        "Classic Motown",
-        "Stax Southern Soul",
-        "Philadelphia Soul",
-        "Neo-Soul (D’Angelo / Erykah Badu)"
+        "New Orleans Second Line Funk",
+        "Sister Funk"
       ],
       "coreConcepts": [
-        "James Jamerson melodic bassline",
-        "Dilla swing / unquantized pocket",
-        "Wurlitzer / Rhodes tremolo chords",
-        "vocal falsetto and runs"
+        "Zigaboo Modeliste second-line syncopated drum phrasing",
+        "single-note scratching guitar skanks",
+        "punchy Hammond organ stabs",
+        "deep dry bass grooves"
       ],
       "rhythmicGrammar": [
-        "snare placed slightly behind the beat (laid back pocket)",
-        "continuous 16th shaker or tambourine"
+        "displaced snare accents and syncopated hi-hat barks weaving around rolling kick"
       ],
       "danceTags": [
         "social-partner",
-        "wcs-compatible",
-        "blues-fusion-compatible",
-        "listening"
+        "wcs-compatible"
       ],
       "tuningSystem": "12-tet",
-      "signatureCell": "Warm Rhodes tremolo chords with Jamerson melodic bass and unquantized Dilla snare pocket",
+      "signatureCell": "Syncopated second-line snare drag locked with clean single-note guitar chicken-scratch",
       "grooveMechanics": {
-        "swingPercentage": 58,
+        "swingPercentage": 60,
         "anticipationOffsetSteps": 0,
-        "microtimingFeel": "laid-back"
+        "microtimingFeel": "swung"
       },
       "sectionProgressions": {
         "intro": [
-          "Fmaj7",
-          "Em7",
-          "Dm7",
-          "Cmaj7"
+          "C7",
+          "C7",
+          "C7",
+          "C7"
         ],
-        "verse": [
-          "Fmaj7",
-          "Em7",
-          "Dm7",
-          "Cmaj7"
-        ],
-        "chorus": [
-          "Bbmaj7",
-          "Am7",
-          "Gm7",
+        "groove": [
+          "C7",
+          "F7",
+          "C7",
+          "G7",
+          "C7",
+          "F7",
+          "G7",
           "C7"
         ],
         "solo": [
-          "Fmaj7",
-          "Em7",
-          "Dm7",
-          "Cmaj7"
+          "F7",
+          "F7",
+          "C7",
+          "C7",
+          "G7",
+          "F7",
+          "C7",
+          "C7"
         ],
         "coda": [
-          "Fmaj7",
+          "G7",
+          "F7",
+          "C7",
+          "C7"
+        ]
+      }
+    },
+    {
+      "id": "funk-synth-funk",
+      "worldId": "funk",
+      "name": "Synth Funk",
+      "origin": "Minneapolis / Los Angeles",
+      "era": "1980s",
+      "description": "Electronic • Drum Machine • Slap Bass\n80s electro-funk Minneapolis sound.\nPrince · Cameo",
+      "characteristicInstruments": [
+        "synth",
+        "drums",
+        "bass",
+        "electric-guitar",
+        "brass",
+        "voice"
+      ],
+      "preferredMeters": [
+        "4/4"
+      ],
+      "tempoRange": [
+        108,
+        124
+      ],
+      "keySubstyles": [
+        "Minneapolis Sound",
+        "Electro Funk"
+      ],
+      "coreConcepts": [
+        "LinnDrum gated drum machine beats",
+        "Oberheim/Prophet synth brass chords",
+        "aggressive slap and pop basslines",
+        "clean funky Stratocaster rhythms"
+      ],
+      "rhythmicGrammar": [
+        "tight electronic 16th-note grid with sharp snare crack and syncopated bass slaps"
+      ],
+      "danceTags": [
+        "social-partner",
+        "wcs-compatible"
+      ],
+      "tuningSystem": "12-tet",
+      "signatureCell": "LinnDrum side-stick crack with punchy Oberheim synth brass stab and thumb-slap bass",
+      "grooveMechanics": {
+        "swingPercentage": 50,
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "straight"
+      },
+      "sectionProgressions": {
+        "intro": [
+          "Dm",
+          "G",
+          "Dm",
+          "G"
+        ],
+        "verse": [
+          "Dm",
+          "G",
+          "Dm",
+          "G",
+          "Dm",
+          "G",
+          "Bb",
+          "C"
+        ],
+        "chorus": [
+          "Bb",
+          "C",
+          "Dm",
+          "Dm",
+          "Bb",
+          "C",
+          "Dm",
+          "Dm"
+        ],
+        "coda": [
+          "Bb",
+          "C",
+          "Dm",
+          "Dm"
+        ]
+      }
+    },
+    {
+      "id": "funk-disco",
+      "worldId": "funk",
+      "name": "Disco",
+      "origin": "New York City / Philadelphia",
+      "era": "1970s",
+      "description": "Four-on-the-floor • Strings • Glamorous\nOrchestral dance club groove.\nChic · Donna Summer",
+      "characteristicInstruments": [
+        "drums",
+        "bass",
+        "electric-guitar",
+        "strings",
+        "brass",
+        "voice"
+      ],
+      "preferredMeters": [
+        "4/4"
+      ],
+      "tempoRange": [
+        115,
+        128
+      ],
+      "keySubstyles": [
+        "Philly Disco",
+        "Chic Organization Sound",
+        "Euro Disco"
+      ],
+      "coreConcepts": [
+        "Nile Rodgers \"chucking\" rhythm guitar style",
+        "Bernard Edwards driving octave slap/finger bass",
+        "four-on-the-floor kick with open hi-hat on every upbeat",
+        "sweeping string orchestra lines"
+      ],
+      "rhythmicGrammar": [
+        "four-on-the-floor kick with open hi-hat on every upbeat and 16th-note guitar chucking"
+      ],
+      "danceTags": [
+        "social-partner",
+        "wcs-compatible"
+      ],
+      "tuningSystem": "12-tet",
+      "signatureCell": "Nile Rodgers 16th-note chucking guitar rhythm locked with driving octave disco bassline",
+      "grooveMechanics": {
+        "swingPercentage": 50,
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "straight"
+      },
+      "sectionProgressions": {
+        "intro": [
           "Em7",
+          "A7",
+          "Em7",
+          "A7"
+        ],
+        "verse": [
+          "Em7",
+          "A7",
+          "Em7",
+          "A7",
+          "Em7",
+          "A7",
+          "Em7",
+          "A7"
+        ],
+        "chorus": [
+          "Cmaj7",
+          "Bm7",
+          "Am7",
+          "Bm7",
+          "Cmaj7",
+          "Bm7",
+          "Em7",
+          "Em7"
+        ],
+        "coda": [
+          "Cmaj7",
+          "Bm7",
+          "Em7",
+          "Em7"
+        ]
+      }
+    },
+    {
+      "id": "funk-go-go",
+      "worldId": "funk",
+      "name": "Go-Go",
+      "origin": "Washington, D.C.",
+      "era": "1970s–1980s",
+      "description": "Percussive • Call-and-Response • Non-stop\nD.C. continuous cowbell dance marathon.\nChuck Brown · Trouble Funk",
+      "characteristicInstruments": [
+        "drums",
+        "cowbell",
+        "timbales",
+        "bass",
+        "brass",
+        "organ",
+        "voice"
+      ],
+      "preferredMeters": [
+        "4/4"
+      ],
+      "tempoRange": [
+        92,
+        108
+      ],
+      "keySubstyles": [
+        "D.C. Go-Go",
+        "Heavy Go-Go Funk"
+      ],
+      "coreConcepts": [
+        "relentless syncopated cowbell/woodblock pattern",
+        "driving rototom/timbale fills",
+        "continuous non-stop live show transitions",
+        "charismatic crowd call-and-response"
+      ],
+      "rhythmicGrammar": [
+        "syncopated rototom and double-cowbell pattern driving over laid-back half-time kick/snare pocket"
+      ],
+      "danceTags": [
+        "social-partner",
+        "festival-fusion"
+      ],
+      "tuningSystem": "12-tet",
+      "signatureCell": "Syncopated dual cowbell pattern driving relentless D.C. pocket under shouting vocal calls",
+      "grooveMechanics": {
+        "swingPercentage": 56,
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "swung"
+      },
+      "sectionProgressions": {
+        "intro": [
+          "Am7",
+          "D7",
+          "Am7",
+          "D7"
+        ],
+        "groove": [
+          "Am7",
+          "D7",
+          "Am7",
+          "D7",
+          "Am7",
+          "D7",
+          "Am7",
+          "D7"
+        ],
+        "break": [
+          "F7",
+          "E7",
+          "Am7",
+          "D7",
+          "F7",
+          "E7",
+          "Am7",
+          "Am7"
+        ],
+        "coda": [
+          "Am7",
+          "D7",
+          "Am7",
+          "Am7"
+        ]
+      }
+    },
+    {
+      "id": "funk-boogie",
+      "worldId": "funk",
+      "name": "Boogie",
+      "origin": "New York / London",
+      "era": "Late 1970s–Early 1980s",
+      "description": "Mid-tempo • Synth Bass • Electric\nPost-disco electronic funk groove.\nEvelyn \"Champagne\" King · D-Train",
+      "characteristicInstruments": [
+        "synth",
+        "bass",
+        "drums",
+        "electric-guitar",
+        "piano",
+        "voice"
+      ],
+      "preferredMeters": [
+        "4/4"
+      ],
+      "tempoRange": [
+        106,
+        118
+      ],
+      "keySubstyles": [
+        "Post-Disco Boogie",
+        "Electro Boogie"
+      ],
+      "coreConcepts": [
+        "heavy Minimoog/Pro-One synth basslines",
+        "handclap and snare backbeats",
+        "shimmering electric piano chords",
+        "smooth soulful vocal hooks"
+      ],
+      "rhythmicGrammar": [
+        "mid-tempo 4/4 with punchy synth bass on 16th syncopations and crisp handclaps on 2 and 4"
+      ],
+      "danceTags": [
+        "social-partner",
+        "wcs-compatible"
+      ],
+      "tuningSystem": "12-tet",
+      "signatureCell": "Fat analog synth bass bounce driving under crisp handclap backbeat and bright Rhodes chords",
+      "grooveMechanics": {
+        "swingPercentage": 54,
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "straight"
+      },
+      "sectionProgressions": {
+        "intro": [
+          "Fm7",
+          "Bbm7",
+          "Eb7",
+          "Abmaj7"
+        ],
+        "verse": [
+          "Fm7",
+          "Bbm7",
+          "Eb7",
+          "Abmaj7",
+          "Dbmaj7",
+          "Bbm7",
+          "C7",
+          "C7"
+        ],
+        "chorus": [
+          "Dbmaj7",
+          "Eb",
+          "Fm7",
+          "Ab",
+          "Dbmaj7",
+          "Eb",
+          "Fm7",
+          "Fm7"
+        ],
+        "coda": [
+          "Dbmaj7",
+          "Eb",
+          "Fm7",
+          "Fm7"
+        ]
+      }
+    },
+    {
+      "id": "funk-afrobeat",
+      "worldId": "funk",
+      "name": "Afrobeat",
+      "origin": "Lagos, Nigeria",
+      "era": "1970s",
+      "description": "Polyrhythmic • Horn Section • Endless Groove\nFela Kuti's funk-jazz revolution.\nFela Kuti · Tony Allen",
+      "characteristicInstruments": [
+        "drums",
+        "bass",
+        "electric-guitar",
+        "brass",
+        "percussion",
+        "organ"
+      ],
+      "preferredMeters": [
+        "4/4"
+      ],
+      "tempoRange": [
+        112,
+        126
+      ],
+      "keySubstyles": [
+        "Classic Afrobeat",
+        "Afrobeat Big Band"
+      ],
+      "coreConcepts": [
+        "Tony Allen polyrhythmic 4-limb drum independence",
+        "dual interlocking rhythm guitars",
+        "punchy declarative horn blasts",
+        "hypnotic modal organ vamps"
+      ],
+      "rhythmicGrammar": [
+        "relentless 16th hi-hat pulse with syncopated cross-stick snare and repeating bass riff"
+      ],
+      "danceTags": [
+        "social-partner",
+        "festival-fusion"
+      ],
+      "tuningSystem": "12-tet",
+      "signatureCell": "Two interlocking guitars weaving around Tony Allen polyrhythmic snare cross-stick and bass vamp",
+      "grooveMechanics": {
+        "swingPercentage": 52,
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "straight"
+      },
+      "sectionProgressions": {
+        "intro": [
           "Dm7",
-          "Cmaj7"
+          "Dm7",
+          "Dm7",
+          "Dm7"
+        ],
+        "groove": [
+          "Dm7",
+          "G7",
+          "Dm7",
+          "G7",
+          "Dm7",
+          "G7",
+          "Dm7",
+          "G7"
+        ],
+        "solo": [
+          "Dm7",
+          "G7",
+          "Dm7",
+          "G7"
+        ],
+        "coda": [
+          "Dm7",
+          "Dm7",
+          "Dm7",
+          "Dm7"
+        ]
+      }
+    },
+    {
+      "id": "funk-carioca",
+      "worldId": "funk",
+      "name": "Funk Carioca",
+      "origin": "Rio de Janeiro Favelas, Brazil",
+      "era": "1990s–Present",
+      "description": "Volt Mix Beat • Vocal Chants • Raw\nRio favela baile funk energy.\nMC Marcinho · Anitta",
+      "characteristicInstruments": [
+        "drums",
+        "sub-bass",
+        "sampler",
+        "voice",
+        "synth"
+      ],
+      "preferredMeters": [
+        "4/4"
+      ],
+      "tempoRange": [
+        128,
+        136
+      ],
+      "keySubstyles": [
+        "Baile Funk",
+        "Funk 150 BPM",
+        "Funk Melody"
+      ],
+      "coreConcepts": [
+        "iconic \"Tamborzão\" / Volt Mix syncopated beat",
+        "call-and-response favela vocal shouts",
+        "sub-bass drops and siren sound effects",
+        "explosive street party dance"
+      ],
+      "rhythmicGrammar": [
+        "distinctive Tamborzão drum beat: boom... ch-ch-boom... ch-boom... syncopation"
+      ],
+      "danceTags": [
+        "festival-fusion"
+      ],
+      "tuningSystem": "12-tet",
+      "signatureCell": "Explosive Tamborzão favela drum rhythm driving under aggressive call-and-response vocal chant",
+      "grooveMechanics": {
+        "swingPercentage": 50,
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "straight"
+      },
+      "sectionProgressions": {
+        "intro": [
+          "Am",
+          "Am",
+          "Am",
+          "Am"
+        ],
+        "verse": [
+          "Am",
+          "F",
+          "G",
+          "Am",
+          "Am",
+          "F",
+          "G",
+          "Am"
+        ],
+        "drop": [
+          "Am",
+          "Am",
+          "Am",
+          "Am",
+          "Am",
+          "F",
+          "G",
+          "Am"
+        ],
+        "coda": [
+          "F",
+          "G",
+          "Am",
+          "Am"
         ]
       }
     }
@@ -182,23 +657,30 @@ export const FUNK_WORLD: GenreWorld = {
   "substyles": [
     "P-Funk",
     "Deep Funk",
-    "New Orleans Second Line",
-    "Classic Motown",
-    "Stax Southern Soul",
-    "Neo-Soul",
-    "Funk Rock",
-    "Go-Go"
+    "Synth Funk",
+    "Disco",
+    "Go-Go",
+    "Boogie",
+    "Afrobeat",
+    "Funk Carioca"
   ],
   "artists": [
-    "James Brown",
-    "George Clinton / Parliament-Funkadelic",
+    "Parliament",
+    "Funkadelic",
     "The Meters",
-    "Stevie Wonder",
-    "Sly & The Family Stone",
-    "D’Angelo",
+    "Sharon Jones & The Dap-Kings",
     "Prince",
-    "Erykah Badu",
-    "Earth, Wind & Fire"
+    "Cameo",
+    "Chic",
+    "Donna Summer",
+    "Chuck Brown",
+    "Trouble Funk",
+    "Evelyn \"Champagne\" King",
+    "D-Train",
+    "Fela Kuti",
+    "Tony Allen",
+    "MC Marcinho",
+    "Anitta"
   ],
   "concepts": [
     "The One",
@@ -2305,11 +2787,15 @@ export const FUNK_WORLD: GenreWorld = {
       "roles": [
         "voice"
       ],
-      "instruments": ["voice"],
+      "instruments": [
+        "voice"
+      ],
       "compatibleRoles": [
         "voice"
       ],
-      "compatibleInstruments": ["voice"],
+      "compatibleInstruments": [
+        "voice"
+      ],
       "canCrossRole": true,
       "meter": "4/4",
       "cycleLength": 1,
@@ -2493,11 +2979,15 @@ export const FUNK_WORLD: GenreWorld = {
       "roles": [
         "voice"
       ],
-      "instruments": ["voice"],
+      "instruments": [
+        "voice"
+      ],
       "compatibleRoles": [
         "voice"
       ],
-      "compatibleInstruments": ["voice"],
+      "compatibleInstruments": [
+        "voice"
+      ],
       "canCrossRole": true,
       "meter": "4/4",
       "cycleLength": 1,
@@ -3105,12 +3595,16 @@ export const FUNK_WORLD: GenreWorld = {
       "roles": [
         "voice"
       ],
-      "instruments": ["voice"],
+      "instruments": [
+        "voice"
+      ],
       "compatibleRoles": [
         "voice",
         "lead"
       ],
-      "compatibleInstruments": ["voice"],
+      "compatibleInstruments": [
+        "voice"
+      ],
       "meter": "4/4",
       "cycleLength": 1,
       "subdivisions": 16,

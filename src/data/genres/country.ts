@@ -9,14 +9,16 @@ export const COUNTRY_WORLD: GenreWorld = {
   "description": "Story-driven American roots music featuring honky-tonk shuffles, train beats, acoustic flatpicking, and polished Nashville arrangements.",
   "traditions": [
     {
-      "id": "country-honky-tonk",
+      "id": "country-neotraditional",
       "worldId": "country",
-      "name": "Honky Tonk",
-      "origin": "US South",
-      "era": "1950s-Present",
-      "description": "Danceable country with shuffle rhythm.",
+      "name": "Neotraditional",
+      "origin": "Nashville / Texas",
+      "era": "1980s–Present",
+      "description": "Fiddle & Steel • 4/4 • Storytelling\n80s revival of classic honky-tonk sound.\nGeorge Strait · Randy Travis",
       "characteristicInstruments": [
-        "guitar",
+        "steel-guitar",
+        "fiddle",
+        "acoustic-guitar",
         "electric-guitar",
         "bass",
         "drums"
@@ -25,29 +27,30 @@ export const COUNTRY_WORLD: GenreWorld = {
         "4/4"
       ],
       "tempoRange": [
-        90,
-        130
+        98,
+        122
       ],
       "keySubstyles": [
+        "80s/90s Country Revival",
         "Traditional Country"
       ],
       "coreConcepts": [
-        "boom-chuck",
-        "shuffle"
+        "singing pedal steel guitar bends",
+        "sawstroke twin fiddle harmonies",
+        "warm acoustic rhythm strum",
+        "sincere baritone storytelling vocals"
       ],
       "rhythmicGrammar": [
-        "bass on 1 and 3",
-        "strum on 2 and 4"
+        "two-step kick/snare train beat with root-fifth bassline and steel guitar fills"
       ],
       "danceTags": [
         "social-partner",
-        "wcs-compatible",
-        "solo-vernacular"
+        "wcs-compatible"
       ],
       "tuningSystem": "12-tet",
-      "signatureCell": "Alternating root-fifth boom-chuck bass and telecaster chicken pickin over snare train beat",
+      "signatureCell": "Weeping pedal steel guitar swell answering clean baritone vocal line",
       "grooveMechanics": {
-        "swingPercentage": 58,
+        "swingPercentage": 52,
         "anticipationOffsetSteps": 0,
         "microtimingFeel": "straight"
       },
@@ -60,14 +63,22 @@ export const COUNTRY_WORLD: GenreWorld = {
         ],
         "verse": [
           "G",
+          "C",
+          "D",
+          "G",
           "G",
           "C",
+          "D",
           "G"
         ],
         "chorus": [
           "C",
-          "G",
           "D",
+          "G",
+          "Em",
+          "C",
+          "D",
+          "G",
           "G"
         ],
         "solo": [
@@ -77,7 +88,7 @@ export const COUNTRY_WORLD: GenreWorld = {
           "G"
         ],
         "coda": [
-          "G",
+          "C",
           "D",
           "G",
           "G"
@@ -85,43 +96,128 @@ export const COUNTRY_WORLD: GenreWorld = {
       }
     },
     {
-      "id": "country-contemporary",
+      "id": "country-outlaw",
       "worldId": "country",
-      "name": "Contemporary Country",
-      "origin": "Nashville",
-      "era": "1990s-Present",
-      "description": "Pop and rock influenced country.",
+      "name": "Outlaw",
+      "origin": "Austin, Texas / Nashville",
+      "era": "1970s",
+      "description": "Gritty • Driving • Rebellious\nRaw, rock-edged anti-Nashville stance.\nWaylon Jennings · Willie Nelson",
       "characteristicInstruments": [
         "electric-guitar",
-        "guitar",
+        "acoustic-guitar",
+        "bass",
         "drums",
-        "bass"
+        "harmonica",
+        "voice"
       ],
       "preferredMeters": [
         "4/4"
       ],
       "tempoRange": [
-        80,
-        140
+        105,
+        128
       ],
       "keySubstyles": [
-        "Country Pop",
-        "Country Rock"
+        "Texas Outlaw Country",
+        "Progressive Country"
       ],
       "coreConcepts": [
-        "straight 8ths",
-        "rock backbeat"
+        "driving four-on-the-floor rock beat",
+        "phaser-drenched Telecaster rhythm",
+        "nylon-string trigger acoustic leads",
+        "rebellious narrative lyrics"
       ],
       "rhythmicGrammar": [
-        "driving 8ths"
+        "heavy driving four-beat kick with syncopated bass and chugging electric rhythm"
       ],
       "danceTags": [
         "social-partner",
-        "wcs-compatible",
-        "listening"
+        "wcs-compatible"
       ],
       "tuningSystem": "12-tet",
-      "signatureCell": "Driving straight 8th rock backbeat with acoustic rhythm bed and soaring vocal chorus",
+      "signatureCell": "Phaser-soaked electric guitar chug locked with driving four-on-the-floor kick",
+      "grooveMechanics": {
+        "swingPercentage": 50,
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "straight"
+      },
+      "sectionProgressions": {
+        "intro": [
+          "A",
+          "D",
+          "E",
+          "A"
+        ],
+        "verse": [
+          "A",
+          "A",
+          "D",
+          "A",
+          "A",
+          "A",
+          "E",
+          "A"
+        ],
+        "chorus": [
+          "D",
+          "D",
+          "A",
+          "A",
+          "E",
+          "E",
+          "A",
+          "A"
+        ],
+        "coda": [
+          "D",
+          "E",
+          "A",
+          "A"
+        ]
+      }
+    },
+    {
+      "id": "country-bluegrass",
+      "worldId": "country",
+      "name": "Bluegrass",
+      "origin": "Kentucky / Appalachia",
+      "era": "1940s–Present",
+      "description": "Acoustic • High-Speed • Virtuosic\nFast banjo, fiddle, mandolin chop.\nBill Monroe · Flatt & Scruggs",
+      "characteristicInstruments": [
+        "banjo",
+        "mandolin",
+        "fiddle",
+        "guitar",
+        "upright-bass"
+      ],
+      "preferredMeters": [
+        "2/4",
+        "4/4"
+      ],
+      "tempoRange": [
+        130,
+        165
+      ],
+      "keySubstyles": [
+        "Traditional Bluegrass",
+        "Newgrass",
+        "Scruggs Style"
+      ],
+      "coreConcepts": [
+        "three-finger Scruggs banjo rolls",
+        "percussive mandolin backbeat chop",
+        "high lonesome tenor harmonies",
+        "blistering acoustic solo trades"
+      ],
+      "rhythmicGrammar": [
+        "fast 2/4 boom-chick bass with offbeat mandolin chop on beats 2 and 4"
+      ],
+      "danceTags": [
+        "social-partner",
+        "festival-fusion"
+      ],
+      "tuningSystem": "12-tet",
+      "signatureCell": "Rapid 3-finger banjo roll erupting into syncopated mandolin chop on the backbeat",
       "grooveMechanics": {
         "swingPercentage": 50,
         "anticipationOffsetSteps": 0,
@@ -129,56 +225,506 @@ export const COUNTRY_WORLD: GenreWorld = {
       },
       "sectionProgressions": {
         "intro": [
-          "D",
           "G",
-          "Bm",
-          "A"
+          "C",
+          "D",
+          "G"
         ],
         "verse": [
-          "D",
           "G",
-          "Bm",
-          "A"
+          "G",
+          "C",
+          "G",
+          "G",
+          "Em",
+          "D",
+          "G"
         ],
         "chorus": [
+          "C",
           "G",
           "D",
-          "A",
-          "Bm"
+          "G",
+          "C",
+          "G",
+          "D",
+          "G"
         ],
         "solo": [
-          "Em",
           "G",
+          "C",
           "D",
-          "A"
+          "G"
         ],
         "coda": [
+          "C",
           "D",
           "G",
-          "D",
-          "D"
+          "G"
+        ]
+      }
+    },
+    {
+      "id": "country-honky-tonk",
+      "worldId": "country",
+      "name": "Honky-Tonk",
+      "origin": "Texas / Oklahoma / Nashville",
+      "era": "1940s–1950s",
+      "description": "Twin Fiddle • Steel • 2-Step\nBeer-joint two-step dance rhythm.\nHank Williams · Lefty Frizzell",
+      "characteristicInstruments": [
+        "fiddle",
+        "steel-guitar",
+        "acoustic-guitar",
+        "upright-bass",
+        "piano",
+        "voice"
+      ],
+      "preferredMeters": [
+        "4/4",
+        "2/4"
+      ],
+      "tempoRange": [
+        100,
+        126
+      ],
+      "keySubstyles": [
+        "Classic Honky Tonk",
+        "Hard Country"
+      ],
+      "coreConcepts": [
+        "twin fiddle leads",
+        "steely weeping slide licks",
+        "honky-tonk upright piano tinkle",
+        "unflinching heartbreak lyricism"
+      ],
+      "rhythmicGrammar": [
+        "classic boom-chick two-step bass with steady rhythm guitar acoustic strum"
+      ],
+      "danceTags": [
+        "social-partner",
+        "wcs-compatible"
+      ],
+      "tuningSystem": "12-tet",
+      "signatureCell": "Weeping steel guitar slide leading into twin fiddle turnaround over two-step bass",
+      "grooveMechanics": {
+        "swingPercentage": 52,
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "straight"
+      },
+      "sectionProgressions": {
+        "intro": [
+          "C",
+          "F",
+          "G7",
+          "C"
+        ],
+        "verse": [
+          "C",
+          "C",
+          "F",
+          "C",
+          "C",
+          "C",
+          "G7",
+          "G7",
+          "C",
+          "C",
+          "F",
+          "C",
+          "C",
+          "G7",
+          "C",
+          "C"
+        ],
+        "coda": [
+          "F",
+          "G7",
+          "C",
+          "C"
+        ]
+      }
+    },
+    {
+      "id": "country-bakersfield",
+      "worldId": "country",
+      "name": "Bakersfield",
+      "origin": "Bakersfield, California",
+      "era": "1950s–1960s",
+      "description": "Twangy • Telecaster • Loud\nWest Coast hard-driving electric country.\nBuck Owens · Merle Haggard",
+      "characteristicInstruments": [
+        "electric-guitar",
+        "steel-guitar",
+        "bass",
+        "drums",
+        "fiddle",
+        "voice"
+      ],
+      "preferredMeters": [
+        "4/4"
+      ],
+      "tempoRange": [
+        115,
+        140
+      ],
+      "keySubstyles": [
+        "Bakersfield Sound",
+        "California Country"
+      ],
+      "coreConcepts": [
+        "snappy treble-boosted Fender Telecaster twang",
+        "driving rock-influenced drum backbeat",
+        "pedal steel harmony fills",
+        "punchy straightforward vocal delivery"
+      ],
+      "rhythmicGrammar": [
+        "driving drum beat with prominent snare backbeat on 2 and 4 and driving bass"
+      ],
+      "danceTags": [
+        "social-partner",
+        "wcs-compatible"
+      ],
+      "tuningSystem": "12-tet",
+      "signatureCell": "Treble-heavy Telecaster twang lick backed by snappy drum rimshots",
+      "grooveMechanics": {
+        "swingPercentage": 50,
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "straight"
+      },
+      "sectionProgressions": {
+        "intro": [
+          "E",
+          "A",
+          "B7",
+          "E"
+        ],
+        "verse": [
+          "E",
+          "E",
+          "A",
+          "E",
+          "E",
+          "E",
+          "B7",
+          "B7",
+          "E",
+          "E",
+          "A",
+          "E",
+          "E",
+          "B7",
+          "E",
+          "E"
+        ],
+        "chorus": [
+          "A",
+          "A",
+          "E",
+          "E",
+          "B7",
+          "B7",
+          "E",
+          "E"
+        ],
+        "coda": [
+          "A",
+          "B7",
+          "E",
+          "E"
+        ]
+      }
+    },
+    {
+      "id": "country-americana",
+      "worldId": "country",
+      "name": "Americana",
+      "origin": "USA",
+      "era": "1990s–Present",
+      "description": "Rootsy • Acoustic • Soulful\nContemporary folk-country hybrid.\nJason Isbell · Gillian Welch",
+      "characteristicInstruments": [
+        "acoustic-guitar",
+        "fiddle",
+        "banjo",
+        "bass",
+        "drums",
+        "voice"
+      ],
+      "preferredMeters": [
+        "4/4",
+        "3/4"
+      ],
+      "tempoRange": [
+        80,
+        108
+      ],
+      "keySubstyles": [
+        "Roots Rock",
+        "Alt-Country",
+        "Contemporary Roots"
+      ],
+      "coreConcepts": [
+        "intimate acoustic songwriting",
+        "rich close-harmony vocals",
+        "organic analog production",
+        "literary introspective lyricism"
+      ],
+      "rhythmicGrammar": [
+        "relaxed organic drum pocket with deep bass and warm acoustic strumming"
+      ],
+      "danceTags": [
+        "listening",
+        "social-partner"
+      ],
+      "tuningSystem": "12-tet",
+      "signatureCell": "Warm fingerpicked acoustic guitar paired with plaintive close-harmony vocals",
+      "grooveMechanics": {
+        "swingPercentage": 52,
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "laid-back"
+      },
+      "sectionProgressions": {
+        "intro": [
+          "Am",
+          "F",
+          "C",
+          "G"
+        ],
+        "verse": [
+          "Am",
+          "F",
+          "C",
+          "G",
+          "Am",
+          "F",
+          "C",
+          "G"
+        ],
+        "chorus": [
+          "F",
+          "C",
+          "G",
+          "Am",
+          "F",
+          "C",
+          "G",
+          "G"
+        ],
+        "coda": [
+          "F",
+          "G",
+          "C",
+          "C"
+        ]
+      }
+    },
+    {
+      "id": "country-nashville-sound",
+      "worldId": "country",
+      "name": "Nashville Sound",
+      "origin": "Nashville, Tennessee",
+      "era": "Late 1950s–1960s",
+      "description": "Smooth • Strings • Polished\nPop-country crossover with vocal chorus.\nPatsy Cline · Jim Reeves",
+      "characteristicInstruments": [
+        "strings",
+        "piano",
+        "steel-guitar",
+        "upright-bass",
+        "drums",
+        "voice"
+      ],
+      "preferredMeters": [
+        "4/4",
+        "3/4"
+      ],
+      "tempoRange": [
+        72,
+        95
+      ],
+      "keySubstyles": [
+        "Countrypolitan",
+        "Smooth Country Pop"
+      ],
+      "coreConcepts": [
+        "lush orchestral string section pads",
+        "slip-note Floyd Cramer piano style",
+        "smooth background vocal quartets (The Jordanaires)",
+        "velvety lead vocals"
+      ],
+      "rhythmicGrammar": [
+        "gentle brushed snare pulse with warm upright bass and subtle guitar ticks"
+      ],
+      "danceTags": [
+        "social-partner",
+        "listening"
+      ],
+      "tuningSystem": "12-tet",
+      "signatureCell": "Floyd Cramer slip-note piano melody enveloped in lush string orchestra swells",
+      "grooveMechanics": {
+        "swingPercentage": 54,
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "laid-back"
+      },
+      "sectionProgressions": {
+        "intro": [
+          "C",
+          "Am",
+          "Dm7",
+          "G7"
+        ],
+        "verse": [
+          "C",
+          "Am",
+          "Dm7",
+          "G7",
+          "C",
+          "C7",
+          "F",
+          "Fm",
+          "C",
+          "Am",
+          "Dm7",
+          "G7",
+          "C",
+          "F",
+          "C",
+          "G7"
+        ],
+        "chorus": [
+          "F",
+          "G7",
+          "C",
+          "Am",
+          "Dm7",
+          "G7",
+          "C",
+          "C"
+        ],
+        "coda": [
+          "Fm",
+          "G7",
+          "C",
+          "C"
+        ]
+      }
+    },
+    {
+      "id": "country-western-swing",
+      "worldId": "country",
+      "name": "Western Swing",
+      "origin": "Texas / Oklahoma",
+      "era": "1930s–1950s",
+      "description": "Swinging • Big Band • Jazzy\nFiddle-driven Texas swing dance.\nBob Wills & His Texas Playboys · Asleep at the Wheel",
+      "characteristicInstruments": [
+        "fiddle",
+        "steel-guitar",
+        "electric-guitar",
+        "upright-bass",
+        "drums",
+        "brass"
+      ],
+      "preferredMeters": [
+        "4/4"
+      ],
+      "tempoRange": [
+        120,
+        155
+      ],
+      "keySubstyles": [
+        "Texas Western Swing",
+        "Jazzy Hillbilly Swing"
+      ],
+      "coreConcepts": [
+        "twin and triple fiddle jazz harmonies",
+        "swinging lap steel improvisation",
+        "jazz chord substitutions (diminished/augmented)",
+        "driving 4-beat swing rhythm"
+      ],
+      "rhythmicGrammar": [
+        "fast four-to-the-bar walking bass with hi-hat swing and syncopated guitar comps"
+      ],
+      "danceTags": [
+        "social-partner",
+        "wcs-compatible"
+      ],
+      "tuningSystem": "12-tet",
+      "signatureCell": "Triple fiddle swinging harmonization over walking bass and hot steel guitar riff",
+      "grooveMechanics": {
+        "swingPercentage": 60,
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "swung"
+      },
+      "sectionProgressions": {
+        "intro": [
+          "G",
+          "E7",
+          "A7",
+          "D7"
+        ],
+        "verse": [
+          "G",
+          "G#dim",
+          "Am7",
+          "D7",
+          "G",
+          "G#dim",
+          "Am7",
+          "D7",
+          "G",
+          "G7",
+          "C",
+          "C#dim",
+          "G",
+          "E7",
+          "A7",
+          "D7"
+        ],
+        "chorus": [
+          "C",
+          "C#dim",
+          "G",
+          "E7",
+          "A7",
+          "D7",
+          "G",
+          "G"
+        ],
+        "coda": [
+          "G",
+          "E7",
+          "A7",
+          "D7",
+          "G",
+          "G"
         ]
       }
     }
   ],
   "substyles": [
-    "Honky Tonk",
-    "Outlaw Country",
-    "Western Swing",
+    "Neotraditional",
+    "Outlaw",
     "Bluegrass",
+    "Honky-Tonk",
+    "Bakersfield",
+    "Americana",
     "Nashville Sound",
-    "Contemporary Country",
-    "Country Rock"
+    "Western Swing"
   ],
   "artists": [
-    "Hank Williams",
-    "Johnny Cash",
+    "George Strait",
+    "Randy Travis",
     "Waylon Jennings",
     "Willie Nelson",
-    "Dolly Parton",
-    "George Strait",
-    "Chris Stapleton",
-    "Brad Paisley"
+    "Bill Monroe",
+    "Flatt & Scruggs",
+    "Hank Williams",
+    "Lefty Frizzell",
+    "Buck Owens",
+    "Merle Haggard",
+    "Jason Isbell",
+    "Gillian Welch",
+    "Patsy Cline",
+    "Jim Reeves",
+    "Bob Wills & His Texas Playboys",
+    "Asleep at the Wheel"
   ],
   "concepts": [
     "boom-chuck",
@@ -1867,11 +2413,15 @@ export const COUNTRY_WORLD: GenreWorld = {
       "roles": [
         "voice"
       ],
-      "instruments": ["voice"],
+      "instruments": [
+        "voice"
+      ],
       "compatibleRoles": [
         "voice"
       ],
-      "compatibleInstruments": ["voice"],
+      "compatibleInstruments": [
+        "voice"
+      ],
       "canCrossRole": true,
       "meter": "4/4",
       "cycleLength": 1,
@@ -2055,11 +2605,15 @@ export const COUNTRY_WORLD: GenreWorld = {
       "roles": [
         "voice"
       ],
-      "instruments": ["voice"],
+      "instruments": [
+        "voice"
+      ],
       "compatibleRoles": [
         "voice"
       ],
-      "compatibleInstruments": ["voice"],
+      "compatibleInstruments": [
+        "voice"
+      ],
       "canCrossRole": true,
       "meter": "4/4",
       "cycleLength": 1,
@@ -3087,12 +3641,16 @@ export const COUNTRY_WORLD: GenreWorld = {
       "roles": [
         "voice"
       ],
-      "instruments": ["voice"],
+      "instruments": [
+        "voice"
+      ],
       "compatibleRoles": [
         "voice",
         "lead"
       ],
-      "compatibleInstruments": ["voice"],
+      "compatibleInstruments": [
+        "voice"
+      ],
       "meter": "4/4",
       "cycleLength": 1,
       "subdivisions": 16,

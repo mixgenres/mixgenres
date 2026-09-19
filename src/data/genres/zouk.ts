@@ -9,132 +9,286 @@ export const ZOUK_WORLD: GenreWorld = {
   "description": "The revolutionary sound of Guadeloupe and Martinique created by Kassav’: driving Zouk Béton carnival energy, syncopated basslines, clean chawa guitar skanks, ti-bwa woodblock ostinatos, punchy brass horn stabs, and romantic Zouk Love DX7 Rhodes progressions.",
   "traditions": [
     {
-      "id": "zouk-beton",
+      "id": "zouk-zouk-beton",
       "worldId": "zouk",
-      "name": "Zouk Béton & Rétro (Guadeloupe & Martinique)",
-      "origin": "Guadeloupe & Martinique (French Antilles)",
-      "era": "1979–1990s",
-      "description": "Kassav’s revolutionary Caribbean carnival sound: hyper-energetic brass sections, driving kick/snare pocket, ti-bwa percussion, and syncopated basslines.",
+      "name": "Zouk Béton",
+      "origin": "Guadeloupe & Martinique",
+      "era": "1980s",
+      "description": "Carnival Horns • Fast 4/4 • Power Bass\nThe explosive Antillean carnival dance engine.\nKassav' · Jocelyne Béroard",
       "characteristicInstruments": [
-        "bass",
-        "guitar",
-        "keys",
+        "brass",
         "drums",
-        "percussion",
-        "brass"
-      ],
-      "preferredMeters": [
-        "4/4"
-      ],
-      "tempoRange": [
-        110,
-        130
-      ],
-      "keySubstyles": [
-        "Zouk Béton",
-        "Zouk Chiré",
-        "Carnival Zouk",
-        "Zouk Rétro"
-      ],
-      "coreConcepts": [
-        "chawa guitar syncopated skank",
-        "ti-bwa woodblock drive",
-        "horn section punch stabs",
-        "deep syncopated 16th bass"
-      ],
-      "rhythmicGrammar": [
-        "driving four-on-the-floor kick, snare on beat 3",
-        "ti-bwa syncopated rimshot ostinato",
-        "brass accents on upbeats"
-      ],
-      "danceTags": [
-        "social-partner",
-        "festival-fusion"
-      ],
-      "tuningSystem": "12-tet",
-      "signatureCell": "Driving ti-bwa stick ostinato over syncopated 16th sub-bass and chawa guitar chops",
-      "grooveMechanics": {
-        "swingPercentage": 50,
-        "anticipationOffsetSteps": 1,
-        "microtimingFeel": "pushed"
-      },
-      "sectionProgressions": {
-        "intro": [
-          "Fmaj7",
-          "G",
-          "Em7",
-          "Am7"
-        ],
-        "verse": [
-          "Fmaj7",
-          "G",
-          "Em7",
-          "Am7"
-        ],
-        "chorus": [
-          "Dm7",
-          "G7",
-          "Cmaj7",
-          "Am7"
-        ],
-        "solo": [
-          "Fmaj7",
-          "G",
-          "Em7",
-          "Am7"
-        ],
-        "coda": [
-          "Fmaj7",
-          "G",
-          "Am7",
-          "Am7"
-        ]
-      }
-    },
-    {
-      "id": "zouk-love",
-      "worldId": "zouk",
-      "name": "Zouk Love",
-      "origin": "French Antilles & Paris",
-      "era": "1985–Present",
-      "description": "Sensual, romantic Antillean tempo featuring lush Yamaha DX7 electric piano Rhodes layers, smooth chawa guitar, deep melodic bass, and intimate French Creole vocals.",
-      "characteristicInstruments": [
         "bass",
-        "guitar",
-        "keys",
-        "drums",
         "synth",
+        "percussion",
         "voice"
       ],
       "preferredMeters": [
         "4/4"
       ],
       "tempoRange": [
-        85,
-        105
+        120,
+        138
       ],
       "keySubstyles": [
-        "Zouk Love Romantique",
-        "Slow Zouk",
-        "Antillean Pop"
+        "Classic Kassav' Sound",
+        "Carnival Zouk"
       ],
       "coreConcepts": [
-        "warm DX7 Rhodes chords",
-        "chawa guitar skank with chorus",
-        "deep sub-bass slides",
-        "sensual vocal melody"
+        "driving syncopated slap/finger basslines",
+        "explosive brass section fanfares",
+        "crisp Simmons electronic drum fills",
+        "Creole carnival party euphoria"
       ],
       "rhythmicGrammar": [
-        "slow syncopated kick and rimshot",
-        "smooth upbeat guitar chops"
+        "fast 4/4 zouk beat: kick on 1, 1-and, 3-and with crisp snare on 3 and fast hi-hats"
       ],
       "danceTags": [
         "social-partner",
-        "blues-fusion-compatible",
-        "listening"
+        "festival-fusion"
       ],
       "tuningSystem": "12-tet",
-      "signatureCell": "Warm DX7 Rhodes chords over slow syncopated kick/rimshot and chorused chawa guitar",
+      "signatureCell": "Explosive Antillean brass fanfare over driving bassline and carnival zouk beat",
+      "grooveMechanics": {
+        "swingPercentage": 50,
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "pushed"
+      },
+      "sectionProgressions": {
+        "intro": [
+          "C",
+          "G",
+          "Am",
+          "F"
+        ],
+        "verse": [
+          "C",
+          "G",
+          "Am",
+          "F",
+          "C",
+          "G",
+          "Am",
+          "F"
+        ],
+        "chorus": [
+          "F",
+          "G",
+          "Em",
+          "Am",
+          "Dm",
+          "G",
+          "C",
+          "C"
+        ],
+        "coda": [
+          "F",
+          "G",
+          "C",
+          "C"
+        ]
+      }
+    },
+    {
+      "id": "zouk-zouk-love",
+      "worldId": "zouk",
+      "name": "Zouk Love",
+      "origin": "Guadeloupe & Martinique / Paris",
+      "era": "Late 1980s–1990s",
+      "description": "Slow • Sensual • Romantic Keyboards\nRomantic, intimate Antillean partner dance.\nPatrick Saint-Éloi · Gilles Floro",
+      "characteristicInstruments": [
+        "synth",
+        "bass",
+        "drums",
+        "electric-guitar",
+        "voice"
+      ],
+      "preferredMeters": [
+        "4/4"
+      ],
+      "tempoRange": [
+        86,
+        98
+      ],
+      "keySubstyles": [
+        "Antillean Slow Zouk",
+        "Romantic Zouk"
+      ],
+      "coreConcepts": [
+        "silky romantic Creole vocal delivery",
+        "lush DX7 electric piano layers",
+        "gentle flowing zouk drum pulse with soft rimshots",
+        "intimate close partner dance connection"
+      ],
+      "rhythmicGrammar": [
+        "slow 4/4 zouk beat: kick on 1, 1-and, 3-and with soft rimshot on 3"
+      ],
+      "danceTags": [
+        "social-partner",
+        "sensual-fusion"
+      ],
+      "tuningSystem": "12-tet",
+      "signatureCell": "Silky romantic Creole vocal melody floating over warm DX7 keys and gentle zouk love beat",
+      "grooveMechanics": {
+        "swingPercentage": 52,
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "laid-back"
+      },
+      "sectionProgressions": {
+        "intro": [
+          "Dm",
+          "Gm",
+          "C",
+          "F"
+        ],
+        "verse": [
+          "Dm",
+          "Gm",
+          "C",
+          "F",
+          "Bb",
+          "Gm",
+          "A7",
+          "Dm"
+        ],
+        "chorus": [
+          "Gm",
+          "C",
+          "F",
+          "Dm",
+          "Gm",
+          "A7",
+          "Dm",
+          "Dm"
+        ],
+        "coda": [
+          "Gm",
+          "A7",
+          "Dm",
+          "Dm"
+        ]
+      }
+    },
+    {
+      "id": "zouk-ghetto-zouk",
+      "worldId": "zouk",
+      "name": "Ghetto Zouk",
+      "origin": "Lisbon / Rotterdam / Paris",
+      "era": "2000s–Present",
+      "description": "R&B Chords • Modern Beat • Smooth\nEuropean electronic zouk-R&B crossover.\nNelson Freitas · Kaysha",
+      "characteristicInstruments": [
+        "synth",
+        "drums",
+        "sub-bass",
+        "piano",
+        "voice"
+      ],
+      "preferredMeters": [
+        "4/4"
+      ],
+      "tempoRange": [
+        88,
+        98
+      ],
+      "keySubstyles": [
+        "Afro-European Zouk",
+        "Zouk-R&B"
+      ],
+      "coreConcepts": [
+        "R&B chord progressions over zouk rhythms",
+        "crisp electronic drum machine programming with sub-bass",
+        "multilingual lyrics (Portuguese, English, French)",
+        "sleek club production"
+      ],
+      "rhythmicGrammar": [
+        "electronic zouk beat: kick on [1, 1-and, 3-and] with crisp handclap/snare on 3"
+      ],
+      "danceTags": [
+        "social-partner",
+        "sensual-fusion"
+      ],
+      "tuningSystem": "12-tet",
+      "signatureCell": "Smooth R&B vocal melody gliding over punchy electronic zouk beat and deep sub-bass drop",
+      "grooveMechanics": {
+        "swingPercentage": 50,
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "straight"
+      },
+      "sectionProgressions": {
+        "intro": [
+          "Dm",
+          "Bb",
+          "F",
+          "C"
+        ],
+        "verse": [
+          "Dm",
+          "Bb",
+          "F",
+          "C",
+          "Dm",
+          "Bb",
+          "F",
+          "C"
+        ],
+        "chorus": [
+          "Bb",
+          "C",
+          "Dm",
+          "Am",
+          "Bb",
+          "C",
+          "Dm",
+          "Dm"
+        ],
+        "coda": [
+          "Bb",
+          "C",
+          "Dm",
+          "Dm"
+        ]
+      }
+    },
+    {
+      "id": "zouk-neo-zouk",
+      "worldId": "zouk",
+      "name": "Neo-Zouk",
+      "origin": "Rio de Janeiro / Sao Paulo",
+      "era": "2010s–Present",
+      "description": "Lyrical • Head Movements • Modern Bass\nBrazilian Zouk dancefloor evolution.\nAlok · Mafie Zouker",
+      "characteristicInstruments": [
+        "synth",
+        "sub-bass",
+        "drums",
+        "sampler",
+        "voice"
+      ],
+      "preferredMeters": [
+        "4/4"
+      ],
+      "tempoRange": [
+        82,
+        94
+      ],
+      "keySubstyles": [
+        "Brazilian Zouk Neo",
+        "Flow Zouk"
+      ],
+      "coreConcepts": [
+        "continuous flowing head-rolls and cambres for Brazilian Zouk dancers",
+        "cinematic electronic buildups and emotional drops",
+        "spacious sub-bass textures",
+        "fluid musicality adaptations"
+      ],
+      "rhythmicGrammar": [
+        "flowing zouk pulse [chic-chic-boom] with dynamic filters and spatial delay washes"
+      ],
+      "danceTags": [
+        "social-partner",
+        "sensual-fusion"
+      ],
+      "tuningSystem": "12-tet",
+      "signatureCell": "Spacious cinematic synth pad swelling into deep zouk sub-bass drop and continuous fluid head-roll",
       "grooveMechanics": {
         "swingPercentage": 50,
         "anticipationOffsetSteps": 0,
@@ -142,34 +296,36 @@ export const ZOUK_WORLD: GenreWorld = {
       },
       "sectionProgressions": {
         "intro": [
-          "Cmaj7",
-          "Am7",
-          "Dm7",
-          "G7"
+          "F#m",
+          "D",
+          "A",
+          "E"
         ],
         "verse": [
-          "Cmaj7",
-          "Am7",
-          "Dm7",
-          "G7"
+          "F#m",
+          "D",
+          "A",
+          "E",
+          "F#m",
+          "D",
+          "A",
+          "E"
         ],
-        "chorus": [
-          "Fmaj7",
-          "Em7",
-          "Dm7",
-          "Cmaj7"
-        ],
-        "solo": [
-          "Dm7",
-          "G7",
-          "Em7",
-          "Am7"
+        "drop": [
+          "D",
+          "E",
+          "F#m",
+          "C#m",
+          "D",
+          "E",
+          "F#m",
+          "F#m"
         ],
         "coda": [
-          "Cmaj7",
-          "Am7",
-          "Dm7",
-          "Cmaj7"
+          "D",
+          "E",
+          "F#m",
+          "F#m"
         ]
       }
     }
@@ -177,20 +333,18 @@ export const ZOUK_WORLD: GenreWorld = {
   "substyles": [
     "Zouk Béton",
     "Zouk Love",
-    "Zouk Chiré",
-    "Carnival Zouk",
-    "Zouk Rétro",
-    "Antillean Pop"
+    "Ghetto Zouk",
+    "Neo-Zouk"
   ],
   "artists": [
-    "Kassav’",
-    "Jacob Desvarieux",
+    "Kassav'",
     "Jocelyne Béroard",
     "Patrick Saint-Éloi",
-    "Jean-Philippe Marthély",
     "Gilles Floro",
-    "Eric Virgal",
-    "Tanya Saint-Val"
+    "Nelson Freitas",
+    "Kaysha",
+    "Alok",
+    "Mafie Zouker"
   ],
   "concepts": [
     "chawa guitar skank",
@@ -1609,11 +1763,15 @@ export const ZOUK_WORLD: GenreWorld = {
       "roles": [
         "voice"
       ],
-      "instruments": ["voice"],
+      "instruments": [
+        "voice"
+      ],
       "compatibleRoles": [
         "voice"
       ],
-      "compatibleInstruments": ["voice"],
+      "compatibleInstruments": [
+        "voice"
+      ],
       "canCrossRole": true,
       "meter": "4/4",
       "cycleLength": 1,
@@ -1779,11 +1937,15 @@ export const ZOUK_WORLD: GenreWorld = {
       "roles": [
         "voice"
       ],
-      "instruments": ["voice"],
+      "instruments": [
+        "voice"
+      ],
       "compatibleRoles": [
         "voice"
       ],
-      "compatibleInstruments": ["voice"],
+      "compatibleInstruments": [
+        "voice"
+      ],
       "canCrossRole": true,
       "meter": "4/4",
       "cycleLength": 1,
@@ -3255,12 +3417,16 @@ export const ZOUK_WORLD: GenreWorld = {
       "roles": [
         "voice"
       ],
-      "instruments": ["voice"],
+      "instruments": [
+        "voice"
+      ],
       "compatibleRoles": [
         "voice",
         "lead"
       ],
-      "compatibleInstruments": ["voice"],
+      "compatibleInstruments": [
+        "voice"
+      ],
       "meter": "4/4",
       "cycleLength": 1,
       "subdivisions": 16,

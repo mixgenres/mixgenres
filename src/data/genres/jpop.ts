@@ -9,142 +9,67 @@ export const JPOP_WORLD: GenreWorld = {
   "description": "Japanese pop continuum spanning 1970s–80s City Pop (Tatsuro Yamashita, Mariya Takeuchi) with slap bass ostinatos, lush jazz 7th/9th Rhodes chords, and sparkling chorus guitars to high-energy J-Rock anime anthems.",
   "traditions": [
     {
-      "id": "jpop-city-pop",
-      "worldId": "j-pop",
-      "name": "Japanese City Pop",
+      "id": "jpop-idol-pop",
+      "worldId": "jpop",
+      "name": "Idol Pop",
       "origin": "Tokyo, Japan",
-      "era": "1970s–1980s",
-      "description": "Sophisticated Tokyo cosmopolitan funk-pop: slap bass ostinatos, lush jazz 7th/9th chord extensions on electric piano, bright chorus guitars, and tight studio backbeats.",
+      "era": "1980s–Present",
+      "description": "Upbeat • Royal Road (Oudou) • Sparkle\nEnergetic, colorful Japanese idol anthems.\nAKB48 · Morning Musume",
       "characteristicInstruments": [
-        "bass",
-        "electric-guitar",
-        "keys",
-        "drums",
         "synth",
-        "brass"
-      ],
-      "preferredMeters": [
-        "4/4"
-      ],
-      "tempoRange": [
-        110,
-        126
-      ],
-      "keySubstyles": [
-        "City Pop (Tatsuro Yamashita, Mariya Takeuchi)",
-        "Shibuya-kei",
-        "Breeze Pop"
-      ],
-      "coreConcepts": [
-        "syncopated slap bass pocket",
-        "major 7th and minor 9th chord voicings",
-        "chorus-drenched clean guitar chops",
-        "tight funk snare backbeat"
-      ],
-      "rhythmicGrammar": [
-        "16th-note syncopated bass thumbing locking with kick on 1, 3-and"
-      ],
-      "danceTags": [
-        "social-partner",
-        "wcs-compatible",
-        "listening"
-      ],
-      "tuningSystem": "12-tet",
-      "signatureCell": "Jazzy major 7th comping with 16th-note slap bass groove",
-      "grooveMechanics": {
-        "swingPercentage": 52,
-        "anticipationOffsetSteps": 0,
-        "microtimingFeel": "straight"
-      },
-      "sectionProgressions": {
-        "intro": [
-          "Fmaj7",
-          "G/F",
-          "Em7",
-          "Am7"
-        ],
-        "verse": [
-          "Fmaj7",
-          "Em7",
-          "Dm7",
-          "Cmaj7"
-        ],
-        "chorus": [
-          "Fmaj7",
-          "G7/F",
-          "Em7",
-          "A7",
-          "Dm7",
-          "G7",
-          "Cmaj7",
-          "C7"
-        ],
-        "solo": [
-          "Fmaj7",
-          "Em7",
-          "Dm7",
-          "G7"
-        ]
-      }
-    },
-    {
-      "id": "jpop-jrock",
-      "worldId": "j-pop",
-      "name": "J-Rock & Anime Rock Anthem",
-      "origin": "Japan",
-      "era": "1990s–Present",
-      "description": "High-energy, harmonically sophisticated rock featuring driving eighth-note basslines, blazing dual-guitar power chords, melodic guitar hooks, and explosive chorus drops.",
-      "characteristicInstruments": [
         "electric-guitar",
         "bass",
         "drums",
-        "synth",
+        "strings",
         "voice"
       ],
       "preferredMeters": [
         "4/4"
       ],
       "tempoRange": [
-        135,
-        185
+        128,
+        160
       ],
       "keySubstyles": [
-        "Anime Opening (Shonen Rock)",
-        "Visual Kei (X Japan, L’Arc~en~Ciel)",
-        "Modern J-Rock (King Gnu, Radwimps)"
+        "Oudou Idol",
+        "Chika Idol Pop"
       ],
       "coreConcepts": [
-        "melodic driving bass (Tetsuo Sakurai/Kameda lineage)",
-        "dense modal chord substitutions",
-        "fast 16th hi-hat work",
-        "anthemic guitar hooks"
+        "\"Royal Road\" IV-V-iii-vi (Oudou) chord progression",
+        "euphoric multi-member unison choral shouts",
+        "sparkling synthesizer brass and chimes",
+        "fast driving four-on-the-floor beat with rock guitar riffs"
       ],
       "rhythmicGrammar": [
-        "driving 8th-note kick and bass with punchy 2 & 4 snare hits"
+        "driving 4-on-the-floor dance-rock beat with energetic snare fills and tambourine shakes"
       ],
       "danceTags": [
-        "listening",
-        "festival-fusion"
+        "festival-fusion",
+        "social-partner"
       ],
       "tuningSystem": "12-tet",
-      "signatureCell": "Driving 8th bass with fast syncopated royal road (Oudou) progression",
+      "signatureCell": "Sparkling synth bells and overdrive guitar leading into classic Oudou IV-V-iii-vi chord progression",
       "grooveMechanics": {
         "swingPercentage": 50,
-        "anticipationOffsetSteps": -1,
-        "microtimingFeel": "pushed"
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "straight"
       },
       "sectionProgressions": {
         "intro": [
-          "IV",
-          "V",
-          "iii",
-          "vi"
+          "Fmaj7",
+          "G",
+          "Em7",
+          "Am7"
         ],
         "verse": [
           "Fmaj7",
           "G",
-          "Am",
-          "C"
+          "Em7",
+          "Am7",
+          "Fmaj7",
+          "G",
+          "C",
+          "C7"
         ],
         "chorus": [
           "Fmaj7",
@@ -152,35 +77,608 @@ export const JPOP_WORLD: GenreWorld = {
           "Em7",
           "Am7",
           "Dm7",
-          "G7",
+          "G",
           "C",
-          "C7"
+          "C"
         ],
-        "solo": [
+        "coda": [
+          "Fmaj7",
+          "G",
+          "C",
+          "C"
+        ]
+      }
+    },
+    {
+      "id": "jpop-city-pop",
+      "worldId": "jpop",
+      "name": "City Pop",
+      "origin": "Tokyo, Japan",
+      "era": "Late 1970s–1980s",
+      "description": "Sophisticated • Jazzy Chords • Seaside\nUrban nostalgic Japanese funk & pop.\nTatsuro Yamashita · Mariya Takeuchi",
+      "characteristicInstruments": [
+        "electric-guitar",
+        "bass",
+        "piano",
+        "brass",
+        "drums",
+        "voice"
+      ],
+      "preferredMeters": [
+        "4/4"
+      ],
+      "tempoRange": [
+        105,
+        124
+      ],
+      "keySubstyles": [
+        "Resort Pop",
+        "Urban AOR City Pop"
+      ],
+      "coreConcepts": [
+        "jazz 9th and major 7th chord progressions",
+        "crisp Nile Rodgers-inspired rhythm guitar chucking",
+        "punchy horn section fanfares and sax solos",
+        "luxurious high-end 80s studio production"
+      ],
+      "rhythmicGrammar": [
+        "smooth 4/4 funk groove with tight snare backbeat, hi-hat 16ths, and slap bass accents"
+      ],
+      "danceTags": [
+        "social-partner",
+        "wcs-compatible"
+      ],
+      "tuningSystem": "12-tet",
+      "signatureCell": "Lush maj7/9th chord progression with clean funk guitar chucking and singing sax solo",
+      "grooveMechanics": {
+        "swingPercentage": 54,
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "straight"
+      },
+      "sectionProgressions": {
+        "intro": [
+          "Fmaj7",
+          "Em7",
+          "Dm7",
+          "Cmaj7"
+        ],
+        "verse": [
+          "Fmaj7",
+          "Em7",
+          "Dm7",
+          "Cmaj7",
+          "Fmaj7",
+          "Em7",
+          "Am7",
+          "Am7"
+        ],
+        "chorus": [
+          "Bbmaj7",
+          "Am7",
+          "Gm7",
+          "Fmaj7",
+          "Dm7",
+          "G7",
+          "Cmaj7",
+          "Cmaj7"
+        ],
+        "coda": [
+          "Fmaj7",
+          "Em7",
+          "Dm7",
+          "Cmaj7"
+        ]
+      }
+    },
+    {
+      "id": "jpop-denpa-kei",
+      "worldId": "jpop",
+      "name": "Denpa-kei",
+      "origin": "Akihabara, Tokyo",
+      "era": "2000s–Present",
+      "description": "Hyper • Chiptune • Fast\nFrantic otaku anime subculture sound.\nMOSAIC.WAV · Dempagumi.inc",
+      "characteristicInstruments": [
+        "synth",
+        "sampler",
+        "drums",
+        "electric-guitar",
+        "voice"
+      ],
+      "preferredMeters": [
+        "4/4"
+      ],
+      "tempoRange": [
+        160,
+        200
+      ],
+      "keySubstyles": [
+        "Akiba Pop",
+        "Chiptune Denpa"
+      ],
+      "coreConcepts": [
+        "manic 180+ BPM tempos",
+        "pitched squeaky vocal delivery and spoken dialogue skits",
+        "8-bit chiptune sound effects and arpeggios",
+        "chaotic tempo shifts and meme humor"
+      ],
+      "rhythmicGrammar": [
+        "frantic 16th-note electronic beats with relentless high-speed kick and snare patterns"
+      ],
+      "danceTags": [
+        "festival-fusion"
+      ],
+      "tuningSystem": "12-tet",
+      "signatureCell": "Hyperactive 8-bit chiptune arpeggio bursting into 180 BPM manic vocal call",
+      "grooveMechanics": {
+        "swingPercentage": 50,
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "pushed"
+      },
+      "sectionProgressions": {
+        "intro": [
+          "C",
+          "G",
+          "Am",
+          "F"
+        ],
+        "verse": [
+          "C",
+          "G",
+          "Am",
+          "F",
+          "C",
+          "G",
+          "Am",
+          "F"
+        ],
+        "chorus": [
+          "F",
+          "G",
+          "Em",
           "Am",
           "F",
           "G",
-          "Em"
+          "C",
+          "C"
+        ],
+        "coda": [
+          "F",
+          "G",
+          "C",
+          "C"
+        ]
+      }
+    },
+    {
+      "id": "jpop-shibuya-kei",
+      "worldId": "jpop",
+      "name": "Shibuya-kei",
+      "origin": "Shibuya, Tokyo",
+      "era": "1990s",
+      "description": "Retro • Bossa Nova • Chic\nFrench pop and bossa inspired indie.\nPizzicato Five · Cornelius",
+      "characteristicInstruments": [
+        "acoustic-guitar",
+        "sampler",
+        "flute",
+        "strings",
+        "drums",
+        "voice"
+      ],
+      "preferredMeters": [
+        "4/4"
+      ],
+      "tempoRange": [
+        110,
+        130
+      ],
+      "keySubstyles": [
+        "Picardy Shibuya-kei",
+        "Cut-up Indie Pop"
+      ],
+      "coreConcepts": [
+        "bossa nova guitar comping and French ye-ye pop motifs",
+        "sampling collage aesthetics (60s soundtracks, lounge)",
+        "stylish bilingual spoken/sung vocals",
+        "chic breezy cosmopolitan atmosphere"
+      ],
+      "rhythmicGrammar": [
+        "breezy bossa-pop drum groove with tambourine shimmer and walking bass"
+      ],
+      "danceTags": [
+        "social-partner",
+        "listening"
+      ],
+      "tuningSystem": "12-tet",
+      "signatureCell": "Chic 60s French-pop flute riff over breezy bossa nova guitar comp and swinging bass",
+      "grooveMechanics": {
+        "swingPercentage": 54,
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "straight"
+      },
+      "sectionProgressions": {
+        "intro": [
+          "Cmaj7",
+          "Dm7",
+          "Em7",
+          "A7"
+        ],
+        "verse": [
+          "Cmaj7",
+          "Dm7",
+          "Em7",
+          "A7",
+          "Dm7",
+          "G7",
+          "Cmaj7",
+          "Cmaj7"
+        ],
+        "chorus": [
+          "Fmaj7",
+          "Fm7",
+          "Em7",
+          "A7",
+          "Dm7",
+          "G7",
+          "Cmaj7",
+          "Cmaj7"
+        ],
+        "coda": [
+          "Fmaj7",
+          "G7",
+          "Cmaj7",
+          "Cmaj7"
+        ]
+      }
+    },
+    {
+      "id": "jpop-j-rnb",
+      "worldId": "jpop",
+      "name": "J-R&B",
+      "origin": "Tokyo, Japan",
+      "era": "Late 1990s–2000s",
+      "description": "Smooth • Melismatic • Groovy\nSoulful, melismatic Japanese R&B vocals.\nHikaru Utada · MISIA",
+      "characteristicInstruments": [
+        "piano",
+        "synth",
+        "drums",
+        "bass",
+        "electric-guitar",
+        "voice"
+      ],
+      "preferredMeters": [
+        "4/4"
+      ],
+      "tempoRange": [
+        85,
+        105
+      ],
+      "keySubstyles": [
+        "Late 90s J-Urban",
+        "Contemporary J-Soul"
+      ],
+      "coreConcepts": [
+        "virtuosic vocal runs and American R&B melisma in Japanese",
+        "lush Rhodes piano 9th/11th chords",
+        "warm syncopated drum machine beats",
+        "emotional introspective lyricism"
+      ],
+      "rhythmicGrammar": [
+        "relaxed 4/4 hip-hop/R&B drum pocket with warm bass syncopations and gentle finger-snaps"
+      ],
+      "danceTags": [
+        "social-partner",
+        "wcs-compatible"
+      ],
+      "tuningSystem": "12-tet",
+      "signatureCell": "Virtuosic vocal melisma gliding across rich minor 9th Rhodes chord and smooth R&B beat",
+      "grooveMechanics": {
+        "swingPercentage": 56,
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "laid-back"
+      },
+      "sectionProgressions": {
+        "intro": [
+          "Bbm7",
+          "Ebm7",
+          "Ab7",
+          "Dbmaj7"
+        ],
+        "verse": [
+          "Bbm7",
+          "Ebm7",
+          "Ab7",
+          "Dbmaj7",
+          "Gbmaj7",
+          "Ebm7",
+          "F7",
+          "F7"
+        ],
+        "chorus": [
+          "Gbmaj7",
+          "Ab",
+          "Fm7",
+          "Bbm7",
+          "Ebm7",
+          "F7",
+          "Bbm7",
+          "Bbm7"
+        ],
+        "coda": [
+          "Gbmaj7",
+          "F7",
+          "Bbm7",
+          "Bbm7"
+        ]
+      }
+    },
+    {
+      "id": "jpop-electropop",
+      "worldId": "jpop",
+      "name": "Electropop",
+      "origin": "Tokyo, Japan",
+      "era": "2000s–Present",
+      "description": "Vocoder • Four-on-the-Floor • Catchy\nFuturistic Yasutaka Nakata productions.\nPerfume · Kyary Pamyu Pamyu",
+      "characteristicInstruments": [
+        "synth",
+        "drums",
+        "sub-bass",
+        "vocoder",
+        "sampler"
+      ],
+      "preferredMeters": [
+        "4/4"
+      ],
+      "tempoRange": [
+        126,
+        134
+      ],
+      "keySubstyles": [
+        "Nakata Sound",
+        "Capsule Electro Pop"
+      ],
+      "coreConcepts": [
+        "heavily auto-tuned / vocoded robotic multi-vocal unisons",
+        "pumping French electro sidechain compression",
+        "bouncy saw-wave synthesizer riffs",
+        "hyper-catchy repetitive chorus hooks"
+      ],
+      "rhythmicGrammar": [
+        "pumping four-on-the-floor electro kick with crisp offbeat hats and synth bass sidechain"
+      ],
+      "danceTags": [
+        "festival-fusion"
+      ],
+      "tuningSystem": "12-tet",
+      "signatureCell": "Pumping sidechain electro bass drop with robotic three-part vocoder vocal hook",
+      "grooveMechanics": {
+        "swingPercentage": 50,
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "straight"
+      },
+      "sectionProgressions": {
+        "intro": [
+          "Am",
+          "F",
+          "C",
+          "G"
+        ],
+        "verse": [
+          "Am",
+          "F",
+          "C",
+          "G",
+          "Am",
+          "F",
+          "C",
+          "G"
+        ],
+        "chorus": [
+          "F",
+          "G",
+          "Am",
+          "Em",
+          "F",
+          "G",
+          "C",
+          "C"
+        ],
+        "coda": [
+          "F",
+          "G",
+          "Am",
+          "Am"
+        ]
+      }
+    },
+    {
+      "id": "jpop-visual-kei",
+      "worldId": "jpop",
+      "name": "Visual Kei",
+      "origin": "Tokyo / Osaka, Japan",
+      "era": "1980s–Present",
+      "description": "Theatrical • Heavy Rock • Dramatic\nGothic visual aesthetics with metal edge.\nX Japan · the GazettE",
+      "characteristicInstruments": [
+        "electric-guitar",
+        "bass",
+        "drums",
+        "piano",
+        "strings",
+        "voice"
+      ],
+      "preferredMeters": [
+        "4/4"
+      ],
+      "tempoRange": [
+        140,
+        185
+      ],
+      "keySubstyles": [
+        "Tanbi-ha (Gothic VK)",
+        "Kote-kei",
+        "Nagoya-kei"
+      ],
+      "coreConcepts": [
+        "dramatic classical piano and string orchestrations",
+        "blistering dual-guitar speed-metal harmonies",
+        "passionate theatrical high-register vocals",
+        "dark romantic melodrama"
+      ],
+      "rhythmicGrammar": [
+        "high-speed double-bass drum gallop alternating with dramatic slow classical pauses"
+      ],
+      "danceTags": [
+        "festival-fusion"
+      ],
+      "tuningSystem": "12-tet",
+      "signatureCell": "Dramatic grand piano arpeggio exploding into double-kick metal drums and screaming dual guitar solo",
+      "grooveMechanics": {
+        "swingPercentage": 50,
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "pushed"
+      },
+      "sectionProgressions": {
+        "intro": [
+          "Am",
+          "F",
+          "Dm",
+          "E7"
+        ],
+        "verse": [
+          "Am",
+          "F",
+          "G",
+          "C",
+          "Dm",
+          "Am",
+          "B7",
+          "E7"
+        ],
+        "chorus": [
+          "F",
+          "G",
+          "Em",
+          "Am",
+          "Dm",
+          "E7",
+          "Am",
+          "A7"
+        ],
+        "coda": [
+          "F",
+          "E7",
+          "Am",
+          "Am"
+        ]
+      }
+    },
+    {
+      "id": "jpop-enka",
+      "worldId": "jpop",
+      "name": "Enka",
+      "origin": "Japan",
+      "era": "Post-WWII / 1960s–Present",
+      "description": "Melodramatic • Kobushi • Pentatonic\nTraditional-influenced sentimental ballads.\nHibari Misora · Saburo Kitajima",
+      "characteristicInstruments": [
+        "voice",
+        "electric-guitar",
+        "strings",
+        "brass",
+        "shakuhachi",
+        "taiko"
+      ],
+      "preferredMeters": [
+        "4/4"
+      ],
+      "tempoRange": [
+        65,
+        85
+      ],
+      "keySubstyles": [
+        "Classic Postwar Enka",
+        "Modern Enka"
+      ],
+      "coreConcepts": [
+        "intense kobushi (vocal melismatic trembling and ornamentations)",
+        "yonanuki minor pentatonic scale",
+        "weeping Hawaiian/electric slide guitar fills",
+        "sentimental themes of sea, tears, parting, and sake"
+      ],
+      "rhythmicGrammar": [
+        "slow 4/4 ballad pulse with prominent brushed snare and dramatic orchestral pauses"
+      ],
+      "danceTags": [
+        "listening"
+      ],
+      "tuningSystem": "just-intonation",
+      "signatureCell": "Trembling kobushi vocal phrase culminating in weeping electric guitar fill in yonanuki minor",
+      "grooveMechanics": {
+        "swingPercentage": 50,
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "rubato"
+      },
+      "sectionProgressions": {
+        "intro": [
+          "Am",
+          "Dm",
+          "E7",
+          "Am"
+        ],
+        "verse": [
+          "Am",
+          "Dm",
+          "E7",
+          "Am",
+          "Dm",
+          "Am",
+          "B7",
+          "E7"
+        ],
+        "chorus": [
+          "Dm",
+          "Am",
+          "E7",
+          "Am",
+          "Dm",
+          "Am",
+          "E7",
+          "Am"
+        ],
+        "coda": [
+          "Dm",
+          "E7",
+          "Am",
+          "Am"
         ]
       }
     }
   ],
   "substyles": [
+    "Idol Pop",
     "City Pop",
+    "Denpa-kei",
     "Shibuya-kei",
-    "J-Rock Anime Anthem",
+    "J-R&B",
+    "Electropop",
     "Visual Kei",
-    "Breeze Pop"
+    "Enka"
   ],
   "artists": [
+    "AKB48",
+    "Morning Musume",
     "Tatsuro Yamashita",
     "Mariya Takeuchi",
-    "Anri",
-    "Miki Matsubara",
-    "King Gnu",
-    "Radwimps",
-    "Yoasobi",
-    "Official HIGE DANDism"
+    "MOSAIC.WAV",
+    "Dempagumi.inc",
+    "Pizzicato Five",
+    "Cornelius",
+    "Hikaru Utada",
+    "MISIA",
+    "Perfume",
+    "Kyary Pamyu Pamyu",
+    "X Japan",
+    "the GazettE",
+    "Hibari Misora",
+    "Saburo Kitajima"
   ],
   "concepts": [
     "Oudou (royal road) chord progression (IV-V-iii-vi)",
@@ -1257,11 +1755,15 @@ export const JPOP_WORLD: GenreWorld = {
       "roles": [
         "voice"
       ],
-      "instruments": ["voice"],
+      "instruments": [
+        "voice"
+      ],
       "compatibleRoles": [
         "voice"
       ],
-      "compatibleInstruments": ["voice"],
+      "compatibleInstruments": [
+        "voice"
+      ],
       "canCrossRole": true,
       "meter": "4/4",
       "cycleLength": 1,
@@ -1438,11 +1940,15 @@ export const JPOP_WORLD: GenreWorld = {
       "roles": [
         "voice"
       ],
-      "instruments": ["voice"],
+      "instruments": [
+        "voice"
+      ],
       "compatibleRoles": [
         "voice"
       ],
-      "compatibleInstruments": ["voice"],
+      "compatibleInstruments": [
+        "voice"
+      ],
       "canCrossRole": true,
       "meter": "4/4",
       "cycleLength": 1,
@@ -3433,12 +3939,16 @@ export const JPOP_WORLD: GenreWorld = {
       "roles": [
         "voice"
       ],
-      "instruments": ["voice"],
+      "instruments": [
+        "voice"
+      ],
       "compatibleRoles": [
         "voice",
         "lead"
       ],
-      "compatibleInstruments": ["voice"],
+      "compatibleInstruments": [
+        "voice"
+      ],
       "meter": "4/4",
       "cycleLength": 1,
       "subdivisions": 16,

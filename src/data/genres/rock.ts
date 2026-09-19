@@ -9,96 +9,12 @@ export const ROCK_WORLD: GenreWorld = {
   "description": "A broad rock vocabulary organized around riffs, backbeats, power chords, dynamic song forms, guitar/bass locks, instrumental development, and contrasting textures.",
   "traditions": [
     {
-      "id": "rock-classic",
+      "id": "rock-hard-rock",
       "worldId": "rock",
-      "name": "Classic Rock",
-      "origin": "US / UK",
-      "era": "1960s–Present",
-      "description": "Guitar-led rock built from memorable riffs, strong backbeats, verse/chorus contrast, instrumental breaks, and dynamic arrangement.",
-      "characteristicInstruments": [
-        "electric-guitar",
-        "bass",
-        "drums",
-        "voice",
-        "keys"
-      ],
-      "preferredMeters": [
-        "4/4",
-        "6/8"
-      ],
-      "tempoRange": [
-        90,
-        165
-      ],
-      "keySubstyles": [
-        "Classic Rock",
-        "Blues Rock",
-        "Arena Rock"
-      ],
-      "coreConcepts": [
-        "riff",
-        "power chord",
-        "backbeat",
-        "verse-chorus",
-        "solo"
-      ],
-      "rhythmicGrammar": [
-        "straight eighth-note drive",
-        "kick and bass lock to riffs",
-        "snare anchors 2 and 4"
-      ],
-      "danceTags": [
-        "social-partner",
-        "wcs-compatible",
-        "listening"
-      ],
-      "tuningSystem": "12-tet",
-      "signatureCell": "Driving straight-8th power riff locked with kick drum and snare on 2 & 4",
-      "grooveMechanics": {
-        "swingPercentage": 50,
-        "anticipationOffsetSteps": 0,
-        "microtimingFeel": "straight"
-      },
-      "sectionProgressions": {
-        "intro": [
-          "E5",
-          "D5",
-          "A5",
-          "E5"
-        ],
-        "verse": [
-          "E5",
-          "D5",
-          "A5",
-          "E5"
-        ],
-        "chorus": [
-          "G5",
-          "D5",
-          "A5",
-          "E5"
-        ],
-        "solo": [
-          "E5",
-          "G5",
-          "A5",
-          "B5"
-        ],
-        "coda": [
-          "E5",
-          "E5",
-          "E5",
-          "E5"
-        ]
-      }
-    },
-    {
-      "id": "rock-punk",
-      "worldId": "rock",
-      "name": "Punk & Garage",
-      "origin": "US / UK",
-      "era": "1960s–Present",
-      "description": "Direct, economical rock based on repetition, aggressive downstrokes, simple harmonic movement, and short high-energy forms.",
+      "name": "Hard Rock",
+      "origin": "London / Los Angeles",
+      "era": "Late 1960s–1980s",
+      "description": "Heavy Riffs • Marshall Stacks • High Vocals\nDriving overdrive guitar power chords.\nLed Zeppelin · AC/DC",
       "characteristicInstruments": [
         "electric-guitar",
         "bass",
@@ -109,32 +25,28 @@ export const ROCK_WORLD: GenreWorld = {
         "4/4"
       ],
       "tempoRange": [
-        130,
-        210
+        115,
+        140
       ],
       "keySubstyles": [
-        "Garage Rock",
-        "Punk Rock",
-        "Post-Punk"
+        "Classic Hard Rock",
+        "Blues Rock",
+        "Arena Rock"
       ],
       "coreConcepts": [
-        "downstroke drive",
-        "power chords",
-        "short form",
-        "stop-start energy"
+        "cranking Marshall valve overdrive guitar power chords",
+        "driving straight-ahead drum groove with huge snare on 2 and 4",
+        "screaming blues-based high-tenor lead vocals",
+        "virtuosic pentatonic guitar solos"
       ],
       "rhythmicGrammar": [
-        "straight eighths",
-        "tight kick/bass unison",
-        "snare backbeat",
-        "abrupt breaks"
+        "driving 4/4 rock beat with four-on-the-floor bass drum option and heavy snare backbeat"
       ],
       "danceTags": [
-        "festival-fusion",
-        "listening"
+        "festival-fusion"
       ],
       "tuningSystem": "12-tet",
-      "signatureCell": "Rapid downstroke power chords with relentless straight-8th kick/snare drive",
+      "signatureCell": "Thunderous Marshall stack power chord riff ringing out over driving open-hi-hat drum beat",
       "grooveMechanics": {
         "swingPercentage": 50,
         "anticipationOffsetSteps": 0,
@@ -143,77 +55,84 @@ export const ROCK_WORLD: GenreWorld = {
       "sectionProgressions": {
         "intro": [
           "A5",
+          "G5",
           "D5",
-          "E5",
           "A5"
         ],
         "verse": [
           "A5",
+          "G5",
           "D5",
-          "E5",
+          "A5",
+          "A5",
+          "G5",
+          "D5",
           "A5"
         ],
         "chorus": [
-          "F#5",
           "D5",
+          "C5",
+          "G5",
           "A5",
-          "E5"
+          "D5",
+          "C5",
+          "G5",
+          "A5"
+        ],
+        "solo": [
+          "A5",
+          "G5",
+          "D5",
+          "A5"
         ],
         "coda": [
-          "A5",
-          "A5",
+          "D5",
+          "E5",
           "A5",
           "A5"
         ]
       }
     },
     {
-      "id": "rock-alt",
+      "id": "rock-grunge",
       "worldId": "rock",
-      "name": "Alternative & Indie Rock",
-      "origin": "US / UK / Global",
-      "era": "1980s–Present",
-      "description": "Rock vocabulary expanded through contrasting textures, unusual riffs, dynamic shifts, layered guitars, and less predictable song forms.",
+      "name": "Grunge",
+      "origin": "Seattle, Washington",
+      "era": "Late 1980s–1990s",
+      "description": "Loud-Quiet-Loud • Fuzz • Anguish\nRaw flannel-clad Pacific Northwest angst.\nNirvana · Soundgarden",
       "characteristicInstruments": [
         "electric-guitar",
         "bass",
         "drums",
-        "voice",
-        "keys"
+        "voice"
       ],
       "preferredMeters": [
         "4/4",
         "6/8",
-        "3/4"
+        "7/4"
       ],
       "tempoRange": [
-        75,
-        175
+        90,
+        125
       ],
       "keySubstyles": [
-        "Alternative Rock",
-        "Indie Rock",
-        "Shoegaze",
-        "Post-Rock"
+        "Seattle Sound",
+        "Post-Grunge"
       ],
       "coreConcepts": [
-        "texture contrast",
-        "dynamic arc",
-        "ostinato riff",
-        "open voicings"
+        "dramatic loud-quiet-loud verse/chorus dynamics",
+        "sludgy Electro-Harmonix Big Muff / DS-1 distortion",
+        "raw gravelly impassioned vocal delivery",
+        "drop-D down-tuned heavy riffs"
       ],
       "rhythmicGrammar": [
-        "alternating dense and sparse sections",
-        "delayed entrances",
-        "repeating guitar cells over changing harmony"
+        "heavy dragging drum beat exploding into high-energy open-cymbal thrash on chorus"
       ],
       "danceTags": [
-        "listening",
-        "festival-fusion",
-        "wcs-compatible"
+        "festival-fusion"
       ],
       "tuningSystem": "12-tet",
-      "signatureCell": "Quiet arpeggiated verse exploding into loud fuzz-drenched chorus with half-time drums",
+      "signatureCell": "Clean chorus-drenched verse arpeggio suddenly erupting into crushing fuzz power chord chorus",
       "grooveMechanics": {
         "swingPercentage": 50,
         "anticipationOffsetSteps": 0,
@@ -221,82 +140,484 @@ export const ROCK_WORLD: GenreWorld = {
       },
       "sectionProgressions": {
         "intro": [
-          "Em",
-          "G",
-          "C",
-          "D"
+          "F5",
+          "Bb5",
+          "Ab5",
+          "Db5"
         ],
         "verse": [
-          "Em",
-          "G",
-          "C",
-          "D"
+          "F5",
+          "Bb5",
+          "Ab5",
+          "Db5",
+          "F5",
+          "Bb5",
+          "Ab5",
+          "Db5"
         ],
         "chorus": [
-          "C",
-          "G",
-          "D",
-          "Em"
-        ],
-        "solo": [
-          "Am",
-          "C",
-          "Em",
-          "D"
+          "F5",
+          "Bb5",
+          "Ab5",
+          "Db5",
+          "F5",
+          "Bb5",
+          "Ab5",
+          "Db5"
         ],
         "coda": [
-          "Em",
-          "C",
-          "G",
-          "D"
+          "F5",
+          "Bb5",
+          "Ab5",
+          "F5"
         ]
       }
     },
     {
-      "id": "rock-progressive",
+      "id": "rock-progressive-rock",
       "worldId": "rock",
-      "name": "Progressive & Art Rock",
-      "origin": "UK / Europe / US",
-      "era": "1960s–Present",
-      "description": "Long-form rock using odd meters, sectional development, recurring motifs, instrumental passages, and harmonic contrast.",
+      "name": "Progressive Rock",
+      "origin": "London / Cambridge, UK",
+      "era": "Late 1960s–1970s",
+      "description": "Odd Meters • Mellotron • Multi-Movement\nComplex artistic symphonic suites.\nPink Floyd · Yes",
       "characteristicInstruments": [
         "electric-guitar",
+        "mellotron",
         "bass",
         "drums",
-        "keys",
+        "organ",
+        "synth",
         "voice"
       ],
       "preferredMeters": [
-        "4/4",
-        "5/4",
         "7/8",
-        "6/8"
+        "5/4",
+        "4/4",
+        "12/8"
       ],
       "tempoRange": [
-        70,
-        155
+        75,
+        135
       ],
       "keySubstyles": [
-        "Progressive Rock",
-        "Art Rock",
-        "Math Rock"
+        "Symphonic Prog",
+        "Canterbury Scene",
+        "Space Rock"
       ],
       "coreConcepts": [
-        "odd meter",
-        "motivic development",
-        "metric contrast",
-        "long-form arrangement"
+        "epic multi-movement conceptual song structures",
+        "Mellotron string and flute choirs and Hammond organs",
+        "unusual time signatures and classical counterpoint",
+        "philosophical and fantastical lyrics"
       ],
       "rhythmicGrammar": [
-        "meter changes",
-        "accent-group displacement",
-        "instrumental development sections"
+        "shifting metric structures (7/8 alternating with 4/4) with delicate symphonic dynamics"
       ],
       "danceTags": [
         "listening"
       ],
       "tuningSystem": "12-tet",
-      "signatureCell": "Asymmetric 7/8 (2+2+3) metric riff with interlocking synth arpeggiator",
+      "signatureCell": "Haunting Mellotron string choir swelling behind soaring Gilmour-esque melodic guitar bend",
+      "grooveMechanics": {
+        "swingPercentage": 50,
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "rubato"
+      },
+      "sectionProgressions": {
+        "intro": [
+          "Em9",
+          "A7",
+          "Em9",
+          "A7"
+        ],
+        "movement1": [
+          "Em9",
+          "A7",
+          "Cmaj7",
+          "Bm7",
+          "Am7",
+          "D7",
+          "Gmaj7",
+          "B7"
+        ],
+        "movement2": [
+          "Cmaj7",
+          "D/C",
+          "Bm7",
+          "Em",
+          "Am7",
+          "B7",
+          "Em",
+          "Em"
+        ],
+        "coda": [
+          "Cmaj7",
+          "D",
+          "Em",
+          "Em"
+        ]
+      }
+    },
+    {
+      "id": "rock-punk-rock",
+      "worldId": "rock",
+      "name": "Punk Rock",
+      "origin": "New York / London",
+      "era": "Mid 1970s",
+      "description": "Fast Downstrokes • 3 Chords • Anti-establishment\nStripped-down high-speed raw rebellion.\nRamones · The Clash",
+      "characteristicInstruments": [
+        "electric-guitar",
+        "bass",
+        "drums",
+        "voice"
+      ],
+      "preferredMeters": [
+        "4/4"
+      ],
+      "tempoRange": [
+        160,
+        210
+      ],
+      "keySubstyles": [
+        "NYC 77 Punk",
+        "UK 77 Punk",
+        "Hardcore Punk"
+      ],
+      "coreConcepts": [
+        "relentless high-speed 8th-note downpicked power chords",
+        "straightforward three-chord structural simplicity",
+        "shouted urgent anti-establishment lyrics",
+        "no guitar solos, pure energy and speed"
+      ],
+      "rhythmicGrammar": [
+        "fast 4/4 straight eighth notes with snare cracking relentlessly on 2 and 4"
+      ],
+      "danceTags": [
+        "festival-fusion"
+      ],
+      "tuningSystem": "12-tet",
+      "signatureCell": "\"1-2-3-4!\" shout launching into blinding 180 BPM downpicked 3-chord power blast",
+      "grooveMechanics": {
+        "swingPercentage": 50,
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "pushed"
+      },
+      "sectionProgressions": {
+        "intro": [
+          "E5",
+          "A5",
+          "B5",
+          "E5"
+        ],
+        "verse": [
+          "E5",
+          "A5",
+          "B5",
+          "E5",
+          "E5",
+          "A5",
+          "B5",
+          "E5"
+        ],
+        "chorus": [
+          "A5",
+          "B5",
+          "E5",
+          "C#5",
+          "A5",
+          "B5",
+          "E5",
+          "E5"
+        ],
+        "coda": [
+          "A5",
+          "B5",
+          "E5",
+          "E5"
+        ]
+      }
+    },
+    {
+      "id": "rock-garage-rock",
+      "worldId": "rock",
+      "name": "Garage Rock",
+      "origin": "Detroit / Detroit / NYC",
+      "era": "1960s / 2000s Revival",
+      "description": "Lo-Fi Fuzz • Catchy Riffs • Raw Drums\nGritty, punchy analog basement rock.\nThe Stooges · The Strokes",
+      "characteristicInstruments": [
+        "electric-guitar",
+        "bass",
+        "drums",
+        "voice"
+      ],
+      "preferredMeters": [
+        "4/4"
+      ],
+      "tempoRange": [
+        120,
+        150
+      ],
+      "keySubstyles": [
+        "60s Garage Punk",
+        "2000s Garage Revival"
+      ],
+      "coreConcepts": [
+        "interlocking punchy single-coil guitar riffs",
+        "snappy drum-machine-tight acoustic drum beats",
+        "cool detached nonchalant vocal delivery",
+        "vintage analog tube saturation"
+      ],
+      "rhythmicGrammar": [
+        "tight driving 4/4 with sixteenth-note hi-hat pulse and punchy kick/snare interplay"
+      ],
+      "danceTags": [
+        "festival-fusion",
+        "social-partner"
+      ],
+      "tuningSystem": "12-tet",
+      "signatureCell": "Snappy interlocking clean/overdriven guitar duel over tight metronomic drum beat",
+      "grooveMechanics": {
+        "swingPercentage": 50,
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "pushed"
+      },
+      "sectionProgressions": {
+        "intro": [
+          "Am",
+          "Dm",
+          "G",
+          "C"
+        ],
+        "verse": [
+          "Am",
+          "Dm",
+          "G",
+          "C",
+          "F",
+          "Dm",
+          "E7",
+          "E7"
+        ],
+        "chorus": [
+          "C",
+          "F",
+          "Am",
+          "G",
+          "C",
+          "F",
+          "Am",
+          "G"
+        ],
+        "coda": [
+          "F",
+          "G",
+          "Am",
+          "Am"
+        ]
+      }
+    },
+    {
+      "id": "rock-psychedelic",
+      "worldId": "rock",
+      "name": "Psychedelic",
+      "origin": "San Francisco / London",
+      "era": "Late 1960s",
+      "description": "Wah-wah • Tape Delay • Mind-expanding\nAcid-soaked exploratory sonic journeys.\nThe Jimi Hendrix Experience · The Doors",
+      "characteristicInstruments": [
+        "electric-guitar",
+        "organ",
+        "bass",
+        "drums",
+        "voice"
+      ],
+      "preferredMeters": [
+        "4/4",
+        "3/4"
+      ],
+      "tempoRange": [
+        95,
+        128
+      ],
+      "keySubstyles": [
+        "Acid Rock",
+        "San Francisco Sound"
+      ],
+      "coreConcepts": [
+        "Jimi Hendrix Uni-Vibe, Fuzz Face, and Cry Baby wah-wah manipulation",
+        "modal Indian raga scale improvisations",
+        "swirling Vox Continental / Farfisa organ chords",
+        "surrealistic poetic stream-of-consciousness"
+      ],
+      "rhythmicGrammar": [
+        "fluid expressive drum grooves with Mitch Mitchell-style rolling triplet snare fills"
+      ],
+      "danceTags": [
+        "listening",
+        "festival-fusion"
+      ],
+      "tuningSystem": "12-tet",
+      "signatureCell": "Wah-wah pedal sweep over overdriven fuzz 7#9 Hendrix chord with swirling tape flanger",
+      "grooveMechanics": {
+        "swingPercentage": 54,
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "rubato"
+      },
+      "sectionProgressions": {
+        "intro": [
+          "E7#9",
+          "G",
+          "A",
+          "E7#9"
+        ],
+        "verse": [
+          "E7#9",
+          "G",
+          "A",
+          "E7#9",
+          "C",
+          "D",
+          "E7#9",
+          "E7#9"
+        ],
+        "solo": [
+          "E7#9",
+          "A7",
+          "E7#9",
+          "B7",
+          "C",
+          "D",
+          "E7#9",
+          "E7#9"
+        ],
+        "coda": [
+          "C",
+          "D",
+          "E7#9",
+          "E7#9"
+        ]
+      }
+    },
+    {
+      "id": "rock-post-rock",
+      "worldId": "rock",
+      "name": "Post-Rock",
+      "origin": "Montreal / Reykjavik / Texas",
+      "era": "Late 1990s–Present",
+      "description": "Crescendo • Cinematic • Instrumental\nEpic dynamic sonic architecture.\nGodspeed You! Black Emperor · Explosions in the Sky",
+      "characteristicInstruments": [
+        "electric-guitar",
+        "bass",
+        "drums",
+        "strings",
+        "glockenspiel"
+      ],
+      "preferredMeters": [
+        "4/4",
+        "6/8",
+        "3/4"
+      ],
+      "tempoRange": [
+        70,
+        110
+      ],
+      "keySubstyles": [
+        "Crescendo Post-Rock",
+        "Cinematic Ambient Rock"
+      ],
+      "coreConcepts": [
+        "massive ten-minute dynamic builds from whispering delay to roaring crescendos",
+        "bowed guitars and shimmering glockenspiels",
+        "absence of standard verse/chorus lyrics",
+        "sublime emotional catharsis"
+      ],
+      "rhythmicGrammar": [
+        "slowly accelerating and intensifying drum rolls building from gentle brushes into crashing cymbals"
+      ],
+      "danceTags": [
+        "listening"
+      ],
+      "tuningSystem": "12-tet",
+      "signatureCell": "Whispering tremolo-picked delay guitar slowly swelling into monumental wall of crashing sound",
+      "grooveMechanics": {
+        "swingPercentage": 50,
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "rubato"
+      },
+      "sectionProgressions": {
+        "intro": [
+          "Am",
+          "F",
+          "C",
+          "G"
+        ],
+        "build": [
+          "Am",
+          "F",
+          "C",
+          "G",
+          "Am",
+          "F",
+          "C",
+          "Em"
+        ],
+        "climax": [
+          "F",
+          "G",
+          "Am",
+          "Em",
+          "F",
+          "G",
+          "Am",
+          "Am"
+        ],
+        "coda": [
+          "F",
+          "G",
+          "Am",
+          "Am"
+        ]
+      }
+    },
+    {
+      "id": "rock-shoegaze",
+      "worldId": "rock",
+      "name": "Shoegaze",
+      "origin": "London / Oxford / Dublin",
+      "era": "Late 1980s–Early 1990s",
+      "description": "Glide Guitar • Wall of Sound • Dreamy\nDistorted reverse-reverb ocean of sound.\nMy Bloody Valentine · Slowdive",
+      "characteristicInstruments": [
+        "electric-guitar",
+        "bass",
+        "drums",
+        "synth",
+        "voice"
+      ],
+      "preferredMeters": [
+        "4/4"
+      ],
+      "tempoRange": [
+        95,
+        120
+      ],
+      "keySubstyles": [
+        "Dream Pop",
+        "Noise Pop Shoegaze"
+      ],
+      "coreConcepts": [
+        "Kevin Shields \"glide guitar\" (strumming while riding the Jaguar tremolo arm)",
+        "Alesis/Yamaha reverse reverb into fuzz distortion",
+        "whispering androgynous buried vocal harmonies",
+        "dense shimmering harmonic overtones"
+      ],
+      "rhythmicGrammar": [
+        "steady metronomic 4/4 drum pulse anchoring floating oceanic guitars"
+      ],
+      "danceTags": [
+        "listening",
+        "festival-fusion"
+      ],
+      "tuningSystem": "12-tet",
+      "signatureCell": "Glide-guitar chord bent with tremolo arm while drowning in reverse reverb and roaring fuzz",
       "grooveMechanics": {
         "swingPercentage": 50,
         "anticipationOffsetSteps": 0,
@@ -304,57 +625,67 @@ export const ROCK_WORLD: GenreWorld = {
       },
       "sectionProgressions": {
         "intro": [
-          "Dm",
-          "Bbmaj7",
-          "C",
-          "Am7"
+          "Dmaj7",
+          "Gmaj7",
+          "Dmaj7",
+          "Gmaj7"
         ],
         "verse": [
-          "Dm",
-          "F",
-          "G",
-          "Bb"
+          "Dmaj7",
+          "Gmaj7",
+          "Dmaj7",
+          "Gmaj7",
+          "Bm7",
+          "A",
+          "Gmaj7",
+          "Gmaj7"
         ],
         "chorus": [
-          "Gm7",
-          "C7",
-          "Fmaj7",
-          "A7"
-        ],
-        "solo": [
-          "Dm",
-          "Em7b5",
-          "A7",
-          "Dm"
+          "Gmaj7",
+          "A",
+          "Bm7",
+          "D",
+          "Gmaj7",
+          "A",
+          "D",
+          "D"
         ],
         "coda": [
-          "Dm",
-          "Dm",
-          "Dm",
-          "Dm"
+          "Gmaj7",
+          "A",
+          "D",
+          "D"
         ]
       }
     }
   ],
   "substyles": [
-    "Classic Rock",
-    "Punk",
-    "Garage",
-    "Alternative",
-    "Indie",
-    "Progressive",
-    "Post-Punk",
+    "Hard Rock",
+    "Grunge",
+    "Progressive Rock",
+    "Punk Rock",
+    "Garage Rock",
+    "Psychedelic",
+    "Post-Rock",
     "Shoegaze"
   ],
   "artists": [
-    "The Beatles",
-    "The Rolling Stones",
     "Led Zeppelin",
-    "The Clash",
-    "Sonic Youth",
-    "Radiohead",
+    "AC/DC",
     "Nirvana",
-    "King Crimson"
+    "Soundgarden",
+    "Pink Floyd",
+    "Yes",
+    "Ramones",
+    "The Clash",
+    "The Stooges",
+    "The Strokes",
+    "The Jimi Hendrix Experience",
+    "The Doors",
+    "Godspeed You! Black Emperor",
+    "Explosions in the Sky",
+    "My Bloody Valentine",
+    "Slowdive"
   ],
   "concepts": [
     "riff architecture",
@@ -2418,11 +2749,15 @@ export const ROCK_WORLD: GenreWorld = {
       "roles": [
         "voice"
       ],
-      "instruments": ["voice"],
+      "instruments": [
+        "voice"
+      ],
       "compatibleRoles": [
         "voice"
       ],
-      "compatibleInstruments": ["voice"],
+      "compatibleInstruments": [
+        "voice"
+      ],
       "canCrossRole": true,
       "meter": "4/4",
       "cycleLength": 1,
@@ -2575,11 +2910,15 @@ export const ROCK_WORLD: GenreWorld = {
       "roles": [
         "voice"
       ],
-      "instruments": ["voice"],
+      "instruments": [
+        "voice"
+      ],
       "compatibleRoles": [
         "voice"
       ],
-      "compatibleInstruments": ["voice"],
+      "compatibleInstruments": [
+        "voice"
+      ],
       "canCrossRole": true,
       "meter": "4/4",
       "cycleLength": 1,

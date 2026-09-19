@@ -9,172 +9,485 @@ export const FUSION_AMBIENT_WORLD: GenreWorld = {
   "description": "The sonic meeting ground for modern partner Fusion dancing, Blues fusion, and contemporary West Coast Swing: Bonobo-style organic downtempo, deep sub-bass drones, intimate felt piano arpeggios, and expansive cinematic soundscapes designed for intuitive physical connection.",
   "traditions": [
     {
-      "id": "fusion-downtempo",
+      "id": "fusion-ambient-drone",
       "worldId": "fusion-ambient",
-      "name": "Downtempo & Organic Bass (Bonobo Lineage)",
-      "origin": "UK / Global Fusion Festivals",
-      "era": "2000s–Present",
-      "description": "Hypnotic, organic downtempo combining deep warm sub-bass drones, kalimba / acoustic picking, dusty vinyl percussion, and expansive atmospheric pads.",
+      "name": "Drone",
+      "origin": "New York / Global",
+      "era": "1960s–Present",
+      "description": "Sustained • Resonant • Meditative\nDeep continuous harmonic vibrations.\nLa Monte Young · Sunn O)))",
       "characteristicInstruments": [
-        "bass",
+        "drone",
         "synth",
-        "drums",
-        "percussion",
         "guitar",
-        "keys"
+        "bowed-strings",
+        "modular-synth"
       ],
       "preferredMeters": [
-        "4/4"
+        "free"
       ],
       "tempoRange": [
-        78,
-        105
+        30,
+        50
       ],
       "keySubstyles": [
-        "Organic Downtempo (Bonobo, Tycho)",
-        "Trip-Hop Grooves",
-        "Folktronica"
+        "Minimalist Drone",
+        "Heavy Guitar Drone"
       ],
       "coreConcepts": [
-        "deep sub-bass drone",
-        "organic textured percussion (foley, shakers)",
-        "ambient volume swells",
-        "micro-timing pocket"
+        "microtonal beatings between sustained fundamental frequencies",
+        "infinite sustain and overtone series resonance",
+        "timbral shift over harmonic movement",
+        "deep meditative concentration"
       ],
       "rhythmicGrammar": [
-        "unhurried backbeat with syncopated ghost percussion and sub-bass drops"
+        "completely unmetered sound continuous in time"
       ],
       "danceTags": [
-        "festival-fusion",
-        "blues-fusion-compatible",
-        "wcs-compatible"
+        "listening"
       ],
-      "tuningSystem": "12-tet",
-      "signatureCell": "Slow breathing sub-bass pulse under organic hand percussion and ambient guitar swells",
-      "grooveMechanics": {
-        "swingPercentage": 54,
-        "anticipationOffsetSteps": 1,
-        "microtimingFeel": "laid-back"
-      },
-      "sectionProgressions": {
-        "intro": [
-          "Am9",
-          "Fmaj7#11",
-          "Dm9",
-          "Em7"
-        ],
-        "verse": [
-          "Am9",
-          "Fmaj7#11",
-          "Dm9",
-          "Em7"
-        ],
-        "chorus": [
-          "Fmaj7",
-          "G6",
-          "Am9",
-          "Cmaj7"
-        ],
-        "coda": [
-          "Am9",
-          "Fmaj7",
-          "Am9",
-          "Fmaj7"
-        ]
-      }
-    },
-    {
-      "id": "fusion-cinematic-neoclassical",
-      "worldId": "fusion-ambient",
-      "name": "Neoclassical & Cinematic Fusion",
-      "origin": "International",
-      "era": "2010s–Present",
-      "description": "Poignant neoclassical acoustic-electronic hybrid: felt piano arpeggios, expressive solo cello / violin, slow sub-bass pulses, and granular ambient washes designed for partner dance connection.",
-      "characteristicInstruments": [
-        "piano",
-        "strings",
-        "violin",
-        "synth",
-        "bass"
-      ],
-      "preferredMeters": [
-        "4/4",
-        "3/4"
-      ],
-      "tempoRange": [
-        65,
-        95
-      ],
-      "keySubstyles": [
-        "Neoclassical Partner Dance (Olafur Arnalds, Nils Frahm)",
-        "Cinematic Ambient",
-        "Acoustic Drone"
-      ],
-      "coreConcepts": [
-        "intimate felt piano touch",
-        "slow expressive string glissandos",
-        "static harmonic bed",
-        "partner improvisation space"
-      ],
-      "rhythmicGrammar": [
-        "sparse, breathing onsets prioritizing space and dancer physical connection"
-      ],
-      "danceTags": [
-        "festival-fusion",
-        "blues-fusion-compatible",
-        "social-partner"
-      ],
-      "tuningSystem": "12-tet",
-      "signatureCell": "Felt piano arpeggio hovering over a warm sub-bass drone",
+      "tuningSystem": "just-intonation",
+      "signatureCell": "Deep sustained resonant low drone with shimmering microtonal acoustic overtones",
       "grooveMechanics": {
         "swingPercentage": 50,
         "anticipationOffsetSteps": 0,
         "microtimingFeel": "rubato"
       },
       "sectionProgressions": {
-        "intro": [
-          "Dm",
-          "Bbmaj7",
-          "F",
+        "theme": [
+          "C",
+          "C",
+          "C",
           "C"
-        ],
-        "verse": [
-          "Dm",
-          "Bbmaj7",
-          "F",
-          "C"
-        ],
-        "chorus": [
+        ]
+      }
+    },
+    {
+      "id": "fusion-ambient-dark-ambient",
+      "worldId": "fusion-ambient",
+      "name": "Dark Ambient",
+      "origin": "Sweden / UK / Germany",
+      "era": "1980s–Present",
+      "description": "Ominous • Cavernous • Foreboding\nIndustrial, gothic soundscapes.\nLustmord · Raison d'être",
+      "characteristicInstruments": [
+        "sampler",
+        "synth",
+        "drone",
+        "low-percussion"
+      ],
+      "preferredMeters": [
+        "free"
+      ],
+      "tempoRange": [
+        35,
+        55
+      ],
+      "keySubstyles": [
+        "Industrial Dark Ambient",
+        "Ritual Ambient"
+      ],
+      "coreConcepts": [
+        "sub-audible low rumble frequencies",
+        "cavernous industrial reverb impulses",
+        "foreboding metallic scrapings and distant choirs",
+        "claustrophobic psychological tension"
+      ],
+      "rhythmicGrammar": [
+        "sporadic thunderous sub-bass impacts echoing into deep spatial darkness"
+      ],
+      "danceTags": [
+        "listening"
+      ],
+      "tuningSystem": "12-tet",
+      "signatureCell": "Cavernous sub-audible bass rumble echoing behind distant bowed metallic screeches",
+      "grooveMechanics": {
+        "swingPercentage": 50,
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "rubato"
+      },
+      "sectionProgressions": {
+        "theme": [
+          "Em",
+          "Em",
+          "C",
+          "B7",
+          "Em",
+          "Em",
+          "Am",
+          "Em"
+        ]
+      }
+    },
+    {
+      "id": "fusion-ambient-space-music",
+      "worldId": "fusion-ambient",
+      "name": "Space Music",
+      "origin": "Germany / USA",
+      "era": "1970s–Present",
+      "description": "Cosmic • Synthesizer • Floating\nCosmic analog journeys to the stars.\nKlaus Schulze · Steve Roach",
+      "characteristicInstruments": [
+        "synth",
+        "modular-synth",
+        "sampler",
+        "drone"
+      ],
+      "preferredMeters": [
+        "free",
+        "4/4"
+      ],
+      "tempoRange": [
+        50,
+        75
+      ],
+      "keySubstyles": [
+        "Berlin School Space Ambient",
+        "Cosmic Synthesizer"
+      ],
+      "coreConcepts": [
+        "cascading analog step-sequencer arpeggios",
+        "sweeping resonant filter sweeps",
+        "stellar white noise sweeps and delays",
+        "weightless floating sensation"
+      ],
+      "rhythmicGrammar": [
+        "gentle hypnotic 16th-note analog sequencer pulses floating without heavy drums"
+      ],
+      "danceTags": [
+        "listening"
+      ],
+      "tuningSystem": "12-tet",
+      "signatureCell": "Gentle hypnotic analog synth sequencer line floating through cosmic delay and filter sweep",
+      "grooveMechanics": {
+        "swingPercentage": 50,
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "straight"
+      },
+      "sectionProgressions": {
+        "theme": [
+          "Dm9",
+          "Fmaj7",
+          "Am9",
+          "Gadd9",
           "Bbmaj7",
           "C",
-          "Dm",
+          "Dm9",
+          "Dm9"
+        ]
+      }
+    },
+    {
+      "id": "fusion-ambient-lo-fi-ambient",
+      "worldId": "fusion-ambient",
+      "name": "Lo-Fi Ambient",
+      "origin": "Internet / Global",
+      "era": "2010s–Present",
+      "description": "Warm • Tape Warble • Nostalgic\nCassette degraded peaceful textures.\nWilliam Basinski · Grouper",
+      "characteristicInstruments": [
+        "sampler",
+        "tape-loop",
+        "piano",
+        "guitar",
+        "synth"
+      ],
+      "preferredMeters": [
+        "free",
+        "4/4"
+      ],
+      "tempoRange": [
+        55,
+        75
+      ],
+      "keySubstyles": [
+        "Tape Decay Ambient",
+        "Hauntology"
+      ],
+      "coreConcepts": [
+        "cassette tape wow-and-flutter and hiss",
+        "disintegrating acoustic piano loops",
+        "warm analog saturation",
+        "melancholic nostalgic memories of childhood"
+      ],
+      "rhythmicGrammar": [
+        "cyclical tape loop repetitions slowly degrading in timbre with each cycle"
+      ],
+      "danceTags": [
+        "listening"
+      ],
+      "tuningSystem": "12-tet",
+      "signatureCell": "Warm degraded piano tape loop warbling gently with tape hiss and crackle",
+      "grooveMechanics": {
+        "swingPercentage": 50,
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "rubato"
+      },
+      "sectionProgressions": {
+        "loop": [
+          "Fmaj7",
+          "Cmaj7",
+          "Am7",
+          "G"
+        ]
+      }
+    },
+    {
+      "id": "fusion-ambient-field-recordings",
+      "worldId": "fusion-ambient",
+      "name": "Field Recordings",
+      "origin": "Global Natural / Urban Environments",
+      "era": "20th Century–Present",
+      "description": "Environmental • Organic • Pure\nSoundscapes captured from nature.\nChris Watson · Francisco López",
+      "characteristicInstruments": [
+        "sampler",
+        "field-recording",
+        "acoustic-instruments"
+      ],
+      "preferredMeters": [
+        "free"
+      ],
+      "tempoRange": [
+        40,
+        60
+      ],
+      "keySubstyles": [
+        "Bioacoustics",
+        "Soundscape Ecology",
+        "Phonography"
+      ],
+      "coreConcepts": [
+        "pristine environmental audio captures (rainforest, ocean, arctic wind)",
+        "micro-sounds of wildlife and water",
+        "unprocessed natural acoustic depth",
+        "active listening immersion"
+      ],
+      "rhythmicGrammar": [
+        "organic natural rhythms of rainfall, ocean surf, insect chirps, and wind gusts"
+      ],
+      "danceTags": [
+        "listening"
+      ],
+      "tuningSystem": "just-intonation",
+      "signatureCell": "Immersive binaural forest rainfall blending seamlessly with subtle tonal wind resonance",
+      "grooveMechanics": {
+        "swingPercentage": 50,
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "rubato"
+      },
+      "sectionProgressions": {
+        "soundscape": [
+          "C",
+          "C",
+          "C",
+          "C"
+        ]
+      }
+    },
+    {
+      "id": "fusion-ambient-illbient",
+      "worldId": "fusion-ambient",
+      "name": "Illbient",
+      "origin": "Brooklyn, New York",
+      "era": "1990s",
+      "description": "Dubby • Grimy • Hip-hop\nBrooklyn underground dub-ambient hybrid.\nDJ Spooky · We™",
+      "characteristicInstruments": [
+        "sampler",
+        "drums",
+        "sub-bass",
+        "turntables",
+        "synth"
+      ],
+      "preferredMeters": [
+        "4/4"
+      ],
+      "tempoRange": [
+        70,
+        88
+      ],
+      "keySubstyles": [
+        "Brooklyn Illbient",
+        "Experimental Dub"
+      ],
+      "coreConcepts": [
+        "slow mutated hip-hop drum loops",
+        "deep cavernous dub delay feeds",
+        "avant-garde vinyl turntable collages",
+        "grimy urban subterranean mood"
+      ],
+      "rhythmicGrammar": [
+        "sluggish fractured breakbeat surrounded by heavy spatial dub echoes and sub-bass"
+      ],
+      "danceTags": [
+        "listening",
+        "festival-fusion"
+      ],
+      "tuningSystem": "12-tet",
+      "signatureCell": "Fractured hip-hop drum break mutating through cavernous space echo and dark sub-bass",
+      "grooveMechanics": {
+        "swingPercentage": 54,
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "laid-back"
+      },
+      "sectionProgressions": {
+        "groove": [
+          "Cm",
+          "Ab",
+          "Fm",
+          "G7",
+          "Cm",
+          "Ab",
+          "Bb",
+          "G7"
+        ]
+      }
+    },
+    {
+      "id": "fusion-ambient-isolationist",
+      "worldId": "fusion-ambient",
+      "name": "Isolationist",
+      "origin": "UK / Europe",
+      "era": "Early 1990s",
+      "description": "Cold • Bleak • Distant\nChilly, desolate sound architecture.\nThomas Köner · Lull",
+      "characteristicInstruments": [
+        "sampler",
+        "synth",
+        "drone",
+        "low-percussion"
+      ],
+      "preferredMeters": [
+        "free"
+      ],
+      "tempoRange": [
+        30,
+        50
+      ],
+      "keySubstyles": [
+        "Arctic Ambient",
+        "Isolationism"
+      ],
+      "coreConcepts": [
+        "extreme low-frequency sub-bass waves",
+        "arctic wind and frozen metallic reverberations",
+        "total absence of melodic warmth or sentimentality",
+        "bleak spatial emptiness"
+      ],
+      "rhythmicGrammar": [
+        "glacial unmetered flow with immense silence gaps between micro-events"
+      ],
+      "danceTags": [
+        "listening"
+      ],
+      "tuningSystem": "12-tet",
+      "signatureCell": "Glacial sub-bass wave slowly rolling beneath distant icy metallic gong resonance",
+      "grooveMechanics": {
+        "swingPercentage": 50,
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "rubato"
+      },
+      "sectionProgressions": {
+        "drift": [
+          "Am",
+          "Am",
+          "F",
+          "Em"
+        ]
+      }
+    },
+    {
+      "id": "fusion-ambient-dub-ambient",
+      "worldId": "fusion-ambient",
+      "name": "Dub Ambient",
+      "origin": "Berlin / Detroit",
+      "era": "1990s–Present",
+      "description": "Echo • Filtered Chords • Sub-bass\nSpacious dub chords and deep space.\nBasic Channel · Deepchord",
+      "characteristicInstruments": [
+        "synth",
+        "sub-bass",
+        "sampler",
+        "drums",
+        "tape-echo"
+      ],
+      "preferredMeters": [
+        "4/4"
+      ],
+      "tempoRange": [
+        110,
+        122
+      ],
+      "keySubstyles": [
+        "Dub Techno Ambient",
+        "Echospace"
+      ],
+      "coreConcepts": [
+        "heavily filtered analog minor chord stabs (noise + resonance)",
+        "infinite Roland Space Echo feedback loops",
+        "warm vinyl noise and tape hiss blankets",
+        "deep rolling sub-bass foundation"
+      ],
+      "rhythmicGrammar": [
+        "subtle 4-on-the-floor kick muffled under dense analog hiss with dub chord falling on 2-and or 4"
+      ],
+      "danceTags": [
+        "listening",
+        "festival-fusion"
+      ],
+      "tuningSystem": "12-tet",
+      "signatureCell": "Filtered minor chord stab shooting into infinite tape delay over deep warm sub-bass",
+      "grooveMechanics": {
+        "swingPercentage": 50,
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "straight"
+      },
+      "sectionProgressions": {
+        "intro": [
+          "Dm7",
+          "Dm7",
+          "Dm7",
+          "Dm7"
+        ],
+        "flow": [
+          "Dm7",
+          "Dm7",
+          "Gm7",
+          "Dm7",
+          "Dm7",
+          "Dm7",
+          "Bbmaj7",
           "Am7"
         ],
         "coda": [
-          "Dm",
-          "Dm",
-          "Dm",
-          "Dm"
+          "Dm7",
+          "Dm7",
+          "Dm7",
+          "Dm7"
         ]
       }
     }
   ],
   "substyles": [
-    "Organic Downtempo (Bonobo)",
-    "Neoclassical Fusion (Olafur Arnalds)",
-    "Trip-Hop Beats",
-    "Global Bass",
-    "Ambient Electronica"
+    "Drone",
+    "Dark Ambient",
+    "Space Music",
+    "Lo-Fi Ambient",
+    "Field Recordings",
+    "Illbient",
+    "Isolationist",
+    "Dub Ambient"
   ],
   "artists": [
-    "Bonobo",
-    "Tycho",
-    "Olafur Arnalds",
-    "Nils Frahm",
-    "Emancipator",
-    "Maribou State",
-    "Kiasmos",
-    "Weval"
+    "La Monte Young",
+    "Sunn O)))",
+    "Lustmord",
+    "Raison d'être",
+    "Klaus Schulze",
+    "Steve Roach",
+    "William Basinski",
+    "Grouper",
+    "Chris Watson",
+    "Francisco López",
+    "DJ Spooky",
+    "We™",
+    "Thomas Köner",
+    "Lull",
+    "Basic Channel",
+    "Deepchord"
   ],
   "concepts": [
     "deep breathing sub-bass drones",
@@ -1169,11 +1482,15 @@ export const FUSION_AMBIENT_WORLD: GenreWorld = {
       "roles": [
         "voice"
       ],
-      "instruments": ["voice"],
+      "instruments": [
+        "voice"
+      ],
       "compatibleRoles": [
         "voice"
       ],
-      "compatibleInstruments": ["voice"],
+      "compatibleInstruments": [
+        "voice"
+      ],
       "canCrossRole": true,
       "meter": "4/4",
       "cycleLength": 1,

@@ -9,54 +9,45 @@ export const ROCK_EN_ESPANOL_WORLD: GenreWorld = {
   "description": "A dedicated Spanish-language rock genre spanning Argentina, Mexico, Spain and Latin alternative traditions, with attention to guitar hooks, lyric phrasing, melodic bass, dynamic choruses and regional rhythmic fusion.",
   "traditions": [
     {
-      "id": "res-argentina",
+      "id": "rock-en-espanol-spanish-wave",
       "worldId": "rock-en-espanol",
-      "name": "Rock Argentino",
-      "origin": "Argentina",
-      "era": "1960s–Present",
-      "description": "Spanish-language rock rooted in beat, folk and blues traditions, later expanded through progressive, new-wave, post-punk and alternative approaches.",
+      "name": "Spanish Wave",
+      "origin": "Buenos Aires / Madrid / Mexico City",
+      "era": "1980s",
+      "description": "Post-Punk • Chorus Guitars • Anthem\nIconic 80s Latin American rock movement.\nSoda Stereo · Enanitos Verdes",
       "characteristicInstruments": [
         "electric-guitar",
         "bass",
         "drums",
-        "voice",
-        "keys"
+        "synth",
+        "voice"
       ],
       "preferredMeters": [
-        "4/4",
-        "6/8",
-        "3/4"
+        "4/4"
       ],
       "tempoRange": [
-        75,
-        175
+        118,
+        138
       ],
       "keySubstyles": [
-        "Rock Nacional",
-        "Progressive Rock",
-        "New Wave",
-        "Alternative Rock"
+        "Rock en tu Idioma",
+        "New Wave en Español"
       ],
       "coreConcepts": [
-        "Spanish-language lyric phrasing",
-        "guitar hooks",
-        "melodic bass",
-        "dynamic chorus",
-        "textural keyboards"
+        "Gustavo Cerati shimmering chorus/flanger guitar riffs",
+        "driving syncopated new-wave basslines",
+        "lyrical poetic depth and social liberation themes",
+        "soaring anthemic stadium choruses"
       ],
       "rhythmicGrammar": [
-        "straight eighth-note rock",
-        "syncopated guitar cells",
-        "bass counterlines around vocal phrases",
-        "sectional dynamic builds"
+        "driving 4/4 new wave beat with sixteenth-note hi-hats and punchy gated snare on 2 and 4"
       ],
       "danceTags": [
-        "social-partner",
-        "listening",
-        "festival-fusion"
+        "festival-fusion",
+        "social-partner"
       ],
       "tuningSystem": "12-tet",
-      "signatureCell": "Ringing chorus guitar hook with melodic bass counterline and dynamic new-wave synths",
+      "signatureCell": "Shimmering chorus guitar riff over driving new-wave bassline and Cerati vocal anthem",
       "grooveMechanics": {
         "swingPercentage": 50,
         "anticipationOffsetSteps": 0,
@@ -64,86 +55,324 @@ export const ROCK_EN_ESPANOL_WORLD: GenreWorld = {
       },
       "sectionProgressions": {
         "intro": [
-          "Em",
-          "C",
+          "Bm",
           "G",
-          "D"
+          "D",
+          "A"
         ],
         "verse": [
+          "Bm",
+          "G",
+          "D",
+          "A",
+          "Bm",
+          "G",
+          "D",
+          "A"
+        ],
+        "chorus": [
+          "G",
+          "A",
+          "Bm",
+          "F#m",
+          "G",
+          "A",
+          "D",
+          "D"
+        ],
+        "coda": [
+          "G",
+          "A",
+          "Bm",
+          "Bm"
+        ]
+      }
+    },
+    {
+      "id": "rock-en-espanol-rock-urbano",
+      "worldId": "rock-en-espanol",
+      "name": "Rock Urbano",
+      "origin": "Mexico City (Barrios & Hoyos Funkys)",
+      "era": "1970s–1980s",
+      "description": "Blues Rock • Gritty • Street Reality\nRaw Mexican working-class street rock.\nEl Tri · Tex Tex",
+      "characteristicInstruments": [
+        "electric-guitar",
+        "harmonica",
+        "bass",
+        "drums",
+        "voice"
+      ],
+      "preferredMeters": [
+        "4/4"
+      ],
+      "tempoRange": [
+        110,
+        135
+      ],
+      "keySubstyles": [
+        "Chango Rock",
+        "Blues Urbano Mexicano"
+      ],
+      "coreConcepts": [
+        "raw Alex Lora rasping vocal delivery",
+        "punchy 12-bar blues rock riffs with overdriven guitars",
+        "wailing blues harmonica solos",
+        "unfiltered gritty chronicles of street life and police corruption"
+      ],
+      "rhythmicGrammar": [
+        "driving shuffle or straight 4/4 blues-rock beat with heavy kick and crackling snare"
+      ],
+      "danceTags": [
+        "festival-fusion"
+      ],
+      "tuningSystem": "12-tet",
+      "signatureCell": "Overdriven blues shuffle riff answered by screeching harmonica lick and Alex Lora rasp",
+      "grooveMechanics": {
+        "swingPercentage": 56,
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "pushed"
+      },
+      "sectionProgressions": {
+        "intro": [
+          "E7",
+          "A7",
+          "E7",
+          "B7"
+        ],
+        "verse": [
+          "E7",
+          "E7",
+          "E7",
+          "E7",
+          "A7",
+          "A7",
+          "E7",
+          "E7",
+          "B7",
+          "A7",
+          "E7",
+          "B7"
+        ],
+        "solo": [
+          "E7",
+          "A7",
+          "E7",
+          "B7",
+          "A7",
+          "E7",
+          "E7"
+        ],
+        "coda": [
+          "B7",
+          "A7",
+          "E7",
+          "E7"
+        ]
+      }
+    },
+    {
+      "id": "rock-en-espanol-alt-latino",
+      "worldId": "rock-en-espanol",
+      "name": "Alt-Latino",
+      "origin": "Mexico City / Los Angeles / Buenos Aires",
+      "era": "1990s",
+      "description": "Eclectic • Folk Fusion • Experimental\nAvant-garde Latin rock and folk collision.\nCafé Tacvba · Los Fabulosos Cadillacs",
+      "characteristicInstruments": [
+        "acoustic-guitar",
+        "electric-guitar",
+        "bass",
+        "drums",
+        "accordion",
+        "voice"
+      ],
+      "preferredMeters": [
+        "4/4",
+        "2/4",
+        "3/4"
+      ],
+      "tempoRange": [
+        110,
+        145
+      ],
+      "keySubstyles": [
+        "Mestizo Rock",
+        "Latin Alternative 90s"
+      ],
+      "coreConcepts": [
+        "blending punk/alternative rock with regional huapango, bolero, and son",
+        "jarana and accordion textures layered with distortion",
+        "theatrical shape-shifting vocal personas (Rubén Albarrán)",
+        "boundless genre-hopping curiosity"
+      ],
+      "rhythmicGrammar": [
+        "dynamic tempo shifts jumping from fast punk 2/4 into traditional Mexican huapango 6/8"
+      ],
+      "danceTags": [
+        "festival-fusion",
+        "social-partner"
+      ],
+      "tuningSystem": "12-tet",
+      "signatureCell": "Punk rock power-chord blast shifting mid-bar into joyful regional accordion and jarana bounce",
+      "grooveMechanics": {
+        "swingPercentage": 50,
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "pushed"
+      },
+      "sectionProgressions": {
+        "intro": [
+          "C",
+          "G",
+          "Am",
+          "F"
+        ],
+        "verse": [
+          "C",
+          "G",
+          "Am",
+          "F",
+          "C",
+          "G",
+          "F",
+          "G"
+        ],
+        "chorus": [
+          "F",
+          "G",
+          "C",
+          "Am",
+          "F",
+          "G",
+          "C",
+          "C"
+        ],
+        "coda": [
+          "F",
+          "G",
+          "C",
+          "C"
+        ]
+      }
+    },
+    {
+      "id": "rock-en-espanol-pop-rock",
+      "worldId": "rock-en-espanol",
+      "name": "Pop Rock",
+      "origin": "Guadalajara / Mexico City / Madrid",
+      "era": "1990s–2000s",
+      "description": "Catchy • Acoustic & Electric • Anthemic\nStadium singalongs and infectious hooks.\nManá · Juanes",
+      "characteristicInstruments": [
+        "electric-guitar",
+        "acoustic-guitar",
+        "drums",
+        "bass",
+        "percussion",
+        "voice"
+      ],
+      "preferredMeters": [
+        "4/4"
+      ],
+      "tempoRange": [
+        100,
+        125
+      ],
+      "keySubstyles": [
+        "Latin Pop Rock",
+        "Tropi-Pop Rock"
+      ],
+      "coreConcepts": [
+        "clean radio-ready acoustic and electric guitar layering",
+        "catchy universal romantic lyricism",
+        "driving rock drum kit augmented with subtle congas/shakers",
+        "instantly memorable vocal melodies"
+      ],
+      "rhythmicGrammar": [
+        "polished 4/4 rock groove with steady acoustic strumming and tight snare backbeat"
+      ],
+      "danceTags": [
+        "social-partner",
+        "festival-fusion"
+      ],
+      "tuningSystem": "12-tet",
+      "signatureCell": "Soaring melodic chorus hook driven by dual acoustic strumming and crying Stratocaster fill",
+      "grooveMechanics": {
+        "swingPercentage": 50,
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "straight"
+      },
+      "sectionProgressions": {
+        "intro": [
+          "G",
+          "D",
+          "Em",
+          "C"
+        ],
+        "verse": [
+          "G",
+          "D",
           "Em",
           "C",
           "G",
-          "D"
+          "D",
+          "Em",
+          "C"
         ],
         "chorus": [
           "C",
           "D",
           "G",
-          "Em"
-        ],
-        "solo": [
-          "Am",
-          "Bm",
+          "Em",
           "C",
-          "D"
+          "D",
+          "G",
+          "G"
         ],
         "coda": [
-          "Em",
-          "Em",
-          "Em",
-          "Em"
+          "C",
+          "D",
+          "G",
+          "G"
         ]
       }
     },
     {
-      "id": "res-mexico",
+      "id": "rock-en-espanol-post-punk",
       "worldId": "rock-en-espanol",
-      "name": "Rock Mexicano",
-      "origin": "Mexico",
-      "era": "1960s–Present",
-      "description": "A wide rock tradition moving from garage and psychedelic rock through punk, ska, alternative and darker guitar-driven styles.",
+      "name": "Post-Punk",
+      "origin": "Mexico City / Tijuana / Buenos Aires",
+      "era": "1980s / 2010s Revival",
+      "description": "Dark • Flanger Bass • Synthesizers\nDarkwave and icy Latin goth rock.\nCaifanes · Santa Sabina",
       "characteristicInstruments": [
         "electric-guitar",
         "bass",
         "drums",
-        "voice",
-        "keys"
+        "synth",
+        "voice"
       ],
       "preferredMeters": [
-        "4/4",
-        "6/8"
+        "4/4"
       ],
       "tempoRange": [
-        80,
-        190
+        115,
+        135
       ],
       "keySubstyles": [
-        "Garage",
-        "Psychedelic",
-        "Rock Urbano",
-        "Alternative",
-        "Punk",
-        "Latin Alternative"
+        "Goth Rock en Español",
+        "Darkwave Latino"
       ],
       "coreConcepts": [
-        "riff hooks",
-        "guitar texture",
-        "dramatic dynamics",
-        "rhythmic guitar",
-        "anthemic chorus"
+        "prominent melodic basslines soaked in thick flanger/chorus",
+        "jagged staccato guitar chords with heavy reverb",
+        "mournful dramatic baritone vocals",
+        "mystical surrealist and existential lyrics"
       ],
       "rhythmicGrammar": [
-        "straight rock backbeat",
-        "syncopated guitar accents",
-        "half-time drops",
-        "repeated riff cells"
+        "hypnotic four-on-the-floor kick with driving sixteenth-note hi-hats and sharp snare"
       ],
       "danceTags": [
-        "festival-fusion",
-        "listening"
+        "festival-fusion"
       ],
       "tuningSystem": "12-tet",
-      "signatureCell": "Atmospheric minor-key arpeggio verse exploding into anthemic fuzz chorus",
+      "signatureCell": "Icy flanged bassline riff leading into jagged staccato guitar chop and dark baritone vocal",
       "grooveMechanics": {
         "swingPercentage": 50,
         "anticipationOffsetSteps": 0,
@@ -153,174 +382,159 @@ export const ROCK_EN_ESPANOL_WORLD: GenreWorld = {
         "intro": [
           "Am",
           "F",
-          "C",
-          "G"
+          "Dm",
+          "E7"
         ],
         "verse": [
           "Am",
           "F",
-          "C",
-          "G"
+          "Dm",
+          "E7",
+          "Am",
+          "F",
+          "Dm",
+          "E7"
         ],
         "chorus": [
           "F",
           "G",
           "Am",
+          "Em",
+          "F",
+          "G",
+          "Am",
           "Am"
         ],
-        "solo": [
-          "Dm",
-          "F",
-          "Am",
-          "G"
-        ],
         "coda": [
-          "Am",
-          "Am",
+          "F",
+          "E7",
           "Am",
           "Am"
         ]
       }
     },
     {
-      "id": "res-spain",
+      "id": "rock-en-espanol-latin-metal",
       "worldId": "rock-en-espanol",
-      "name": "Rock Español",
-      "origin": "Spain",
-      "era": "1970s–Present",
-      "description": "Spanish rock spanning hard rock, new wave, post-punk, indie and alternative traditions, with strong attention to lyrical meter and guitar texture.",
+      "name": "Latin Metal",
+      "origin": "Belo Horizonte / Buenos Aires / Mexico City",
+      "era": "1990s–Present",
+      "description": "Tribal Drums • Down-Tuned • Ferocious\nTribal indigenous percussion meets extreme metal.\nSepultura · Puya",
       "characteristicInstruments": [
         "electric-guitar",
         "bass",
         "drums",
-        "voice",
-        "keys"
+        "tribal-percussion",
+        "voice"
       ],
       "preferredMeters": [
-        "4/4",
-        "3/4",
-        "6/8"
+        "4/4"
       ],
       "tempoRange": [
-        75,
+        130,
         180
       ],
       "keySubstyles": [
-        "Rock Urbano",
-        "Movida",
-        "Post-Punk",
-        "Indie Rock",
-        "Alternative"
+        "Tribal Metal",
+        "Groove Metal Latino"
       ],
       "coreConcepts": [
-        "lyric meter",
-        "guitar ostinato",
-        "textural chorus",
-        "bass movement",
-        "bridge contrast"
+        "massive batucada and surdo tribal percussion ensembles",
+        "crushing down-tuned groove metal riffs",
+        "ferocious guttural and hardcore shouting",
+        "cultural resistance and political outrage"
       ],
       "rhythmicGrammar": [
-        "straight eighths",
-        "syncopated verse figures",
-        "chorus expansion",
-        "breaks before vocal entries"
+        "thunderous tribal polyrhythms colliding with crushing double-bass groove metal breaks"
       ],
       "danceTags": [
-        "listening",
         "festival-fusion"
       ],
       "tuningSystem": "12-tet",
-      "signatureCell": "Dramatic Iberian vocal delivery with modal Phrygian-tinged guitar riffs",
+      "signatureCell": "Thunderous surdo drum polyrhythm erupting into crushing down-tuned metal riff and roar",
       "grooveMechanics": {
         "swingPercentage": 50,
         "anticipationOffsetSteps": 0,
-        "microtimingFeel": "straight"
+        "microtimingFeel": "pushed"
       },
       "sectionProgressions": {
         "intro": [
-          "Dm",
-          "Bb",
-          "C",
-          "A"
+          "D5",
+          "Eb5",
+          "D5",
+          "Ab5"
         ],
         "verse": [
-          "Dm",
-          "Bb",
-          "C",
-          "Dm"
+          "D5",
+          "D5",
+          "Eb5",
+          "D5",
+          "D5",
+          "D5",
+          "Ab5",
+          "G5"
         ],
-        "chorus": [
-          "F",
-          "C",
-          "Bb",
-          "A"
-        ],
-        "solo": [
-          "Dm",
-          "C",
-          "Bb",
-          "A"
+        "slam": [
+          "D5",
+          "D5",
+          "D5",
+          "D5",
+          "Eb5",
+          "D5",
+          "Ab5",
+          "G5"
         ],
         "coda": [
-          "Dm",
-          "Dm",
-          "Dm",
-          "Dm"
+          "Eb5",
+          "Ab5",
+          "D5",
+          "D5"
         ]
       }
     },
     {
-      "id": "res-latin-alt",
+      "id": "rock-en-espanol-ska",
       "worldId": "rock-en-espanol",
-      "name": "Latin Alternative & Mestizo Rock",
-      "origin": "Latin America / US",
-      "era": "1980s–Present",
-      "description": "Rock that deliberately mixes Spanish-language songwriting with regional rhythms, ska, reggae, funk, cumbia, bolero and other local vocabularies.",
+      "name": "Ska",
+      "origin": "Mexico City / Buenos Aires / Bogota",
+      "era": "1990s–Present",
+      "description": "Fast Skank • Powerful Horns • Mosh\nHigh-speed festival Latin ska-core.\nPanteón Rococó · Maldita Vecindad",
       "characteristicInstruments": [
+        "brass",
         "electric-guitar",
         "bass",
         "drums",
         "percussion",
-        "voice",
-        "keys"
+        "voice"
       ],
       "preferredMeters": [
-        "4/4",
-        "6/8",
-        "12/8"
+        "4/4"
       ],
       "tempoRange": [
-        75,
-        170
+        140,
+        175
       ],
       "keySubstyles": [
-        "Latin Alternative",
-        "Mestizo Rock",
-        "Rock Fusion",
-        "Ska Rock"
+        "Ska-Pachuko",
+        "Ska-Core Mexicano"
       ],
       "coreConcepts": [
-        "hybrid groove",
-        "rhythmic guitar",
-        "percussion layer",
-        "call-and-response",
-        "riff plus local rhythm"
+        "blistering upbeat guitar skank chops",
+        "exuberant multi-piece brass horn fanfares",
+        "massive festival crowd mosh and skanking energy",
+        "lyrical solidarity with working-class struggles"
       ],
       "rhythmicGrammar": [
-        "rock backbeat over regional ostinato",
-        "offbeat guitar chops",
-        "percussion interlocks",
-        "sectional rhythm changes"
+        "fast 4/4 with energetic offbeat upstroke guitar skanks and driving punk snare pulse"
       ],
       "danceTags": [
         "festival-fusion",
-        "social-partner",
-        "listening"
+        "social-partner"
       ],
       "tuningSystem": "12-tet",
-      "signatureCell": "Offbeat ska guitar chops layered over cumbia rock bass and driving timbales",
+      "signatureCell": "Explosive horn section blast driving high-speed punk skank guitar and festival bounce",
       "grooveMechanics": {
-        "swingPercentage": 52,
+        "swingPercentage": 50,
         "anticipationOffsetSteps": 0,
         "microtimingFeel": "pushed"
       },
@@ -331,7 +545,92 @@ export const ROCK_EN_ESPANOL_WORLD: GenreWorld = {
           "E7",
           "Am"
         ],
+        "skank": [
+          "Am",
+          "Dm",
+          "E7",
+          "Am",
+          "Am",
+          "Dm",
+          "E7",
+          "Am"
+        ],
+        "chorus": [
+          "F",
+          "G",
+          "C",
+          "Am",
+          "Dm",
+          "E7",
+          "Am",
+          "Am"
+        ],
+        "coda": [
+          "Dm",
+          "E7",
+          "Am",
+          "Am"
+        ]
+      }
+    },
+    {
+      "id": "rock-en-espanol-tropical-rock",
+      "worldId": "rock-en-espanol",
+      "name": "Tropical Rock",
+      "origin": "Bogota, Colombia / Lima, Peru",
+      "era": "2000s–Present",
+      "description": "Cumbia Guitars • Psychedelic • Groovy\nChicha and cumbia infused psychedelic rock.\nBomba Estéreo · Los Mirlos",
+      "characteristicInstruments": [
+        "electric-guitar",
+        "synth",
+        "bass",
+        "timbales",
+        "guiro",
+        "voice"
+      ],
+      "preferredMeters": [
+        "4/4"
+      ],
+      "tempoRange": [
+        100,
+        122
+      ],
+      "keySubstyles": [
+        "Psychedelic Cumbia Rock",
+        "Electro-Tropical"
+      ],
+      "coreConcepts": [
+        "surf-rock spring reverb pentatonic lead guitar riffs",
+        "driving cumbia timbales and guiro scraping",
+        "pulsing synthesizer bass and electronic beats",
+        "psychedelic tropical atmosphere"
+      ],
+      "rhythmicGrammar": [
+        "syncopated cumbia shuffle [0, 6, 10, 16] anchored by timbale bell and scraping guiro"
+      ],
+      "danceTags": [
+        "social-partner",
+        "festival-fusion"
+      ],
+      "tuningSystem": "12-tet",
+      "signatureCell": "Surf-reverb pentatonic guitar lick gliding over driving cumbia timbale bell and guiro scrape",
+      "grooveMechanics": {
+        "swingPercentage": 52,
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "straight"
+      },
+      "sectionProgressions": {
+        "intro": [
+          "Am",
+          "E7",
+          "Am",
+          "E7"
+        ],
         "verse": [
+          "Am",
+          "Dm",
+          "E7",
+          "Am",
           "Am",
           "Dm",
           "E7",
@@ -340,17 +639,15 @@ export const ROCK_EN_ESPANOL_WORLD: GenreWorld = {
         "chorus": [
           "C",
           "G",
-          "F",
-          "E7"
-        ],
-        "solo": [
           "Dm",
           "Am",
+          "C",
+          "G",
           "E7",
           "Am"
         ],
         "coda": [
-          "Am",
+          "Dm",
           "E7",
           "Am",
           "Am"
@@ -359,24 +656,32 @@ export const ROCK_EN_ESPANOL_WORLD: GenreWorld = {
     }
   ],
   "substyles": [
-    "Rock Argentino",
-    "Rock Mexicano",
-    "Rock Español",
-    "Latin Alternative",
+    "Spanish Wave",
     "Rock Urbano",
-    "Rock Fusión",
-    "Ska Rock",
-    "Indie en Español"
+    "Alt-Latino",
+    "Pop Rock",
+    "Post-Punk",
+    "Latin Metal",
+    "Ska",
+    "Tropical Rock"
   ],
   "artists": [
     "Soda Stereo",
-    "Gustavo Cerati",
-    "Charly García",
+    "Enanitos Verdes",
+    "El Tri",
+    "Tex Tex",
+    "Café Tacvba",
     "Los Fabulosos Cadillacs",
-    "Caifanes",
-    "Héroes del Silencio",
     "Maná",
-    "Café Tacvba"
+    "Juanes",
+    "Caifanes",
+    "Santa Sabina",
+    "Sepultura",
+    "Puya",
+    "Panteón Rococó",
+    "Maldita Vecindad",
+    "Bomba Estéreo",
+    "Los Mirlos"
   ],
   "concepts": [
     "Spanish lyric phrasing",
@@ -2427,11 +2732,15 @@ export const ROCK_EN_ESPANOL_WORLD: GenreWorld = {
       "roles": [
         "voice"
       ],
-      "instruments": ["voice"],
+      "instruments": [
+        "voice"
+      ],
       "compatibleRoles": [
         "voice"
       ],
-      "compatibleInstruments": ["voice"],
+      "compatibleInstruments": [
+        "voice"
+      ],
       "canCrossRole": true,
       "meter": "4/4",
       "cycleLength": 1,

@@ -9,105 +9,18 @@ export const SALSA_WORLD: GenreWorld = {
   "description": "The monumental Afro-Cuban & Salsa universe: Son Clave 2-3 & 3-2, syncopated bass tumbaos, interlocking piano montunos, cáscara, bongo martillo, conga marchas, and explosive horn mambos.",
   "traditions": [
     {
-      "id": "afro-son-montuno",
+      "id": "salsa-mambo",
       "worldId": "salsa",
-      "name": "Son Montuno & Changüí (Cuban Root)",
-      "origin": "Eastern Cuba (Santiago, Guantánamo, Havana)",
-      "era": "1920–Present",
-      "description": "The architectural pillar of Afro-Cuban music: son clave, anticipatory bass tumbao, piano montunos, tres guajeos, and bongo martillo.",
+      "name": "Mambo",
+      "origin": "Havana / New York",
+      "era": "1940s–1950s",
+      "description": "Big Band • Clave 2-3 • On2 Dance\nElectrifying big band brass polyrhythms.\nPérez Prado · Tito Puente",
       "characteristicInstruments": [
-        "piano",
-        "bass",
-        "congas",
-        "bongos",
-        "trumpet",
-        "guitar"
-      ],
-      "preferredMeters": [
-        "4/4"
-      ],
-      "tempoRange": [
-        85,
-        115
-      ],
-      "keySubstyles": [
-        "Son Tradicional",
-        "Son Montuno",
-        "Changüí",
-        "Guajira",
-        "Bolero-Son"
-      ],
-      "coreConcepts": [
-        "son clave 2-3 & 3-2",
-        "tumbao",
-        "guajeo / montuno",
-        "martillo",
-        "anticipación"
-      ],
-      "rhythmicGrammar": [
-        "son clave: [0, 6, 12, 16, 22] or [0, 6, 10, 16, 22]",
-        "bass tumbao landing on 4-and (step 14) and 4 (step 12)"
-      ],
-      "danceTags": [
-        "social-partner",
-        "listening"
-      ],
-      "tuningSystem": "12-tet",
-      "signatureCell": "Son Clave [3-2 / 2-3] with anticipatory bass tumbao on 4-and",
-      "grooveMechanics": {
-        "swingPercentage": 50,
-        "anticipationOffsetSteps": 1,
-        "microtimingFeel": "pushed"
-      },
-      "sectionProgressions": {
-        "intro": [
-          "Am",
-          "Dm",
-          "E7",
-          "Am"
-        ],
-        "verse": [
-          "Am",
-          "Dm",
-          "E7",
-          "Am"
-        ],
-        "chorus": [
-          "C",
-          "G7",
-          "Am",
-          "E7"
-        ],
-        "solo": [
-          "Dm",
-          "G7",
-          "C",
-          "E7"
-        ],
-        "coda": [
-          "Am",
-          "E7",
-          "Am",
-          "Am"
-        ]
-      }
-    },
-    {
-      "id": "afro-salsa-dura",
-      "worldId": "salsa",
-      "name": "Salsa Dura & Mambo (NY / Puerto Rico / Cali)",
-      "origin": "New York (Fania), San Juan, Cali",
-      "era": "1950–Present",
-      "description": "High-energy urban salsa: roaring horn mambos, timbal cáscara and bongo bell (campana), aggressive piano montunos, and dramatic breaks.",
-      "characteristicInstruments": [
+        "brass",
         "timbales",
         "congas",
-        "bongos",
-        "cowbell",
         "piano",
-        "bass",
-        "trumpet",
-        "sax"
+        "bass"
       ],
       "preferredMeters": [
         "4/4"
@@ -117,61 +30,48 @@ export const SALSA_WORLD: GenreWorld = {
         220
       ],
       "keySubstyles": [
-        "Salsa Dura",
-        "Mambo",
-        "Guaracha",
-        "Salsa Romántica",
-        "Salsa en Cali"
+        "Palladium Mambo",
+        "Afro-Cuban Mambo"
       ],
       "coreConcepts": [
-        "campana bongo bell",
-        "timbal cáscara",
-        "mambo section horn blocks",
-        "coro-pregón",
-        "bloque / break"
+        "flamboyant brass section riffs",
+        "Tito Puente virtuosic timbales",
+        "driving tumbao conga and bass lock",
+        "On2 New York dancer timing"
       ],
       "rhythmicGrammar": [
-        "timbal bell driving on quarter beats",
-        "bongo bell on 1 2 3 4 with syncopated upbeats"
+        "2-3 son clave with explosive brass riffing on offbeats"
       ],
       "danceTags": [
         "social-partner",
-        "festival-fusion"
+        "salsa-compatible"
       ],
       "tuningSystem": "12-tet",
-      "signatureCell": "Bongo campana bell driving on 1-2-3-4 with interlocking piano montuno",
+      "signatureCell": "Tito Puente timbale abanico roll into explosive big band mambo brass counter-riff",
       "grooveMechanics": {
         "swingPercentage": 50,
-        "anticipationOffsetSteps": 1,
+        "anticipationOffsetSteps": 0,
         "microtimingFeel": "pushed"
       },
       "sectionProgressions": {
         "intro": [
           "Gm",
+          "D7",
+          "Gm",
+          "D7"
+        ],
+        "mambo": [
+          "Gm",
           "Cm",
           "D7",
-          "Gm"
-        ],
-        "verse": [
+          "Gm",
           "Gm",
           "Cm",
           "D7",
           "Gm"
-        ],
-        "chorus": [
-          "Bb",
-          "F7",
-          "Gm",
-          "D7"
-        ],
-        "solo": [
-          "Cm7",
-          "F7",
-          "Bbmaj7",
-          "D7"
         ],
         "coda": [
-          "Gm",
+          "D7",
           "D7",
           "Gm",
           "Gm"
@@ -179,51 +79,51 @@ export const SALSA_WORLD: GenreWorld = {
       }
     },
     {
-      "id": "afro-rumba",
+      "id": "salsa-salsa-dura",
       "worldId": "salsa",
-      "name": "Rumba (Guaguancó, Yambú, Columbia)",
-      "origin": "Matanzas & Havana",
-      "description": "Secular Afro-Cuban drum and vocal tradition based on rumba clave, interlocking congas (quinto, tres dos, salidor), and catá.",
+      "name": "Salsa Dura",
+      "origin": "New York City (Fania Records)",
+      "era": "1970s",
+      "description": "Trombone Heavy • Clave Driven • Street Grit\nRaw, hard-hitting NYC barrio salsa.\nWillie Colón · Héctor Lavoe",
       "characteristicInstruments": [
+        "brass",
         "congas",
-        "hand-percussion",
+        "timbales",
+        "bongo",
+        "piano",
+        "bass",
         "voice"
       ],
       "preferredMeters": [
-        "4/4",
-        "6/8",
-        "12/8"
+        "4/4"
       ],
       "tempoRange": [
-        90,
-        140
+        160,
+        195
       ],
       "keySubstyles": [
-        "Guaguancó (Medium)",
-        "Yambú (Slow)",
-        "Columbia (Fast 6/8)",
-        "Rumba Abierta"
+        "Fania Sound",
+        "Barrio Salsa"
       ],
       "coreConcepts": [
-        "rumba clave (delayed 3rd hit)",
-        "quinto improvisation",
-        "salidor pulse",
-        "catá / cáscara"
+        "aggressive dual-trombone arrangements",
+        "driving 3-2 / 2-3 son clave and bongo campana bell",
+        "percussive piano guajeos",
+        "gritty barrio storytelling"
       ],
       "rhythmicGrammar": [
-        "rumba clave: [0, 6, 14, 16, 22] in 2 bars"
+        "strict son clave locking conga tumbao, piano guajeo, and roaring campana bell"
       ],
       "danceTags": [
         "social-partner",
-        "festival-fusion",
-        "listening"
+        "salsa-compatible"
       ],
-      "tuningSystem": "just-intonation",
-      "signatureCell": "Rumba clave with interlocking quinto and salidor conga tones",
+      "tuningSystem": "12-tet",
+      "signatureCell": "Aggressive dual trombone fanfare over thunderous campana bell and piano guajeo",
       "grooveMechanics": {
-        "swingPercentage": 52,
+        "swingPercentage": 50,
         "anticipationOffsetSteps": 0,
-        "microtimingFeel": "straight"
+        "microtimingFeel": "pushed"
       },
       "sectionProgressions": {
         "intro": [
@@ -232,20 +132,24 @@ export const SALSA_WORLD: GenreWorld = {
           "Dm",
           "A7"
         ],
-        "verse": [
+        "canto": [
           "Dm",
-          "A7",
-          "Dm",
-          "A7"
-        ],
-        "chorus": [
-          "Dm",
+          "Gm",
+          "C",
+          "F",
+          "Bb",
           "Gm",
           "A7",
           "Dm"
         ],
-        "coda": [
+        "montuno": [
+          "Gm",
+          "A7",
           "Dm",
+          "Dm"
+        ],
+        "coda": [
+          "Gm",
           "A7",
           "Dm",
           "Dm"
@@ -253,46 +157,123 @@ export const SALSA_WORLD: GenreWorld = {
       }
     },
     {
-      "id": "afro-chachacha-danzon",
+      "id": "salsa-son-montuno",
       "worldId": "salsa",
-      "name": "Cha-cha-chá & Danzón (Charanga Sound)",
-      "origin": "Havana",
-      "description": "Elegant, buoyant groove featuring flute, violin charanga textures, and the iconic \"one, two, cha-cha-chá\" on beats 4-and-1.",
+      "name": "Son Montuno",
+      "origin": "Eastern Cuba / Havana",
+      "era": "1920s–1940s",
+      "description": "Tres Cubano • Bongo • Root of Salsa\nThe foundational Cuban country groove.\nArsenio Rodríguez · Benny Moré",
+      "characteristicInstruments": [
+        "tres",
+        "bongo",
+        "claves",
+        "acoustic-bass",
+        "trumpet",
+        "voice"
+      ],
+      "preferredMeters": [
+        "4/4"
+      ],
+      "tempoRange": [
+        105,
+        125
+      ],
+      "keySubstyles": [
+        "Arsenio Style",
+        "Son Tradicional"
+      ],
+      "coreConcepts": [
+        "tres cubano syncopated arpeggiated guajeos",
+        "bongo martillo rhythm and bongo bell",
+        "contratiempo acoustic bass pulse",
+        "call-and-response montuno"
+      ],
+      "rhythmicGrammar": [
+        "2-3 or 3-2 son clave with acoustic bass anticipating beat 1 and beat 3"
+      ],
+      "danceTags": [
+        "social-partner",
+        "salsa-compatible"
+      ],
+      "tuningSystem": "12-tet",
+      "signatureCell": "Tres cubano guajeo pattern locking with bongo martillo and 2-3 son clave",
+      "grooveMechanics": {
+        "swingPercentage": 50,
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "laid-back"
+      },
+      "sectionProgressions": {
+        "intro": [
+          "C",
+          "G7",
+          "C",
+          "G7"
+        ],
+        "canto": [
+          "C",
+          "G7",
+          "C",
+          "G7",
+          "F",
+          "C",
+          "G7",
+          "C"
+        ],
+        "montuno": [
+          "F",
+          "G7",
+          "C",
+          "C"
+        ],
+        "coda": [
+          "F",
+          "G7",
+          "C",
+          "C"
+        ]
+      }
+    },
+    {
+      "id": "salsa-cha-cha-cha",
+      "worldId": "salsa",
+      "name": "Cha-Cha-Chá",
+      "origin": "Havana, Cuba",
+      "era": "1950s",
+      "description": "Güiro • Flute & Violins • 4/4 Shuffle\nElegant, accessible mid-tempo Cuban dance.\nEnrique Jorrín · Orquesta Aragón",
       "characteristicInstruments": [
         "flute",
-        "strings",
-        "piano",
-        "timbales",
+        "violin",
         "guiro",
-        "bass"
+        "congas",
+        "piano",
+        "bass",
+        "voice"
       ],
       "preferredMeters": [
         "4/4"
       ],
       "tempoRange": [
         110,
-        130
+        128
       ],
       "keySubstyles": [
-        "Cha-cha-chá",
-        "Danzón-Mambo",
-        "Charanga Francesa",
-        "Pachanga"
+        "Charanga Cha-Cha-Chá",
+        "Big Band Cha-Cha"
       ],
       "coreConcepts": [
-        "guiro rasp (long-short-short)",
-        "cha-cha-chá shuffle on 4-and-1",
-        "baqueteo"
+        "charanga instrumentation (flute and violins)",
+        "güiro triple stroke rhythm on beats 4-and-1",
+        "crisp piano montunos in major keys",
+        "clear ballroom syncopation"
       ],
       "rhythmicGrammar": [
-        "accent on [4-and, 1]: steps 14, 0"
+        "clear 4/4 meter with güiro scrape on 1, 2, 3, 4-and-1 and light cowbell"
       ],
       "danceTags": [
-        "social-partner",
-        "listening"
+        "social-partner"
       ],
       "tuningSystem": "12-tet",
-      "signatureCell": "Guiro rasp with cha-cha-chá shuffle on beats 4-and-1",
+      "signatureCell": "Wooden flute trill floating over crisp güiro triple scrape \"cha-cha-chá\"",
       "grooveMechanics": {
         "swingPercentage": 50,
         "anticipationOffsetSteps": 0,
@@ -307,14 +288,18 @@ export const SALSA_WORLD: GenreWorld = {
         ],
         "verse": [
           "C",
+          "G7",
+          "C",
+          "G7",
           "F",
+          "C",
           "G7",
           "C"
         ],
         "chorus": [
           "F",
           "G7",
-          "Em",
+          "C",
           "Am",
           "Dm",
           "G7",
@@ -322,40 +307,114 @@ export const SALSA_WORLD: GenreWorld = {
           "C"
         ],
         "coda": [
-          "C",
+          "F",
           "G7",
           "C",
           "C"
         ]
       }
+    },
+    {
+      "id": "salsa-salsa-romantica",
+      "worldId": "salsa",
+      "name": "Salsa Romántica",
+      "origin": "Puerto Rico / Miami",
+      "era": "1980s–1990s",
+      "description": "Lush Synths • Romantic • Polished\nSmooth radio-friendly sensual salsa.\nEddie Santiago · Frankie Ruiz",
+      "characteristicInstruments": [
+        "brass",
+        "piano",
+        "synth",
+        "congas",
+        "timbales",
+        "bass",
+        "voice"
+      ],
+      "preferredMeters": [
+        "4/4"
+      ],
+      "tempoRange": [
+        88,
+        104
+      ],
+      "keySubstyles": [
+        "Salsa Sensual",
+        "Salsa de Alcoba"
+      ],
+      "coreConcepts": [
+        "sensual romantic crooner vocal deliveries",
+        "lush synthesizer pad layers",
+        "restrained percussion dynamics",
+        "refined melodic horn arrangements"
+      ],
+      "rhythmicGrammar": [
+        "gentle 4/4 son clave with warm conga tumbao and soft bongo bell in chorus"
+      ],
+      "danceTags": [
+        "social-partner",
+        "salsa-compatible"
+      ],
+      "tuningSystem": "12-tet",
+      "signatureCell": "Smooth crooner vocal melody over synthesizer string pad and warm congas",
+      "grooveMechanics": {
+        "swingPercentage": 50,
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "straight"
+      },
+      "sectionProgressions": {
+        "intro": [
+          "Am",
+          "Dm",
+          "G",
+          "C"
+        ],
+        "verse": [
+          "Am",
+          "Dm",
+          "G",
+          "C",
+          "F",
+          "Dm",
+          "E7",
+          "Am"
+        ],
+        "chorus": [
+          "Dm",
+          "G",
+          "C",
+          "Am",
+          "Dm",
+          "E7",
+          "Am",
+          "Am"
+        ],
+        "coda": [
+          "Dm",
+          "E7",
+          "Am",
+          "Am"
+        ]
+      }
     }
   ],
   "substyles": [
-    "Son Tradicional",
-    "Son Montuno",
-    "Salsa Dura",
     "Mambo",
-    "Cha-cha-chá",
-    "Danzón",
-    "Rumba Guaguancó",
-    "Rumba Yambú",
-    "Rumba Columbia",
-    "Salsa Romántica",
-    "Changüí",
-    "Guajira"
+    "Salsa Dura",
+    "Son Montuno",
+    "Cha-Cha-Chá",
+    "Salsa Romántica"
   ],
   "artists": [
-    "Arsenio Rodríguez",
+    "Pérez Prado",
     "Tito Puente",
-    "Celia Cruz",
-    "Héctor Lavoe",
     "Willie Colón",
-    "Eddie Palmieri",
-    "Rubén Blades",
-    "Ray Barretto",
-    "Machito",
+    "Héctor Lavoe",
+    "Arsenio Rodríguez",
     "Benny Moré",
-    "Irakere"
+    "Enrique Jorrín",
+    "Orquesta Aragón",
+    "Eddie Santiago",
+    "Frankie Ruiz"
   ],
   "concepts": [
     "clave 2-3 & 3-2",
@@ -2435,11 +2494,15 @@ export const SALSA_WORLD: GenreWorld = {
       "roles": [
         "voice"
       ],
-      "instruments": ["voice"],
+      "instruments": [
+        "voice"
+      ],
       "compatibleRoles": [
         "voice"
       ],
-      "compatibleInstruments": ["voice"],
+      "compatibleInstruments": [
+        "voice"
+      ],
       "canCrossRole": true,
       "meter": "4/4",
       "cycleLength": 1,
@@ -2605,11 +2668,15 @@ export const SALSA_WORLD: GenreWorld = {
       "roles": [
         "voice"
       ],
-      "instruments": ["voice"],
+      "instruments": [
+        "voice"
+      ],
       "compatibleRoles": [
         "voice"
       ],
-      "compatibleInstruments": ["voice"],
+      "compatibleInstruments": [
+        "voice"
+      ],
       "canCrossRole": true,
       "meter": "4/4",
       "cycleLength": 1,
@@ -3419,12 +3486,16 @@ export const SALSA_WORLD: GenreWorld = {
       "roles": [
         "voice"
       ],
-      "instruments": ["voice"],
+      "instruments": [
+        "voice"
+      ],
       "compatibleRoles": [
         "voice",
         "lead"
       ],
-      "compatibleInstruments": ["voice"],
+      "compatibleInstruments": [
+        "voice"
+      ],
       "meter": "4/4",
       "cycleLength": 1,
       "subdivisions": 16,

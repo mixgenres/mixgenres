@@ -9,57 +9,130 @@ export const JAZZ_WORLD: GenreWorld = {
   "description": "The monumental Jazz tradition: Swing and Bebop ride cymbal phrasing, four-to-the-bar walking basslines, Charleston syncopation, McCoy Tyner quartal voicings, and improvisational motif development.",
   "traditions": [
     {
-      "id": "jazz-swing-bebop",
+      "id": "jazz-bebop",
       "worldId": "jazz",
-      "name": "Swing, Bebop & Hard Bop",
-      "origin": "New York, Kansas City, Chicago",
-      "era": "1930–1960",
-      "description": "The foundation of jazz: swinging ride cymbal (spang-a-lang), continuous walking basslines, Charleston syncopations, and bebop enclosures.",
+      "name": "Bebop",
+      "origin": "Harlem, New York City",
+      "era": "1940s",
+      "description": "Fast • Chromatic • Virtuosic\nRapid harmonic changes and angular lines.\nCharlie Parker · Dizzy Gillespie",
       "characteristicInstruments": [
-        "piano",
-        "bass",
-        "drums",
-        "sax",
+        "alto-sax",
         "trumpet",
-        "guitar"
+        "piano",
+        "upright-bass",
+        "drums"
+      ],
+      "preferredMeters": [
+        "4/4"
+      ],
+      "tempoRange": [
+        180,
+        260
+      ],
+      "keySubstyles": [
+        "Classic Bebop",
+        "52nd Street Sound"
+      ],
+      "coreConcepts": [
+        "lightning-fast chromatic approach notes and enclosures",
+        "extended upper chord tones (9ths, 11ths, b13ths, #11ths)",
+        "snappy ii-V-I substitutions and tritone subs",
+        "unison trumpet/alto horn heads and blistering solos"
+      ],
+      "rhythmicGrammar": [
+        "fast ride cymbal \"spang-a-lang\" with Max Roach snare and bass drum dropping bombs on unexpected beats"
+      ],
+      "danceTags": [
+        "social-partner",
+        "wcs-compatible"
+      ],
+      "tuningSystem": "12-tet",
+      "signatureCell": "Rapid chromatic enclosure lick landing on #11 upper chord extension with ride cymbal drive",
+      "grooveMechanics": {
+        "swingPercentage": 54,
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "swung"
+      },
+      "sectionProgressions": {
+        "intro": [
+          "Fm7",
+          "Bb7",
+          "Ebmaj7",
+          "C7b9"
+        ],
+        "head": [
+          "Fm7",
+          "Bb7",
+          "Ebmaj7",
+          "C7b9",
+          "Fm7",
+          "Bb7",
+          "Ebmaj7",
+          "Ebmaj7"
+        ],
+        "bridge": [
+          "Abm7",
+          "Db7",
+          "Gbmaj7",
+          "Gbmaj7",
+          "Am7",
+          "D7",
+          "Gmaj7",
+          "C7b9"
+        ],
+        "coda": [
+          "Fm7",
+          "Bb7",
+          "Ebmaj7",
+          "Ebmaj7"
+        ]
+      }
+    },
+    {
+      "id": "jazz-cool-jazz",
+      "worldId": "jazz",
+      "name": "Cool Jazz",
+      "origin": "New York / Los Angeles (West Coast)",
+      "era": "Late 1940s–1950s",
+      "description": "Subtle • Relaxed • Lyricism\nRestrained, understated modal warmth.\nMiles Davis · Chet Baker",
+      "characteristicInstruments": [
+        "trumpet",
+        "alto-sax",
+        "piano",
+        "upright-bass",
+        "drums",
+        "flute"
       ],
       "preferredMeters": [
         "4/4",
         "3/4"
       ],
       "tempoRange": [
-        110,
-        260
+        95,
+        130
       ],
       "keySubstyles": [
-        "Swing",
-        "Bebop",
-        "Hard Bop",
-        "Cool Jazz",
-        "Kansas City Jump"
+        "Birth of the Cool",
+        "West Coast Jazz"
       ],
       "coreConcepts": [
-        "spang-a-lang ride pattern",
-        "walking bass line",
-        "charleston syncopation",
-        "bebop enclosure",
-        "ii-V-I guide tones"
+        "subtle breathy tone with minimal vibrato (Miles Harmon mute)",
+        "intricate contrapuntal horn arrangements",
+        "relaxed laid-back swing feel",
+        "understated lyrical melodic purity"
       ],
       "rhythmicGrammar": [
-        "triplet swing feel",
-        "ride cymbal [0, 4, 6, 8, 12, 14]",
-        "hi-hat pedal on beats 2 & 4"
+        "feathered bass drum with gentle brushed snare and smooth relaxed ride cymbal pulse"
       ],
       "danceTags": [
         "social-partner",
-        "wcs-compatible",
-        "listening"
+        "wcs-compatible"
       ],
       "tuningSystem": "12-tet",
-      "signatureCell": "Spang-a-lang ride cymbal with 4-to-the-bar walking bass and ii-V-I progressions",
+      "signatureCell": "Miles Davis Harmon-muted trumpet line whispering gently over brushed snare and cool bass",
       "grooveMechanics": {
-        "swingPercentage": 66,
-        "anticipationOffsetSteps": 1,
+        "swingPercentage": 56,
+        "anticipationOffsetSteps": 0,
         "microtimingFeel": "laid-back"
       },
       "sectionProgressions": {
@@ -67,29 +140,27 @@ export const JAZZ_WORLD: GenreWorld = {
           "Dm7",
           "G7",
           "Cmaj7",
-          "A7"
+          "A7b9"
         ],
-        "verse": [
+        "head": [
           "Dm7",
           "G7",
           "Cmaj7",
-          "Am7"
-        ],
-        "chorus": [
-          "Fmaj7",
-          "Bb7",
-          "Em7",
-          "A7",
+          "Am7",
           "Dm7",
           "G7",
           "Cmaj7",
           "Cmaj7"
         ],
-        "solo": [
-          "Dm7",
-          "G7",
+        "bridge": [
+          "Fmaj7",
+          "Fm7",
           "Em7",
-          "A7"
+          "A7",
+          "Dm7",
+          "D7",
+          "G7",
+          "A7b9"
         ],
         "coda": [
           "Dm7",
@@ -100,114 +171,493 @@ export const JAZZ_WORLD: GenreWorld = {
       }
     },
     {
-      "id": "jazz-modal-contemporary",
+      "id": "jazz-hard-bop",
       "worldId": "jazz",
-      "name": "Modal, Post-Bop & Fusion (Miles, Coltrane, Wayne Shorter)",
-      "origin": "New York & Global",
-      "era": "1959–Present",
-      "description": "Expanded modal landscapes, quartal piano voicings (So What), polymetric bass pedals, and syncopated contemporary comping.",
+      "name": "Hard Bop",
+      "origin": "New York / Philadelphia / Detroit",
+      "era": "1950s–1960s",
+      "description": "Soulful • Blues-infused • Driving\nGospel and blues drenched post-bop.\nArt Blakey & The Jazz Messengers · Horace Silver",
       "characteristicInstruments": [
+        "tenor-sax",
+        "trumpet",
         "piano",
+        "upright-bass",
+        "drums"
+      ],
+      "preferredMeters": [
+        "4/4"
+      ],
+      "tempoRange": [
+        120,
+        160
+      ],
+      "keySubstyles": [
+        "Blue Note Sound",
+        "Soul Jazz"
+      ],
+      "coreConcepts": [
+        "heavy gospel and blues chord inflections",
+        "Art Blakey driving press-rolls and thunderous hi-hat snaps on 2 and 4",
+        "earthy memorable horn themes",
+        "funky walking basslines"
+      ],
+      "rhythmicGrammar": [
+        "driving medium-up swing with aggressive hi-hat snap on 2 and 4 and piano church-chord comping"
+      ],
+      "danceTags": [
+        "social-partner",
+        "wcs-compatible"
+      ],
+      "tuningSystem": "12-tet",
+      "signatureCell": "Art Blakey explosive drum press-roll erupting into soulful minor-blues horn unison",
+      "grooveMechanics": {
+        "swingPercentage": 58,
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "swung"
+      },
+      "sectionProgressions": {
+        "intro": [
+          "Fm7",
+          "Bbm7",
+          "C7#9",
+          "Fm7"
+        ],
+        "head": [
+          "Fm7",
+          "Bbm7",
+          "C7#9",
+          "Fm7",
+          "Ab7",
+          "Db7",
+          "C7#9",
+          "Fm7"
+        ],
+        "solo": [
+          "Fm7",
+          "Bbm7",
+          "C7#9",
+          "Fm7",
+          "Bbm7",
+          "Eb7",
+          "Abmaj7",
+          "C7#9"
+        ],
+        "coda": [
+          "Bbm7",
+          "C7#9",
+          "Fm7",
+          "Fm7"
+        ]
+      }
+    },
+    {
+      "id": "jazz-free-jazz",
+      "worldId": "jazz",
+      "name": "Free Jazz",
+      "origin": "New York City / Los Angeles",
+      "era": "Late 1950s–1960s",
+      "description": "Avant-Garde • Atonal • Unbound\nRadical improvisation breaking chord rules.\nOrnette Coleman · John Coltrane",
+      "characteristicInstruments": [
+        "tenor-sax",
+        "alto-sax",
+        "trumpet",
+        "upright-bass",
+        "drums"
+      ],
+      "preferredMeters": [
+        "free"
+      ],
+      "tempoRange": [
+        100,
+        220
+      ],
+      "keySubstyles": [
+        "Avant-Garde Jazz",
+        "Harmolodics",
+        "Energy Music"
+      ],
+      "coreConcepts": [
+        "abandonment of preset chord changes and fixed meters",
+        "overblowing, multiphonics, and screeches on horns",
+        "intense collective improvisation and energy waves",
+        "free harmonic and microtonal exploration"
+      ],
+      "rhythmicGrammar": [
+        "multidirectional polyrhythmic percussion pulses without a fixed metronomic downbeat"
+      ],
+      "danceTags": [
+        "listening"
+      ],
+      "tuningSystem": "12-tet",
+      "signatureCell": "High multiphonic saxophone shriek erupting over frantic multidirectional free drum flurry",
+      "grooveMechanics": {
+        "swingPercentage": 50,
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "rubato"
+      },
+      "sectionProgressions": {
+        "head": [
+          "F",
+          "B",
+          "Eb",
+          "A",
+          "D",
+          "Ab",
+          "Db",
+          "G"
+        ]
+      }
+    },
+    {
+      "id": "jazz-gypsy-jazz",
+      "worldId": "jazz",
+      "name": "Gypsy Jazz",
+      "origin": "Paris, France (Manouche Tradition)",
+      "era": "1930s–1940s",
+      "description": "La Pompe • Acoustic Guitar • Virtuosic\nDjango Reinhardt French hot swing.\nDjango Reinhardt · Stephane Grappelli",
+      "characteristicInstruments": [
+        "acoustic-guitar",
+        "violin",
+        "upright-bass",
+        "clarinet"
+      ],
+      "preferredMeters": [
+        "4/4"
+      ],
+      "tempoRange": [
+        140,
+        240
+      ],
+      "keySubstyles": [
+        "Jazz Manouche",
+        "Hot Club Swing"
+      ],
+      "coreConcepts": [
+        "\"La Pompe\" percussive acoustic guitar rhythm strumming on 2 and 4",
+        "virtuosic chromatic Selmer acoustic guitar runs",
+        "sweet singing Grappelli-style violin glissandi and vibrato",
+        "driving bass pulse without drums"
+      ],
+      "rhythmicGrammar": [
+        "tight percussive four-to-the-bar rhythm guitar with heavy downward chop on beats 2 and 4"
+      ],
+      "danceTags": [
+        "social-partner",
+        "wcs-compatible"
+      ],
+      "tuningSystem": "12-tet",
+      "signatureCell": "Crisp percussive La Pompe guitar chop driving blinding chromatic Django acoustic guitar arpeggio",
+      "grooveMechanics": {
+        "swingPercentage": 56,
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "pushed"
+      },
+      "sectionProgressions": {
+        "intro": [
+          "Am6",
+          "E7",
+          "Am6",
+          "E7"
+        ],
+        "head": [
+          "Am6",
+          "Am6",
+          "Dm6",
+          "Dm6",
+          "E7",
+          "E7",
+          "Am6",
+          "E7"
+        ],
+        "bridge": [
+          "Cmaj7",
+          "C#dim",
+          "Dm7",
+          "G7",
+          "Cmaj7",
+          "F7",
+          "E7",
+          "E7"
+        ],
+        "coda": [
+          "Dm6",
+          "E7",
+          "Am6",
+          "Am6"
+        ]
+      }
+    },
+    {
+      "id": "jazz-fusion",
+      "worldId": "jazz",
+      "name": "Fusion",
+      "origin": "New York / Los Angeles",
+      "era": "Late 1960s–1970s",
+      "description": "Electric • Complex Meter • High Energy\nJazz improvisation meets rock electricity.\nWeather Report · Return to Forever",
+      "characteristicInstruments": [
+        "synth",
+        "electric-guitar",
         "bass",
         "drums",
-        "sax",
-        "electric-guitar",
-        "trumpet"
+        "tenor-sax",
+        "fretless-bass"
       ],
       "preferredMeters": [
         "4/4",
-        "3/4",
-        "5/4",
-        "7/4"
+        "7/8",
+        "5/4"
       ],
       "tempoRange": [
-        90,
-        180
+        110,
+        145
       ],
       "keySubstyles": [
-        "Modal Jazz (Kind of Blue)",
-        "Post-Bop",
-        "Jazz Fusion",
-        "Contemporary European ECM Jazz",
-        "Latin Jazz"
+        "Jazz-Rock Fusion",
+        "Electric Jazz"
       ],
       "coreConcepts": [
-        "quartal voicings (McCoy Tyner / Bill Evans)",
-        "pedal point",
-        "broken time drumming",
-        "metric modulation"
+        "virtuosic electric bass technical mastery (Jaco Pastorius fretless harmonics)",
+        "screaming overdrive guitar solos",
+        "complex analog synthesizer polyphony (Rhodes, Minimoog, Prophet)",
+        "complex odd-meter funk rhythms"
       ],
       "rhythmicGrammar": [
-        "broken swing / linear interaction",
-        "syncopated anticipations on upbeats of 2 and 4"
+        "tight virtuosic 16th-note funk/rock drumming with complex polyrhythmic hi-hat subdivisions"
       ],
       "danceTags": [
-        "listening",
         "festival-fusion"
       ],
       "tuningSystem": "12-tet",
-      "signatureCell": "So What quartal piano voicings over modal Dorian bass pedal",
+      "signatureCell": "Jaco fretless bass harmonic flourish locked with lightning-fast odd-meter synth/guitar unison",
       "grooveMechanics": {
-        "swingPercentage": 58,
+        "swingPercentage": 50,
         "anticipationOffsetSteps": 0,
         "microtimingFeel": "straight"
       },
       "sectionProgressions": {
         "intro": [
-          "Dm11",
-          "Dm11",
-          "Dm11",
-          "Dm11"
-        ],
-        "verse": [
-          "Dm11",
-          "Dm11",
-          "Ebm11",
-          "Dm11"
-        ],
-        "chorus": [
+          "Dmaj9",
+          "Cmaj9#11",
           "Bbmaj7#11",
-          "Am7",
-          "Gm7",
-          "C7alt"
+          "A7alt"
+        ],
+        "theme": [
+          "Dmaj9",
+          "Gmaj7#11",
+          "Cmaj9#11",
+          "Fmaj7#11",
+          "Bm9",
+          "Em9",
+          "A7alt",
+          "Dmaj9"
         ],
         "solo": [
-          "Dm11",
-          "Dm11",
-          "Ebm11",
-          "Dm11"
+          "Bm9",
+          "E13",
+          "Bm9",
+          "E13",
+          "Gmaj7",
+          "F#m7",
+          "Em7",
+          "A7alt"
         ],
         "coda": [
-          "Dm11",
-          "Dm11",
-          "Dm11",
-          "Dm11"
+          "Bbmaj7#11",
+          "A7alt",
+          "Dmaj9",
+          "Dmaj9"
+        ]
+      }
+    },
+    {
+      "id": "jazz-spiritual-jazz",
+      "worldId": "jazz",
+      "name": "Spiritual Jazz",
+      "origin": "New York / Chicago / Global",
+      "era": "Late 1960s–1970s",
+      "description": "Modal Drone • Cosmic • Transcendental\nSearching spiritual modal explorations.\nPharoah Sanders · Alice Coltrane",
+      "characteristicInstruments": [
+        "tenor-sax",
+        "harp",
+        "piano",
+        "upright-bass",
+        "drums",
+        "hand-percussion"
+      ],
+      "preferredMeters": [
+        "4/4",
+        "3/4",
+        "free"
+      ],
+      "tempoRange": [
+        80,
+        115
+      ],
+      "keySubstyles": [
+        "Strata-East Sound",
+        "Cosmic Jazz",
+        "Transcendental Jazz"
+      ],
+      "coreConcepts": [
+        "hypnotic open-fifth modal bass ostinatos",
+        "cascading concert harp glissandi and organ drones",
+        "transcendental overblown saxophone cries and hums",
+        "shimmering bells, shakers, and tambourines"
+      ],
+      "rhythmicGrammar": [
+        "oceanic rolling 3/4 or 4/4 triplet waves over steady grounding bass pedal point"
+      ],
+      "danceTags": [
+        "listening"
+      ],
+      "tuningSystem": "12-tet",
+      "signatureCell": "Cascading Alice Coltrane harp glissando rising over deep bass drone and Pharoah Sanders saxophone cry",
+      "grooveMechanics": {
+        "swingPercentage": 54,
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "rubato"
+      },
+      "sectionProgressions": {
+        "intro": [
+          "Fm",
+          "Fm",
+          "Fm",
+          "Fm"
+        ],
+        "theme": [
+          "Fm7",
+          "Bbm7",
+          "Eb7",
+          "Abmaj7",
+          "Dbmaj7",
+          "Bbm7",
+          "C7alt",
+          "Fm7"
+        ],
+        "drone": [
+          "Fm7",
+          "Fm7",
+          "Fm7",
+          "Fm7"
+        ],
+        "coda": [
+          "Dbmaj7",
+          "C7alt",
+          "Fm7",
+          "Fm7"
+        ]
+      }
+    },
+    {
+      "id": "jazz-ragtime",
+      "worldId": "jazz",
+      "name": "Ragtime",
+      "origin": "Sedalia / St. Louis, Missouri",
+      "era": "1890s–1910s",
+      "description": "Syncopated • Marching Bass • Piano\nFoundational syncopated piano classic.\nScott Joplin · Jelly Roll Morton",
+      "characteristicInstruments": [
+        "piano",
+        "upright-bass",
+        "banjo"
+      ],
+      "preferredMeters": [
+        "2/4"
+      ],
+      "tempoRange": [
+        80,
+        104
+      ],
+      "keySubstyles": [
+        "Classic Ragtime",
+        "St. Louis Rag"
+      ],
+      "coreConcepts": [
+        "steady \"boom-chick\" marching left-hand stride bass",
+        "heavily syncopated right-hand melodies",
+        "multi-strain classical march structure (AABBACCDD)",
+        "clean acoustic articulation"
+      ],
+      "rhythmicGrammar": [
+        "strict marching 2/4 meter with syncopated right-hand accents tied across eighth-note beats"
+      ],
+      "danceTags": [
+        "social-partner",
+        "wcs-compatible"
+      ],
+      "tuningSystem": "12-tet",
+      "signatureCell": "Steady left-hand boom-chick march bass with sparkling syncopated right-hand Joplin melody",
+      "grooveMechanics": {
+        "swingPercentage": 50,
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "straight"
+      },
+      "sectionProgressions": {
+        "intro": [
+          "C",
+          "G7",
+          "C",
+          "G7"
+        ],
+        "strain-a": [
+          "C",
+          "G7",
+          "C",
+          "G7",
+          "C",
+          "C7",
+          "F",
+          "D7",
+          "G",
+          "G7",
+          "C",
+          "C"
+        ],
+        "strain-b": [
+          "C",
+          "G7",
+          "C",
+          "C",
+          "F",
+          "C",
+          "G7",
+          "C"
+        ],
+        "coda": [
+          "F",
+          "G7",
+          "C",
+          "C"
         ]
       }
     }
   ],
   "substyles": [
-    "Swing",
     "Bebop",
     "Cool Jazz",
     "Hard Bop",
-    "Modal Jazz",
-    "Post-Bop",
-    "Jazz Fusion",
-    "Latin Jazz",
-    "Contemporary ECM"
+    "Free Jazz",
+    "Gypsy Jazz",
+    "Fusion",
+    "Spiritual Jazz",
+    "Ragtime"
   ],
   "artists": [
-    "Miles Davis",
-    "John Coltrane",
-    "Bill Evans",
-    "Thelonious Monk",
     "Charlie Parker",
-    "Duke Ellington",
-    "Herbie Hancock",
-    "Wayne Shorter",
-    "Pat Metheny",
-    "McCoy Tyner"
+    "Dizzy Gillespie",
+    "Miles Davis",
+    "Chet Baker",
+    "Art Blakey & The Jazz Messengers",
+    "Horace Silver",
+    "Ornette Coleman",
+    "John Coltrane",
+    "Django Reinhardt",
+    "Stephane Grappelli",
+    "Weather Report",
+    "Return to Forever",
+    "Pharoah Sanders",
+    "Alice Coltrane",
+    "Scott Joplin",
+    "Jelly Roll Morton"
   ],
   "concepts": [
     "walking bass",
@@ -2035,11 +2485,15 @@ export const JAZZ_WORLD: GenreWorld = {
       "roles": [
         "voice"
       ],
-      "instruments": ["voice"],
+      "instruments": [
+        "voice"
+      ],
       "compatibleRoles": [
         "voice"
       ],
-      "compatibleInstruments": ["voice"],
+      "compatibleInstruments": [
+        "voice"
+      ],
       "canCrossRole": true,
       "meter": "4/4",
       "cycleLength": 1,

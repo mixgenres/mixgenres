@@ -9,12 +9,12 @@ export const AFROBEATS_WORLD: GenreWorld = {
   "description": "Vibrant West African dance music continuum: from classic 1970s Afrobeat horn vamps and Highlife clean guitar picking to modern Afropop syncopated pockets and South African Amapiano log-drum basslines.",
   "traditions": [
     {
-      "id": "afrobeats-modern",
+      "id": "afrobeats-afro-pop",
       "worldId": "afrobeats",
-      "name": "Afrobeats & Afropop",
-      "origin": "Nigeria / Ghana / UK",
+      "name": "Afro-Pop",
+      "origin": "Nigeria / Ghana / Pan-African",
       "era": "2010s–Present",
-      "description": "Modern West African pop defined by syncopated kick/clap pockets, deep 808/log drum basslines, bright clean guitar chops, and infectious vocal hooks.",
+      "description": "Upbeat • 4/4 Syncopated • Bright\nPolished global dance sound.\nWizkid · Davido",
       "characteristicInstruments": [
         "drums",
         "bass",
@@ -27,23 +27,22 @@ export const AFROBEATS_WORLD: GenreWorld = {
         "4/4"
       ],
       "tempoRange": [
-        98,
-        115
+        100,
+        114
       ],
       "keySubstyles": [
-        "Naija Pop (Burna Boy, Wizkid)",
+        "Naija Pop",
         "Afro-Fusion",
-        "Afro-Swing",
-        "Afro-R&B"
+        "Global Afropop"
       ],
       "coreConcepts": [
-        "syncopated kick/snare pocket",
-        "log drum pitched bass rolls",
-        "clean single-note guitar licks",
-        "shekere / shaker perpetual motion"
+        "syncopated kick/clap pocket",
+        "clean guitar chops",
+        "infectious melody hooks",
+        "shaker perpetual motion"
       ],
       "rhythmicGrammar": [
-        "kick on 1, 1-and, 3-and with sharp snare clap on 4-and or beat 3"
+        "kick on 1, 1-and, 3-and with sharp snare clap on beat 3 or 4-and"
       ],
       "danceTags": [
         "social-partner",
@@ -84,33 +83,34 @@ export const AFROBEATS_WORLD: GenreWorld = {
       }
     },
     {
-      "id": "afrobeat-fela",
+      "id": "afrobeats-afrobeat",
       "worldId": "afrobeats",
-      "name": "Afrobeat (Fela Kuti Lineage)",
+      "name": "Afrobeat",
       "origin": "Lagos, Nigeria",
       "era": "1970s–1980s",
-      "description": "Monumental political big-band funk pioneered by Fela Kuti and Tony Allen: complex polyrhythmic kit drumming, interlocking rhythm guitars, hypnotic bass vamps, and fiery horn section hits.",
+      "description": "Polyrhythmic • Big Band • Foundation\nFela's original orchestral funk.\nFela Kuti · Tony Allen",
       "characteristicInstruments": [
         "drums",
         "bass",
         "electric-guitar",
         "brass",
-        "percussion"
+        "percussion",
+        "organ"
       ],
       "preferredMeters": [
         "4/4"
       ],
       "tempoRange": [
-        110,
-        130
+        112,
+        128
       ],
       "keySubstyles": [
-        "Classic Afrobeat (Africa 70, Egypt 80)",
-        "Afrobeat Revival (Antibalas, Seun Kuti)"
+        "Classic Afrobeat",
+        "Afrobeat Big Band"
       ],
       "coreConcepts": [
         "Tony Allen 4-limb polyrhythm",
-        "dual interlocking rhythm guitars (tenor and rhythm)",
+        "dual interlocking rhythm guitars",
         "relentless minor vamp",
         "punchy horn stabs"
       ],
@@ -158,33 +158,33 @@ export const AFROBEATS_WORLD: GenreWorld = {
     {
       "id": "afrobeats-amapiano",
       "worldId": "afrobeats",
-      "name": "Amapiano Crossover",
+      "name": "Amapiano",
       "origin": "South Africa",
       "era": "2018–Present",
-      "description": "South African house fusion characterized by deep pitched FM log-drum baselines, jazzy airy Rhodes piano chords, slow-burning four-on-the-floor tempo, and minimalist shakers.",
+      "description": "Driving • 4/4 Log Drum • Hypnotic\nSouth African house crossover.\nAsake · Focalistic",
       "characteristicInstruments": [
-        "synth",
         "drums",
-        "keys",
-        "percussion",
-        "bass"
+        "bass",
+        "piano",
+        "synth",
+        "shaker",
+        "percussion"
       ],
       "preferredMeters": [
         "4/4"
       ],
       "tempoRange": [
-        112,
+        110,
         118
       ],
       "keySubstyles": [
         "Amapiano",
-        "Afro-House",
         "Private School Amapiano"
       ],
       "coreConcepts": [
         "pitched log drum rolls",
-        "jazzy 9th and 11th Rhodes voicings",
-        "four-on-floor ghost kicks",
+        "jazzy 9th/11th Rhodes chords",
+        "ghost kicks",
         "high metallic shaker"
       ],
       "rhythmicGrammar": [
@@ -227,25 +227,408 @@ export const AFROBEATS_WORLD: GenreWorld = {
           "Ebmaj7"
         ]
       }
+    },
+    {
+      "id": "afrobeats-gqom",
+      "worldId": "afrobeats",
+      "name": "Gqom",
+      "origin": "Durban, South Africa",
+      "era": "2012–Present",
+      "description": "Raw • Heavy Percussion • Dark\nDurban minimalist club thunder.\nDJ Lag · Griffit Vigo",
+      "characteristicInstruments": [
+        "drums",
+        "sub-bass",
+        "synth",
+        "percussion",
+        "sampler"
+      ],
+      "preferredMeters": [
+        "4/4"
+      ],
+      "tempoRange": [
+        122,
+        128
+      ],
+      "keySubstyles": [
+        "Durban Gqom",
+        "Minimal Gqom"
+      ],
+      "coreConcepts": [
+        "heavy broken kick syncopation",
+        "dark sub-bass hits",
+        "industrial percussion",
+        "repetitive vocal chants"
+      ],
+      "rhythmicGrammar": [
+        "syncopated off-grid kicks with metallic claps and hollow toms"
+      ],
+      "danceTags": [
+        "festival-fusion"
+      ],
+      "tuningSystem": "12-tet",
+      "signatureCell": "Heavy broken kick syncopation with dark distorted sub-bass hits",
+      "grooveMechanics": {
+        "swingPercentage": 50,
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "straight"
+      },
+      "sectionProgressions": {
+        "intro": [
+          "Em",
+          "Em",
+          "Em",
+          "Em"
+        ],
+        "verse": [
+          "Em",
+          "F",
+          "Em",
+          "F"
+        ],
+        "drop": [
+          "Em",
+          "Em",
+          "Em",
+          "Em"
+        ],
+        "coda": [
+          "Em",
+          "Em",
+          "Em",
+          "Em"
+        ]
+      }
+    },
+    {
+      "id": "afrobeats-afro-house",
+      "worldId": "afrobeats",
+      "name": "Afro-House",
+      "origin": "South Africa / Angola",
+      "era": "2000s–Present",
+      "description": "Steady • 4/4 • Hypnotic\nDeep electronic club groove.\nBlack Coffee · Sun-El Musician",
+      "characteristicInstruments": [
+        "drums",
+        "bass",
+        "synth",
+        "percussion",
+        "piano",
+        "voice"
+      ],
+      "preferredMeters": [
+        "4/4"
+      ],
+      "tempoRange": [
+        120,
+        126
+      ],
+      "keySubstyles": [
+        "Deep Afro House",
+        "Ancestral Soul"
+      ],
+      "coreConcepts": [
+        "four-on-the-floor kick",
+        "deep tribal conga syncopations",
+        "lush ambient chords",
+        "hypnotic vocal loops"
+      ],
+      "rhythmicGrammar": [
+        "steady four-on-floor pulse with polyrhythmic conga and shaker weave"
+      ],
+      "danceTags": [
+        "social-partner",
+        "festival-fusion"
+      ],
+      "tuningSystem": "12-tet",
+      "signatureCell": "Four-on-the-floor kick with deep tribal conga syncopations and lush chords",
+      "grooveMechanics": {
+        "swingPercentage": 50,
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "straight"
+      },
+      "sectionProgressions": {
+        "intro": [
+          "Am7",
+          "Em7",
+          "Fmaj7",
+          "G"
+        ],
+        "verse": [
+          "Am7",
+          "Em7",
+          "Fmaj7",
+          "G"
+        ],
+        "chorus": [
+          "Fmaj7",
+          "G",
+          "Am7",
+          "Em7"
+        ],
+        "coda": [
+          "Am7",
+          "Em7",
+          "Fmaj7",
+          "G"
+        ]
+      }
+    },
+    {
+      "id": "afrobeats-highlife",
+      "worldId": "afrobeats",
+      "name": "Highlife",
+      "origin": "Ghana / Nigeria",
+      "era": "1950s–Present",
+      "description": "Bouncy • Bright Guitars • Horns\nFoundational West African pop.\nThe Cavemen · E.T. Mensah",
+      "characteristicInstruments": [
+        "guitar",
+        "bass",
+        "drums",
+        "brass",
+        "percussion",
+        "voice"
+      ],
+      "preferredMeters": [
+        "4/4"
+      ],
+      "tempoRange": [
+        105,
+        120
+      ],
+      "keySubstyles": [
+        "Guitar-Band Highlife",
+        "Classic Dance-Band Highlife"
+      ],
+      "coreConcepts": [
+        "bright clean guitar thirds",
+        "syncopated bell pattern",
+        "cheerful brass arrangements",
+        "bouncy bass"
+      ],
+      "rhythmicGrammar": [
+        "clave-derived bell pattern with syncopated bass and snare cross-stick"
+      ],
+      "danceTags": [
+        "social-partner"
+      ],
+      "tuningSystem": "12-tet",
+      "signatureCell": "Clean dual-guitar fingerpicked thirds over bouncy clave-derived bell pattern",
+      "grooveMechanics": {
+        "swingPercentage": 54,
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "straight"
+      },
+      "sectionProgressions": {
+        "intro": [
+          "C",
+          "F",
+          "G",
+          "C"
+        ],
+        "verse": [
+          "C",
+          "Dm7",
+          "G7",
+          "C",
+          "F",
+          "G7",
+          "C",
+          "C"
+        ],
+        "chorus": [
+          "F",
+          "G",
+          "Em",
+          "Am",
+          "Dm7",
+          "G7",
+          "C",
+          "C"
+        ],
+        "coda": [
+          "C",
+          "F",
+          "G7",
+          "C"
+        ]
+      }
+    },
+    {
+      "id": "afrobeats-palm-wine",
+      "worldId": "afrobeats",
+      "name": "Palm-Wine",
+      "origin": "Sierra Leone / Ghana / Nigeria",
+      "era": "1920s–1960s",
+      "description": "Acoustic • Laid Back • Folk\nRaw street-level acoustic roots.\nKoo Nimo · S.E. Rogie",
+      "characteristicInstruments": [
+        "guitar",
+        "percussion",
+        "bass",
+        "voice",
+        "hand-percussion"
+      ],
+      "preferredMeters": [
+        "4/4"
+      ],
+      "tempoRange": [
+        84,
+        102
+      ],
+      "keySubstyles": [
+        "Acoustic Palm-Wine",
+        "Maringa"
+      ],
+      "coreConcepts": [
+        "two-finger plucked acoustic guitar",
+        "knife-on-bottle percussion",
+        "intimate storytelling vocals",
+        "relaxed calypso bounce"
+      ],
+      "rhythmicGrammar": [
+        "gentle rolling syncopated acoustic picking with soft percussion accents"
+      ],
+      "danceTags": [
+        "listening",
+        "social-partner"
+      ],
+      "tuningSystem": "12-tet",
+      "signatureCell": "Gentle two-finger plucked acoustic guitar arpeggio with knife-on-bottle pulse",
+      "grooveMechanics": {
+        "swingPercentage": 56,
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "laid-back"
+      },
+      "sectionProgressions": {
+        "intro": [
+          "C",
+          "G7",
+          "C",
+          "G7"
+        ],
+        "verse": [
+          "C",
+          "F",
+          "C",
+          "G7",
+          "C",
+          "F",
+          "G7",
+          "C"
+        ],
+        "chorus": [
+          "F",
+          "C",
+          "G7",
+          "C"
+        ],
+        "coda": [
+          "C",
+          "G7",
+          "C",
+          "C"
+        ]
+      }
+    },
+    {
+      "id": "afrobeats-alte",
+      "worldId": "afrobeats",
+      "name": "Alté",
+      "origin": "Lagos, Nigeria / London",
+      "era": "2016–Present",
+      "description": "Experimental • Chill • Eclectic\nLo-fi West African R&B.\nSanti · Lady Donli",
+      "characteristicInstruments": [
+        "synth",
+        "bass",
+        "drums",
+        "guitar",
+        "voice",
+        "piano"
+      ],
+      "preferredMeters": [
+        "4/4"
+      ],
+      "tempoRange": [
+        88,
+        104
+      ],
+      "keySubstyles": [
+        "Alté R&B",
+        "Lo-Fi Afro-Fusion"
+      ],
+      "coreConcepts": [
+        "lo-fi filtered keys",
+        "laid-back drum pockets",
+        "atmospheric autotuned vocals",
+        "indie R&B textures"
+      ],
+      "rhythmicGrammar": [
+        "relaxed half-time kick/snare with mellow offbeat hi-hat ticks"
+      ],
+      "danceTags": [
+        "listening",
+        "festival-fusion"
+      ],
+      "tuningSystem": "12-tet",
+      "signatureCell": "Lo-fi filtered Rhodes chords over relaxed half-time kick/snare and dreamy vocals",
+      "grooveMechanics": {
+        "swingPercentage": 50,
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "laid-back"
+      },
+      "sectionProgressions": {
+        "intro": [
+          "Dbmaj7",
+          "Bbm7",
+          "Ebm7",
+          "Ab7"
+        ],
+        "verse": [
+          "Dbmaj7",
+          "Bbm7",
+          "Ebm7",
+          "Ab7"
+        ],
+        "chorus": [
+          "Gbmaj7",
+          "Fm7",
+          "Ebm7",
+          "Ab7"
+        ],
+        "coda": [
+          "Dbmaj7",
+          "Bbm7",
+          "Gbmaj7",
+          "Ab7"
+        ]
+      }
     }
   ],
   "substyles": [
-    "Afropop",
-    "Afro-Fusion",
-    "Classic Afrobeat (Fela)",
-    "Amapiano Crossover",
+    "Afro-Pop",
+    "Afrobeat",
+    "Amapiano",
+    "Gqom",
+    "Afro-House",
     "Highlife",
-    "Afro-Swing"
+    "Palm-Wine",
+    "Alté"
   ],
   "artists": [
-    "Burna Boy",
     "Wizkid",
+    "Davido",
     "Fela Kuti",
     "Tony Allen",
-    "Davido",
-    "Tiwa Savage",
-    "Kabza De Small",
-    "Rema"
+    "Asake",
+    "Focalistic",
+    "DJ Lag",
+    "Griffit Vigo",
+    "Black Coffee",
+    "Sun-El Musician",
+    "The Cavemen",
+    "E.T. Mensah",
+    "Koo Nimo",
+    "S.E. Rogie",
+    "Santi",
+    "Lady Donli"
   ],
   "concepts": [
     "syncopated kick/clap pocket",
@@ -1448,11 +1831,15 @@ export const AFROBEATS_WORLD: GenreWorld = {
       "roles": [
         "voice"
       ],
-      "instruments": ["voice"],
+      "instruments": [
+        "voice"
+      ],
       "compatibleRoles": [
         "voice"
       ],
-      "compatibleInstruments": ["voice"],
+      "compatibleInstruments": [
+        "voice"
+      ],
       "canCrossRole": true,
       "meter": "4/4",
       "cycleLength": 1,
@@ -3631,12 +4018,16 @@ export const AFROBEATS_WORLD: GenreWorld = {
       "roles": [
         "voice"
       ],
-      "instruments": ["voice"],
+      "instruments": [
+        "voice"
+      ],
       "compatibleRoles": [
         "voice",
         "lead"
       ],
-      "compatibleInstruments": ["voice"],
+      "compatibleInstruments": [
+        "voice"
+      ],
       "meter": "4/4",
       "cycleLength": 1,
       "subdivisions": 16,

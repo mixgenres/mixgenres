@@ -45,13 +45,11 @@ export interface TempoFeel {
 }
 
 export const FEELS: TempoFeel[] = [
-  { id: 'half-time', name: 'Half time', mult: 0.5, description: 'Half speed' },
   { id: 'held-back', name: 'Held back', mult: 0.82, description: 'Laid back' },
   { id: 'walking', name: 'Walking', mult: 0.93, description: 'Relaxed stride' },
   { id: 'as-written', name: 'As written', mult: 1.0, description: 'Default tempo' },
   { id: 'pushed', name: 'Pushed', mult: 1.08, description: 'Leaning forward' },
   { id: 'lit', name: 'Lit', mult: 1.15, description: 'High energy' },
-  { id: 'double-time', name: 'Double time', mult: 2.0, description: 'Double speed' },
 ];
 
 export function getEffectiveBpm(

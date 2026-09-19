@@ -9,136 +9,50 @@ export const BLUES_WORLD: GenreWorld = {
   "description": "A deep blues vocabulary built around repeating forms, shuffle and straight feels, call-and-response, expressive phrasing, bass movement, turnarounds, and ensemble interaction.",
   "traditions": [
     {
-      "id": "blues-delta",
-      "worldId": "blues",
-      "name": "Delta Blues",
-      "origin": "Mississippi Delta",
-      "era": "1920s–Present",
-      "description": "Solo-centered blues built from repeating vocal and guitar phrases, alternating bass movement, call-and-response, and flexible timing.",
-      "characteristicInstruments": [
-        "guitar",
-        "voice"
-      ],
-      "preferredMeters": [
-        "4/4",
-        "12/8"
-      ],
-      "tempoRange": [
-        55,
-        130
-      ],
-      "keySubstyles": [
-        "Country Blues",
-        "Delta Blues",
-        "Acoustic Blues"
-      ],
-      "coreConcepts": [
-        "12-bar form",
-        "call and response",
-        "alternating bass",
-        "turnaround",
-        "bent notes"
-      ],
-      "rhythmicGrammar": [
-        "loose triplet feel",
-        "bass pulse against syncopated treble responses",
-        "phrase-ending turnaround"
-      ],
-      "danceTags": [
-        "listening",
-        "blues-fusion-compatible"
-      ],
-      "tuningSystem": "just-intonation",
-      "signatureCell": "Alternating thumb acoustic bass with syncopated slide vocal responses",
-      "grooveMechanics": {
-        "swingPercentage": 62,
-        "anticipationOffsetSteps": 0,
-        "microtimingFeel": "rubato"
-      },
-      "sectionProgressions": {
-        "intro": [
-          "E",
-          "B7",
-          "E",
-          "B7"
-        ],
-        "verse": [
-          "E7",
-          "A7",
-          "E7",
-          "B7",
-          "A7",
-          "E7",
-          "B7"
-        ],
-        "chorus": [
-          "A7",
-          "A7",
-          "E7",
-          "E7",
-          "B7",
-          "A7",
-          "E7",
-          "B7"
-        ],
-        "coda": [
-          "E7",
-          "B7",
-          "E7",
-          "E7"
-        ]
-      }
-    },
-    {
       "id": "blues-chicago",
       "worldId": "blues",
       "name": "Chicago Blues",
       "origin": "Chicago, Illinois",
-      "era": "1940s–Present",
-      "description": "Amplified ensemble blues with a firm backbeat, electric guitar fills, harmonica or piano responses, and repeated 12-bar cycles.",
+      "era": "1940s–1960s",
+      "description": "Electric • 12-bar • Driving\nAmplified harmonica and guitar.\nMuddy Waters · Howlin' Wolf",
       "characteristicInstruments": [
         "electric-guitar",
+        "harmonica",
+        "piano",
         "bass",
         "drums",
-        "piano",
         "voice"
       ],
       "preferredMeters": [
-        "4/4",
-        "12/8"
+        "4/4"
       ],
       "tempoRange": [
-        65,
-        145
+        86,
+        110
       ],
       "keySubstyles": [
-        "Electric Blues",
-        "West Side Blues",
-        "South Side Blues"
+        "South Side Chicago Blues",
+        "Chess Records Sound"
       ],
       "coreConcepts": [
-        "shuffle",
-        "backbeat",
-        "12-bar blues",
-        "ensemble call-and-response",
-        "turnaround"
+        "distorted amplified harmonica (bullet mic)",
+        "heavy electric guitar shuffle riffs",
+        "rolling boogie basslines",
+        "deep guttural vocal delivery"
       ],
       "rhythmicGrammar": [
-        "triplet shuffle",
-        "snare on 2 and 4",
-        "short fills around vocal phrases"
+        "driving 12/8 triplet shuffle with backbeat snare and walking bass"
       ],
       "danceTags": [
         "social-partner",
-        "blues-fusion-compatible",
-        "wcs-compatible"
+        "blues-fusion-compatible"
       ],
       "tuningSystem": "12-tet",
-      "signatureCell": "Chicago triplet shuffle ride with heavy 2 & 4 snare backbeat and turnaround",
+      "signatureCell": "Electric guitar shuffle riff with answering distorted harmonica cry",
       "grooveMechanics": {
         "swingPercentage": 66,
         "anticipationOffsetSteps": 0,
-        "microtimingFeel": "laid-back"
+        "microtimingFeel": "swung"
       },
       "sectionProgressions": {
         "intro": [
@@ -152,16 +66,6 @@ export const BLUES_WORLD: GenreWorld = {
           "E7",
           "E7",
           "E7",
-          "A7",
-          "A7",
-          "E7",
-          "E7",
-          "B7",
-          "A7",
-          "E7",
-          "B7"
-        ],
-        "chorus": [
           "A7",
           "A7",
           "E7",
@@ -173,15 +77,95 @@ export const BLUES_WORLD: GenreWorld = {
         ],
         "solo": [
           "E7",
+          "E7",
+          "E7",
+          "E7",
+          "A7",
+          "A7",
+          "E7",
+          "E7",
+          "B7",
           "A7",
           "E7",
           "B7"
         ],
         "coda": [
-          "E7",
           "B7",
+          "A7",
           "E7",
+          "E9"
+        ]
+      }
+    },
+    {
+      "id": "blues-delta",
+      "worldId": "blues",
+      "name": "Delta Blues",
+      "origin": "Mississippi Delta",
+      "era": "1920s–1930s",
+      "description": "Raw • Acoustic • Bottleneck\nSlide guitar and stomping.\nRobert Johnson · Charley Patton",
+      "characteristicInstruments": [
+        "guitar",
+        "voice",
+        "harmonica",
+        "percussion"
+      ],
+      "preferredMeters": [
+        "4/4"
+      ],
+      "tempoRange": [
+        72,
+        98
+      ],
+      "keySubstyles": [
+        "Acoustic Delta Blues",
+        "Bottleneck Slide"
+      ],
+      "coreConcepts": [
+        "bottleneck glass/metal slide on acoustic guitar",
+        "percussive heel stomping",
+        "haunting falsetto vocal leaps",
+        "elastic polyrhythmic timing"
+      ],
+      "rhythmicGrammar": [
+        "syncopated thumb-bass pulse with free-meter vocal phrases and slide ornaments"
+      ],
+      "danceTags": [
+        "listening"
+      ],
+      "tuningSystem": "12-tet",
+      "signatureCell": "Bottleneck slide whine over steady acoustic thumb-bass stomp",
+      "grooveMechanics": {
+        "swingPercentage": 62,
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "rubato"
+      },
+      "sectionProgressions": {
+        "intro": [
+          "A7",
+          "D7",
+          "A7",
           "E7"
+        ],
+        "verse": [
+          "A7",
+          "A7",
+          "A7",
+          "A7",
+          "D7",
+          "D7",
+          "A7",
+          "A7",
+          "E7",
+          "D7",
+          "A7",
+          "E7"
+        ],
+        "coda": [
+          "E7",
+          "D7",
+          "A7",
+          "A7"
         ]
       }
     },
@@ -190,144 +174,452 @@ export const BLUES_WORLD: GenreWorld = {
       "worldId": "blues",
       "name": "Texas Blues",
       "origin": "Texas, USA",
-      "era": "1940s–Present",
-      "description": "Guitar-forward blues combining shuffle and straight feels, strong lead/rhythm interplay, and spacious but expressive phrasing.",
-      "characteristicInstruments": [
-        "electric-guitar",
-        "bass",
-        "drums",
-        "voice",
-        "keys"
-      ],
-      "preferredMeters": [
-        "4/4",
-        "12/8"
-      ],
-      "tempoRange": [
-        70,
-        155
-      ],
-      "keySubstyles": [
-        "Texas Shuffle",
-        "Slow Blues",
-        "Blues Rock Crossover"
-      ],
-      "coreConcepts": [
-        "shuffle",
-        "single-note riffs",
-        "double-stops",
-        "turnarounds",
-        "lead fills"
-      ],
-      "rhythmicGrammar": [
-        "triplet subdivision or swung eighths",
-        "bass and guitar locking on repeated figures",
-        "fills answering vocal lines"
-      ],
-      "danceTags": [
-        "social-partner",
-        "wcs-compatible",
-        "blues-fusion-compatible"
-      ],
-      "tuningSystem": "12-tet",
-      "signatureCell": "Driving Texas guitar shuffle with muted rake and boogie root-fifth bass",
-      "grooveMechanics": {
-        "swingPercentage": 64,
-        "anticipationOffsetSteps": 0,
-        "microtimingFeel": "pushed"
-      },
-      "sectionProgressions": {
-        "intro": [
-          "A7",
-          "D7",
-          "A7",
-          "E7"
-        ],
-        "verse": [
-          "A7",
-          "A7",
-          "A7",
-          "A7",
-          "D7",
-          "D7",
-          "A7",
-          "A7",
-          "E7",
-          "D7",
-          "A7",
-          "E7"
-        ],
-        "chorus": [
-          "D7",
-          "D7",
-          "A7",
-          "A7",
-          "E7",
-          "D7",
-          "A7",
-          "E7"
-        ],
-        "solo": [
-          "A7",
-          "D7",
-          "A7",
-          "E7"
-        ],
-        "coda": [
-          "A7",
-          "E7",
-          "A7",
-          "A7"
-        ]
-      }
-    },
-    {
-      "id": "blues-soul",
-      "worldId": "blues",
-      "name": "Slow Blues & Soul Blues",
-      "origin": "Southern US / Urban blues circuits",
-      "era": "1950s–Present",
-      "description": "Slow, spacious blues where phrasing, dynamics, sustained harmony, and vocal-guitar dialogue carry the groove.",
+      "era": "1950s–1980s",
+      "description": "Swinging • Sharp • Virtuosic\nSingle-note electric guitar solos.\nStevie Ray Vaughan · Freddie King",
       "characteristicInstruments": [
         "electric-guitar",
         "bass",
         "drums",
         "piano",
         "voice",
-        "strings"
+        "brass"
       ],
       "preferredMeters": [
-        "4/4",
-        "12/8"
+        "4/4"
       ],
       "tempoRange": [
-        40,
-        85
+        115,
+        145
       ],
       "keySubstyles": [
-        "Slow Blues",
-        "Soul Blues",
-        "Minor Blues"
+        "Texas Shuffle",
+        "Electric Blues Rock"
       ],
       "coreConcepts": [
-        "space",
-        "dominant harmony",
-        "long fills",
-        "dynamic phrasing",
-        "turnaround"
+        "blistering single-note lead guitar bending",
+        "heavy Texas shuffle drum groove",
+        "virtuosic turnaround licks",
+        "dynamic power rhythm"
       ],
       "rhythmicGrammar": [
-        "laid-back backbeat",
-        "long note values",
-        "pickup and answer phrases"
+        "uptempo triplet shuffle with snappy snare rimshots and walking bass"
       ],
       "danceTags": [
-        "blues-fusion-compatible",
-        "listening",
-        "social-partner"
+        "social-partner",
+        "blues-fusion-compatible"
       ],
       "tuningSystem": "12-tet",
-      "signatureCell": "Slow 12/8 blues ballad with Hammond B3 swell and weeping guitar bends",
+      "signatureCell": "Sharp Texas shuffle snap with rapid ascending pentatonic guitar bend",
+      "grooveMechanics": {
+        "swingPercentage": 64,
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "swung"
+      },
+      "sectionProgressions": {
+        "intro": [
+          "G7",
+          "C7",
+          "G7",
+          "D7"
+        ],
+        "verse": [
+          "G7",
+          "G7",
+          "G7",
+          "G7",
+          "C7",
+          "C7",
+          "G7",
+          "G7",
+          "D7",
+          "C7",
+          "G7",
+          "D7"
+        ],
+        "solo": [
+          "G7",
+          "G7",
+          "G7",
+          "G7",
+          "C7",
+          "C7",
+          "G7",
+          "G7",
+          "D7",
+          "C7",
+          "G7",
+          "D7"
+        ],
+        "coda": [
+          "D7",
+          "C7",
+          "G7",
+          "G9"
+        ]
+      }
+    },
+    {
+      "id": "blues-piedmont",
+      "worldId": "blues",
+      "name": "Piedmont Blues",
+      "origin": "East Coast USA (Piedmont region)",
+      "era": "1920s–1940s",
+      "description": "Bouncy • Ragtime • Fingerpicked\nSyncopated acoustic fingerstyle guitar.\nBlind Willie McTell · Reverend Gary Davis",
+      "characteristicInstruments": [
+        "guitar",
+        "harmonica",
+        "voice",
+        "washboard"
+      ],
+      "preferredMeters": [
+        "4/4"
+      ],
+      "tempoRange": [
+        96,
+        120
+      ],
+      "keySubstyles": [
+        "East Coast Blues",
+        "Ragtime Blues"
+      ],
+      "coreConcepts": [
+        "alternating thumb-bass ragtime picking",
+        "syncopated treble-string melodies",
+        "upbeat cheerful bounce",
+        "clean acoustic articulation"
+      ],
+      "rhythmicGrammar": [
+        "ragtime boom-chick thumb bass with syncopated index/middle finger arpeggios"
+      ],
+      "danceTags": [
+        "social-partner",
+        "listening"
+      ],
+      "tuningSystem": "12-tet",
+      "signatureCell": "Alternating thumb-bass ragtime arpeggio with bright syncopated treble melody",
+      "grooveMechanics": {
+        "swingPercentage": 58,
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "swung"
+      },
+      "sectionProgressions": {
+        "intro": [
+          "C",
+          "G7",
+          "C",
+          "G7"
+        ],
+        "verse": [
+          "C",
+          "C7",
+          "F",
+          "Fm",
+          "C",
+          "A7",
+          "D7",
+          "G7",
+          "C",
+          "E7",
+          "Am",
+          "F",
+          "C",
+          "G7",
+          "C",
+          "G7"
+        ],
+        "coda": [
+          "C",
+          "A7",
+          "D7",
+          "G7",
+          "C",
+          "C"
+        ]
+      }
+    },
+    {
+      "id": "blues-jump",
+      "worldId": "blues",
+      "name": "Jump Blues",
+      "origin": "Kansas City / Los Angeles",
+      "era": "1940s–1950s",
+      "description": "Fast • Horns • Swinging\nUpbeat predecessor to rock.\nLouis Jordan · Big Joe Turner",
+      "characteristicInstruments": [
+        "brass",
+        "piano",
+        "electric-guitar",
+        "upright-bass",
+        "drums",
+        "voice"
+      ],
+      "preferredMeters": [
+        "4/4"
+      ],
+      "tempoRange": [
+        135,
+        175
+      ],
+      "keySubstyles": [
+        "Jump Swing",
+        "Boogie Jump Blues"
+      ],
+      "coreConcepts": [
+        "swinging big-band horn riffs",
+        "boogie-woogie piano bass ostinatos",
+        "shouting energetic vocals",
+        "fast walking bassline"
+      ],
+      "rhythmicGrammar": [
+        "fast 4-on-the-floor four-beat swing with driving snare backbeat on 2 and 4"
+      ],
+      "danceTags": [
+        "social-partner",
+        "wcs-compatible"
+      ],
+      "tuningSystem": "12-tet",
+      "signatureCell": "Punchy horn unison riff over driving boogie-woogie piano and walking bass",
+      "grooveMechanics": {
+        "swingPercentage": 60,
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "swung"
+      },
+      "sectionProgressions": {
+        "intro": [
+          "Bb7",
+          "Eb7",
+          "Bb7",
+          "F7"
+        ],
+        "verse": [
+          "Bb7",
+          "Bb7",
+          "Bb7",
+          "Bb7",
+          "Eb7",
+          "Eb7",
+          "Bb7",
+          "Bb7",
+          "F7",
+          "Eb7",
+          "Bb7",
+          "F7"
+        ],
+        "solo": [
+          "Bb7",
+          "Bb7",
+          "Bb7",
+          "Bb7",
+          "Eb7",
+          "Eb7",
+          "Bb7",
+          "Bb7",
+          "F7",
+          "Eb7",
+          "Bb7",
+          "F7"
+        ],
+        "coda": [
+          "F7",
+          "Eb7",
+          "Bb7",
+          "Bb7"
+        ]
+      }
+    },
+    {
+      "id": "blues-hill-country",
+      "worldId": "blues",
+      "name": "Hill Country Blues",
+      "origin": "North Mississippi Hill Country",
+      "era": "1960s–Present",
+      "description": "Hypnotic • One-chord • Droning\nRelentless groove-based blues.\nR.L. Burnside · Junior Kimbrough",
+      "characteristicInstruments": [
+        "electric-guitar",
+        "drums",
+        "bass",
+        "voice"
+      ],
+      "preferredMeters": [
+        "4/4"
+      ],
+      "tempoRange": [
+        92,
+        116
+      ],
+      "keySubstyles": [
+        "North Mississippi Blues",
+        "Trance Blues"
+      ],
+      "coreConcepts": [
+        "hypnotic one-chord drone vamp",
+        "repetitive polyrhythmic guitar grooves",
+        "open-ended modal improvisation",
+        "raw driving drum stomps"
+      ],
+      "rhythmicGrammar": [
+        "continuous circular modal guitar groove locked with dry kick and snare"
+      ],
+      "danceTags": [
+        "festival-fusion",
+        "listening"
+      ],
+      "tuningSystem": "12-tet",
+      "signatureCell": "Relentless one-chord hypnotic modal guitar vamp locked with raw drum stomp",
+      "grooveMechanics": {
+        "swingPercentage": 54,
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "straight"
+      },
+      "sectionProgressions": {
+        "intro": [
+          "E7",
+          "E7",
+          "E7",
+          "E7"
+        ],
+        "verse": [
+          "E7",
+          "E7",
+          "E7",
+          "E7",
+          "E7",
+          "E7",
+          "E7",
+          "E7"
+        ],
+        "solo": [
+          "E7",
+          "E7",
+          "E7",
+          "E7",
+          "E7",
+          "E7",
+          "E7",
+          "E7"
+        ],
+        "coda": [
+          "E7",
+          "E7",
+          "E7",
+          "E7"
+        ]
+      }
+    },
+    {
+      "id": "blues-swamp",
+      "worldId": "blues",
+      "name": "Swamp Blues",
+      "origin": "Baton Rouge, Louisiana",
+      "era": "1950s–1960s",
+      "description": "Laid-back • Reverb • Tremolo\nLethargic Louisiana atmosphere.\nSlim Harpo · Lightnin' Slim",
+      "characteristicInstruments": [
+        "electric-guitar",
+        "harmonica",
+        "bass",
+        "drums",
+        "voice"
+      ],
+      "preferredMeters": [
+        "4/4"
+      ],
+      "tempoRange": [
+        78,
+        96
+      ],
+      "keySubstyles": [
+        "Louisiana Swamp Blues",
+        "Excello Sound"
+      ],
+      "coreConcepts": [
+        "heavy amplifier tremolo and spring reverb",
+        "lethargic relaxed groove",
+        "sparse acoustic/electric interplay",
+        "lazy vocal delivery"
+      ],
+      "rhythmicGrammar": [
+        "laid-back lazy shuffle with muted bass pulse and subtle snare brushes"
+      ],
+      "danceTags": [
+        "listening",
+        "blues-fusion-compatible"
+      ],
+      "tuningSystem": "12-tet",
+      "signatureCell": "Tremolo-pulsing electric guitar chord over slow relaxed swamp groove",
+      "grooveMechanics": {
+        "swingPercentage": 62,
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "laid-back"
+      },
+      "sectionProgressions": {
+        "intro": [
+          "E",
+          "A",
+          "E",
+          "B7"
+        ],
+        "verse": [
+          "E",
+          "E",
+          "E",
+          "E",
+          "A",
+          "A",
+          "E",
+          "E",
+          "B7",
+          "A",
+          "E",
+          "B7"
+        ],
+        "coda": [
+          "B7",
+          "A",
+          "E",
+          "E"
+        ]
+      }
+    },
+    {
+      "id": "blues-soul",
+      "worldId": "blues",
+      "name": "Soul Blues",
+      "origin": "Memphis / Chicago / Jackson, MS",
+      "era": "1960s–1970s",
+      "description": "Smooth • Horn-fed • Expressive\nGospel-influenced 60s blues.\nB.B. King · Bobby \"Blue\" Bland",
+      "characteristicInstruments": [
+        "electric-guitar",
+        "brass",
+        "organ",
+        "bass",
+        "drums",
+        "voice"
+      ],
+      "preferredMeters": [
+        "4/4"
+      ],
+      "tempoRange": [
+        74,
+        94
+      ],
+      "keySubstyles": [
+        "Urban Soul Blues",
+        "Gospel Blues"
+      ],
+      "coreConcepts": [
+        "lush brass section pads and swells",
+        "gospel-tinged organ voicings",
+        "expressive single-string vibrato guitar leads",
+        "deep emotive vocal belts"
+      ],
+      "rhythmicGrammar": [
+        "slow 12/8 gospel ballad triplet pulse or relaxed 4/4 soul groove"
+      ],
+      "danceTags": [
+        "social-partner",
+        "blues-fusion-compatible"
+      ],
+      "tuningSystem": "12-tet",
+      "signatureCell": "Singing vibrato guitar line answering lush warm horn section swells",
       "grooveMechanics": {
         "swingPercentage": 66,
         "anticipationOffsetSteps": 0,
@@ -335,66 +627,71 @@ export const BLUES_WORLD: GenreWorld = {
       },
       "sectionProgressions": {
         "intro": [
-          "C7",
-          "F7",
-          "C7",
+          "C",
+          "F",
+          "C",
           "G7"
         ],
         "verse": [
-          "C7",
-          "C7",
-          "C7",
-          "C7",
-          "F7",
-          "F7",
-          "C7",
-          "C7",
+          "C",
+          "C",
+          "C",
+          "C",
+          "F",
+          "F",
+          "C",
+          "C",
           "G7",
-          "F7",
-          "C7",
+          "F",
+          "C",
           "G7"
         ],
         "chorus": [
-          "F7",
-          "F7",
-          "C7",
-          "C7",
+          "F",
+          "F",
+          "C",
+          "C",
+          "F",
+          "F",
           "G7",
-          "F7",
-          "C7",
-          "G7"
-        ],
-        "solo": [
-          "C7",
-          "F7",
-          "C7",
           "G7"
         ],
         "coda": [
-          "C7",
           "G7",
-          "C7",
-          "C7"
+          "F",
+          "C",
+          "C"
         ]
       }
     }
   ],
   "substyles": [
-    "Delta Blues",
     "Chicago Blues",
+    "Delta Blues",
     "Texas Blues",
-    "Slow Blues",
-    "Soul Blues",
-    "Minor Blues",
-    "Boogie-Woogie"
+    "Piedmont Blues",
+    "Jump Blues",
+    "Hill Country Blues",
+    "Swamp Blues",
+    "Soul Blues"
   ],
   "artists": [
-    "Robert Johnson",
     "Muddy Waters",
-    "Howlin’ Wolf",
+    "Howlin' Wolf",
+    "Robert Johnson",
+    "Charley Patton",
+    "Stevie Ray Vaughan",
+    "Freddie King",
+    "Blind Willie McTell",
+    "Reverend Gary Davis",
+    "Louis Jordan",
+    "Big Joe Turner",
+    "R.L. Burnside",
+    "Junior Kimbrough",
+    "Slim Harpo",
+    "Lightnin' Slim",
     "B.B. King",
-    "Albert King",
-    "Stevie Ray Vaughan"
+    "Bobby \"Blue\" Bland"
   ],
   "concepts": [
     "12-bar form",
@@ -2409,11 +2706,15 @@ export const BLUES_WORLD: GenreWorld = {
       "roles": [
         "voice"
       ],
-      "instruments": ["voice"],
+      "instruments": [
+        "voice"
+      ],
       "compatibleRoles": [
         "voice"
       ],
-      "compatibleInstruments": ["voice"],
+      "compatibleInstruments": [
+        "voice"
+      ],
       "canCrossRole": true,
       "meter": "4/4",
       "cycleLength": 1,
@@ -2590,11 +2891,15 @@ export const BLUES_WORLD: GenreWorld = {
       "roles": [
         "voice"
       ],
-      "instruments": ["voice"],
+      "instruments": [
+        "voice"
+      ],
       "compatibleRoles": [
         "voice"
       ],
-      "compatibleInstruments": ["voice"],
+      "compatibleInstruments": [
+        "voice"
+      ],
       "canCrossRole": true,
       "meter": "4/4",
       "cycleLength": 1,
@@ -3197,12 +3502,16 @@ export const BLUES_WORLD: GenreWorld = {
       "roles": [
         "voice"
       ],
-      "instruments": ["voice"],
+      "instruments": [
+        "voice"
+      ],
       "compatibleRoles": [
         "voice",
         "lead"
       ],
-      "compatibleInstruments": ["voice"],
+      "compatibleInstruments": [
+        "voice"
+      ],
       "meter": "4/4",
       "cycleLength": 1,
       "subdivisions": 16,

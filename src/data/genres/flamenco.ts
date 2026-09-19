@@ -9,15 +9,16 @@ export const FLAMENCO_WORLD: GenreWorld = {
   "description": "Deep Flamenco compás architectures: Soleá and Bulerías 12-beat cycles, Tangos de Triana binary pulses, alzapúa thumb sweeps, abanico fan strums, picado runs, and interlocking palmas/cajón.",
   "traditions": [
     {
-      "id": "flamenco-solea",
+      "id": "flamenco-solea-style",
       "worldId": "flamenco",
-      "name": "Soleá & Cantiñas (12-Beat Compás)",
+      "name": "Soleá",
       "origin": "Andalusia (Seville, Cádiz, Jerez)",
-      "description": "The mother of cante jondo: deep, slow 12-beat compás accented on [12, 3, 6, 8, 10].",
+      "description": "Deep • 12-beat • Phrygian\nThe foundation of Flamenco.\nPaco de Lucía · Camarón · Fernanda",
       "characteristicInstruments": [
         "guitar",
         "voice",
-        "percussion"
+        "palmas",
+        "cajon"
       ],
       "preferredMeters": [
         "12/8",
@@ -28,11 +29,9 @@ export const FLAMENCO_WORLD: GenreWorld = {
         95
       ],
       "keySubstyles": [
-        "Soleá por Bulerías",
-        "Alegrías de Cádiz",
-        "Caracoles",
-        "Mirabrás",
-        "Caña y Polo"
+        "Soleá de Triana",
+        "Soleá de Alcalá",
+        "Soleá de Cádiz"
       ],
       "coreConcepts": [
         "12-beat compás",
@@ -91,16 +90,16 @@ export const FLAMENCO_WORLD: GenreWorld = {
       }
     },
     {
-      "id": "flamenco-bulerias",
+      "id": "flamenco-buleria-style",
       "worldId": "flamenco",
-      "name": "Bulerías de Jerez (Fast Festive 12-Beat)",
+      "name": "Bulerías",
       "origin": "Jerez de la Frontera & Triana",
-      "description": "Blazing fast, highly syncopated 12-beat party rhythm with polyrhythmic counter-clapping (contratiempo).",
+      "description": "Fast • 12-beat • Contratiempo\nPlayful, explosive, endlessly interactive.\nLa Paquera · Camarón",
       "characteristicInstruments": [
         "guitar",
         "voice",
-        "percussion",
-        "hand-percussion"
+        "palmas",
+        "cajon"
       ],
       "preferredMeters": [
         "12/8",
@@ -172,15 +171,65 @@ export const FLAMENCO_WORLD: GenreWorld = {
       }
     },
     {
-      "id": "flamenco-tangos-tientos",
+      "id": "flamenco-alegrias-style",
       "worldId": "flamenco",
-      "name": "Tangos & Tientos (Binary 4/4 Compás)",
-      "origin": "Cádiz, Triana, Granada",
-      "description": "Crisp 4/4 rhythm with characteristic accentuation on beats 2, 3, and 4 (beat 1 is often silent or ghosted).",
+      "name": "Alegrías",
+      "origin": "Cádiz, western Andalusia",
+      "description": "Bright • 12-beat • Major\nCadiz sparkle, escobilla and fiesta.\nChano Lobato · Carmen Linares",
       "characteristicInstruments": [
         "guitar",
         "voice",
-        "percussion",
+        "palmas",
+        "cajon"
+      ],
+      "preferredMeters": [
+        "12/8",
+        "6/8",
+        "3/4"
+      ],
+      "tempoRange": [
+        120,
+        160
+      ],
+      "keySubstyles": [
+        "Alegrías de Cádiz",
+        "Romeras",
+        "Caracoles"
+      ],
+      "coreConcepts": [
+        "cantiñas",
+        "silencio",
+        "escobilla",
+        "subida",
+        "tirititrán"
+      ],
+      "rhythmicGrammar": [
+        "12-beat cantiñas grouping 3+3+2+2+2",
+        "bright palmas and dance remates"
+      ],
+      "danceTags": [
+        "social-partner",
+        "festival-fusion"
+      ],
+      "tuningSystem": "phrygian-mode",
+      "signatureCell": "12-beat cantiñas compás with major-key brightness and clear dance punctuation.",
+      "grooveMechanics": {
+        "swingPercentage": 50,
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "straight"
+      }
+    },
+    {
+      "id": "flamenco-tangos-style",
+      "worldId": "flamenco",
+      "name": "Tangos",
+      "origin": "Cádiz, Triana, Granada",
+      "description": "Grounded • 4-beat • Phrygian\nHeavy pulse, palmas and swagger.\nFernanda de Utrera · La Repompa",
+      "characteristicInstruments": [
+        "guitar",
+        "voice",
+        "palmas",
+        "cajon",
         "bass"
       ],
       "preferredMeters": [
@@ -189,30 +238,31 @@ export const FLAMENCO_WORLD: GenreWorld = {
       ],
       "tempoRange": [
         110,
-        140
+        150
       ],
       "keySubstyles": [
         "Tangos de Triana",
         "Tangos de Cádiz",
-        "Tangos de Granada",
-        "Tientos Lentos"
+        "Tangos de Granada"
       ],
       "coreConcepts": [
-        "silent downbeat (1)",
-        "heavy 2-3-4 accent",
-        "alzapúa",
-        "golpe on top plate"
+        "binary compás",
+        "2-3-4 weight",
+        "por medio",
+        "por arriba",
+        "golpe"
       ],
       "rhythmicGrammar": [
-        "[. x x x] - beat 1 is preparation, 2, 3, 4 carry the weight"
+        "4/4 with breathing beat 1",
+        "accented 2, 3 and 4",
+        "contratiempo pickups"
       ],
       "danceTags": [
         "social-partner",
-        "festival-fusion",
-        "listening"
+        "festival-fusion"
       ],
       "tuningSystem": "phrygian-mode",
-      "signatureCell": "Tangos 4/4 binary compás with silent beat 1 and heavy weight on 2, 3, 4",
+      "signatureCell": "4/4 flamenco tangos with a breathing downbeat and weighted 2–3–4.",
       "grooveMechanics": {
         "swingPercentage": 50,
         "anticipationOffsetSteps": 0,
@@ -246,30 +296,168 @@ export const FLAMENCO_WORLD: GenreWorld = {
       }
     },
     {
-      "id": "flamenco-rumba-sevillanas",
+      "id": "flamenco-seguiriya-style",
       "worldId": "flamenco",
-      "name": "Rumba Flamenca & Sevillanas",
-      "origin": "Catalonia, Seville & Caribbean crossover",
-      "description": "Dance-floor accessible flamenco styles with continuous guitar strumming, fan-strums (abanico), and lively cajón.",
+      "name": "Seguiriya",
+      "origin": "Andalusia",
+      "description": "Dark • Asymmetric • Cante jondo\nRaw, dramatic and rhythmically severe.\nManuel Torre · Antonio Mairena",
       "characteristicInstruments": [
         "guitar",
-        "percussion",
+        "voice",
+        "palmas"
+      ],
+      "preferredMeters": [
+        "12/8",
+        "6/8"
+      ],
+      "tempoRange": [
+        90,
+        140
+      ],
+      "keySubstyles": [
+        "Seguiriya",
+        "Cabales",
+        "Liviana"
+      ],
+      "coreConcepts": [
+        "quejío",
+        "jondo",
+        "2+2+3+3+2",
+        "corte",
+        "remate"
+      ],
+      "rhythmicGrammar": [
+        "2+2+3+3+2 grouping",
+        "space around the cante",
+        "elastic internal phrasing"
+      ],
+      "danceTags": [
+        "listening"
+      ],
+      "tuningSystem": "phrygian-mode",
+      "signatureCell": "2+2+3+3+2 asymmetry rather than the standard Soleá-family accent map.",
+      "grooveMechanics": {
+        "swingPercentage": 50,
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "rubato"
+      }
+    },
+    {
+      "id": "flamenco-tientos-style",
+      "worldId": "flamenco",
+      "name": "Tientos",
+      "origin": "Andalusia",
+      "description": "Slow • 4-beat • Modal\nTangos stretched into tension.\nEl Chocolate · Carmen Linares",
+      "characteristicInstruments": [
+        "guitar",
+        "voice",
+        "palmas",
+        "cajon"
+      ],
+      "preferredMeters": [
+        "4/4",
+        "2/4"
+      ],
+      "tempoRange": [
+        50,
+        90
+      ],
+      "keySubstyles": [
+        "Tientos",
+        "Tientos por Tangos"
+      ],
+      "coreConcepts": [
+        "slow binary",
+        "jondo",
+        "subida",
+        "tangos ending"
+      ],
+      "rhythmicGrammar": [
+        "slow 4-beat compás",
+        "space and weight",
+        "controlled acceleration"
+      ],
+      "danceTags": [
+        "listening",
+        "social-partner"
+      ],
+      "tuningSystem": "phrygian-mode",
+      "signatureCell": "Slow binary compás with heavy space and a path toward Tangos.",
+      "grooveMechanics": {
+        "swingPercentage": 50,
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "straight"
+      }
+    },
+    {
+      "id": "flamenco-fandango-style",
+      "worldId": "flamenco",
+      "name": "Fandangos",
+      "origin": "Huelva, Andalusia",
+      "description": "Folk-rooted • 3-beat • Expressive\nCoplas, melody and regional character.\nPaco Toronjo",
+      "characteristicInstruments": [
+        "guitar",
+        "voice",
+        "palmas"
+      ],
+      "preferredMeters": [
+        "3/4",
+        "6/8"
+      ],
+      "tempoRange": [
+        130,
+        150
+      ],
+      "keySubstyles": [
+        "Fandangos de Huelva",
+        "Fandangos personales"
+      ],
+      "coreConcepts": [
+        "four 3-beat phrases",
+        "copla",
+        "modal opening",
+        "major/minor turn"
+      ],
+      "rhythmicGrammar": [
+        "3/4 ternary cycle",
+        "four-phrase copla architecture"
+      ],
+      "danceTags": [
+        "social-partner",
+        "listening"
+      ],
+      "tuningSystem": "12-tet",
+      "signatureCell": "Four 3/4 phrases with modal opening and major/minor melodic turns.",
+      "grooveMechanics": {
+        "swingPercentage": 50,
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "straight"
+      }
+    },
+    {
+      "id": "flamenco-rumba",
+      "worldId": "flamenco",
+      "name": "Rumba",
+      "origin": "Catalonia, Andalusia & Caribbean crossover",
+      "description": "Driving • 4-beat • Crossover\nFlamenco guitar meets Latin groove.\nCamarón · Paco de Lucía",
+      "characteristicInstruments": [
+        "guitar",
+        "cajon",
+        "palmas",
         "bass",
         "voice",
         "flute"
       ],
       "preferredMeters": [
-        "4/4",
-        "3/4"
+        "4/4"
       ],
       "tempoRange": [
         100,
         135
       ],
       "keySubstyles": [
-        "Rumba Catalana",
         "Rumba Gitana",
-        "Sevillanas en 4 Coplas"
+        "Rumba Catalana"
       ],
       "coreConcepts": [
         "abanico fan strum",
@@ -278,8 +466,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
         "rumba bass movement"
       ],
       "rhythmicGrammar": [
-        "abanico [down-thumb-up-down-golpe]",
-        "sevillanas 3/4 waltz-like dance pulse"
+        "abanico [down-thumb-up-down-golpe]"
       ],
       "danceTags": [
         "social-partner",
@@ -325,356 +512,16 @@ export const FLAMENCO_WORLD: GenreWorld = {
         ]
       }
     }
-,
-
-    {
-        "id": "flamenco-alegrias",
-        "worldId": "flamenco",
-        "name": "Alegrías & Cantiñas",
-        "origin": "Cádiz, western Andalusia",
-        "era": "19th century–present",
-        "description": "Bright 12-beat cantiñas family centered on Alegrías, with major-key guitar, buoyant palmas, letras, silencio/falseta, escobilla and subida.",
-        "characteristicInstruments": [
-            "guitar",
-            "voice",
-            "percussion"
-        ],
-        "preferredMeters": [
-            "12/8",
-            "6/8",
-            "3/4"
-        ],
-        "tempoRange": [
-            120,
-            160
-        ],
-        "keySubstyles": [
-            "Alegrías de Cádiz",
-            "Romeras",
-            "Caracoles",
-            "Mirabrás"
-        ],
-        "coreConcepts": [
-            "cantiñas",
-            "silencio",
-            "escobilla",
-            "subida",
-            "tirititrán"
-        ],
-        "rhythmicGrammar": [
-            "12-beat cantiñas grouping 3+3+2+2+2",
-            "bright palmas and dance remates"
-        ],
-        "danceTags": [
-            "social-partner",
-            "festival-fusion"
-        ],
-        "tuningSystem": "phrygian-mode",
-        "signatureCell": "12-beat cantiñas compás with major-key brightness and clear dance punctuation.",
-        "grooveMechanics": {
-            "swingPercentage": 50,
-            "anticipationOffsetSteps": 0,
-            "microtimingFeel": "straight"
-        }
-    },
-    {
-        "id": "flamenco-seguiriya",
-        "worldId": "flamenco",
-        "name": "Seguiriya",
-        "origin": "Andalusia",
-        "era": "19th century–present",
-        "description": "Cante-jondo palo with an asymmetric 2+2+3+3+2 rhythmic grouping, sparse accompaniment and extreme expressive tension.",
-        "characteristicInstruments": [
-            "guitar",
-            "voice",
-            "percussion"
-        ],
-        "preferredMeters": [
-            "12/8",
-            "6/8"
-        ],
-        "tempoRange": [
-            90,
-            140
-        ],
-        "keySubstyles": [
-            "Seguiriya",
-            "Cabales",
-            "Liviana",
-            "Serranas"
-        ],
-        "coreConcepts": [
-            "quejío",
-            "jondo",
-            "2+2+3+3+2",
-            "corte",
-            "remate"
-        ],
-        "rhythmicGrammar": [
-            "2+2+3+3+2 grouping",
-            "space around the cante",
-            "elastic internal phrasing"
-        ],
-        "danceTags": [
-            "listening"
-        ],
-        "tuningSystem": "phrygian-mode",
-        "signatureCell": "2+2+3+3+2 asymmetry rather than the standard Soleá-family accent map.",
-        "grooveMechanics": {
-            "swingPercentage": 50,
-            "anticipationOffsetSteps": 0,
-            "microtimingFeel": "rubato"
-        }
-    },
-    {
-        "id": "flamenco-tangos-style",
-        "worldId": "flamenco",
-        "name": "Tangos Flamencos",
-        "origin": "Cádiz, Triana, Granada",
-        "era": "19th century–present",
-        "description": "Binary flamenco dance family related to Tientos, with 4/4 pulse, Phrygian color and characteristic weight on 2–3–4.",
-        "characteristicInstruments": [
-            "guitar",
-            "voice",
-            "percussion",
-            "bass"
-        ],
-        "preferredMeters": [
-            "4/4",
-            "2/4"
-        ],
-        "tempoRange": [
-            110,
-            150
-        ],
-        "keySubstyles": [
-            "Tangos de Triana",
-            "Tangos de Cádiz",
-            "Tangos de Granada"
-        ],
-        "coreConcepts": [
-            "binary compás",
-            "2-3-4 weight",
-            "por medio",
-            "por arriba",
-            "golpe"
-        ],
-        "rhythmicGrammar": [
-            "4/4 with breathing beat 1",
-            "accented 2, 3 and 4",
-            "contratiempo pickups"
-        ],
-        "danceTags": [
-            "social-partner",
-            "festival-fusion"
-        ],
-        "tuningSystem": "phrygian-mode",
-        "signatureCell": "4/4 flamenco tangos with a breathing downbeat and weighted 2–3–4.",
-        "grooveMechanics": {
-            "swingPercentage": 50,
-            "anticipationOffsetSteps": 0,
-            "microtimingFeel": "straight"
-        }
-    },
-    {
-        "id": "flamenco-tientos",
-        "worldId": "flamenco",
-        "name": "Tientos",
-        "origin": "Andalusia",
-        "era": "19th century–present",
-        "description": "Slow, grave binary palo closely related to Tangos; traditional versions may feel slightly tripletized and commonly accelerate into Tangos.",
-        "characteristicInstruments": [
-            "guitar",
-            "voice",
-            "percussion"
-        ],
-        "preferredMeters": [
-            "4/4",
-            "2/4"
-        ],
-        "tempoRange": [
-            50,
-            90
-        ],
-        "keySubstyles": [
-            "Tientos",
-            "Tientos por Tangos"
-        ],
-        "coreConcepts": [
-            "slow binary",
-            "jondo",
-            "subida",
-            "tangos ending"
-        ],
-        "rhythmicGrammar": [
-            "slow 4-beat compás",
-            "space and weight",
-            "controlled acceleration"
-        ],
-        "danceTags": [
-            "listening",
-            "social-partner"
-        ],
-        "tuningSystem": "phrygian-mode",
-        "signatureCell": "Slow binary compás with heavy space and a path toward Tangos.",
-        "grooveMechanics": {
-            "swingPercentage": 50,
-            "anticipationOffsetSteps": 0,
-            "microtimingFeel": "straight"
-        }
-    },
-    {
-        "id": "flamenco-farruca",
-        "worldId": "flamenco",
-        "name": "Farruca",
-        "origin": "Northern Spain adopted into flamenco",
-        "era": "20th century–present",
-        "description": "Slow binary dance palo in minor with dry guitar punctuation, grounded dance phrasing and a characteristic subida.",
-        "characteristicInstruments": [
-            "guitar",
-            "voice",
-            "percussion"
-        ],
-        "preferredMeters": [
-            "4/4"
-        ],
-        "tempoRange": [
-            50,
-            90
-        ],
-        "keySubstyles": [
-            "Farruca"
-        ],
-        "coreConcepts": [
-            "minor",
-            "golpe",
-            "escobilla",
-            "subida"
-        ],
-        "rhythmicGrammar": [
-            "slow 4-beat pulse",
-            "dry punctuation",
-            "accelerating final section"
-        ],
-        "danceTags": [
-            "social-partner",
-            "listening"
-        ],
-        "tuningSystem": "12-tet",
-        "signatureCell": "Grounded slow 4/4 minor pulse with dry golpes and controlled subida.",
-        "grooveMechanics": {
-            "swingPercentage": 50,
-            "anticipationOffsetSteps": 0,
-            "microtimingFeel": "straight"
-        }
-    },
-    {
-        "id": "flamenco-guajira",
-        "worldId": "flamenco",
-        "name": "Guajira (Ida y Vuelta)",
-        "origin": "Andalusia / Cuba",
-        "era": "19th century–present",
-        "description": "Ida-y-vuelta flamenco family with Cuban influence, a lighter 12-beat lilt and songful major-key guitar language.",
-        "characteristicInstruments": [
-            "guitar",
-            "voice",
-            "percussion"
-        ],
-        "preferredMeters": [
-            "12/8",
-            "6/8"
-        ],
-        "tempoRange": [
-            105,
-            145
-        ],
-        "keySubstyles": [
-            "Guajira"
-        ],
-        "coreConcepts": [
-            "ida-y-vuelta",
-            "Cuban influence",
-            "12-beat lilt",
-            "major color"
-        ],
-        "rhythmicGrammar": [
-            "light 12-beat compás",
-            "syncopated guitar",
-            "songful phrasing"
-        ],
-        "danceTags": [
-            "social-partner",
-            "festival-fusion"
-        ],
-        "tuningSystem": "12-tet",
-        "signatureCell": "Light 12-beat ida-y-vuelta lilt with Cuban-inflected harmony.",
-        "grooveMechanics": {
-            "swingPercentage": 50,
-            "anticipationOffsetSteps": 0,
-            "microtimingFeel": "straight"
-        }
-    },
-    {
-        "id": "flamenco-fandango",
-        "worldId": "flamenco",
-        "name": "Fandangos de Huelva",
-        "origin": "Huelva, Andalusia",
-        "era": "19th century–present",
-        "description": "Ternary flamenco/folk family organized in four three-beat phrases, with modal openings and bright major/minor turns.",
-        "characteristicInstruments": [
-            "guitar",
-            "voice",
-            "percussion"
-        ],
-        "preferredMeters": [
-            "3/4",
-            "6/8"
-        ],
-        "tempoRange": [
-            130,
-            150
-        ],
-        "keySubstyles": [
-            "Fandangos de Huelva",
-            "Fandangos personales"
-        ],
-        "coreConcepts": [
-            "four 3-beat phrases",
-            "copla",
-            "modal opening",
-            "major/minor turn"
-        ],
-        "rhythmicGrammar": [
-            "3/4 ternary cycle",
-            "four-phrase copla architecture"
-        ],
-        "danceTags": [
-            "social-partner",
-            "listening"
-        ],
-        "tuningSystem": "12-tet",
-        "signatureCell": "Four 3/4 phrases with modal opening and major/minor melodic turns.",
-        "grooveMechanics": {
-            "swingPercentage": 50,
-            "anticipationOffsetSteps": 0,
-            "microtimingFeel": "straight"
-        }
-    }  ],
+  ],
   "substyles": [
-  "Soleá",
-  "Bulerías de Jerez",
-  "Alegrías de Cádiz",
-  "Tangos de Triana",
-  "Tientos",
-  "Seguiriya",
-  "Farruca",
-  "Rumba Flamenca",
-  "Sevillanas",
-  "Fandangos de Huelva",
-  "Guajiras",
-  "Taranta y Granadinas",
-  "Soleá por Bulerías",
-  "Flamenco Jazz / Nuevo Flamenco"
+    "Soleá",
+    "Bulerías",
+    "Alegrías",
+    "Tangos",
+    "Seguiriya",
+    "Tientos",
+    "Fandangos",
+    "Rumba"
   ],
   "artists": [
     "Paco de Lucía",
@@ -737,8 +584,8 @@ export const FLAMENCO_WORLD: GenreWorld = {
     {
       "id": "flam-abanico-strum",
       "worldId": "flamenco",
-      "traditionId": "flamenco-rumba-sevillanas",
-      "name": "Abanico Fan Strum (Rumba & Sevillanas)",
+      "traditionId": "flamenco-rumba",
+      "name": "Abanico Fan Strum (Rumba)",
       "family": "Rasgueado Strumming",
       "category": "ostinato",
       "description": "Continuous triplets and fan strums utilizing down-finger, up-thumb, and percussive golpe on the guitar body.",
@@ -2219,7 +2066,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
     {
       "id": "flamenco-cajon-rumba",
       "worldId": "flamenco",
-      "traditionId": "flamenco-rumba-sevillanas",
+      "traditionId": "flamenco-rumba",
       "name": "Cajon Rumba",
       "family": "Cajon",
       "category": "groove",
@@ -5596,198 +5443,10 @@ export const FLAMENCO_WORLD: GenreWorld = {
       "canCrossRole": true
     },
     {
-      "id": "flam-farruca-guitar",
-      "worldId": "flamenco",
-      "traditionId": "flamenco-farruca-style",
-      "substyleId": "flamenco-farruca-style",
-      "name": "Farruca Slow Binary Guitar",
-      "family": "Farruca Compás",
-      "category": "ostinato",
-      "description": "Dry slow 4-beat farruca accompaniment in minor, designed for grounded dance phrasing and a later subida.",
-      "tags": [
-        "farruca",
-        "binary",
-        "minor",
-        "dance"
-      ],
-      "scopes": [
-        "measure",
-        "phrase",
-        "region",
-        "track",
-        "song"
-      ],
-      "roles": [
-        "harmony",
-        "pulse"
-      ],
-      "instruments": [
-        "guitar"
-      ],
-      "meter": "4/4",
-      "cycleLength": 1,
-      "subdivisions": 16,
-      "onsetGrid": [
-        0,
-        4,
-        8,
-        12,
-        14
-      ],
-      "accentProfile": [
-        1,
-        0.7,
-        0.9,
-        0.75,
-        0.9
-      ],
-      "velocityProfile": [
-        0.98,
-        0.92,
-        0.96,
-        0.93,
-        0.96
-      ],
-      "syncopationRating": 0.0,
-      "articulations": [
-        "golpe"
-      ],
-      "density": "medium",
-      "phrasePosition": [
-        "start",
-        "middle",
-        "end"
-      ],
-      "sectionUsage": [
-        "intro",
-        "verse",
-        "solo"
-      ],
-      "harmonicContext": [
-        "flamenco-modal",
-        "Andalusian-cadence"
-      ],
-      "roleDependencies": [
-        "harmony",
-        "pulse"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
-      "variants": [],
-      "provenance": "Flamenco genre patch: authored from palo-specific compás and accompaniment grammar.",
-      "authenticityTags": [
-        "flamenco",
-        "flamenco-farruca-style"
-      ],
-      "danceTags": [
-        "listening"
-      ],
-      "tuningSystem": "12-tet",
-      "difficulty": 2,
-      "weight": 0.92,
-      "enabled": true
-    },
-    {
-      "id": "flam-sevillanas-compas",
-      "worldId": "flamenco",
-      "traditionId": "flamenco-sevillanas-style",
-      "substyleId": "flamenco-sevillanas-style",
-      "name": "Sevillanas 3/4 Copla Pulse",
-      "family": "Sevillanas Compás",
-      "category": "ostinato",
-      "description": "Three-beat dance pulse organized for the four-copla Sevillanas form, with crisp guitar punctuation and copla remates.",
-      "tags": [
-        "sevillanas",
-        "3/4",
-        "copla",
-        "dance"
-      ],
-      "scopes": [
-        "measure",
-        "phrase",
-        "region",
-        "track",
-        "song"
-      ],
-      "roles": [
-        "harmony",
-        "pulse"
-      ],
-      "instruments": [
-        "guitar"
-      ],
-      "meter": "3/4",
-      "cycleLength": 1,
-      "subdivisions": 12,
-      "onsetGrid": [
-        0,
-        4,
-        8,
-        10
-      ],
-      "accentProfile": [
-        1,
-        0.65,
-        0.8,
-        0.9
-      ],
-      "velocityProfile": [
-        0.98,
-        0.91,
-        0.94,
-        0.96
-      ],
-      "syncopationRating": 0.0,
-      "articulations": [
-        "rasgueado"
-      ],
-      "density": "medium",
-      "phrasePosition": [
-        "start",
-        "middle",
-        "end"
-      ],
-      "sectionUsage": [
-        "intro",
-        "verse",
-        "chorus",
-        "ending"
-      ],
-      "harmonicContext": [
-        "flamenco-modal",
-        "Andalusian-cadence"
-      ],
-      "roleDependencies": [
-        "harmony",
-        "pulse"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
-      "variants": [],
-      "provenance": "Flamenco genre patch: authored from palo-specific compás and accompaniment grammar.",
-      "authenticityTags": [
-        "flamenco",
-        "flamenco-sevillanas-style"
-      ],
-      "danceTags": [
-        "listening"
-      ],
-      "tuningSystem": "12-tet",
-      "difficulty": 2,
-      "weight": 0.97,
-      "enabled": true
-    },
-    {
       "id": "flam-rumba-bass",
       "worldId": "flamenco",
-      "traditionId": "flamenco-rumba-style",
-      "substyleId": "flamenco-rumba-style",
+      "traditionId": "flamenco-rumba",
+      "substyleId": "flamenco-rumba",
       "name": "Rumba Flamenca Bass Propulsion",
       "family": "Rumba Groove",
       "category": "bass",
@@ -5873,7 +5532,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
       "provenance": "Flamenco genre patch: authored from palo-specific compás and accompaniment grammar.",
       "authenticityTags": [
         "flamenco",
-        "flamenco-rumba-style"
+        "flamenco-rumba"
       ],
       "danceTags": [
         "listening"
@@ -5881,101 +5540,6 @@ export const FLAMENCO_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "difficulty": 2,
       "weight": 0.94,
-      "enabled": true
-    },
-    {
-      "id": "flam-guajira-12",
-      "worldId": "flamenco",
-      "traditionId": "flamenco-guajira-style",
-      "substyleId": "flamenco-guajira-style",
-      "name": "Guajira 12-Beat Ternary/Binary Lilt",
-      "family": "Guajira Compás",
-      "category": "groove",
-      "description": "Guajira's 12-beat ida-y-vuelta feel: light, syncopated guitar with a more songful and major-key profile than Soleá.",
-      "tags": [
-        "guajira",
-        "ida-y-vuelta",
-        "12beat",
-        "cuba"
-      ],
-      "scopes": [
-        "measure",
-        "phrase",
-        "region",
-        "track",
-        "song"
-      ],
-      "roles": [
-        "harmony",
-        "pulse"
-      ],
-      "instruments": [
-        "guitar"
-      ],
-      "meter": "12/8",
-      "cycleLength": 1,
-      "subdivisions": 12,
-      "onsetGrid": [
-        11,
-        2,
-        5,
-        7,
-        9
-      ],
-      "accentProfile": [
-        1,
-        0.7,
-        0.75,
-        0.85,
-        0.8
-      ],
-      "velocityProfile": [
-        0.98,
-        0.92,
-        0.93,
-        0.95,
-        0.94
-      ],
-      "syncopationRating": 0.8,
-      "articulations": [
-        "rasgueado"
-      ],
-      "density": "medium",
-      "phrasePosition": [
-        "start",
-        "middle",
-        "end"
-      ],
-      "sectionUsage": [
-        "verse",
-        "chorus",
-        "solo"
-      ],
-      "harmonicContext": [
-        "flamenco-modal",
-        "Andalusian-cadence"
-      ],
-      "roleDependencies": [
-        "harmony",
-        "pulse"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
-      "variants": [],
-      "provenance": "Flamenco genre patch: authored from palo-specific compás and accompaniment grammar.",
-      "authenticityTags": [
-        "flamenco",
-        "flamenco-guajira-style"
-      ],
-      "danceTags": [
-        "listening"
-      ],
-      "tuningSystem": "12-tet",
-      "difficulty": 2,
-      "weight": 0.9,
       "enabled": true
     },
     {
@@ -6121,10 +5685,10 @@ export const FLAMENCO_WORLD: GenreWorld = {
     "phraseLengthsBars": [2,4,8,12],
     "primaryPulse": ["12-beat compás","4/4 binary compás","3/4 ternary compás","free/rubato cante"],
     "rhythmicPriorities": ["palo-specific compás before generic meter","accent architecture before subdivision density","llamada/remate/cierre at phrase boundaries","palmas and guitar interlock","space under cante"],
-    "harmonicStrategy": ["Phrygian/Andalusian cadence for jondo palos","major-key cantiñas/Alegrías","minor binary for Farruca","major/modal ida-y-vuelta colors for Guajira","do not force functional pop cadences"],
+    "harmonicStrategy": ["Phrygian/Andalusian cadence for jondo palos","major-key cantiñas/Alegrías","do not force functional pop cadences"],
     "melodicStrategy": ["cante-like ornament and melisma","falseta between letras","chord-tone targeting inside modal color","expressive slides and vibrato","space before response"],
     "arrangementStrategy": "Treat guitar compás as the clock; add palmas/cajón according to palo; use voice/cante as the foreground; make llamadas, cortes, remates and cierres structural events.",
-    "engineConstraints": ["Never substitute a 4/4 groove for a 12-beat palo","Seguiriya uses 2+2+3+3+2 accents, not the Soleá map","Alegrías should not inherit Soleá's dark harmonic profile","Bulería density comes from interaction and cuts, not constant subdivision spam","Rumba and Sevillanas are separate dance vocabularies","Use bass sparingly outside Rumba/New Flamenco contexts"],
+    "engineConstraints": ["Never substitute a 4/4 groove for a 12-beat palo","Seguiriya uses 2+2+3+3+2 accents, not the Soleá map","Alegrías should not inherit Soleá's dark harmonic profile","Bulería density comes from interaction and cuts, not constant subdivision spam","Use bass sparingly outside Rumba/New Flamenco contexts"],
     "variationStrategy": "Prefer authored palo variants at phrase boundaries; alternate rasgueado density, palmas response, falseta and remate rather than generic fills.",
     "harmonicModel": "functional-harmony",
     "pitchModel": "flamenco-phrygian-plus-major-cantiñas",

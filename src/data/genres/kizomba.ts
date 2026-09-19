@@ -9,18 +9,18 @@ export const KIZOMBA_WORLD: GenreWorld = {
   "description": "The sensual partner dance tradition of Angola and PALOP nations: deep batida kick pulse, dikanza bamboo scraper, tarraxinha sub-bass drops, Semba guitar lines, and modern Urban Kiz electronic textures.",
   "traditions": [
     {
-      "id": "kizomba-semba",
+      "id": "kizomba-tradicional",
       "worldId": "kizomba",
-      "name": "Semba Tradicional & Clássica",
-      "origin": "Angola",
-      "era": "1980s–Present",
-      "description": "The Angolan heartbeat of partner dance: lively Semba rhythmic swing, dikanza bamboo scraper, warm bass counterlines, and rich Portuguese/Kimbundu vocal storytelling.",
+      "name": "Tradicional",
+      "origin": "Luanda, Angola",
+      "era": "1980s–1990s",
+      "description": "Grounded • 4/4 Zouk Beat • Melodic\nOriginal Angolan partner dance rhythm.\nEduardo Paim · Bonga",
       "characteristicInstruments": [
         "bass",
-        "guitar",
-        "electric-guitar",
-        "percussion",
         "drums",
+        "guitar",
+        "synth",
+        "percussion",
         "voice"
       ],
       "preferredMeters": [
@@ -28,63 +28,223 @@ export const KIZOMBA_WORLD: GenreWorld = {
       ],
       "tempoRange": [
         88,
-        108
+        100
       ],
       "keySubstyles": [
-        "Semba Tradicional",
-        "Kizomba Clássica",
-        "Passada"
+        "Classic Angolan Kizomba",
+        "Passada Tradicional"
       ],
       "coreConcepts": [
-        "batida kick pulse",
-        "dikanza scraper articulation",
-        "semba interlocking guitar lines",
-        "sensual vocal phrasing"
+        "grounded weight transfers and clean passada footwork",
+        "warm melodic electric basslines",
+        "syncopated zouk-derived drum rhythm",
+        "sweet Portuguese/Kimbundu vocal melodies"
       ],
       "rhythmicGrammar": [
-        "batida syncopated kick pattern [0, 6, 8, 12, 14]",
-        "continuous 16th dikanza scraper rasp"
+        "kick on 1, 1-and, 3-and with crisp snare on 3 and soft rolling hi-hat"
       ],
       "danceTags": [
-        "social-partner",
-        "blues-fusion-compatible",
-        "listening"
+        "social-partner"
       ],
       "tuningSystem": "12-tet",
-      "signatureCell": "Syncopated batida kick [0,6,8,12,14] with continuous 16th dikanza scraper and semba guitar",
+      "signatureCell": "Smooth syncopated bassline walking under classic Angolan kizomba kick-snare pulse",
       "grooveMechanics": {
-        "swingPercentage": 50,
+        "swingPercentage": 54,
         "anticipationOffsetSteps": 0,
         "microtimingFeel": "laid-back"
       },
       "sectionProgressions": {
         "intro": [
-          "Am",
           "Dm",
-          "G",
-          "C"
+          "Gm",
+          "C",
+          "F"
         ],
         "verse": [
-          "Am",
           "Dm",
-          "G",
+          "Gm",
+          "C",
+          "F",
+          "Bb",
+          "Gm",
+          "A7",
+          "Dm"
+        ],
+        "chorus": [
+          "Gm",
+          "C",
+          "F",
+          "Dm",
+          "Gm",
+          "A7",
+          "Dm",
+          "Dm"
+        ],
+        "coda": [
+          "Gm",
+          "A7",
+          "Dm",
+          "Dm"
+        ]
+      }
+    },
+    {
+      "id": "kizomba-semba-playful",
+      "worldId": "kizomba",
+      "name": "Semba Playful",
+      "origin": "Luanda, Angola",
+      "era": "1950s–Present",
+      "description": "Upbeat • Bouncy • Roots\nJoyful fast-paced Angolan root of kizomba.\nPaulo Flores · Bonga",
+      "characteristicInstruments": [
+        "guitar",
+        "bass",
+        "drums",
+        "congas",
+        "dikanza",
+        "voice"
+      ],
+      "preferredMeters": [
+        "4/4"
+      ],
+      "tempoRange": [
+        102,
+        118
+      ],
+      "keySubstyles": [
+        "Semba Rápido",
+        "Semba de Carnaval"
+      ],
+      "coreConcepts": [
+        "acrobatic trick footwork (ginga)",
+        "rasping dikanza (reco-reco) scraper",
+        "intricate dual-guitar fingerpicking",
+        "humorous joyful social commentary"
+      ],
+      "rhythmicGrammar": [
+        "driving syncopated 4/4 with dikanza scraping continuous 16ths and conga slap on 2 and 4"
+      ],
+      "danceTags": [
+        "social-partner",
+        "festival-fusion"
+      ],
+      "tuningSystem": "12-tet",
+      "signatureCell": "Bouncy dual-guitar syncopation with continuous dikanza scrape and playful vocal laugh",
+      "grooveMechanics": {
+        "swingPercentage": 54,
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "pushed"
+      },
+      "sectionProgressions": {
+        "intro": [
+          "C",
+          "G7",
+          "C",
+          "G7"
+        ],
+        "verse": [
+          "C",
+          "G7",
+          "C",
+          "G7",
+          "F",
+          "C",
+          "G7",
           "C"
         ],
         "chorus": [
           "F",
-          "G",
+          "G7",
           "Em",
-          "Am"
-        ],
-        "solo": [
+          "Am",
           "Dm",
-          "G",
+          "G7",
           "C",
+          "C"
+        ],
+        "coda": [
+          "F",
+          "G7",
+          "C",
+          "C"
+        ]
+      }
+    },
+    {
+      "id": "kizomba-urbankiz",
+      "worldId": "kizomba",
+      "name": "Urbankiz",
+      "origin": "Paris, France / European Circuit",
+      "era": "2010s–Present",
+      "description": "Linear • Electronic • Syncopated Breaks\nFrench electronic fusion with sharp stops.\nCurtis Seldon · Enah Lebon",
+      "characteristicInstruments": [
+        "synth",
+        "drums",
+        "sub-bass",
+        "sampler",
+        "voice"
+      ],
+      "preferredMeters": [
+        "4/4"
+      ],
+      "tempoRange": [
+        86,
+        96
+      ],
+      "keySubstyles": [
+        "Urban Kiz",
+        "Tarraxa Fusion",
+        "Kizomba Hip-Hop Remix"
+      ],
+      "coreConcepts": [
+        "strict linear geometric footwork and sharp isolations",
+        "electronic Ghetto Zouk beats with sub-bass drops",
+        "sudden dynamic breaks and tempo illusions",
+        "tension-and-release partnering"
+      ],
+      "rhythmicGrammar": [
+        "electronic 4/4 beat with syncopated 16th sub-bass kicks and dead-stop silence cuts"
+      ],
+      "danceTags": [
+        "social-partner",
+        "sensual-fusion"
+      ],
+      "tuningSystem": "12-tet",
+      "signatureCell": "Sharp syncopated electronic sub-bass stop followed by instant linear step and sliding synth pad",
+      "grooveMechanics": {
+        "swingPercentage": 50,
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "straight"
+      },
+      "sectionProgressions": {
+        "intro": [
+          "Am",
+          "F",
+          "C",
+          "G"
+        ],
+        "verse": [
+          "Am",
+          "F",
+          "C",
+          "G",
+          "Am",
+          "F",
+          "C",
+          "G"
+        ],
+        "breakdown": [
+          "F",
+          "G",
+          "Am",
+          "Am",
+          "F",
+          "G",
+          "Am",
           "Am"
         ],
         "coda": [
-          "Am",
-          "Dm",
+          "F",
+          "G",
           "Am",
           "Am"
         ]
@@ -94,115 +254,232 @@ export const KIZOMBA_WORLD: GenreWorld = {
       "id": "kizomba-tarraxinha",
       "worldId": "kizomba",
       "name": "Tarraxinha",
-      "origin": "Angola / Lisbon",
-      "era": "1990s–Present",
-      "description": "Heavy electronic sub-bass, stripped-back minimalist percussion, and slow hypnotic tempo designed for intimate close body isolations.",
+      "origin": "Luanda, Angola",
+      "era": "Late 1990s–Present",
+      "description": "Sensual • Deep Bass • Micro-movement\nSlow, intense pelvic isolation groove.\nDJ Znobia · DJ Mad-R",
       "characteristicInstruments": [
-        "bass",
+        "sub-bass",
+        "drums",
         "synth",
-        "drums"
+        "sampler"
       ],
       "preferredMeters": [
         "4/4"
       ],
       "tempoRange": [
-        80,
-        95
+        78,
+        90
       ],
       "keySubstyles": [
-        "Tarraxo",
-        "Ghetto Tarraxinha",
-        "Tarraxa"
+        "Tarraxinha de Luanda",
+        "Electronic Tarraxa"
       ],
       "coreConcepts": [
-        "sub-bass pitch drops",
-        "minimalistic space",
-        "accented hip articulation"
+        "slow, hypnotic, minimal percussive beats",
+        "massive subterranean sub-bass frequencies",
+        "intense static pelvic micro-movements",
+        "minimal melodic distraction"
       ],
       "rhythmicGrammar": [
-        "heavy sub hit on 1",
-        "syncopated pickup kicks"
+        "sparse, heavy kick and low-tom pulses with deep sub-bass slides and subtle rim clicks"
       ],
       "danceTags": [
         "social-partner",
-        "blues-fusion-compatible"
+        "sensual-fusion"
       ],
       "tuningSystem": "12-tet",
-      "signatureCell": "Slow heavy electronic sub-bass drops with minimal syncopated pickup kicks",
+      "signatureCell": "Deep resonant sub-bass pulse dropping on slow pelvic micro-isolation cue",
       "grooveMechanics": {
         "swingPercentage": 50,
         "anticipationOffsetSteps": 0,
         "microtimingFeel": "laid-back"
       },
       "sectionProgressions": {
-        "intro": [
-          "Dm",
-          "Bb",
-          "Gm",
-          "A7"
-        ],
-        "verse": [
-          "Dm",
-          "Bb",
-          "Gm",
-          "A7"
-        ],
-        "chorus": [
-          "Bb",
-          "C",
-          "Dm",
-          "Dm"
-        ],
-        "coda": [
-          "Dm",
-          "Dm",
-          "Dm",
-          "Dm"
+        "loop": [
+          "Fm",
+          "Db",
+          "Bbm",
+          "C7"
         ]
       }
     },
     {
-      "id": "kizomba-urban-kiz",
+      "id": "kizomba-tarraxo",
       "worldId": "kizomba",
-      "name": "Urban Kiz",
-      "origin": "France / Europe",
-      "era": "2010s–Present",
-      "description": "Modern European evolution blending Kizomba syncopation with R&B, electronic trap textures, sudden syncopated stops, and linear footwork.",
+      "name": "Tarraxo",
+      "origin": "Paris, France / Portugal",
+      "era": "2018–Present",
+      "description": "Heavy Sub • Robotic • Chest Movements\nModern French electronic chest-led dance.\nGwany · Lil G",
       "characteristicInstruments": [
-        "synth",
+        "sub-bass",
         "drums",
-        "bass",
-        "keys"
+        "synth",
+        "sampler"
       ],
       "preferredMeters": [
         "4/4"
       ],
       "tempoRange": [
-        85,
-        102
+        80,
+        92
       ],
       "keySubstyles": [
-        "Urban Kiz Fusion",
-        "Kizomba R&B",
-        "Douceur"
+        "Tarraxo French Style",
+        "Tarraxo Wave"
       ],
       "coreConcepts": [
-        "linear dynamic changes",
-        "syncopated breaks and pauses",
-        "atmospheric synth pads"
+        "upper body and chest-led circular movement dynamics",
+        "robotic pops, waves, and isolations",
+        "aggressive sub-bass wobble and trap-influenced drums",
+        "dark electronic sound design"
       ],
       "rhythmicGrammar": [
-        "electronic batida",
-        "syncopated ghost hi-hats",
-        "sudden stop-time cadences"
+        "sharp electronic trap-kizomba fusion with stuttering hi-hats and heavy sub-kick"
       ],
       "danceTags": [
         "social-partner",
-        "wcs-compatible",
-        "blues-fusion-compatible"
+        "sensual-fusion"
       ],
       "tuningSystem": "12-tet",
-      "signatureCell": "Electronic batida beat with sudden syncopated stop-time cuts and ambient pads",
+      "signatureCell": "Aggressive electronic sub-kick and trap snare supporting dynamic chest-roll isolation",
+      "grooveMechanics": {
+        "swingPercentage": 50,
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "straight"
+      },
+      "sectionProgressions": {
+        "drop": [
+          "Cm",
+          "Ab",
+          "Fm",
+          "G7",
+          "Cm",
+          "Ab",
+          "Bb",
+          "G7"
+        ]
+      }
+    },
+    {
+      "id": "kizomba-passada",
+      "worldId": "kizomba",
+      "name": "Passada",
+      "origin": "Cape Verde / Angola",
+      "era": "1980s–Present",
+      "description": "Smooth • Walking • Classic\nRefined, flowing social walking style.\nKassav' · Tabanka Djaz",
+      "characteristicInstruments": [
+        "guitar",
+        "bass",
+        "piano",
+        "drums",
+        "brass",
+        "voice"
+      ],
+      "preferredMeters": [
+        "4/4"
+      ],
+      "tempoRange": [
+        90,
+        104
+      ],
+      "keySubstyles": [
+        "Passada Cabo-Verdiana",
+        "Classic Flow"
+      ],
+      "coreConcepts": [
+        "continuous, smooth, elegant walking steps",
+        "flowing partner connection without sharp breaks",
+        "warm Cabo-Verdean / Angolan melodies",
+        "gentle hip movement in sync with steps"
+      ],
+      "rhythmicGrammar": [
+        "smooth 4/4 pulse with warm bass and gentle syncopated guitar strumming"
+      ],
+      "danceTags": [
+        "social-partner"
+      ],
+      "tuningSystem": "12-tet",
+      "signatureCell": "Gentle acoustic guitar strumming and warm bass accompanying smooth continuous walking step",
+      "grooveMechanics": {
+        "swingPercentage": 52,
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "laid-back"
+      },
+      "sectionProgressions": {
+        "intro": [
+          "Am7",
+          "Dm7",
+          "G7",
+          "Cmaj7"
+        ],
+        "verse": [
+          "Am7",
+          "Dm7",
+          "G7",
+          "Cmaj7",
+          "Fmaj7",
+          "Dm7",
+          "E7",
+          "Am7"
+        ],
+        "chorus": [
+          "Dm7",
+          "G7",
+          "Cmaj7",
+          "Fmaj7",
+          "Dm7",
+          "E7",
+          "Am7",
+          "Am7"
+        ],
+        "coda": [
+          "Dm7",
+          "E7",
+          "Am7",
+          "Am7"
+        ]
+      }
+    },
+    {
+      "id": "kizomba-ghetto-zouk",
+      "worldId": "kizomba",
+      "name": "Ghetto Zouk",
+      "origin": "Lisbon, Portugal / Rotterdam / Paris",
+      "era": "2000s–Present",
+      "description": "R&B Chords • Electronic • Heavy Kick\nModern European electronic kizomba sound.\nNelson Freitas · C4 Pedro",
+      "characteristicInstruments": [
+        "synth",
+        "drums",
+        "sub-bass",
+        "piano",
+        "voice"
+      ],
+      "preferredMeters": [
+        "4/4"
+      ],
+      "tempoRange": [
+        86,
+        98
+      ],
+      "keySubstyles": [
+        "Ghetto Zouk Pop",
+        "Lisbon Zouk"
+      ],
+      "coreConcepts": [
+        "R&B-style lush synthesizer chords and piano voicings",
+        "hard-hitting punchy electronic kick/snare",
+        "silky romantic autotuned and acoustic vocals",
+        "dynamic club-friendly production"
+      ],
+      "rhythmicGrammar": [
+        "crisp electronic 4/4 zouk beat: kick on 1, 1-and, 3-and with sharp snare clap on 3"
+      ],
+      "danceTags": [
+        "social-partner",
+        "sensual-fusion"
+      ],
+      "tuningSystem": "12-tet",
+      "signatureCell": "Hard electronic kick [0, 6, 10] with lush R&B minor 9th synth chords and silky vocals",
       "grooveMechanics": {
         "swingPercentage": 50,
         "anticipationOffsetSteps": 0,
@@ -210,53 +487,146 @@ export const KIZOMBA_WORLD: GenreWorld = {
       },
       "sectionProgressions": {
         "intro": [
-          "Cm",
-          "Ab",
-          "Eb",
-          "Bb"
+          "Dm",
+          "Bb",
+          "F",
+          "C"
         ],
         "verse": [
-          "Cm",
-          "Ab",
-          "Eb",
-          "Bb"
+          "Dm",
+          "Bb",
+          "F",
+          "C",
+          "Dm",
+          "Bb",
+          "F",
+          "C"
         ],
         "chorus": [
-          "Ab",
           "Bb",
-          "Cm",
-          "Gm"
-        ],
-        "solo": [
-          "Fm",
-          "Ab",
-          "Cm",
-          "Bb"
+          "C",
+          "Dm",
+          "Am",
+          "Bb",
+          "C",
+          "Dm",
+          "Dm"
         ],
         "coda": [
-          "Cm",
-          "Ab",
-          "Eb",
-          "Bb"
+          "Bb",
+          "C",
+          "Dm",
+          "Dm"
+        ]
+      }
+    },
+    {
+      "id": "kizomba-semba-lento",
+      "worldId": "kizomba",
+      "name": "Semba Lento",
+      "origin": "Angola",
+      "era": "1970s–Present",
+      "description": "Slow • Nostalgic • Grounded\nDeep, soulful acoustic Angolan ballad.\nCarlos Burity · Waldemar Bastos",
+      "characteristicInstruments": [
+        "guitar",
+        "acoustic-bass",
+        "percussion",
+        "dikanza",
+        "voice"
+      ],
+      "preferredMeters": [
+        "4/4"
+      ],
+      "tempoRange": [
+        80,
+        94
+      ],
+      "keySubstyles": [
+        "Semba Canção",
+        "Acoustic Semba"
+      ],
+      "coreConcepts": [
+        "poignant nostalgic (saudade) vocal delivery",
+        "fingerpicked nylon-string acoustic guitars",
+        "subtle dikanza and conga accompaniment",
+        "deep emotional connection between partners"
+      ],
+      "rhythmicGrammar": [
+        "slow, deliberate 4/4 swing with syncopated acoustic guitar arpeggios and gentle shaker"
+      ],
+      "danceTags": [
+        "social-partner",
+        "listening"
+      ],
+      "tuningSystem": "12-tet",
+      "signatureCell": "Slow poignant nylon-string guitar arpeggio accompanied by soft dikanza scrape and emotive vocals",
+      "grooveMechanics": {
+        "swingPercentage": 56,
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "laid-back"
+      },
+      "sectionProgressions": {
+        "intro": [
+          "Em",
+          "Am",
+          "B7",
+          "Em"
+        ],
+        "verse": [
+          "Em",
+          "Am",
+          "D7",
+          "G",
+          "C",
+          "Am",
+          "B7",
+          "Em"
+        ],
+        "chorus": [
+          "Am",
+          "D7",
+          "G",
+          "Em",
+          "Am",
+          "B7",
+          "Em",
+          "Em"
+        ],
+        "coda": [
+          "Am",
+          "B7",
+          "Em",
+          "Em"
         ]
       }
     }
   ],
   "substyles": [
-    "Semba Tradicional",
-    "Kizomba Clássica",
+    "Tradicional",
+    "Semba Playful",
+    "Urbankiz",
     "Tarraxinha",
-    "Urban Kiz",
+    "Tarraxo",
+    "Passada",
     "Ghetto Zouk",
-    "Passada"
+    "Semba Lento"
   ],
   "artists": [
     "Eduardo Paim",
     "Bonga",
+    "Paulo Flores",
+    "Curtis Seldon",
+    "Enah Lebon",
+    "DJ Znobia",
+    "DJ Mad-R",
+    "Gwany",
+    "Lil G",
+    "Kassav'",
+    "Tabanka Djaz",
     "Nelson Freitas",
-    "Anselmo Ralph",
-    "Matias Damásio",
-    "Kaysha"
+    "C4 Pedro",
+    "Carlos Burity",
+    "Waldemar Bastos"
   ],
   "concepts": [
     "batida kick pulse",
@@ -1447,7 +1817,9 @@ export const KIZOMBA_WORLD: GenreWorld = {
       "roles": [
         "voice"
       ],
-      "instruments": ["voice"],
+      "instruments": [
+        "voice"
+      ],
       "meter": "4/4",
       "cycleLength": 1,
       "subdivisions": 16,
@@ -1588,11 +1960,15 @@ export const KIZOMBA_WORLD: GenreWorld = {
       "roles": [
         "voice"
       ],
-      "instruments": ["voice"],
+      "instruments": [
+        "voice"
+      ],
       "compatibleRoles": [
         "voice"
       ],
-      "compatibleInstruments": ["voice"],
+      "compatibleInstruments": [
+        "voice"
+      ],
       "canCrossRole": true,
       "meter": "4/4",
       "cycleLength": 1,
@@ -1769,11 +2145,15 @@ export const KIZOMBA_WORLD: GenreWorld = {
       "roles": [
         "voice"
       ],
-      "instruments": ["voice"],
+      "instruments": [
+        "voice"
+      ],
       "compatibleRoles": [
         "voice"
       ],
-      "compatibleInstruments": ["voice"],
+      "compatibleInstruments": [
+        "voice"
+      ],
       "canCrossRole": true,
       "meter": "4/4",
       "cycleLength": 1,

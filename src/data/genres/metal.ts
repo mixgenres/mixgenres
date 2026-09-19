@@ -9,12 +9,12 @@ export const METAL_WORLD: GenreWorld = {
   "description": "The sonic power of Metal: Iron Maiden galloping rhythm riffs, thrash down-picking, double-kick drum streams, Meshuggah polymetric djent chugs, and crushing half-time breakdowns.",
   "traditions": [
     {
-      "id": "metal-heavy-thrash",
+      "id": "metal-heavy-metal",
       "worldId": "metal",
-      "name": "Heavy & Thrash Metal (Iron Maiden, Metallica, Slayer)",
-      "origin": "UK & Bay Area, California",
-      "era": "1970–Present",
-      "description": "High-speed palm-muted galloping guitar riffs, double-bass drum onslaughts, twin guitar harmonies, and aggressive dynamic shifts.",
+      "name": "Heavy Metal",
+      "origin": "Birmingham, UK",
+      "era": "1970s–1980s",
+      "description": "Riff-driven • Distorted • Operatic\nThe foundational twin-guitar heavy sound.\nBlack Sabbath · Iron Maiden",
       "characteristicInstruments": [
         "electric-guitar",
         "bass",
@@ -25,31 +25,115 @@ export const METAL_WORLD: GenreWorld = {
         "4/4"
       ],
       "tempoRange": [
-        130,
+        100,
+        140
+      ],
+      "keySubstyles": [
+        "Traditional Heavy Metal",
+        "NWOBHM"
+      ],
+      "coreConcepts": [
+        "Tony Iommi iconic heavy power-chord riffing",
+        "Steve Harris driving galloping basslines",
+        "twin-guitar harmonized melody leads",
+        "operatic high-vibrato lead vocals (Bruce Dickinson)"
+      ],
+      "rhythmicGrammar": [
+        "driving 4/4 gallop: eighth note followed by two sixteenth notes [8th-16th-16th]"
+      ],
+      "danceTags": [
+        "festival-fusion"
+      ],
+      "tuningSystem": "12-tet",
+      "signatureCell": "Galloping bass and drum rhythm powering twin-guitar harmonized heavy metal lead",
+      "grooveMechanics": {
+        "swingPercentage": 50,
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "pushed"
+      },
+      "sectionProgressions": {
+        "intro": [
+          "Em",
+          "G",
+          "D",
+          "Em"
+        ],
+        "verse": [
+          "Em",
+          "G",
+          "D",
+          "Em",
+          "C",
+          "D",
+          "Em",
+          "Em"
+        ],
+        "chorus": [
+          "C",
+          "D",
+          "G",
+          "Em",
+          "C",
+          "D",
+          "Em",
+          "Em"
+        ],
+        "solo": [
+          "Em",
+          "C",
+          "D",
+          "Em",
+          "Em",
+          "C",
+          "D",
+          "B7"
+        ],
+        "coda": [
+          "C",
+          "D",
+          "Em",
+          "Em"
+        ]
+      }
+    },
+    {
+      "id": "metal-thrash",
+      "worldId": "metal",
+      "name": "Thrash",
+      "origin": "Bay Area, California / Los Angeles",
+      "era": "1980s",
+      "description": "Fast • Palm-muted • Aggressive\nHigh-speed palm-muted chugging riffs.\nMetallica · Slayer",
+      "characteristicInstruments": [
+        "electric-guitar",
+        "bass",
+        "drums",
+        "voice"
+      ],
+      "preferredMeters": [
+        "4/4"
+      ],
+      "tempoRange": [
+        160,
         220
       ],
       "keySubstyles": [
-        "NWOBHM (Iron Maiden)",
-        "Bay Area Thrash (Metallica, Megadeth)",
-        "Speed Metal",
-        "Power Metal"
+        "Bay Area Thrash",
+        "Teutonic Thrash"
       ],
       "coreConcepts": [
-        "the gallop (16th-16th-8th)",
-        "down-picking precision",
-        "twin lead harmonies in 3rds/6ths",
-        "double bass kick drum rolls"
+        "lightning-fast downpicked palm-muted E-string chugs",
+        "skank beats and fast double-kick flurries",
+        "ferocious barking vocal delivery",
+        "chaotic shredding whammy-bar guitar solos"
       ],
       "rhythmicGrammar": [
-        "gallop: [0, 1, 2, 4, 5, 6, 8, 9, 10, 12, 13, 14]",
-        "fast thrash 2-beat d-beat or skank beat"
+        "high-speed 16th-note palm-muted chugging locked with fast alternating skank snare beat"
       ],
       "danceTags": [
-        "festival-fusion",
-        "listening"
+        "festival-fusion"
       ],
       "tuningSystem": "12-tet",
-      "signatureCell": "High-speed palm-muted galloping guitar chug locked with double-kick drum and snare crack",
+      "signatureCell": "Machine-gun palm-muted open-E chug erupting into fast skank-beat thrash riff",
       "grooveMechanics": {
         "swingPercentage": 50,
         "anticipationOffsetSteps": 0,
@@ -58,80 +142,465 @@ export const METAL_WORLD: GenreWorld = {
       "sectionProgressions": {
         "intro": [
           "E5",
-          "G5",
-          "A5",
+          "F5",
+          "E5",
           "Bb5"
         ],
         "verse": [
           "E5",
           "E5",
+          "F5",
+          "E5",
+          "E5",
+          "E5",
           "G5",
-          "A5"
+          "F#5"
         ],
         "chorus": [
           "C5",
           "D5",
           "E5",
+          "E5",
+          "C5",
+          "D5",
+          "E5",
           "E5"
         ],
-        "solo": [
-          "E5",
-          "D5",
-          "C5",
-          "B5"
-        ],
         "coda": [
-          "E5",
-          "E5",
+          "F5",
+          "Bb5",
           "E5",
           "E5"
         ]
       }
     },
     {
-      "id": "metal-prog-djent",
+      "id": "metal-death-metal",
       "worldId": "metal",
-      "name": "Progressive Metal & Djent (Meshuggah, Dream Theater, Tool)",
-      "origin": "Sweden & Global",
-      "era": "1990–Present",
-      "description": "Extreme metric complexity, extended-range 7/8-string guitars, low-tuned palm-muted syncopated chugs against a steady 4/4 cymbal pulse.",
+      "name": "Death Metal",
+      "origin": "Tampa, Florida / Sweden",
+      "era": "Late 1980s–Present",
+      "description": "Guttural • Blast Beats • Tremolo\nExtreme low-tuned technical aggression.\nDeath · Cannibal Corpse",
       "characteristicInstruments": [
         "electric-guitar",
         "bass",
         "drums",
-        "synth"
+        "voice"
       ],
       "preferredMeters": [
-        "4/4",
-        "7/8",
-        "5/8",
-        "9/8",
-        "11/8"
+        "4/4"
       ],
       "tempoRange": [
-        90,
-        150
+        180,
+        250
       ],
       "keySubstyles": [
-        "Djent (Meshuggah, Periphery)",
-        "Progressive Metal (Dream Theater)",
-        "Tool Polymetric Metal",
+        "Florida Death Metal",
+        "Stockholm Sound (HM-2)",
         "Technical Death Metal"
       ],
       "coreConcepts": [
-        "djent palm-mute timbre",
-        "polymeter (odd-time guitar over 4/4 drums)",
-        "half-time crushing breakdown",
-        "herta drum fill"
+        "deep guttural death growl vocals",
+        "rapid-fire 16th-note blast beats",
+        "down-tuned tremolo-picked chromatic riffs (D/C/B standard)",
+        "diminished and augmented dissonant solos"
       ],
       "rhythmicGrammar": [
-        "syncopated accents grouped in 3s and 5s against a 4/4 crash cymbal anchor"
+        "relentless 32nd-note blast beats switching into crushing slow double-kick breakdowns"
+      ],
+      "danceTags": [
+        "festival-fusion"
+      ],
+      "tuningSystem": "12-tet",
+      "signatureCell": "Relentless snare blast beat with down-tuned chromatic tremolo guitar riff and guttural growl",
+      "grooveMechanics": {
+        "swingPercentage": 50,
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "pushed"
+      },
+      "sectionProgressions": {
+        "intro": [
+          "B5",
+          "C5",
+          "B5",
+          "F5"
+        ],
+        "verse": [
+          "B5",
+          "B5",
+          "C5",
+          "B5",
+          "B5",
+          "B5",
+          "F5",
+          "E5"
+        ],
+        "slam": [
+          "B5",
+          "B5",
+          "B5",
+          "B5",
+          "C5",
+          "B5",
+          "F5",
+          "E5"
+        ],
+        "coda": [
+          "B5",
+          "C5",
+          "B5",
+          "B5"
+        ]
+      }
+    },
+    {
+      "id": "metal-black-metal",
+      "worldId": "metal",
+      "name": "Black Metal",
+      "origin": "Norway / Sweden / UK",
+      "era": "Early 1990s",
+      "description": "Atmospheric • High Shrieks • Tremolo\nIcy cold Nordic blast-beat soundscapes.\nMayhem · Darkthrone",
+      "characteristicInstruments": [
+        "electric-guitar",
+        "drums",
+        "bass",
+        "voice",
+        "synth"
+      ],
+      "preferredMeters": [
+        "4/4"
+      ],
+      "tempoRange": [
+        140,
+        210
+      ],
+      "keySubstyles": [
+        "Second Wave Norwegian Black Metal",
+        "Atmospheric Black Metal"
+      ],
+      "coreConcepts": [
+        "continuous wall of sound tremolo-picked minor/diminished chords",
+        "piercing high-pitched shriek vocals",
+        "raw lo-fi necro production aesthetics",
+        "atmospheric melancholic Nordic melodies"
+      ],
+      "rhythmicGrammar": [
+        "hypnotic continuous blast beats and fast ride cymbal washes without dynamic compression"
       ],
       "danceTags": [
         "listening"
       ],
       "tuningSystem": "12-tet",
-      "signatureCell": "Polymetric low-tuned 7/8 string palm-mute syncopation over steady 4/4 cymbal crash",
+      "signatureCell": "Icy cold tremolo-picked minor chord wall flying over continuous blast beat and piercing shriek",
+      "grooveMechanics": {
+        "swingPercentage": 50,
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "pushed"
+      },
+      "sectionProgressions": {
+        "intro": [
+          "Em",
+          "C",
+          "Am",
+          "B7"
+        ],
+        "verse": [
+          "Em",
+          "C",
+          "Am",
+          "B7",
+          "Em",
+          "G",
+          "D",
+          "Em"
+        ],
+        "theme": [
+          "C",
+          "Em",
+          "Am",
+          "Em",
+          "C",
+          "D",
+          "Em",
+          "Em"
+        ],
+        "coda": [
+          "C",
+          "B7",
+          "Em",
+          "Em"
+        ]
+      }
+    },
+    {
+      "id": "metal-power-metal",
+      "worldId": "metal",
+      "name": "Power Metal",
+      "origin": "Germany / Finland",
+      "era": "1980s–Present",
+      "description": "Euphoric • Double-Bass • Fantasy\nHigh-speed soaring fantasy anthems.\nHelloween · Blind Guardian",
+      "characteristicInstruments": [
+        "electric-guitar",
+        "drums",
+        "bass",
+        "synth",
+        "voice"
+      ],
+      "preferredMeters": [
+        "4/4"
+      ],
+      "tempoRange": [
+        160,
+        210
+      ],
+      "keySubstyles": [
+        "European Power Metal",
+        "Symphonic Power Metal"
+      ],
+      "coreConcepts": [
+        "relentless 16th-note double-bass drum drive",
+        "high-soaring clean operatic tenor vocals (Michael Kiske)",
+        "bright major/modal melodic twin-guitar solos",
+        "epic fantasy and mythological lyrical themes"
+      ],
+      "rhythmicGrammar": [
+        "continuous 16th-note double-kick battery with snare cracking on 2 and 4"
+      ],
+      "danceTags": [
+        "festival-fusion"
+      ],
+      "tuningSystem": "12-tet",
+      "signatureCell": "High operatic tenor vocal soaring over blinding double-kick speed and triumphant twin-guitar lead",
+      "grooveMechanics": {
+        "swingPercentage": 50,
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "pushed"
+      },
+      "sectionProgressions": {
+        "intro": [
+          "Am",
+          "F",
+          "G",
+          "C"
+        ],
+        "verse": [
+          "Am",
+          "F",
+          "G",
+          "C",
+          "Dm",
+          "Am",
+          "F",
+          "G"
+        ],
+        "chorus": [
+          "F",
+          "G",
+          "C",
+          "Am",
+          "F",
+          "G",
+          "Am",
+          "Am"
+        ],
+        "coda": [
+          "F",
+          "G",
+          "Am",
+          "Am"
+        ]
+      }
+    },
+    {
+      "id": "metal-doom-metal",
+      "worldId": "metal",
+      "name": "Doom Metal",
+      "origin": "Birmingham / Maryland / Sweden",
+      "era": "1970s–Present",
+      "description": "Slow • Heavy • Crushing\nMassive low-tempo monolithic riffs.\nCandlemass · Electric Wizard",
+      "characteristicInstruments": [
+        "electric-guitar",
+        "bass",
+        "drums",
+        "voice"
+      ],
+      "preferredMeters": [
+        "4/4"
+      ],
+      "tempoRange": [
+        50,
+        75
+      ],
+      "keySubstyles": [
+        "Epic Doom Metal",
+        "Stoner Doom"
+      ],
+      "coreConcepts": [
+        "crushing slow monolithic fuzz/distortion riffs",
+        "deep resonant bass rumble",
+        "lugubrious operatic or mournful clean vocals",
+        "monumental weight and catastrophic tempo"
+      ],
+      "rhythmicGrammar": [
+        "extremely heavy slow 4/4 beat with immense drum hits echoing into cavernous spaces"
+      ],
+      "danceTags": [
+        "listening"
+      ],
+      "tuningSystem": "12-tet",
+      "signatureCell": "Crushing monolithic down-tuned fuzz chord sustaining infinitely over slow thunderous drum strike",
+      "grooveMechanics": {
+        "swingPercentage": 52,
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "laid-back"
+      },
+      "sectionProgressions": {
+        "intro": [
+          "Em",
+          "Bb",
+          "A",
+          "Em"
+        ],
+        "verse": [
+          "Em",
+          "Bb",
+          "A",
+          "Em",
+          "G",
+          "F",
+          "Em",
+          "Em"
+        ],
+        "chorus": [
+          "C",
+          "B7",
+          "Em",
+          "Em",
+          "C",
+          "B7",
+          "Em",
+          "Em"
+        ],
+        "coda": [
+          "Bb",
+          "A",
+          "Em",
+          "Em"
+        ]
+      }
+    },
+    {
+      "id": "metal-sludge",
+      "worldId": "metal",
+      "name": "Sludge",
+      "origin": "New Orleans, Louisiana (NOLA)",
+      "era": "Late 1980s–1990s",
+      "description": "Grimy • Down-tuned • Hardcore Slowness\nBlack Sabbath meets Black Flag pain.\nEyehategod · Crowbar",
+      "characteristicInstruments": [
+        "electric-guitar",
+        "bass",
+        "drums",
+        "voice"
+      ],
+      "preferredMeters": [
+        "4/4"
+      ],
+      "tempoRange": [
+        55,
+        80
+      ],
+      "keySubstyles": [
+        "NOLA Sludge Metal",
+        "Southern Sludge"
+      ],
+      "coreConcepts": [
+        "harsh agonizing vocal screams",
+        "down-tuned Southern blues riffs slowed to a crawl",
+        "screaming feedback between agonizing riff impacts",
+        "gritty swampy misery and despair"
+      ],
+      "rhythmicGrammar": [
+        "sluggish heavy groove shifting unpredictably between dragging doom and sudden punk bursts"
+      ],
+      "danceTags": [
+        "festival-fusion",
+        "listening"
+      ],
+      "tuningSystem": "12-tet",
+      "signatureCell": "Swampy down-tuned blues riff collapsing into screeching feedback and agonized vocal shriek",
+      "grooveMechanics": {
+        "swingPercentage": 54,
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "laid-back"
+      },
+      "sectionProgressions": {
+        "intro": [
+          "C#5",
+          "D5",
+          "C#5",
+          "G5"
+        ],
+        "verse": [
+          "C#5",
+          "D5",
+          "C#5",
+          "G5",
+          "C#5",
+          "E5",
+          "D#5",
+          "D5"
+        ],
+        "coda": [
+          "C#5",
+          "G5",
+          "C#5",
+          "C#5"
+        ]
+      }
+    },
+    {
+      "id": "metal-progressive-metal",
+      "worldId": "metal",
+      "name": "Progressive Metal",
+      "origin": "Boston / Sweden / Global",
+      "era": "Late 1980s–Present",
+      "description": "Technical • Complex Meter • Dynamic\nOdd-time signatures and virtuosic chops.\nDream Theater · Opeth",
+      "characteristicInstruments": [
+        "electric-guitar",
+        "bass",
+        "drums",
+        "synth",
+        "voice"
+      ],
+      "preferredMeters": [
+        "7/8",
+        "5/8",
+        "9/8",
+        "4/4"
+      ],
+      "tempoRange": [
+        110,
+        155
+      ],
+      "keySubstyles": [
+        "Djent",
+        "Symphonic Prog Metal",
+        "Technical Prog"
+      ],
+      "coreConcepts": [
+        "complex shifting odd-time signatures (7/8, 11/8, 13/8)",
+        "syncopated palm-muted djent polymetric chugging (8-string guitars)",
+        "virtuosic unison guitar/keyboard shred solos",
+        "dramatic contrast between acoustic beauty and extreme metal roar"
+      ],
+      "rhythmicGrammar": [
+        "polymetric syncopations over steady quarter-note pulse with surgical double-bass precision"
+      ],
+      "danceTags": [
+        "festival-fusion"
+      ],
+      "tuningSystem": "12-tet",
+      "signatureCell": "Djent 8-string polyrhythmic chug executing in 7/8 locked with surgical double-bass drumming",
       "grooveMechanics": {
         "swingPercentage": 50,
         "anticipationOffsetSteps": 0,
@@ -139,59 +608,77 @@ export const METAL_WORLD: GenreWorld = {
       },
       "sectionProgressions": {
         "intro": [
-          "F#5",
-          "G5",
-          "F#5",
-          "C5"
+          "Dm",
+          "Bbmaj7",
+          "Gm7",
+          "A7alt"
         ],
         "verse": [
-          "F#5",
-          "F#5",
-          "G5",
-          "F#5"
+          "Dm",
+          "Bbmaj7",
+          "Gm7",
+          "A7alt",
+          "Fmaj7",
+          "Em7b5",
+          "A7alt",
+          "Dm"
         ],
         "chorus": [
-          "D5",
-          "A#5",
-          "F#5",
-          "G5"
+          "Bbmaj7",
+          "C",
+          "Dm",
+          "Am",
+          "Bbmaj7",
+          "C",
+          "Dm",
+          "Dm"
         ],
         "solo": [
-          "B5",
-          "G5",
-          "F#5",
-          "F5"
+          "Dm",
+          "Eb",
+          "Dm",
+          "Eb",
+          "Gm",
+          "A7alt",
+          "Dm",
+          "Dm"
         ],
         "coda": [
-          "F#5",
-          "F#5",
-          "F#5",
-          "F#5"
+          "Bbmaj7",
+          "A7alt",
+          "Dm",
+          "Dm"
         ]
       }
     }
   ],
   "substyles": [
     "Heavy Metal",
-    "Thrash Metal",
-    "Progressive Metal",
-    "Djent",
+    "Thrash",
     "Death Metal",
-    "Doom Metal",
+    "Black Metal",
     "Power Metal",
-    "Metalcore"
+    "Doom Metal",
+    "Sludge",
+    "Progressive Metal"
   ],
   "artists": [
+    "Black Sabbath",
     "Iron Maiden",
     "Metallica",
-    "Black Sabbath",
-    "Meshuggah",
+    "Slayer",
+    "Death",
+    "Cannibal Corpse",
+    "Mayhem",
+    "Darkthrone",
+    "Helloween",
+    "Blind Guardian",
+    "Candlemass",
+    "Electric Wizard",
+    "Eyehategod",
+    "Crowbar",
     "Dream Theater",
-    "Tool",
-    "Judas Priest",
-    "Opeth",
-    "Gojira",
-    "Periphery"
+    "Opeth"
   ],
   "concepts": [
     "the gallop",
@@ -2037,11 +2524,15 @@ export const METAL_WORLD: GenreWorld = {
       "roles": [
         "voice"
       ],
-      "instruments": ["voice"],
+      "instruments": [
+        "voice"
+      ],
       "compatibleRoles": [
         "voice"
       ],
-      "compatibleInstruments": ["voice"],
+      "compatibleInstruments": [
+        "voice"
+      ],
       "canCrossRole": true,
       "meter": "4/4",
       "cycleLength": 1,
@@ -2206,11 +2697,15 @@ export const METAL_WORLD: GenreWorld = {
       "roles": [
         "voice"
       ],
-      "instruments": ["voice"],
+      "instruments": [
+        "voice"
+      ],
       "compatibleRoles": [
         "voice"
       ],
-      "compatibleInstruments": ["voice"],
+      "compatibleInstruments": [
+        "voice"
+      ],
       "canCrossRole": true,
       "meter": "4/4",
       "cycleLength": 1,
@@ -3463,12 +3958,16 @@ export const METAL_WORLD: GenreWorld = {
       "roles": [
         "voice"
       ],
-      "instruments": ["voice"],
+      "instruments": [
+        "voice"
+      ],
       "compatibleRoles": [
         "voice",
         "lead"
       ],
-      "compatibleInstruments": ["voice"],
+      "compatibleInstruments": [
+        "voice"
+      ],
       "meter": "4/4",
       "cycleLength": 1,
       "subdivisions": 16,

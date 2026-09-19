@@ -9,47 +9,45 @@ export const TANGO_WORLD: GenreWorld = {
   "description": "A deep architectural Tango lens: marcato en 2 & 4, yumba, síncopa a tierra, arrastres, bordoneos, cuts (cortes), and Piazzolla’s 3+3+2 additive frameworks.",
   "traditions": [
     {
-      "id": "tango-guardia-vieja",
+      "id": "tango-tango-tradicional",
       "worldId": "tango",
-      "name": "Guardia Vieja (1890–1920)",
-      "origin": "Buenos Aires & Montevideo",
-      "era": "1890–1920",
-      "description": "Habanera-derived syncopation, lively tempo, guitar, flute, and early bandoneón interplay.",
+      "name": "Tango Tradicional",
+      "origin": "Buenos Aires / Montevideo",
+      "era": "Golden Age (1935–1955)",
+      "description": "Marcato • Bandoneón • Golden Age\nThe quintessential Golden Age milonga sound.\nJuan D'Arienzo · Carlos Di Sarli",
       "characteristicInstruments": [
-        "guitar",
-        "flute",
         "bandoneon",
-        "violin"
+        "violin",
+        "piano",
+        "upright-bass"
       ],
       "preferredMeters": [
-        "2/4",
-        "4/4"
+        "4/4",
+        "2/4"
       ],
       "tempoRange": [
-        100,
-        130
+        120,
+        136
       ],
       "keySubstyles": [
-        "Tango Criollo",
-        "Milonga Primitiva",
-        "Habanera"
+        "Estilo D'Arienzo",
+        "Estilo Di Sarli"
       ],
       "coreConcepts": [
-        "habanera pulse",
-        "bordoneo",
-        "rasguido criollo",
-        "pizzicato"
+        "Marcato en 4 (accented downbeats 1, 2, 3, 4)",
+        "Síncopa and arrastre (bass drag into the downbeat)",
+        "bandoneón bellows phrasing",
+        "dramatic dynamic stops"
       ],
       "rhythmicGrammar": [
-        "3+3+2 habanera",
-        "straight eighths with grace notes"
+        "Marcato en 4: heavy walking downbeats with sharp percussive chiques on violin"
       ],
       "danceTags": [
         "social-partner",
-        "listening"
+        "tango-compatible"
       ],
       "tuningSystem": "12-tet",
-      "signatureCell": "Habanera syncopation [3+3+2] with acoustic guitar bordoneo",
+      "signatureCell": "Arrastre bass drag resolving into sharp Marcato en 4 bandoneon chord and violin staccato",
       "grooveMechanics": {
         "swingPercentage": 50,
         "anticipationOffsetSteps": 0,
@@ -62,20 +60,18 @@ export const TANGO_WORLD: GenreWorld = {
           "Am",
           "E7"
         ],
-        "verse": [
+        "tema-a": [
+          "Am",
+          "Dm",
+          "E7",
+          "Am",
           "Am",
           "Dm",
           "E7",
           "Am"
         ],
-        "chorus": [
-          "C",
-          "G7",
-          "C",
-          "E7"
-        ],
         "coda": [
-          "Am",
+          "E7",
           "E7",
           "Am",
           "Am"
@@ -83,51 +79,184 @@ export const TANGO_WORLD: GenreWorld = {
       }
     },
     {
-      "id": "tango-epoca-oro",
+      "id": "tango-tango-nuevo",
       "worldId": "tango",
-      "name": "Época de Oro / Golden Age (1935–1955)",
-      "origin": "Buenos Aires",
-      "era": "1935–1955",
-      "description": "The definitive orquesta típica sound: marcato en 4, marcato en 2, yumba, síncopas, arrastres, and dramatic cortes.",
+      "name": "Tango Nuevo",
+      "origin": "Buenos Aires / Paris",
+      "era": "1960s–1990s",
+      "description": "3+3+2 • Dissonance • Bandoneón Virtuosity\nAstor Piazzolla's modern concert tango.\nAstor Piazzolla · Quinteto Real",
       "characteristicInstruments": [
-        "piano",
         "bandoneon",
-        "strings",
-        "bass"
+        "violin",
+        "electric-guitar",
+        "piano",
+        "upright-bass"
       ],
       "preferredMeters": [
         "4/4"
       ],
       "tempoRange": [
         110,
-        135
+        140
       ],
       "keySubstyles": [
-        "Tango Rítmico (D’Arienzo)",
-        "Tango Melódico (Troilo / Di Sarli)",
-        "Tango Dramático (Pugliese)",
-        "Tango Virtuoso (Salgán)"
+        "Piazzolla Style",
+        "Concert Tango"
       ],
       "coreConcepts": [
-        "marcato en 4",
-        "marcato en 2",
-        "yumba",
-        "síncopa",
-        "arrastre",
-        "corte",
-        "chiche"
+        "iconic 3+3+2 syncopated accentuation",
+        "jazz chord harmonies (m9, maj7#11)",
+        "virtuosic bandoneón solo lines",
+        "contrast between aggression and weeping lyricism"
       ],
       "rhythmicGrammar": [
-        "accent on 1 and 3 (marcato 2)",
-        "heavy accents on 1, 2, 3, 4 with staccato",
-        "pesado on 1 and 3 with arrastre lead-in"
+        "relentless 3+3+2 eighth-note pulse with sharp accents on notes 1, 4, and 7"
+      ],
+      "danceTags": [
+        "listening",
+        "tango-compatible"
+      ],
+      "tuningSystem": "12-tet",
+      "signatureCell": "3+3+2 bandoneon syncopated stab answering virtuosic weeping violin glissando",
+      "grooveMechanics": {
+        "swingPercentage": 50,
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "pushed"
+      },
+      "sectionProgressions": {
+        "intro": [
+          "Am7",
+          "Dm7",
+          "F#dim",
+          "E7b9"
+        ],
+        "theme": [
+          "Am7",
+          "Dm7",
+          "G7",
+          "Cmaj7",
+          "Fmaj7",
+          "Bm7b5",
+          "E7b9",
+          "Am7"
+        ],
+        "coda": [
+          "F#dim",
+          "E7b9",
+          "Am",
+          "Am"
+        ]
+      }
+    },
+    {
+      "id": "tango-milonga",
+      "worldId": "tango",
+      "name": "Milonga",
+      "origin": "Río de la Plata",
+      "era": "Late 19th Century–Present",
+      "description": "Fast • Habanera Syncopation • Bouncy\nFast, playful ancestor of tango.\nFrancisco Canaro · Edgardo Donato",
+      "characteristicInstruments": [
+        "bandoneon",
+        "violin",
+        "piano",
+        "upright-bass",
+        "guitar"
+      ],
+      "preferredMeters": [
+        "2/4"
+      ],
+      "tempoRange": [
+        96,
+        116
+      ],
+      "keySubstyles": [
+        "Milonga Ciudadana",
+        "Milonga Campera"
+      ],
+      "coreConcepts": [
+        "habanera / milonga syncopated rhythm",
+        "snappy high-speed footwork (traspié)",
+        "bright staccato bandoneón chords",
+        "joyful urban spirit"
+      ],
+      "rhythmicGrammar": [
+        "strict 2/4 milonga syncopation: [1, 1-and-a, 2, 2-and] played staccatissimo"
       ],
       "danceTags": [
         "social-partner",
-        "listening"
+        "tango-compatible"
       ],
       "tuningSystem": "12-tet",
-      "signatureCell": "Marcato en 4 with heavy Pesado on beats 1 & 3 and chromatic arrastre",
+      "signatureCell": "Crisp 2/4 habanera milonga syncopation on piano and bandoneon with traspie violin leap",
+      "grooveMechanics": {
+        "swingPercentage": 50,
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "pushed"
+      },
+      "sectionProgressions": {
+        "intro": [
+          "D",
+          "A7",
+          "D",
+          "A7"
+        ],
+        "verse": [
+          "D",
+          "A7",
+          "D",
+          "A7",
+          "D",
+          "G",
+          "A7",
+          "D"
+        ],
+        "coda": [
+          "A7",
+          "A7",
+          "D",
+          "D"
+        ]
+      }
+    },
+    {
+      "id": "tango-tango-vals",
+      "worldId": "tango",
+      "name": "Tango Vals",
+      "origin": "Río de la Plata",
+      "era": "Golden Age (1930s–1950s)",
+      "description": "Lyrical • 3/4 Waltzing • Flowing\nFlowing, rotational waltz with tango soul.\nAlfredo De Angelis · Osvaldo Pugliese",
+      "characteristicInstruments": [
+        "violin",
+        "bandoneon",
+        "piano",
+        "upright-bass"
+      ],
+      "preferredMeters": [
+        "3/4"
+      ],
+      "tempoRange": [
+        60,
+        75
+      ],
+      "keySubstyles": [
+        "Vals Porteño",
+        "Vals Criollo"
+      ],
+      "coreConcepts": [
+        "continuous rotational movement and turns (giros)",
+        "expressive lyrical violin melodies in triple meter",
+        "rhythmic accent on beat 1 with light 2 and 3",
+        "nostalgic themes"
+      ],
+      "rhythmicGrammar": [
+        "flowing 3/4 waltz meter with subtle syncopations across bar lines"
+      ],
+      "danceTags": [
+        "social-partner",
+        "tango-compatible"
+      ],
+      "tuningSystem": "12-tet",
+      "signatureCell": "Flowing 3/4 violin waltz melody swelling over buoyant piano downbeat and bandoneon sigh",
       "grooveMechanics": {
         "swingPercentage": 50,
         "anticipationOffsetSteps": 0,
@@ -135,217 +264,120 @@ export const TANGO_WORLD: GenreWorld = {
       },
       "sectionProgressions": {
         "intro": [
-          "Dm",
-          "A7",
-          "Dm",
-          "A7"
-        ],
-        "verse": [
-          "Dm",
-          "Gm6",
-          "A7",
-          "Dm"
-        ],
-        "chorus": [
-          "F",
-          "C7",
-          "F",
-          "A7"
-        ],
-        "solo": [
-          "Dm",
-          "Gm",
+          "Am",
           "E7",
-          "A7"
+          "Am",
+          "E7"
+        ],
+        "vals-a": [
+          "Am",
+          "Dm",
+          "G7",
+          "C",
+          "F",
+          "Dm",
+          "E7",
+          "Am"
         ],
         "coda": [
-          "Dm",
-          "A7",
-          "Dm",
-          "Dm"
+          "E7",
+          "E7",
+          "Am",
+          "Am"
         ]
       }
     },
     {
-      "id": "tango-milonga",
+      "id": "tango-tango-electronico",
       "worldId": "tango",
-      "name": "Milonga (Campera & Ciudadana)",
-      "origin": "Río de la Plata",
-      "description": "Fast, syncopated 2/4 rhythm featuring the iconic habanera-milonga pattern and crisp guitar bordoneos.",
+      "name": "Tango Electrónico",
+      "origin": "Paris / Buenos Aires",
+      "era": "2000s–Present",
+      "description": "Trip-Hop Beats • Bandoneón Sample • Sensual\nModern electronic lounge & club tango.\nGotan Project · Bajofondo",
       "characteristicInstruments": [
-        "guitar",
-        "bass",
         "bandoneon",
-        "percussion"
+        "sub-bass",
+        "drums",
+        "sampler",
+        "acoustic-guitar",
+        "synth"
       ],
       "preferredMeters": [
-        "2/4",
         "4/4"
       ],
       "tempoRange": [
         90,
-        120
+        115
       ],
       "keySubstyles": [
-        "Milonga Ciudadana",
-        "Milonga Campera",
-        "Milonga con Candombe"
+        "Electrotango",
+        "Tango Lounge"
       ],
       "coreConcepts": [
-        "habanera cell",
-        "contratiempo",
-        "bordoneo",
-        "guitar rasgueo"
+        "trip-hop and electronic drum programming",
+        "vintage vinyl bandoneón sample loops",
+        "deep sub-bass pulses with nylon guitar comping",
+        "sensual downtempo lounge atmosphere"
       ],
       "rhythmicGrammar": [
-        "[x . . x . . x .]",
-        "dotted eighth + sixteenth + two eighths"
+        "electronic 4/4 beat with heavy kick on 1 and 3, crisp snare on 2 and 4, and bandoneón syncopation"
       ],
       "danceTags": [
         "social-partner",
-        "festival-fusion"
+        "tango-compatible",
+        "sensual-fusion"
       ],
       "tuningSystem": "12-tet",
-      "signatureCell": "Milonga habanera cell [0, 3, 6, 8, 12] with guitar bordoneo",
-      "grooveMechanics": {
-        "swingPercentage": 50,
-        "anticipationOffsetSteps": 1,
-        "microtimingFeel": "straight"
-      },
-      "sectionProgressions": {
-        "intro": [
-          "Am",
-          "E7",
-          "Am",
-          "E7"
-        ],
-        "verse": [
-          "Am",
-          "E7",
-          "Am",
-          "E7"
-        ],
-        "chorus": [
-          "A7",
-          "Dm",
-          "E7",
-          "Am"
-        ],
-        "coda": [
-          "Am",
-          "E7",
-          "Am",
-          "Am"
-        ]
-      }
-    },
-    {
-      "id": "tango-nuevo",
-      "worldId": "tango",
-      "name": "Tango Nuevo & Contemporary (Piazzolla & Beyond)",
-      "origin": "Buenos Aires / Global",
-      "era": "1960–Present",
-      "description": "Piazzolla-style 3+3+2 asymmetric additive rhythms, fugal counterpoint, jazz harmonies, and extended techniques (tambor, golpe, chiche).",
-      "characteristicInstruments": [
-        "bandoneon",
-        "electric-guitar",
-        "piano",
-        "bass",
-        "strings"
-      ],
-      "preferredMeters": [
-        "4/4",
-        "3+3+2",
-        "6/8"
-      ],
-      "tempoRange": [
-        95,
-        145
-      ],
-      "keySubstyles": [
-        "Nuevo Tango Quintet",
-        "Fuga Criolla",
-        "Tango Contemporáneo"
-      ],
-      "coreConcepts": [
-        "3+3+2 grouping",
-        "extended arrastre",
-        "chiche",
-        "slap bass",
-        "fugal counterpoint"
-      ],
-      "rhythmicGrammar": [
-        "3+3+2 16th groupings: [0, 3, 6, 8, 11, 14] or [0, 6, 12]"
-      ],
-      "danceTags": [
-        "listening",
-        "blues-fusion-compatible",
-        "social-partner"
-      ],
-      "tuningSystem": "12-tet",
-      "signatureCell": "Piazzolla 3+3+2 additive syncopation [0, 3, 6, 8, 11, 14] with jazz chord extensions",
+      "signatureCell": "Dusty vintage bandoneon sample looping over deep trip-hop sub-bass and crisp electronic snare",
       "grooveMechanics": {
         "swingPercentage": 50,
         "anticipationOffsetSteps": 0,
-        "microtimingFeel": "straight"
+        "microtimingFeel": "laid-back"
       },
       "sectionProgressions": {
         "intro": [
-          "Am9",
-          "F#m7b5",
-          "Fmaj7",
-          "E7b9"
+          "Dm",
+          "Gm",
+          "A7",
+          "Dm"
         ],
-        "verse": [
-          "Am9",
-          "Dm7",
-          "G13",
-          "Cmaj7"
-        ],
-        "chorus": [
-          "Fmaj7",
-          "Bm7b5",
-          "E7b9",
-          "Am9"
-        ],
-        "solo": [
-          "Am9",
-          "Dm9",
-          "Bm7b5",
-          "E7alt"
+        "groove": [
+          "Dm",
+          "Gm",
+          "C",
+          "F",
+          "Bb",
+          "Gm",
+          "A7",
+          "Dm"
         ],
         "coda": [
-          "Am9",
-          "Am9",
-          "Am9",
-          "Am9"
+          "Gm",
+          "A7",
+          "Dm",
+          "Dm"
         ]
       }
     }
   ],
   "substyles": [
-    "Guardia Vieja",
-    "Guardia Nueva",
-    "Época de Oro (Golden Age)",
-    "Tango Rítmico (D’Arienzo)",
-    "Tango Melódico (Troilo / Di Sarli)",
-    "Tango Dramático (Pugliese)",
-    "Milonga Ciudadana",
-    "Milonga Campera",
-    "Vals Criollo",
-    "Nuevo Tango (Piazzolla)",
-    "Contemporary / Tango Electrónico"
+    "Tango Tradicional",
+    "Tango Nuevo",
+    "Milonga",
+    "Tango Vals",
+    "Tango Electrónico"
   ],
   "artists": [
-    "Carlos Gardel",
-    "Juan D’Arienzo",
-    "Aníbal Troilo",
-    "Osvaldo Pugliese",
+    "Juan D'Arienzo",
     "Carlos Di Sarli",
-    "Horacio Salgán",
     "Astor Piazzolla",
-    "Eduardo Rovira",
-    "Dino Saluzzi"
+    "Quinteto Real",
+    "Francisco Canaro",
+    "Edgardo Donato",
+    "Alfredo De Angelis",
+    "Osvaldo Pugliese",
+    "Gotan Project",
+    "Bajofondo"
   ],
   "concepts": [
     "marcato en 4",
@@ -2113,11 +2145,15 @@ export const TANGO_WORLD: GenreWorld = {
       "roles": [
         "voice"
       ],
-      "instruments": ["voice"],
+      "instruments": [
+        "voice"
+      ],
       "compatibleRoles": [
         "voice"
       ],
-      "compatibleInstruments": ["voice"],
+      "compatibleInstruments": [
+        "voice"
+      ],
       "canCrossRole": true,
       "meter": "4/4",
       "cycleLength": 1,

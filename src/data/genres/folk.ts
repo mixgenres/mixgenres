@@ -9,15 +9,19 @@ export const FOLK_WORLD: GenreWorld = {
   "description": "Acoustic-driven music centered around storytelling, fingerpicking, strumming, and vocal harmony.",
   "traditions": [
     {
-      "id": "folk-singer-songwriter",
+      "id": "folk-indie-folk",
       "worldId": "folk",
-      "name": "Singer-Songwriter",
-      "origin": "Global",
-      "era": "1960s-Present",
-      "description": "Acoustic guitar and vocal focus.",
+      "name": "Indie Folk",
+      "origin": "Pacific Northwest / Global",
+      "era": "2000s–Present",
+      "description": "Acoustic • 4/4 • Warm Harmonies\nModern acoustic songwriting with lush texture.\nFleet Foxes · Bon Iver",
       "characteristicInstruments": [
-        "guitar",
-        "voice"
+        "acoustic-guitar",
+        "banjo",
+        "voice",
+        "piano",
+        "drums",
+        "bass"
       ],
       "preferredMeters": [
         "4/4",
@@ -25,26 +29,186 @@ export const FOLK_WORLD: GenreWorld = {
         "6/8"
       ],
       "tempoRange": [
-        70,
-        120
+        80,
+        108
       ],
       "keySubstyles": [
-        "Contemporary Folk"
+        "Chamber Indie Folk",
+        "Freak Folk"
       ],
       "coreConcepts": [
-        "fingerpicking",
-        "strumming",
-        "storytelling"
+        "rich four-part vocal harmonies",
+        "open-tuned fingerpicked acoustic guitars",
+        "organic foot-stomps and tambourines",
+        "atmospheric reverb textures"
       ],
       "rhythmicGrammar": [
-        "alternating bass"
+        "warm rolling 4/4 acoustic fingerpicking with gentle bass drum pulses and snare brushes"
       ],
       "danceTags": [
         "listening",
-        "wcs-compatible"
+        "social-partner"
       ],
       "tuningSystem": "12-tet",
-      "signatureCell": "Alternating thumb Travis picking with syncopated treble melody and open chords",
+      "signatureCell": "Lush 4-part vocal harmony blooming over open-tuned acoustic guitar fingerpicking",
+      "grooveMechanics": {
+        "swingPercentage": 50,
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "laid-back"
+      },
+      "sectionProgressions": {
+        "intro": [
+          "C",
+          "G",
+          "Am",
+          "F"
+        ],
+        "verse": [
+          "C",
+          "G",
+          "Am",
+          "F",
+          "C",
+          "G",
+          "Am",
+          "F"
+        ],
+        "chorus": [
+          "F",
+          "C",
+          "G",
+          "Am",
+          "F",
+          "C",
+          "G",
+          "G"
+        ],
+        "coda": [
+          "F",
+          "G",
+          "C",
+          "C"
+        ]
+      }
+    },
+    {
+      "id": "folk-old-time",
+      "worldId": "folk",
+      "name": "Old-Time",
+      "origin": "Appalachian Mountains, USA",
+      "era": "19th Century–Early 20th Century",
+      "description": "Clawhammer • Fiddle • Drone\nRaw mountain dance music.\nDoc Watson · Tommy Jarrell",
+      "characteristicInstruments": [
+        "banjo",
+        "fiddle",
+        "guitar",
+        "voice"
+      ],
+      "preferredMeters": [
+        "2/4",
+        "4/4"
+      ],
+      "tempoRange": [
+        110,
+        136
+      ],
+      "keySubstyles": [
+        "Appalachian Old-Time",
+        "Clawhammer Banjo Tune"
+      ],
+      "coreConcepts": [
+        "clawhammer \"bump-ditty\" banjo strumming",
+        "fiddle bowing with heavy open-string drones",
+        "communal porch-picking feel",
+        "modal mountain scales"
+      ],
+      "rhythmicGrammar": [
+        "driving 2/4 clawhammer banjo rhythm locked in close unison with melodic fiddle line"
+      ],
+      "danceTags": [
+        "social-partner",
+        "festival-fusion"
+      ],
+      "tuningSystem": "just-intonation",
+      "signatureCell": "Clawhammer banjo bump-ditty rhythm locked in unison with droning mountain fiddle",
+      "grooveMechanics": {
+        "swingPercentage": 50,
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "pushed"
+      },
+      "sectionProgressions": {
+        "intro": [
+          "A",
+          "D",
+          "E",
+          "A"
+        ],
+        "part-a": [
+          "A",
+          "D",
+          "E",
+          "A",
+          "A",
+          "D",
+          "E",
+          "A"
+        ],
+        "part-b": [
+          "D",
+          "A",
+          "E",
+          "A",
+          "D",
+          "A",
+          "E",
+          "A"
+        ],
+        "coda": [
+          "D",
+          "E",
+          "A",
+          "A"
+        ]
+      }
+    },
+    {
+      "id": "folk-protest",
+      "worldId": "folk",
+      "name": "Protest",
+      "origin": "Greenwich Village, New York",
+      "era": "1960s",
+      "description": "Lyrical • Acoustic • Message-driven\nTopical songs of political change.\nBob Dylan · Joan Baez",
+      "characteristicInstruments": [
+        "acoustic-guitar",
+        "harmonica",
+        "voice"
+      ],
+      "preferredMeters": [
+        "4/4",
+        "3/4"
+      ],
+      "tempoRange": [
+        85,
+        115
+      ],
+      "keySubstyles": [
+        "Topical Song Movement",
+        "60s Folk Revival"
+      ],
+      "coreConcepts": [
+        "unadorned strummed acoustic guitar",
+        "piercing rack harmonica interludes",
+        "poetic incisive socio-political lyrics",
+        "direct unpolished vocal honesty"
+      ],
+      "rhythmicGrammar": [
+        "straightforward steady strumming pattern prioritizing lyrical intelligibility and narrative cadence"
+      ],
+      "danceTags": [
+        "listening"
+      ],
+      "tuningSystem": "12-tet",
+      "signatureCell": "Strummed acoustic guitar pause followed by piercing rack-harmonica cry between verses",
       "grooveMechanics": {
         "swingPercentage": 50,
         "anticipationOffsetSteps": 0,
@@ -52,32 +216,195 @@ export const FOLK_WORLD: GenreWorld = {
       },
       "sectionProgressions": {
         "intro": [
+          "G",
           "C",
-          "Am",
-          "F",
+          "G",
+          "D"
+        ],
+        "verse": [
+          "G",
+          "C",
+          "G",
+          "D",
+          "G",
+          "C",
+          "G",
+          "D",
+          "C",
+          "D",
+          "G",
+          "Em",
+          "C",
+          "D",
+          "G",
           "G"
+        ],
+        "coda": [
+          "C",
+          "D",
+          "G",
+          "G"
+        ]
+      }
+    },
+    {
+      "id": "folk-psychedelic-folk",
+      "worldId": "folk",
+      "name": "Psychedelic Folk",
+      "origin": "UK / San Francisco",
+      "era": "Late 1960s–1970s",
+      "description": "Dreamy • Exotic • Expansive\nAcid-tinged mystical acoustic journeys.\nThe Incredible String Band · Devendra Banhart",
+      "characteristicInstruments": [
+        "acoustic-guitar",
+        "sitar",
+        "flute",
+        "hand-percussion",
+        "synth",
+        "voice"
+      ],
+      "preferredMeters": [
+        "4/4",
+        "6/8",
+        "free"
+      ],
+      "tempoRange": [
+        75,
+        105
+      ],
+      "keySubstyles": [
+        "Acid Folk",
+        "Freak Folk",
+        "Pagan Folk"
+      ],
+      "coreConcepts": [
+        "unusual non-Western instrumentations (sitar, finger cymbals)",
+        "whimsical mystical lyrics",
+        "modal and drone-based guitar tunings",
+        "airy reverb and tape echo"
+      ],
+      "rhythmicGrammar": [
+        "fluid elastic rhythm shifting organically between free atmospheric washes and gentle circular pulses"
+      ],
+      "danceTags": [
+        "listening"
+      ],
+      "tuningSystem": "12-tet",
+      "signatureCell": "Dreamy acoustic guitar modal drone enveloped in swirling wooden flute and gentle bells",
+      "grooveMechanics": {
+        "swingPercentage": 50,
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "rubato"
+      },
+      "sectionProgressions": {
+        "intro": [
+          "Dm",
+          "C",
+          "Bb",
+          "A7"
+        ],
+        "verse": [
+          "Dm",
+          "C",
+          "Bb",
+          "A7",
+          "Dm",
+          "C",
+          "Bb",
+          "A7"
+        ],
+        "interlude": [
+          "F",
+          "C",
+          "Gm",
+          "Dm",
+          "Bb",
+          "F",
+          "A7",
+          "A7"
+        ],
+        "coda": [
+          "Bb",
+          "A7",
+          "Dm",
+          "Dm"
+        ]
+      }
+    },
+    {
+      "id": "folk-anti-folk",
+      "worldId": "folk",
+      "name": "Anti-Folk",
+      "origin": "East Village, New York",
+      "era": "1980s–2000s",
+      "description": "Quirky • Raw • Irreverent\nPunk attitude with acoustic instruments.\nMoldy Peaches · Regina Spektor",
+      "characteristicInstruments": [
+        "acoustic-guitar",
+        "piano",
+        "voice",
+        "drums",
+        "bass"
+      ],
+      "preferredMeters": [
+        "4/4"
+      ],
+      "tempoRange": [
+        100,
+        135
+      ],
+      "keySubstyles": [
+        "NYC Anti-Folk",
+        "Lo-Fi Folk Punk"
+      ],
+      "coreConcepts": [
+        "punk DIY irreverence",
+        "idiosyncratic witty autobiographical lyrics",
+        "ramshackle acoustic energy",
+        "unconventional vocal quirks and speak-singing"
+      ],
+      "rhythmicGrammar": [
+        "fast aggressive acoustic guitar strumming with punk downstrokes and simple drum beats"
+      ],
+      "danceTags": [
+        "listening",
+        "festival-fusion"
+      ],
+      "tuningSystem": "12-tet",
+      "signatureCell": "Fast energetic acoustic guitar punk strum with quirky conversational vocal delivery",
+      "grooveMechanics": {
+        "swingPercentage": 50,
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "pushed"
+      },
+      "sectionProgressions": {
+        "intro": [
+          "C",
+          "F",
+          "G",
+          "C"
         ],
         "verse": [
           "C",
-          "Am",
           "F",
-          "G"
+          "G",
+          "C",
+          "C",
+          "F",
+          "G",
+          "C"
         ],
         "chorus": [
           "F",
           "G",
           "C",
-          "Am"
-        ],
-        "solo": [
-          "Dm",
+          "Am",
+          "F",
           "G",
           "C",
-          "Am"
+          "C"
         ],
         "coda": [
-          "C",
-          "Am",
+          "F",
+          "G",
           "C",
           "C"
         ]
@@ -86,40 +413,44 @@ export const FOLK_WORLD: GenreWorld = {
     {
       "id": "folk-bluegrass",
       "worldId": "folk",
-      "name": "Bluegrass & Old Time",
-      "origin": "US",
-      "era": "1940s-Present",
-      "description": "Fast acoustic string band music.",
+      "name": "Bluegrass",
+      "origin": "Appalachia / Kentucky",
+      "era": "1940s–Present",
+      "description": "High-Speed • Banjo • Chop\nVirtuosic multi-instrumental acoustic fire.\nTony Rice · Béla Fleck",
       "characteristicInstruments": [
+        "banjo",
+        "mandolin",
         "guitar",
-        "bass",
-        "violin"
+        "fiddle",
+        "upright-bass"
       ],
       "preferredMeters": [
         "2/4",
         "4/4"
       ],
       "tempoRange": [
-        100,
-        160
+        130,
+        165
       ],
       "keySubstyles": [
-        "Bluegrass"
+        "Progressive Bluegrass",
+        "Traditional Bluegrass"
       ],
       "coreConcepts": [
-        "flatpicking",
-        "driving rhythm"
+        "blistering acoustic flatpicking guitar runs",
+        "driving three-finger Scruggs banjo speed",
+        "syncopated mandolin chop on offbeats",
+        "tight high-tenor vocal trios"
       ],
       "rhythmicGrammar": [
-        "boom-chuck"
+        "fast 2/4 driving boom-chick bass with percussive mandolin chop on 2 and 4"
       ],
       "danceTags": [
         "social-partner",
-        "listening",
-        "solo-vernacular"
+        "festival-fusion"
       ],
       "tuningSystem": "12-tet",
-      "signatureCell": "Boom-chuck bass and mandolin chop driving high-speed acoustic flatpicking",
+      "signatureCell": "Lightning-fast acoustic guitar flatpicking run trading licks with virtuosic banjo roll",
       "grooveMechanics": {
         "swingPercentage": 50,
         "anticipationOffsetSteps": 0,
@@ -136,9 +467,17 @@ export const FOLK_WORLD: GenreWorld = {
           "G",
           "G",
           "C",
+          "G",
+          "G",
+          "Em",
+          "D",
           "G"
         ],
         "chorus": [
+          "C",
+          "G",
+          "D",
+          "G",
           "C",
           "G",
           "D",
@@ -151,32 +490,193 @@ export const FOLK_WORLD: GenreWorld = {
           "G"
         ],
         "coda": [
-          "G",
+          "C",
           "D",
           "G",
           "G"
         ]
       }
+    },
+    {
+      "id": "folk-neo-traditional",
+      "worldId": "folk",
+      "name": "Neo-Traditional",
+      "origin": "UK / North America",
+      "era": "1990s–Present",
+      "description": "Pure • Modal • Fingerstyle\nRefined preservation of ancient ballads.\nShirley Collins · Laura Marling",
+      "characteristicInstruments": [
+        "acoustic-guitar",
+        "voice",
+        "fiddle",
+        "harmonium",
+        "flute"
+      ],
+      "preferredMeters": [
+        "4/4",
+        "3/4"
+      ],
+      "tempoRange": [
+        72,
+        98
+      ],
+      "keySubstyles": [
+        "British Folk Revival",
+        "Traditional Balladry"
+      ],
+      "coreConcepts": [
+        "modal DADGAD guitar fingerpicking",
+        "unadorned pure vocal delivery of centuries-old murder ballads",
+        "atmospheric harmonium drone",
+        "historical authenticity"
+      ],
+      "rhythmicGrammar": [
+        "spacious breathing meter supporting narrative poetry with delicate fingerpicked embellishments"
+      ],
+      "danceTags": [
+        "listening"
+      ],
+      "tuningSystem": "just-intonation",
+      "signatureCell": "Modal DADGAD acoustic guitar arpeggiation underpinning pure unvarnished vocal ballad",
+      "grooveMechanics": {
+        "swingPercentage": 50,
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "rubato"
+      },
+      "sectionProgressions": {
+        "intro": [
+          "Am",
+          "G",
+          "F",
+          "Em"
+        ],
+        "ballad": [
+          "Am",
+          "G",
+          "Am",
+          "Em",
+          "F",
+          "G",
+          "Am",
+          "Am"
+        ],
+        "coda": [
+          "F",
+          "G",
+          "Am",
+          "Am"
+        ]
+      }
+    },
+    {
+      "id": "folk-chamber-folk",
+      "worldId": "folk",
+      "name": "Chamber Folk",
+      "origin": "North America / Europe",
+      "era": "2000s–Present",
+      "description": "Orchestral • Intricate • Elegant\nAcoustic songwriting with strings and winds.\nSufjan Stevens · Andrew Bird",
+      "characteristicInstruments": [
+        "acoustic-guitar",
+        "strings",
+        "violin",
+        "flute",
+        "piano",
+        "voice"
+      ],
+      "preferredMeters": [
+        "4/4",
+        "7/8",
+        "3/4"
+      ],
+      "tempoRange": [
+        80,
+        112
+      ],
+      "keySubstyles": [
+        "Orchestral Folk",
+        "Baroque Pop Folk"
+      ],
+      "coreConcepts": [
+        "intricate string quartet and woodwind arrangements",
+        "plucked violin pizzicati and glockenspiel bells",
+        "complex polyphonic counterpoint",
+        "literary whimsical song forms"
+      ],
+      "rhythmicGrammar": [
+        "delicate layered acoustic rhythms frequently featuring odd-time signatures (5/4, 7/8) and precise classical articulation"
+      ],
+      "danceTags": [
+        "listening"
+      ],
+      "tuningSystem": "12-tet",
+      "signatureCell": "Pizzicato string counterpoint weaving through fingerpicked acoustic guitar and glockenspiel",
+      "grooveMechanics": {
+        "swingPercentage": 50,
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "straight"
+      },
+      "sectionProgressions": {
+        "intro": [
+          "Fmaj7",
+          "G",
+          "Am",
+          "C"
+        ],
+        "verse": [
+          "Fmaj7",
+          "G",
+          "Am",
+          "C",
+          "Fmaj7",
+          "G",
+          "Am",
+          "Em"
+        ],
+        "chorus": [
+          "Dm7",
+          "Em7",
+          "Fmaj7",
+          "G",
+          "Dm7",
+          "Em7",
+          "Am",
+          "Am"
+        ],
+        "coda": [
+          "Fmaj7",
+          "G",
+          "Am",
+          "Am"
+        ]
+      }
     }
   ],
   "substyles": [
-    "Singer-Songwriter",
-    "Contemporary Folk",
-    "Bluegrass",
-    "Old Time",
-    "Americana",
     "Indie Folk",
-    "Celtic Folk"
+    "Old-Time",
+    "Protest",
+    "Psychedelic Folk",
+    "Anti-Folk",
+    "Bluegrass",
+    "Neo-Traditional",
+    "Chamber Folk"
   ],
   "artists": [
-    "Bob Dylan",
-    "Joni Mitchell",
-    "Woody Guthrie",
-    "Joan Baez",
-    "Bill Monroe",
-    "Doc Watson",
     "Fleet Foxes",
-    "Gillian Welch"
+    "Bon Iver",
+    "Doc Watson",
+    "Tommy Jarrell",
+    "Bob Dylan",
+    "Joan Baez",
+    "The Incredible String Band",
+    "Devendra Banhart",
+    "Moldy Peaches",
+    "Regina Spektor",
+    "Tony Rice",
+    "Béla Fleck",
+    "Shirley Collins",
+    "Laura Marling",
+    "Sufjan Stevens",
+    "Andrew Bird"
   ],
   "concepts": [
     "Travis picking",
@@ -1958,11 +2458,15 @@ export const FOLK_WORLD: GenreWorld = {
       "roles": [
         "voice"
       ],
-      "instruments": ["voice"],
+      "instruments": [
+        "voice"
+      ],
       "compatibleRoles": [
         "voice"
       ],
-      "compatibleInstruments": ["voice"],
+      "compatibleInstruments": [
+        "voice"
+      ],
       "canCrossRole": true,
       "meter": "6/8",
       "cycleLength": 1,
@@ -2117,11 +2621,15 @@ export const FOLK_WORLD: GenreWorld = {
       "roles": [
         "voice"
       ],
-      "instruments": ["voice"],
+      "instruments": [
+        "voice"
+      ],
       "compatibleRoles": [
         "voice"
       ],
-      "compatibleInstruments": ["voice"],
+      "compatibleInstruments": [
+        "voice"
+      ],
       "canCrossRole": true,
       "meter": "4/4",
       "cycleLength": 1,

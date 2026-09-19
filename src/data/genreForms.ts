@@ -1025,11 +1025,18 @@ export const DEFAULT_PATTERN_PREFERENCES: Record<string, Record<string, string>>
     'uilleann-pipes': 'ct-cadence-open-fifth',
     bodhran: 'ct-bodhran-low',
   },
+  flamenco: {
+    guitar: 'flam-solea-guitar-compas',
+    voice: 'flam-falseta-melodic',
+    palmas: 'flam-solea-palmas',
+    cajon: 'flamenco-cajon-rumba',
+  },
 };
 
 /** Characteristically curated chord progressions per genre. */
 export const PROGRESSIONS: Record<string, string[]> = {
   tango: ['i', 'i', 'iv', 'V7'],
+  flamenco: ['i', 'VII', 'VI', 'V'],
   salsa: ['ii7', 'V7', 'Imaj7', 'VI7'],
   timba: ['i7', 'iv7', 'V7', 'i7'],
   bachata: ['i', 'VI', 'III', 'VII'],
@@ -1067,6 +1074,7 @@ export const PROGRESSIONS: Record<string, string[]> = {
 /** Culturally tuned starter tempos per genre. */
 export const TEMPOS: Record<string, number> = {
   tango: 120,
+  flamenco: 84,
   salsa: 190,
   timba: 200,
   bachata: 128,
@@ -1104,6 +1112,7 @@ export const TEMPOS: Record<string, number> = {
 /** Evocative starter song titles across all 34 musical worlds. */
 export const TITLES: Record<string, string> = {
   tango: 'Yumba para nadie',
+  flamenco: 'Soleá del alba',
   salsa: 'Cáscara y cuero',
   timba: 'Se formó',
   bachata: 'Dos vueltas',
