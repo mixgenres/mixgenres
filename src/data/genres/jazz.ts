@@ -356,7 +356,7 @@ export const JAZZ_WORLD: GenreWorld = {
       ],
       "difficulty": 1,
       "weight": 0.7,
-      "provenance": "Jazz genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Jazz catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "jazz"
       ],
@@ -477,13 +477,53 @@ export const JAZZ_WORLD: GenreWorld = {
           ],
           "description": "Gentle circular wire brush sweeps on snare drum."
         },
-        ],
+        {
+          "id": "jazz-ride-spangalang-v-02",
+          "parentPatternId": "jazz-ride-spangalang",
+          "name": "Jazz Ride Cymbal (Spang-a-Lang) — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            4,
+            6,
+            8,
+            12,
+            14
+          ],
+          "accentProfile": [
+            0.8099999999999999,
+            1,
+            0.61,
+            0.9299999999999999,
+            0.96,
+            0.7799999999999999
+          ],
+          "velocityProfile": [
+            0.8600000000000001,
+            0.9299999999999999,
+            0.58,
+            0.8600000000000001,
+            0.98,
+            0.63
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5
+          ]
+        }
+      ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 2,
       "weight": 0.7,
-      "provenance": "Jazz genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Jazz catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "jazz"
       ],
@@ -606,13 +646,41 @@ export const JAZZ_WORLD: GenreWorld = {
           ],
           "description": "Powerful fourth-based modal chords with pentatonic rhythmic accents."
         },
-        ],
+        {
+          "id": "jazz-piano-comping-v-02",
+          "parentPatternId": "jazz-piano-comping",
+          "name": "Syncopated Piano Comping (Charleston & Red Garland Pluck) — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            6,
+            14
+          ],
+          "accentProfile": [
+            0.9099999999999999,
+            1,
+            0.8099999999999999
+          ],
+          "velocityProfile": [
+            0.96,
+            0.9299999999999999,
+            0.78
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2
+          ]
+        }
+      ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 1,
       "weight": 0.7,
-      "provenance": "Jazz genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Jazz catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "jazz"
       ],
@@ -707,14 +775,97 @@ export const JAZZ_WORLD: GenreWorld = {
         "chorus"
       ],
       "variants": [
-        
-        ],
+        {
+          "id": "jazz-brushes-swing-v-01",
+          "parentPatternId": "jazz-brushes-swing",
+          "name": "Brushes Swing — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            3,
+            5,
+            8,
+            9
+          ],
+          "accentProfile": [
+            0.8999999999999999,
+            0.5499999999999999,
+            0.7999999999999999,
+            0.6,
+            0.8999999999999999
+          ],
+          "velocityProfile": [
+            0.8200000000000001,
+            0.47000000000000003,
+            0.7200000000000001,
+            0.52,
+            0.8200000000000001
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "jazz-brushes-swing-v-02",
+          "parentPatternId": "jazz-brushes-swing",
+          "name": "Brushes Swing — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            2,
+            3,
+            5,
+            6,
+            8,
+            9,
+            11
+          ],
+          "accentProfile": [
+            0.9099999999999999,
+            0.6799999999999999,
+            0.8099999999999999,
+            0.73,
+            0.9099999999999999,
+            0.6799999999999999,
+            0.8099999999999999,
+            0.7799999999999999
+          ],
+          "velocityProfile": [
+            0.96,
+            0.53,
+            0.78,
+            0.6599999999999999,
+            0.88,
+            0.53,
+            0.8600000000000001,
+            0.63
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5
+          ]
+        }
+      ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 3,
       "weight": 1,
-      "provenance": "Jazz genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Jazz catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "jazz"
       ],
@@ -799,14 +950,85 @@ export const JAZZ_WORLD: GenreWorld = {
         "solo"
       ],
       "variants": [
-        
-        ],
+        {
+          "id": "jazz-latin-montuno-comp-v-01",
+          "parentPatternId": "jazz-latin-montuno-comp",
+          "name": "Latin Jazz Montuno Comping — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            2,
+            7,
+            10,
+            15
+          ],
+          "accentProfile": [
+            0.7999999999999999,
+            0.95,
+            0.6499999999999999,
+            0.8999999999999999
+          ],
+          "velocityProfile": [
+            0.7200000000000001,
+            0.87,
+            0.5700000000000001,
+            0.8200000000000001
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6
+          ]
+        },
+        {
+          "id": "jazz-latin-montuno-comp-v-02",
+          "parentPatternId": "jazz-latin-montuno-comp",
+          "name": "Latin Jazz Montuno Comping — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            2,
+            4,
+            7,
+            10,
+            12,
+            15
+          ],
+          "accentProfile": [
+            0.8099999999999999,
+            1,
+            0.6599999999999999,
+            1,
+            0.76,
+            0.98
+          ],
+          "velocityProfile": [
+            0.8600000000000001,
+            0.9299999999999999,
+            0.63,
+            0.96,
+            0.73,
+            0.83
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5
+          ]
+        }
+      ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 2,
       "weight": 0.7,
-      "provenance": "Jazz genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Jazz catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "jazz"
       ],
@@ -888,14 +1110,65 @@ export const JAZZ_WORLD: GenreWorld = {
         "chorus"
       ],
       "variants": [
-        
-        ],
+        {
+          "id": "jazz-piano-red-garland-v-01",
+          "parentPatternId": "jazz-piano-red-garland",
+          "name": "Block Chords — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            5
+          ],
+          "accentProfile": [
+            0.8999999999999999,
+            0.75
+          ],
+          "velocityProfile": [
+            0.8200000000000001,
+            0.67
+          ],
+          "microtimingOffset": [
+            -3,
+            6
+          ]
+        },
+        {
+          "id": "jazz-piano-red-garland-v-02",
+          "parentPatternId": "jazz-piano-red-garland",
+          "name": "Block Chords — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            3,
+            5
+          ],
+          "accentProfile": [
+            0.9099999999999999,
+            0.88,
+            0.96
+          ],
+          "velocityProfile": [
+            0.96,
+            0.73,
+            0.9299999999999999
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2
+          ]
+        }
+      ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 1,
       "weight": 1,
-      "provenance": "Jazz genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Jazz catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "jazz"
       ],
@@ -962,14 +1235,61 @@ export const JAZZ_WORLD: GenreWorld = {
         "turnaround"
       ],
       "variants": [
-        
-        ],
+        {
+          "id": "jazz-hihat-2-4-v-01-safe",
+          "parentPatternId": "jazz-hihat-2-4",
+          "name": "Hi-Hat 2 & 4 — played variation",
+          "variationType": "accentShift",
+          "probability": 0.18,
+          "description": "A light played variation for sparse patterns with only a few attacks.",
+          "onsetGrid": [
+            1,
+            3
+          ],
+          "accentProfile": [
+            0.85,
+            1
+          ],
+          "velocityProfile": [
+            0.88,
+            0.9099999999999999
+          ],
+          "microtimingOffset": [
+            -2,
+            4
+          ]
+        },
+        {
+          "id": "jazz-hihat-2-4-v-02-safe",
+          "parentPatternId": "jazz-hihat-2-4",
+          "name": "Hi-Hat 2 & 4 — played variation",
+          "variationType": "accentShift",
+          "probability": 0.18,
+          "description": "A light played variation for sparse patterns with only a few attacks.",
+          "onsetGrid": [
+            1,
+            3
+          ],
+          "accentProfile": [
+            0.85,
+            1
+          ],
+          "velocityProfile": [
+            0.88,
+            0.9099999999999999
+          ],
+          "microtimingOffset": [
+            -2,
+            4
+          ]
+        }
+      ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 1,
       "weight": 1,
-      "provenance": "Jazz genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Jazz catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "jazz"
       ],
@@ -1043,14 +1363,77 @@ export const JAZZ_WORLD: GenreWorld = {
         "chorus"
       ],
       "variants": [
-        
-        ],
+        {
+          "id": "jazz-ride-broken-v-01",
+          "parentPatternId": "jazz-ride-broken",
+          "name": "Broken Ride — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            6,
+            8
+          ],
+          "accentProfile": [
+            0.95,
+            0.6499999999999999,
+            0.8999999999999999
+          ],
+          "velocityProfile": [
+            0.87,
+            0.5700000000000001,
+            0.8200000000000001
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "jazz-ride-broken-v-02",
+          "parentPatternId": "jazz-ride-broken",
+          "name": "Broken Ride — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            3,
+            6,
+            8,
+            9
+          ],
+          "accentProfile": [
+            0.96,
+            0.7799999999999999,
+            0.9099999999999999,
+            0.6799999999999999,
+            0.8099999999999999
+          ],
+          "velocityProfile": [
+            1,
+            0.63,
+            0.88,
+            0.6100000000000001,
+            0.78
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2
+          ]
+        }
+      ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 2,
       "weight": 1,
-      "provenance": "Jazz genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Jazz catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "jazz"
       ],
@@ -1133,14 +1516,73 @@ export const JAZZ_WORLD: GenreWorld = {
         "chorus"
       ],
       "variants": [
-        
-        ],
+        {
+          "id": "jazz-bass-pedal-v-01",
+          "parentPatternId": "jazz-bass-pedal",
+          "name": "Pedal Point — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            4,
+            6
+          ],
+          "accentProfile": [
+            0.8999999999999999,
+            0.73,
+            0.83
+          ],
+          "velocityProfile": [
+            0.8200000000000001,
+            0.62,
+            0.74
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "jazz-bass-pedal-v-02",
+          "parentPatternId": "jazz-bass-pedal",
+          "name": "Pedal Point — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            2,
+            4,
+            6
+          ],
+          "accentProfile": [
+            0.9099999999999999,
+            0.86,
+            0.84,
+            0.7999999999999999
+          ],
+          "velocityProfile": [
+            0.96,
+            0.6799999999999999,
+            0.7999999999999999,
+            0.74
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5
+          ]
+        }
+      ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 1,
       "weight": 1,
-      "provenance": "Jazz genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Jazz catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "jazz"
       ],
@@ -1210,14 +1652,65 @@ export const JAZZ_WORLD: GenreWorld = {
         "chorus"
       ],
       "variants": [
-        
-        ],
+        {
+          "id": "jazz-comping-sync-v-01",
+          "parentPatternId": "jazz-comping-sync",
+          "name": "Syncopated Comping — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            1,
+            7
+          ],
+          "accentProfile": [
+            0.7999999999999999,
+            0.95
+          ],
+          "velocityProfile": [
+            0.7200000000000001,
+            0.87
+          ],
+          "microtimingOffset": [
+            -3,
+            6
+          ]
+        },
+        {
+          "id": "jazz-comping-sync-v-02",
+          "parentPatternId": "jazz-comping-sync",
+          "name": "Syncopated Comping — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            1,
+            4,
+            7
+          ],
+          "accentProfile": [
+            0.8099999999999999,
+            1,
+            0.86
+          ],
+          "velocityProfile": [
+            0.8600000000000001,
+            0.9299999999999999,
+            0.83
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2
+          ]
+        }
+      ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 1,
       "weight": 1,
-      "provenance": "Jazz genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Jazz catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "jazz"
       ],
@@ -1309,13 +1802,41 @@ export const JAZZ_WORLD: GenreWorld = {
             6
           ]
         },
-        ],
+        {
+          "id": "jazz-snare-comp-v-02",
+          "parentPatternId": "jazz-snare-comp",
+          "name": "Snare Comping — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            2,
+            7,
+            10
+          ],
+          "accentProfile": [
+            0.71,
+            1,
+            0.8099999999999999
+          ],
+          "velocityProfile": [
+            0.76,
+            0.9299999999999999,
+            0.78
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2
+          ]
+        }
+      ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 1,
       "weight": 1,
-      "provenance": "Jazz genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Jazz catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "jazz"
       ],
@@ -1392,14 +1913,85 @@ export const JAZZ_WORLD: GenreWorld = {
         "chorus"
       ],
       "variants": [
-        
-        ],
+        {
+          "id": "jazz-waltz-ride-v-01",
+          "parentPatternId": "jazz-waltz-ride",
+          "name": "Jazz Waltz Ride — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            3,
+            5,
+            8
+          ],
+          "accentProfile": [
+            0.95,
+            0.6,
+            0.7999999999999999,
+            0.5499999999999999
+          ],
+          "velocityProfile": [
+            0.87,
+            0.52,
+            0.7200000000000001,
+            0.47000000000000003
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6
+          ]
+        },
+        {
+          "id": "jazz-waltz-ride-v-02",
+          "parentPatternId": "jazz-waltz-ride",
+          "name": "Jazz Waltz Ride — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            2,
+            3,
+            5,
+            6,
+            8
+          ],
+          "accentProfile": [
+            0.96,
+            0.73,
+            0.8099999999999999,
+            0.6799999999999999,
+            0.86,
+            0.7799999999999999
+          ],
+          "velocityProfile": [
+            1,
+            0.58,
+            0.78,
+            0.6100000000000001,
+            0.83,
+            0.63
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5
+          ]
+        }
+      ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 2,
       "weight": 1,
-      "provenance": "Jazz genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Jazz catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "jazz"
       ],
@@ -1502,9 +2094,72 @@ export const JAZZ_WORLD: GenreWorld = {
         "phrasePosition"
       ],
       "variants": [
-        
-        ],
-      "provenance": "Jazz genre-pack structural pattern; generalized for engine coverage and recombination, not a transcription of a single recording.",
+        {
+          "id": "jazz-phrase-13-v-01",
+          "parentPatternId": "jazz-phrase-13",
+          "name": "Solo Phrase — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            1,
+            6,
+            9
+          ],
+          "accentProfile": [
+            0.95,
+            0.69,
+            0.85
+          ],
+          "velocityProfile": [
+            0.92,
+            0.61,
+            0.8200000000000001
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "jazz-phrase-13-v-02",
+          "parentPatternId": "jazz-phrase-13",
+          "name": "Solo Phrase — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            1,
+            4,
+            6,
+            9,
+            11
+          ],
+          "accentProfile": [
+            0.96,
+            0.82,
+            0.86,
+            0.76,
+            0.96
+          ],
+          "velocityProfile": [
+            1,
+            0.6699999999999999,
+            0.88,
+            0.74,
+            0.9299999999999999
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2
+          ]
+        }
+      ],
+      "provenance": "GenreDAW catalog rebuild from existing Jazz world data; generated to cover missing musical functions without runtime AI.",
       "authenticityTags": [
         "jazz",
         "solo"
@@ -1570,7 +2225,7 @@ export const JAZZ_WORLD: GenreWorld = {
         0.57,
         0.95,
         0.62,
-        0.9
+        0.8999999999999999
       ],
       "syncopationRating": 0.8,
       "anticipationOffset": 0,
@@ -1603,10 +2258,116 @@ export const JAZZ_WORLD: GenreWorld = {
         "phrasePosition"
       ],
       "variants": [
-        
-        
-        ],
-      "provenance": "Jazz genre-pack structural pattern; generalized for engine coverage and recombination, not a transcription of a single recording.",
+        {
+          "id": "jazz-call-14-v-01",
+          "parentPatternId": "jazz-call-14",
+          "name": "Shout Response — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            2,
+            7,
+            10
+          ],
+          "accentProfile": [
+            0.8999999999999999,
+            0.57,
+            0.8999999999999999
+          ],
+          "velocityProfile": [
+            0.87,
+            0.48999999999999994,
+            0.87
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "jazz-call-14-v-02",
+          "parentPatternId": "jazz-call-14",
+          "name": "Shout Response — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            2,
+            5,
+            7,
+            10,
+            12
+          ],
+          "accentProfile": [
+            0.9099999999999999,
+            0.7,
+            0.9099999999999999,
+            0.7,
+            0.9099999999999999
+          ],
+          "velocityProfile": [
+            1,
+            0.5499999999999999,
+            0.9299999999999999,
+            0.6799999999999999,
+            0.8799999999999999
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2
+          ]
+        },
+        {
+          "id": "jazz-call-14-v-03",
+          "parentPatternId": "jazz-call-14",
+          "name": "Shout Response — transition variation",
+          "variationType": "transition",
+          "probability": 0.16,
+          "description": "Adds a final pickup/closure gesture for section transitions.",
+          "onsetGrid": [
+            2,
+            5,
+            7,
+            10,
+            12,
+            14,
+            15
+          ],
+          "accentProfile": [
+            0.9299999999999999,
+            0.6,
+            0.9299999999999999,
+            0.6,
+            0.9299999999999999,
+            1,
+            1
+          ],
+          "velocityProfile": [
+            0.95,
+            0.57,
+            0.95,
+            0.62,
+            0.8999999999999999,
+            0.98,
+            0.98
+          ],
+          "microtimingOffset": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            -6,
+            -6
+          ]
+        }
+      ],
+      "provenance": "GenreDAW catalog rebuild from existing Jazz world data; generated to cover missing musical functions without runtime AI.",
       "authenticityTags": [
         "jazz",
         "shout"
@@ -1704,9 +2465,72 @@ export const JAZZ_WORLD: GenreWorld = {
         "phrasePosition"
       ],
       "variants": [
-        
-        ],
-      "provenance": "Jazz genre-pack structural pattern; generalized for engine coverage and recombination, not a transcription of a single recording.",
+        {
+          "id": "jazz-anchor-15-v-01",
+          "parentPatternId": "jazz-anchor-15",
+          "name": "Head Anchor — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            3,
+            8,
+            11
+          ],
+          "accentProfile": [
+            0.95,
+            0.69,
+            0.85
+          ],
+          "velocityProfile": [
+            0.92,
+            0.61,
+            0.8200000000000001
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "jazz-anchor-15-v-02",
+          "parentPatternId": "jazz-anchor-15",
+          "name": "Head Anchor — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            3,
+            6,
+            8,
+            11,
+            13
+          ],
+          "accentProfile": [
+            0.96,
+            0.82,
+            0.86,
+            0.76,
+            0.96
+          ],
+          "velocityProfile": [
+            1,
+            0.6699999999999999,
+            0.88,
+            0.74,
+            0.9299999999999999
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2
+          ]
+        }
+      ],
+      "provenance": "GenreDAW catalog rebuild from existing Jazz world data; generated to cover missing musical functions without runtime AI.",
       "authenticityTags": [
         "jazz",
         "head"
@@ -1803,9 +2627,72 @@ export const JAZZ_WORLD: GenreWorld = {
         "phrasePosition"
       ],
       "variants": [
-        
-        ],
-      "provenance": "Jazz genre-pack structural pattern; generalized for engine coverage and recombination, not a transcription of a single recording.",
+        {
+          "id": "jazz-comp-16-v-01",
+          "parentPatternId": "jazz-comp-16",
+          "name": "Comping Comping — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            5,
+            10,
+            13
+          ],
+          "accentProfile": [
+            0.95,
+            0.69,
+            0.85
+          ],
+          "velocityProfile": [
+            0.92,
+            0.61,
+            0.8200000000000001
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "jazz-comp-16-v-02",
+          "parentPatternId": "jazz-comp-16",
+          "name": "Comping Comping — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            5,
+            8,
+            10,
+            13,
+            15
+          ],
+          "accentProfile": [
+            0.96,
+            0.82,
+            0.86,
+            0.76,
+            0.96
+          ],
+          "velocityProfile": [
+            1,
+            0.6699999999999999,
+            0.88,
+            0.74,
+            0.9299999999999999
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2
+          ]
+        }
+      ],
+      "provenance": "GenreDAW catalog rebuild from existing Jazz world data; generated to cover missing musical functions without runtime AI.",
       "authenticityTags": [
         "jazz",
         "comping"
@@ -1909,8 +2796,78 @@ export const JAZZ_WORLD: GenreWorld = {
         "phrasePosition"
       ],
       "variants": [
-        
-        
+        {
+          "id": "jazz-intro-17-v-01",
+          "parentPatternId": "jazz-intro-17",
+          "name": "Turnaround Intro — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            4,
+            5,
+            8
+          ],
+          "accentProfile": [
+            0.95,
+            0.69,
+            0.85,
+            0.63
+          ],
+          "velocityProfile": [
+            0.92,
+            0.61,
+            0.8200000000000001,
+            0.6000000000000001
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6
+          ]
+        },
+        {
+          "id": "jazz-intro-17-v-02",
+          "parentPatternId": "jazz-intro-17",
+          "name": "Turnaround Intro — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            2,
+            4,
+            5,
+            7,
+            8
+          ],
+          "accentProfile": [
+            0.96,
+            0.82,
+            0.86,
+            0.76,
+            0.96,
+            0.82
+          ],
+          "velocityProfile": [
+            1,
+            0.6699999999999999,
+            0.88,
+            0.74,
+            0.9299999999999999,
+            0.72
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5
+          ]
+        },
         {
           "id": "jazz-intro-17-v-03",
           "parentPatternId": "jazz-intro-17",
@@ -1960,7 +2917,7 @@ export const JAZZ_WORLD: GenreWorld = {
           ]
         }
       ],
-      "provenance": "Jazz genre-pack structural pattern; generalized for engine coverage and recombination, not a transcription of a single recording.",
+      "provenance": "GenreDAW catalog rebuild from existing Jazz world data; generated to cover missing musical functions without runtime AI.",
       "authenticityTags": [
         "jazz",
         "turnaround"

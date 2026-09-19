@@ -375,13 +375,49 @@ export const KIZOMBA_WORLD: GenreWorld = {
           ],
           "description": "Stripped-down heavy electronic sub-bass kick for intimate slow tarraxinha movements."
         },
-        ],
+        {
+          "id": "kizomba-batida-groove-v-02",
+          "parentPatternId": "kizomba-batida-groove",
+          "name": "Kizomba Batida & Sub-Kick Beat — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            6,
+            8,
+            12,
+            14
+          ],
+          "accentProfile": [
+            0.96,
+            0.8999999999999999,
+            0.8999999999999999,
+            0.7999999999999999,
+            0.84
+          ],
+          "velocityProfile": [
+            1,
+            0.76,
+            0.86,
+            0.74,
+            0.7999999999999999
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2
+          ]
+        }
+      ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 2,
       "weight": 1,
-      "provenance": "Kizomba genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Kizomba catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "kizomba"
       ],
@@ -465,14 +501,85 @@ export const KIZOMBA_WORLD: GenreWorld = {
         "chorus"
       ],
       "variants": [
-        
-        ],
+        {
+          "id": "kizomba-dikanza-scraper-v-01",
+          "parentPatternId": "kizomba-dikanza-scraper",
+          "name": "Dikanza Scraper — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            2,
+            7,
+            10,
+            15
+          ],
+          "accentProfile": [
+            0.71,
+            0.8899999999999999,
+            0.6699999999999999,
+            0.83
+          ],
+          "velocityProfile": [
+            0.64,
+            0.8,
+            0.6000000000000001,
+            0.76
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6
+          ]
+        },
+        {
+          "id": "kizomba-dikanza-scraper-v-02",
+          "parentPatternId": "kizomba-dikanza-scraper",
+          "name": "Dikanza Scraper — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            2,
+            4,
+            7,
+            10,
+            12,
+            15
+          ],
+          "accentProfile": [
+            0.72,
+            1,
+            0.6799999999999999,
+            0.96,
+            0.7799999999999999,
+            1
+          ],
+          "velocityProfile": [
+            0.78,
+            0.86,
+            0.66,
+            0.8999999999999999,
+            0.74,
+            0.86
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5
+          ]
+        }
+      ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 2,
       "weight": 1,
-      "provenance": "Kizomba genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Kizomba catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "kizomba"
       ],
@@ -557,14 +664,85 @@ export const KIZOMBA_WORLD: GenreWorld = {
         "solo"
       ],
       "variants": [
-        
-        ],
+        {
+          "id": "kizomba-semba-guitar-v-01",
+          "parentPatternId": "kizomba-semba-guitar",
+          "name": "Semba Guitar Arpeggio — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            6,
+            9,
+            14
+          ],
+          "accentProfile": [
+            0.9299999999999999,
+            0.69,
+            0.83,
+            0.69
+          ],
+          "velocityProfile": [
+            0.8400000000000001,
+            0.62,
+            0.76,
+            0.62
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6
+          ]
+        },
+        {
+          "id": "kizomba-semba-guitar-v-02",
+          "parentPatternId": "kizomba-semba-guitar",
+          "name": "Semba Guitar Arpeggio — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            3,
+            6,
+            9,
+            12,
+            14
+          ],
+          "accentProfile": [
+            0.94,
+            0.82,
+            0.84,
+            0.82,
+            0.88,
+            0.8999999999999999
+          ],
+          "velocityProfile": [
+            0.98,
+            0.6799999999999999,
+            0.82,
+            0.76,
+            0.86,
+            0.74
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5
+          ]
+        }
+      ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 2,
       "weight": 1,
-      "provenance": "Kizomba genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Kizomba catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "kizomba"
       ],
@@ -675,13 +853,41 @@ export const KIZOMBA_WORLD: GenreWorld = {
             6
           ]
         },
-        ],
+        {
+          "id": "kizomba-tarraxinha-sub-v-02",
+          "parentPatternId": "kizomba-tarraxinha-sub",
+          "name": "Tarraxinha Sub-Bass — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            6,
+            12
+          ],
+          "accentProfile": [
+            0.96,
+            0.96,
+            0.7799999999999999
+          ],
+          "velocityProfile": [
+            1,
+            0.82,
+            0.76
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2
+          ]
+        }
+      ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 1,
       "weight": 1,
-      "provenance": "Kizomba genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Kizomba catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "kizomba"
       ],
@@ -769,14 +975,73 @@ export const KIZOMBA_WORLD: GenreWorld = {
         "chorus"
       ],
       "variants": [
-        
-        ],
+        {
+          "id": "kizomba-kick-batida-v-01",
+          "parentPatternId": "kizomba-kick-batida",
+          "name": "Kizomba Kick Batida — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            10,
+            14
+          ],
+          "accentProfile": [
+            0.95,
+            0.8099999999999999,
+            0.87
+          ],
+          "velocityProfile": [
+            0.87,
+            0.74,
+            0.78
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "kizomba-kick-batida-v-02",
+          "parentPatternId": "kizomba-kick-batida",
+          "name": "Kizomba Kick Batida — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            6,
+            10,
+            14
+          ],
+          "accentProfile": [
+            0.96,
+            0.94,
+            0.88,
+            0.86
+          ],
+          "velocityProfile": [
+            1,
+            0.7999999999999999,
+            0.84,
+            0.8
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5
+          ]
+        }
+      ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 1,
       "weight": 1,
-      "provenance": "Kizomba genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Kizomba catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "kizomba"
       ],
@@ -875,14 +1140,97 @@ export const KIZOMBA_WORLD: GenreWorld = {
         "chorus"
       ],
       "variants": [
-        
-        ],
+        {
+          "id": "kizomba-hats-v-01",
+          "parentPatternId": "kizomba-hats",
+          "name": "Kizomba Hi-Hats — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            4,
+            6,
+            10,
+            12
+          ],
+          "accentProfile": [
+            0.87,
+            0.57,
+            0.7699999999999999,
+            0.59,
+            0.83
+          ],
+          "velocityProfile": [
+            0.8,
+            0.49999999999999994,
+            0.7000000000000001,
+            0.49999999999999994,
+            0.74
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "kizomba-hats-v-02",
+          "parentPatternId": "kizomba-hats",
+          "name": "Kizomba Hi-Hats — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14
+          ],
+          "accentProfile": [
+            0.88,
+            0.7,
+            0.7799999999999999,
+            0.72,
+            0.84,
+            0.7,
+            0.7799999999999999,
+            0.76
+          ],
+          "velocityProfile": [
+            0.94,
+            0.5599999999999999,
+            0.76,
+            0.6399999999999999,
+            0.7999999999999999,
+            0.5599999999999999,
+            0.8400000000000001,
+            0.6
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5
+          ]
+        }
+      ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 3,
       "weight": 1,
-      "provenance": "Kizomba genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Kizomba catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "kizomba"
       ],
@@ -975,14 +1323,77 @@ export const KIZOMBA_WORLD: GenreWorld = {
         "chorus"
       ],
       "variants": [
-        
-        ],
+        {
+          "id": "kizomba-urban-synth-pulse-v-01",
+          "parentPatternId": "kizomba-urban-synth-pulse",
+          "name": "Urban Kiz Synth Pulse — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            2,
+            8,
+            11
+          ],
+          "accentProfile": [
+            0.7999999999999999,
+            0.8999999999999999,
+            0.75
+          ],
+          "velocityProfile": [
+            0.7200000000000001,
+            0.8200000000000001,
+            0.67
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "kizomba-urban-synth-pulse-v-02",
+          "parentPatternId": "kizomba-urban-synth-pulse",
+          "name": "Urban Kiz Synth Pulse — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            2,
+            5,
+            8,
+            11,
+            14
+          ],
+          "accentProfile": [
+            0.8099999999999999,
+            1,
+            0.76,
+            0.98,
+            0.71
+          ],
+          "velocityProfile": [
+            0.8600000000000001,
+            0.88,
+            0.73,
+            0.9099999999999999,
+            0.6799999999999999
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2
+          ]
+        }
+      ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 2,
       "weight": 1,
-      "provenance": "Kizomba genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Kizomba catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "kizomba"
       ],
@@ -1067,14 +1478,73 @@ export const KIZOMBA_WORLD: GenreWorld = {
         "chorus"
       ],
       "variants": [
-        
-        ],
+        {
+          "id": "kizomba-vocal-comping-v-01",
+          "parentPatternId": "kizomba-vocal-comping",
+          "name": "Kizomba Vocal Phrase Response — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            4,
+            12,
+            15
+          ],
+          "accentProfile": [
+            0.87,
+            0.7999999999999999,
+            0.8999999999999999
+          ],
+          "velocityProfile": [
+            0.8,
+            0.7200000000000001,
+            0.8200000000000001
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "kizomba-vocal-comping-v-02",
+          "parentPatternId": "kizomba-vocal-comping",
+          "name": "Kizomba Vocal Phrase Response — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            4,
+            7,
+            12,
+            15
+          ],
+          "accentProfile": [
+            0.88,
+            0.9299999999999999,
+            0.9099999999999999,
+            0.88
+          ],
+          "velocityProfile": [
+            0.94,
+            0.78,
+            0.88,
+            0.81
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5
+          ]
+        }
+      ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 1,
       "weight": 1,
-      "provenance": "Kizomba genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Kizomba catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "kizomba"
       ],
@@ -1154,7 +1624,7 @@ export const KIZOMBA_WORLD: GenreWorld = {
         0.74,
         0.9
       ],
-      "syncopationRating": 0.71,
+      "syncopationRating": 0.7142857142857143,
       "anticipationOffset": 0,
       "swingPercentage": 50,
       "articulations": [
@@ -1183,9 +1653,88 @@ export const KIZOMBA_WORLD: GenreWorld = {
         "phrasePosition"
       ],
       "variants": [
-        
-        ],
-      "provenance": "Kizomba genre-pack structural pattern; generalized for engine coverage and recombination, not a transcription of a single recording.",
+        {
+          "id": "kizomba-phrase-9-v-01",
+          "parentPatternId": "kizomba-phrase-9",
+          "name": "Hook Phrase — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            1,
+            7,
+            8,
+            13,
+            15
+          ],
+          "accentProfile": [
+            0.95,
+            0.69,
+            0.85,
+            0.63,
+            0.95
+          ],
+          "velocityProfile": [
+            0.92,
+            0.61,
+            0.8200000000000001,
+            0.6000000000000001,
+            0.87
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "kizomba-phrase-9-v-02",
+          "parentPatternId": "kizomba-phrase-9",
+          "name": "Hook Phrase — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            1,
+            4,
+            7,
+            8,
+            11,
+            13,
+            15
+          ],
+          "accentProfile": [
+            0.96,
+            0.82,
+            0.86,
+            0.76,
+            0.96,
+            0.82,
+            0.86
+          ],
+          "velocityProfile": [
+            1,
+            0.6699999999999999,
+            0.88,
+            0.74,
+            0.9299999999999999,
+            0.72,
+            0.96
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2
+          ]
+        }
+      ],
+      "provenance": "GenreDAW catalog rebuild from existing Kizomba world data; generated to cover missing musical functions without runtime AI.",
       "authenticityTags": [
         "kizomba",
         "hook"
@@ -1252,11 +1801,11 @@ export const KIZOMBA_WORLD: GenreWorld = {
         0.57,
         0.95,
         0.62,
-        0.9,
+        0.8999999999999999,
         0.62,
         0.95
       ],
-      "syncopationRating": 0.57,
+      "syncopationRating": 0.5714285714285714,
       "anticipationOffset": 0,
       "swingPercentage": 50,
       "articulations": [
@@ -1286,10 +1835,136 @@ export const KIZOMBA_WORLD: GenreWorld = {
         "phrasePosition"
       ],
       "variants": [
-        
-        
-        ],
-      "provenance": "Kizomba genre-pack structural pattern; generalized for engine coverage and recombination, not a transcription of a single recording.",
+        {
+          "id": "kizomba-call-10-v-01",
+          "parentPatternId": "kizomba-call-10",
+          "name": "Kizomba Bass Response — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            5,
+            8,
+            12,
+            14
+          ],
+          "accentProfile": [
+            0.8999999999999999,
+            0.57,
+            0.8999999999999999,
+            0.57,
+            0.8999999999999999
+          ],
+          "velocityProfile": [
+            0.87,
+            0.48999999999999994,
+            0.87,
+            0.54,
+            0.82
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "kizomba-call-10-v-02",
+          "parentPatternId": "kizomba-call-10",
+          "name": "Kizomba Bass Response — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            2,
+            5,
+            8,
+            9,
+            12,
+            14
+          ],
+          "accentProfile": [
+            0.9099999999999999,
+            0.7,
+            0.9099999999999999,
+            0.7,
+            0.9099999999999999,
+            0.7,
+            0.9099999999999999
+          ],
+          "velocityProfile": [
+            1,
+            0.5499999999999999,
+            0.9299999999999999,
+            0.6799999999999999,
+            0.8799999999999999,
+            0.6,
+            1
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2
+          ]
+        },
+        {
+          "id": "kizomba-call-10-v-03",
+          "parentPatternId": "kizomba-call-10",
+          "name": "Kizomba Bass Response — transition variation",
+          "variationType": "transition",
+          "probability": 0.16,
+          "description": "Adds a final pickup/closure gesture for section transitions.",
+          "onsetGrid": [
+            0,
+            2,
+            5,
+            8,
+            9,
+            12,
+            14,
+            15
+          ],
+          "accentProfile": [
+            0.9299999999999999,
+            0.6,
+            0.9299999999999999,
+            0.6,
+            0.9299999999999999,
+            0.6,
+            1,
+            1
+          ],
+          "velocityProfile": [
+            0.95,
+            0.57,
+            0.95,
+            0.62,
+            0.8999999999999999,
+            0.62,
+            0.98,
+            0.98
+          ],
+          "microtimingOffset": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            -6,
+            -6
+          ]
+        }
+      ],
+      "provenance": "GenreDAW catalog rebuild from existing Kizomba world data; generated to cover missing musical functions without runtime AI.",
       "authenticityTags": [
         "kizomba",
         "kizomba-bass"
@@ -1394,9 +2069,88 @@ export const KIZOMBA_WORLD: GenreWorld = {
         "phrasePosition"
       ],
       "variants": [
-        
-        ],
-      "provenance": "Kizomba genre-pack structural pattern; generalized for engine coverage and recombination, not a transcription of a single recording.",
+        {
+          "id": "kizomba-anchor-11-v-01",
+          "parentPatternId": "kizomba-anchor-11",
+          "name": "Semba Anchor — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            1,
+            6,
+            9,
+            13,
+            15
+          ],
+          "accentProfile": [
+            0.95,
+            0.69,
+            0.85,
+            0.63,
+            0.95
+          ],
+          "velocityProfile": [
+            0.92,
+            0.61,
+            0.8200000000000001,
+            0.6000000000000001,
+            0.87
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "kizomba-anchor-11-v-02",
+          "parentPatternId": "kizomba-anchor-11",
+          "name": "Semba Anchor — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            1,
+            3,
+            6,
+            9,
+            10,
+            13,
+            15
+          ],
+          "accentProfile": [
+            0.96,
+            0.82,
+            0.86,
+            0.76,
+            0.96,
+            0.82,
+            0.86
+          ],
+          "velocityProfile": [
+            1,
+            0.6699999999999999,
+            0.88,
+            0.74,
+            0.9299999999999999,
+            0.72,
+            0.96
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2
+          ]
+        }
+      ],
+      "provenance": "GenreDAW catalog rebuild from existing Kizomba world data; generated to cover missing musical functions without runtime AI.",
       "authenticityTags": [
         "kizomba",
         "semba"
@@ -1473,7 +2227,7 @@ export const KIZOMBA_WORLD: GenreWorld = {
         0.74,
         0.9
       ],
-      "syncopationRating": 0.71,
+      "syncopationRating": 0.7142857142857143,
       "anticipationOffset": 0,
       "swingPercentage": 50,
       "articulations": [
@@ -1502,9 +2256,88 @@ export const KIZOMBA_WORLD: GenreWorld = {
         "phrasePosition"
       ],
       "variants": [
-        
-        ],
-      "provenance": "Kizomba genre-pack structural pattern; generalized for engine coverage and recombination, not a transcription of a single recording.",
+        {
+          "id": "kizomba-comp-12-v-01",
+          "parentPatternId": "kizomba-comp-12",
+          "name": "Call Comping — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            1,
+            5,
+            8,
+            12,
+            15
+          ],
+          "accentProfile": [
+            0.95,
+            0.69,
+            0.85,
+            0.63,
+            0.95
+          ],
+          "velocityProfile": [
+            0.92,
+            0.61,
+            0.8200000000000001,
+            0.6000000000000001,
+            0.87
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "kizomba-comp-12-v-02",
+          "parentPatternId": "kizomba-comp-12",
+          "name": "Call Comping — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            1,
+            3,
+            5,
+            8,
+            11,
+            12,
+            15
+          ],
+          "accentProfile": [
+            0.96,
+            0.82,
+            0.86,
+            0.76,
+            0.96,
+            0.82,
+            0.86
+          ],
+          "velocityProfile": [
+            1,
+            0.6699999999999999,
+            0.88,
+            0.74,
+            0.9299999999999999,
+            0.72,
+            0.96
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2
+          ]
+        }
+      ],
+      "provenance": "GenreDAW catalog rebuild from existing Kizomba world data; generated to cover missing musical functions without runtime AI.",
       "authenticityTags": [
         "kizomba",
         "call"
@@ -1615,8 +2448,90 @@ export const KIZOMBA_WORLD: GenreWorld = {
         "phrasePosition"
       ],
       "variants": [
-        
-        
+        {
+          "id": "kizomba-intro-13-v-01",
+          "parentPatternId": "kizomba-intro-13",
+          "name": "Drop Intro — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            6,
+            7,
+            12,
+            14
+          ],
+          "accentProfile": [
+            0.95,
+            0.69,
+            0.85,
+            0.63,
+            0.95
+          ],
+          "velocityProfile": [
+            0.92,
+            0.61,
+            0.8200000000000001,
+            0.6000000000000001,
+            0.87
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "kizomba-intro-13-v-02",
+          "parentPatternId": "kizomba-intro-13",
+          "name": "Drop Intro — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            2,
+            6,
+            7,
+            10,
+            12,
+            14,
+            15
+          ],
+          "accentProfile": [
+            0.96,
+            0.82,
+            0.86,
+            0.76,
+            0.96,
+            0.82,
+            0.86,
+            0.76
+          ],
+          "velocityProfile": [
+            1,
+            0.6699999999999999,
+            0.88,
+            0.74,
+            0.9299999999999999,
+            0.72,
+            0.96,
+            0.61
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5
+          ]
+        },
         {
           "id": "kizomba-intro-13-v-03",
           "parentPatternId": "kizomba-intro-13",
@@ -1666,7 +2581,7 @@ export const KIZOMBA_WORLD: GenreWorld = {
           ]
         }
       ],
-      "provenance": "Kizomba genre-pack structural pattern; generalized for engine coverage and recombination, not a transcription of a single recording.",
+      "provenance": "GenreDAW catalog rebuild from existing Kizomba world data; generated to cover missing musical functions without runtime AI.",
       "authenticityTags": [
         "kizomba",
         "drop"
@@ -1781,9 +2696,92 @@ export const KIZOMBA_WORLD: GenreWorld = {
         "phrasePosition"
       ],
       "variants": [
-        
-        ],
-      "provenance": "Kizomba genre-pack structural pattern; generalized for engine coverage and recombination, not a transcription of a single recording.",
+        {
+          "id": "kizomba-verse-14-v-01",
+          "parentPatternId": "kizomba-verse-14",
+          "name": "Hook Verse Variation — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            3,
+            7,
+            11,
+            13
+          ],
+          "accentProfile": [
+            0.95,
+            0.69,
+            0.85,
+            0.63,
+            0.95
+          ],
+          "velocityProfile": [
+            0.92,
+            0.61,
+            0.8200000000000001,
+            0.6000000000000001,
+            0.87
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "kizomba-verse-14-v-02",
+          "parentPatternId": "kizomba-verse-14",
+          "name": "Hook Verse Variation — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            1,
+            3,
+            7,
+            8,
+            11,
+            13,
+            15
+          ],
+          "accentProfile": [
+            0.96,
+            0.82,
+            0.86,
+            0.76,
+            0.96,
+            0.82,
+            0.86,
+            0.76
+          ],
+          "velocityProfile": [
+            1,
+            0.6699999999999999,
+            0.88,
+            0.74,
+            0.9299999999999999,
+            0.72,
+            0.96,
+            0.61
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5
+          ]
+        }
+      ],
+      "provenance": "GenreDAW catalog rebuild from existing Kizomba world data; generated to cover missing musical functions without runtime AI.",
       "authenticityTags": [
         "kizomba",
         "hook"
@@ -1899,8 +2897,90 @@ export const KIZOMBA_WORLD: GenreWorld = {
         "phrasePosition"
       ],
       "variants": [
-        
-        
+        {
+          "id": "kizomba-chorus-15-v-01",
+          "parentPatternId": "kizomba-chorus-15",
+          "name": "Kizomba Bass Chorus Lift — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            2,
+            4,
+            9,
+            12
+          ],
+          "accentProfile": [
+            0.95,
+            0.69,
+            0.85,
+            0.63,
+            0.95
+          ],
+          "velocityProfile": [
+            0.92,
+            0.61,
+            0.8200000000000001,
+            0.6000000000000001,
+            0.87
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "kizomba-chorus-15-v-02",
+          "parentPatternId": "kizomba-chorus-15",
+          "name": "Kizomba Bass Chorus Lift — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            1,
+            2,
+            4,
+            8,
+            9,
+            12,
+            14
+          ],
+          "accentProfile": [
+            0.96,
+            0.82,
+            0.86,
+            0.76,
+            0.96,
+            0.82,
+            0.86,
+            0.76
+          ],
+          "velocityProfile": [
+            1,
+            0.6699999999999999,
+            0.88,
+            0.74,
+            0.9299999999999999,
+            0.72,
+            0.96,
+            0.61
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5
+          ]
+        },
         {
           "id": "kizomba-chorus-15-v-03",
           "parentPatternId": "kizomba-chorus-15",
@@ -1954,7 +3034,7 @@ export const KIZOMBA_WORLD: GenreWorld = {
           ]
         }
       ],
-      "provenance": "Kizomba genre-pack structural pattern; generalized for engine coverage and recombination, not a transcription of a single recording.",
+      "provenance": "GenreDAW catalog rebuild from existing Kizomba world data; generated to cover missing musical functions without runtime AI.",
       "authenticityTags": [
         "kizomba",
         "kizomba-bass"
@@ -2066,8 +3146,90 @@ export const KIZOMBA_WORLD: GenreWorld = {
         "phrasePosition"
       ],
       "variants": [
-        
-        
+        {
+          "id": "kizomba-bridge-16-v-01",
+          "parentPatternId": "kizomba-bridge-16",
+          "name": "Semba Bridge — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            3,
+            4,
+            10,
+            11
+          ],
+          "accentProfile": [
+            0.95,
+            0.69,
+            0.85,
+            0.63,
+            0.95
+          ],
+          "velocityProfile": [
+            0.92,
+            0.61,
+            0.8200000000000001,
+            0.6000000000000001,
+            0.87
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "kizomba-bridge-16-v-02",
+          "parentPatternId": "kizomba-bridge-16",
+          "name": "Semba Bridge — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            2,
+            3,
+            4,
+            6,
+            10,
+            11,
+            14
+          ],
+          "accentProfile": [
+            0.96,
+            0.82,
+            0.86,
+            0.76,
+            0.96,
+            0.82,
+            0.86,
+            0.76
+          ],
+          "velocityProfile": [
+            1,
+            0.6699999999999999,
+            0.88,
+            0.74,
+            0.9299999999999999,
+            0.72,
+            0.96,
+            0.61
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5
+          ]
+        },
         {
           "id": "kizomba-bridge-16-v-03",
           "parentPatternId": "kizomba-bridge-16",
@@ -2121,7 +3283,7 @@ export const KIZOMBA_WORLD: GenreWorld = {
           ]
         }
       ],
-      "provenance": "Kizomba genre-pack structural pattern; generalized for engine coverage and recombination, not a transcription of a single recording.",
+      "provenance": "GenreDAW catalog rebuild from existing Kizomba world data; generated to cover missing musical functions without runtime AI.",
       "authenticityTags": [
         "kizomba",
         "semba"
@@ -2220,8 +3382,66 @@ export const KIZOMBA_WORLD: GenreWorld = {
         "phrasePosition"
       ],
       "variants": [
-        
-        
+        {
+          "id": "kizomba-fill-17-v-01",
+          "parentPatternId": "kizomba-fill-17",
+          "name": "Call Fill — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            8,
+            12
+          ],
+          "accentProfile": [
+            0.6699999999999999,
+            0.73,
+            0.7899999999999999
+          ],
+          "velocityProfile": [
+            0.64,
+            0.65,
+            0.76
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "kizomba-fill-17-v-02",
+          "parentPatternId": "kizomba-fill-17",
+          "name": "Call Fill — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            4,
+            8,
+            12
+          ],
+          "accentProfile": [
+            0.6799999999999999,
+            0.86,
+            0.7999999999999999,
+            1
+          ],
+          "velocityProfile": [
+            0.78,
+            0.71,
+            0.82,
+            1
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5
+          ]
+        },
         {
           "id": "kizomba-fill-17-v-03",
           "parentPatternId": "kizomba-fill-17",
@@ -2263,7 +3483,7 @@ export const KIZOMBA_WORLD: GenreWorld = {
           ]
         }
       ],
-      "provenance": "Kizomba genre-pack structural pattern; generalized for engine coverage and recombination, not a transcription of a single recording.",
+      "provenance": "GenreDAW catalog rebuild from existing Kizomba world data; generated to cover missing musical functions without runtime AI.",
       "authenticityTags": [
         "kizomba",
         "call"
@@ -2275,186 +3495,6 @@ export const KIZOMBA_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "difficulty": 1,
       "weight": 0.7,
-      "enabled": true
-    },
-    {
-      "id": "kizomba-tarraxinha-batida",
-      "worldId": "kizomba",
-      "traditionId": "kizomba-tarraxinha",
-      "name": "Tarraxinha Heavy Sub Batida",
-      "family": "Drums",
-      "category": "groove",
-      "description": "Slow, heavy 85bpm minimalist electronic kick pulse with syncopated pickup kicks designed for intimate body isolations.",
-      "tags": ["tarraxinha", "drums", "kick", "batida"],
-      "scopes": ["measure", "phrase", "region", "track"],
-      "roles": ["drums", "pulse", "percussion"],
-      "instruments": ["drums"],
-      "meter": "4/4",
-      "cycleLength": 1,
-      "subdivisions": 16,
-      "onsetGrid": [0, 6, 12, 14],
-      "accentProfile": [1.0, 0.7, 0.9, 0.8],
-      "velocityProfile": [0.95, 0.65, 0.85, 0.75],
-      "density": "sparse",
-      "phrasePosition": ["start", "middle", "end"],
-      "sectionUsage": ["verse", "chorus", "tarraxinha drop"],
-      "variants": [],
-      "provenance": "Genre-pack support pattern for Tarraxinha; generalized from documented musical conventions.",
-      "authenticityTags": ["tarraxinha", "drums"],
-      "danceTags": ["social-partner"],
-      "tuningSystem": "12-tet",
-      "difficulty": 1,
-      "weight": 1,
-      "enabled": true
-    },
-    {
-      "id": "kizomba-tarraxinha-percussion",
-      "worldId": "kizomba",
-      "traditionId": "kizomba-tarraxinha",
-      "name": "Tarraxinha Minimalist Woodblock & Rim",
-      "family": "Percussion",
-      "category": "ostinato",
-      "description": "Spacious metallic click and woodblock hits emphasizing syncopated hip movement in Tarraxo.",
-      "tags": ["tarraxinha", "percussion", "rim", "woodblock"],
-      "scopes": ["measure", "phrase", "region", "track"],
-      "roles": ["percussion"],
-      "instruments": ["percussion"],
-      "meter": "4/4",
-      "cycleLength": 1,
-      "subdivisions": 16,
-      "onsetGrid": [4, 10, 14],
-      "accentProfile": [0.85, 0.9, 0.75],
-      "velocityProfile": [0.8, 0.85, 0.7],
-      "density": "sparse",
-      "phrasePosition": ["start", "middle", "end"],
-      "sectionUsage": ["verse", "chorus", "tarraxinha drop"],
-      "variants": [],
-      "provenance": "Genre-pack support pattern for Tarraxinha; generalized from documented musical conventions.",
-      "authenticityTags": ["tarraxinha", "percussion"],
-      "danceTags": ["social-partner"],
-      "tuningSystem": "12-tet",
-      "difficulty": 1,
-      "weight": 1,
-      "enabled": true
-    },
-    {
-      "id": "kizomba-tarraxinha-glide-bass",
-      "worldId": "kizomba",
-      "traditionId": "kizomba-tarraxinha",
-      "name": "Tarraxinha Resonant Sub Glide",
-      "family": "Bass",
-      "category": "groove",
-      "description": "Deep sub-sine bass gliding between root pitches with slow portamento and intense low-end weight.",
-      "tags": ["tarraxinha", "bass", "sub", "glide"],
-      "scopes": ["measure", "phrase", "region", "track"],
-      "roles": ["bass"],
-      "instruments": ["bass", "synth"],
-      "meter": "4/4",
-      "cycleLength": 1,
-      "subdivisions": 16,
-      "onsetGrid": [0, 6, 12],
-      "accentProfile": [1.0, 0.8, 0.9],
-      "velocityProfile": [0.95, 0.75, 0.85],
-      "density": "sparse",
-      "phrasePosition": ["start", "middle", "end"],
-      "sectionUsage": ["verse", "chorus", "tarraxinha drop"],
-      "variants": [],
-      "provenance": "Genre-pack support pattern for Tarraxinha; generalized from documented musical conventions.",
-      "authenticityTags": ["tarraxinha", "bass"],
-      "danceTags": ["social-partner"],
-      "tuningSystem": "12-tet",
-      "difficulty": 1,
-      "weight": 1,
-      "enabled": true
-    },
-    {
-      "id": "kizomba-urban-batida-trap",
-      "worldId": "kizomba",
-      "traditionId": "kizomba-urban-kiz",
-      "name": "Urban Kiz Electronic Batida & Stop-Time",
-      "family": "Drums",
-      "category": "groove",
-      "description": "Modern European Urban Kiz electronic kick with crisp trap snap on 3, rapid hi-hat bursts, and sudden sharp stop-time cuts.",
-      "tags": ["urban-kiz", "drums", "electronic", "trap"],
-      "scopes": ["measure", "phrase", "region", "track"],
-      "roles": ["drums", "pulse", "percussion"],
-      "instruments": ["drums"],
-      "meter": "4/4",
-      "cycleLength": 1,
-      "subdivisions": 16,
-      "onsetGrid": [0, 6, 8, 12, 14],
-      "accentProfile": [1.0, 0.8, 0.95, 0.75, 0.9],
-      "velocityProfile": [0.95, 0.75, 0.9, 0.7, 0.85],
-      "density": "medium",
-      "phrasePosition": ["start", "middle", "end"],
-      "sectionUsage": ["verse", "chorus", "solo"],
-      "variants": [],
-      "provenance": "Genre-pack support pattern for Urban Kiz; generalized from documented musical conventions.",
-      "authenticityTags": ["urban-kiz", "drums"],
-      "danceTags": ["social-partner"],
-      "tuningSystem": "12-tet",
-      "difficulty": 2,
-      "weight": 1,
-      "enabled": true
-    },
-    {
-      "id": "kizomba-urban-linear-bass",
-      "worldId": "kizomba",
-      "traditionId": "kizomba-urban-kiz",
-      "name": "Urban Kiz Compressed 808 Linear Bass",
-      "family": "Bass",
-      "category": "groove",
-      "description": "Heavy compressed 808 bass with precise gated cutoffs matching the stop-start linear choreography of Urban Kiz.",
-      "tags": ["urban-kiz", "bass", "808", "synth"],
-      "scopes": ["measure", "phrase", "region", "track"],
-      "roles": ["bass"],
-      "instruments": ["bass", "synth"],
-      "meter": "4/4",
-      "cycleLength": 1,
-      "subdivisions": 16,
-      "onsetGrid": [0, 6, 8, 12],
-      "accentProfile": [1.0, 0.85, 0.95, 0.8],
-      "velocityProfile": [0.95, 0.8, 0.9, 0.75],
-      "density": "medium",
-      "phrasePosition": ["start", "middle", "end"],
-      "sectionUsage": ["verse", "chorus"],
-      "variants": [],
-      "provenance": "Genre-pack support pattern for Urban Kiz; generalized from documented musical conventions.",
-      "authenticityTags": ["urban-kiz", "bass"],
-      "danceTags": ["social-partner"],
-      "tuningSystem": "12-tet",
-      "difficulty": 2,
-      "weight": 1,
-      "enabled": true
-    },
-    {
-      "id": "kizomba-urban-atmosphere-pad",
-      "worldId": "kizomba",
-      "traditionId": "kizomba-urban-kiz",
-      "name": "Urban Kiz Dark Cinematic Pad & Pluck",
-      "family": "Synth",
-      "category": "harmony",
-      "description": "Moody, spacious minor chords and shimmering arpeggiated plucks giving European Urban Kiz its contemporary R&B atmosphere.",
-      "tags": ["urban-kiz", "synth", "pad", "harmony"],
-      "scopes": ["measure", "phrase", "region", "track"],
-      "roles": ["harmony", "synth", "pad"],
-      "instruments": ["synth", "keys"],
-      "meter": "4/4",
-      "cycleLength": 2,
-      "subdivisions": 16,
-      "onsetGrid": [0, 8, 16, 24],
-      "accentProfile": [0.95, 0.8, 0.95, 0.8],
-      "velocityProfile": [0.9, 0.75, 0.9, 0.75],
-      "density": "sparse",
-      "phrasePosition": ["start", "middle"],
-      "sectionUsage": ["intro", "verse", "chorus", "coda"],
-      "variants": [],
-      "provenance": "Genre-pack support pattern for Urban Kiz; generalized from documented musical conventions.",
-      "authenticityTags": ["urban-kiz", "synth"],
-      "danceTags": ["social-partner"],
-      "tuningSystem": "12-tet",
-      "difficulty": 2,
-      "weight": 1,
       "enabled": true
     }
   ],

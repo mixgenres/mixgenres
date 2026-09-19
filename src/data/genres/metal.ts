@@ -363,13 +363,77 @@ export const METAL_WORLD: GenreWorld = {
           ],
           "description": "Wall of 16th note double bass drum hits powering high-intensity sections."
         },
-        ],
+        {
+          "id": "metal-gallop-riff-v-02",
+          "parentPatternId": "metal-gallop-riff",
+          "name": "The Gallop Rhythm (Iron Maiden / Steve Harris) — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            1,
+            2,
+            4,
+            5,
+            6,
+            8,
+            9,
+            10,
+            12,
+            13,
+            14
+          ],
+          "accentProfile": [
+            0.96,
+            0.7799999999999999,
+            0.86,
+            1,
+            0.6599999999999999,
+            0.98,
+            0.96,
+            0.7799999999999999,
+            0.86,
+            1,
+            0.6599999999999999,
+            0.98
+          ],
+          "velocityProfile": [
+            1,
+            0.6799999999999999,
+            0.83,
+            1,
+            0.6799999999999999,
+            0.83,
+            1,
+            0.6799999999999999,
+            0.83,
+            1,
+            0.6799999999999999,
+            0.83
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5
+          ]
+        }
+      ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 4,
       "weight": 0.7,
-      "provenance": "Metal genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Metal catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "metal"
       ],
@@ -496,13 +560,53 @@ export const METAL_WORLD: GenreWorld = {
           ],
           "description": "Tempo feel halved with devastating snare drop on beat 3 and sub-bass drops."
         },
-        ],
+        {
+          "id": "metal-djent-chug-v-02",
+          "parentPatternId": "metal-djent-chug",
+          "name": "Djent Polymetric Low Chug — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            3,
+            6,
+            9,
+            11,
+            14
+          ],
+          "accentProfile": [
+            0.96,
+            0.98,
+            0.96,
+            0.98,
+            0.8099999999999999,
+            1
+          ],
+          "velocityProfile": [
+            1,
+            0.88,
+            0.98,
+            0.96,
+            0.83,
+            0.98
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5
+          ]
+        }
+      ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 2,
       "weight": 0.7,
-      "provenance": "Metal genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Metal catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "metal"
       ],
@@ -823,7 +927,7 @@ export const METAL_WORLD: GenreWorld = {
       ],
       "difficulty": 5,
       "weight": 1,
-      "provenance": "Metal genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Metal catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "metal"
       ],
@@ -905,14 +1009,93 @@ export const METAL_WORLD: GenreWorld = {
         "chorus"
       ],
       "variants": [
-        
-        ],
+        {
+          "id": "metal-breakdown-v-01",
+          "parentPatternId": "metal-breakdown",
+          "name": "Breakdown Chug — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            4,
+            7,
+            10,
+            14
+          ],
+          "accentProfile": [
+            0.95,
+            0.85,
+            0.75,
+            0.8999999999999999,
+            0.95
+          ],
+          "velocityProfile": [
+            0.92,
+            0.77,
+            0.67,
+            0.8200000000000001,
+            0.87
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "metal-breakdown-v-02",
+          "parentPatternId": "metal-breakdown",
+          "name": "Breakdown Chug — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            3,
+            4,
+            7,
+            8,
+            10,
+            14
+          ],
+          "accentProfile": [
+            0.96,
+            0.98,
+            0.76,
+            1,
+            0.96,
+            0.9299999999999999,
+            0.9099999999999999
+          ],
+          "velocityProfile": [
+            1,
+            0.83,
+            0.73,
+            0.96,
+            0.9299999999999999,
+            0.78,
+            0.96
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2
+          ]
+        }
+      ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 2,
       "weight": 1,
-      "provenance": "Metal genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Metal catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "metal"
       ],
@@ -991,14 +1174,85 @@ export const METAL_WORLD: GenreWorld = {
         "turnaround"
       ],
       "variants": [
-        
-        ],
+        {
+          "id": "metal-djent-sync-v-01",
+          "parentPatternId": "metal-djent-sync",
+          "name": "Djent Syncopation — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            5,
+            8,
+            13
+          ],
+          "accentProfile": [
+            0.95,
+            0.85,
+            0.75,
+            0.8999999999999999
+          ],
+          "velocityProfile": [
+            0.87,
+            0.77,
+            0.67,
+            0.8200000000000001
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6
+          ]
+        },
+        {
+          "id": "metal-djent-sync-v-02",
+          "parentPatternId": "metal-djent-sync",
+          "name": "Djent Syncopation — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            3,
+            5,
+            8,
+            11,
+            13
+          ],
+          "accentProfile": [
+            0.96,
+            0.98,
+            0.76,
+            1,
+            0.8099999999999999,
+            1
+          ],
+          "velocityProfile": [
+            1,
+            0.83,
+            0.73,
+            0.96,
+            0.78,
+            0.9299999999999999
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5
+          ]
+        }
+      ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 2,
       "weight": 1,
-      "provenance": "Metal genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Metal catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "metal"
       ],
@@ -1083,14 +1337,97 @@ export const METAL_WORLD: GenreWorld = {
         "chorus"
       ],
       "variants": [
-        
-        ],
+        {
+          "id": "metal-clean-arp-v-01",
+          "parentPatternId": "metal-clean-arp",
+          "name": "Clean Arpeggio — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            4,
+            6,
+            10,
+            12
+          ],
+          "accentProfile": [
+            0.8999999999999999,
+            0.5499999999999999,
+            0.7,
+            0.6,
+            0.85
+          ],
+          "velocityProfile": [
+            0.8200000000000001,
+            0.47000000000000003,
+            0.62,
+            0.52,
+            0.77
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "metal-clean-arp-v-02",
+          "parentPatternId": "metal-clean-arp",
+          "name": "Clean Arpeggio — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14
+          ],
+          "accentProfile": [
+            0.9099999999999999,
+            0.6799999999999999,
+            0.71,
+            0.73,
+            0.86,
+            0.6799999999999999,
+            0.71,
+            0.7799999999999999
+          ],
+          "velocityProfile": [
+            0.96,
+            0.53,
+            0.6799999999999999,
+            0.6599999999999999,
+            0.83,
+            0.53,
+            0.76,
+            0.63
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5
+          ]
+        }
+      ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 3,
       "weight": 1,
-      "provenance": "Metal genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Metal catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "metal"
       ],
@@ -1197,14 +1534,125 @@ export const METAL_WORLD: GenreWorld = {
         "chorus"
       ],
       "variants": [
-        
-        ],
+        {
+          "id": "metal-bass-gallop-v-01",
+          "parentPatternId": "metal-bass-gallop",
+          "name": "Bass Gallop — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            3,
+            4,
+            7,
+            8,
+            11,
+            12,
+            15
+          ],
+          "accentProfile": [
+            0.95,
+            0.6499999999999999,
+            0.7999999999999999,
+            0.95,
+            0.6499999999999999,
+            0.7999999999999999,
+            0.95,
+            0.6499999999999999
+          ],
+          "velocityProfile": [
+            0.87,
+            0.5700000000000001,
+            0.7200000000000001,
+            0.87,
+            0.5700000000000001,
+            0.7200000000000001,
+            0.87,
+            0.5700000000000001
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6,
+            -3,
+            6,
+            -3,
+            6
+          ]
+        },
+        {
+          "id": "metal-bass-gallop-v-02",
+          "parentPatternId": "metal-bass-gallop",
+          "name": "Bass Gallop — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            2,
+            3,
+            4,
+            6,
+            7,
+            8,
+            10,
+            11,
+            12,
+            14,
+            15
+          ],
+          "accentProfile": [
+            0.96,
+            0.7799999999999999,
+            0.8099999999999999,
+            1,
+            0.6599999999999999,
+            0.9299999999999999,
+            0.96,
+            0.7799999999999999,
+            0.8099999999999999,
+            1,
+            0.6599999999999999,
+            0.9299999999999999
+          ],
+          "velocityProfile": [
+            1,
+            0.63,
+            0.78,
+            1,
+            0.63,
+            0.78,
+            1,
+            0.63,
+            0.78,
+            1,
+            0.63,
+            0.78
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5
+          ]
+        }
+      ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 4,
       "weight": 1,
-      "provenance": "Metal genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Metal catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "metal"
       ],
@@ -1290,14 +1738,77 @@ export const METAL_WORLD: GenreWorld = {
         "chorus"
       ],
       "variants": [
-        
-        ],
+        {
+          "id": "metal-prog-odd-meter-v-01",
+          "parentPatternId": "metal-prog-odd-meter",
+          "name": "5/8 Riff — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            4,
+            6
+          ],
+          "accentProfile": [
+            0.95,
+            0.7,
+            0.7999999999999999
+          ],
+          "velocityProfile": [
+            0.87,
+            0.62,
+            0.7200000000000001
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "metal-prog-odd-meter-v-02",
+          "parentPatternId": "metal-prog-odd-meter",
+          "name": "5/8 Riff — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            2,
+            4,
+            6,
+            7
+          ],
+          "accentProfile": [
+            0.96,
+            0.83,
+            0.8099999999999999,
+            1,
+            0.6599999999999999
+          ],
+          "velocityProfile": [
+            1,
+            0.6799999999999999,
+            0.78,
+            0.96,
+            0.63
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2
+          ]
+        }
+      ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 2,
       "weight": 1,
-      "provenance": "Metal genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Metal catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "metal"
       ],
@@ -1392,14 +1903,97 @@ export const METAL_WORLD: GenreWorld = {
         "chorus"
       ],
       "variants": [
-        
-        ],
+        {
+          "id": "metal-groove-metal-v-01",
+          "parentPatternId": "metal-groove-metal",
+          "name": "Groove Metal Riff — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            3,
+            5,
+            8,
+            9
+          ],
+          "accentProfile": [
+            0.95,
+            0.7,
+            0.85,
+            0.6499999999999999,
+            0.8999999999999999
+          ],
+          "velocityProfile": [
+            0.87,
+            0.62,
+            0.77,
+            0.5700000000000001,
+            0.8200000000000001
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "metal-groove-metal-v-02",
+          "parentPatternId": "metal-groove-metal",
+          "name": "Groove Metal Riff — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            2,
+            3,
+            5,
+            6,
+            8,
+            9,
+            11
+          ],
+          "accentProfile": [
+            0.96,
+            0.83,
+            0.86,
+            0.7799999999999999,
+            0.9099999999999999,
+            0.7799999999999999,
+            0.86,
+            0.88
+          ],
+          "velocityProfile": [
+            1,
+            0.6799999999999999,
+            0.83,
+            0.71,
+            0.88,
+            0.63,
+            0.9099999999999999,
+            0.73
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5
+          ]
+        }
+      ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 3,
       "weight": 1,
-      "provenance": "Metal genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Metal catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "metal"
       ],
@@ -1504,9 +2098,80 @@ export const METAL_WORLD: GenreWorld = {
         "phrasePosition"
       ],
       "variants": [
-        
-        ],
-      "provenance": "Metal genre-pack structural pattern; generalized for engine coverage and recombination, not a transcription of a single recording.",
+        {
+          "id": "metal-phrase-10-v-01",
+          "parentPatternId": "metal-phrase-10",
+          "name": "Breakdown Phrase — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            6,
+            10,
+            14
+          ],
+          "accentProfile": [
+            0.95,
+            0.69,
+            0.85,
+            0.63
+          ],
+          "velocityProfile": [
+            0.92,
+            0.61,
+            0.8200000000000001,
+            0.6000000000000001
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6
+          ]
+        },
+        {
+          "id": "metal-phrase-10-v-02",
+          "parentPatternId": "metal-phrase-10",
+          "name": "Breakdown Phrase — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            4,
+            6,
+            10,
+            12,
+            14
+          ],
+          "accentProfile": [
+            0.96,
+            0.82,
+            0.86,
+            0.76,
+            0.96,
+            0.82
+          ],
+          "velocityProfile": [
+            1,
+            0.6699999999999999,
+            0.88,
+            0.74,
+            0.9299999999999999,
+            0.72
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5
+          ]
+        }
+      ],
+      "provenance": "GenreDAW catalog rebuild from existing Metal world data; generated to cover missing musical functions without runtime AI.",
       "authenticityTags": [
         "metal",
         "breakdown"
@@ -1571,7 +2236,7 @@ export const METAL_WORLD: GenreWorld = {
         0.57,
         0.95,
         0.62,
-        0.9,
+        0.8999999999999999,
         0.62
       ],
       "syncopationRating": 1,
@@ -1603,10 +2268,124 @@ export const METAL_WORLD: GenreWorld = {
         "phrasePosition"
       ],
       "variants": [
-        
-        
-        ],
-      "provenance": "Metal genre-pack structural pattern; generalized for engine coverage and recombination, not a transcription of a single recording.",
+        {
+          "id": "metal-call-11-v-01",
+          "parentPatternId": "metal-call-11",
+          "name": "Gallop Response — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            1,
+            7,
+            11,
+            15
+          ],
+          "accentProfile": [
+            0.8999999999999999,
+            0.57,
+            0.8999999999999999,
+            0.57
+          ],
+          "velocityProfile": [
+            0.87,
+            0.48999999999999994,
+            0.87,
+            0.54
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6
+          ]
+        },
+        {
+          "id": "metal-call-11-v-02",
+          "parentPatternId": "metal-call-11",
+          "name": "Gallop Response — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            1,
+            5,
+            7,
+            11,
+            13,
+            15
+          ],
+          "accentProfile": [
+            0.9099999999999999,
+            0.7,
+            0.9099999999999999,
+            0.7,
+            0.9099999999999999,
+            0.7
+          ],
+          "velocityProfile": [
+            1,
+            0.5499999999999999,
+            0.9299999999999999,
+            0.6799999999999999,
+            0.8799999999999999,
+            0.6
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5
+          ]
+        },
+        {
+          "id": "metal-call-11-v-03",
+          "parentPatternId": "metal-call-11",
+          "name": "Gallop Response — transition variation",
+          "variationType": "transition",
+          "probability": 0.16,
+          "description": "Adds a final pickup/closure gesture for section transitions.",
+          "onsetGrid": [
+            1,
+            5,
+            7,
+            11,
+            13,
+            14,
+            15
+          ],
+          "accentProfile": [
+            0.9299999999999999,
+            0.6,
+            0.9299999999999999,
+            0.6,
+            0.9299999999999999,
+            1,
+            1
+          ],
+          "velocityProfile": [
+            0.95,
+            0.57,
+            0.95,
+            0.62,
+            0.8999999999999999,
+            0.98,
+            0.98
+          ],
+          "microtimingOffset": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            -6,
+            -6
+          ]
+        }
+      ],
+      "provenance": "GenreDAW catalog rebuild from existing Metal world data; generated to cover missing musical functions without runtime AI.",
       "authenticityTags": [
         "metal",
         "gallop"
@@ -1707,9 +2486,80 @@ export const METAL_WORLD: GenreWorld = {
         "phrasePosition"
       ],
       "variants": [
-        
-        ],
-      "provenance": "Metal genre-pack structural pattern; generalized for engine coverage and recombination, not a transcription of a single recording.",
+        {
+          "id": "metal-anchor-12-v-01",
+          "parentPatternId": "metal-anchor-12",
+          "name": "Tremolo Anchor — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            6,
+            8,
+            14
+          ],
+          "accentProfile": [
+            0.95,
+            0.69,
+            0.85,
+            0.63
+          ],
+          "velocityProfile": [
+            0.92,
+            0.61,
+            0.8200000000000001,
+            0.6000000000000001
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6
+          ]
+        },
+        {
+          "id": "metal-anchor-12-v-02",
+          "parentPatternId": "metal-anchor-12",
+          "name": "Tremolo Anchor — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            2,
+            6,
+            8,
+            12,
+            14
+          ],
+          "accentProfile": [
+            0.96,
+            0.82,
+            0.86,
+            0.76,
+            0.96,
+            0.82
+          ],
+          "velocityProfile": [
+            1,
+            0.6699999999999999,
+            0.88,
+            0.74,
+            0.9299999999999999,
+            0.72
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5
+          ]
+        }
+      ],
+      "provenance": "GenreDAW catalog rebuild from existing Metal world data; generated to cover missing musical functions without runtime AI.",
       "authenticityTags": [
         "metal",
         "tremolo"
@@ -1809,9 +2659,80 @@ export const METAL_WORLD: GenreWorld = {
         "phrasePosition"
       ],
       "variants": [
-        
-        ],
-      "provenance": "Metal genre-pack structural pattern; generalized for engine coverage and recombination, not a transcription of a single recording.",
+        {
+          "id": "metal-comp-13-v-01",
+          "parentPatternId": "metal-comp-13",
+          "name": "Blast Comping — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            4,
+            8,
+            14
+          ],
+          "accentProfile": [
+            0.95,
+            0.69,
+            0.85,
+            0.63
+          ],
+          "velocityProfile": [
+            0.92,
+            0.61,
+            0.8200000000000001,
+            0.6000000000000001
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6
+          ]
+        },
+        {
+          "id": "metal-comp-13-v-02",
+          "parentPatternId": "metal-comp-13",
+          "name": "Blast Comping — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            2,
+            4,
+            8,
+            10,
+            14
+          ],
+          "accentProfile": [
+            0.96,
+            0.82,
+            0.86,
+            0.76,
+            0.96,
+            0.82
+          ],
+          "velocityProfile": [
+            1,
+            0.6699999999999999,
+            0.88,
+            0.74,
+            0.9299999999999999,
+            0.72
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5
+          ]
+        }
+      ],
+      "provenance": "GenreDAW catalog rebuild from existing Metal world data; generated to cover missing musical functions without runtime AI.",
       "authenticityTags": [
         "metal",
         "blast"
@@ -1919,8 +2840,90 @@ export const METAL_WORLD: GenreWorld = {
         "phrasePosition"
       ],
       "variants": [
-        
-        
+        {
+          "id": "metal-intro-14-v-01",
+          "parentPatternId": "metal-intro-14",
+          "name": "Lead Intro — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            4,
+            5,
+            9,
+            12
+          ],
+          "accentProfile": [
+            0.95,
+            0.69,
+            0.85,
+            0.63,
+            0.95
+          ],
+          "velocityProfile": [
+            0.92,
+            0.61,
+            0.8200000000000001,
+            0.6000000000000001,
+            0.87
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "metal-intro-14-v-02",
+          "parentPatternId": "metal-intro-14",
+          "name": "Lead Intro — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            1,
+            4,
+            5,
+            8,
+            9,
+            12,
+            13
+          ],
+          "accentProfile": [
+            0.96,
+            0.82,
+            0.86,
+            0.76,
+            0.96,
+            0.82,
+            0.86,
+            0.76
+          ],
+          "velocityProfile": [
+            1,
+            0.6699999999999999,
+            0.88,
+            0.74,
+            0.9299999999999999,
+            0.72,
+            0.96,
+            0.61
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5
+          ]
+        },
         {
           "id": "metal-intro-14-v-03",
           "parentPatternId": "metal-intro-14",
@@ -1978,7 +2981,7 @@ export const METAL_WORLD: GenreWorld = {
           ]
         }
       ],
-      "provenance": "Metal genre-pack structural pattern; generalized for engine coverage and recombination, not a transcription of a single recording.",
+      "provenance": "GenreDAW catalog rebuild from existing Metal world data; generated to cover missing musical functions without runtime AI.",
       "authenticityTags": [
         "metal",
         "lead"
@@ -2092,9 +3095,92 @@ export const METAL_WORLD: GenreWorld = {
         "phrasePosition"
       ],
       "variants": [
-        
-        ],
-      "provenance": "Metal genre-pack structural pattern; generalized for engine coverage and recombination, not a transcription of a single recording.",
+        {
+          "id": "metal-verse-15-v-01",
+          "parentPatternId": "metal-verse-15",
+          "name": "Breakdown Verse Variation — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            1,
+            5,
+            6,
+            10,
+            13
+          ],
+          "accentProfile": [
+            0.95,
+            0.69,
+            0.85,
+            0.63,
+            0.95
+          ],
+          "velocityProfile": [
+            0.92,
+            0.61,
+            0.8200000000000001,
+            0.6000000000000001,
+            0.87
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "metal-verse-15-v-02",
+          "parentPatternId": "metal-verse-15",
+          "name": "Breakdown Verse Variation — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            1,
+            2,
+            5,
+            6,
+            9,
+            10,
+            13,
+            14
+          ],
+          "accentProfile": [
+            0.96,
+            0.82,
+            0.86,
+            0.76,
+            0.96,
+            0.82,
+            0.86,
+            0.76
+          ],
+          "velocityProfile": [
+            1,
+            0.6699999999999999,
+            0.88,
+            0.74,
+            0.9299999999999999,
+            0.72,
+            0.96,
+            0.61
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5
+          ]
+        }
+      ],
+      "provenance": "GenreDAW catalog rebuild from existing Metal world data; generated to cover missing musical functions without runtime AI.",
       "authenticityTags": [
         "metal",
         "breakdown"
@@ -2209,8 +3295,90 @@ export const METAL_WORLD: GenreWorld = {
         "phrasePosition"
       ],
       "variants": [
-        
-        
+        {
+          "id": "metal-chorus-16-v-01",
+          "parentPatternId": "metal-chorus-16",
+          "name": "Gallop Chorus Lift — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            2,
+            6,
+            7,
+            11,
+            14
+          ],
+          "accentProfile": [
+            0.95,
+            0.69,
+            0.85,
+            0.63,
+            0.95
+          ],
+          "velocityProfile": [
+            0.92,
+            0.61,
+            0.8200000000000001,
+            0.6000000000000001,
+            0.87
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "metal-chorus-16-v-02",
+          "parentPatternId": "metal-chorus-16",
+          "name": "Gallop Chorus Lift — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            2,
+            3,
+            6,
+            7,
+            10,
+            11,
+            14,
+            15
+          ],
+          "accentProfile": [
+            0.96,
+            0.82,
+            0.86,
+            0.76,
+            0.96,
+            0.82,
+            0.86,
+            0.76
+          ],
+          "velocityProfile": [
+            1,
+            0.6699999999999999,
+            0.88,
+            0.74,
+            0.9299999999999999,
+            0.72,
+            0.96,
+            0.61
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5
+          ]
+        },
         {
           "id": "metal-chorus-16-v-03",
           "parentPatternId": "metal-chorus-16",
@@ -2260,7 +3428,7 @@ export const METAL_WORLD: GenreWorld = {
           ]
         }
       ],
-      "provenance": "Metal genre-pack structural pattern; generalized for engine coverage and recombination, not a transcription of a single recording.",
+      "provenance": "GenreDAW catalog rebuild from existing Metal world data; generated to cover missing musical functions without runtime AI.",
       "authenticityTags": [
         "metal",
         "gallop"
@@ -2328,7 +3496,7 @@ export const METAL_WORLD: GenreWorld = {
         0.9,
         0.58
       ],
-      "syncopationRating": 0.67,
+      "syncopationRating": 0.6666666666666666,
       "anticipationOffset": 0,
       "swingPercentage": 50,
       "articulations": [
@@ -2397,8 +3565,48 @@ export const METAL_WORLD: GenreWorld = {
             -4
           ]
         },
-        ],
-      "provenance": "Genre-pack structural pattern for dedicated vocal phrasing coverage for Metal; generalized for engine coverage, not a transcription.",
+        {
+          "id": "metal-voice-phrasing-v-final-accent",
+          "parentPatternId": "metal-voice-phrasing",
+          "name": "Metal Vocal Phrasing — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.18,
+          "description": "Same rhythmic shape with shifted emphasis on the repeat.",
+          "onsetGrid": [
+            0,
+            3,
+            5,
+            8,
+            11,
+            14
+          ],
+          "accentProfile": [
+            0.8999999999999999,
+            0.7,
+            0.8999999999999999,
+            0.7,
+            0.8999999999999999,
+            0.7
+          ],
+          "velocityProfile": [
+            0.9,
+            0.58,
+            0.9,
+            0.58,
+            0.9,
+            0.58
+          ],
+          "microtimingOffset": [
+            2,
+            -4,
+            2,
+            -4,
+            2,
+            -4
+          ]
+        }
+      ],
+      "provenance": "GenreDAW catalog rebuild: dedicated vocal phrasing coverage for Metal.",
       "authenticityTags": [
         "metal",
         "voice"

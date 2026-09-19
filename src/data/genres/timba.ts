@@ -95,110 +95,6 @@ export const TIMBA_WORLD: GenreWorld = {
           "Dm7"
         ]
       }
-    },
-    {
-      "id": "timba-bata-rumba",
-      "worldId": "timba",
-      "name": "Afro-Cuban Folclórico & Batá-Timba",
-      "origin": "Havana / Matanzas, Cuba",
-      "era": "1990s–Present",
-      "description": "Integration of sacred Yoruba Batá drumming (Iyá, Itótele, Okónkolo), Guaguancó rumba breakdowns, and deep folkloric vocal coros into modern Timba gears.",
-      "characteristicInstruments": [
-        "congas",
-        "percussion",
-        "drums",
-        "bass",
-        "piano",
-        "voice"
-      ],
-      "preferredMeters": [
-        "4/4",
-        "6/8",
-        "12/8"
-      ],
-      "tempoRange": [
-        90,
-        112
-      ],
-      "keySubstyles": [
-        "Batá-Timba",
-        "Rumba-Timba",
-        "Guaguancó Moderno",
-        "Folclore Habanero"
-      ],
-      "coreConcepts": [
-        "Batá polymetric interlock",
-        "Guaguancó catá wooden ostinato",
-        "Quinto solo accents",
-        "Call-and-response coro montunos"
-      ],
-      "rhythmicGrammar": [
-        "Rumba clave 3-2 / 2-3 over Yoruba 6/8 hemiolas",
-        "Explosive Bomba slap breakdowns"
-      ],
-      "danceTags": [
-        "social-partner",
-        "festival-fusion"
-      ],
-      "tuningSystem": "12-tet",
-      "signatureCell": "Sacred Batá polyrhythms interlocked with electric bass slap and rumba clave",
-      "grooveMechanics": {
-        "swingPercentage": 52,
-        "anticipationOffsetSteps": 1,
-        "microtimingFeel": "pushed"
-      }
-    },
-    {
-      "id": "timba-funk-jazz",
-      "worldId": "timba",
-      "name": "Timba-Funk & Latin Jazz Fusion",
-      "origin": "Cuba",
-      "era": "1970s–Present",
-      "description": "The virtuosic lineage of Irakere and Los Van Van: Changuito songo drumkit innovations, chromatic horn moñas, slap bass grooves, and sophisticated post-bop chord substitutions.",
-      "characteristicInstruments": [
-        "trumpet",
-        "sax",
-        "piano",
-        "bass",
-        "drums",
-        "timbales",
-        "synth"
-      ],
-      "preferredMeters": [
-        "4/4"
-      ],
-      "tempoRange": [
-        95,
-        120
-      ],
-      "keySubstyles": [
-        "Songo-Funk",
-        "Irakere Latin Jazz",
-        "Modern Van Van Songo",
-        "Afro-Cuban Jazz Rock"
-      ],
-      "coreConcepts": [
-        "Linear songo drum grooves",
-        "Virtuoso horn section moñas",
-        "Two-handed syncopated piano guajeos",
-        "Displaced funk slap and synth bass"
-      ],
-      "rhythmicGrammar": [
-        "Foot cowbell pulse with linear snare drags",
-        "Chromatic mambo brass punches"
-      ],
-      "danceTags": [
-        "social-partner",
-        "listening",
-        "festival-fusion"
-      ],
-      "tuningSystem": "12-tet",
-      "signatureCell": "Linear Changuito songo drums interlocking with chromatic brass moña and slap bass",
-      "grooveMechanics": {
-        "swingPercentage": 51,
-        "anticipationOffsetSteps": 1,
-        "microtimingFeel": "pushed"
-      }
     }
   ],
   "substyles": [
@@ -408,13 +304,81 @@ export const TIMBA_WORLD: GenreWorld = {
           ],
           "description": "Maximum density and cowbell acceleration for peak dancer energy."
         },
-        ],
+        {
+          "id": "timba-gear-marcha-v-03",
+          "parentPatternId": "timba-gear-marcha",
+          "name": "Gear Change: Marcha (Standard Drive) — transition variation",
+          "variationType": "transition",
+          "probability": 0.16,
+          "description": "Adds a final pickup/closure gesture for section transitions.",
+          "onsetGrid": [
+            0,
+            4,
+            6,
+            10,
+            12,
+            14,
+            15,
+            16,
+            20,
+            22,
+            26,
+            28,
+            30
+          ],
+          "accentProfile": [
+            0.88,
+            0.6799999999999999,
+            0.98,
+            0.6799999999999999,
+            0.9299999999999999,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "velocityProfile": [
+            0.9,
+            0.7,
+            1,
+            0.7,
+            0.9,
+            0.98,
+            0.98,
+            0.98,
+            0.98,
+            0.98,
+            0.98,
+            0.98,
+            0.98
+          ],
+          "microtimingOffset": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            -6,
+            -6,
+            -6,
+            -6,
+            -6,
+            -6,
+            -6,
+            -6
+          ]
+        }
+      ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 4,
       "weight": 0.7,
-      "provenance": "Timba genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Timba catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "timba"
       ],
@@ -452,7 +416,7 @@ export const TIMBA_WORLD: GenreWorld = {
     {
       "id": "timba-songo-groove",
       "worldId": "timba",
-      "traditionId": "timba-funk-jazz",
+      "traditionId": "timba-havana-modern",
       "name": "Songo Drum Kit & Cowbell Groove (Changuito / Los Van Van)",
       "family": "Songo Drumming",
       "category": "fill",
@@ -605,7 +569,7 @@ export const TIMBA_WORLD: GenreWorld = {
       ],
       "difficulty": 3,
       "weight": 1,
-      "provenance": "Timba genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Timba catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "timba"
       ],
@@ -714,13 +678,53 @@ export const TIMBA_WORLD: GenreWorld = {
           ],
           "description": "Heavy sustained pedal point creating tension before a gear release."
         },
-        ],
+        {
+          "id": "timba-displaced-bass-v-02",
+          "parentPatternId": "timba-displaced-bass",
+          "name": "Displaced Funk / Timba Bassline — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            3,
+            6,
+            10,
+            12,
+            15
+          ],
+          "accentProfile": [
+            0.86,
+            0.9299999999999999,
+            0.96,
+            0.88,
+            0.9099999999999999,
+            0.98
+          ],
+          "velocityProfile": [
+            0.96,
+            0.78,
+            0.9299999999999999,
+            0.81,
+            0.88,
+            0.83
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5
+          ]
+        }
+      ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 2,
       "weight": 0.7,
-      "provenance": "Timba genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Timba catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "timba"
       ],
@@ -815,14 +819,97 @@ export const TIMBA_WORLD: GenreWorld = {
         "chorus"
       ],
       "variants": [
-        
-        ],
+        {
+          "id": "timba-conga-gear-v-01",
+          "parentPatternId": "timba-conga-gear",
+          "name": "Timba Conga Gear — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            4,
+            7,
+            11,
+            12
+          ],
+          "accentProfile": [
+            0.7,
+            0.8999999999999999,
+            0.5499999999999999,
+            0.7999999999999999,
+            0.7
+          ],
+          "velocityProfile": [
+            0.62,
+            0.87,
+            0.47000000000000003,
+            0.7200000000000001,
+            0.62
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "timba-conga-gear-v-02",
+          "parentPatternId": "timba-conga-gear",
+          "name": "Timba Conga Gear — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            3,
+            4,
+            7,
+            8,
+            11,
+            12,
+            15
+          ],
+          "accentProfile": [
+            0.71,
+            1,
+            0.5599999999999999,
+            0.9299999999999999,
+            0.71,
+            1,
+            0.5599999999999999,
+            0.98
+          ],
+          "velocityProfile": [
+            0.76,
+            0.9299999999999999,
+            0.53,
+            0.8600000000000001,
+            0.6799999999999999,
+            0.9299999999999999,
+            0.6100000000000001,
+            0.83
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5
+          ]
+        }
+      ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 3,
       "weight": 1,
-      "provenance": "Timba genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Timba catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "timba"
       ],
@@ -848,7 +935,7 @@ export const TIMBA_WORLD: GenreWorld = {
     {
       "id": "timba-bata-fusion",
       "worldId": "timba",
-      "traditionId": "timba-bata-rumba",
+      "traditionId": "timba-havana-modern",
       "name": "Bata Fusion",
       "family": "Percussion",
       "category": "cadence",
@@ -898,14 +985,77 @@ export const TIMBA_WORLD: GenreWorld = {
         "turnaround"
       ],
       "variants": [
-        
-        ],
+        {
+          "id": "timba-bata-fusion-v-01",
+          "parentPatternId": "timba-bata-fusion",
+          "name": "Bata Fusion — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            8,
+            10
+          ],
+          "accentProfile": [
+            0.95,
+            0.6499999999999999,
+            0.85
+          ],
+          "velocityProfile": [
+            0.87,
+            0.5700000000000001,
+            0.77
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "timba-bata-fusion-v-02",
+          "parentPatternId": "timba-bata-fusion",
+          "name": "Bata Fusion — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            4,
+            8,
+            10,
+            14
+          ],
+          "accentProfile": [
+            0.96,
+            0.7799999999999999,
+            0.86,
+            0.88,
+            0.9099999999999999
+          ],
+          "velocityProfile": [
+            1,
+            0.63,
+            0.83,
+            0.81,
+            0.88
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2
+          ]
+        }
+      ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 2,
       "weight": 1,
-      "provenance": "Timba genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Timba catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "timba"
       ],
@@ -931,7 +1081,7 @@ export const TIMBA_WORLD: GenreWorld = {
     {
       "id": "timba-synth-bass",
       "worldId": "timba",
-      "traditionId": "timba-funk-jazz",
+      "traditionId": "timba-havana-modern",
       "name": "Synth Bass Tumbao",
       "family": "Bass",
       "category": "groove",
@@ -978,14 +1128,73 @@ export const TIMBA_WORLD: GenreWorld = {
         "chorus"
       ],
       "variants": [
-        
-        ],
+        {
+          "id": "timba-synth-bass-v-01",
+          "parentPatternId": "timba-synth-bass",
+          "name": "Synth Bass Tumbao — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            2,
+            10,
+            14
+          ],
+          "accentProfile": [
+            0.7999999999999999,
+            0.95,
+            0.7999999999999999
+          ],
+          "velocityProfile": [
+            0.7200000000000001,
+            0.87,
+            0.7200000000000001
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "timba-synth-bass-v-02",
+          "parentPatternId": "timba-synth-bass",
+          "name": "Synth Bass Tumbao — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            2,
+            6,
+            10,
+            14
+          ],
+          "accentProfile": [
+            0.8099999999999999,
+            1,
+            0.8099999999999999,
+            1
+          ],
+          "velocityProfile": [
+            0.8600000000000001,
+            0.9299999999999999,
+            0.78,
+            0.96
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5
+          ]
+        }
+      ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 1,
       "weight": 1,
-      "provenance": "Timba genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Timba catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "timba"
       ],
@@ -1076,14 +1285,85 @@ export const TIMBA_WORLD: GenreWorld = {
         "chorus"
       ],
       "variants": [
-        
-        ],
+        {
+          "id": "timba-piano-guajeo-v-01",
+          "parentPatternId": "timba-piano-guajeo",
+          "name": "Piano Guajeo — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            6,
+            8,
+            14
+          ],
+          "accentProfile": [
+            0.85,
+            0.7,
+            0.95,
+            0.6499999999999999
+          ],
+          "velocityProfile": [
+            0.77,
+            0.62,
+            0.87,
+            0.5700000000000001
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6
+          ]
+        },
+        {
+          "id": "timba-piano-guajeo-v-02",
+          "parentPatternId": "timba-piano-guajeo",
+          "name": "Piano Guajeo — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            3,
+            6,
+            8,
+            11,
+            14
+          ],
+          "accentProfile": [
+            0.86,
+            0.83,
+            0.96,
+            0.7799999999999999,
+            0.9099999999999999,
+            0.88
+          ],
+          "velocityProfile": [
+            0.9099999999999999,
+            0.6799999999999999,
+            0.9299999999999999,
+            0.71,
+            0.88,
+            0.73
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5
+          ]
+        }
+      ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 2,
       "weight": 1,
-      "provenance": "Timba genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Timba catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "timba"
       ],
@@ -1148,14 +1428,61 @@ export const TIMBA_WORLD: GenreWorld = {
         "chorus"
       ],
       "variants": [
-        
-        ],
+        {
+          "id": "timba-kick-bomobo-v-01-safe",
+          "parentPatternId": "timba-kick-bomobo",
+          "name": "Kick Bombo — played variation",
+          "variationType": "accentShift",
+          "probability": 0.18,
+          "description": "A light played variation for sparse patterns with only a few attacks.",
+          "onsetGrid": [
+            6,
+            14
+          ],
+          "accentProfile": [
+            0.95,
+            0.9299999999999999
+          ],
+          "velocityProfile": [
+            0.98,
+            0.76
+          ],
+          "microtimingOffset": [
+            -2,
+            4
+          ]
+        },
+        {
+          "id": "timba-kick-bomobo-v-02-safe",
+          "parentPatternId": "timba-kick-bomobo",
+          "name": "Kick Bombo — played variation",
+          "variationType": "accentShift",
+          "probability": 0.18,
+          "description": "A light played variation for sparse patterns with only a few attacks.",
+          "onsetGrid": [
+            6,
+            14
+          ],
+          "accentProfile": [
+            0.95,
+            0.9299999999999999
+          ],
+          "velocityProfile": [
+            0.98,
+            0.76
+          ],
+          "microtimingOffset": [
+            -2,
+            4
+          ]
+        }
+      ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 1,
       "weight": 1,
-      "provenance": "Timba genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Timba catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "timba"
       ],
@@ -1231,14 +1558,77 @@ export const TIMBA_WORLD: GenreWorld = {
         "chorus"
       ],
       "variants": [
-        
-        ],
+        {
+          "id": "timba-horn-moña-v-01",
+          "parentPatternId": "timba-horn-moña",
+          "name": "Horn Moña — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            1,
+            7,
+            9
+          ],
+          "accentProfile": [
+            0.7999999999999999,
+            0.95,
+            0.7
+          ],
+          "velocityProfile": [
+            0.7200000000000001,
+            0.87,
+            0.62
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "timba-horn-moña-v-02",
+          "parentPatternId": "timba-horn-moña",
+          "name": "Horn Moña — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            1,
+            4,
+            7,
+            9,
+            12
+          ],
+          "accentProfile": [
+            0.8099999999999999,
+            1,
+            0.71,
+            0.98,
+            0.9099999999999999
+          ],
+          "velocityProfile": [
+            0.8600000000000001,
+            0.9299999999999999,
+            0.6799999999999999,
+            0.9099999999999999,
+            0.88
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2
+          ]
+        }
+      ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 2,
       "weight": 1,
-      "provenance": "Timba genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Timba catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "timba"
       ],
@@ -1312,14 +1702,77 @@ export const TIMBA_WORLD: GenreWorld = {
         "chorus"
       ],
       "variants": [
-        
-        ],
+        {
+          "id": "timba-clave-rumba-v-01",
+          "parentPatternId": "timba-clave-rumba",
+          "name": "2-3 Rumba Clave — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            2,
+            8,
+            11
+          ],
+          "accentProfile": [
+            0.85,
+            0.7999999999999999,
+            0.95
+          ],
+          "velocityProfile": [
+            0.77,
+            0.7200000000000001,
+            0.87
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "timba-clave-rumba-v-02",
+          "parentPatternId": "timba-clave-rumba",
+          "name": "2-3 Rumba Clave — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            2,
+            4,
+            8,
+            11,
+            14
+          ],
+          "accentProfile": [
+            0.86,
+            0.9299999999999999,
+            0.96,
+            1,
+            0.8099999999999999
+          ],
+          "velocityProfile": [
+            0.9099999999999999,
+            0.78,
+            0.9299999999999999,
+            0.96,
+            0.83
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2
+          ]
+        }
+      ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 2,
       "weight": 1,
-      "provenance": "Timba genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Timba catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "timba"
       ],
@@ -1395,14 +1848,73 @@ export const TIMBA_WORLD: GenreWorld = {
         "gear-change"
       ],
       "variants": [
-        
-        ],
+        {
+          "id": "timba-anticipated-pedal-v-01",
+          "parentPatternId": "timba-anticipated-pedal",
+          "name": "Anticipated Presión Pedal — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            3,
+            11,
+            15
+          ],
+          "accentProfile": [
+            0.75,
+            0.85,
+            0.8999999999999999
+          ],
+          "velocityProfile": [
+            0.67,
+            0.77,
+            0.8200000000000001
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "timba-anticipated-pedal-v-02",
+          "parentPatternId": "timba-anticipated-pedal",
+          "name": "Anticipated Presión Pedal — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            3,
+            7,
+            11,
+            15
+          ],
+          "accentProfile": [
+            0.76,
+            0.98,
+            0.9099999999999999,
+            1
+          ],
+          "velocityProfile": [
+            0.81,
+            0.83,
+            0.88,
+            1
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5
+          ]
+        }
+      ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 1,
       "weight": 1,
-      "provenance": "Timba genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Timba catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "timba"
       ],
@@ -1482,7 +1994,7 @@ export const TIMBA_WORLD: GenreWorld = {
         0.74,
         0.9
       ],
-      "syncopationRating": 0.71,
+      "syncopationRating": 0.7142857142857143,
       "anticipationOffset": 0,
       "swingPercentage": 53,
       "articulations": [
@@ -1511,9 +2023,88 @@ export const TIMBA_WORLD: GenreWorld = {
         "phrasePosition"
       ],
       "variants": [
-        
-        ],
-      "provenance": "Timba genre-pack structural pattern; generalized for engine coverage and recombination, not a transcription of a single recording.",
+        {
+          "id": "timba-phrase-12-v-01",
+          "parentPatternId": "timba-phrase-12",
+          "name": "Gear Change Phrase — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            6,
+            7,
+            12,
+            15
+          ],
+          "accentProfile": [
+            0.95,
+            0.69,
+            0.85,
+            0.63,
+            0.95
+          ],
+          "velocityProfile": [
+            0.92,
+            0.61,
+            0.8200000000000001,
+            0.6000000000000001,
+            0.87
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "timba-phrase-12-v-02",
+          "parentPatternId": "timba-phrase-12",
+          "name": "Gear Change Phrase — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            2,
+            6,
+            7,
+            10,
+            12,
+            15
+          ],
+          "accentProfile": [
+            0.96,
+            0.82,
+            0.86,
+            0.76,
+            0.96,
+            0.82,
+            0.86
+          ],
+          "velocityProfile": [
+            1,
+            0.6699999999999999,
+            0.88,
+            0.74,
+            0.9299999999999999,
+            0.72,
+            0.96
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2
+          ]
+        }
+      ],
+      "provenance": "GenreDAW catalog rebuild from existing Timba world data; generated to cover missing musical functions without runtime AI.",
       "authenticityTags": [
         "timba",
         "gear-change"
@@ -1580,11 +2171,11 @@ export const TIMBA_WORLD: GenreWorld = {
         0.57,
         0.95,
         0.62,
-        0.9,
+        0.8999999999999999,
         0.62,
         0.95
       ],
-      "syncopationRating": 0.71,
+      "syncopationRating": 0.7142857142857143,
       "anticipationOffset": 0,
       "swingPercentage": 53,
       "articulations": [
@@ -1614,10 +2205,140 @@ export const TIMBA_WORLD: GenreWorld = {
         "phrasePosition"
       ],
       "variants": [
-        
-        
-        ],
-      "provenance": "Timba genre-pack structural pattern; generalized for engine coverage and recombination, not a transcription of a single recording.",
+        {
+          "id": "timba-call-13-v-01",
+          "parentPatternId": "timba-call-13",
+          "name": "Coro Response — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            3,
+            7,
+            11,
+            13
+          ],
+          "accentProfile": [
+            0.8999999999999999,
+            0.57,
+            0.8999999999999999,
+            0.57,
+            0.8999999999999999
+          ],
+          "velocityProfile": [
+            0.87,
+            0.48999999999999994,
+            0.87,
+            0.54,
+            0.82
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "timba-call-13-v-02",
+          "parentPatternId": "timba-call-13",
+          "name": "Coro Response — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            1,
+            3,
+            7,
+            8,
+            11,
+            13
+          ],
+          "accentProfile": [
+            0.9099999999999999,
+            0.7,
+            0.9099999999999999,
+            0.7,
+            0.9099999999999999,
+            0.7,
+            0.9099999999999999
+          ],
+          "velocityProfile": [
+            1,
+            0.5499999999999999,
+            0.9299999999999999,
+            0.6799999999999999,
+            0.8799999999999999,
+            0.6,
+            1
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2
+          ]
+        },
+        {
+          "id": "timba-call-13-v-03",
+          "parentPatternId": "timba-call-13",
+          "name": "Coro Response — transition variation",
+          "variationType": "transition",
+          "probability": 0.16,
+          "description": "Adds a final pickup/closure gesture for section transitions.",
+          "onsetGrid": [
+            0,
+            1,
+            3,
+            7,
+            8,
+            11,
+            13,
+            14,
+            15
+          ],
+          "accentProfile": [
+            0.9299999999999999,
+            0.6,
+            0.9299999999999999,
+            0.6,
+            0.9299999999999999,
+            0.6,
+            0.9299999999999999,
+            1,
+            1
+          ],
+          "velocityProfile": [
+            0.95,
+            0.57,
+            0.95,
+            0.62,
+            0.8999999999999999,
+            0.62,
+            0.95,
+            0.98,
+            0.98
+          ],
+          "microtimingOffset": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            -6,
+            -6
+          ]
+        }
+      ],
+      "provenance": "GenreDAW catalog rebuild from existing Timba world data; generated to cover missing musical functions without runtime AI.",
       "authenticityTags": [
         "timba",
         "coro"
@@ -1692,7 +2413,7 @@ export const TIMBA_WORLD: GenreWorld = {
         0.74,
         0.9
       ],
-      "syncopationRating": 0.57,
+      "syncopationRating": 0.5714285714285714,
       "anticipationOffset": 0,
       "swingPercentage": 53,
       "articulations": [
@@ -1722,9 +2443,88 @@ export const TIMBA_WORLD: GenreWorld = {
         "phrasePosition"
       ],
       "variants": [
-        
-        ],
-      "provenance": "Timba genre-pack structural pattern; generalized for engine coverage and recombination, not a transcription of a single recording.",
+        {
+          "id": "timba-anchor-14-v-01",
+          "parentPatternId": "timba-anchor-14",
+          "name": "Moña Anchor — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            1,
+            4,
+            8,
+            12,
+            14
+          ],
+          "accentProfile": [
+            0.95,
+            0.69,
+            0.85,
+            0.63,
+            0.95
+          ],
+          "velocityProfile": [
+            0.92,
+            0.61,
+            0.8200000000000001,
+            0.6000000000000001,
+            0.87
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "timba-anchor-14-v-02",
+          "parentPatternId": "timba-anchor-14",
+          "name": "Moña Anchor — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            1,
+            2,
+            4,
+            8,
+            9,
+            12,
+            14
+          ],
+          "accentProfile": [
+            0.96,
+            0.82,
+            0.86,
+            0.76,
+            0.96,
+            0.82,
+            0.86
+          ],
+          "velocityProfile": [
+            1,
+            0.6699999999999999,
+            0.88,
+            0.74,
+            0.9299999999999999,
+            0.72,
+            0.96
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2
+          ]
+        }
+      ],
+      "provenance": "GenreDAW catalog rebuild from existing Timba world data; generated to cover missing musical functions without runtime AI.",
       "authenticityTags": [
         "timba",
         "mona"
@@ -1799,7 +2599,7 @@ export const TIMBA_WORLD: GenreWorld = {
         0.74,
         0.9
       ],
-      "syncopationRating": 0.71,
+      "syncopationRating": 0.7142857142857143,
       "anticipationOffset": 0,
       "swingPercentage": 53,
       "articulations": [
@@ -1828,9 +2628,88 @@ export const TIMBA_WORLD: GenreWorld = {
         "phrasePosition"
       ],
       "variants": [
-        
-        ],
-      "provenance": "Timba genre-pack structural pattern; generalized for engine coverage and recombination, not a transcription of a single recording.",
+        {
+          "id": "timba-comp-15-v-01",
+          "parentPatternId": "timba-comp-15",
+          "name": "Presión Comping — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            4,
+            6,
+            11,
+            14
+          ],
+          "accentProfile": [
+            0.95,
+            0.69,
+            0.85,
+            0.63,
+            0.95
+          ],
+          "velocityProfile": [
+            0.92,
+            0.61,
+            0.8200000000000001,
+            0.6000000000000001,
+            0.87
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "timba-comp-15-v-02",
+          "parentPatternId": "timba-comp-15",
+          "name": "Presión Comping — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            3,
+            4,
+            6,
+            10,
+            11,
+            14
+          ],
+          "accentProfile": [
+            0.96,
+            0.82,
+            0.86,
+            0.76,
+            0.96,
+            0.82,
+            0.86
+          ],
+          "velocityProfile": [
+            1,
+            0.6699999999999999,
+            0.88,
+            0.74,
+            0.9299999999999999,
+            0.72,
+            0.96
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2
+          ]
+        }
+      ],
+      "provenance": "GenreDAW catalog rebuild from existing Timba world data; generated to cover missing musical functions without runtime AI.",
       "authenticityTags": [
         "timba",
         "presion"
@@ -1904,7 +2783,7 @@ export const TIMBA_WORLD: GenreWorld = {
         0.95,
         0.74
       ],
-      "syncopationRating": 0.83,
+      "syncopationRating": 0.8333333333333334,
       "anticipationOffset": 0,
       "swingPercentage": 53,
       "articulations": [
@@ -1933,8 +2812,78 @@ export const TIMBA_WORLD: GenreWorld = {
         "phrasePosition"
       ],
       "variants": [
-        
-        
+        {
+          "id": "timba-intro-16-v-01",
+          "parentPatternId": "timba-intro-16",
+          "name": "Marcha Intro — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            1,
+            6,
+            9,
+            14
+          ],
+          "accentProfile": [
+            0.95,
+            0.69,
+            0.85,
+            0.63
+          ],
+          "velocityProfile": [
+            0.92,
+            0.61,
+            0.8200000000000001,
+            0.6000000000000001
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6
+          ]
+        },
+        {
+          "id": "timba-intro-16-v-02",
+          "parentPatternId": "timba-intro-16",
+          "name": "Marcha Intro — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            1,
+            4,
+            6,
+            9,
+            11,
+            14
+          ],
+          "accentProfile": [
+            0.96,
+            0.82,
+            0.86,
+            0.76,
+            0.96,
+            0.82
+          ],
+          "velocityProfile": [
+            1,
+            0.6699999999999999,
+            0.88,
+            0.74,
+            0.9299999999999999,
+            0.72
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5
+          ]
+        },
         {
           "id": "timba-intro-16-v-03",
           "parentPatternId": "timba-intro-16",
@@ -1980,7 +2929,7 @@ export const TIMBA_WORLD: GenreWorld = {
           ]
         }
       ],
-      "provenance": "Timba genre-pack structural pattern; generalized for engine coverage and recombination, not a transcription of a single recording.",
+      "provenance": "GenreDAW catalog rebuild from existing Timba world data; generated to cover missing musical functions without runtime AI.",
       "authenticityTags": [
         "timba",
         "marcha"
@@ -2048,7 +2997,7 @@ export const TIMBA_WORLD: GenreWorld = {
         0.9,
         0.58
       ],
-      "syncopationRating": 0.67,
+      "syncopationRating": 0.6666666666666666,
       "anticipationOffset": 0,
       "swingPercentage": 50,
       "articulations": [
@@ -2118,8 +3067,48 @@ export const TIMBA_WORLD: GenreWorld = {
             -4
           ]
         },
-        ],
-      "provenance": "Genre-pack structural pattern for dedicated vocal phrasing coverage for Timba; generalized for engine coverage, not a transcription.",
+        {
+          "id": "timba-voice-phrasing-v-final-accent",
+          "parentPatternId": "timba-voice-phrasing",
+          "name": "Timba Vocal Phrasing — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.18,
+          "description": "Same rhythmic shape with shifted emphasis on the repeat.",
+          "onsetGrid": [
+            0,
+            3,
+            5,
+            8,
+            11,
+            14
+          ],
+          "accentProfile": [
+            0.8999999999999999,
+            0.7,
+            0.8999999999999999,
+            0.7,
+            0.8999999999999999,
+            0.7
+          ],
+          "velocityProfile": [
+            0.9,
+            0.58,
+            0.9,
+            0.58,
+            0.9,
+            0.58
+          ],
+          "microtimingOffset": [
+            2,
+            -4,
+            2,
+            -4,
+            2,
+            -4
+          ]
+        }
+      ],
+      "provenance": "GenreDAW catalog rebuild: dedicated vocal phrasing coverage for Timba.",
       "authenticityTags": [
         "timba",
         "voice"
@@ -2130,156 +3119,6 @@ export const TIMBA_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "difficulty": 2,
       "weight": 0.9,
-      "enabled": true
-    },
-    {
-      "id": "timba-guaguanco-break",
-      "worldId": "timba",
-      "traditionId": "timba-bata-rumba",
-      "name": "Guaguancó Rumba Break & Catá",
-      "family": "Percussion",
-      "category": "groove",
-      "description": "High-energy Guaguancó breakdown with wooden catá stick pattern, low salidor conga tumbao, and explosive quinto accents.",
-      "tags": ["timba", "rumba", "guaguanco", "cata", "congas"],
-      "scopes": ["measure", "phrase", "region", "track"],
-      "roles": ["percussion", "pulse"],
-      "instruments": ["congas", "percussion"],
-      "meter": "4/4",
-      "cycleLength": 1,
-      "subdivisions": 16,
-      "onsetGrid": [0, 3, 6, 8, 10, 12, 14],
-      "accentProfile": [1.0, 0.7, 0.95, 0.6, 0.9, 0.7, 0.85],
-      "velocityProfile": [0.95, 0.65, 0.9, 0.55, 0.85, 0.65, 0.8],
-      "density": "dense",
-      "phrasePosition": ["start", "middle", "end"],
-      "sectionUsage": ["chorus", "solo"],
-      "variants": [],
-      "provenance": "Genre-pack support pattern for Afro-Cuban Folclórico & Batá-Timba; generalized from documented musical conventions.",
-      "authenticityTags": ["timba", "rumba"],
-      "danceTags": ["festival-fusion"],
-      "tuningSystem": "12-tet",
-      "difficulty": 3,
-      "weight": 1,
-      "enabled": true
-    },
-    {
-      "id": "timba-bata-coro-call",
-      "worldId": "timba",
-      "traditionId": "timba-bata-rumba",
-      "name": "Afro-Cuban Coro Call & Response",
-      "family": "Voice",
-      "category": "phrasePattern",
-      "description": "Responsorial African-diaspora vocal call answered by the full band coro over rumba clave syncopation.",
-      "tags": ["timba", "coro", "voice", "call-and-response"],
-      "scopes": ["phrase", "region", "track"],
-      "roles": ["melody", "lead"],
-      "instruments": ["voice"],
-      "meter": "4/4",
-      "cycleLength": 2,
-      "subdivisions": 16,
-      "onsetGrid": [0, 3, 6, 8, 12, 16, 19, 22, 24, 28],
-      "accentProfile": [1.0, 0.75, 0.9, 0.8, 0.95, 1.0, 0.75, 0.9, 0.8, 0.95],
-      "velocityProfile": [0.95, 0.7, 0.85, 0.75, 0.9, 0.95, 0.7, 0.85, 0.75, 0.9],
-      "density": "medium",
-      "phrasePosition": ["start", "middle", "end"],
-      "sectionUsage": ["chorus", "coda"],
-      "variants": [],
-      "provenance": "Genre-pack support pattern for Afro-Cuban Folclórico & Batá-Timba; generalized from documented musical conventions.",
-      "authenticityTags": ["timba", "voice"],
-      "danceTags": ["social-partner"],
-      "tuningSystem": "12-tet",
-      "difficulty": 2,
-      "weight": 1,
-      "enabled": true
-    },
-    {
-      "id": "timba-bomba-slap-gear",
-      "worldId": "timba",
-      "traditionId": "timba-bata-rumba",
-      "name": "Bomba Gear Slap Bass Breakdown",
-      "family": "Bass",
-      "category": "groove",
-      "description": "The notorious Timba 'Bomba' gear: piano cuts out completely, bass drops thunderous thumb slaps and pops on the offbeats locked with kick drum bombs.",
-      "tags": ["timba", "bomba", "slap-bass", "gear"],
-      "scopes": ["measure", "phrase", "region", "track"],
-      "roles": ["bass"],
-      "instruments": ["bass"],
-      "meter": "4/4",
-      "cycleLength": 1,
-      "subdivisions": 16,
-      "onsetGrid": [2, 5, 8, 11, 14],
-      "accentProfile": [0.9, 1.0, 0.85, 1.0, 0.95],
-      "velocityProfile": [0.85, 1.0, 0.8, 1.0, 0.9],
-      "density": "medium",
-      "phrasePosition": ["start", "middle", "end"],
-      "sectionUsage": ["chorus", "solo"],
-      "variants": [],
-      "provenance": "Genre-pack support pattern for Afro-Cuban Folclórico & Batá-Timba; generalized from documented musical conventions.",
-      "authenticityTags": ["timba", "bomba"],
-      "danceTags": ["social-partner"],
-      "tuningSystem": "12-tet",
-      "difficulty": 3,
-      "weight": 1,
-      "enabled": true
-    },
-    {
-      "id": "timba-irakere-brass-tumbao",
-      "worldId": "timba",
-      "traditionId": "timba-funk-jazz",
-      "name": "Irakere Chromatic Brass Moña",
-      "family": "Brass",
-      "category": "phrasePattern",
-      "description": "Virtuosic multi-horn mambo/moña with fast unison chromatic bebop lines and syncopated rhythmic punches.",
-      "tags": ["timba", "brass", "irakere", "jazz", "horns"],
-      "scopes": ["phrase", "region", "track"],
-      "roles": ["lead", "melody"],
-      "instruments": ["trumpet", "sax"],
-      "meter": "4/4",
-      "cycleLength": 2,
-      "subdivisions": 16,
-      "onsetGrid": [0, 3, 6, 8, 11, 14, 16, 18, 20, 22, 24, 27, 30],
-      "accentProfile": [1.0, 0.8, 0.95, 0.8, 0.9, 0.95, 1.0, 0.75, 0.85, 0.8, 1.0, 0.85, 0.95],
-      "velocityProfile": [0.95, 0.75, 0.9, 0.75, 0.85, 0.9, 0.95, 0.7, 0.8, 0.75, 0.95, 0.8, 0.9],
-      "density": "dense",
-      "phrasePosition": ["start", "middle", "end"],
-      "sectionUsage": ["intro", "chorus", "solo"],
-      "variants": [],
-      "provenance": "Genre-pack support pattern for Timba-Funk & Latin Jazz Fusion; generalized from documented musical conventions.",
-      "authenticityTags": ["timba", "brass"],
-      "danceTags": ["festival-fusion"],
-      "tuningSystem": "12-tet",
-      "difficulty": 3,
-      "weight": 1,
-      "enabled": true
-    },
-    {
-      "id": "timba-songo-cowbell-ride",
-      "worldId": "timba",
-      "traditionId": "timba-funk-jazz",
-      "name": "Songo Mambo Cowbell & Kick Bomb",
-      "family": "Drums",
-      "category": "groove",
-      "description": "High-intensity songo drum kit groove with driving mambo bell pattern, open hi-hat sizzles, and syncopated bass drum bombs.",
-      "tags": ["timba", "songo", "cowbell", "drums", "kick-bomb"],
-      "scopes": ["measure", "phrase", "region", "track"],
-      "roles": ["drums", "pulse"],
-      "instruments": ["drums", "timbales"],
-      "meter": "4/4",
-      "cycleLength": 1,
-      "subdivisions": 16,
-      "onsetGrid": [0, 2, 4, 6, 8, 10, 12, 14],
-      "accentProfile": [1.0, 0.6, 0.9, 0.7, 0.95, 0.6, 1.0, 0.75],
-      "velocityProfile": [0.95, 0.55, 0.85, 0.65, 0.9, 0.55, 0.95, 0.7],
-      "density": "dense",
-      "phrasePosition": ["start", "middle", "end"],
-      "sectionUsage": ["verse", "chorus", "solo"],
-      "variants": [],
-      "provenance": "Genre-pack support pattern for Timba-Funk & Latin Jazz Fusion; generalized from documented musical conventions.",
-      "authenticityTags": ["timba", "drums"],
-      "danceTags": ["festival-fusion"],
-      "tuningSystem": "12-tet",
-      "difficulty": 3,
-      "weight": 1,
       "enabled": true
     }
   ],

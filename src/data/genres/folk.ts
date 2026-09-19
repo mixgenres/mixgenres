@@ -300,13 +300,53 @@ export const FOLK_WORLD: GenreWorld = {
             "use as an alternate voicing/technique"
           ]
         },
-        ],
+        {
+          "id": "folk-travis-v-02",
+          "parentPatternId": "folk-travis",
+          "name": "Travis Picking — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            4,
+            8,
+            12,
+            6,
+            14
+          ],
+          "accentProfile": [
+            0.96,
+            0.9299999999999999,
+            0.9099999999999999,
+            0.9299999999999999,
+            0.71,
+            0.88
+          ],
+          "velocityProfile": [
+            1,
+            0.78,
+            0.88,
+            0.8600000000000001,
+            0.6799999999999999,
+            0.73
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5
+          ]
+        }
+      ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 2,
       "weight": 1,
-      "provenance": "Folk genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Folk catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "folk"
       ],
@@ -398,14 +438,85 @@ export const FOLK_WORLD: GenreWorld = {
         "chorus"
       ],
       "variants": [
-        
-        ],
+        {
+          "id": "folk-travis-sync-v-01",
+          "parentPatternId": "folk-travis-sync",
+          "name": "Syncopated Travis — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            7,
+            8,
+            15
+          ],
+          "accentProfile": [
+            0.95,
+            0.7999999999999999,
+            0.85,
+            0.8999999999999999
+          ],
+          "velocityProfile": [
+            0.87,
+            0.7200000000000001,
+            0.77,
+            0.8200000000000001
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6
+          ]
+        },
+        {
+          "id": "folk-travis-sync-v-02",
+          "parentPatternId": "folk-travis-sync",
+          "name": "Syncopated Travis — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            4,
+            7,
+            8,
+            12,
+            15
+          ],
+          "accentProfile": [
+            0.96,
+            0.9299999999999999,
+            0.86,
+            1,
+            0.8099999999999999,
+            0.88
+          ],
+          "velocityProfile": [
+            1,
+            0.78,
+            0.83,
+            0.96,
+            0.78,
+            0.73
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5
+          ]
+        }
+      ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 2,
       "weight": 1,
-      "provenance": "Folk genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Folk catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "folk"
       ],
@@ -509,13 +620,45 @@ export const FOLK_WORLD: GenreWorld = {
             "use as an alternate voicing/technique"
           ]
         },
-        ],
+        {
+          "id": "folk-strum-basic-v-02",
+          "parentPatternId": "folk-strum-basic",
+          "name": "Basic Strum — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            2,
+            4,
+            6
+          ],
+          "accentProfile": [
+            0.96,
+            0.83,
+            0.86,
+            0.88
+          ],
+          "velocityProfile": [
+            1,
+            0.6799999999999999,
+            0.83,
+            0.81
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5
+          ]
+        }
+      ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 1,
       "weight": 1,
-      "provenance": "Folk genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Folk catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "folk"
       ],
@@ -622,13 +765,49 @@ export const FOLK_WORLD: GenreWorld = {
             -3
           ]
         },
-        ],
+        {
+          "id": "folk-strum-sync-v-02",
+          "parentPatternId": "folk-strum-sync",
+          "name": "Syncopated Strum — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            2,
+            5,
+            6,
+            7
+          ],
+          "accentProfile": [
+            0.96,
+            0.88,
+            0.86,
+            0.83,
+            0.8099999999999999
+          ],
+          "velocityProfile": [
+            1,
+            0.73,
+            0.83,
+            0.76,
+            0.78
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2
+          ]
+        }
+      ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 2,
       "weight": 1,
-      "provenance": "Folk genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Folk catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "folk"
       ],
@@ -699,14 +878,65 @@ export const FOLK_WORLD: GenreWorld = {
         "chorus"
       ],
       "variants": [
-        
-        ],
+        {
+          "id": "folk-waltz-v-01",
+          "parentPatternId": "folk-waltz",
+          "name": "Waltz Strum — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            4
+          ],
+          "accentProfile": [
+            0.95,
+            0.6699999999999999
+          ],
+          "velocityProfile": [
+            0.87,
+            0.6000000000000001
+          ],
+          "microtimingOffset": [
+            -3,
+            6
+          ]
+        },
+        {
+          "id": "folk-waltz-v-02",
+          "parentPatternId": "folk-waltz",
+          "name": "Waltz Strum — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            2,
+            4
+          ],
+          "accentProfile": [
+            0.96,
+            0.7999999999999999,
+            0.61
+          ],
+          "velocityProfile": [
+            1,
+            0.66,
+            0.58
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2
+          ]
+        }
+      ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 1,
       "weight": 1,
-      "provenance": "Folk genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Folk catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "folk"
       ],
@@ -798,14 +1028,85 @@ export const FOLK_WORLD: GenreWorld = {
         "chorus"
       ],
       "variants": [
-        
-        ],
+        {
+          "id": "folk-waltz-pick-v-01",
+          "parentPatternId": "folk-waltz-pick",
+          "name": "Waltz Fingerpick — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            2,
+            3,
+            5
+          ],
+          "accentProfile": [
+            0.95,
+            0.6,
+            0.7,
+            0.7999999999999999
+          ],
+          "velocityProfile": [
+            0.87,
+            0.52,
+            0.62,
+            0.7200000000000001
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6
+          ]
+        },
+        {
+          "id": "folk-waltz-pick-v-02",
+          "parentPatternId": "folk-waltz-pick",
+          "name": "Waltz Fingerpick — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "accentProfile": [
+            0.96,
+            0.73,
+            0.71,
+            0.9299999999999999,
+            0.6599999999999999,
+            0.83
+          ],
+          "velocityProfile": [
+            1,
+            0.58,
+            0.6799999999999999,
+            0.8600000000000001,
+            0.63,
+            0.6799999999999999
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5
+          ]
+        }
+      ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 2,
       "weight": 1,
-      "provenance": "Folk genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Folk catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "folk"
       ],
@@ -897,14 +1198,85 @@ export const FOLK_WORLD: GenreWorld = {
         "chorus"
       ],
       "variants": [
-        
-        ],
+        {
+          "id": "folk-68-arpeggio-v-01",
+          "parentPatternId": "folk-68-arpeggio",
+          "name": "6/8 Arpeggio — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            2,
+            3,
+            5
+          ],
+          "accentProfile": [
+            0.95,
+            0.5499999999999999,
+            0.6499999999999999,
+            0.85
+          ],
+          "velocityProfile": [
+            0.87,
+            0.47000000000000003,
+            0.5700000000000001,
+            0.77
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6
+          ]
+        },
+        {
+          "id": "folk-68-arpeggio-v-02",
+          "parentPatternId": "folk-68-arpeggio",
+          "name": "6/8 Arpeggio — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "accentProfile": [
+            0.96,
+            0.6799999999999999,
+            0.6599999999999999,
+            0.98,
+            0.61,
+            0.7799999999999999
+          ],
+          "velocityProfile": [
+            1,
+            0.53,
+            0.63,
+            0.9099999999999999,
+            0.58,
+            0.63
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5
+          ]
+        }
+      ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 2,
       "weight": 1,
-      "provenance": "Folk genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Folk catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "folk"
       ],
@@ -985,14 +1357,85 @@ export const FOLK_WORLD: GenreWorld = {
         "chorus"
       ],
       "variants": [
-        
-        ],
+        {
+          "id": "folk-fiddle-drone-v-01",
+          "parentPatternId": "folk-fiddle-drone",
+          "name": "Old-Time Fiddle Drone & Shuffle Bow — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            4,
+            6,
+            10
+          ],
+          "accentProfile": [
+            0.95,
+            0.5499999999999999,
+            0.7,
+            0.85
+          ],
+          "velocityProfile": [
+            0.87,
+            0.47000000000000003,
+            0.62,
+            0.77
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6
+          ]
+        },
+        {
+          "id": "folk-fiddle-drone-v-02",
+          "parentPatternId": "folk-fiddle-drone",
+          "name": "Old-Time Fiddle Drone & Shuffle Bow — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            3,
+            4,
+            6,
+            9,
+            10
+          ],
+          "accentProfile": [
+            0.96,
+            0.6799999999999999,
+            0.71,
+            0.98,
+            0.5599999999999999,
+            0.83
+          ],
+          "velocityProfile": [
+            1,
+            0.53,
+            0.6799999999999999,
+            0.9099999999999999,
+            0.53,
+            0.6799999999999999
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5
+          ]
+        }
+      ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 2,
       "weight": 0.7,
-      "provenance": "Folk genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Folk catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "folk"
       ],
@@ -1066,14 +1509,73 @@ export const FOLK_WORLD: GenreWorld = {
         "chorus"
       ],
       "variants": [
-        
-        ],
+        {
+          "id": "folk-fast-bluegrass-v-01",
+          "parentPatternId": "folk-fast-bluegrass",
+          "name": "Fast Bluegrass Drive — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            2,
+            3
+          ],
+          "accentProfile": [
+            0.95,
+            0.7,
+            0.8999999999999999
+          ],
+          "velocityProfile": [
+            0.87,
+            0.62,
+            0.8200000000000001
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "folk-fast-bluegrass-v-02",
+          "parentPatternId": "folk-fast-bluegrass",
+          "name": "Fast Bluegrass Drive — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "accentProfile": [
+            0.96,
+            0.83,
+            0.9099999999999999,
+            0.88
+          ],
+          "velocityProfile": [
+            1,
+            0.6799999999999999,
+            0.88,
+            0.81
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5
+          ]
+        }
+      ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 1,
       "weight": 1,
-      "provenance": "Folk genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Folk catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "folk"
       ],
@@ -1159,14 +1661,97 @@ export const FOLK_WORLD: GenreWorld = {
         "chorus"
       ],
       "variants": [
-        
-        ],
+        {
+          "id": "folk-driving-8ths-v-01",
+          "parentPatternId": "folk-driving-8ths",
+          "name": "Driving 8ths — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            2,
+            3,
+            5,
+            6
+          ],
+          "accentProfile": [
+            0.95,
+            0.6,
+            0.7999999999999999,
+            0.6499999999999999,
+            0.8999999999999999
+          ],
+          "velocityProfile": [
+            0.87,
+            0.52,
+            0.7200000000000001,
+            0.5700000000000001,
+            0.8200000000000001
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "folk-driving-8ths-v-02",
+          "parentPatternId": "folk-driving-8ths",
+          "name": "Driving 8ths — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "accentProfile": [
+            0.96,
+            0.73,
+            0.8099999999999999,
+            0.7799999999999999,
+            0.9099999999999999,
+            0.73,
+            0.8099999999999999,
+            0.83
+          ],
+          "velocityProfile": [
+            1,
+            0.58,
+            0.78,
+            0.71,
+            0.88,
+            0.58,
+            0.8600000000000001,
+            0.6799999999999999
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5
+          ]
+        }
+      ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 3,
       "weight": 1,
-      "provenance": "Folk genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Folk catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "folk"
       ],
@@ -1273,8 +1858,72 @@ export const FOLK_WORLD: GenreWorld = {
         "phrasePosition"
       ],
       "variants": [
+        {
+          "id": "folk-roster-11-v-01",
+          "parentPatternId": "folk-roster-11",
+          "name": "Flatpick Texture — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            6,
+            9
+          ],
+          "accentProfile": [
+            0.95,
+            0.69,
+            0.85
+          ],
+          "velocityProfile": [
+            0.92,
+            0.61,
+            0.8200000000000001
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "folk-roster-11-v-02",
+          "parentPatternId": "folk-roster-11",
+          "name": "Flatpick Texture — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            3,
+            6,
+            9,
+            12
+          ],
+          "accentProfile": [
+            0.96,
+            0.82,
+            0.86,
+            0.76,
+            0.96
+          ],
+          "velocityProfile": [
+            1,
+            0.6699999999999999,
+            0.88,
+            0.74,
+            0.9299999999999999
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2
+          ]
+        }
       ],
-      "provenance": "Folk genre-pack structural pattern; generalized for engine coverage and recombination, not a transcription of a single recording.",
+      "provenance": "GenreDAW catalog rebuild from existing Folk world data; generated to cover missing musical functions without runtime AI.",
       "authenticityTags": [
         "folk",
         "flatpick"
@@ -1368,8 +2017,72 @@ export const FOLK_WORLD: GenreWorld = {
         "phrasePosition"
       ],
       "variants": [
+        {
+          "id": "folk-roster-12-v-01",
+          "parentPatternId": "folk-roster-12",
+          "name": "Banjo Roll Texture — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            1,
+            7,
+            10
+          ],
+          "accentProfile": [
+            0.95,
+            0.69,
+            0.85
+          ],
+          "velocityProfile": [
+            0.92,
+            0.61,
+            0.8200000000000001
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "folk-roster-12-v-02",
+          "parentPatternId": "folk-roster-12",
+          "name": "Banjo Roll Texture — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            1,
+            4,
+            7,
+            10,
+            13
+          ],
+          "accentProfile": [
+            0.96,
+            0.82,
+            0.86,
+            0.76,
+            0.96
+          ],
+          "velocityProfile": [
+            1,
+            0.6699999999999999,
+            0.88,
+            0.74,
+            0.9299999999999999
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2
+          ]
+        }
       ],
-      "provenance": "Folk genre-pack structural pattern; generalized for engine coverage and recombination, not a transcription of a single recording.",
+      "provenance": "GenreDAW catalog rebuild from existing Folk world data; generated to cover missing musical functions without runtime AI.",
       "authenticityTags": [
         "folk",
         "banjo-roll"
@@ -1432,7 +2145,7 @@ export const FOLK_WORLD: GenreWorld = {
         0.57,
         0.95,
         0.62,
-        0.9
+        0.8999999999999999
       ],
       "syncopationRating": 0.8,
       "anticipationOffset": 0,
@@ -1464,10 +2177,116 @@ export const FOLK_WORLD: GenreWorld = {
         "phrasePosition"
       ],
       "variants": [
-        
-        
-        ],
-      "provenance": "Folk genre-pack structural pattern; generalized for engine coverage and recombination, not a transcription of a single recording.",
+        {
+          "id": "folk-call-13-v-01",
+          "parentPatternId": "folk-call-13",
+          "name": "Fiddle Break Response — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            1,
+            7,
+            10
+          ],
+          "accentProfile": [
+            0.8999999999999999,
+            0.57,
+            0.8999999999999999
+          ],
+          "velocityProfile": [
+            0.87,
+            0.48999999999999994,
+            0.87
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "folk-call-13-v-02",
+          "parentPatternId": "folk-call-13",
+          "name": "Fiddle Break Response — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            1,
+            4,
+            7,
+            10,
+            13
+          ],
+          "accentProfile": [
+            0.9099999999999999,
+            0.7,
+            0.9099999999999999,
+            0.7,
+            0.9099999999999999
+          ],
+          "velocityProfile": [
+            1,
+            0.5499999999999999,
+            0.9299999999999999,
+            0.6799999999999999,
+            0.8799999999999999
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2
+          ]
+        },
+        {
+          "id": "folk-call-13-v-03",
+          "parentPatternId": "folk-call-13",
+          "name": "Fiddle Break Response — transition variation",
+          "variationType": "transition",
+          "probability": 0.16,
+          "description": "Adds a final pickup/closure gesture for section transitions.",
+          "onsetGrid": [
+            1,
+            4,
+            7,
+            10,
+            13,
+            14,
+            15
+          ],
+          "accentProfile": [
+            0.9299999999999999,
+            0.6,
+            0.9299999999999999,
+            0.6,
+            0.9299999999999999,
+            1,
+            1
+          ],
+          "velocityProfile": [
+            0.95,
+            0.57,
+            0.95,
+            0.62,
+            0.8999999999999999,
+            0.98,
+            0.98
+          ],
+          "microtimingOffset": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            -6,
+            -6
+          ]
+        }
+      ],
+      "provenance": "GenreDAW catalog rebuild from existing Folk world data; generated to cover missing musical functions without runtime AI.",
       "authenticityTags": [
         "folk",
         "fiddle-break"
@@ -1566,9 +2385,72 @@ export const FOLK_WORLD: GenreWorld = {
         "phrasePosition"
       ],
       "variants": [
-        
-        ],
-      "provenance": "Folk genre-pack structural pattern; generalized for engine coverage and recombination, not a transcription of a single recording.",
+        {
+          "id": "folk-anchor-14-v-01",
+          "parentPatternId": "folk-anchor-14",
+          "name": "Vocal Harmony Anchor — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            2,
+            8,
+            11
+          ],
+          "accentProfile": [
+            0.95,
+            0.69,
+            0.85
+          ],
+          "velocityProfile": [
+            0.92,
+            0.61,
+            0.8200000000000001
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "folk-anchor-14-v-02",
+          "parentPatternId": "folk-anchor-14",
+          "name": "Vocal Harmony Anchor — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            2,
+            5,
+            8,
+            11,
+            14
+          ],
+          "accentProfile": [
+            0.96,
+            0.82,
+            0.86,
+            0.76,
+            0.96
+          ],
+          "velocityProfile": [
+            1,
+            0.6699999999999999,
+            0.88,
+            0.74,
+            0.9299999999999999
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2
+          ]
+        }
+      ],
+      "provenance": "GenreDAW catalog rebuild from existing Folk world data; generated to cover missing musical functions without runtime AI.",
       "authenticityTags": [
         "folk",
         "vocal-harmony"
@@ -1631,7 +2513,7 @@ export const FOLK_WORLD: GenreWorld = {
         0.69,
         0.9
       ],
-      "syncopationRating": 0.33,
+      "syncopationRating": 0.3333333333333333,
       "anticipationOffset": 0,
       "swingPercentage": 52,
       "articulations": [
@@ -1684,8 +2566,36 @@ export const FOLK_WORLD: GenreWorld = {
             6
           ]
         },
-        ],
-      "provenance": "Folk genre-pack structural pattern; generalized for engine coverage and recombination, not a transcription of a single recording.",
+        {
+          "id": "folk-comp-15-v-02",
+          "parentPatternId": "folk-comp-15",
+          "name": "Fingerpick Comping — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            2,
+            4
+          ],
+          "accentProfile": [
+            0.96,
+            0.82,
+            0.86
+          ],
+          "velocityProfile": [
+            1,
+            0.6699999999999999,
+            0.88
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2
+          ]
+        }
+      ],
+      "provenance": "GenreDAW catalog rebuild from existing Folk world data; generated to cover missing musical functions without runtime AI.",
       "authenticityTags": [
         "folk",
         "fingerpick"
@@ -1794,8 +2704,90 @@ export const FOLK_WORLD: GenreWorld = {
         "phrasePosition"
       ],
       "variants": [
-        
-        
+        {
+          "id": "folk-intro-16-v-01",
+          "parentPatternId": "folk-intro-16",
+          "name": "Flatpick Intro — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            4,
+            6,
+            11,
+            12
+          ],
+          "accentProfile": [
+            0.95,
+            0.69,
+            0.85,
+            0.63,
+            0.95
+          ],
+          "velocityProfile": [
+            0.92,
+            0.61,
+            0.8200000000000001,
+            0.6000000000000001,
+            0.87
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "folk-intro-16-v-02",
+          "parentPatternId": "folk-intro-16",
+          "name": "Flatpick Intro — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            1,
+            4,
+            6,
+            8,
+            11,
+            12,
+            14
+          ],
+          "accentProfile": [
+            0.96,
+            0.82,
+            0.86,
+            0.76,
+            0.96,
+            0.82,
+            0.86,
+            0.76
+          ],
+          "velocityProfile": [
+            1,
+            0.6699999999999999,
+            0.88,
+            0.74,
+            0.9299999999999999,
+            0.72,
+            0.96,
+            0.61
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5
+          ]
+        },
         {
           "id": "folk-intro-16-v-03",
           "parentPatternId": "folk-intro-16",
@@ -1849,7 +2841,7 @@ export const FOLK_WORLD: GenreWorld = {
           ]
         }
       ],
-      "provenance": "Folk genre-pack structural pattern; generalized for engine coverage and recombination, not a transcription of a single recording.",
+      "provenance": "GenreDAW catalog rebuild from existing Folk world data; generated to cover missing musical functions without runtime AI.",
       "authenticityTags": [
         "folk",
         "flatpick"
@@ -1964,9 +2956,92 @@ export const FOLK_WORLD: GenreWorld = {
         "phrasePosition"
       ],
       "variants": [
-        
-        ],
-      "provenance": "Folk genre-pack structural pattern; generalized for engine coverage and recombination, not a transcription of a single recording.",
+        {
+          "id": "folk-verse-17-v-01",
+          "parentPatternId": "folk-verse-17",
+          "name": "Banjo Roll Verse Variation — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            1,
+            5,
+            7,
+            12,
+            13
+          ],
+          "accentProfile": [
+            0.95,
+            0.69,
+            0.85,
+            0.63,
+            0.95
+          ],
+          "velocityProfile": [
+            0.92,
+            0.61,
+            0.8200000000000001,
+            0.6000000000000001,
+            0.87
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "folk-verse-17-v-02",
+          "parentPatternId": "folk-verse-17",
+          "name": "Banjo Roll Verse Variation — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            1,
+            2,
+            5,
+            7,
+            9,
+            12,
+            13,
+            15
+          ],
+          "accentProfile": [
+            0.96,
+            0.82,
+            0.86,
+            0.76,
+            0.96,
+            0.82,
+            0.86,
+            0.76
+          ],
+          "velocityProfile": [
+            1,
+            0.6699999999999999,
+            0.88,
+            0.74,
+            0.9299999999999999,
+            0.72,
+            0.96,
+            0.61
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5
+          ]
+        }
+      ],
+      "provenance": "GenreDAW catalog rebuild from existing Folk world data; generated to cover missing musical functions without runtime AI.",
       "authenticityTags": [
         "folk",
         "banjo-roll"
@@ -1978,36 +3053,6 @@ export const FOLK_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "difficulty": 3,
       "weight": 1,
-      "enabled": true
-    },
-    {
-      "id": "folk-bluegrass-mandolin-chop",
-      "worldId": "folk",
-      "traditionId": "folk-bluegrass",
-      "name": "Bluegrass Mandolin Offbeat Chop",
-      "family": "Acoustic String",
-      "category": "groove",
-      "description": "Crisp, percussive muted offbeat chord chop on beats 2 and 4 serving as the rhythmic engine and snare substitute of bluegrass.",
-      "tags": ["bluegrass", "mandolin", "chop", "offbeat", "old-time"],
-      "scopes": ["measure", "phrase", "region", "track"],
-      "roles": ["percussion", "pulse", "harmony"],
-      "instruments": ["acoustic-guitar"],
-      "meter": "4/4",
-      "cycleLength": 1,
-      "subdivisions": 16,
-      "onsetGrid": [4, 12],
-      "accentProfile": [1.0, 1.0],
-      "velocityProfile": [0.95, 0.95],
-      "density": "sparse",
-      "phrasePosition": ["start", "middle", "end"],
-      "sectionUsage": ["verse", "chorus", "solo"],
-      "variants": [],
-      "provenance": "Genre-pack support pattern for Bluegrass & Old Time; generalized from documented musical conventions.",
-      "authenticityTags": ["bluegrass", "mandolin"],
-      "danceTags": ["social-partner"],
-      "tuningSystem": "12-tet",
-      "difficulty": 2,
-      "weight": 0.9,
       "enabled": true
     }
   ],

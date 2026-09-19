@@ -357,7 +357,7 @@ export const TROVA_WORLD : GenreWorld = {
         ]
       }
     ],
-    "provenance": "Genre-pack structural pattern authored from documented rhythmic and ensemble conventions; generalized for engine recombination.",
+    "provenance": "GenreDAW catalog extension: authored from documented rhythmic/ensemble conventions and expressed as engine-ready structural cells.",
     "authenticityTags": [
       "trova",
       "arpeggio",
@@ -493,7 +493,7 @@ export const TROVA_WORLD : GenreWorld = {
         ]
       }
     ],
-    "provenance": "Genre-pack structural pattern authored from documented rhythmic and ensemble conventions; generalized for engine recombination.",
+    "provenance": "GenreDAW catalog extension: authored from documented rhythmic/ensemble conventions and expressed as engine-ready structural cells.",
     "authenticityTags": [
       "tres",
       "guajeo",
@@ -636,7 +636,7 @@ export const TROVA_WORLD : GenreWorld = {
         ]
       }
     ],
-    "provenance": "Genre-pack structural pattern authored from documented rhythmic and ensemble conventions; generalized for engine recombination.",
+    "provenance": "GenreDAW catalog extension: authored from documented rhythmic/ensemble conventions and expressed as engine-ready structural cells.",
     "authenticityTags": [
       "trova",
       "voice",
@@ -761,7 +761,7 @@ export const TROVA_WORLD : GenreWorld = {
         ]
       }
     ],
-    "provenance": "Genre-pack structural pattern authored from documented rhythmic and ensemble conventions; generalized for engine recombination.",
+    "provenance": "GenreDAW catalog extension: authored from documented rhythmic/ensemble conventions and expressed as engine-ready structural cells.",
     "authenticityTags": [
       "bolero",
       "bass",
@@ -885,7 +885,7 @@ export const TROVA_WORLD : GenreWorld = {
         ]
       }
     ],
-    "provenance": "Genre-pack structural pattern authored from documented rhythmic and ensemble conventions; generalized for engine recombination.",
+    "provenance": "GenreDAW catalog extension: authored from documented rhythmic/ensemble conventions and expressed as engine-ready structural cells.",
     "authenticityTags": [
       "cadence",
       "trova"
@@ -901,7 +901,7 @@ export const TROVA_WORLD : GenreWorld = {
   {
     "id": "tr-06-trova-fingerpicked-arpeggio",
     "worldId": "trova",
-    "traditionId": "trova-traditional",
+    "traditionId": "trova-cuban",
     "name": "Trova Fingerpicked Arpeggio",
     "family": "Cuban Trova",
     "category": "ostinato",
@@ -967,7 +967,7 @@ export const TROVA_WORLD : GenreWorld = {
       "phrasePosition"
     ],
     "variants": [],
-    "provenance": "Genre-pack structural pattern based on Cuban Trova; generalized for engine recombination, not literal transcription.",
+    "provenance": "Authored genre-pack pattern based on Cuban Trova; designed for engine-level recombination rather than literal transcription.",
     "authenticityTags": [
       "fingerpicking",
       "lyric space"
@@ -983,7 +983,7 @@ export const TROVA_WORLD : GenreWorld = {
   {
     "id": "tr-07-tres-guajeo-sketch",
     "worldId": "trova",
-    "traditionId": "trova-traditional",
+    "traditionId": "trova-nueva",
     "name": "Tres Guajeo Sketch",
     "family": "Cuban Trova",
     "category": "ostinato",
@@ -1061,7 +1061,7 @@ export const TROVA_WORLD : GenreWorld = {
       "phrasePosition"
     ],
     "variants": [],
-    "provenance": "Genre-pack structural pattern based on Cuban Trova; generalized for engine recombination, not literal transcription.",
+    "provenance": "Authored genre-pack pattern based on Cuban Trova; designed for engine-level recombination rather than literal transcription.",
     "authenticityTags": [
       "tres",
       "guajeo"
@@ -1136,7 +1136,7 @@ export const TROVA_WORLD : GenreWorld = {
       "phrasePosition"
     ],
     "variants": [],
-    "provenance": "Genre-pack structural pattern based on Voice; generalized for engine recombination, not literal transcription.",
+    "provenance": "Authored genre-pack pattern based on Voice; designed for engine-level recombination rather than literal transcription.",
     "authenticityTags": [
       "pickup",
       "rubato"
@@ -1152,7 +1152,7 @@ export const TROVA_WORLD : GenreWorld = {
   {
     "id": "tr-09-bolero-trova-bass",
     "worldId": "trova",
-    "traditionId": "trova-bolero",
+    "traditionId": "trova-nueva",
     "name": "Bolero-trova bass response",
     "family": "Bolero-Trova",
     "category": "bass",
@@ -1213,7 +1213,7 @@ export const TROVA_WORLD : GenreWorld = {
       "phrasePosition"
     ],
     "variants": [],
-    "provenance": "Genre-pack structural pattern based on Bolero-Trova; generalized for engine recombination, not literal transcription.",
+    "provenance": "Authored genre-pack pattern based on Bolero-Trova; designed for engine-level recombination rather than literal transcription.",
     "authenticityTags": [
       "bolero",
       "bass"
@@ -1289,7 +1289,7 @@ export const TROVA_WORLD : GenreWorld = {
       "phrasePosition"
     ],
     "variants": [],
-    "provenance": "Genre-pack structural pattern based on Harmony; generalized for engine recombination, not literal transcription.",
+    "provenance": "Authored genre-pack pattern based on Harmony; designed for engine-level recombination rather than literal transcription.",
     "authenticityTags": [
       "descending turn"
     ],
@@ -1365,7 +1365,7 @@ export const TROVA_WORLD : GenreWorld = {
       "phrasePosition"
     ],
     "variants": [],
-    "provenance": "Genre-pack structural pattern based on Nueva Trova; generalized for engine recombination, not literal transcription.",
+    "provenance": "Authored genre-pack pattern based on Nueva Trova; designed for engine-level recombination rather than literal transcription.",
     "authenticityTags": [
       "counterline",
       "lyric density"
@@ -1450,7 +1450,7 @@ export const TROVA_WORLD : GenreWorld = {
       "phrasePosition"
     ],
     "variants": [],
-    "provenance": "Genre-pack structural pattern based on Section; generalized for engine recombination, not literal transcription.",
+    "provenance": "Authored genre-pack pattern based on Section; designed for engine-level recombination rather than literal transcription.",
     "authenticityTags": [
       "refrain lift"
     ],
@@ -1523,7 +1523,7 @@ export const TROVA_WORLD : GenreWorld = {
       "phrasePosition"
     ],
     "variants": [],
-    "provenance": "Genre-pack structural pattern based on Break; generalized for engine recombination, not literal transcription.",
+    "provenance": "Authored genre-pack pattern based on Break; designed for engine-level recombination rather than literal transcription.",
     "authenticityTags": [
       "breath",
       "space"
@@ -1539,7 +1539,7 @@ export const TROVA_WORLD : GenreWorld = {
   {
     "id": "tr-14-trova-tres-answer",
     "worldId": "trova",
-    "traditionId": "trova-traditional",
+    "traditionId": "trova-nueva",
     "name": "Trova Tres Answer",
     "family": "Interaction",
     "category": "interactionPattern",
@@ -1612,7 +1612,7 @@ export const TROVA_WORLD : GenreWorld = {
       "phrasePosition"
     ],
     "variants": [],
-    "provenance": "Genre-pack structural pattern based on Interaction; generalized for engine recombination, not literal transcription.",
+    "provenance": "Authored genre-pack pattern based on Interaction; designed for engine-level recombination rather than literal transcription.",
     "authenticityTags": [
       "answer"
     ],
@@ -1689,7 +1689,7 @@ export const TROVA_WORLD : GenreWorld = {
       "phrasePosition"
     ],
     "variants": [],
-    "provenance": "Genre-pack structural pattern based on Cadence; generalized for engine recombination, not literal transcription.",
+    "provenance": "Authored genre-pack pattern based on Cadence; designed for engine-level recombination rather than literal transcription.",
     "authenticityTags": [
       "ii-V",
       "cadence"
@@ -1700,66 +1700,6 @@ export const TROVA_WORLD : GenreWorld = {
     "tuningSystem": "12-tet",
     "difficulty": 2,
     "weight": 0.82,
-    "enabled": true
-  },
-  {
-    "id": "tr-bolero-maracas-clave",
-    "worldId": "trova",
-    "traditionId": "trova-bolero",
-    "name": "Bolero Maracas & Clave Pulse",
-    "family": "Percussion",
-    "category": "groove",
-    "description": "Subtle, intimate Cuban bolero acoustic percussion with continuous 8th-note maracas shake and soft son clave pulse.",
-    "tags": ["bolero", "maracas", "clave", "percussion"],
-    "scopes": ["measure", "phrase", "region", "track"],
-    "roles": ["percussion", "pulse"],
-    "instruments": ["percussion"],
-    "meter": "4/4",
-    "cycleLength": 1,
-    "subdivisions": 16,
-    "onsetGrid": [0, 2, 4, 6, 8, 10, 12, 14],
-    "accentProfile": [0.9, 0.5, 0.75, 0.5, 0.9, 0.5, 0.75, 0.5],
-    "velocityProfile": [0.85, 0.45, 0.7, 0.45, 0.85, 0.45, 0.7, 0.45],
-    "density": "medium",
-    "phrasePosition": ["start", "middle", "end"],
-    "sectionUsage": ["verse", "chorus", "solo"],
-    "variants": [],
-    "provenance": "Genre-pack support pattern for Bolero-Trova; generalized from documented musical conventions.",
-    "authenticityTags": ["bolero", "percussion"],
-    "danceTags": ["social-partner"],
-    "tuningSystem": "12-tet",
-    "difficulty": 1,
-    "weight": 0.9,
-    "enabled": true
-  },
-  {
-    "id": "tr-bolero-requinto-melodia",
-    "worldId": "trova",
-    "traditionId": "trova-bolero",
-    "name": "Romantic Requinto Countermelody",
-    "family": "Guitar",
-    "category": "phrasePattern",
-    "description": "Intimate nylon-string requinto guitar playing lyrical, romantic descending arpeggios answering sung vocal lines.",
-    "tags": ["bolero", "requinto", "guitar", "countermelody"],
-    "scopes": ["phrase", "region", "track"],
-    "roles": ["melody", "lead", "counterline"],
-    "instruments": ["guitar"],
-    "meter": "4/4",
-    "cycleLength": 2,
-    "subdivisions": 16,
-    "onsetGrid": [4, 6, 8, 11, 14, 20, 22, 24, 28],
-    "accentProfile": [0.75, 0.6, 0.85, 0.65, 0.9, 0.75, 0.6, 0.85, 0.9],
-    "velocityProfile": [0.7, 0.55, 0.8, 0.6, 0.85, 0.7, 0.55, 0.8, 0.85],
-    "density": "sparse",
-    "phrasePosition": ["middle", "end"],
-    "sectionUsage": ["verse", "chorus", "solo", "coda"],
-    "variants": [],
-    "provenance": "Genre-pack support pattern for Bolero-Trova; generalized from documented musical conventions.",
-    "authenticityTags": ["bolero", "requinto"],
-    "danceTags": ["listening"],
-    "tuningSystem": "12-tet",
-    "difficulty": 2,
-    "weight": 0.9,
     "enabled": true
   }
 ],

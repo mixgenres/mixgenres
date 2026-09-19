@@ -505,13 +505,53 @@ export const ROCK_EN_ESPANOL_WORLD: GenreWorld = {
           ],
           "description": "A short guitar response occupies the gap after the end of a sung phrase."
         },
-        ],
+        {
+          "id": "res-riff-verse-v-02",
+          "parentPatternId": "res-riff-verse",
+          "name": "Guitar Hook Verse — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            3,
+            6,
+            8,
+            11,
+            14
+          ],
+          "accentProfile": [
+            0.96,
+            0.7799999999999999,
+            0.86,
+            0.88,
+            0.96,
+            0.83
+          ],
+          "velocityProfile": [
+            0.96,
+            0.58,
+            0.78,
+            0.76,
+            0.88,
+            0.63
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5
+          ]
+        }
+      ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 2,
       "weight": 0.7,
-      "provenance": "Rock en Español genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Rock en Español catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "rock-en-espanol"
       ],
@@ -636,14 +676,85 @@ export const ROCK_EN_ESPANOL_WORLD: GenreWorld = {
           ],
           "description": "The final chorus adds a more active guitar rhythm while preserving the vocal hook."
         },
-        
-        ],
+        {
+          "id": "res-anthem-chorus-v-02",
+          "parentPatternId": "res-anthem-chorus",
+          "name": "Anthemic Chorus Lift — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            4,
+            8,
+            12
+          ],
+          "accentProfile": [
+            0.96,
+            0.88,
+            0.9099999999999999,
+            0.9299999999999999
+          ],
+          "velocityProfile": [
+            1,
+            0.73,
+            0.88,
+            0.8600000000000001
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5
+          ]
+        },
+        {
+          "id": "res-anthem-chorus-v-03",
+          "parentPatternId": "res-anthem-chorus",
+          "name": "Anthemic Chorus Lift — transition variation",
+          "variationType": "transition",
+          "probability": 0.16,
+          "description": "Adds a final pickup/closure gesture for section transitions.",
+          "onsetGrid": [
+            0,
+            4,
+            8,
+            12,
+            14,
+            15
+          ],
+          "accentProfile": [
+            0.98,
+            0.78,
+            0.9299999999999999,
+            0.83,
+            1,
+            1
+          ],
+          "velocityProfile": [
+            0.95,
+            0.75,
+            0.9,
+            0.8,
+            0.98,
+            0.98
+          ],
+          "microtimingOffset": [
+            0,
+            0,
+            0,
+            0,
+            -6,
+            -6
+          ]
+        }
+      ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 1,
       "weight": 0.7,
-      "provenance": "Rock en Español genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Rock en Español catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "rock-en-espanol"
       ],
@@ -738,15 +849,101 @@ export const ROCK_EN_ESPANOL_WORLD: GenreWorld = {
         "breakdown"
       ],
       "variants": [
-        
-        
-        ],
+        {
+          "id": "res-half-time-drop-v-01",
+          "parentPatternId": "res-half-time-drop",
+          "name": "Half-Time Bridge Drop — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            12
+          ],
+          "accentProfile": [
+            0.95,
+            0.6499999999999999
+          ],
+          "velocityProfile": [
+            0.8200000000000001,
+            0.47000000000000003
+          ],
+          "microtimingOffset": [
+            -3,
+            6
+          ]
+        },
+        {
+          "id": "res-half-time-drop-v-02",
+          "parentPatternId": "res-half-time-drop",
+          "name": "Half-Time Bridge Drop — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            8,
+            12
+          ],
+          "accentProfile": [
+            0.96,
+            0.7799999999999999,
+            0.8099999999999999
+          ],
+          "velocityProfile": [
+            0.96,
+            0.53,
+            0.6799999999999999
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2
+          ]
+        },
+        {
+          "id": "res-half-time-drop-v-03",
+          "parentPatternId": "res-half-time-drop",
+          "name": "Half-Time Bridge Drop — transition variation",
+          "variationType": "transition",
+          "probability": 0.16,
+          "description": "Adds a final pickup/closure gesture for section transitions.",
+          "onsetGrid": [
+            0,
+            8,
+            12,
+            14,
+            15
+          ],
+          "accentProfile": [
+            0.98,
+            0.6799999999999999,
+            0.83,
+            1,
+            1
+          ],
+          "velocityProfile": [
+            0.9,
+            0.55,
+            0.7,
+            0.98,
+            0.98
+          ],
+          "microtimingOffset": [
+            0,
+            0,
+            0,
+            -6,
+            -6
+          ]
+        }
+      ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 1,
       "weight": 0.7,
-      "provenance": "Rock en Español genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Rock en Español catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "rock-en-espanol"
       ],
@@ -864,7 +1061,38 @@ export const ROCK_EN_ESPANOL_WORLD: GenreWorld = {
           ],
           "description": "A denser guitar texture for climactic passages."
         },
-        
+        {
+          "id": "res-latin-guitar-chop-v-02",
+          "parentPatternId": "res-latin-guitar-chop",
+          "name": "Offbeat Guitar + Percussion Lock — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            2,
+            6,
+            10,
+            14
+          ],
+          "accentProfile": [
+            0.76,
+            1,
+            0.76,
+            1
+          ],
+          "velocityProfile": [
+            0.76,
+            0.88,
+            0.6799999999999999,
+            0.96
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5
+          ]
+        },
         {
           "id": "res-latin-guitar-chop-v-03",
           "parentPatternId": "res-latin-guitar-chop",
@@ -907,7 +1135,7 @@ export const ROCK_EN_ESPANOL_WORLD: GenreWorld = {
       ],
       "difficulty": 1,
       "weight": 0.7,
-      "provenance": "Rock en Español genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Rock en Español catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "rock-en-espanol"
       ],
@@ -999,14 +1227,93 @@ export const ROCK_EN_ESPANOL_WORLD: GenreWorld = {
         "chorus"
       ],
       "variants": [
-        
-        ],
+        {
+          "id": "res-melodic-bass-v-01",
+          "parentPatternId": "res-melodic-bass",
+          "name": "Melodic Bass Under Vocal — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            7,
+            8,
+            12,
+            15
+          ],
+          "accentProfile": [
+            0.85,
+            0.5499999999999999,
+            0.7,
+            0.7999999999999999,
+            0.6
+          ],
+          "velocityProfile": [
+            0.77,
+            0.47000000000000003,
+            0.62,
+            0.7200000000000001,
+            0.52
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "res-melodic-bass-v-02",
+          "parentPatternId": "res-melodic-bass",
+          "name": "Melodic Bass Under Vocal — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            4,
+            7,
+            8,
+            11,
+            12,
+            15
+          ],
+          "accentProfile": [
+            0.86,
+            0.6799999999999999,
+            0.71,
+            0.9299999999999999,
+            0.61,
+            0.88,
+            0.6599999999999999
+          ],
+          "velocityProfile": [
+            0.9099999999999999,
+            0.53,
+            0.6799999999999999,
+            0.8600000000000001,
+            0.58,
+            0.73,
+            0.71
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2
+          ]
+        }
+      ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 2,
       "weight": 0.7,
-      "provenance": "Rock en Español genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Rock en Español catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "rock-en-espanol"
       ],
@@ -1108,13 +1415,45 @@ export const ROCK_EN_ESPANOL_WORLD: GenreWorld = {
             -3
           ]
         },
-        ],
+        {
+          "id": "res-ska-upbeat-v-02",
+          "parentPatternId": "res-ska-upbeat",
+          "name": "Ska Upbeats — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            1,
+            3,
+            5,
+            7
+          ],
+          "accentProfile": [
+            0.86,
+            1,
+            0.86,
+            1
+          ],
+          "velocityProfile": [
+            0.9099999999999999,
+            0.9299999999999999,
+            0.83,
+            1
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5
+          ]
+        }
+      ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 1,
       "weight": 1,
-      "provenance": "Rock en Español genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Rock en Español catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "rock-en-espanol"
       ],
@@ -1218,13 +1557,41 @@ export const ROCK_EN_ESPANOL_WORLD: GenreWorld = {
             6
           ]
         },
-        ],
+        {
+          "id": "res-cumbia-bass-v-02",
+          "parentPatternId": "res-cumbia-bass",
+          "name": "Rock Cumbia Bass — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            1,
+            3,
+            5
+          ],
+          "accentProfile": [
+            0.86,
+            1,
+            0.8099999999999999
+          ],
+          "velocityProfile": [
+            0.9099999999999999,
+            0.9299999999999999,
+            0.78
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2
+          ]
+        }
+      ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 1,
       "weight": 1,
-      "provenance": "Rock en Español genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Rock en Español catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "rock-en-espanol"
       ],
@@ -1306,14 +1673,93 @@ export const ROCK_EN_ESPANOL_WORLD: GenreWorld = {
         "turnaround"
       ],
       "variants": [
-        
-        ],
+        {
+          "id": "res-punk-drive-v-01",
+          "parentPatternId": "res-punk-drive",
+          "name": "Punk Drive — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            6,
+            8,
+            12,
+            14
+          ],
+          "accentProfile": [
+            0.95,
+            0.8999999999999999,
+            0.75,
+            0.85,
+            0.7999999999999999
+          ],
+          "velocityProfile": [
+            0.87,
+            0.8200000000000001,
+            0.67,
+            0.77,
+            0.7200000000000001
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "res-punk-drive-v-02",
+          "parentPatternId": "res-punk-drive",
+          "name": "Punk Drive — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14
+          ],
+          "accentProfile": [
+            0.96,
+            1,
+            0.76,
+            0.98,
+            0.8099999999999999,
+            1,
+            0.76
+          ],
+          "velocityProfile": [
+            1,
+            0.88,
+            0.73,
+            0.9099999999999999,
+            0.78,
+            0.9299999999999999,
+            0.81
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2
+          ]
+        }
+      ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 2,
       "weight": 1,
-      "provenance": "Rock en Español genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Rock en Español catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "rock-en-espanol"
       ],
@@ -1398,14 +1844,97 @@ export const ROCK_EN_ESPANOL_WORLD: GenreWorld = {
         "chorus"
       ],
       "variants": [
-        
-        ],
+        {
+          "id": "res-reggae-bubble-v-01",
+          "parentPatternId": "res-reggae-bubble",
+          "name": "Reggae Bubble — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            2,
+            6,
+            7,
+            11,
+            14
+          ],
+          "accentProfile": [
+            0.7999999999999999,
+            0.6,
+            0.95,
+            0.6499999999999999,
+            0.7999999999999999
+          ],
+          "velocityProfile": [
+            0.7200000000000001,
+            0.52,
+            0.87,
+            0.5700000000000001,
+            0.7200000000000001
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "res-reggae-bubble-v-02",
+          "parentPatternId": "res-reggae-bubble",
+          "name": "Reggae Bubble — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            2,
+            3,
+            6,
+            7,
+            10,
+            11,
+            14,
+            15
+          ],
+          "accentProfile": [
+            0.8099999999999999,
+            0.73,
+            0.96,
+            0.7799999999999999,
+            0.8099999999999999,
+            0.73,
+            0.96,
+            0.7799999999999999
+          ],
+          "velocityProfile": [
+            0.8600000000000001,
+            0.58,
+            0.9299999999999999,
+            0.71,
+            0.78,
+            0.58,
+            1,
+            0.63
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5
+          ]
+        }
+      ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 3,
       "weight": 1,
-      "provenance": "Rock en Español genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Rock en Español catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "rock-en-espanol"
       ],
@@ -1478,14 +2007,73 @@ export const ROCK_EN_ESPANOL_WORLD: GenreWorld = {
         "chorus"
       ],
       "variants": [
-        
-        ],
+        {
+          "id": "res-pop-rock-piano-v-01",
+          "parentPatternId": "res-pop-rock-piano",
+          "name": "Pop Rock Piano — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            4,
+            6
+          ],
+          "accentProfile": [
+            0.9299999999999999,
+            0.73,
+            0.87
+          ],
+          "velocityProfile": [
+            0.8400000000000001,
+            0.64,
+            0.8
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "res-pop-rock-piano-v-02",
+          "parentPatternId": "res-pop-rock-piano",
+          "name": "Pop Rock Piano — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            2,
+            4,
+            6
+          ],
+          "accentProfile": [
+            0.94,
+            0.86,
+            0.88,
+            0.9199999999999999
+          ],
+          "velocityProfile": [
+            0.98,
+            0.7,
+            0.86,
+            0.8600000000000001
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5
+          ]
+        }
+      ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 1,
       "weight": 1,
-      "provenance": "Rock en Español genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Rock en Español catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "rock-en-espanol"
       ],
@@ -1562,14 +2150,85 @@ export const ROCK_EN_ESPANOL_WORLD: GenreWorld = {
         "chorus"
       ],
       "variants": [
-        
-        ],
+        {
+          "id": "res-heavy-riff-v-01",
+          "parentPatternId": "res-heavy-riff",
+          "name": "Heavy Riff — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            4,
+            7,
+            12
+          ],
+          "accentProfile": [
+            0.95,
+            0.7999999999999999,
+            0.85,
+            0.7999999999999999
+          ],
+          "velocityProfile": [
+            0.87,
+            0.7200000000000001,
+            0.77,
+            0.7200000000000001
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6
+          ]
+        },
+        {
+          "id": "res-heavy-riff-v-02",
+          "parentPatternId": "res-heavy-riff",
+          "name": "Heavy Riff — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            3,
+            4,
+            7,
+            8,
+            12
+          ],
+          "accentProfile": [
+            0.96,
+            0.9299999999999999,
+            0.86,
+            0.9299999999999999,
+            0.9099999999999999,
+            0.88
+          ],
+          "velocityProfile": [
+            1,
+            0.78,
+            0.83,
+            0.8600000000000001,
+            0.88,
+            0.73
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5
+          ]
+        }
+      ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 2,
       "weight": 1,
-      "provenance": "Rock en Español genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Rock en Español catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "rock-en-espanol"
       ],
@@ -1646,14 +2305,85 @@ export const ROCK_EN_ESPANOL_WORLD: GenreWorld = {
         "chorus"
       ],
       "variants": [
-        
-        ],
+        {
+          "id": "res-timbal-fill-v-01",
+          "parentPatternId": "res-timbal-fill",
+          "name": "Timbales Fill — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            8,
+            12,
+            13,
+            15
+          ],
+          "accentProfile": [
+            0.75,
+            0.7999999999999999,
+            0.85,
+            0.8999999999999999
+          ],
+          "velocityProfile": [
+            0.67,
+            0.7200000000000001,
+            0.77,
+            0.8200000000000001
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6
+          ]
+        },
+        {
+          "id": "res-timbal-fill-v-02",
+          "parentPatternId": "res-timbal-fill",
+          "name": "Timbales Fill — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            8,
+            10,
+            12,
+            13,
+            14,
+            15
+          ],
+          "accentProfile": [
+            0.76,
+            0.9299999999999999,
+            0.86,
+            1,
+            0.9099999999999999,
+            1
+          ],
+          "velocityProfile": [
+            0.81,
+            0.78,
+            0.83,
+            0.96,
+            0.88,
+            0.98
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5
+          ]
+        }
+      ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 2,
       "weight": 1,
-      "provenance": "Rock en Español genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Rock en Español catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "rock-en-espanol"
       ],
@@ -1754,10 +2484,104 @@ export const ROCK_EN_ESPANOL_WORLD: GenreWorld = {
         "phrasePosition"
       ],
       "variants": [
-        
-        
-        ],
-      "provenance": "Rock en Español genre-pack structural pattern; generalized for engine coverage and recombination, not a transcription of a single recording.",
+        {
+          "id": "rock-en-espanol-call-13-v-01",
+          "parentPatternId": "rock-en-espanol-call-13",
+          "name": "Break Response — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            3,
+            11,
+            15
+          ],
+          "accentProfile": [
+            0.8999999999999999,
+            0.57,
+            0.8999999999999999
+          ],
+          "velocityProfile": [
+            0.87,
+            0.48999999999999994,
+            0.87
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "rock-en-espanol-call-13-v-02",
+          "parentPatternId": "rock-en-espanol-call-13",
+          "name": "Break Response — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            3,
+            7,
+            11,
+            15
+          ],
+          "accentProfile": [
+            0.9099999999999999,
+            0.7,
+            0.9099999999999999,
+            0.7
+          ],
+          "velocityProfile": [
+            1,
+            0.5499999999999999,
+            0.9299999999999999,
+            0.6799999999999999
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5
+          ]
+        },
+        {
+          "id": "rock-en-espanol-call-13-v-03",
+          "parentPatternId": "rock-en-espanol-call-13",
+          "name": "Break Response — transition variation",
+          "variationType": "transition",
+          "probability": 0.16,
+          "description": "Adds a final pickup/closure gesture for section transitions.",
+          "onsetGrid": [
+            3,
+            7,
+            11,
+            14,
+            15
+          ],
+          "accentProfile": [
+            0.9299999999999999,
+            0.6,
+            0.9299999999999999,
+            1,
+            1
+          ],
+          "velocityProfile": [
+            0.95,
+            0.57,
+            0.95,
+            0.98,
+            0.98
+          ],
+          "microtimingOffset": [
+            0,
+            0,
+            0,
+            -6,
+            -6
+          ]
+        }
+      ],
+      "provenance": "GenreDAW catalog rebuild from existing Rock en Español world data; generated to cover missing musical functions without runtime AI.",
       "authenticityTags": [
         "rock-en-espanol",
         "break"
@@ -1866,9 +2690,92 @@ export const ROCK_EN_ESPANOL_WORLD: GenreWorld = {
         "phrasePosition"
       ],
       "variants": [
-        
-        ],
-      "provenance": "Rock en Español genre-pack structural pattern; generalized for engine coverage and recombination, not a transcription of a single recording.",
+        {
+          "id": "rock-en-espanol-comp-14-v-01",
+          "parentPatternId": "rock-en-espanol-comp-14",
+          "name": "Lead Guitar Comping — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            4,
+            6,
+            10,
+            12
+          ],
+          "accentProfile": [
+            0.95,
+            0.69,
+            0.85,
+            0.63,
+            0.95
+          ],
+          "velocityProfile": [
+            0.92,
+            0.61,
+            0.8200000000000001,
+            0.6000000000000001,
+            0.87
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "rock-en-espanol-comp-14-v-02",
+          "parentPatternId": "rock-en-espanol-comp-14",
+          "name": "Lead Guitar Comping — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14
+          ],
+          "accentProfile": [
+            0.96,
+            0.82,
+            0.86,
+            0.76,
+            0.96,
+            0.82,
+            0.86,
+            0.76
+          ],
+          "velocityProfile": [
+            1,
+            0.6699999999999999,
+            0.88,
+            0.74,
+            0.9299999999999999,
+            0.72,
+            0.96,
+            0.61
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5
+          ]
+        }
+      ],
+      "provenance": "GenreDAW catalog rebuild from existing Rock en Español world data; generated to cover missing musical functions without runtime AI.",
       "authenticityTags": [
         "rock-en-espanol",
         "lead-guitar"
@@ -1979,8 +2886,90 @@ export const ROCK_EN_ESPANOL_WORLD: GenreWorld = {
         "phrasePosition"
       ],
       "variants": [
-        
-        
+        {
+          "id": "rock-en-espanol-intro-15-v-01",
+          "parentPatternId": "rock-en-espanol-intro-15",
+          "name": "Riff Intro — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            1,
+            5,
+            7,
+            11,
+            13
+          ],
+          "accentProfile": [
+            0.95,
+            0.69,
+            0.85,
+            0.63,
+            0.95
+          ],
+          "velocityProfile": [
+            0.92,
+            0.61,
+            0.8200000000000001,
+            0.6000000000000001,
+            0.87
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "rock-en-espanol-intro-15-v-02",
+          "parentPatternId": "rock-en-espanol-intro-15",
+          "name": "Riff Intro — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            1,
+            3,
+            5,
+            7,
+            9,
+            11,
+            13,
+            15
+          ],
+          "accentProfile": [
+            0.96,
+            0.82,
+            0.86,
+            0.76,
+            0.96,
+            0.82,
+            0.86,
+            0.76
+          ],
+          "velocityProfile": [
+            1,
+            0.6699999999999999,
+            0.88,
+            0.74,
+            0.9299999999999999,
+            0.72,
+            0.96,
+            0.61
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5
+          ]
+        },
         {
           "id": "rock-en-espanol-intro-15-v-03",
           "parentPatternId": "rock-en-espanol-intro-15",
@@ -2034,7 +3023,7 @@ export const ROCK_EN_ESPANOL_WORLD: GenreWorld = {
           ]
         }
       ],
-      "provenance": "Rock en Español genre-pack structural pattern; generalized for engine coverage and recombination, not a transcription of a single recording.",
+      "provenance": "GenreDAW catalog rebuild from existing Rock en Español world data; generated to cover missing musical functions without runtime AI.",
       "authenticityTags": [
         "rock-en-espanol",
         "riff"
@@ -2149,9 +3138,92 @@ export const ROCK_EN_ESPANOL_WORLD: GenreWorld = {
         "phrasePosition"
       ],
       "variants": [
-        
-        ],
-      "provenance": "Rock en Español genre-pack structural pattern; generalized for engine coverage and recombination, not a transcription of a single recording.",
+        {
+          "id": "rock-en-espanol-verse-16-v-01",
+          "parentPatternId": "rock-en-espanol-verse-16",
+          "name": "Vocal Hook Verse Variation — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            4,
+            7,
+            11,
+            12
+          ],
+          "accentProfile": [
+            0.95,
+            0.69,
+            0.85,
+            0.63,
+            0.95
+          ],
+          "velocityProfile": [
+            0.92,
+            0.61,
+            0.8200000000000001,
+            0.6000000000000001,
+            0.87
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "rock-en-espanol-verse-16-v-02",
+          "parentPatternId": "rock-en-espanol-verse-16",
+          "name": "Vocal Hook Verse Variation — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            3,
+            4,
+            7,
+            8,
+            11,
+            12,
+            15
+          ],
+          "accentProfile": [
+            0.96,
+            0.82,
+            0.86,
+            0.76,
+            0.96,
+            0.82,
+            0.86,
+            0.76
+          ],
+          "velocityProfile": [
+            1,
+            0.6699999999999999,
+            0.88,
+            0.74,
+            0.9299999999999999,
+            0.72,
+            0.96,
+            0.61
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5
+          ]
+        }
+      ],
+      "provenance": "GenreDAW catalog rebuild from existing Rock en Español world data; generated to cover missing musical functions without runtime AI.",
       "authenticityTags": [
         "rock-en-espanol",
         "vocal-hook"
@@ -2267,8 +3339,90 @@ export const ROCK_EN_ESPANOL_WORLD: GenreWorld = {
         "phrasePosition"
       ],
       "variants": [
-        
-        
+        {
+          "id": "rock-en-espanol-chorus-17-v-01",
+          "parentPatternId": "rock-en-espanol-chorus-17",
+          "name": "Bridge Chorus Lift — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            4,
+            5,
+            9,
+            12
+          ],
+          "accentProfile": [
+            0.95,
+            0.69,
+            0.85,
+            0.63,
+            0.95
+          ],
+          "velocityProfile": [
+            0.92,
+            0.61,
+            0.8200000000000001,
+            0.6000000000000001,
+            0.87
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "rock-en-espanol-chorus-17-v-02",
+          "parentPatternId": "rock-en-espanol-chorus-17",
+          "name": "Bridge Chorus Lift — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            1,
+            4,
+            5,
+            8,
+            9,
+            12,
+            13
+          ],
+          "accentProfile": [
+            0.96,
+            0.82,
+            0.86,
+            0.76,
+            0.96,
+            0.82,
+            0.86,
+            0.76
+          ],
+          "velocityProfile": [
+            1,
+            0.6699999999999999,
+            0.88,
+            0.74,
+            0.9299999999999999,
+            0.72,
+            0.96,
+            0.61
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5
+          ]
+        },
         {
           "id": "rock-en-espanol-chorus-17-v-03",
           "parentPatternId": "rock-en-espanol-chorus-17",
@@ -2326,7 +3480,7 @@ export const ROCK_EN_ESPANOL_WORLD: GenreWorld = {
           ]
         }
       ],
-      "provenance": "Rock en Español genre-pack structural pattern; generalized for engine coverage and recombination, not a transcription of a single recording.",
+      "provenance": "GenreDAW catalog rebuild from existing Rock en Español world data; generated to cover missing musical functions without runtime AI.",
       "authenticityTags": [
         "rock-en-espanol",
         "bridge"
@@ -2338,96 +3492,6 @@ export const ROCK_EN_ESPANOL_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "difficulty": 3,
       "weight": 0.7,
-      "enabled": true
-    },
-    {
-      "id": "res-spain-post-punk-guitar",
-      "worldId": "rock-en-espanol",
-      "traditionId": "res-spain",
-      "name": "Iberian Post-Punk Arpeggio",
-      "family": "Guitar",
-      "category": "harmony",
-      "description": "Dramatic, chorus-drenched arpeggio guitar ostinato evoking the dark Phrygian and Aeolian textures of Spanish 80s/90s rock.",
-      "tags": ["rock-espanol", "guitar", "post-punk", "arpeggio"],
-      "scopes": ["measure", "phrase", "region", "track"],
-      "roles": ["guitar", "harmony"],
-      "instruments": ["electric-guitar"],
-      "meter": "4/4",
-      "cycleLength": 2,
-      "subdivisions": 16,
-      "onsetGrid": [0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30],
-      "accentProfile": [1.0, 0.6, 0.8, 0.6, 0.9, 0.6, 0.8, 0.6, 1.0, 0.6, 0.8, 0.6, 0.9, 0.6, 0.8, 0.6],
-      "velocityProfile": [0.95, 0.6, 0.8, 0.6, 0.88, 0.6, 0.8, 0.6, 0.95, 0.6, 0.8, 0.6, 0.88, 0.6, 0.8, 0.6],
-      "density": "dense",
-      "phrasePosition": ["start", "middle", "end"],
-      "sectionUsage": ["intro", "verse", "chorus"],
-      "variants": [],
-      "provenance": "Genre-pack support pattern for Rock Español; generalized from documented musical conventions.",
-      "authenticityTags": ["rock-espanol", "guitar"],
-      "danceTags": ["listening"],
-      "tuningSystem": "12-tet",
-      "difficulty": 2,
-      "weight": 0.9,
-      "enabled": true
-    },
-    {
-      "id": "res-spain-movida-bass",
-      "worldId": "rock-en-espanol",
-      "traditionId": "res-spain",
-      "name": "Movida Madrileña Driving Bass",
-      "family": "Bass",
-      "category": "bass",
-      "description": "Pulsing straight-eighth new-wave bassline with staccato attack driving Madrid-school post-punk energy.",
-      "tags": ["rock-espanol", "bass", "movida", "new-wave"],
-      "scopes": ["measure", "phrase", "region", "track"],
-      "roles": ["bass"],
-      "instruments": ["bass"],
-      "meter": "4/4",
-      "cycleLength": 1,
-      "subdivisions": 16,
-      "onsetGrid": [0, 2, 4, 6, 8, 10, 12, 14],
-      "accentProfile": [1.0, 0.65, 0.85, 0.65, 0.95, 0.65, 0.85, 0.65],
-      "velocityProfile": [0.95, 0.65, 0.85, 0.65, 0.9, 0.65, 0.85, 0.65],
-      "density": "dense",
-      "phrasePosition": ["start", "middle", "end"],
-      "sectionUsage": ["verse", "chorus", "solo"],
-      "variants": [],
-      "provenance": "Genre-pack support pattern for Rock Español; generalized from documented musical conventions.",
-      "authenticityTags": ["rock-espanol", "bass"],
-      "danceTags": ["listening"],
-      "tuningSystem": "12-tet",
-      "difficulty": 2,
-      "weight": 0.9,
-      "enabled": true
-    },
-    {
-      "id": "res-mexico-urbano-riff",
-      "worldId": "rock-en-espanol",
-      "traditionId": "res-mexico",
-      "name": "Rock Urbano Blues-Rock Riff",
-      "family": "Guitar",
-      "category": "riff",
-      "description": "Raw, syncopated electric blues-rock guitar riff with pentatonic quarter-step bends defining Mexican rock urbano.",
-      "tags": ["rock-mexicano", "riff", "guitar", "blues-rock"],
-      "scopes": ["phrase", "region", "track"],
-      "roles": ["guitar", "lead"],
-      "instruments": ["electric-guitar"],
-      "meter": "4/4",
-      "cycleLength": 2,
-      "subdivisions": 16,
-      "onsetGrid": [0, 3, 6, 8, 10, 12, 14, 16, 19, 22, 24, 28],
-      "accentProfile": [1.0, 0.75, 0.9, 0.7, 0.8, 0.95, 0.7, 1.0, 0.75, 0.9, 0.85, 0.7],
-      "velocityProfile": [0.95, 0.7, 0.85, 0.65, 0.75, 0.9, 0.65, 0.95, 0.7, 0.85, 0.8, 0.65],
-      "density": "medium",
-      "phrasePosition": ["start", "middle", "end"],
-      "sectionUsage": ["intro", "verse", "chorus", "solo"],
-      "variants": [],
-      "provenance": "Genre-pack support pattern for Rock Mexicano; generalized from documented musical conventions.",
-      "authenticityTags": ["rock-mexicano", "riff"],
-      "danceTags": ["festival-fusion"],
-      "tuningSystem": "12-tet",
-      "difficulty": 2,
-      "weight": 0.9,
       "enabled": true
     }
   ],

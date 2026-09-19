@@ -48,7 +48,7 @@ export const BLUES_WORLD: GenreWorld = {
         "listening",
         "blues-fusion-compatible"
       ],
-      "tuningSystem": "12-tet",
+      "tuningSystem": "just-intonation",
       "signatureCell": "Alternating thumb acoustic bass with syncopated slide vocal responses",
       "grooveMechanics": {
         "swingPercentage": 62,
@@ -522,13 +522,53 @@ export const BLUES_WORLD: GenreWorld = {
           ],
           "description": "A short turnaround-oriented fill that leaves the vocal phrase intact."
         },
-        ],
+        {
+          "id": "blues-shuffle-v-02",
+          "parentPatternId": "blues-shuffle",
+          "name": "Chicago Shuffle — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            3,
+            4,
+            7,
+            8,
+            11
+          ],
+          "accentProfile": [
+            0.96,
+            0.73,
+            0.86,
+            0.73,
+            0.9099999999999999,
+            0.7799999999999999
+          ],
+          "velocityProfile": [
+            0.96,
+            0.58,
+            0.83,
+            0.6599999999999999,
+            0.88,
+            0.63
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5
+          ]
+        }
+      ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 2,
       "weight": 1,
-      "provenance": "Blues genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Blues catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "blues"
       ],
@@ -656,13 +696,61 @@ export const BLUES_WORLD: GenreWorld = {
           ],
           "description": "A rising sixth/chromatic approach used to push into the next chord or phrase."
         },
-        ],
+        {
+          "id": "blues-boogie-bass-v-02",
+          "parentPatternId": "blues-boogie-bass",
+          "name": "Boogie Root–Fifth Bass — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14
+          ],
+          "accentProfile": [
+            0.96,
+            0.63,
+            0.8099999999999999,
+            0.63,
+            0.9099999999999999,
+            0.6799999999999999,
+            0.86,
+            0.6799999999999999
+          ],
+          "velocityProfile": [
+            0.96,
+            0.53,
+            0.78,
+            0.6100000000000001,
+            0.88,
+            0.53,
+            0.9099999999999999,
+            0.53
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5
+          ]
+        }
+      ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 3,
       "weight": 0.7,
-      "provenance": "Blues genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Blues catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "blues"
       ],
@@ -768,15 +856,145 @@ export const BLUES_WORLD: GenreWorld = {
         "ending"
       ],
       "variants": [
-        
-        
-        ],
+        {
+          "id": "blues-turnaround-v-01",
+          "parentPatternId": "blues-turnaround",
+          "name": "12-Bar Turnaround — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            6,
+            8,
+            12,
+            14
+          ],
+          "accentProfile": [
+            0.75,
+            0.5499999999999999,
+            0.7,
+            0.85,
+            0.6499999999999999
+          ],
+          "velocityProfile": [
+            0.67,
+            0.47000000000000003,
+            0.62,
+            0.8200000000000001,
+            0.5700000000000001
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "blues-turnaround-v-02",
+          "parentPatternId": "blues-turnaround",
+          "name": "12-Bar Turnaround — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            3,
+            6,
+            8,
+            10,
+            12,
+            14,
+            15
+          ],
+          "accentProfile": [
+            0.76,
+            0.6799999999999999,
+            0.71,
+            0.98,
+            0.6599999999999999,
+            0.9299999999999999,
+            0.6599999999999999,
+            1
+          ],
+          "velocityProfile": [
+            0.81,
+            0.53,
+            0.6799999999999999,
+            0.96,
+            0.63,
+            0.78,
+            0.71,
+            0.98
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5
+          ]
+        },
+        {
+          "id": "blues-turnaround-v-03",
+          "parentPatternId": "blues-turnaround",
+          "name": "12-Bar Turnaround — transition variation",
+          "variationType": "transition",
+          "probability": 0.16,
+          "description": "Adds a final pickup/closure gesture for section transitions.",
+          "onsetGrid": [
+            0,
+            3,
+            6,
+            8,
+            10,
+            12,
+            14,
+            15
+          ],
+          "accentProfile": [
+            0.78,
+            0.58,
+            0.73,
+            0.88,
+            0.6799999999999999,
+            0.83,
+            1,
+            1
+          ],
+          "velocityProfile": [
+            0.75,
+            0.55,
+            0.7,
+            0.9,
+            0.65,
+            0.8,
+            0.98,
+            0.98
+          ],
+          "microtimingOffset": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            -6,
+            -6
+          ]
+        }
+      ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 3,
       "weight": 0.7,
-      "provenance": "Blues genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Blues catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "blues"
       ],
@@ -848,14 +1066,73 @@ export const BLUES_WORLD: GenreWorld = {
         "chorus"
       ],
       "variants": [
-        
-        ],
+        {
+          "id": "blues-slow-12-8-v-01",
+          "parentPatternId": "blues-slow-12-8",
+          "name": "Slow 12/8 Groove — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            6,
+            9
+          ],
+          "accentProfile": [
+            0.95,
+            0.6499999999999999,
+            0.8999999999999999
+          ],
+          "velocityProfile": [
+            0.87,
+            0.5700000000000001,
+            0.8200000000000001
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "blues-slow-12-8-v-02",
+          "parentPatternId": "blues-slow-12-8",
+          "name": "Slow 12/8 Groove — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            3,
+            6,
+            9
+          ],
+          "accentProfile": [
+            0.96,
+            0.7799999999999999,
+            0.9099999999999999,
+            0.7799999999999999
+          ],
+          "velocityProfile": [
+            1,
+            0.63,
+            0.88,
+            0.71
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5
+          ]
+        }
+      ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 1,
       "weight": 1,
-      "provenance": "Blues genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Blues catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "blues"
       ],
@@ -940,14 +1217,97 @@ export const BLUES_WORLD: GenreWorld = {
         "chorus"
       ],
       "variants": [
-        
-        ],
+        {
+          "id": "blues-texas-shuffle-v-01",
+          "parentPatternId": "blues-texas-shuffle",
+          "name": "Texas Shuffle — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            3,
+            5,
+            8,
+            9
+          ],
+          "accentProfile": [
+            0.95,
+            0.6,
+            0.7999999999999999,
+            0.5499999999999999,
+            0.8999999999999999
+          ],
+          "velocityProfile": [
+            0.8200000000000001,
+            0.52,
+            0.7200000000000001,
+            0.47000000000000003,
+            0.8200000000000001
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "blues-texas-shuffle-v-02",
+          "parentPatternId": "blues-texas-shuffle",
+          "name": "Texas Shuffle — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            2,
+            3,
+            5,
+            6,
+            8,
+            9,
+            11
+          ],
+          "accentProfile": [
+            0.96,
+            0.73,
+            0.8099999999999999,
+            0.6799999999999999,
+            0.9099999999999999,
+            0.73,
+            0.8099999999999999,
+            0.7799999999999999
+          ],
+          "velocityProfile": [
+            0.96,
+            0.58,
+            0.78,
+            0.6100000000000001,
+            0.88,
+            0.58,
+            0.8600000000000001,
+            0.63
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5
+          ]
+        }
+      ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 3,
       "weight": 1,
-      "provenance": "Blues genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Blues catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "blues"
       ],
@@ -1030,14 +1390,73 @@ export const BLUES_WORLD: GenreWorld = {
         "chorus"
       ],
       "variants": [
-        
-        ],
+        {
+          "id": "blues-soul-groove-v-01",
+          "parentPatternId": "blues-soul-groove",
+          "name": "Soul Blues Beat — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            4,
+            6
+          ],
+          "accentProfile": [
+            0.95,
+            0.5499999999999999,
+            0.8999999999999999
+          ],
+          "velocityProfile": [
+            0.8200000000000001,
+            0.47000000000000003,
+            0.8200000000000001
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "blues-soul-groove-v-02",
+          "parentPatternId": "blues-soul-groove",
+          "name": "Soul Blues Beat — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            2,
+            4,
+            6
+          ],
+          "accentProfile": [
+            0.96,
+            0.6799999999999999,
+            0.9099999999999999,
+            0.73
+          ],
+          "velocityProfile": [
+            0.96,
+            0.53,
+            0.88,
+            0.6599999999999999
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5
+          ]
+        }
+      ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 1,
       "weight": 1,
-      "provenance": "Blues genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Blues catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "blues"
       ],
@@ -1148,13 +1567,45 @@ export const BLUES_WORLD: GenreWorld = {
             -3
           ]
         },
-        ],
+        {
+          "id": "blues-bass-walk-v-02",
+          "parentPatternId": "blues-bass-walk",
+          "name": "Walking Blues Bass — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "accentProfile": [
+            0.96,
+            0.83,
+            0.86,
+            0.88
+          ],
+          "velocityProfile": [
+            1,
+            0.6799999999999999,
+            0.83,
+            0.81
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5
+          ]
+        }
+      ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 1,
       "weight": 1,
-      "provenance": "Blues genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Blues catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "blues"
       ],
@@ -1251,14 +1702,125 @@ export const BLUES_WORLD: GenreWorld = {
         "chorus"
       ],
       "variants": [
-        
-        ],
+        {
+          "id": "blues-piano-triplets-v-01",
+          "parentPatternId": "blues-piano-triplets",
+          "name": "Piano Triplets — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            2,
+            3,
+            5,
+            6,
+            8,
+            9,
+            11
+          ],
+          "accentProfile": [
+            0.95,
+            0.5499999999999999,
+            0.6499999999999999,
+            0.85,
+            0.5499999999999999,
+            0.6499999999999999,
+            0.8999999999999999,
+            0.5499999999999999
+          ],
+          "velocityProfile": [
+            0.87,
+            0.47000000000000003,
+            0.5700000000000001,
+            0.77,
+            0.47000000000000003,
+            0.5700000000000001,
+            0.8200000000000001,
+            0.47000000000000003
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6,
+            -3,
+            6,
+            -3,
+            6
+          ]
+        },
+        {
+          "id": "blues-piano-triplets-v-02",
+          "parentPatternId": "blues-piano-triplets",
+          "name": "Piano Triplets — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ],
+          "accentProfile": [
+            0.96,
+            0.6799999999999999,
+            0.6599999999999999,
+            0.98,
+            0.5599999999999999,
+            0.7799999999999999,
+            0.9099999999999999,
+            0.6799999999999999,
+            0.6599999999999999,
+            0.9299999999999999,
+            0.5599999999999999,
+            0.83
+          ],
+          "velocityProfile": [
+            1,
+            0.53,
+            0.63,
+            0.9099999999999999,
+            0.53,
+            0.63,
+            0.96,
+            0.53,
+            0.63,
+            0.8600000000000001,
+            0.53,
+            0.6799999999999999
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5
+          ]
+        }
+      ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 4,
       "weight": 1,
-      "provenance": "Blues genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Blues catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "blues"
       ],
@@ -1327,14 +1889,61 @@ export const BLUES_WORLD: GenreWorld = {
         "chorus"
       ],
       "variants": [
-        
-        ],
+        {
+          "id": "blues-horn-stabs-v-01-safe",
+          "parentPatternId": "blues-horn-stabs",
+          "name": "Horn Stabs — played variation",
+          "variationType": "accentShift",
+          "probability": 0.18,
+          "description": "A light played variation for sparse patterns with only a few attacks.",
+          "onsetGrid": [
+            2,
+            6
+          ],
+          "accentProfile": [
+            0.85,
+            1
+          ],
+          "velocityProfile": [
+            0.88,
+            0.9099999999999999
+          ],
+          "microtimingOffset": [
+            -2,
+            4
+          ]
+        },
+        {
+          "id": "blues-horn-stabs-v-02-safe",
+          "parentPatternId": "blues-horn-stabs",
+          "name": "Horn Stabs — played variation",
+          "variationType": "accentShift",
+          "probability": 0.18,
+          "description": "A light played variation for sparse patterns with only a few attacks.",
+          "onsetGrid": [
+            2,
+            6
+          ],
+          "accentProfile": [
+            0.85,
+            1
+          ],
+          "velocityProfile": [
+            0.88,
+            0.9099999999999999
+          ],
+          "microtimingOffset": [
+            -2,
+            4
+          ]
+        }
+      ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 1,
       "weight": 1,
-      "provenance": "Blues genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Blues catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "blues"
       ],
@@ -1410,14 +2019,77 @@ export const BLUES_WORLD: GenreWorld = {
         "chorus"
       ],
       "variants": [
-        
-        ],
+        {
+          "id": "blues-delta-slide-v-01",
+          "parentPatternId": "blues-delta-slide",
+          "name": "Slide Guitar Lick — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            8,
+            10
+          ],
+          "accentProfile": [
+            0.95,
+            0.6499999999999999,
+            0.85
+          ],
+          "velocityProfile": [
+            0.87,
+            0.5700000000000001,
+            0.77
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "blues-delta-slide-v-02",
+          "parentPatternId": "blues-delta-slide",
+          "name": "Slide Guitar Lick — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            4,
+            8,
+            10,
+            12
+          ],
+          "accentProfile": [
+            0.96,
+            0.7799999999999999,
+            0.86,
+            0.83,
+            0.8099999999999999
+          ],
+          "velocityProfile": [
+            1,
+            0.63,
+            0.83,
+            0.76,
+            0.78
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2
+          ]
+        }
+      ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 2,
       "weight": 1,
-      "provenance": "Blues genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Blues catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "blues"
       ],
@@ -1494,14 +2166,85 @@ export const BLUES_WORLD: GenreWorld = {
         "chorus"
       ],
       "variants": [
-        
-        ],
+        {
+          "id": "blues-rhumba-v-01",
+          "parentPatternId": "blues-rhumba",
+          "name": "Blues Rhumba — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            6,
+            8,
+            14
+          ],
+          "accentProfile": [
+            0.95,
+            0.6499999999999999,
+            0.85,
+            0.8999999999999999
+          ],
+          "velocityProfile": [
+            0.87,
+            0.5700000000000001,
+            0.77,
+            0.8200000000000001
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6
+          ]
+        },
+        {
+          "id": "blues-rhumba-v-02",
+          "parentPatternId": "blues-rhumba",
+          "name": "Blues Rhumba — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            3,
+            6,
+            8,
+            11,
+            14
+          ],
+          "accentProfile": [
+            0.96,
+            0.7799999999999999,
+            0.86,
+            1,
+            0.61,
+            0.9299999999999999
+          ],
+          "velocityProfile": [
+            1,
+            0.63,
+            0.83,
+            0.96,
+            0.58,
+            0.78
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5
+          ]
+        }
+      ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 2,
       "weight": 1,
-      "provenance": "Blues genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Blues catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "blues"
       ],
@@ -1622,7 +2365,7 @@ export const BLUES_WORLD: GenreWorld = {
       ],
       "difficulty": 1,
       "weight": 1,
-      "provenance": "Blues genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Blues catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "blues"
       ],
@@ -1702,7 +2445,7 @@ export const BLUES_WORLD: GenreWorld = {
         0.74,
         0.9
       ],
-      "syncopationRating": 0.71,
+      "syncopationRating": 0.7142857142857143,
       "anticipationOffset": 0,
       "swingPercentage": 66,
       "articulations": [
@@ -1731,9 +2474,88 @@ export const BLUES_WORLD: GenreWorld = {
         "phrasePosition"
       ],
       "variants": [
-        
-        ],
-      "provenance": "Blues genre-pack structural pattern; generalized for engine coverage and recombination, not a transcription of a single recording.",
+        {
+          "id": "blues-phrase-13-v-01",
+          "parentPatternId": "blues-phrase-13",
+          "name": "12-Bar Phrase — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            3,
+            6,
+            9,
+            11
+          ],
+          "accentProfile": [
+            0.95,
+            0.69,
+            0.85,
+            0.63,
+            0.95
+          ],
+          "velocityProfile": [
+            0.92,
+            0.61,
+            0.8200000000000001,
+            0.6000000000000001,
+            0.87
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "blues-phrase-13-v-02",
+          "parentPatternId": "blues-phrase-13",
+          "name": "12-Bar Phrase — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            2,
+            3,
+            6,
+            8,
+            9,
+            11
+          ],
+          "accentProfile": [
+            0.96,
+            0.82,
+            0.86,
+            0.76,
+            0.96,
+            0.82,
+            0.86
+          ],
+          "velocityProfile": [
+            1,
+            0.6699999999999999,
+            0.88,
+            0.74,
+            0.9299999999999999,
+            0.72,
+            0.96
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2
+          ]
+        }
+      ],
+      "provenance": "GenreDAW catalog rebuild from existing Blues world data; generated to cover missing musical functions without runtime AI.",
       "authenticityTags": [
         "blues",
         "12-bar"
@@ -1800,11 +2622,11 @@ export const BLUES_WORLD: GenreWorld = {
         0.57,
         0.95,
         0.62,
-        0.9,
+        0.8999999999999999,
         0.62,
         0.95
       ],
-      "syncopationRating": 0.71,
+      "syncopationRating": 0.7142857142857143,
       "anticipationOffset": 0,
       "swingPercentage": 66,
       "articulations": [
@@ -1834,10 +2656,140 @@ export const BLUES_WORLD: GenreWorld = {
         "phrasePosition"
       ],
       "variants": [
-        
-        
-        ],
-      "provenance": "Blues genre-pack structural pattern; generalized for engine coverage and recombination, not a transcription of a single recording.",
+        {
+          "id": "blues-call-14-v-01",
+          "parentPatternId": "blues-call-14",
+          "name": "Rake Response — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            1,
+            4,
+            7,
+            10,
+            12
+          ],
+          "accentProfile": [
+            0.8999999999999999,
+            0.57,
+            0.8999999999999999,
+            0.57,
+            0.8999999999999999
+          ],
+          "velocityProfile": [
+            0.87,
+            0.48999999999999994,
+            0.87,
+            0.54,
+            0.82
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "blues-call-14-v-02",
+          "parentPatternId": "blues-call-14",
+          "name": "Rake Response — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            1,
+            3,
+            4,
+            7,
+            9,
+            10,
+            12
+          ],
+          "accentProfile": [
+            0.9099999999999999,
+            0.7,
+            0.9099999999999999,
+            0.7,
+            0.9099999999999999,
+            0.7,
+            0.9099999999999999
+          ],
+          "velocityProfile": [
+            1,
+            0.5499999999999999,
+            0.9299999999999999,
+            0.6799999999999999,
+            0.8799999999999999,
+            0.6,
+            1
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2
+          ]
+        },
+        {
+          "id": "blues-call-14-v-03",
+          "parentPatternId": "blues-call-14",
+          "name": "Rake Response — transition variation",
+          "variationType": "transition",
+          "probability": 0.16,
+          "description": "Adds a final pickup/closure gesture for section transitions.",
+          "onsetGrid": [
+            1,
+            3,
+            4,
+            7,
+            9,
+            10,
+            12,
+            14,
+            15
+          ],
+          "accentProfile": [
+            0.9299999999999999,
+            0.6,
+            0.9299999999999999,
+            0.6,
+            0.9299999999999999,
+            0.6,
+            0.9299999999999999,
+            1,
+            1
+          ],
+          "velocityProfile": [
+            0.95,
+            0.57,
+            0.95,
+            0.62,
+            0.8999999999999999,
+            0.62,
+            0.95,
+            0.98,
+            0.98
+          ],
+          "microtimingOffset": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            -6,
+            -6
+          ]
+        }
+      ],
+      "provenance": "GenreDAW catalog rebuild from existing Blues world data; generated to cover missing musical functions without runtime AI.",
       "authenticityTags": [
         "blues",
         "rake"
@@ -1912,7 +2864,7 @@ export const BLUES_WORLD: GenreWorld = {
         0.74,
         0.9
       ],
-      "syncopationRating": 0.71,
+      "syncopationRating": 0.7142857142857143,
       "anticipationOffset": 0,
       "swingPercentage": 66,
       "articulations": [
@@ -1942,9 +2894,88 @@ export const BLUES_WORLD: GenreWorld = {
         "phrasePosition"
       ],
       "variants": [
-        
-        ],
-      "provenance": "Blues genre-pack structural pattern; generalized for engine coverage and recombination, not a transcription of a single recording.",
+        {
+          "id": "blues-anchor-15-v-01",
+          "parentPatternId": "blues-anchor-15",
+          "name": "Call & Response Anchor — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            2,
+            5,
+            8,
+            11,
+            13
+          ],
+          "accentProfile": [
+            0.95,
+            0.69,
+            0.85,
+            0.63,
+            0.95
+          ],
+          "velocityProfile": [
+            0.92,
+            0.61,
+            0.8200000000000001,
+            0.6000000000000001,
+            0.87
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "blues-anchor-15-v-02",
+          "parentPatternId": "blues-anchor-15",
+          "name": "Call & Response Anchor — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            2,
+            4,
+            5,
+            8,
+            10,
+            11,
+            13
+          ],
+          "accentProfile": [
+            0.96,
+            0.82,
+            0.86,
+            0.76,
+            0.96,
+            0.82,
+            0.86
+          ],
+          "velocityProfile": [
+            1,
+            0.6699999999999999,
+            0.88,
+            0.74,
+            0.9299999999999999,
+            0.72,
+            0.96
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2
+          ]
+        }
+      ],
+      "provenance": "GenreDAW catalog rebuild from existing Blues world data; generated to cover missing musical functions without runtime AI.",
       "authenticityTags": [
         "blues",
         "call-response"
@@ -2021,7 +3052,7 @@ export const BLUES_WORLD: GenreWorld = {
         0.74,
         0.9
       ],
-      "syncopationRating": 0.71,
+      "syncopationRating": 0.7142857142857143,
       "anticipationOffset": 0,
       "swingPercentage": 66,
       "articulations": [
@@ -2050,9 +3081,88 @@ export const BLUES_WORLD: GenreWorld = {
         "phrasePosition"
       ],
       "variants": [
-        
-        ],
-      "provenance": "Blues genre-pack structural pattern; generalized for engine coverage and recombination, not a transcription of a single recording.",
+        {
+          "id": "blues-comp-16-v-01",
+          "parentPatternId": "blues-comp-16",
+          "name": "Turnaround Comping — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            4,
+            7,
+            10,
+            13,
+            15
+          ],
+          "accentProfile": [
+            0.95,
+            0.69,
+            0.85,
+            0.63,
+            0.95
+          ],
+          "velocityProfile": [
+            0.92,
+            0.61,
+            0.8200000000000001,
+            0.6000000000000001,
+            0.87
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "blues-comp-16-v-02",
+          "parentPatternId": "blues-comp-16",
+          "name": "Turnaround Comping — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            4,
+            6,
+            7,
+            10,
+            12,
+            13,
+            15
+          ],
+          "accentProfile": [
+            0.96,
+            0.82,
+            0.86,
+            0.76,
+            0.96,
+            0.82,
+            0.86
+          ],
+          "velocityProfile": [
+            1,
+            0.6699999999999999,
+            0.88,
+            0.74,
+            0.9299999999999999,
+            0.72,
+            0.96
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2
+          ]
+        }
+      ],
+      "provenance": "GenreDAW catalog rebuild from existing Blues world data; generated to cover missing musical functions without runtime AI.",
       "authenticityTags": [
         "blues",
         "turnaround"
@@ -2120,7 +3230,7 @@ export const BLUES_WORLD: GenreWorld = {
         0.9,
         0.58
       ],
-      "syncopationRating": 0.67,
+      "syncopationRating": 0.6666666666666666,
       "anticipationOffset": 0,
       "swingPercentage": 58,
       "articulations": [
@@ -2190,8 +3300,48 @@ export const BLUES_WORLD: GenreWorld = {
             -4
           ]
         },
-        ],
-      "provenance": "Genre-pack structural pattern for dedicated vocal phrasing coverage for Blues; generalized for engine coverage, not a transcription.",
+        {
+          "id": "blues-voice-phrasing-v-final-accent",
+          "parentPatternId": "blues-voice-phrasing",
+          "name": "Blues Vocal Phrasing — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.18,
+          "description": "Same rhythmic shape with shifted emphasis on the repeat.",
+          "onsetGrid": [
+            0,
+            3,
+            5,
+            8,
+            11,
+            14
+          ],
+          "accentProfile": [
+            0.8999999999999999,
+            0.7,
+            0.8999999999999999,
+            0.7,
+            0.8999999999999999,
+            0.7
+          ],
+          "velocityProfile": [
+            0.9,
+            0.58,
+            0.9,
+            0.58,
+            0.9,
+            0.58
+          ],
+          "microtimingOffset": [
+            2,
+            -4,
+            2,
+            -4,
+            2,
+            -4
+          ]
+        }
+      ],
+      "provenance": "GenreDAW catalog rebuild: dedicated vocal phrasing coverage for Blues.",
       "authenticityTags": [
         "blues",
         "voice"
@@ -2201,36 +3351,6 @@ export const BLUES_WORLD: GenreWorld = {
       ],
       "tuningSystem": "12-tet",
       "difficulty": 2,
-      "weight": 0.9,
-      "enabled": true
-    },
-    {
-      "id": "blues-texas-stinging-lead",
-      "worldId": "blues",
-      "traditionId": "blues-texas",
-      "name": "Texas Stinging Double-Stop Lead",
-      "family": "Guitar",
-      "category": "phrasePattern",
-      "description": "Fierce, stinging electric guitar lead with Albert Collins/SRV aggressive double-stop bends and rapid descending pentatonic triplets.",
-      "tags": ["texas-blues", "lead", "guitar", "double-stop", "srv"],
-      "scopes": ["phrase", "region", "track"],
-      "roles": ["lead", "melody"],
-      "instruments": ["guitar"],
-      "meter": "4/4",
-      "cycleLength": 2,
-      "subdivisions": 16,
-      "onsetGrid": [0, 3, 5, 8, 10, 12, 16, 19, 21, 24, 28],
-      "accentProfile": [1.0, 0.75, 0.85, 1.0, 0.8, 0.9, 1.0, 0.75, 0.85, 0.95, 0.8],
-      "velocityProfile": [0.95, 0.7, 0.8, 0.95, 0.75, 0.85, 0.95, 0.7, 0.8, 0.9, 0.75],
-      "density": "medium",
-      "phrasePosition": ["start", "middle", "end"],
-      "sectionUsage": ["verse", "solo", "chorus"],
-      "variants": [],
-      "provenance": "Genre-pack support pattern for Texas Blues; generalized from documented musical conventions.",
-      "authenticityTags": ["texas-blues", "guitar"],
-      "danceTags": ["social-partner"],
-      "tuningSystem": "12-tet",
-      "difficulty": 3,
       "weight": 0.9,
       "enabled": true
     }

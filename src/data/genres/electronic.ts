@@ -6,15 +6,15 @@ export const ELECTRONIC_WORLD: GenreWorld = {
   "family": "Electronic / Dance",
   "color": "#C7E2E0",
   "level": "world",
-  "description": "Synthesizer, sampler, and drum machine driven continuum spanning syncopated Electro breaks, retro Synthwave, heavy UK Bass / Dubstep half-time drops, and 174bpm Drum & Bass rollers.",
+  "description": "Synthesizer and drum machine driven music spanning hypnotic four-on-the-floor house to heavy syncopated bass breaks.",
   "traditions": [
     {
-      "id": "electronic-electro-synth",
+      "id": "electronic-house",
       "worldId": "electronic",
-      "name": "Electro, Synthwave & IDM",
-      "origin": "US / Europe",
-      "era": "1980s–Present",
-      "description": "Syncopated Roland TR-808 electro beats, retro-futuristic synthwave driving 8th basses, lush analog pads, and ambient soundscapes.",
+      "name": "House & Techno",
+      "origin": "US/Europe",
+      "era": "1980s-Present",
+      "description": "Four-on-the-floor dance music.",
       "characteristicInstruments": [
         "drums",
         "bass",
@@ -24,74 +24,72 @@ export const ELECTRONIC_WORLD: GenreWorld = {
         "4/4"
       ],
       "tempoRange": [
-        100,
-        132
+        120,
+        135
       ],
       "keySubstyles": [
-        "Electro 808",
-        "Synthwave / Retrowave",
-        "IDM / Ambient Electronic"
+        "Deep House",
+        "Techno"
       ],
       "coreConcepts": [
-        "syncopated 808 kick",
-        "driving 8th bass",
-        "analog pads and arpeggios",
-        "dynamic filter modulations"
+        "four on the floor",
+        "off-beat hats"
       ],
       "rhythmicGrammar": [
-        "syncopated electro kick answering on [0, 6, 10] with crisp snare on 4 and 12"
+        "kick on every quarter"
       ],
       "danceTags": [
+        "social-partner",
         "festival-fusion",
         "listening"
       ],
       "tuningSystem": "12-tet",
-      "signatureCell": "Syncopated 808 rhythm with arpeggiated synth bass and warm analog pads",
+      "signatureCell": "Driving four-on-the-floor kick with open offbeat hi-hat and rolling bassline",
       "grooveMechanics": {
-        "swingPercentage": 50,
+        "swingPercentage": 54,
         "anticipationOffsetSteps": 0,
         "microtimingFeel": "straight"
       },
       "sectionProgressions": {
         "intro": [
-          "Am",
-          "F",
-          "C",
-          "G"
+          "Am7",
+          "Fmaj7",
+          "Dm7",
+          "Em7"
         ],
         "verse": [
-          "Am",
-          "F",
-          "C",
-          "G"
+          "Am7",
+          "Fmaj7",
+          "Dm7",
+          "Em7"
         ],
         "chorus": [
-          "F",
+          "Fmaj7",
           "G",
-          "Em",
-          "Am"
+          "Em7",
+          "Am7"
         ],
         "drop": [
-          "Am",
-          "F",
-          "Dm",
-          "Em"
+          "Am7",
+          "Am7",
+          "Fmaj7",
+          "G"
         ],
         "coda": [
-          "Am",
-          "Am",
-          "F",
-          "G"
+          "Am7",
+          "Fmaj7",
+          "Am7",
+          "Am7"
         ]
       }
     },
     {
       "id": "electronic-bass",
       "worldId": "electronic",
-      "name": "UK Bass, Dubstep & Drum & Bass",
+      "name": "Bass Music",
       "origin": "UK",
       "era": "1990s-Present",
-      "description": "Syncopated breaks, 140bpm half-time dubstep drops, 2-step garage swing, and 174bpm amen break rollers.",
+      "description": "Syncopated breaks and half-time feels.",
       "characteristicInstruments": [
         "drums",
         "bass",
@@ -204,7 +202,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
     {
       "id": "elec-4onfloor",
       "worldId": "electronic",
-      "traditionId": "electronic-electro-synth",
+      "traditionId": "electronic-house",
       "name": "Four on the Floor",
       "family": "Beat",
       "category": "fill",
@@ -252,14 +250,73 @@ export const ELECTRONIC_WORLD: GenreWorld = {
         "chorus"
       ],
       "variants": [
-        
-        ],
+        {
+          "id": "elec-4onfloor-v-01",
+          "parentPatternId": "elec-4onfloor",
+          "name": "Four on the Floor — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            8,
+            12
+          ],
+          "accentProfile": [
+            0.95,
+            0.85,
+            0.8999999999999999
+          ],
+          "velocityProfile": [
+            0.87,
+            0.8,
+            0.8400000000000001
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "elec-4onfloor-v-02",
+          "parentPatternId": "elec-4onfloor",
+          "name": "Four on the Floor — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            4,
+            8,
+            12
+          ],
+          "accentProfile": [
+            0.96,
+            0.98,
+            0.9099999999999999,
+            0.98
+          ],
+          "velocityProfile": [
+            1,
+            0.86,
+            0.9,
+            0.94
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5
+          ]
+        }
+      ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 1,
       "weight": 1,
-      "provenance": "Electronic genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Electronic catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "electronic"
       ],
@@ -285,7 +342,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
     {
       "id": "elec-offbeat-hats",
       "worldId": "electronic",
-      "traditionId": "electronic-electro-synth",
+      "traditionId": "electronic-house",
       "name": "Offbeat Hats",
       "family": "Beat",
       "category": "break",
@@ -333,14 +390,73 @@ export const ELECTRONIC_WORLD: GenreWorld = {
         "chorus"
       ],
       "variants": [
-        
-        ],
+        {
+          "id": "elec-offbeat-hats-v-01",
+          "parentPatternId": "elec-offbeat-hats",
+          "name": "Offbeat Hats — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            2,
+            10,
+            14
+          ],
+          "accentProfile": [
+            0.8999999999999999,
+            0.85,
+            0.95
+          ],
+          "velocityProfile": [
+            0.8200000000000001,
+            0.77,
+            0.87
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "elec-offbeat-hats-v-02",
+          "parentPatternId": "elec-offbeat-hats",
+          "name": "Offbeat Hats — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            2,
+            6,
+            10,
+            14
+          ],
+          "accentProfile": [
+            0.9099999999999999,
+            0.98,
+            0.96,
+            0.98
+          ],
+          "velocityProfile": [
+            0.96,
+            0.83,
+            0.9299999999999999,
+            0.9099999999999999
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5
+          ]
+        }
+      ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 1,
       "weight": 1,
-      "provenance": "Electronic genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Electronic catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "electronic"
       ],
@@ -366,7 +482,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
     {
       "id": "elec-techno-rumble",
       "worldId": "electronic",
-      "traditionId": "electronic-bass",
+      "traditionId": "electronic-house",
       "name": "Techno Rumble",
       "family": "Beat",
       "category": "cadence",
@@ -442,14 +558,125 @@ export const ELECTRONIC_WORLD: GenreWorld = {
         "turnaround"
       ],
       "variants": [
-        
-        ],
+        {
+          "id": "elec-techno-rumble-v-01",
+          "parentPatternId": "elec-techno-rumble",
+          "name": "Techno Rumble — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            3,
+            4,
+            7,
+            8,
+            11,
+            12,
+            15
+          ],
+          "accentProfile": [
+            0.95,
+            0.6,
+            0.6499999999999999,
+            0.8999999999999999,
+            0.6,
+            0.6499999999999999,
+            0.95,
+            0.6
+          ],
+          "velocityProfile": [
+            0.87,
+            0.47000000000000003,
+            0.52,
+            0.8200000000000001,
+            0.47000000000000003,
+            0.52,
+            0.87,
+            0.47000000000000003
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6,
+            -3,
+            6,
+            -3,
+            6
+          ]
+        },
+        {
+          "id": "elec-techno-rumble-v-02",
+          "parentPatternId": "elec-techno-rumble",
+          "name": "Techno Rumble — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            2,
+            3,
+            4,
+            6,
+            7,
+            8,
+            10,
+            11,
+            12,
+            14,
+            15
+          ],
+          "accentProfile": [
+            0.96,
+            0.73,
+            0.6599999999999999,
+            1,
+            0.61,
+            0.7799999999999999,
+            0.96,
+            0.73,
+            0.6599999999999999,
+            1,
+            0.61,
+            0.7799999999999999
+          ],
+          "velocityProfile": [
+            1,
+            0.53,
+            0.58,
+            0.96,
+            0.53,
+            0.58,
+            1,
+            0.53,
+            0.58,
+            0.96,
+            0.53,
+            0.58
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5
+          ]
+        }
+      ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 4,
       "weight": 1,
-      "provenance": "Electronic genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Electronic catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "electronic"
       ],
@@ -476,7 +703,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
     {
       "id": "elec-trance-16ths",
       "worldId": "electronic",
-      "traditionId": "electronic-electro-synth",
+      "traditionId": "electronic-house",
       "name": "Trance Bass 16ths",
       "family": "Bass",
       "category": "groove",
@@ -562,14 +789,153 @@ export const ELECTRONIC_WORLD: GenreWorld = {
         "chorus"
       ],
       "variants": [
-        
-        ],
+        {
+          "id": "elec-trance-16ths-v-01",
+          "parentPatternId": "elec-trance-16ths",
+          "name": "Trance Bass 16ths — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            2,
+            3,
+            5,
+            6,
+            8,
+            9,
+            11,
+            12,
+            14,
+            15
+          ],
+          "accentProfile": [
+            0.7,
+            0.7999999999999999,
+            0.8999999999999999,
+            0.85,
+            0.7,
+            0.7999999999999999,
+            0.8999999999999999,
+            0.85,
+            0.7,
+            0.7999999999999999,
+            0.8999999999999999
+          ],
+          "velocityProfile": [
+            0.62,
+            0.7200000000000001,
+            0.87,
+            0.77,
+            0.62,
+            0.7200000000000001,
+            0.87,
+            0.77,
+            0.62,
+            0.7200000000000001,
+            0.87
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6,
+            -3,
+            6,
+            -3,
+            6,
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "elec-trance-16ths-v-02",
+          "parentPatternId": "elec-trance-16ths",
+          "name": "Trance Bass 16ths — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15
+          ],
+          "accentProfile": [
+            0.71,
+            0.9299999999999999,
+            0.9099999999999999,
+            0.98,
+            0.71,
+            0.9299999999999999,
+            0.9099999999999999,
+            0.98,
+            0.71,
+            0.9299999999999999,
+            0.9099999999999999,
+            0.98,
+            0.71,
+            0.9299999999999999,
+            0.9099999999999999,
+            0.98
+          ],
+          "velocityProfile": [
+            0.76,
+            0.78,
+            0.9299999999999999,
+            0.9099999999999999,
+            0.6799999999999999,
+            0.78,
+            1,
+            0.83,
+            0.6799999999999999,
+            0.8600000000000001,
+            0.9299999999999999,
+            0.83,
+            0.76,
+            0.78,
+            0.9299999999999999,
+            0.9099999999999999
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5
+          ]
+        }
+      ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 5,
       "weight": 1,
-      "provenance": "Electronic genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Electronic catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "electronic"
       ],
@@ -703,7 +1069,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
       ],
       "difficulty": 1,
       "weight": 1,
-      "provenance": "Electronic genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Electronic catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "electronic"
       ],
@@ -795,14 +1161,85 @@ export const ELECTRONIC_WORLD: GenreWorld = {
         "chorus"
       ],
       "variants": [
-        
-        ],
+        {
+          "id": "elec-dnb-amen-v-01",
+          "parentPatternId": "elec-dnb-amen",
+          "name": "DnB Break — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            7,
+            9,
+            14
+          ],
+          "accentProfile": [
+            0.95,
+            0.8999999999999999,
+            0.7,
+            0.75
+          ],
+          "velocityProfile": [
+            0.87,
+            0.8200000000000001,
+            0.5700000000000001,
+            0.67
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6
+          ]
+        },
+        {
+          "id": "elec-dnb-amen-v-02",
+          "parentPatternId": "elec-dnb-amen",
+          "name": "DnB Break — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            4,
+            7,
+            9,
+            12,
+            14
+          ],
+          "accentProfile": [
+            0.96,
+            1,
+            0.71,
+            0.88,
+            0.9099999999999999,
+            0.7799999999999999
+          ],
+          "velocityProfile": [
+            1,
+            0.88,
+            0.63,
+            0.81,
+            0.88,
+            0.63
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5
+          ]
+        }
+      ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 2,
       "weight": 1,
-      "provenance": "Electronic genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Electronic catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "electronic"
       ],
@@ -901,14 +1338,97 @@ export const ELECTRONIC_WORLD: GenreWorld = {
         "chorus"
       ],
       "variants": [
-        
-        ],
+        {
+          "id": "elec-footwork-v-01",
+          "parentPatternId": "elec-footwork",
+          "name": "Chicago Footwork / Juke — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            6,
+            7,
+            12,
+            13
+          ],
+          "accentProfile": [
+            0.95,
+            0.6,
+            0.85,
+            0.5499999999999999,
+            0.8999999999999999
+          ],
+          "velocityProfile": [
+            0.87,
+            0.52,
+            0.77,
+            0.47000000000000003,
+            0.8200000000000001
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "elec-footwork-v-02",
+          "parentPatternId": "elec-footwork",
+          "name": "Chicago Footwork / Juke — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            3,
+            6,
+            7,
+            9,
+            12,
+            13,
+            15
+          ],
+          "accentProfile": [
+            0.96,
+            0.73,
+            0.86,
+            0.6799999999999999,
+            0.9099999999999999,
+            0.9299999999999999,
+            0.5599999999999999,
+            0.98
+          ],
+          "velocityProfile": [
+            1,
+            0.58,
+            0.83,
+            0.6100000000000001,
+            0.88,
+            0.78,
+            0.6100000000000001,
+            0.83
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5
+          ]
+        }
+      ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 3,
       "weight": 1,
-      "provenance": "Electronic genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Electronic catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "electronic"
       ],
@@ -946,7 +1466,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
     {
       "id": "elec-ukg",
       "worldId": "electronic",
-      "traditionId": "electronic-bass",
+      "traditionId": "electronic-house",
       "name": "UK Garage Swung",
       "family": "Beat",
       "category": "groove",
@@ -1000,14 +1520,85 @@ export const ELECTRONIC_WORLD: GenreWorld = {
         "chorus"
       ],
       "variants": [
-        
-        ],
+        {
+          "id": "elec-ukg-v-01",
+          "parentPatternId": "elec-ukg",
+          "name": "UK Garage Swung — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            7,
+            8,
+            15
+          ],
+          "accentProfile": [
+            0.95,
+            0.8999999999999999,
+            0.75,
+            0.7999999999999999
+          ],
+          "velocityProfile": [
+            0.87,
+            0.8200000000000001,
+            0.67,
+            0.7200000000000001
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6
+          ]
+        },
+        {
+          "id": "elec-ukg-v-02",
+          "parentPatternId": "elec-ukg",
+          "name": "UK Garage Swung — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            4,
+            7,
+            8,
+            12,
+            15
+          ],
+          "accentProfile": [
+            0.96,
+            1,
+            0.76,
+            0.9299999999999999,
+            0.9099999999999999,
+            0.83
+          ],
+          "velocityProfile": [
+            1,
+            0.88,
+            0.73,
+            0.8600000000000001,
+            0.88,
+            0.6799999999999999
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5
+          ]
+        }
+      ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 2,
       "weight": 1,
-      "provenance": "Electronic genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Electronic catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "electronic"
       ],
@@ -1045,7 +1636,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
     {
       "id": "elec-electro",
       "worldId": "electronic",
-      "traditionId": "electronic-electro-synth",
+      "traditionId": "electronic-house",
       "name": "Electro 808",
       "family": "Beat",
       "category": "groove",
@@ -1099,14 +1690,85 @@ export const ELECTRONIC_WORLD: GenreWorld = {
         "chorus"
       ],
       "variants": [
-        
-        ],
+        {
+          "id": "elec-electro-v-01",
+          "parentPatternId": "elec-electro",
+          "name": "Electro 808 — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            7,
+            10,
+            14
+          ],
+          "accentProfile": [
+            0.95,
+            0.8999999999999999,
+            0.75,
+            0.7999999999999999
+          ],
+          "velocityProfile": [
+            0.87,
+            0.8200000000000001,
+            0.67,
+            0.7200000000000001
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6
+          ]
+        },
+        {
+          "id": "elec-electro-v-02",
+          "parentPatternId": "elec-electro",
+          "name": "Electro 808 — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            4,
+            7,
+            10,
+            12,
+            14
+          ],
+          "accentProfile": [
+            0.96,
+            1,
+            0.76,
+            0.9299999999999999,
+            0.9099999999999999,
+            0.88
+          ],
+          "velocityProfile": [
+            1,
+            0.88,
+            0.73,
+            0.8600000000000001,
+            0.88,
+            0.73
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5
+          ]
+        }
+      ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 2,
       "weight": 1,
-      "provenance": "Electronic genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Electronic catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "electronic"
       ],
@@ -1132,7 +1794,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
     {
       "id": "elec-ambient",
       "worldId": "electronic",
-      "traditionId": "electronic-electro-synth",
+      "traditionId": "electronic-house",
       "name": "Ambient Pulse",
       "family": "Synth",
       "category": "groove",
@@ -1230,7 +1892,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
       ],
       "difficulty": 1,
       "weight": 1,
-      "provenance": "Electronic genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Electronic catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "electronic"
       ],
@@ -1256,7 +1918,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
     {
       "id": "elec-synthwave",
       "worldId": "electronic",
-      "traditionId": "electronic-electro-synth",
+      "traditionId": "electronic-house",
       "name": "Synthwave 8ths",
       "family": "Bass",
       "category": "groove",
@@ -1318,14 +1980,97 @@ export const ELECTRONIC_WORLD: GenreWorld = {
         "chorus"
       ],
       "variants": [
-        
-        ],
+        {
+          "id": "elec-synthwave-v-01",
+          "parentPatternId": "elec-synthwave",
+          "name": "Synthwave 8ths — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            2,
+            3,
+            5,
+            6
+          ],
+          "accentProfile": [
+            0.95,
+            0.75,
+            0.87,
+            0.75,
+            0.9099999999999999
+          ],
+          "velocityProfile": [
+            0.87,
+            0.67,
+            0.8,
+            0.67,
+            0.8400000000000001
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "elec-synthwave-v-02",
+          "parentPatternId": "elec-synthwave",
+          "name": "Synthwave 8ths — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "accentProfile": [
+            0.96,
+            0.88,
+            0.88,
+            0.88,
+            0.9199999999999999,
+            0.88,
+            0.88,
+            0.9299999999999999
+          ],
+          "velocityProfile": [
+            1,
+            0.73,
+            0.86,
+            0.81,
+            0.9,
+            0.73,
+            0.94,
+            0.78
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5
+          ]
+        }
+      ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 3,
       "weight": 1,
-      "provenance": "Electronic genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Electronic catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "electronic"
       ],
@@ -1351,7 +2096,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
     {
       "id": "elec-acid-303",
       "worldId": "electronic",
-      "traditionId": "electronic-electro-synth",
+      "traditionId": "electronic-house",
       "name": "Acid House 303 Bassline",
       "family": "Acid Bass",
       "category": "ostinato",
@@ -1411,14 +2156,93 @@ export const ELECTRONIC_WORLD: GenreWorld = {
         "chorus"
       ],
       "variants": [
-        
-        ],
+        {
+          "id": "elec-acid-303-v-01",
+          "parentPatternId": "elec-acid-303",
+          "name": "Acid House 303 Bassline — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            4,
+            7,
+            11,
+            14
+          ],
+          "accentProfile": [
+            0.95,
+            0.5499999999999999,
+            0.85,
+            0.6,
+            0.8999999999999999
+          ],
+          "velocityProfile": [
+            0.87,
+            0.47000000000000003,
+            0.77,
+            0.52,
+            0.8200000000000001
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "elec-acid-303-v-02",
+          "parentPatternId": "elec-acid-303",
+          "name": "Acid House 303 Bassline — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            3,
+            4,
+            7,
+            10,
+            11,
+            14
+          ],
+          "accentProfile": [
+            0.96,
+            0.6799999999999999,
+            0.86,
+            0.73,
+            0.9099999999999999,
+            0.7799999999999999,
+            0.8099999999999999
+          ],
+          "velocityProfile": [
+            1,
+            0.53,
+            0.83,
+            0.6599999999999999,
+            0.88,
+            0.63,
+            0.8600000000000001
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2
+          ]
+        }
+      ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 2,
       "weight": 0.7,
-      "provenance": "Electronic genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Electronic catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "electronic"
       ],
@@ -1444,7 +2268,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
     {
       "id": "electronic-phrase-13",
       "worldId": "electronic",
-      "traditionId": "electronic-electro-synth",
+      "traditionId": "electronic-house",
       "name": "Pluck Phrase",
       "family": "Pluck",
       "category": "phrasePattern",
@@ -1498,7 +2322,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
         0.74,
         0.9
       ],
-      "syncopationRating": 0.71,
+      "syncopationRating": 0.7142857142857143,
       "anticipationOffset": 0,
       "swingPercentage": 50,
       "articulations": [
@@ -1527,9 +2351,88 @@ export const ELECTRONIC_WORLD: GenreWorld = {
         "phrasePosition"
       ],
       "variants": [
-        
-        ],
-      "provenance": "Electronic genre-pack structural pattern; generalized for engine coverage and recombination, not a transcription of a single recording.",
+        {
+          "id": "electronic-phrase-13-v-01",
+          "parentPatternId": "electronic-phrase-13",
+          "name": "Pluck Phrase — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            5,
+            7,
+            12,
+            15
+          ],
+          "accentProfile": [
+            0.95,
+            0.69,
+            0.85,
+            0.63,
+            0.95
+          ],
+          "velocityProfile": [
+            0.92,
+            0.61,
+            0.8200000000000001,
+            0.6000000000000001,
+            0.87
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "electronic-phrase-13-v-02",
+          "parentPatternId": "electronic-phrase-13",
+          "name": "Pluck Phrase — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            2,
+            5,
+            7,
+            10,
+            12,
+            15
+          ],
+          "accentProfile": [
+            0.96,
+            0.82,
+            0.86,
+            0.76,
+            0.96,
+            0.82,
+            0.86
+          ],
+          "velocityProfile": [
+            1,
+            0.6699999999999999,
+            0.88,
+            0.74,
+            0.9299999999999999,
+            0.72,
+            0.96
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2
+          ]
+        }
+      ],
+      "provenance": "GenreDAW catalog rebuild from existing Electronic world data; generated to cover missing musical functions without runtime AI.",
       "authenticityTags": [
         "electronic",
         "pluck"
@@ -1545,7 +2448,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
     {
       "id": "electronic-call-14",
       "worldId": "electronic",
-      "traditionId": "electronic-bass",
+      "traditionId": "electronic-house",
       "name": "Breakbeat Response",
       "family": "Breakbeat",
       "category": "interactionPattern",
@@ -1603,11 +2506,11 @@ export const ELECTRONIC_WORLD: GenreWorld = {
         0.57,
         0.95,
         0.62,
-        0.9,
+        0.8999999999999999,
         0.62,
         0.95
       ],
-      "syncopationRating": 0.71,
+      "syncopationRating": 0.7142857142857143,
       "anticipationOffset": 0,
       "swingPercentage": 50,
       "articulations": [
@@ -1638,10 +2541,140 @@ export const ELECTRONIC_WORLD: GenreWorld = {
         "phrasePosition"
       ],
       "variants": [
-        
-        
-        ],
-      "provenance": "Electronic genre-pack structural pattern; generalized for engine coverage and recombination, not a transcription of a single recording.",
+        {
+          "id": "electronic-call-14-v-01",
+          "parentPatternId": "electronic-call-14",
+          "name": "Breakbeat Response — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            3,
+            6,
+            11,
+            13
+          ],
+          "accentProfile": [
+            0.8999999999999999,
+            0.57,
+            0.8999999999999999,
+            0.57,
+            0.8999999999999999
+          ],
+          "velocityProfile": [
+            0.87,
+            0.48999999999999994,
+            0.87,
+            0.54,
+            0.82
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "electronic-call-14-v-02",
+          "parentPatternId": "electronic-call-14",
+          "name": "Breakbeat Response — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            1,
+            3,
+            6,
+            8,
+            11,
+            13
+          ],
+          "accentProfile": [
+            0.9099999999999999,
+            0.7,
+            0.9099999999999999,
+            0.7,
+            0.9099999999999999,
+            0.7,
+            0.9099999999999999
+          ],
+          "velocityProfile": [
+            1,
+            0.5499999999999999,
+            0.9299999999999999,
+            0.6799999999999999,
+            0.8799999999999999,
+            0.6,
+            1
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2
+          ]
+        },
+        {
+          "id": "electronic-call-14-v-03",
+          "parentPatternId": "electronic-call-14",
+          "name": "Breakbeat Response — transition variation",
+          "variationType": "transition",
+          "probability": 0.16,
+          "description": "Adds a final pickup/closure gesture for section transitions.",
+          "onsetGrid": [
+            0,
+            1,
+            3,
+            6,
+            8,
+            11,
+            13,
+            14,
+            15
+          ],
+          "accentProfile": [
+            0.9299999999999999,
+            0.6,
+            0.9299999999999999,
+            0.6,
+            0.9299999999999999,
+            0.6,
+            0.9299999999999999,
+            1,
+            1
+          ],
+          "velocityProfile": [
+            0.95,
+            0.57,
+            0.95,
+            0.62,
+            0.8999999999999999,
+            0.62,
+            0.95,
+            0.98,
+            0.98
+          ],
+          "microtimingOffset": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            -6,
+            -6
+          ]
+        }
+      ],
+      "provenance": "GenreDAW catalog rebuild from existing Electronic world data; generated to cover missing musical functions without runtime AI.",
       "authenticityTags": [
         "electronic",
         "breakbeat"
@@ -1657,7 +2690,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
     {
       "id": "electronic-anchor-15",
       "worldId": "electronic",
-      "traditionId": "electronic-electro-synth",
+      "traditionId": "electronic-house",
       "name": "Build Anchor",
       "family": "Build",
       "category": "ostinato",
@@ -1715,7 +2748,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
         0.74,
         0.9
       ],
-      "syncopationRating": 0.71,
+      "syncopationRating": 0.7142857142857143,
       "anticipationOffset": 0,
       "swingPercentage": 50,
       "articulations": [
@@ -1745,9 +2778,88 @@ export const ELECTRONIC_WORLD: GenreWorld = {
         "phrasePosition"
       ],
       "variants": [
-        
-        ],
-      "provenance": "Electronic genre-pack structural pattern; generalized for engine coverage and recombination, not a transcription of a single recording.",
+        {
+          "id": "electronic-anchor-15-v-01",
+          "parentPatternId": "electronic-anchor-15",
+          "name": "Build Anchor — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            1,
+            4,
+            7,
+            12,
+            14
+          ],
+          "accentProfile": [
+            0.95,
+            0.69,
+            0.85,
+            0.63,
+            0.95
+          ],
+          "velocityProfile": [
+            0.92,
+            0.61,
+            0.8200000000000001,
+            0.6000000000000001,
+            0.87
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "electronic-anchor-15-v-02",
+          "parentPatternId": "electronic-anchor-15",
+          "name": "Build Anchor — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            1,
+            2,
+            4,
+            7,
+            9,
+            12,
+            14
+          ],
+          "accentProfile": [
+            0.96,
+            0.82,
+            0.86,
+            0.76,
+            0.96,
+            0.82,
+            0.86
+          ],
+          "velocityProfile": [
+            1,
+            0.6699999999999999,
+            0.88,
+            0.74,
+            0.9299999999999999,
+            0.72,
+            0.96
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2
+          ]
+        }
+      ],
+      "provenance": "GenreDAW catalog rebuild from existing Electronic world data; generated to cover missing musical functions without runtime AI.",
       "authenticityTags": [
         "electronic",
         "build"
@@ -1763,7 +2875,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
     {
       "id": "electronic-comp-16",
       "worldId": "electronic",
-      "traditionId": "electronic-bass",
+      "traditionId": "electronic-house",
       "name": "Drop Comping",
       "family": "Drop",
       "category": "groove",
@@ -1821,7 +2933,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
         0.74,
         0.9
       ],
-      "syncopationRating": 0.71,
+      "syncopationRating": 0.7142857142857143,
       "anticipationOffset": 0,
       "swingPercentage": 50,
       "articulations": [
@@ -1850,9 +2962,88 @@ export const ELECTRONIC_WORLD: GenreWorld = {
         "phrasePosition"
       ],
       "variants": [
-        
-        ],
-      "provenance": "Electronic genre-pack structural pattern; generalized for engine coverage and recombination, not a transcription of a single recording.",
+        {
+          "id": "electronic-comp-16-v-01",
+          "parentPatternId": "electronic-comp-16",
+          "name": "Drop Comping — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            4,
+            6,
+            11,
+            14
+          ],
+          "accentProfile": [
+            0.95,
+            0.69,
+            0.85,
+            0.63,
+            0.95
+          ],
+          "velocityProfile": [
+            0.92,
+            0.61,
+            0.8200000000000001,
+            0.6000000000000001,
+            0.87
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "electronic-comp-16-v-02",
+          "parentPatternId": "electronic-comp-16",
+          "name": "Drop Comping — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            3,
+            4,
+            6,
+            9,
+            11,
+            14
+          ],
+          "accentProfile": [
+            0.96,
+            0.82,
+            0.86,
+            0.76,
+            0.96,
+            0.82,
+            0.86
+          ],
+          "velocityProfile": [
+            1,
+            0.6699999999999999,
+            0.88,
+            0.74,
+            0.9299999999999999,
+            0.72,
+            0.96
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2
+          ]
+        }
+      ],
+      "provenance": "GenreDAW catalog rebuild from existing Electronic world data; generated to cover missing musical functions without runtime AI.",
       "authenticityTags": [
         "electronic",
         "drop"
@@ -1868,7 +3059,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
     {
       "id": "electronic-intro-17",
       "worldId": "electronic",
-      "traditionId": "electronic-electro-synth",
+      "traditionId": "electronic-house",
       "name": "Arp Intro",
       "family": "Arp",
       "category": "sectionPattern",
@@ -1925,7 +3116,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
         0.95,
         0.74
       ],
-      "syncopationRating": 0.67,
+      "syncopationRating": 0.6666666666666666,
       "anticipationOffset": 0,
       "swingPercentage": 50,
       "articulations": [
@@ -1954,8 +3145,78 @@ export const ELECTRONIC_WORLD: GenreWorld = {
         "phrasePosition"
       ],
       "variants": [
-        
-        
+        {
+          "id": "electronic-intro-17-v-01",
+          "parentPatternId": "electronic-intro-17",
+          "name": "Arp Intro — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            6,
+            8,
+            14
+          ],
+          "accentProfile": [
+            0.95,
+            0.69,
+            0.85,
+            0.63
+          ],
+          "velocityProfile": [
+            0.92,
+            0.61,
+            0.8200000000000001,
+            0.6000000000000001
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6
+          ]
+        },
+        {
+          "id": "electronic-intro-17-v-02",
+          "parentPatternId": "electronic-intro-17",
+          "name": "Arp Intro — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            3,
+            6,
+            8,
+            11,
+            14
+          ],
+          "accentProfile": [
+            0.96,
+            0.82,
+            0.86,
+            0.76,
+            0.96,
+            0.82
+          ],
+          "velocityProfile": [
+            1,
+            0.6699999999999999,
+            0.88,
+            0.74,
+            0.9299999999999999,
+            0.72
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5
+          ]
+        },
         {
           "id": "electronic-intro-17-v-03",
           "parentPatternId": "electronic-intro-17",
@@ -2001,7 +3262,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
           ]
         }
       ],
-      "provenance": "Electronic genre-pack structural pattern; generalized for engine coverage and recombination, not a transcription of a single recording.",
+      "provenance": "GenreDAW catalog rebuild from existing Electronic world data; generated to cover missing musical functions without runtime AI.",
       "authenticityTags": [
         "electronic",
         "arp"
@@ -2076,7 +3337,6 @@ export const ELECTRONIC_WORLD: GenreWorld = {
     "microtimingFeel": "straight"
   },
   "crossLinks": [
-    "Electronic ↔ House & Techno (see dedicated House & Techno world)",
     "Electronic ↔ Hip-Hop",
     "Electronic ↔ Rock",
     "Electronic ↔ Funk"

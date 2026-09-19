@@ -51,8 +51,8 @@ export const SKA_WORLD : GenreWorld = {
       "tuningSystem": "12-tet",
       "signatureCell": "Offbeat guitar/piano chop with walking bass and horn answer",
       "grooveMechanics": {
-        "swingPercentage": 55,
-        "anticipationOffsetSteps": 1,
+        "swingPercentage": 50,
+        "anticipationOffsetSteps": 0,
         "microtimingFeel": "pushed",
         "humanizeJitterMs": 6
       },
@@ -177,7 +177,7 @@ export const SKA_WORLD : GenreWorld = {
       "tuningSystem": "12-tet",
       "signatureCell": "Relaxed offbeat guitar with melodic bass and stacked vocal response",
       "grooveMechanics": {
-        "swingPercentage": 52,
+        "swingPercentage": 50,
         "anticipationOffsetSteps": 0,
         "microtimingFeel": "laid-back",
         "humanizeJitterMs": 8
@@ -333,7 +333,7 @@ export const SKA_WORLD : GenreWorld = {
         ]
       }
     ],
-    "provenance": "Genre-pack structural pattern authored from documented rhythmic and ensemble conventions; generalized for engine recombination.",
+    "provenance": "GenreDAW catalog extension: authored from documented rhythmic/ensemble conventions and expressed as engine-ready structural cells.",
     "authenticityTags": [
       "ska",
       "upstroke",
@@ -482,7 +482,7 @@ export const SKA_WORLD : GenreWorld = {
         ]
       }
     ],
-    "provenance": "Genre-pack structural pattern authored from documented rhythmic and ensemble conventions; generalized for engine recombination.",
+    "provenance": "GenreDAW catalog extension: authored from documented rhythmic/ensemble conventions and expressed as engine-ready structural cells.",
     "authenticityTags": [
       "ska",
       "walking",
@@ -629,7 +629,7 @@ export const SKA_WORLD : GenreWorld = {
         ]
       }
     ],
-    "provenance": "Genre-pack structural pattern authored from documented rhythmic and ensemble conventions; generalized for engine recombination.",
+    "provenance": "GenreDAW catalog extension: authored from documented rhythmic/ensemble conventions and expressed as engine-ready structural cells.",
     "authenticityTags": [
       "ska",
       "horn",
@@ -753,7 +753,7 @@ export const SKA_WORLD : GenreWorld = {
         ]
       }
     ],
-    "provenance": "Genre-pack structural pattern authored from documented rhythmic and ensemble conventions; generalized for engine recombination.",
+    "provenance": "GenreDAW catalog extension: authored from documented rhythmic/ensemble conventions and expressed as engine-ready structural cells.",
     "authenticityTags": [
       "2tone",
       "ska",
@@ -878,7 +878,7 @@ export const SKA_WORLD : GenreWorld = {
         ]
       }
     ],
-    "provenance": "Genre-pack structural pattern authored from documented rhythmic and ensemble conventions; generalized for engine recombination.",
+    "provenance": "GenreDAW catalog extension: authored from documented rhythmic/ensemble conventions and expressed as engine-ready structural cells.",
     "authenticityTags": [
       "rocksteady",
       "bass",
@@ -955,7 +955,7 @@ export const SKA_WORLD : GenreWorld = {
       "phrasePosition"
     ],
     "variants": [],
-    "provenance": "Genre-pack structural pattern based on First-Wave Ska; generalized for engine recombination, not literal transcription.",
+    "provenance": "Authored genre-pack pattern based on First-Wave Ska; designed for engine-level recombination rather than literal transcription.",
     "authenticityTags": [
       "offbeat chop"
     ],
@@ -1038,7 +1038,7 @@ export const SKA_WORLD : GenreWorld = {
       "phrasePosition"
     ],
     "variants": [],
-    "provenance": "Genre-pack structural pattern based on First-Wave Ska; generalized for engine recombination, not literal transcription.",
+    "provenance": "Authored genre-pack pattern based on First-Wave Ska; designed for engine-level recombination rather than literal transcription.",
     "authenticityTags": [
       "walking bass"
     ],
@@ -1131,7 +1131,7 @@ export const SKA_WORLD : GenreWorld = {
       "phrasePosition"
     ],
     "variants": [],
-    "provenance": "Genre-pack structural pattern based on First-Wave Ska; generalized for engine recombination, not literal transcription.",
+    "provenance": "Authored genre-pack pattern based on First-Wave Ska; designed for engine-level recombination rather than literal transcription.",
     "authenticityTags": [
       "horn answer"
     ],
@@ -1209,7 +1209,7 @@ export const SKA_WORLD : GenreWorld = {
       "phrasePosition"
     ],
     "variants": [],
-    "provenance": "Genre-pack structural pattern based on First-Wave Ska; generalized for engine recombination, not literal transcription.",
+    "provenance": "Authored genre-pack pattern based on First-Wave Ska; designed for engine-level recombination rather than literal transcription.",
     "authenticityTags": [
       "drive"
     ],
@@ -1224,7 +1224,7 @@ export const SKA_WORLD : GenreWorld = {
   {
     "id": "sk-10-rocksteady-transition",
     "worldId": "ska",
-    "traditionId": "ska-rocksteady-bridge",
+    "traditionId": "ska-two-tone",
     "name": "Rocksteady Transition",
     "family": "Ska → Rocksteady",
     "category": "sectionPattern",
@@ -1284,7 +1284,7 @@ export const SKA_WORLD : GenreWorld = {
       "phrasePosition"
     ],
     "variants": [],
-    "provenance": "Genre-pack structural pattern based on Ska → Rocksteady; generalized for engine recombination, not literal transcription.",
+    "provenance": "Authored genre-pack pattern based on Ska → Rocksteady; designed for engine-level recombination rather than literal transcription.",
     "authenticityTags": [
       "rocksteady"
     ],
@@ -1361,7 +1361,7 @@ export const SKA_WORLD : GenreWorld = {
       "phrasePosition"
     ],
     "variants": [],
-    "provenance": "Genre-pack structural pattern based on Two-Tone; generalized for engine recombination, not literal transcription.",
+    "provenance": "Authored genre-pack pattern based on Two-Tone; designed for engine-level recombination rather than literal transcription.",
     "authenticityTags": [
       "two-tone"
     ],
@@ -1435,7 +1435,7 @@ export const SKA_WORLD : GenreWorld = {
       "phrasePosition"
     ],
     "variants": [],
-    "provenance": "Genre-pack structural pattern based on First-Wave Ska; generalized for engine recombination, not literal transcription.",
+    "provenance": "Authored genre-pack pattern based on First-Wave Ska; designed for engine-level recombination rather than literal transcription.",
     "authenticityTags": [
       "piano bubble"
     ],
@@ -1510,7 +1510,7 @@ export const SKA_WORLD : GenreWorld = {
       "phrasePosition"
     ],
     "variants": [],
-    "provenance": "Genre-pack structural pattern based on Horn Section; generalized for engine recombination, not literal transcription.",
+    "provenance": "Authored genre-pack pattern based on Horn Section; designed for engine-level recombination rather than literal transcription.",
     "authenticityTags": [
       "horn stab"
     ],
@@ -1585,7 +1585,7 @@ export const SKA_WORLD : GenreWorld = {
       "phrasePosition"
     ],
     "variants": [],
-    "provenance": "Genre-pack structural pattern based on Break; generalized for engine recombination, not literal transcription.",
+    "provenance": "Authored genre-pack pattern based on Break; designed for engine-level recombination rather than literal transcription.",
     "authenticityTags": [
       "stop-time",
       "pickup"
@@ -1663,7 +1663,7 @@ export const SKA_WORLD : GenreWorld = {
       "phrasePosition"
     ],
     "variants": [],
-    "provenance": "Genre-pack structural pattern based on Cadence; generalized for engine recombination, not literal transcription.",
+    "provenance": "Authored genre-pack pattern based on Cadence; designed for engine-level recombination rather than literal transcription.",
     "authenticityTags": [
       "final hit"
     ],
@@ -1673,99 +1673,6 @@ export const SKA_WORLD : GenreWorld = {
     "tuningSystem": "12-tet",
     "difficulty": 2,
     "weight": 0.82,
-    "enabled": true
-  },
-  {
-    "id": "sk-rocksteady-guitar-skank",
-    "worldId": "ska",
-    "traditionId": "ska-rocksteady-bridge",
-    "name": "Rocksteady Relaxed Guitar & Piano Skank",
-    "family": "Comping",
-    "category": "groove",
-    "description": "Relaxed mid-tempo offbeat guitar chop doubled with electric piano, giving space to the heavy melodic bass.",
-    "tags": ["rocksteady", "guitar", "piano", "skank"],
-    "scopes": ["measure", "phrase", "region", "track"],
-    "roles": ["guitar", "harmony"],
-    "instruments": ["guitar", "piano"],
-    "meter": "4/4",
-    "cycleLength": 1,
-    "subdivisions": 16,
-    "onsetGrid": [2, 6, 10, 14],
-    "accentProfile": [0.8, 0.9, 0.8, 0.95],
-    "velocityProfile": [0.75, 0.85, 0.75, 0.9],
-    "articulations": ["skank", "staccato"],
-    "density": "medium",
-    "phrasePosition": ["start", "middle", "end"],
-    "sectionUsage": ["verse", "chorus"],
-    "variants": [],
-    "provenance": "Genre-pack support pattern for Ska / Rocksteady Continuum; generalized from documented musical conventions.",
-    "authenticityTags": ["rocksteady", "skank"],
-    "danceTags": ["social-partner"],
-    "tuningSystem": "12-tet",
-    "difficulty": 1,
-    "weight": 1,
-    "enabled": true
-  },
-  {
-    "id": "sk-rocksteady-vocal-harmony",
-    "worldId": "ska",
-    "traditionId": "ska-rocksteady-bridge",
-    "name": "Rocksteady Stacked Vocal Harmony Response",
-    "family": "Voice",
-    "category": "interactionPattern",
-    "description": "Three-part sweet soulful vocal harmony backing chords inspired by The Paragons and The Melodians.",
-    "tags": ["rocksteady", "vocal", "harmony", "response"],
-    "scopes": ["phrase", "region", "track"],
-    "roles": ["harmony", "voice"],
-    "instruments": ["voice", "backing-vocals"],
-    "meter": "4/4",
-    "cycleLength": 2,
-    "subdivisions": 16,
-    "onsetGrid": [4, 12, 20, 28],
-    "accentProfile": [0.95, 0.85, 0.95, 0.85],
-    "velocityProfile": [0.9, 0.8, 0.9, 0.8],
-    "articulations": ["legato"],
-    "density": "sparse",
-    "phrasePosition": ["start", "middle", "end"],
-    "sectionUsage": ["verse", "chorus"],
-    "variants": [],
-    "provenance": "Genre-pack support pattern for Ska / Rocksteady Continuum; generalized from documented musical conventions.",
-    "authenticityTags": ["rocksteady", "voice"],
-    "danceTags": ["social-partner"],
-    "tuningSystem": "12-tet",
-    "difficulty": 2,
-    "weight": 1,
-    "enabled": true
-  },
-  {
-    "id": "sk-first-wave-horns-riff",
-    "worldId": "ska",
-    "traditionId": "ska-first-wave",
-    "name": "Skatalites Uptempo Horn Riff",
-    "family": "Horns",
-    "category": "phrasePattern",
-    "description": "Joyous uptempo syncopated brass unison riff answering the walking bassline in classic 1960s Jamaican style.",
-    "tags": ["ska", "first-wave", "horns", "brass", "skatalites"],
-    "scopes": ["measure", "phrase", "region", "track"],
-    "roles": ["melody", "lead"],
-    "instruments": ["trumpet", "trombone"],
-    "meter": "4/4",
-    "cycleLength": 1,
-    "subdivisions": 16,
-    "onsetGrid": [0, 3, 6, 8, 11, 14],
-    "accentProfile": [1.0, 0.8, 0.95, 0.75, 0.9, 0.85],
-    "velocityProfile": [0.95, 0.75, 0.9, 0.7, 0.85, 0.8],
-    "articulations": ["staccato", "accented"],
-    "density": "medium",
-    "phrasePosition": ["start", "middle", "end"],
-    "sectionUsage": ["intro", "verse", "chorus", "solo"],
-    "variants": [],
-    "provenance": "Genre-pack support pattern for First-Wave Jamaican Ska; generalized from documented musical conventions.",
-    "authenticityTags": ["ska", "first-wave", "horns"],
-    "danceTags": ["festival-fusion"],
-    "tuningSystem": "12-tet",
-    "difficulty": 2,
-    "weight": 1,
     "enabled": true
   }
 ],

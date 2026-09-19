@@ -328,7 +328,7 @@ export const COUNTRY_WORLD: GenreWorld = {
       ],
       "difficulty": 1,
       "weight": 1,
-      "provenance": "Country genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Country catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "country"
       ],
@@ -439,14 +439,153 @@ export const COUNTRY_WORLD: GenreWorld = {
         "chorus"
       ],
       "variants": [
-        
-        ],
+        {
+          "id": "country-train-v-01",
+          "parentPatternId": "country-train",
+          "name": "Train Beat — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            2,
+            3,
+            5,
+            6,
+            8,
+            9,
+            11,
+            12,
+            14,
+            15
+          ],
+          "accentProfile": [
+            0.75,
+            0.5499999999999999,
+            0.6499999999999999,
+            0.6,
+            0.95,
+            0.6,
+            0.6499999999999999,
+            0.6,
+            0.7999999999999999,
+            0.5499999999999999,
+            0.6499999999999999
+          ],
+          "velocityProfile": [
+            0.67,
+            0.42,
+            0.52,
+            0.47000000000000003,
+            0.87,
+            0.47000000000000003,
+            0.52,
+            0.47000000000000003,
+            0.7200000000000001,
+            0.42,
+            0.52
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6,
+            -3,
+            6,
+            -3,
+            6,
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "country-train-v-02",
+          "parentPatternId": "country-train",
+          "name": "Train Beat — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15
+          ],
+          "accentProfile": [
+            0.76,
+            0.6799999999999999,
+            0.6599999999999999,
+            0.73,
+            0.96,
+            0.73,
+            0.6599999999999999,
+            0.73,
+            0.8099999999999999,
+            0.6799999999999999,
+            0.6599999999999999,
+            0.73,
+            0.96,
+            0.73,
+            0.6599999999999999,
+            0.73
+          ],
+          "velocityProfile": [
+            0.81,
+            0.48,
+            0.58,
+            0.6100000000000001,
+            0.9299999999999999,
+            0.53,
+            0.6599999999999999,
+            0.53,
+            0.78,
+            0.56,
+            0.58,
+            0.53,
+            1,
+            0.53,
+            0.58,
+            0.6100000000000001
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5
+          ]
+        }
+      ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 5,
       "weight": 1,
-      "provenance": "Country genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Country catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "country"
       ],
@@ -535,14 +674,97 @@ export const COUNTRY_WORLD: GenreWorld = {
         "turnaround"
       ],
       "variants": [
-        
-        ],
+        {
+          "id": "country-trap-hats-v-01",
+          "parentPatternId": "country-trap-hats",
+          "name": "Hick-Hop Trap Hi-Hats — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            8,
+            10,
+            13,
+            14
+          ],
+          "accentProfile": [
+            0.95,
+            0.8999999999999999,
+            0.5499999999999999,
+            0.7,
+            0.95
+          ],
+          "velocityProfile": [
+            0.87,
+            0.8200000000000001,
+            0.47000000000000003,
+            0.62,
+            0.87
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "country-trap-hats-v-02",
+          "parentPatternId": "country-trap-hats",
+          "name": "Hick-Hop Trap Hi-Hats — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            4,
+            8,
+            10,
+            12,
+            13,
+            14,
+            15
+          ],
+          "accentProfile": [
+            0.96,
+            1,
+            0.5599999999999999,
+            0.83,
+            0.96,
+            0.63,
+            0.61,
+            0.9299999999999999
+          ],
+          "velocityProfile": [
+            1,
+            0.88,
+            0.53,
+            0.76,
+            0.9299999999999999,
+            0.48,
+            0.6599999999999999,
+            0.78
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5
+          ]
+        }
+      ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 3,
       "weight": 1,
-      "provenance": "Country genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Country catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "country"
       ],
@@ -628,14 +850,97 @@ export const COUNTRY_WORLD: GenreWorld = {
         "chorus"
       ],
       "variants": [
-        
-        ],
+        {
+          "id": "country-outlaw-v-01",
+          "parentPatternId": "country-outlaw",
+          "name": "Outlaw 8ths — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            2,
+            3,
+            5,
+            6
+          ],
+          "accentProfile": [
+            0.95,
+            0.6699999999999999,
+            0.83,
+            0.6699999999999999,
+            0.8899999999999999
+          ],
+          "velocityProfile": [
+            0.87,
+            0.6000000000000001,
+            0.74,
+            0.6000000000000001,
+            0.8200000000000001
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "country-outlaw-v-02",
+          "parentPatternId": "country-outlaw",
+          "name": "Outlaw 8ths — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "accentProfile": [
+            0.96,
+            0.7999999999999999,
+            0.84,
+            0.7999999999999999,
+            0.8999999999999999,
+            0.7999999999999999,
+            0.84,
+            0.86
+          ],
+          "velocityProfile": [
+            1,
+            0.66,
+            0.7999999999999999,
+            0.74,
+            0.88,
+            0.66,
+            0.8799999999999999,
+            0.7
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5
+          ]
+        }
+      ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 3,
       "weight": 1,
-      "provenance": "Country genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Country catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "country"
       ],
@@ -744,13 +1049,41 @@ export const COUNTRY_WORLD: GenreWorld = {
             6
           ]
         },
-        ],
+        {
+          "id": "country-waltz-v-02",
+          "parentPatternId": "country-waltz",
+          "name": "Country Waltz — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            2,
+            4
+          ],
+          "accentProfile": [
+            0.96,
+            0.83,
+            0.6599999999999999
+          ],
+          "velocityProfile": [
+            1,
+            0.6799999999999999,
+            0.63
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2
+          ]
+        }
+      ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 1,
       "weight": 1,
-      "provenance": "Country genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Country catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "country"
       ],
@@ -839,14 +1172,73 @@ export const COUNTRY_WORLD: GenreWorld = {
         "chorus"
       ],
       "variants": [
-        
-        ],
+        {
+          "id": "country-western-swing-v-01",
+          "parentPatternId": "country-western-swing",
+          "name": "Western Swing — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            6,
+            9
+          ],
+          "accentProfile": [
+            0.8999999999999999,
+            0.83,
+            0.95
+          ],
+          "velocityProfile": [
+            0.8200000000000001,
+            0.74,
+            0.87
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "country-western-swing-v-02",
+          "parentPatternId": "country-western-swing",
+          "name": "Western Swing — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            3,
+            6,
+            9
+          ],
+          "accentProfile": [
+            0.9099999999999999,
+            0.96,
+            0.96,
+            0.96
+          ],
+          "velocityProfile": [
+            0.96,
+            0.7999999999999999,
+            0.9299999999999999,
+            0.8799999999999999
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5
+          ]
+        }
+      ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 1,
       "weight": 1,
-      "provenance": "Country genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Country catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "country"
       ],
@@ -936,14 +1328,77 @@ export const COUNTRY_WORLD: GenreWorld = {
         "chorus"
       ],
       "variants": [
-        
-        ],
+        {
+          "id": "country-nashville-v-01",
+          "parentPatternId": "country-nashville",
+          "name": "Nashville Smooth — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            8,
+            12
+          ],
+          "accentProfile": [
+            0.95,
+            0.85,
+            0.8999999999999999
+          ],
+          "velocityProfile": [
+            0.87,
+            0.77,
+            0.8200000000000001
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "country-nashville-v-02",
+          "parentPatternId": "country-nashville",
+          "name": "Nashville Smooth — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            4,
+            8,
+            12,
+            14
+          ],
+          "accentProfile": [
+            0.96,
+            0.98,
+            0.9099999999999999,
+            0.98,
+            0.71
+          ],
+          "velocityProfile": [
+            1,
+            0.83,
+            0.88,
+            0.9099999999999999,
+            0.6799999999999999
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2
+          ]
+        }
+      ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 2,
       "weight": 1,
-      "provenance": "Country genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Country catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "country"
       ],
@@ -1013,14 +1468,61 @@ export const COUNTRY_WORLD: GenreWorld = {
         "chorus"
       ],
       "variants": [
-        
-        ],
+        {
+          "id": "country-pedal-steel-swell-v-01-safe",
+          "parentPatternId": "country-pedal-steel-swell",
+          "name": "Pedal Steel Volume Swell — played variation",
+          "variationType": "accentShift",
+          "probability": 0.18,
+          "description": "A light played variation for sparse patterns with only a few attacks.",
+          "onsetGrid": [
+            0,
+            5
+          ],
+          "accentProfile": [
+            0.7,
+            1
+          ],
+          "velocityProfile": [
+            0.73,
+            0.9099999999999999
+          ],
+          "microtimingOffset": [
+            -2,
+            4
+          ]
+        },
+        {
+          "id": "country-pedal-steel-swell-v-02-safe",
+          "parentPatternId": "country-pedal-steel-swell",
+          "name": "Pedal Steel Volume Swell — played variation",
+          "variationType": "accentShift",
+          "probability": 0.18,
+          "description": "A light played variation for sparse patterns with only a few attacks.",
+          "onsetGrid": [
+            0,
+            5
+          ],
+          "accentProfile": [
+            0.7,
+            1
+          ],
+          "velocityProfile": [
+            0.73,
+            0.9099999999999999
+          ],
+          "microtimingOffset": [
+            -2,
+            4
+          ]
+        }
+      ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 1,
       "weight": 0.7,
-      "provenance": "Country genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Country catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "country"
       ],
@@ -1106,14 +1608,97 @@ export const COUNTRY_WORLD: GenreWorld = {
         "chorus"
       ],
       "variants": [
-        
-        ],
+        {
+          "id": "country-chicken-v-01",
+          "parentPatternId": "country-chicken",
+          "name": "Chicken Pickin — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            4,
+            7,
+            11,
+            12
+          ],
+          "accentProfile": [
+            0.95,
+            0.7,
+            0.85,
+            0.7,
+            0.8999999999999999
+          ],
+          "velocityProfile": [
+            0.87,
+            0.62,
+            0.77,
+            0.62,
+            0.8200000000000001
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "country-chicken-v-02",
+          "parentPatternId": "country-chicken",
+          "name": "Chicken Pickin — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            3,
+            4,
+            7,
+            8,
+            11,
+            12,
+            15
+          ],
+          "accentProfile": [
+            0.96,
+            0.83,
+            0.86,
+            0.83,
+            0.9099999999999999,
+            0.83,
+            0.86,
+            0.88
+          ],
+          "velocityProfile": [
+            1,
+            0.6799999999999999,
+            0.83,
+            0.76,
+            0.88,
+            0.6799999999999999,
+            0.9099999999999999,
+            0.73
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5
+          ]
+        }
+      ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 3,
       "weight": 1,
-      "provenance": "Country genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Country catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "country"
       ],
@@ -1183,14 +1768,61 @@ export const COUNTRY_WORLD: GenreWorld = {
         "chorus"
       ],
       "variants": [
-        
-        ],
+        {
+          "id": "country-ballad-v-01-safe",
+          "parentPatternId": "country-ballad",
+          "name": "Slow Ballad 6/8 — played variation",
+          "variationType": "accentShift",
+          "probability": 0.18,
+          "description": "A light played variation for sparse patterns with only a few attacks.",
+          "onsetGrid": [
+            0,
+            3
+          ],
+          "accentProfile": [
+            0.95,
+            0.8999999999999999
+          ],
+          "velocityProfile": [
+            0.98,
+            0.74
+          ],
+          "microtimingOffset": [
+            -2,
+            4
+          ]
+        },
+        {
+          "id": "country-ballad-v-02-safe",
+          "parentPatternId": "country-ballad",
+          "name": "Slow Ballad 6/8 — played variation",
+          "variationType": "accentShift",
+          "probability": 0.18,
+          "description": "A light played variation for sparse patterns with only a few attacks.",
+          "onsetGrid": [
+            0,
+            3
+          ],
+          "accentProfile": [
+            0.95,
+            0.8999999999999999
+          ],
+          "velocityProfile": [
+            0.98,
+            0.74
+          ],
+          "microtimingOffset": [
+            -2,
+            4
+          ]
+        }
+      ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 1,
       "weight": 1,
-      "provenance": "Country genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Country catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "country"
       ],
@@ -1303,9 +1935,92 @@ export const COUNTRY_WORLD: GenreWorld = {
         "phrasePosition"
       ],
       "variants": [
-        
-        ],
-      "provenance": "Country genre-pack structural pattern; generalized for engine coverage and recombination, not a transcription of a single recording.",
+        {
+          "id": "country-phrase-11-v-01",
+          "parentPatternId": "country-phrase-11",
+          "name": "Train Phrase — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            3,
+            5,
+            10,
+            12
+          ],
+          "accentProfile": [
+            0.95,
+            0.69,
+            0.85,
+            0.63,
+            0.95
+          ],
+          "velocityProfile": [
+            0.92,
+            0.61,
+            0.8200000000000001,
+            0.6000000000000001,
+            0.87
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "country-phrase-11-v-02",
+          "parentPatternId": "country-phrase-11",
+          "name": "Train Phrase — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            2,
+            3,
+            5,
+            8,
+            10,
+            12,
+            15
+          ],
+          "accentProfile": [
+            0.96,
+            0.82,
+            0.86,
+            0.76,
+            0.96,
+            0.82,
+            0.86,
+            0.76
+          ],
+          "velocityProfile": [
+            1,
+            0.6699999999999999,
+            0.88,
+            0.74,
+            0.9299999999999999,
+            0.72,
+            0.96,
+            0.61
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5
+          ]
+        }
+      ],
+      "provenance": "GenreDAW catalog rebuild from existing Country world data; generated to cover missing musical functions without runtime AI.",
       "authenticityTags": [
         "country",
         "train"
@@ -1374,7 +2089,7 @@ export const COUNTRY_WORLD: GenreWorld = {
         0.57,
         0.95,
         0.62,
-        0.9,
+        0.8999999999999999,
         0.62,
         0.95,
         0.57
@@ -1409,10 +2124,148 @@ export const COUNTRY_WORLD: GenreWorld = {
         "phrasePosition"
       ],
       "variants": [
-        
-        
-        ],
-      "provenance": "Country genre-pack structural pattern; generalized for engine coverage and recombination, not a transcription of a single recording.",
+        {
+          "id": "country-call-12-v-01",
+          "parentPatternId": "country-call-12",
+          "name": "Nashville Response — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            3,
+            4,
+            9,
+            11
+          ],
+          "accentProfile": [
+            0.8999999999999999,
+            0.57,
+            0.8999999999999999,
+            0.57,
+            0.8999999999999999
+          ],
+          "velocityProfile": [
+            0.87,
+            0.48999999999999994,
+            0.87,
+            0.54,
+            0.82
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "country-call-12-v-02",
+          "parentPatternId": "country-call-12",
+          "name": "Nashville Response — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            1,
+            3,
+            4,
+            6,
+            9,
+            11,
+            13
+          ],
+          "accentProfile": [
+            0.9099999999999999,
+            0.7,
+            0.9099999999999999,
+            0.7,
+            0.9099999999999999,
+            0.7,
+            0.9099999999999999,
+            0.7
+          ],
+          "velocityProfile": [
+            1,
+            0.5499999999999999,
+            0.9299999999999999,
+            0.6799999999999999,
+            0.8799999999999999,
+            0.6,
+            1,
+            0.5499999999999999
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5
+          ]
+        },
+        {
+          "id": "country-call-12-v-03",
+          "parentPatternId": "country-call-12",
+          "name": "Nashville Response — transition variation",
+          "variationType": "transition",
+          "probability": 0.16,
+          "description": "Adds a final pickup/closure gesture for section transitions.",
+          "onsetGrid": [
+            0,
+            1,
+            3,
+            4,
+            6,
+            9,
+            11,
+            13,
+            14,
+            15
+          ],
+          "accentProfile": [
+            0.9299999999999999,
+            0.6,
+            0.9299999999999999,
+            0.6,
+            0.9299999999999999,
+            0.6,
+            0.9299999999999999,
+            0.6,
+            1,
+            1
+          ],
+          "velocityProfile": [
+            0.95,
+            0.57,
+            0.95,
+            0.62,
+            0.8999999999999999,
+            0.62,
+            0.95,
+            0.57,
+            0.98,
+            0.98
+          ],
+          "microtimingOffset": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            -6,
+            -6
+          ]
+        }
+      ],
+      "provenance": "GenreDAW catalog rebuild from existing Country world data; generated to cover missing musical functions without runtime AI.",
       "authenticityTags": [
         "country",
         "nashville"
@@ -1520,9 +2373,92 @@ export const COUNTRY_WORLD: GenreWorld = {
         "phrasePosition"
       ],
       "variants": [
-        
-        ],
-      "provenance": "Country genre-pack structural pattern; generalized for engine coverage and recombination, not a transcription of a single recording.",
+        {
+          "id": "country-anchor-13-v-01",
+          "parentPatternId": "country-anchor-13",
+          "name": "Chicken Pickin Anchor — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            1,
+            4,
+            5,
+            10,
+            12
+          ],
+          "accentProfile": [
+            0.95,
+            0.69,
+            0.85,
+            0.63,
+            0.95
+          ],
+          "velocityProfile": [
+            0.92,
+            0.61,
+            0.8200000000000001,
+            0.6000000000000001,
+            0.87
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "country-anchor-13-v-02",
+          "parentPatternId": "country-anchor-13",
+          "name": "Chicken Pickin Anchor — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            1,
+            2,
+            4,
+            5,
+            7,
+            10,
+            12,
+            14
+          ],
+          "accentProfile": [
+            0.96,
+            0.82,
+            0.86,
+            0.76,
+            0.96,
+            0.82,
+            0.86,
+            0.76
+          ],
+          "velocityProfile": [
+            1,
+            0.6699999999999999,
+            0.88,
+            0.74,
+            0.9299999999999999,
+            0.72,
+            0.96,
+            0.61
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5
+          ]
+        }
+      ],
+      "provenance": "GenreDAW catalog rebuild from existing Country world data; generated to cover missing musical functions without runtime AI.",
       "authenticityTags": [
         "country",
         "chicken-pickin"
@@ -1629,9 +2565,92 @@ export const COUNTRY_WORLD: GenreWorld = {
         "phrasePosition"
       ],
       "variants": [
-        
-        ],
-      "provenance": "Country genre-pack structural pattern; generalized for engine coverage and recombination, not a transcription of a single recording.",
+        {
+          "id": "country-comp-14-v-01",
+          "parentPatternId": "country-comp-14",
+          "name": "Steel Comping — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            4,
+            6,
+            9,
+            12
+          ],
+          "accentProfile": [
+            0.95,
+            0.69,
+            0.85,
+            0.63,
+            0.95
+          ],
+          "velocityProfile": [
+            0.92,
+            0.61,
+            0.8200000000000001,
+            0.6000000000000001,
+            0.87
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "country-comp-14-v-02",
+          "parentPatternId": "country-comp-14",
+          "name": "Steel Comping — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            3,
+            4,
+            6,
+            7,
+            9,
+            12,
+            14
+          ],
+          "accentProfile": [
+            0.96,
+            0.82,
+            0.86,
+            0.76,
+            0.96,
+            0.82,
+            0.86,
+            0.76
+          ],
+          "velocityProfile": [
+            1,
+            0.6699999999999999,
+            0.88,
+            0.74,
+            0.9299999999999999,
+            0.72,
+            0.96,
+            0.61
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5
+          ]
+        }
+      ],
+      "provenance": "GenreDAW catalog rebuild from existing Country world data; generated to cover missing musical functions without runtime AI.",
       "authenticityTags": [
         "country",
         "steel"
@@ -1731,8 +2750,70 @@ export const COUNTRY_WORLD: GenreWorld = {
         "phrasePosition"
       ],
       "variants": [
-        
-        
+        {
+          "id": "country-intro-15-v-01",
+          "parentPatternId": "country-intro-15",
+          "name": "Boom-Chuck Intro — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            1,
+            4,
+            5
+          ],
+          "accentProfile": [
+            0.95,
+            0.69,
+            0.85
+          ],
+          "velocityProfile": [
+            0.92,
+            0.61,
+            0.8200000000000001
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "country-intro-15-v-02",
+          "parentPatternId": "country-intro-15",
+          "name": "Boom-Chuck Intro — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            1,
+            2,
+            4,
+            5,
+            8
+          ],
+          "accentProfile": [
+            0.96,
+            0.82,
+            0.86,
+            0.76,
+            0.96
+          ],
+          "velocityProfile": [
+            1,
+            0.6699999999999999,
+            0.88,
+            0.74,
+            0.9299999999999999
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2
+          ]
+        },
         {
           "id": "country-intro-15-v-03",
           "parentPatternId": "country-intro-15",
@@ -1778,7 +2859,7 @@ export const COUNTRY_WORLD: GenreWorld = {
           ]
         }
       ],
-      "provenance": "Country genre-pack structural pattern; generalized for engine coverage and recombination, not a transcription of a single recording.",
+      "provenance": "GenreDAW catalog rebuild from existing Country world data; generated to cover missing musical functions without runtime AI.",
       "authenticityTags": [
         "country",
         "boom-chuck"
@@ -1861,7 +2942,7 @@ export const COUNTRY_WORLD: GenreWorld = {
         0.74,
         0.9
       ],
-      "syncopationRating": 0.71,
+      "syncopationRating": 0.7142857142857143,
       "anticipationOffset": 0,
       "swingPercentage": 52,
       "articulations": [
@@ -1890,9 +2971,88 @@ export const COUNTRY_WORLD: GenreWorld = {
         "phrasePosition"
       ],
       "variants": [
-        
-        ],
-      "provenance": "Country genre-pack structural pattern; generalized for engine coverage and recombination, not a transcription of a single recording.",
+        {
+          "id": "country-verse-16-v-01",
+          "parentPatternId": "country-verse-16",
+          "name": "Train Verse Variation — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            2,
+            6,
+            8,
+            13,
+            15
+          ],
+          "accentProfile": [
+            0.95,
+            0.69,
+            0.85,
+            0.63,
+            0.95
+          ],
+          "velocityProfile": [
+            0.92,
+            0.61,
+            0.8200000000000001,
+            0.6000000000000001,
+            0.87
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "country-verse-16-v-02",
+          "parentPatternId": "country-verse-16",
+          "name": "Train Verse Variation — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            2,
+            4,
+            6,
+            8,
+            11,
+            13,
+            15
+          ],
+          "accentProfile": [
+            0.96,
+            0.82,
+            0.86,
+            0.76,
+            0.96,
+            0.82,
+            0.86
+          ],
+          "velocityProfile": [
+            1,
+            0.6699999999999999,
+            0.88,
+            0.74,
+            0.9299999999999999,
+            0.72,
+            0.96
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2
+          ]
+        }
+      ],
+      "provenance": "GenreDAW catalog rebuild from existing Country world data; generated to cover missing musical functions without runtime AI.",
       "authenticityTags": [
         "country",
         "train"
@@ -1960,7 +3120,7 @@ export const COUNTRY_WORLD: GenreWorld = {
         0.9,
         0.58
       ],
-      "syncopationRating": 0.67,
+      "syncopationRating": 0.6666666666666666,
       "anticipationOffset": 0,
       "swingPercentage": 50,
       "articulations": [
@@ -2029,8 +3189,48 @@ export const COUNTRY_WORLD: GenreWorld = {
             -4
           ]
         },
-        ],
-      "provenance": "Genre-pack structural pattern for dedicated vocal phrasing coverage for Country; generalized for engine coverage, not a transcription.",
+        {
+          "id": "country-voice-phrasing-v-final-accent",
+          "parentPatternId": "country-voice-phrasing",
+          "name": "Country Vocal Phrasing — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.18,
+          "description": "Same rhythmic shape with shifted emphasis on the repeat.",
+          "onsetGrid": [
+            0,
+            3,
+            5,
+            8,
+            11,
+            14
+          ],
+          "accentProfile": [
+            0.8999999999999999,
+            0.7,
+            0.8999999999999999,
+            0.7,
+            0.8999999999999999,
+            0.7
+          ],
+          "velocityProfile": [
+            0.9,
+            0.58,
+            0.9,
+            0.58,
+            0.9,
+            0.58
+          ],
+          "microtimingOffset": [
+            2,
+            -4,
+            2,
+            -4,
+            2,
+            -4
+          ]
+        }
+      ],
+      "provenance": "GenreDAW catalog rebuild: dedicated vocal phrasing coverage for Country.",
       "authenticityTags": [
         "country",
         "voice"

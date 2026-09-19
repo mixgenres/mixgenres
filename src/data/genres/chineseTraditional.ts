@@ -47,7 +47,7 @@ export const CHINESE_TRADITIONAL_WORLD : GenreWorld = {
       "danceTags": [
         "listening"
       ],
-      "tuningSystem": "12-tet",
+      "tuningSystem": "Chinese pitch practice; engine uses a 12-TET modal approximation",
       "signatureCell": "Open-string resonance followed by a harmonically colored stopped-note slide",
       "grooveMechanics": {
         "swingPercentage": 50,
@@ -129,7 +129,7 @@ export const CHINESE_TRADITIONAL_WORLD : GenreWorld = {
       "danceTags": [
         "listening"
       ],
-      "tuningSystem": "12-tet",
+      "tuningSystem": "Chinese instrumental pitch practice; engine uses 12-TET modal approximation",
       "signatureCell": "Shared pentatonic melody with staggered ornaments across pipa, erhu and dizi",
       "grooveMechanics": {
         "swingPercentage": 50,
@@ -180,7 +180,7 @@ export const CHINESE_TRADITIONAL_WORLD : GenreWorld = {
       "danceTags": [
         "listening"
       ],
-      "tuningSystem": "12-tet",
+      "tuningSystem": "Regional opera pitch practice; engine uses 12-TET modal approximation",
       "signatureCell": "Jinghu lead gesture answered by small gong/woodblock punctuation",
       "grooveMechanics": {
         "swingPercentage": 50,
@@ -337,7 +337,7 @@ export const CHINESE_TRADITIONAL_WORLD : GenreWorld = {
         ]
       }
     ],
-    "provenance": "Genre-pack structural pattern authored from documented rhythmic and ensemble conventions; generalized for engine recombination.",
+    "provenance": "GenreDAW catalog extension: authored from documented rhythmic/ensemble conventions and expressed as engine-ready structural cells.",
     "authenticityTags": [
       "guqin",
       "harmonic",
@@ -489,7 +489,7 @@ export const CHINESE_TRADITIONAL_WORLD : GenreWorld = {
         ]
       }
     ],
-    "provenance": "Genre-pack structural pattern authored from documented rhythmic and ensemble conventions; generalized for engine recombination.",
+    "provenance": "GenreDAW catalog extension: authored from documented rhythmic/ensemble conventions and expressed as engine-ready structural cells.",
     "authenticityTags": [
       "sizhu",
       "heterophony",
@@ -631,7 +631,7 @@ export const CHINESE_TRADITIONAL_WORLD : GenreWorld = {
         ]
       }
     ],
-    "provenance": "Genre-pack structural pattern authored from documented rhythmic and ensemble conventions; generalized for engine recombination.",
+    "provenance": "GenreDAW catalog extension: authored from documented rhythmic/ensemble conventions and expressed as engine-ready structural cells.",
     "authenticityTags": [
       "pipa",
       "tremolo",
@@ -774,7 +774,7 @@ export const CHINESE_TRADITIONAL_WORLD : GenreWorld = {
         ]
       }
     ],
-    "provenance": "Genre-pack structural pattern authored from documented rhythmic and ensemble conventions; generalized for engine recombination.",
+    "provenance": "GenreDAW catalog extension: authored from documented rhythmic/ensemble conventions and expressed as engine-ready structural cells.",
     "authenticityTags": [
       "xiqu",
       "cue",
@@ -886,7 +886,7 @@ export const CHINESE_TRADITIONAL_WORLD : GenreWorld = {
         ]
       }
     ],
-    "provenance": "Genre-pack structural pattern authored from documented rhythmic and ensemble conventions; generalized for engine recombination.",
+    "provenance": "GenreDAW catalog extension: authored from documented rhythmic/ensemble conventions and expressed as engine-ready structural cells.",
     "authenticityTags": [
       "drone",
       "pentatonic"
@@ -961,7 +961,7 @@ export const CHINESE_TRADITIONAL_WORLD : GenreWorld = {
       "phrasePosition"
     ],
     "variants": [],
-    "provenance": "Genre-pack structural pattern based on Guqin Cells; generalized for engine recombination, not literal transcription.",
+    "provenance": "Authored genre-pack pattern based on Guqin Cells; designed for engine-level recombination rather than literal transcription.",
     "authenticityTags": [
       "san yin",
       "ma",
@@ -1038,7 +1038,7 @@ export const CHINESE_TRADITIONAL_WORLD : GenreWorld = {
       "phrasePosition"
     ],
     "variants": [],
-    "provenance": "Genre-pack structural pattern based on Guqin Techniques; generalized for engine recombination, not literal transcription.",
+    "provenance": "Authored genre-pack pattern based on Guqin Techniques; designed for engine-level recombination rather than literal transcription.",
     "authenticityTags": [
       "fan yin",
       "harmonic point"
@@ -1115,7 +1115,7 @@ export const CHINESE_TRADITIONAL_WORLD : GenreWorld = {
       "phrasePosition"
     ],
     "variants": [],
-    "provenance": "Genre-pack structural pattern based on Guqin Cells; generalized for engine recombination, not literal transcription.",
+    "provenance": "Authored genre-pack pattern based on Guqin Cells; designed for engine-level recombination rather than literal transcription.",
     "authenticityTags": [
       "hua yin",
       "answer"
@@ -1206,7 +1206,7 @@ export const CHINESE_TRADITIONAL_WORLD : GenreWorld = {
       "phrasePosition"
     ],
     "variants": [],
-    "provenance": "Genre-pack structural pattern based on Silk-and-Bamboo; generalized for engine recombination, not literal transcription.",
+    "provenance": "Authored genre-pack pattern based on Silk-and-Bamboo; designed for engine-level recombination rather than literal transcription.",
     "authenticityTags": [
       "heterophony",
       "pentatonic",
@@ -1308,7 +1308,7 @@ export const CHINESE_TRADITIONAL_WORLD : GenreWorld = {
       "phrasePosition"
     ],
     "variants": [],
-    "provenance": "Genre-pack structural pattern based on Silk-and-Bamboo; generalized for engine recombination, not literal transcription.",
+    "provenance": "Authored genre-pack pattern based on Silk-and-Bamboo; designed for engine-level recombination rather than literal transcription.",
     "authenticityTags": [
       "heterophony",
       "leader-follower"
@@ -1386,7 +1386,7 @@ export const CHINESE_TRADITIONAL_WORLD : GenreWorld = {
       "phrasePosition"
     ],
     "variants": [],
-    "provenance": "Genre-pack structural pattern based on Silk-and-Bamboo; generalized for engine recombination, not literal transcription.",
+    "provenance": "Authored genre-pack pattern based on Silk-and-Bamboo; designed for engine-level recombination rather than literal transcription.",
     "authenticityTags": [
       "lun",
       "tremolo",
@@ -1464,7 +1464,7 @@ export const CHINESE_TRADITIONAL_WORLD : GenreWorld = {
       "phrasePosition"
     ],
     "variants": [],
-    "provenance": "Genre-pack structural pattern based on Silk-and-Bamboo; generalized for engine recombination, not literal transcription.",
+    "provenance": "Authored genre-pack pattern based on Silk-and-Bamboo; designed for engine-level recombination rather than literal transcription.",
     "authenticityTags": [
       "portamento",
       "heterophony"
@@ -1544,7 +1544,7 @@ export const CHINESE_TRADITIONAL_WORLD : GenreWorld = {
       "phrasePosition"
     ],
     "variants": [],
-    "provenance": "Genre-pack structural pattern based on Xiqu / Opera; generalized for engine recombination, not literal transcription.",
+    "provenance": "Authored genre-pack pattern based on Xiqu / Opera; designed for engine-level recombination rather than literal transcription.",
     "authenticityTags": [
       "banqiang",
       "cue"
@@ -1634,7 +1634,7 @@ export const CHINESE_TRADITIONAL_WORLD : GenreWorld = {
       "phrasePosition"
     ],
     "variants": [],
-    "provenance": "Genre-pack structural pattern based on Xiqu / Opera; generalized for engine recombination, not literal transcription.",
+    "provenance": "Authored genre-pack pattern based on Xiqu / Opera; designed for engine-level recombination rather than literal transcription.",
     "authenticityTags": [
       "jinghu",
       "vocal echo"
@@ -1714,7 +1714,7 @@ export const CHINESE_TRADITIONAL_WORLD : GenreWorld = {
       "phrasePosition"
     ],
     "variants": [],
-    "provenance": "Genre-pack structural pattern based on Cross-Tradition; generalized for engine recombination, not literal transcription.",
+    "provenance": "Authored genre-pack pattern based on Cross-Tradition; designed for engine-level recombination rather than literal transcription.",
     "authenticityTags": [
       "drone",
       "pentatonic"
@@ -1821,7 +1821,7 @@ export const CHINESE_TRADITIONAL_WORLD : GenreWorld = {
   "danceTags": [
     "listening"
   ],
-  "tuningSystem": "12-tet",
+  "tuningSystem": "Chinese pitch practice; engine uses a 12-TET modal approximation",
   "signatureCell": "Pentatonic melody expressed through ornamented heterophony and cue-like percussion",
   "grooveMechanics": {
     "swingPercentage": 50,

@@ -215,12 +215,12 @@ export function patternStyleFit(
 
   // Exact style match: pattern.traditionId === styleId or pattern.substyleId === styleId
   if (pattern.traditionId === styleId || (pattern as any).styleId === styleId || pattern.substyleId === styleId) {
-    return 45;
+    return 75;
   }
 
   // Ancestor style / extends chain match
   if (resolved.extends && (pattern.traditionId === resolved.extends || pattern.substyleId === resolved.extends)) {
-    return 25;
+    return 40;
   }
 
   // Style require list boost
@@ -234,7 +234,7 @@ export function patternStyleFit(
 
   // Sibling style penalty
   if (pattern.traditionId && pattern.traditionId !== styleId && pattern.worldId === (genreId || resolved.primaryGenre)) {
-    return -18;
+    return -35;
   }
 
   return 0;
@@ -468,7 +468,8 @@ export function suggestPattern(
   const scored = (PATTERNS_BY_WORLD[worldId] || [])
     .filter(p => p.enabled !== false)
     .map(p => {
-      let n = affinity(p.id, voice, worldId);
+      let n = affinity(p.id, voice, worldId, styleId);
+      if (!Number.isFinite(n)) return { id: p.id, n: Number.NEGATIVE_INFINITY };
       if (p.id === DEFAULT_PATTERN_PREFERENCES[worldId]?.[voice.instrumentId]) n += 40;
       if (styleId && (p.traditionId === styleId || (p as any).styleId === styleId)) n += 25;
       if (sectionKind && p.sectionUsage?.includes(sectionKind as any)) n += 8;
@@ -1712,12 +1713,28 @@ export function makeSheet(
 
   // Instrument hints from resolved style palette or genre defaults
   const stylePalette = runtime.getInstrumentPalette();
-  const rawHints = stylePalette.length > 0 ? stylePalette : (WORLD_INSTRUMENT_HINTS[genreId] ?? ['piano', 'upright-bass', 'drums', 'guitar', 'voice']);
-  const hints = rawHints
-    .filter((id, i, arr) => INSTRUMENTS_BY_ID[id] && arr.indexOf(id) === i)
-    .slice(0, 5);
+  const ensembleIds = (resolved.arrangement?.ensemble ?? [])
+    .flatMap(e => e.instrumentIds ?? []);
+  const rawHints = [...ensembleIds, ...stylePalette, ...(WORLD_INSTRUMENT_HINTS[genreId] ?? [])];
+  const candidates = rawHints.filter((id, i, arr) => INSTRUMENTS_BY_ID[id] && arr.indexOf(id) === i);
+  const roleOrder = ['bass', 'percussion', 'harmony', 'melody', 'voice', 'texture'];
+  const hints: string[] = [];
+  for (const role of roleOrder) {
+    const id = candidates.find(x => roleForInstrument(x) === role && !hints.includes(x));
+    if (id) hints.push(id);
+  }
+  for (const id of candidates) {
+    if (hints.length >= 7) break;
+    if (!hints.includes(id)) hints.push(id);
+  }
+  if (hints.length < 5) {
+    for (const id of ['piano','upright-bass','drums','guitar','voice']) {
+      if (hints.length >= 5) break;
+      if (INSTRUMENTS_BY_ID[id] && !hints.includes(id)) hints.push(id);
+    }
+  }
 
-  const tracks: Voice[] = hints.map((instrumentId, i) => {
+  const tracks: Voice[] = hints.slice(0, 7).map((instrumentId, i) => {
     const def = instrument(instrumentId);
     return {
       id: `v${i}`, instrumentId, name: def.name, instrument: def.name,
@@ -1735,12 +1752,14 @@ export function makeSheet(
     
     // Authored density from genre template
     const formDensities = GENRE_FORMS[genreId]?.densities ?? {};
+    const styleDensity = resolved.arrangement?.densityCurve?.[r.formKey ?? ''] ?? resolved.arrangement?.densityCurve?.[r.kind];
     const sectionDensities = formDensities[r.formKey ?? ''] ?? formDensities[r.kind] ?? {};
-    
+
     const taken = new Set<string>();
     for (const [i, v] of tracks.entries()) {
-      let d: PartDensity = sectionDensities[v.instrumentId] 
-                        ?? sectionDensities[v.role] 
+      let d: PartDensity = sectionDensities[v.instrumentId]
+                        ?? sectionDensities[v.role]
+                        ?? (styleDensity === 'sparse' || styleDensity === 'busy' ? styleDensity : undefined)
                         ?? (r.intensity === 'low' ? 'sparse' : (r.intensity === 'peak' ? 'busy' : 'normal'));
       densities[r.id][v.id] = d;
 

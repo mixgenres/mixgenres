@@ -1,181 +1,246 @@
 import { GenreWorld } from '../../types';
 
 export const MATH_ROCK_WORLD: GenreWorld = {
-  id: "math-rock",
-  name: "Math Rock",
-  family: "Progressive / Polymetric",
-  color: "#4e738c",
-  level: "world",
-  description: "Intricate, rhythmically adventurous guitar-forward music defined by two-hand fretboard tapping, odd time signatures (7/8, 11/8, 5/4), interlocking polymetric riffs, conversational bass counterpoint, and dynamic post-rock crescendos.",
-  traditions: [
+  "id": "math-rock",
+  "name": "Math Rock",
+  "family": "Progressive / Polymetric",
+  "color": "#4e738c",
+  "level": "world",
+  "description": "Intricate, rhythmically adventurous guitar-forward music defined by two-hand fretboard tapping, odd time signatures (7/8, 11/8, 5/4), interlocking polymetric riffs, conversational bass counterpoint, and dynamic post-rock crescendos.",
+  "traditions": [
     {
-      id: "math-rock-midwest",
-      worldId: "math-rock",
-      name: "Midwest Math Rock & Tapping",
-      origin: "American Midwest / Japan",
-      era: "1990s–Present",
-      description: "Clean-toned, open-tuned guitars with intricate two-hand tapping, complex time signatures (7/8, 11/8), conversational basslines, and jazz-influenced dynamic phrasing.",
-      characteristicInstruments: [
+      "id": "math-rock-midwest",
+      "worldId": "math-rock",
+      "name": "Midwest Math Rock & Tapping",
+      "origin": "American Midwest / Japan",
+      "era": "1990s–Present",
+      "description": "Clean-toned, open-tuned guitars with intricate two-hand tapping, complex time signatures (7/8, 11/8), conversational basslines, and jazz-influenced dynamic phrasing.",
+      "characteristicInstruments": [
         "electric-guitar",
         "bass",
         "drums"
       ],
-      preferredMeters: [
+      "preferredMeters": [
         "7/8",
         "11/8",
         "4/4"
       ],
-      tempoRange: [
+      "tempoRange": [
         110,
         140
       ],
-      keySubstyles: [
+      "keySubstyles": [
         "Midwest Emo Math",
         "Japanese Math Rock (Toe, Tricot)",
         "Clean Tapping Instrumental"
       ],
-      coreConcepts: [
+      "coreConcepts": [
         "two-hand fretboard tapping",
         "odd-meter cycles (7/8, 5/8)",
         "open alternate tunings (FACGCE)",
         "interlocking polymetric guitar counterpoint"
       ],
-      rhythmicGrammar: [
+      "rhythmicGrammar": [
         "7/8 grouped as 2+2+3 or 3+2+2",
         "syncopated ghost-snare accents between tapped notes"
       ],
-      danceTags: [
+      "danceTags": [
         "listening"
       ],
-      tuningSystem: "12-tet",
-      signatureCell: "Additive odd-meter 7/8 cell [2+2+3] with clean tapped arpeggios",
-      grooveMechanics: {
-        swingPercentage: 50,
-        anticipationOffsetSteps: 0,
-        microtimingFeel: "straight"
+      "tuningSystem": "just-intonation",
+      "signatureCell": "Additive odd-meter 7/8 cell [2+2+3] with clean tapped arpeggios",
+      "grooveMechanics": {
+        "swingPercentage": 50,
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "straight"
       },
-      sectionProgressions: {
-        intro: ["IVmaj7", "V6", "vi9", "iii7"],
-        verse: ["IVmaj7", "Imaj7", "ii9", "Vadd9"],
-        chorus: ["vi9", "IVmaj7", "I", "V"],
-        solo: ["IVmaj7", "V", "vi", "iii"],
-        ending: ["IVmaj7", "IVmaj7", "Imaj7", "Imaj7"]
+      "sectionProgressions": {
+        "intro": [
+          "Fmaj7",
+          "G6",
+          "Am9",
+          "Em7"
+        ],
+        "verse": [
+          "Fmaj7",
+          "Cmaj7",
+          "Dm9",
+          "Gadd9"
+        ],
+        "chorus": [
+          "Am9",
+          "Fmaj7",
+          "C",
+          "G"
+        ],
+        "solo": [
+          "Fmaj7",
+          "G",
+          "Am",
+          "Em"
+        ],
+        "ending": [
+          "Fmaj7",
+          "Fmaj7",
+          "Cmaj7",
+          "Cmaj7"
+        ]
       }
     },
     {
-      id: "math-rock-post-rock",
-      worldId: "math-rock",
-      name: "Post-Rock Instrumental Build",
-      origin: "US / UK / Iceland",
-      era: "1990s–Present",
-      description: "Cinematic dynamic arches transitioning from whisper-quiet ambient guitar delay swells to thunderous, heavy climactic crescendos.",
-      characteristicInstruments: [
+      "id": "math-rock-post-rock",
+      "worldId": "math-rock",
+      "name": "Post-Rock Instrumental Build",
+      "origin": "US / UK / Iceland",
+      "era": "1990s–Present",
+      "description": "Cinematic dynamic arches transitioning from whisper-quiet ambient guitar delay swells to thunderous, heavy climactic crescendos.",
+      "characteristicInstruments": [
         "electric-guitar",
         "bass",
         "drums",
         "synth"
       ],
-      preferredMeters: [
+      "preferredMeters": [
         "4/4",
         "6/8"
       ],
-      tempoRange: [
+      "tempoRange": [
         75,
         115
       ],
-      keySubstyles: [
+      "keySubstyles": [
         "Cinematic Post-Rock",
         "Crescendo-Core",
         "Ambient Instrumental Rock"
       ],
-      coreConcepts: [
+      "coreConcepts": [
         "extreme dynamic range (pp to fff)",
         "reverb and delay wall-of-sound",
         "slow narrative pacing",
         "drum crescendo"
       ],
-      rhythmicGrammar: [
+      "rhythmicGrammar": [
         "sparse downbeats expanding into relentless rolling tom patterns"
       ],
-      danceTags: [
+      "danceTags": [
         "listening",
         "festival-fusion"
       ],
-      tuningSystem: "12-tet",
-      signatureCell: "Slow 16-bar crescendo from single guitar harmonic to full-band explosion",
-      grooveMechanics: {
-        swingPercentage: 50,
-        anticipationOffsetSteps: 0,
-        microtimingFeel: "rubato"
+      "tuningSystem": "12-tet",
+      "signatureCell": "Slow 16-bar crescendo from single guitar harmonic to full-band explosion",
+      "grooveMechanics": {
+        "swingPercentage": 50,
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "rubato"
       },
-      sectionProgressions: {
-        intro: ["I", "V", "vi", "IV"],
-        verse: ["I", "iii", "vi", "IVmaj7"],
-        chorus: ["vi", "IV", "I", "V"],
-        coda: ["IVmaj7", "IVmaj7", "I", "I"]
+      "sectionProgressions": {
+        "intro": [
+          "C",
+          "G",
+          "Am",
+          "F"
+        ],
+        "verse": [
+          "C",
+          "Em",
+          "Am",
+          "Fmaj7"
+        ],
+        "chorus": [
+          "Am",
+          "F",
+          "C",
+          "G"
+        ],
+        "coda": [
+          "Fmaj7",
+          "Fmaj7",
+          "C",
+          "C"
+        ]
       }
     },
     {
-      id: "math-rock-prog-fusion",
-      worldId: "math-rock",
-      name: "Progressive & Polymetric Fusion",
-      origin: "International",
-      era: "2000s–Present",
-      description: "Heavy, virtuosic polymeter: 4/4 drums against 5/8 guitar riffs, low-register 8-string thumping, and sudden metric modulations.",
-      characteristicInstruments: [
+      "id": "math-rock-prog-fusion",
+      "worldId": "math-rock",
+      "name": "Progressive & Polymetric Fusion",
+      "origin": "International",
+      "era": "2000s–Present",
+      "description": "Heavy, virtuosic polymeter: 4/4 drums against 5/8 guitar riffs, low-register 8-string thumping, and sudden metric modulations.",
+      "characteristicInstruments": [
         "electric-guitar",
         "bass",
         "drums"
       ],
-      preferredMeters: [
+      "preferredMeters": [
         "5/4",
         "7/8",
         "4/4"
       ],
-      tempoRange: [
+      "tempoRange": [
         120,
         160
       ],
-      keySubstyles: [
+      "keySubstyles": [
         "Djent-adjacent Math",
         "Instrumental Prog Fusion",
         "Polymetric Groove"
       ],
-      coreConcepts: [
+      "coreConcepts": [
         "polymeter (3 against 4, 5 against 4)",
         "metric modulation",
         "slap/thump bass techniques",
         "accent unisons"
       ],
-      rhythmicGrammar: [
+      "rhythmicGrammar": [
         "guitar cycling 5-step motif against 4/4 kick-snare grid until resolution"
       ],
-      danceTags: [
+      "danceTags": [
         "listening"
       ],
-      tuningSystem: "12-tet",
-      signatureCell: "Polymetric phrase phase-shifting across measure barlines",
-      grooveMechanics: {
-        swingPercentage: 50,
-        anticipationOffsetSteps: 0,
-        microtimingFeel: "straight"
+      "tuningSystem": "12-tet",
+      "signatureCell": "Polymetric phrase phase-shifting across measure barlines",
+      "grooveMechanics": {
+        "swingPercentage": 50,
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "straight"
       },
-      sectionProgressions: {
-        intro: ["i9", "bVImaj7#11", "iv11", "V7alt"],
-        verse: ["i7", "bVII/II", "bIII", "bVImaj7"],
-        chorus: ["bVImaj7", "bVII", "i9", "bIII/V"],
-        solo: ["iv9", "v7", "bVImaj7", "bVII9"]
+      "sectionProgressions": {
+        "intro": [
+          "Em9",
+          "Cmaj7#11",
+          "Am11",
+          "B7alt"
+        ],
+        "verse": [
+          "Em7",
+          "D/F#",
+          "G",
+          "Cmaj7"
+        ],
+        "chorus": [
+          "Cmaj7",
+          "D",
+          "Em9",
+          "G/B"
+        ],
+        "solo": [
+          "Am9",
+          "Bm7",
+          "Cmaj7",
+          "D9"
+        ]
       }
     }
   ],
-  substyles: [
+  "substyles": [
     "Midwest Math Rock",
     "Japanese Math Rock",
     "Post-Rock Instrumental",
     "Progressive Fusion",
     "Djent-adjacent Math"
   ],
-  artists: [
+  "artists": [
     "American Football",
     "Toe",
     "Tricot",
@@ -185,7 +250,7 @@ export const MATH_ROCK_WORLD: GenreWorld = {
     "Chon",
     "Explosions in the Sky"
   ],
-  concepts: [
+  "concepts": [
     "two-hand tapping",
     "odd-meter cycles (7/8, 11/8)",
     "open alternate tunings (FACGCE)",
@@ -194,67 +259,67 @@ export const MATH_ROCK_WORLD: GenreWorld = {
     "clean tone sparkle",
     "dynamic crescendo"
   ],
-  roles: {
-    guitar: [
+  "roles": {
+    "guitar": [
       "two-hand clean tapping arpeggios",
       "polymetric riffing",
       "tremolo swells"
     ],
-    bass: [
+    "bass": [
       "conversational tapped bassline",
       "odd-meter walking cells",
       "percussive thump"
     ],
-    drums: [
+    "drums": [
       "precise odd-meter ghost notes",
       "metric modulation fills",
       "building tom crescendos"
     ],
-    lead: [
+    "lead": [
       "angular tapped melodic lines",
       "soaring post-rock tremolo leads"
     ],
-    texture: [
+    "texture": [
       "ambient shimmer reverb swells",
       "delay washes"
     ]
   },
-  patterns: [
+  "patterns": [
     {
-      id: "math-tapping-7-8",
-      worldId: "math-rock",
-      traditionId: "math-rock-midwest",
-      name: "Midwest Clean Tapped Arpeggio (7/8)",
-      shortName: "Midwest 7/8 Tap",
-      family: "Math Guitar",
-      category: "ostinato",
-      description: "Intricate clean two-hand fretboard tapping cycling in 7/8 (grouped 2+2+3) with ringing natural harmonics.",
-      tags: [
+      "id": "math-tapping-7-8",
+      "worldId": "math-rock",
+      "traditionId": "math-rock-midwest",
+      "name": "Midwest Clean Tapped Arpeggio (7/8)",
+      "family": "Math Guitar",
+      "category": "ostinato",
+      "description": "Intricate clean two-hand fretboard tapping cycling in 7/8 (grouped 2+2+3) with natural harmonics.",
+      "tags": [
         "math-rock",
         "guitar",
         "tapping",
         "odd-meter",
         "clean"
       ],
-      scopes: [
+      "scopes": [
         "measure",
         "phrase",
         "region",
         "track",
         "song"
       ],
-      roles: [
+      "roles": [
         "lead",
         "harmony",
         "guitar"
       ],
-      instruments: [
-        "electric-guitar"
+      "instruments": [
+        "electric-guitar",
+        "guitar"
       ],
-      meter: "7/8",
-      cycleLength: 1,
-      subdivisions: 14,
-      onsetGrid: [
+      "meter": "7/8",
+      "cycleLength": 1,
+      "subdivisions": 14,
+      "onsetGrid": [
         0,
         2,
         4,
@@ -263,8 +328,8 @@ export const MATH_ROCK_WORLD: GenreWorld = {
         10,
         12
       ],
-      accentProfile: [
-        1.0,
+      "accentProfile": [
+        1,
         0.65,
         0.9,
         0.6,
@@ -272,7 +337,7 @@ export const MATH_ROCK_WORLD: GenreWorld = {
         0.7,
         0.85
       ],
-      velocityProfile: [
+      "velocityProfile": [
         0.95,
         0.6,
         0.85,
@@ -281,157 +346,137 @@ export const MATH_ROCK_WORLD: GenreWorld = {
         0.65,
         0.8
       ],
-      articulations: [
+      "articulations": [
         "hammer-on",
         "pull-off"
       ],
-      density: "dense",
-      phrasePosition: [
+      "density": "dense",
+      "phrasePosition": [
         "start",
         "middle"
       ],
-      sectionUsage: [
+      "sectionUsage": [
         "intro",
         "verse",
         "chorus",
         "solo"
       ],
-      variants: [
+      "variants": [
+
         {
-          id: "math-tapping-7-8-sparse",
-          parentPatternId: "math-tapping-7-8",
-          name: "Midwest Clean Tapped Arpeggio — 2+2+3 Pulse",
-          shortName: "7/8 Tap Pulse",
-          variationType: "sparse",
-          probability: 0.25,
-          description: "Strips interior tapping to accentuate the primary 2+2+3 pulses.",
-          onsetGrid: [
+          "id": "math-tapping-7-8-v-02",
+          "parentPatternId": "math-tapping-7-8",
+          "name": "Midwest Clean Tapped Arpeggio (7/8) — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
             0,
+            2,
             4,
+            6,
             8,
+            10,
             12
           ],
-          accentProfile: [
-            1.0,
-            0.85,
-            0.95,
-            0.8
+          "accentProfile": [
+            0.96,
+            0.73,
+            0.86,
+            0.6799999999999999,
+            0.9099999999999999,
+            0.7799999999999999,
+            0.8099999999999999
           ],
-          velocityProfile: [
-            0.9,
-            0.8,
-            0.9,
-            0.75
-          ]
-        },
-        {
-          id: "math-tapping-7-8-syncopated",
-          parentPatternId: "math-tapping-7-8",
-          name: "Midwest Clean Tapped Arpeggio — Syncopated Pickups",
-          shortName: "7/8 Tap Syncopated",
-          variationType: "syncopated",
-          probability: 0.2,
-          description: "Adds 16th-note pickups and hammer-on flourishes between main beats.",
-          onsetGrid: [
-            0,
-            3,
-            4,
-            7,
-            8,
-            11,
-            12
+          "velocityProfile": [
+            1,
+            0.58,
+            0.83,
+            0.6100000000000001,
+            0.88,
+            0.63,
+            0.8600000000000001
           ],
-          accentProfile: [
-            1.0,
-            0.6,
-            0.85,
-            0.6,
-            0.95,
-            0.65,
-            0.8
-          ],
-          velocityProfile: [
-            0.95,
-            0.55,
-            0.8,
-            0.55,
-            0.9,
-            0.6,
-            0.8
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2
           ]
         }
       ],
-      harmonicContext: [
+      "harmonicContext": [
         "tonal or modal context"
       ],
-      difficulty: 2,
-      weight: 1.0,
-      provenance: "Math Rock genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
-      authenticityTags: [
-        "math-rock",
-        "tapping"
+      "difficulty": 2,
+      "weight": 0.7,
+      "provenance": "Math Rock catalog rebuild: retained source material or generated structural support pattern.",
+      "authenticityTags": [
+        "math-rock"
       ],
-      danceTags: [
+      "danceTags": [
         "listening"
       ],
-      tuningSystem: "12-tet",
-      swingPercentage: 50,
-      anticipationOffset: 0,
-      roleDependencies: [
+      "tuningSystem": "12-tet",
+      "swingPercentage": 50,
+      "anticipationOffset": 0,
+      "roleDependencies": [
         "lead",
         "harmony"
       ],
-      transformations: [
+      "transformations": [
         "density",
         "accent",
         "phrasePosition"
       ],
-      interactionRules: [
+      "interactionRules": [
         {
-          id: "math-rock-interaction-1",
-          worldId: "math-rock",
-          sourceRole: "drums",
-          targetRole: "bass",
-          relationship: "reinforce",
-          description: "Low-end attacks reinforce the main pulse without doubling every subdivision.",
-          timingOffsetSteps: 0,
-          probability: 0.78
+          "id": "math-rock-interaction-1",
+          "worldId": "math-rock",
+          "sourceRole": "drums",
+          "targetRole": "bass",
+          "relationship": "reinforce",
+          "description": "Low-end attacks reinforce the main pulse without doubling every subdivision.",
+          "timingOffsetSteps": 0,
+          "probability": 0.78
         }
       ]
     },
     {
-      id: "math-odd-meter-drums",
-      worldId: "math-rock",
-      traditionId: "math-rock-midwest",
-      name: "Odd-Meter Precision Kit Groove (7/8)",
-      shortName: "7/8 Kit Groove",
-      family: "Math Drums",
-      category: "groove",
-      description: "Punchy kick and ghosted snare accents locking with odd-meter guitar figures and open hi-hat barks.",
-      tags: [
+      "id": "math-odd-meter-drums",
+      "worldId": "math-rock",
+      "traditionId": "math-rock-midwest",
+      "name": "Odd-Meter Precision Kit Groove",
+      "family": "Math Drums",
+      "category": "groove",
+      "description": "Punchy kick and ghosted snare accents locking with odd-meter guitar figures and open hi-hat barks.",
+      "tags": [
         "math-rock",
         "drums",
         "odd-meter",
         "dynamic"
       ],
-      scopes: [
+      "scopes": [
         "measure",
         "phrase",
         "region",
         "track",
         "song"
       ],
-      roles: [
+      "roles": [
         "drums",
         "pulse"
       ],
-      instruments: [
+      "instruments": [
         "drums"
       ],
-      meter: "7/8",
-      cycleLength: 1,
-      subdivisions: 14,
-      onsetGrid: [
+      "meter": "7/8",
+      "cycleLength": 1,
+      "subdivisions": 14,
+      "onsetGrid": [
         0,
         3,
         4,
@@ -440,8 +485,8 @@ export const MATH_ROCK_WORLD: GenreWorld = {
         10,
         12
       ],
-      accentProfile: [
-        1.0,
+      "accentProfile": [
+        1,
         0.6,
         0.95,
         0.55,
@@ -449,7 +494,7 @@ export const MATH_ROCK_WORLD: GenreWorld = {
         0.7,
         0.85
       ],
-      velocityProfile: [
+      "velocityProfile": [
         0.95,
         0.55,
         0.9,
@@ -458,181 +503,187 @@ export const MATH_ROCK_WORLD: GenreWorld = {
         0.65,
         0.8
       ],
-      density: "medium",
-      phrasePosition: [
+      "density": "medium",
+      "phrasePosition": [
         "start",
         "middle"
       ],
-      sectionUsage: [
+      "sectionUsage": [
         "intro",
         "verse",
         "chorus",
         "solo"
       ],
-      variants: [
+      "variants": [
         {
-          id: "math-odd-meter-drums-busy",
-          parentPatternId: "math-odd-meter-drums",
-          name: "Odd-Meter Kit Groove — Ghost Snare Drive",
-          shortName: "7/8 Kit Ghost Drive",
-          variationType: "dense",
-          probability: 0.25,
-          description: "Adds articulate 16th-note ghost snare work and ride cymbal bell pings.",
-          onsetGrid: [
+          "id": "math-odd-meter-drums-v-01",
+          "parentPatternId": "math-odd-meter-drums",
+          "name": "Odd-Meter Precision Kit Groove — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
             0,
-            2,
-            3,
             4,
-            6,
-            8,
-            9,
+            7,
             10,
-            12,
-            13
+            12
           ],
-          accentProfile: [
-            1.0,
-            0.4,
-            0.55,
+          "accentProfile": [
             0.95,
-            0.45,
-            0.9,
-            0.4,
-            0.75,
-            0.85,
-            0.4
-          ],
-          velocityProfile: [
-            0.95,
-            0.35,
+            0.5499999999999999,
+            0.8999999999999999,
             0.5,
-            0.9,
-            0.4,
-            0.85,
-            0.35,
-            0.7,
-            0.8,
-            0.35
+            0.85
+          ],
+          "velocityProfile": [
+            0.87,
+            0.47000000000000003,
+            0.8200000000000001,
+            0.42,
+            0.77
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6,
+            -3
           ]
         },
         {
-          id: "math-odd-meter-drums-sparse",
-          parentPatternId: "math-odd-meter-drums",
-          name: "Odd-Meter Kit Groove — Half-Time Pocket",
-          shortName: "7/8 Kit Half-Time",
-          variationType: "sparse",
-          probability: 0.2,
-          description: "Laid-back pulse emphasizing the macro beats on 0 and 8.",
-          onsetGrid: [
+          "id": "math-odd-meter-drums-v-02",
+          "parentPatternId": "math-odd-meter-drums",
+          "name": "Odd-Meter Precision Kit Groove — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
             0,
+            3,
             4,
+            7,
             8,
+            10,
             12
           ],
-          accentProfile: [
-            1.0,
-            0.7,
-            0.95,
-            0.6
+          "accentProfile": [
+            0.96,
+            0.6799999999999999,
+            0.9099999999999999,
+            0.63,
+            0.86,
+            0.7799999999999999,
+            0.8099999999999999
           ],
-          velocityProfile: [
-            0.95,
-            0.65,
-            0.9,
-            0.55
+          "velocityProfile": [
+            1,
+            0.53,
+            0.88,
+            0.56,
+            0.83,
+            0.63,
+            0.8600000000000001
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2
           ]
         }
       ],
-      harmonicContext: [
+      "harmonicContext": [
         "tonal or modal context"
       ],
-      difficulty: 2,
-      weight: 1.0,
-      provenance: "Math Rock genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
-      authenticityTags: [
-        "math-rock",
-        "drums"
+      "difficulty": 2,
+      "weight": 1,
+      "provenance": "Math Rock catalog rebuild: retained source material or generated structural support pattern.",
+      "authenticityTags": [
+        "math-rock"
       ],
-      danceTags: [
+      "danceTags": [
         "listening"
       ],
-      tuningSystem: "12-tet",
-      swingPercentage: 50,
-      anticipationOffset: 0,
-      roleDependencies: [
+      "tuningSystem": "12-tet",
+      "swingPercentage": 50,
+      "anticipationOffset": 0,
+      "roleDependencies": [
         "drums"
       ],
-      transformations: [
+      "transformations": [
         "density",
         "accent",
         "phrasePosition"
       ],
-      interactionRules: [
+      "interactionRules": [
         {
-          id: "math-rock-interaction-2",
-          worldId: "math-rock",
-          sourceRole: "voice",
-          targetRole: "harmony",
-          relationship: "leaveSpace",
-          description: "Harmony reduces density under vocal entries so the phrase remains foregrounded.",
-          timingOffsetSteps: 0,
-          probability: 0.72
+          "id": "math-rock-interaction-2",
+          "worldId": "math-rock",
+          "sourceRole": "voice",
+          "targetRole": "harmony",
+          "relationship": "leaveSpace",
+          "description": "Harmony reduces density under vocal entries so the phrase remains foregrounded.",
+          "timingOffsetSteps": 0,
+          "probability": 0.72
         }
       ],
-      articulations: [
+      "articulations": [
         "accented",
         "ghost-aware"
       ]
     },
     {
-      id: "math-two-hand-bass",
-      worldId: "math-rock",
-      traditionId: "math-rock-midwest",
-      name: "Conversational Tapped Bassline (7/8)",
-      shortName: "7/8 Tapped Bass",
-      family: "Math Bass",
-      category: "ostinato",
-      description: "Melodic mid-range bass line with percussive fret-taps and counter-melodic responses to the lead guitar.",
-      tags: [
+      "id": "math-two-hand-bass",
+      "worldId": "math-rock",
+      "traditionId": "math-rock-prog-fusion",
+      "name": "Conversational Tapped Bassline",
+      "family": "Math Bass",
+      "category": "ostinato",
+      "description": "Melodic mid-range bass line with percussive fret-taps and counter-melodic responses to the lead guitar.",
+      "tags": [
         "math-rock",
         "bass",
         "counterline",
         "melodic"
       ],
-      scopes: [
+      "scopes": [
         "measure",
         "phrase",
         "region",
         "track",
         "song"
       ],
-      roles: [
+      "roles": [
         "bass",
         "counterline"
       ],
-      instruments: [
+      "instruments": [
         "bass"
       ],
-      meter: "7/8",
-      cycleLength: 1,
-      subdivisions: 14,
-      onsetGrid: [
+      "meter": "4/4",
+      "cycleLength": 1,
+      "subdivisions": 16,
+      "onsetGrid": [
         0,
-        4,
+        3,
         6,
         8,
         11,
-        12
+        14
       ],
-      accentProfile: [
-        1.0,
+      "accentProfile": [
+        1,
         0.75,
         0.9,
         0.8,
         0.95,
         0.7
       ],
-      velocityProfile: [
+      "velocityProfile": [
         0.95,
         0.7,
         0.85,
@@ -640,497 +691,323 @@ export const MATH_ROCK_WORLD: GenreWorld = {
         0.9,
         0.65
       ],
-      density: "medium",
-      phrasePosition: [
+      "density": "medium",
+      "phrasePosition": [
         "start",
         "middle"
       ],
-      sectionUsage: [
+      "sectionUsage": [
         "verse",
         "chorus",
         "solo"
       ],
-      variants: [
+      "variants": [
         {
-          id: "math-two-hand-bass-sparse",
-          parentPatternId: "math-two-hand-bass",
-          name: "Conversational Tapped Bassline — Root Anchor",
-          shortName: "7/8 Bass Anchor",
-          variationType: "sparse",
-          probability: 0.25,
-          description: "Foundational root notes on major metric anchors 0, 4, 8.",
-          onsetGrid: [
+          "id": "math-two-hand-bass-v-01",
+          "parentPatternId": "math-two-hand-bass",
+          "name": "Conversational Tapped Bassline — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
             0,
-            4,
-            8
+            6,
+            8,
+            14
           ],
-          accentProfile: [
-            1.0,
-            0.8,
-            0.9
-          ],
-          velocityProfile: [
+          "accentProfile": [
             0.95,
-            0.75,
-            0.85
+            0.7,
+            0.85,
+            0.75
+          ],
+          "velocityProfile": [
+            0.87,
+            0.62,
+            0.77,
+            0.67
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6
+          ]
+        },
+        {
+          "id": "math-two-hand-bass-v-02",
+          "parentPatternId": "math-two-hand-bass",
+          "name": "Conversational Tapped Bassline — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            3,
+            6,
+            8,
+            11,
+            14
+          ],
+          "accentProfile": [
+            0.96,
+            0.83,
+            0.86,
+            0.88,
+            0.9099999999999999,
+            0.7799999999999999
+          ],
+          "velocityProfile": [
+            1,
+            0.6799999999999999,
+            0.83,
+            0.81,
+            0.88,
+            0.63
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5
           ]
         }
       ],
-      harmonicContext: [
+      "harmonicContext": [
         "tonal or modal context"
       ],
-      difficulty: 2,
-      weight: 0.9,
-      provenance: "Math Rock genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
-      authenticityTags: [
-        "math-rock",
-        "bass"
+      "difficulty": 2,
+      "weight": 0.7,
+      "provenance": "Math Rock catalog rebuild: retained source material or generated structural support pattern.",
+      "authenticityTags": [
+        "math-rock"
       ],
-      danceTags: [
+      "danceTags": [
         "listening"
       ],
-      tuningSystem: "12-tet",
-      swingPercentage: 50,
-      anticipationOffset: 0,
-      roleDependencies: [
+      "tuningSystem": "12-tet",
+      "swingPercentage": 50,
+      "anticipationOffset": 0,
+      "roleDependencies": [
         "bass",
         "counterline"
       ],
-      transformations: [
+      "transformations": [
         "density",
         "accent",
         "phrasePosition"
       ],
-      articulations: [
+      "interactionRules": [
+        {
+          "id": "math-rock-interaction-3",
+          "worldId": "math-rock",
+          "sourceRole": "lead",
+          "targetRole": "voice",
+          "relationship": "answer",
+          "description": "Lead instrument answers a vocal phrase in the open space after the line.",
+          "timingOffsetSteps": 2,
+          "probability": 0.58
+        }
+      ],
+      "articulations": [
         "accented",
         "ghost-aware"
       ]
     },
     {
-      id: "math-polymeter-interlock",
-      worldId: "math-rock",
-      traditionId: "math-rock-prog-fusion",
-      name: "Polymetric 5-Against-4 Guitar Ostinato",
-      shortName: "5:4 Polymetric Riff",
-      family: "Math Guitar",
-      category: "ostinato",
-      description: "Repeated 5-sixteenth note guitar motif phase-shifting across 4/4 measure barlines.",
-      tags: [
+      "id": "math-polymeter-interlock",
+      "worldId": "math-rock",
+      "traditionId": "math-rock-prog-fusion",
+      "name": "Polymetric 5-Against-4 Guitar Ostinato",
+      "family": "Math Guitar",
+      "category": "ostinato",
+      "description": "Repeated 5-sixteenth note guitar motif phase-shifting across 4/4 measure barlines.",
+      "tags": [
         "math-rock",
         "guitar",
         "polymeter"
       ],
-      scopes: [
+      "scopes": [
         "phrase",
         "region"
       ],
-      roles: [
+      "roles": [
         "harmony",
         "guitar"
       ],
-      instruments: [
+      "instruments": [
         "electric-guitar"
       ],
-      meter: "4/4",
-      cycleLength: 1,
-      subdivisions: 16,
-      onsetGrid: [
+      "meter": "4/4",
+      "cycleLength": 1,
+      "subdivisions": 16,
+      "onsetGrid": [
         0,
         5,
         10,
         15
       ],
-      accentProfile: [
-        1.0,
+      "accentProfile": [
+        1,
         0.9,
         0.85,
         0.8
       ],
-      velocityProfile: [
+      "velocityProfile": [
         0.95,
         0.85,
         0.8,
         0.75
       ],
-      density: "medium",
-      phrasePosition: [
+      "density": "medium",
+      "phrasePosition": [
         "start"
       ],
-      sectionUsage: [
+      "sectionUsage": [
         "verse",
         "chorus"
       ],
-      variants: [],
-      harmonicContext: [
+      "variants": [
+        {
+          "id": "math-polymeter-interlock-v-01",
+          "parentPatternId": "math-polymeter-interlock",
+          "name": "Polymetric 5-Against-4 Guitar Ostinato — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            10,
+            15
+          ],
+          "accentProfile": [
+            0.95,
+            0.85,
+            0.7999999999999999
+          ],
+          "velocityProfile": [
+            0.87,
+            0.77,
+            0.7200000000000001
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "math-polymeter-interlock-v-02",
+          "parentPatternId": "math-polymeter-interlock",
+          "name": "Polymetric 5-Against-4 Guitar Ostinato — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            5,
+            10,
+            15
+          ],
+          "accentProfile": [
+            0.96,
+            0.98,
+            0.8099999999999999,
+            0.88
+          ],
+          "velocityProfile": [
+            1,
+            0.83,
+            0.78,
+            0.81
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5
+          ]
+        }
+      ],
+      "harmonicContext": [
         "tonal or modal context"
       ],
-      difficulty: 2,
-      weight: 0.8,
-      provenance: "Math Rock genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
-      authenticityTags: [
-        "math-rock",
-        "polymeter"
+      "difficulty": 1,
+      "weight": 0.7,
+      "provenance": "Math Rock catalog rebuild: retained source material or generated structural support pattern.",
+      "authenticityTags": [
+        "math-rock"
       ],
-      danceTags: [
+      "danceTags": [
         "listening"
       ],
-      tuningSystem: "12-tet",
-      swingPercentage: 50,
-      anticipationOffset: 0,
-      roleDependencies: [
+      "tuningSystem": "12-tet",
+      "swingPercentage": 50,
+      "anticipationOffset": 0,
+      "roleDependencies": [
         "harmony",
         "guitar"
       ],
-      transformations: [
+      "transformations": [
         "density",
         "accent",
         "phrasePosition"
+      ],
+      "interactionRules": [
+        {
+          "id": "math-rock-interaction-4",
+          "worldId": "math-rock",
+          "sourceRole": "bass",
+          "targetRole": "drums",
+          "relationship": "accentWith",
+          "description": "Bass accents align with selected kick/backbeat events for a tighter pocket.",
+          "timingOffsetSteps": 0,
+          "probability": 0.65
+        }
+      ],
+      "articulations": [
+        "accented",
+        "ghost-aware"
       ]
     },
     {
-      id: "math-post-rock-crescendo",
-      worldId: "math-rock",
-      traditionId: "math-rock-post-rock",
-      name: "Post-Rock Tremolo & Swell",
-      shortName: "Post-Rock Tremolo",
-      family: "Post Rock",
-      category: "groove",
-      description: "Rapid tremolo picking and delay wash building emotional tension across multiple measures.",
-      tags: [
+      "id": "math-post-rock-crescendo",
+      "worldId": "math-rock",
+      "traditionId": "math-rock-post-rock",
+      "name": "Post-Rock Tremolo & Swell",
+      "family": "Post Rock",
+      "category": "groove",
+      "description": "Rapid tremolo picking and delay wash building emotional tension across multiple measures.",
+      "tags": [
         "post-rock",
         "tremolo",
         "ambient",
         "guitar"
       ],
-      scopes: [
+      "scopes": [
         "measure",
         "phrase"
       ],
-      roles: [
+      "roles": [
         "lead",
         "texture"
       ],
-      instruments: [
-        "electric-guitar"
-      ],
-      meter: "4/4",
-      cycleLength: 1,
-      subdivisions: 16,
-      onsetGrid: [
-        0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15
-      ],
-      accentProfile: [
-        0.6, 0.65, 0.7, 0.75, 0.8, 0.82, 0.85, 0.88, 0.9, 0.92, 0.94, 0.96, 0.98, 1.0, 1.0, 1.0
-      ],
-      velocityProfile: [
-        0.55, 0.6, 0.65, 0.7, 0.75, 0.78, 0.8, 0.84, 0.86, 0.88, 0.9, 0.92, 0.95, 0.98, 0.98, 0.98
-      ],
-      density: "dense",
-      phrasePosition: [
-        "start"
-      ],
-      sectionUsage: [
-        "chorus",
-        "solo"
-      ],
-      variants: [],
-      harmonicContext: [
-        "tonal or modal context"
-      ],
-      difficulty: 2,
-      weight: 0.9,
-      provenance: "Math Rock genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
-      authenticityTags: [
-        "math-rock",
-        "post-rock"
-      ],
-      danceTags: [
-        "listening"
-      ],
-      tuningSystem: "12-tet",
-      swingPercentage: 50,
-      anticipationOffset: 0,
-      roleDependencies: [
-        "lead",
-        "texture"
-      ],
-      transformations: [
-        "density",
-        "accent"
-      ],
-      articulations: [
-        "legato"
-      ]
-    },
-    {
-      id: "math-ambient-swell",
-      worldId: "math-rock",
-      traditionId: "math-rock-post-rock",
-      name: "Ambient Guitar Volume Swell",
-      shortName: "Ambient Swell",
-      family: "Atmosphere",
-      category: "cell",
-      description: "Ethereal volume pedal swells drenched in shimmer reverb behind the rhythmic interplay.",
-      tags: [
-        "math-rock",
-        "swell",
-        "texture"
-      ],
-      scopes: [
-        "measure"
-      ],
-      roles: [
-        "texture"
-      ],
-      instruments: [
+      "instruments": [
         "electric-guitar",
-        "synth"
+        "guitar"
       ],
-      meter: "4/4",
-      cycleLength: 1,
-      subdivisions: 16,
-      onsetGrid: [
+      "meter": "4/4",
+      "cycleLength": 1,
+      "subdivisions": 16,
+      "onsetGrid": [
         0,
-        6,
-        12
-      ],
-      accentProfile: [
-        0.85,
-        0.9,
-        0.95
-      ],
-      velocityProfile: [
-        0.8,
-        0.85,
-        0.9
-      ],
-      density: "sparse",
-      phrasePosition: [
-        "start"
-      ],
-      sectionUsage: [
-        "intro",
-        "verse",
-        "coda"
-      ],
-      variants: [],
-      harmonicContext: [
-        "tonal or modal context"
-      ],
-      difficulty: 1,
-      weight: 0.7,
-      provenance: "Math Rock genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
-      authenticityTags: [
-        "math-rock",
-        "ambient"
-      ],
-      danceTags: [
-        "listening"
-      ],
-      tuningSystem: "12-tet",
-      swingPercentage: 50,
-      anticipationOffset: 0,
-      roleDependencies: [
-        "texture"
-      ],
-      transformations: [
-        "density",
-        "accent"
-      ]
-    },
-    {
-      id: "math-rock-verse-7-8",
-      worldId: "math-rock",
-      traditionId: "math-rock-midwest",
-      name: "Midwest 7/8 Interlocking Verse Guitar",
-      shortName: "7/8 Verse Guitar",
-      family: "Math Guitar",
-      category: "sectionPattern",
-      description: "Delicate clean fingerpicking and hammer-ons in FACGCE tuning establishing the verse foundation in 2+2+3 grouping.",
-      tags: [
-        "math-rock",
-        "verse",
-        "guitar",
-        "7/8",
-        "clean"
-      ],
-      scopes: [
-        "measure",
-        "phrase",
-        "region"
-      ],
-      roles: [
-        "guitar",
-        "harmony"
-      ],
-      instruments: [
-        "electric-guitar"
-      ],
-      meter: "7/8",
-      cycleLength: 1,
-      subdivisions: 14,
-      onsetGrid: [
-        0,
+        1,
+        2,
         3,
         4,
-        7,
-        8,
-        10,
-        12
-      ],
-      accentProfile: [
-        1.0,
-        0.7,
-        0.85,
-        0.65,
-        0.9,
-        0.7,
-        0.8
-      ],
-      velocityProfile: [
-        0.9,
-        0.65,
-        0.8,
-        0.6,
-        0.85,
-        0.65,
-        0.75
-      ],
-      density: "medium",
-      phrasePosition: [
-        "start",
-        "middle"
-      ],
-      sectionUsage: [
-        "verse"
-      ],
-      variants: [],
-      provenance: "Math Rock genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
-      authenticityTags: [
-        "math-rock",
-        "verse"
-      ],
-      danceTags: [
-        "listening"
-      ],
-      tuningSystem: "12-tet",
-      difficulty: 2,
-      weight: 1.0,
-      enabled: true
-    },
-    {
-      id: "math-rock-chorus-lift",
-      worldId: "math-rock",
-      traditionId: "math-rock-midwest",
-      name: "Dynamic 7/8 Chorus Strum & Chime",
-      shortName: "7/8 Chorus Lift",
-      family: "Math Guitar",
-      category: "sectionPattern",
-      description: "Full open-string ringing chords with driving accents on beats 1, 3, and 5 creating a soaring chorus climax.",
-      tags: [
-        "math-rock",
-        "chorus",
-        "guitar",
-        "7/8"
-      ],
-      scopes: [
-        "measure",
-        "phrase",
-        "region"
-      ],
-      roles: [
-        "guitar",
-        "harmony"
-      ],
-      instruments: [
-        "electric-guitar"
-      ],
-      meter: "7/8",
-      cycleLength: 1,
-      subdivisions: 14,
-      onsetGrid: [
-        0,
-        2,
-        4,
-        6,
-        8,
-        9,
-        10,
-        12
-      ],
-      accentProfile: [
-        1.0,
-        0.75,
-        0.95,
-        0.7,
-        1.0,
-        0.65,
-        0.85,
-        0.8
-      ],
-      velocityProfile: [
-        0.95,
-        0.7,
-        0.9,
-        0.65,
-        0.95,
-        0.6,
-        0.8,
-        0.75
-      ],
-      density: "dense",
-      phrasePosition: [
-        "start",
-        "middle"
-      ],
-      sectionUsage: [
-        "chorus"
-      ],
-      variants: [],
-      provenance: "Math Rock genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
-      authenticityTags: [
-        "math-rock",
-        "chorus"
-      ],
-      danceTags: [
-        "listening"
-      ],
-      tuningSystem: "12-tet",
-      difficulty: 2,
-      weight: 1.0,
-      enabled: true
-    },
-    {
-      id: "math-rock-fill-7-8",
-      worldId: "math-rock",
-      traditionId: "math-rock-midwest",
-      name: "Odd-Meter Linear Tom & Snare Fill (7/8)",
-      shortName: "7/8 Drum Fill",
-      family: "Math Drums",
-      category: "fill",
-      description: "Rapid linear ghost-snare rolls and rack-tom descent transitioning out of odd-meter phrases.",
-      tags: [
-        "math-rock",
-        "drums",
-        "fill",
-        "7/8"
-      ],
-      scopes: [
-        "measure",
-        "phrase"
-      ],
-      roles: [
-        "drums",
-        "fill"
-      ],
-      instruments: [
-        "drums"
-      ],
-      meter: "7/8",
-      cycleLength: 1,
-      subdivisions: 14,
-      onsetGrid: [
-        4,
+        5,
         6,
         7,
         8,
@@ -1138,424 +1015,2563 @@ export const MATH_ROCK_WORLD: GenreWorld = {
         10,
         11,
         12,
-        13
+        13,
+        14,
+        15
       ],
-      accentProfile: [
-        0.7,
-        0.75,
-        0.8,
-        0.85,
-        0.85,
-        0.9,
-        0.95,
-        1.0,
-        1.0
-      ],
-      velocityProfile: [
+      "accentProfile": [
+        0.6,
         0.65,
         0.7,
         0.75,
         0.8,
-        0.8,
+        0.82,
         0.85,
+        0.88,
         0.9,
+        0.92,
+        0.94,
+        0.96,
+        0.98,
+        1,
+        1,
+        1
+      ],
+      "velocityProfile": [
+        0.55,
+        0.6,
+        0.65,
+        0.7,
+        0.75,
+        0.78,
+        0.8,
+        0.84,
+        0.86,
+        0.88,
+        0.9,
+        0.92,
         0.95,
-        0.95
+        0.98,
+        0.98,
+        0.98
       ],
-      density: "dense",
-      phrasePosition: [
-        "end"
+      "density": "dense",
+      "phrasePosition": [
+        "start"
       ],
-      sectionUsage: [
-        "verse",
+      "sectionUsage": [
         "chorus",
-        "bridge"
+        "solo"
       ],
-      variants: [],
-      provenance: "Math Rock genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
-      authenticityTags: [
-        "math-rock",
-        "drums",
-        "fill"
+      "variants": [
+        {
+          "id": "math-post-rock-crescendo-v-01",
+          "parentPatternId": "math-post-rock-crescendo",
+          "name": "Post-Rock Tremolo & Swell — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            2,
+            3,
+            5,
+            6,
+            8,
+            9,
+            11,
+            12,
+            14,
+            15
+          ],
+          "accentProfile": [
+            0.5499999999999999,
+            0.6,
+            0.6499999999999999,
+            0.7,
+            0.75,
+            0.7699999999999999,
+            0.7999999999999999,
+            0.83,
+            0.85,
+            0.87,
+            0.8899999999999999
+          ],
+          "velocityProfile": [
+            0.47000000000000003,
+            0.52,
+            0.5700000000000001,
+            0.62,
+            0.67,
+            0.7000000000000001,
+            0.7200000000000001,
+            0.76,
+            0.78,
+            0.8,
+            0.8200000000000001
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6,
+            -3,
+            6,
+            -3,
+            6,
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "math-post-rock-crescendo-v-02",
+          "parentPatternId": "math-post-rock-crescendo",
+          "name": "Post-Rock Tremolo & Swell — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15
+          ],
+          "accentProfile": [
+            0.5599999999999999,
+            0.73,
+            0.6599999999999999,
+            0.83,
+            0.76,
+            0.8999999999999999,
+            0.8099999999999999,
+            0.96,
+            0.86,
+            1,
+            0.8999999999999999,
+            1,
+            0.94,
+            1,
+            0.96,
+            1
+          ],
+          "velocityProfile": [
+            0.6100000000000001,
+            0.58,
+            0.63,
+            0.76,
+            0.73,
+            0.76,
+            0.8600000000000001,
+            0.82,
+            0.84,
+            0.94,
+            0.88,
+            0.9,
+            1,
+            0.96,
+            0.96,
+            1
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5
+          ]
+        }
       ],
-      danceTags: [
+      "harmonicContext": [
+        "tonal or modal context"
+      ],
+      "difficulty": 5,
+      "weight": 1,
+      "provenance": "Math Rock catalog rebuild: retained source material or generated structural support pattern.",
+      "authenticityTags": [
+        "math-rock"
+      ],
+      "danceTags": [
         "listening"
       ],
-      tuningSystem: "12-tet",
-      difficulty: 3,
-      weight: 0.9,
-      enabled: true
+      "tuningSystem": "12-tet",
+      "swingPercentage": 50,
+      "anticipationOffset": 0,
+      "roleDependencies": [
+        "lead",
+        "texture"
+      ],
+      "transformations": [
+        "density",
+        "accent",
+        "phrasePosition"
+      ],
+      "interactionRules": [
+        {
+          "id": "math-rock-interaction-5",
+          "worldId": "math-rock",
+          "sourceRole": "harmony",
+          "targetRole": "lead",
+          "relationship": "leaveSpace",
+          "description": "Accompaniment thins when the instrumental lead enters.",
+          "timingOffsetSteps": 0,
+          "probability": 0.62
+        }
+      ],
+      "articulations": [
+        "legato"
+      ]
     },
     {
-      id: "math-rock-break-unison",
-      worldId: "math-rock",
-      traditionId: "math-rock-midwest",
-      name: "Unison Band Staccato Break (7/8)",
-      shortName: "7/8 Unison Break",
-      family: "Ensemble",
-      category: "break",
-      description: "Sudden tight unison full-band stabs on [0, 4, 8, 11] leaving dramatic silence between hits.",
-      tags: [
+      "id": "math-ambient-swell",
+      "worldId": "math-rock",
+      "traditionId": "math-rock-post-rock",
+      "name": "Ambient Guitar Volume Swell",
+      "family": "Atmosphere",
+      "category": "cell",
+      "description": "Ethereal volume pedal swells drenched in shimmer reverb behind the rhythmic interplay.",
+      "tags": [
         "math-rock",
-        "break",
-        "unison",
-        "7/8"
+        "swell",
+        "texture"
       ],
-      scopes: [
+      "scopes": [
+        "measure"
+      ],
+      "roles": [
+        "texture"
+      ],
+      "instruments": [
+        "synth",
+        "electric-guitar"
+      ],
+      "meter": "4/4",
+      "cycleLength": 1,
+      "subdivisions": 16,
+      "onsetGrid": [
+        0,
+        6,
+        12
+      ],
+      "accentProfile": [
+        0.85,
+        0.9,
+        0.95
+      ],
+      "velocityProfile": [
+        0.8,
+        0.85,
+        0.9
+      ],
+      "density": "sparse",
+      "phrasePosition": [
+        "start"
+      ],
+      "sectionUsage": [
+        "intro",
+        "verse",
+        "coda"
+      ],
+      "variants": [
+        {
+          "id": "math-ambient-swell-v-01",
+          "parentPatternId": "math-ambient-swell",
+          "name": "Ambient Guitar Volume Swell — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            12
+          ],
+          "accentProfile": [
+            0.7999999999999999,
+            0.85
+          ],
+          "velocityProfile": [
+            0.7200000000000001,
+            0.77
+          ],
+          "microtimingOffset": [
+            -3,
+            6
+          ]
+        },
+        {
+          "id": "math-ambient-swell-v-02",
+          "parentPatternId": "math-ambient-swell",
+          "name": "Ambient Guitar Volume Swell — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            6,
+            12
+          ],
+          "accentProfile": [
+            0.8099999999999999,
+            0.98,
+            0.9099999999999999
+          ],
+          "velocityProfile": [
+            0.8600000000000001,
+            0.83,
+            0.88
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2
+          ]
+        }
+      ],
+      "harmonicContext": [
+        "tonal or modal context"
+      ],
+      "difficulty": 1,
+      "weight": 0.7,
+      "provenance": "Math Rock catalog rebuild: retained source material or generated structural support pattern.",
+      "authenticityTags": [
+        "math-rock"
+      ],
+      "danceTags": [
+        "listening"
+      ],
+      "tuningSystem": "12-tet",
+      "swingPercentage": 50,
+      "anticipationOffset": 0,
+      "roleDependencies": [
+        "texture"
+      ],
+      "transformations": [
+        "density",
+        "accent",
+        "phrasePosition"
+      ],
+      "articulations": [
+        "accented",
+        "ghost-aware"
+      ]
+    },
+    {
+      "id": "math-rock-phrase-7",
+      "worldId": "math-rock",
+      "traditionId": "math-rock-midwest",
+      "name": "Tap Riff Phrase",
+      "family": "Tap Riff",
+      "category": "phrasePattern",
+      "description": "A phrase-level rhythmic template that leaves deliberate space for melodic expression. Built around polyrhythm and the tap riff vocabulary of Math Rock.",
+      "tags": [
+        "math-rock",
+        "tap-riff",
+        "phrase",
+        "catalog-v2"
+      ],
+      "scopes": [
         "measure",
         "phrase"
       ],
-      roles: [
-        "lead",
-        "guitar",
-        "bass",
-        "drums"
+      "roles": [
+        "voice"
       ],
-      instruments: [
-        "electric-guitar",
-        "bass",
-        "drums"
+      "instruments": ["voice"],
+      "compatibleRoles": [
+        "voice"
       ],
-      meter: "7/8",
-      cycleLength: 1,
-      subdivisions: 14,
-      onsetGrid: [
+      "compatibleInstruments": ["voice"],
+      "canCrossRole": true,
+      "meter": "4/4",
+      "cycleLength": 1,
+      "subdivisions": 16,
+      "onsetGrid": [
         0,
-        4,
+        2,
+        5,
         8,
-        11
+        10,
+        13,
+        15
       ],
-      accentProfile: [
-        1.0,
-        0.95,
-        1.0,
+      "accentProfile": [
+        1,
+        0.74,
+        0.9,
+        0.68,
+        1,
+        0.74,
         0.9
       ],
-      velocityProfile: [
-        0.95,
+      "velocityProfile": [
+        1,
+        0.69,
         0.9,
+        0.68,
         0.95,
-        0.85
+        0.74,
+        0.9
       ],
-      density: "sparse",
-      phrasePosition: [
-        "middle",
-        "end"
+      "syncopationRating": 0.7142857142857143,
+      "anticipationOffset": 0,
+      "swingPercentage": 50,
+      "articulations": [
+        "breath",
+        "phrase-end"
       ],
-      sectionUsage: [
-        "breakdown",
-        "interlude",
-        "bridge"
+      "density": "medium",
+      "phrasePosition": [
+        "start"
       ],
-      variants: [],
-      provenance: "Math Rock genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
-      authenticityTags: [
+      "sectionUsage": [
+        "verse",
+        "chorus"
+      ],
+      "harmonicContext": [
+        "tonal",
+        "section-dependent",
+        "tonal or modal context"
+      ],
+      "roleDependencies": [
+        "voice"
+      ],
+      "transformations": [
+        "density",
+        "accent",
+        "phrasePosition"
+      ],
+      "variants": [
+        {
+          "id": "math-rock-phrase-7-v-01",
+          "parentPatternId": "math-rock-phrase-7",
+          "name": "Tap Riff Phrase — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            5,
+            8,
+            13,
+            15
+          ],
+          "accentProfile": [
+            0.95,
+            0.69,
+            0.85,
+            0.63,
+            0.95
+          ],
+          "velocityProfile": [
+            0.92,
+            0.61,
+            0.8200000000000001,
+            0.6000000000000001,
+            0.87
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "math-rock-phrase-7-v-02",
+          "parentPatternId": "math-rock-phrase-7",
+          "name": "Tap Riff Phrase — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            2,
+            5,
+            8,
+            10,
+            13,
+            15
+          ],
+          "accentProfile": [
+            0.96,
+            0.82,
+            0.86,
+            0.76,
+            0.96,
+            0.82,
+            0.86
+          ],
+          "velocityProfile": [
+            1,
+            0.6699999999999999,
+            0.88,
+            0.74,
+            0.9299999999999999,
+            0.72,
+            0.96
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2
+          ]
+        }
+      ],
+      "provenance": "GenreDAW catalog rebuild from existing Math Rock world data; generated to cover missing musical functions without runtime AI.",
+      "authenticityTags": [
         "math-rock",
-        "break"
+        "tap-riff"
       ],
-      danceTags: [
+      "danceTags": [
         "listening"
       ],
-      tuningSystem: "12-tet",
-      difficulty: 3,
-      weight: 0.85,
-      enabled: true
+      "tuningSystem": "12-tet",
+      "difficulty": 2,
+      "weight": 0.7,
+      "enabled": true
     },
     {
-      id: "math-rock-cadence-7-8",
-      worldId: "math-rock",
-      traditionId: "math-rock-midwest",
-      name: "Odd-Meter Metric Resolution Cadence (7/8)",
-      shortName: "7/8 Metric Cadence",
-      family: "Math Guitar",
-      category: "cadence",
-      description: "Ritardando chord ring-out resolving the 7/8 cycle with ringing harmonics on the final downbeat.",
-      tags: [
+      "id": "math-rock-call-8",
+      "worldId": "math-rock",
+      "traditionId": "math-rock-midwest",
+      "name": "Polyrhythm Response",
+      "family": "Polyrhythm",
+      "category": "interactionPattern",
+      "description": "A call-and-response shape that leaves the next phrase open for an answer. Built around dynamic stops and the polyrhythm vocabulary of Math Rock.",
+      "tags": [
         "math-rock",
-        "cadence",
-        "ending",
-        "7/8"
+        "polyrhythm",
+        "call",
+        "catalog-v2"
       ],
-      scopes: [
-        "phrase",
-        "region"
-      ],
-      roles: [
-        "harmony",
-        "guitar",
-        "bass"
-      ],
-      instruments: [
-        "electric-guitar",
-        "bass"
-      ],
-      meter: "7/8",
-      cycleLength: 1,
-      subdivisions: 14,
-      onsetGrid: [
-        0,
-        4,
-        8,
-        12
-      ],
-      accentProfile: [
-        1.0,
-        0.8,
-        0.7,
-        0.6
-      ],
-      velocityProfile: [
-        0.95,
-        0.75,
-        0.65,
-        0.55
-      ],
-      density: "sparse",
-      phrasePosition: [
-        "end"
-      ],
-      sectionUsage: [
-        "ending",
-        "coda"
-      ],
-      variants: [],
-      provenance: "Math Rock genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
-      authenticityTags: [
-        "math-rock",
-        "cadence"
-      ],
-      danceTags: [
-        "listening"
-      ],
-      tuningSystem: "12-tet",
-      difficulty: 2,
-      weight: 0.9,
-      enabled: true
-    },
-    {
-      id: "math-asym-11-8-riff",
-      worldId: "math-rock",
-      traditionId: "math-rock-midwest",
-      name: "Asymmetric 11/8 Tapped Riff (3+3+3+2)",
-      shortName: "11/8 Asymmetric Riff",
-      family: "Math Guitar",
-      category: "ostinato",
-      description: "Complex 11/8 tapping cycle subdivided into 3+3+3+2 with bright open harmonics and melodic counterpoint.",
-      tags: [
-        "math-rock",
-        "tapping",
-        "11/8",
-        "guitar"
-      ],
-      scopes: [
+      "scopes": [
         "measure",
-        "phrase",
-        "region"
+        "phrase"
       ],
-      roles: [
-        "guitar",
+      "roles": [
+        "voice",
         "lead"
       ],
-      instruments: [
-        "electric-guitar"
+      "instruments": [
+        "guitar",
+        "bass"
       ],
-      meter: "11/8",
-      cycleLength: 1,
-      subdivisions: 22,
-      onsetGrid: [
+      "compatibleRoles": [
+        "voice",
+        "lead"
+      ],
+      "compatibleInstruments": [
+        "guitar",
+        "bass"
+      ],
+      "canCrossRole": true,
+      "meter": "4/4",
+      "cycleLength": 1,
+      "subdivisions": 16,
+      "onsetGrid": [
         0,
+        1,
         3,
         6,
         9,
-        12,
-        15,
-        18,
-        20
+        11,
+        14
       ],
-      accentProfile: [
-        1.0,
-        0.65,
-        0.9,
-        0.6,
+      "accentProfile": [
         0.95,
-        0.6,
-        0.85,
+        0.62,
+        0.95,
+        0.62,
+        0.95,
+        0.62,
+        0.95
+      ],
+      "velocityProfile": [
+        0.95,
+        0.57,
+        0.95,
+        0.62,
+        0.8999999999999999,
+        0.62,
+        0.95
+      ],
+      "syncopationRating": 0.8571428571428571,
+      "anticipationOffset": 0,
+      "swingPercentage": 50,
+      "articulations": [
+        "breath",
+        "phrase-end"
+      ],
+      "density": "medium",
+      "phrasePosition": [
+        "middle"
+      ],
+      "sectionUsage": [
+        "verse",
+        "chorus",
+        "bridge"
+      ],
+      "harmonicContext": [
+        "tonal",
+        "section-dependent",
+        "tonal or modal context"
+      ],
+      "roleDependencies": [
+        "voice",
+        "lead"
+      ],
+      "transformations": [
+        "density",
+        "accent",
+        "phrasePosition"
+      ],
+      "variants": [
+        {
+          "id": "math-rock-call-8-v-01",
+          "parentPatternId": "math-rock-call-8",
+          "name": "Polyrhythm Response — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            3,
+            6,
+            11,
+            14
+          ],
+          "accentProfile": [
+            0.8999999999999999,
+            0.57,
+            0.8999999999999999,
+            0.57,
+            0.8999999999999999
+          ],
+          "velocityProfile": [
+            0.87,
+            0.48999999999999994,
+            0.87,
+            0.54,
+            0.82
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "math-rock-call-8-v-02",
+          "parentPatternId": "math-rock-call-8",
+          "name": "Polyrhythm Response — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            1,
+            3,
+            6,
+            9,
+            11,
+            14
+          ],
+          "accentProfile": [
+            0.9099999999999999,
+            0.7,
+            0.9099999999999999,
+            0.7,
+            0.9099999999999999,
+            0.7,
+            0.9099999999999999
+          ],
+          "velocityProfile": [
+            1,
+            0.5499999999999999,
+            0.9299999999999999,
+            0.6799999999999999,
+            0.8799999999999999,
+            0.6,
+            1
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2
+          ]
+        },
+        {
+          "id": "math-rock-call-8-v-03",
+          "parentPatternId": "math-rock-call-8",
+          "name": "Polyrhythm Response — transition variation",
+          "variationType": "transition",
+          "probability": 0.16,
+          "description": "Adds a final pickup/closure gesture for section transitions.",
+          "onsetGrid": [
+            0,
+            1,
+            3,
+            6,
+            9,
+            11,
+            14,
+            15
+          ],
+          "accentProfile": [
+            0.9299999999999999,
+            0.6,
+            0.9299999999999999,
+            0.6,
+            0.9299999999999999,
+            0.6,
+            1,
+            1
+          ],
+          "velocityProfile": [
+            0.95,
+            0.57,
+            0.95,
+            0.62,
+            0.8999999999999999,
+            0.62,
+            0.98,
+            0.98
+          ],
+          "microtimingOffset": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            -6,
+            -6
+          ]
+        }
+      ],
+      "provenance": "GenreDAW catalog rebuild from existing Math Rock world data; generated to cover missing musical functions without runtime AI.",
+      "authenticityTags": [
+        "math-rock",
+        "polyrhythm"
+      ],
+      "danceTags": [
+        "listening"
+      ],
+      "tuningSystem": "12-tet",
+      "difficulty": 2,
+      "weight": 0.7,
+      "enabled": true
+    },
+    {
+      "id": "math-rock-anchor-9",
+      "worldId": "math-rock",
+      "traditionId": "math-rock-midwest",
+      "name": "Build Anchor",
+      "family": "Build",
+      "category": "ostinato",
+      "description": "A repeating anchor that locks the low end to the groove. Built around counterpoint and the build vocabulary of Math Rock.",
+      "tags": [
+        "math-rock",
+        "build",
+        "anchor",
+        "catalog-v2"
+      ],
+      "scopes": [
+        "measure",
+        "phrase"
+      ],
+      "roles": [
+        "bass"
+      ],
+      "instruments": [
+        "bass"
+      ],
+      "compatibleRoles": [
+        "bass"
+      ],
+      "compatibleInstruments": [
+        "bass"
+      ],
+      "canCrossRole": true,
+      "meter": "4/4",
+      "cycleLength": 1,
+      "subdivisions": 16,
+      "onsetGrid": [
+        1,
+        2,
+        4,
+        7,
+        10,
+        12,
+        15
+      ],
+      "accentProfile": [
+        1,
+        0.74,
+        0.9,
+        0.68,
+        1,
+        0.74,
         0.9
       ],
-      velocityProfile: [
-        0.95,
-        0.6,
-        0.85,
-        0.55,
+      "velocityProfile": [
+        1,
+        0.69,
         0.9,
-        0.55,
-        0.8,
-        0.85
+        0.68,
+        0.95,
+        0.74,
+        0.9
       ],
-      density: "dense",
-      phrasePosition: [
+      "syncopationRating": 0.7142857142857143,
+      "anticipationOffset": 0,
+      "swingPercentage": 50,
+      "articulations": [
+        "accented",
+        "ghost-aware"
+      ],
+      "density": "medium",
+      "phrasePosition": [
         "start",
         "middle"
       ],
-      sectionUsage: [
-        "intro",
+      "sectionUsage": [
         "verse",
-        "solo"
+        "chorus"
       ],
-      variants: [],
-      provenance: "Math Rock genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
-      authenticityTags: [
+      "harmonicContext": [
+        "tonal",
+        "section-dependent",
+        "tonal or modal context"
+      ],
+      "roleDependencies": [
+        "bass"
+      ],
+      "transformations": [
+        "density",
+        "accent",
+        "phrasePosition"
+      ],
+      "variants": [
+        {
+          "id": "math-rock-anchor-9-v-01",
+          "parentPatternId": "math-rock-anchor-9",
+          "name": "Build Anchor — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            1,
+            4,
+            7,
+            12,
+            15
+          ],
+          "accentProfile": [
+            0.95,
+            0.69,
+            0.85,
+            0.63,
+            0.95
+          ],
+          "velocityProfile": [
+            0.92,
+            0.61,
+            0.8200000000000001,
+            0.6000000000000001,
+            0.87
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "math-rock-anchor-9-v-02",
+          "parentPatternId": "math-rock-anchor-9",
+          "name": "Build Anchor — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            1,
+            2,
+            4,
+            7,
+            10,
+            12,
+            15
+          ],
+          "accentProfile": [
+            0.96,
+            0.82,
+            0.86,
+            0.76,
+            0.96,
+            0.82,
+            0.86
+          ],
+          "velocityProfile": [
+            1,
+            0.6699999999999999,
+            0.88,
+            0.74,
+            0.9299999999999999,
+            0.72,
+            0.96
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2
+          ]
+        }
+      ],
+      "provenance": "GenreDAW catalog rebuild from existing Math Rock world data; generated to cover missing musical functions without runtime AI.",
+      "authenticityTags": [
         "math-rock",
-        "11/8"
+        "build"
       ],
-      danceTags: [
+      "danceTags": [
         "listening"
       ],
-      tuningSystem: "12-tet",
-      difficulty: 4,
-      weight: 0.85,
-      enabled: true
+      "tuningSystem": "12-tet",
+      "difficulty": 2,
+      "weight": 0.7,
+      "enabled": true
     },
     {
-      id: "math-post-rock-rolling-toms",
-      worldId: "math-rock",
-      traditionId: "math-rock-post-rock",
-      name: "Post-Rock Rolling Tom Crescendo",
-      shortName: "Rolling Tom Swell",
-      family: "Drums",
-      category: "groove",
-      description: "Slowly building dynamic floor and rack tom rolls with syncopated ride bell pings underpinning cinematic ambient crescendos.",
-      tags: [
-        "post-rock",
-        "drums",
-        "crescendo",
-        "toms"
+      "id": "math-rock-comp-10",
+      "worldId": "math-rock",
+      "traditionId": "math-rock-midwest",
+      "name": "Odd Meter Comping",
+      "family": "Odd Meter",
+      "category": "groove",
+      "description": "A genre-shaped accompaniment cell that supports the lead without occupying every subdivision. Built around odd meter in Math Rock.",
+      "tags": [
+        "math-rock",
+        "odd-meter",
+        "comp",
+        "catalog-v2"
       ],
-      scopes: [
+      "scopes": [
         "measure",
-        "phrase",
-        "region",
-        "track"
+        "phrase"
       ],
-      roles: [
-        "drums",
-        "pulse"
+      "roles": [
+        "harmony"
       ],
-      instruments: [
-        "drums"
+      "instruments": [
+        "guitar"
       ],
-      meter: "4/4",
-      cycleLength: 2,
-      subdivisions: 16,
-      onsetGrid: [
-        0, 3, 6, 8, 11, 14, 16, 19, 22, 24, 26, 28, 30
+      "compatibleRoles": [
+        "harmony"
       ],
-      accentProfile: [
-        0.6, 0.7, 0.75, 0.8, 0.85, 0.9, 0.7, 0.8, 0.85, 0.95, 0.9, 0.95, 1.0
+      "compatibleInstruments": [
+        "guitar"
       ],
-      velocityProfile: [
-        0.55, 0.65, 0.7, 0.75, 0.8, 0.85, 0.65, 0.75, 0.8, 0.9, 0.85, 0.9, 0.95
+      "canCrossRole": true,
+      "meter": "4/4",
+      "cycleLength": 1,
+      "subdivisions": 16,
+      "onsetGrid": [
+        1,
+        3,
+        4,
+        6,
+        9,
+        12,
+        14
       ],
-      density: "dense",
-      phrasePosition: [
-        "start",
-        "middle",
-        "end"
+      "accentProfile": [
+        1,
+        0.74,
+        0.9,
+        0.68,
+        1,
+        0.74,
+        0.9
       ],
-      sectionUsage: [
+      "velocityProfile": [
+        1,
+        0.69,
+        0.9,
+        0.68,
+        0.95,
+        0.74,
+        0.9
+      ],
+      "syncopationRating": 0.7142857142857143,
+      "anticipationOffset": 0,
+      "swingPercentage": 50,
+      "articulations": [
+        "accented",
+        "ghost-aware"
+      ],
+      "density": "medium",
+      "phrasePosition": [
+        "middle"
+      ],
+      "sectionUsage": [
         "verse",
-        "chorus",
-        "coda"
+        "chorus"
       ],
-      variants: [],
-      provenance: "Genre-pack support pattern for Post-Rock; generalized from documented musical conventions.",
-      authenticityTags: [
-        "post-rock",
-        "drums"
+      "harmonicContext": [
+        "tonal",
+        "section-dependent",
+        "tonal or modal context"
       ],
-      danceTags: [
+      "roleDependencies": [
+        "harmony"
+      ],
+      "transformations": [
+        "density",
+        "accent",
+        "phrasePosition"
+      ],
+      "variants": [
+        {
+          "id": "math-rock-comp-10-v-01",
+          "parentPatternId": "math-rock-comp-10",
+          "name": "Odd Meter Comping — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            1,
+            4,
+            6,
+            12,
+            14
+          ],
+          "accentProfile": [
+            0.95,
+            0.69,
+            0.85,
+            0.63,
+            0.95
+          ],
+          "velocityProfile": [
+            0.92,
+            0.61,
+            0.8200000000000001,
+            0.6000000000000001,
+            0.87
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "math-rock-comp-10-v-02",
+          "parentPatternId": "math-rock-comp-10",
+          "name": "Odd Meter Comping — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            1,
+            3,
+            4,
+            6,
+            9,
+            12,
+            14
+          ],
+          "accentProfile": [
+            0.96,
+            0.82,
+            0.86,
+            0.76,
+            0.96,
+            0.82,
+            0.86
+          ],
+          "velocityProfile": [
+            1,
+            0.6699999999999999,
+            0.88,
+            0.74,
+            0.9299999999999999,
+            0.72,
+            0.96
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2
+          ]
+        }
+      ],
+      "provenance": "GenreDAW catalog rebuild from existing Math Rock world data; generated to cover missing musical functions without runtime AI.",
+      "authenticityTags": [
+        "math-rock",
+        "odd-meter"
+      ],
+      "danceTags": [
         "listening"
       ],
-      tuningSystem: "12-tet",
-      difficulty: 2,
-      weight: 0.9,
-      enabled: true
+      "tuningSystem": "12-tet",
+      "difficulty": 2,
+      "weight": 1,
+      "enabled": true
     },
     {
-      id: "math-prog-djent-chug",
-      worldId: "math-rock",
-      traditionId: "math-rock-prog-fusion",
-      name: "Polymetric 5/4 Thump & Chug",
-      shortName: "5/4 Thump & Chug",
-      family: "Guitar",
-      category: "riff",
-      description: "Aggressive, ultra-tight palm-muted staccato riff cycling in 5/4 meter with 20 subdivisions.",
-      tags: [
-        "prog-fusion",
-        "guitar",
-        "polymeter",
-        "djent",
-        "math-rock"
-      ],
-      scopes: [
-        "measure",
-        "phrase",
-        "region",
-        "track"
-      ],
-      roles: [
-        "guitar",
-        "riff"
-      ],
-      instruments: [
-        "electric-guitar"
-      ],
-      meter: "5/4",
-      cycleLength: 1,
-      subdivisions: 20,
-      onsetGrid: [
-        0, 4, 7, 10, 14, 17
-      ],
-      accentProfile: [
-        1.0, 0.8, 0.95, 0.75, 1.0, 0.85
-      ],
-      velocityProfile: [
-        0.95, 0.75, 0.9, 0.7, 0.95, 0.8
-      ],
-      density: "medium",
-      phrasePosition: [
-        "start",
-        "middle",
-        "end"
-      ],
-      sectionUsage: [
+      "id": "math-rock-intro-11",
+      "worldId": "math-rock",
+      "traditionId": "math-rock-midwest",
+      "name": "Interlock Intro",
+      "family": "Interlock",
+      "category": "sectionPattern",
+      "description": "A reduced entrance used to establish the genre before the full groove arrives. Built around interlocking guitars and the interlock vocabulary of Math Rock.",
+      "tags": [
+        "math-rock",
+        "interlock",
         "intro",
-        "verse",
-        "solo"
+        "catalog-v2"
       ],
-      variants: [],
-      provenance: "Genre-pack support pattern for Progressive & Polymetric Fusion; generalized from documented musical conventions.",
-      authenticityTags: [
-        "prog-fusion",
-        "riff"
+      "scopes": [
+        "measure",
+        "phrase"
       ],
-      danceTags: [
+      "roles": [
+        "harmony",
+        "texture"
+      ],
+      "instruments": [
+        "guitar"
+      ],
+      "compatibleRoles": [
+        "harmony",
+        "texture"
+      ],
+      "compatibleInstruments": [
+        "guitar"
+      ],
+      "canCrossRole": true,
+      "meter": "4/4",
+      "cycleLength": 1,
+      "subdivisions": 16,
+      "onsetGrid": [
+        0,
+        2,
+        4,
+        7
+      ],
+      "accentProfile": [
+        1,
+        0.74,
+        0.9,
+        0.68
+      ],
+      "velocityProfile": [
+        1,
+        0.69,
+        0.9,
+        0.68
+      ],
+      "syncopationRating": 0.5,
+      "anticipationOffset": 0,
+      "swingPercentage": 50,
+      "articulations": [
+        "accented",
+        "ghost-aware"
+      ],
+      "density": "dense",
+      "phrasePosition": [
+        "start"
+      ],
+      "sectionUsage": [
+        "intro"
+      ],
+      "harmonicContext": [
+        "tonal",
+        "section-dependent",
+        "tonal or modal context"
+      ],
+      "roleDependencies": [
+        "harmony",
+        "texture"
+      ],
+      "transformations": [
+        "density",
+        "accent",
+        "phrasePosition"
+      ],
+      "variants": [
+        {
+          "id": "math-rock-intro-11-v-01",
+          "parentPatternId": "math-rock-intro-11",
+          "name": "Interlock Intro — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            4,
+            7
+          ],
+          "accentProfile": [
+            0.95,
+            0.69,
+            0.85
+          ],
+          "velocityProfile": [
+            0.92,
+            0.61,
+            0.8200000000000001
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "math-rock-intro-11-v-02",
+          "parentPatternId": "math-rock-intro-11",
+          "name": "Interlock Intro — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            2,
+            4,
+            7
+          ],
+          "accentProfile": [
+            0.96,
+            0.82,
+            0.86,
+            0.76
+          ],
+          "velocityProfile": [
+            1,
+            0.6699999999999999,
+            0.88,
+            0.74
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5
+          ]
+        },
+        {
+          "id": "math-rock-intro-11-v-03",
+          "parentPatternId": "math-rock-intro-11",
+          "name": "Interlock Intro — transition variation",
+          "variationType": "transition",
+          "probability": 0.16,
+          "description": "Adds a final pickup/closure gesture for section transitions.",
+          "onsetGrid": [
+            0,
+            2,
+            4,
+            7,
+            14,
+            15
+          ],
+          "accentProfile": [
+            0.98,
+            0.72,
+            0.88,
+            0.66,
+            1,
+            1
+          ],
+          "velocityProfile": [
+            1,
+            0.69,
+            0.9,
+            0.68,
+            0.98,
+            0.98
+          ],
+          "microtimingOffset": [
+            0,
+            0,
+            0,
+            0,
+            -6,
+            -6
+          ]
+        }
+      ],
+      "provenance": "GenreDAW catalog rebuild from existing Math Rock world data; generated to cover missing musical functions without runtime AI.",
+      "authenticityTags": [
+        "math-rock",
+        "interlock"
+      ],
+      "danceTags": [
         "listening"
       ],
-      tuningSystem: "12-tet",
-      difficulty: 3,
-      weight: 0.9,
-      enabled: true
+      "tuningSystem": "12-tet",
+      "difficulty": 1,
+      "weight": 0.7,
+      "enabled": true
+    },
+    {
+      "id": "math-rock-verse-12",
+      "worldId": "math-rock",
+      "traditionId": "math-rock-midwest",
+      "name": "Tap Riff Verse Variation",
+      "family": "Tap Riff",
+      "category": "groove",
+      "description": "A restrained verse variation with intentional headroom for melody. Built around polyrhythm and the tap riff vocabulary of Math Rock.",
+      "tags": [
+        "math-rock",
+        "tap-riff",
+        "verse",
+        "catalog-v2"
+      ],
+      "scopes": [
+        "measure",
+        "phrase"
+      ],
+      "roles": [
+        "pulse",
+        "rhythm-guitar",
+        "drums"
+      ],
+      "instruments": [
+        "drums",
+        "percussion",
+        "guitar"
+      ],
+      "compatibleRoles": [
+        "pulse",
+        "rhythm-guitar",
+        "drums"
+      ],
+      "compatibleInstruments": [
+        "drums",
+        "percussion",
+        "guitar"
+      ],
+      "canCrossRole": true,
+      "meter": "4/4",
+      "cycleLength": 1,
+      "subdivisions": 16,
+      "onsetGrid": [
+        1,
+        3,
+        5,
+        8
+      ],
+      "accentProfile": [
+        1,
+        0.74,
+        0.9,
+        0.68
+      ],
+      "velocityProfile": [
+        1,
+        0.69,
+        0.9,
+        0.68
+      ],
+      "syncopationRating": 0.75,
+      "anticipationOffset": 0,
+      "swingPercentage": 50,
+      "articulations": [
+        "accented",
+        "ghost-aware"
+      ],
+      "density": "medium",
+      "phrasePosition": [
+        "middle"
+      ],
+      "sectionUsage": [
+        "verse"
+      ],
+      "harmonicContext": [
+        "tonal",
+        "section-dependent",
+        "tonal or modal context"
+      ],
+      "roleDependencies": [
+        "drums",
+        "rhythm-guitar"
+      ],
+      "transformations": [
+        "density",
+        "accent",
+        "phrasePosition"
+      ],
+      "variants": [
+        {
+          "id": "math-rock-verse-12-v-01",
+          "parentPatternId": "math-rock-verse-12",
+          "name": "Tap Riff Verse Variation — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            1,
+            5,
+            8
+          ],
+          "accentProfile": [
+            0.95,
+            0.69,
+            0.85
+          ],
+          "velocityProfile": [
+            0.92,
+            0.61,
+            0.8200000000000001
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "math-rock-verse-12-v-02",
+          "parentPatternId": "math-rock-verse-12",
+          "name": "Tap Riff Verse Variation — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            1,
+            3,
+            5,
+            8
+          ],
+          "accentProfile": [
+            0.96,
+            0.82,
+            0.86,
+            0.76
+          ],
+          "velocityProfile": [
+            1,
+            0.6699999999999999,
+            0.88,
+            0.74
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5
+          ]
+        }
+      ],
+      "provenance": "GenreDAW catalog rebuild from existing Math Rock world data; generated to cover missing musical functions without runtime AI.",
+      "authenticityTags": [
+        "math-rock",
+        "tap-riff"
+      ],
+      "danceTags": [
+        "listening"
+      ],
+      "tuningSystem": "12-tet",
+      "difficulty": 1,
+      "weight": 1,
+      "enabled": true
+    },
+    {
+      "id": "math-rock-chorus-13",
+      "worldId": "math-rock",
+      "traditionId": "math-rock-midwest",
+      "name": "Polyrhythm Chorus Lift",
+      "family": "Polyrhythm",
+      "category": "sectionPattern",
+      "description": "A higher-energy chorus layer that increases density without changing the genre identity. Built around dynamic stops and the polyrhythm vocabulary of Math Rock.",
+      "tags": [
+        "math-rock",
+        "polyrhythm",
+        "chorus",
+        "catalog-v2"
+      ],
+      "scopes": [
+        "measure",
+        "phrase"
+      ],
+      "roles": [
+        "pulse",
+        "harmony",
+        "drums"
+      ],
+      "instruments": [
+        "drums",
+        "percussion",
+        "guitar"
+      ],
+      "compatibleRoles": [
+        "pulse",
+        "harmony",
+        "drums"
+      ],
+      "compatibleInstruments": [
+        "drums",
+        "percussion",
+        "guitar"
+      ],
+      "canCrossRole": true,
+      "meter": "4/4",
+      "cycleLength": 1,
+      "subdivisions": 16,
+      "onsetGrid": [
+        2,
+        4,
+        6,
+        9
+      ],
+      "accentProfile": [
+        1,
+        0.74,
+        0.9,
+        0.68
+      ],
+      "velocityProfile": [
+        1,
+        0.69,
+        0.9,
+        0.68
+      ],
+      "syncopationRating": 0.75,
+      "anticipationOffset": 1,
+      "swingPercentage": 50,
+      "articulations": [
+        "accented",
+        "ghost-aware"
+      ],
+      "density": "dynamic",
+      "phrasePosition": [
+        "middle",
+        "end"
+      ],
+      "sectionUsage": [
+        "chorus"
+      ],
+      "harmonicContext": [
+        "tonal",
+        "section-dependent",
+        "tonal or modal context"
+      ],
+      "roleDependencies": [
+        "harmony",
+        "drums"
+      ],
+      "transformations": [
+        "density",
+        "accent",
+        "phrasePosition"
+      ],
+      "variants": [
+        {
+          "id": "math-rock-chorus-13-v-01",
+          "parentPatternId": "math-rock-chorus-13",
+          "name": "Polyrhythm Chorus Lift — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            2,
+            6,
+            9
+          ],
+          "accentProfile": [
+            0.95,
+            0.69,
+            0.85
+          ],
+          "velocityProfile": [
+            0.92,
+            0.61,
+            0.8200000000000001
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "math-rock-chorus-13-v-02",
+          "parentPatternId": "math-rock-chorus-13",
+          "name": "Polyrhythm Chorus Lift — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            2,
+            4,
+            6,
+            9
+          ],
+          "accentProfile": [
+            0.96,
+            0.82,
+            0.86,
+            0.76
+          ],
+          "velocityProfile": [
+            1,
+            0.6699999999999999,
+            0.88,
+            0.74
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5
+          ]
+        },
+        {
+          "id": "math-rock-chorus-13-v-03",
+          "parentPatternId": "math-rock-chorus-13",
+          "name": "Polyrhythm Chorus Lift — transition variation",
+          "variationType": "transition",
+          "probability": 0.16,
+          "description": "Adds a final pickup/closure gesture for section transitions.",
+          "onsetGrid": [
+            2,
+            4,
+            6,
+            9,
+            14,
+            15
+          ],
+          "accentProfile": [
+            0.98,
+            0.72,
+            0.88,
+            0.66,
+            1,
+            1
+          ],
+          "velocityProfile": [
+            1,
+            0.69,
+            0.9,
+            0.68,
+            0.98,
+            0.98
+          ],
+          "microtimingOffset": [
+            0,
+            0,
+            0,
+            0,
+            -6,
+            -6
+          ]
+        }
+      ],
+      "provenance": "GenreDAW catalog rebuild from existing Math Rock world data; generated to cover missing musical functions without runtime AI.",
+      "authenticityTags": [
+        "math-rock",
+        "polyrhythm"
+      ],
+      "danceTags": [
+        "listening"
+      ],
+      "tuningSystem": "12-tet",
+      "difficulty": 1,
+      "weight": 0.7,
+      "enabled": true
+    },
+    {
+      "id": "math-rock-bridge-14",
+      "worldId": "math-rock",
+      "traditionId": "math-rock-midwest",
+      "name": "Build Bridge",
+      "family": "Build",
+      "category": "sectionPattern",
+      "description": "A contrasting bridge texture designed to reset repetition before the final return. Built around counterpoint and the build vocabulary of Math Rock.",
+      "tags": [
+        "math-rock",
+        "build",
+        "bridge",
+        "catalog-v2"
+      ],
+      "scopes": [
+        "measure",
+        "phrase"
+      ],
+      "roles": [
+        "harmony",
+        "lead"
+      ],
+      "instruments": [
+        "guitar"
+      ],
+      "compatibleRoles": [
+        "harmony",
+        "lead"
+      ],
+      "compatibleInstruments": [
+        "guitar"
+      ],
+      "canCrossRole": true,
+      "meter": "4/4",
+      "cycleLength": 1,
+      "subdivisions": 16,
+      "onsetGrid": [
+        4,
+        6,
+        8,
+        11
+      ],
+      "accentProfile": [
+        1,
+        0.74,
+        0.9,
+        0.68
+      ],
+      "velocityProfile": [
+        1,
+        0.69,
+        0.9,
+        0.68
+      ],
+      "syncopationRating": 0.5,
+      "anticipationOffset": 0,
+      "swingPercentage": 50,
+      "articulations": [
+        "legato"
+      ],
+      "density": "dense",
+      "phrasePosition": [
+        "middle"
+      ],
+      "sectionUsage": [
+        "bridge",
+        "interlude",
+        "development"
+      ],
+      "harmonicContext": [
+        "tonal",
+        "section-dependent",
+        "tonal or modal context"
+      ],
+      "roleDependencies": [
+        "harmony",
+        "lead"
+      ],
+      "transformations": [
+        "density",
+        "accent",
+        "phrasePosition"
+      ],
+      "variants": [
+        {
+          "id": "math-rock-bridge-14-v-01",
+          "parentPatternId": "math-rock-bridge-14",
+          "name": "Build Bridge — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            4,
+            8,
+            11
+          ],
+          "accentProfile": [
+            0.95,
+            0.69,
+            0.85
+          ],
+          "velocityProfile": [
+            0.92,
+            0.61,
+            0.8200000000000001
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "math-rock-bridge-14-v-02",
+          "parentPatternId": "math-rock-bridge-14",
+          "name": "Build Bridge — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            4,
+            6,
+            8,
+            11
+          ],
+          "accentProfile": [
+            0.96,
+            0.82,
+            0.86,
+            0.76
+          ],
+          "velocityProfile": [
+            1,
+            0.6699999999999999,
+            0.88,
+            0.74
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5
+          ]
+        },
+        {
+          "id": "math-rock-bridge-14-v-03",
+          "parentPatternId": "math-rock-bridge-14",
+          "name": "Build Bridge — transition variation",
+          "variationType": "transition",
+          "probability": 0.16,
+          "description": "Adds a final pickup/closure gesture for section transitions.",
+          "onsetGrid": [
+            4,
+            6,
+            8,
+            11,
+            14,
+            15
+          ],
+          "accentProfile": [
+            0.98,
+            0.72,
+            0.88,
+            0.66,
+            1,
+            1
+          ],
+          "velocityProfile": [
+            1,
+            0.69,
+            0.9,
+            0.68,
+            0.98,
+            0.98
+          ],
+          "microtimingOffset": [
+            0,
+            0,
+            0,
+            0,
+            -6,
+            -6
+          ]
+        }
+      ],
+      "provenance": "GenreDAW catalog rebuild from existing Math Rock world data; generated to cover missing musical functions without runtime AI.",
+      "authenticityTags": [
+        "math-rock",
+        "build"
+      ],
+      "danceTags": [
+        "listening"
+      ],
+      "tuningSystem": "12-tet",
+      "difficulty": 1,
+      "weight": 0.7,
+      "enabled": true
+    },
+    {
+      "id": "math-rock-fill-15",
+      "worldId": "math-rock",
+      "traditionId": "math-rock-midwest",
+      "name": "Odd Meter Fill",
+      "family": "Odd Meter",
+      "category": "fill",
+      "description": "A short transition fill that signals the next section instead of looping the main groove unchanged. Built around odd meter in Math Rock.",
+      "tags": [
+        "math-rock",
+        "odd-meter",
+        "fill",
+        "catalog-v2"
+      ],
+      "scopes": [
+        "measure",
+        "phrase"
+      ],
+      "roles": [
+        "fill",
+        "drums"
+      ],
+      "instruments": [
+        "drums",
+        "percussion"
+      ],
+      "compatibleRoles": [
+        "fill",
+        "drums"
+      ],
+      "compatibleInstruments": [
+        "drums",
+        "percussion"
+      ],
+      "canCrossRole": true,
+      "meter": "4/4",
+      "cycleLength": 1,
+      "subdivisions": 16,
+      "onsetGrid": [
+        0,
+        1,
+        3,
+        5,
+        7
+      ],
+      "accentProfile": [
+        0.72,
+        0.78,
+        0.84,
+        0.72,
+        0.78
+      ],
+      "velocityProfile": [
+        0.72,
+        0.73,
+        0.84,
+        0.72,
+        0.73
+      ],
+      "syncopationRating": 0.8,
+      "anticipationOffset": 1,
+      "swingPercentage": 50,
+      "articulations": [
+        "fill"
+      ],
+      "density": "dense",
+      "phrasePosition": [
+        "end"
+      ],
+      "sectionUsage": [
+        "pre-chorus",
+        "turnaround",
+        "ending"
+      ],
+      "harmonicContext": [
+        "tonal",
+        "section-dependent",
+        "tonal or modal context"
+      ],
+      "roleDependencies": [
+        "drums"
+      ],
+      "transformations": [
+        "density",
+        "accent",
+        "phrasePosition"
+      ],
+      "variants": [
+        {
+          "id": "math-rock-fill-15-v-01",
+          "parentPatternId": "math-rock-fill-15",
+          "name": "Odd Meter Fill — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            3,
+            5
+          ],
+          "accentProfile": [
+            0.6699999999999999,
+            0.73,
+            0.7899999999999999
+          ],
+          "velocityProfile": [
+            0.64,
+            0.65,
+            0.76
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "math-rock-fill-15-v-02",
+          "parentPatternId": "math-rock-fill-15",
+          "name": "Odd Meter Fill — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            1,
+            3,
+            5,
+            7
+          ],
+          "accentProfile": [
+            0.6799999999999999,
+            0.86,
+            0.7999999999999999,
+            0.7999999999999999,
+            0.74
+          ],
+          "velocityProfile": [
+            0.78,
+            0.71,
+            0.82,
+            0.78,
+            0.71
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2
+          ]
+        },
+        {
+          "id": "math-rock-fill-15-v-03",
+          "parentPatternId": "math-rock-fill-15",
+          "name": "Odd Meter Fill — transition variation",
+          "variationType": "transition",
+          "probability": 0.16,
+          "description": "Adds a final pickup/closure gesture for section transitions.",
+          "onsetGrid": [
+            0,
+            1,
+            3,
+            5,
+            7,
+            14,
+            15
+          ],
+          "accentProfile": [
+            0.7,
+            0.76,
+            0.82,
+            0.7,
+            0.76,
+            1,
+            1
+          ],
+          "velocityProfile": [
+            0.72,
+            0.73,
+            0.84,
+            0.72,
+            0.73,
+            0.98,
+            0.98
+          ],
+          "microtimingOffset": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            -6,
+            -6
+          ]
+        }
+      ],
+      "provenance": "GenreDAW catalog rebuild from existing Math Rock world data; generated to cover missing musical functions without runtime AI.",
+      "authenticityTags": [
+        "math-rock",
+        "odd-meter"
+      ],
+      "danceTags": [
+        "listening"
+      ],
+      "tuningSystem": "12-tet",
+      "difficulty": 2,
+      "weight": 0.7,
+      "enabled": true
+    },
+    {
+      "id": "math-rock-break-16",
+      "worldId": "math-rock",
+      "traditionId": "math-rock-midwest",
+      "name": "Interlock Break",
+      "family": "Interlock",
+      "category": "break",
+      "description": "A deliberate drop in density for a breakdown or stop-time moment. Built around interlocking guitars and the interlock vocabulary of Math Rock.",
+      "tags": [
+        "math-rock",
+        "interlock",
+        "break",
+        "catalog-v2"
+      ],
+      "scopes": [
+        "measure",
+        "phrase"
+      ],
+      "roles": [
+        "drums",
+        "bass"
+      ],
+      "instruments": [
+        "drums",
+        "percussion",
+        "bass"
+      ],
+      "compatibleRoles": [
+        "drums",
+        "bass"
+      ],
+      "compatibleInstruments": [
+        "drums",
+        "percussion",
+        "bass"
+      ],
+      "canCrossRole": true,
+      "meter": "7/8",
+      "cycleLength": 1,
+      "subdivisions": 14,
+      "onsetGrid": [
+        1,
+        2,
+        4,
+        5,
+        7
+      ],
+      "accentProfile": [
+        1,
+        0.55,
+        0.55,
+        0.55,
+        0.55
+      ],
+      "velocityProfile": [
+        1,
+        0.5,
+        0.55,
+        0.55,
+        0.5
+      ],
+      "syncopationRating": 0.8,
+      "anticipationOffset": 0,
+      "swingPercentage": 50,
+      "articulations": [
+        "accented"
+      ],
+      "density": "sparse",
+      "phrasePosition": [
+        "middle",
+        "end"
+      ],
+      "sectionUsage": [
+        "breakdown",
+        "stop-time"
+      ],
+      "harmonicContext": [
+        "tonal",
+        "section-dependent",
+        "tonal or modal context"
+      ],
+      "roleDependencies": [
+        "drums",
+        "bass"
+      ],
+      "transformations": [
+        "density",
+        "accent",
+        "phrasePosition"
+      ],
+      "variants": [
+        {
+          "id": "math-rock-break-16-v-01",
+          "parentPatternId": "math-rock-break-16",
+          "name": "Interlock Break — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            1,
+            4,
+            5
+          ],
+          "accentProfile": [
+            0.95,
+            0.5,
+            0.5
+          ],
+          "velocityProfile": [
+            0.92,
+            0.42,
+            0.47000000000000003
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "math-rock-break-16-v-02",
+          "parentPatternId": "math-rock-break-16",
+          "name": "Interlock Break — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            1,
+            2,
+            4,
+            5,
+            7
+          ],
+          "accentProfile": [
+            0.96,
+            0.63,
+            0.51,
+            0.63,
+            0.51
+          ],
+          "velocityProfile": [
+            1,
+            0.48,
+            0.53,
+            0.6100000000000001,
+            0.48
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2
+          ]
+        },
+        {
+          "id": "math-rock-break-16-v-03",
+          "parentPatternId": "math-rock-break-16",
+          "name": "Interlock Break — transition variation",
+          "variationType": "transition",
+          "probability": 0.16,
+          "description": "Adds a final pickup/closure gesture for section transitions.",
+          "onsetGrid": [
+            1,
+            2,
+            4,
+            5,
+            7,
+            12,
+            13
+          ],
+          "accentProfile": [
+            0.98,
+            0.53,
+            0.53,
+            0.53,
+            0.53,
+            1,
+            1
+          ],
+          "velocityProfile": [
+            1,
+            0.5,
+            0.55,
+            0.55,
+            0.5,
+            0.98,
+            0.98
+          ],
+          "microtimingOffset": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            -6,
+            -6
+          ]
+        }
+      ],
+      "provenance": "GenreDAW catalog rebuild from existing Math Rock world data; generated to cover missing musical functions without runtime AI.",
+      "authenticityTags": [
+        "math-rock",
+        "interlock"
+      ],
+      "danceTags": [
+        "listening"
+      ],
+      "tuningSystem": "12-tet",
+      "difficulty": 2,
+      "weight": 0.7,
+      "enabled": true
+    },
+    {
+      "id": "math-rock-cadence-17",
+      "worldId": "math-rock",
+      "traditionId": "math-rock-midwest",
+      "name": "Tap Riff Cadence",
+      "family": "Tap Riff",
+      "category": "cadence",
+      "description": "A phrase-ending cadence that gives the arrangement a clear point of release. Built around polyrhythm and the tap riff vocabulary of Math Rock.",
+      "tags": [
+        "math-rock",
+        "tap-riff",
+        "cadence",
+        "catalog-v2"
+      ],
+      "scopes": [
+        "measure",
+        "phrase"
+      ],
+      "roles": [
+        "harmony",
+        "bass"
+      ],
+      "instruments": [
+        "guitar",
+        "bass"
+      ],
+      "compatibleRoles": [
+        "harmony",
+        "bass"
+      ],
+      "compatibleInstruments": [
+        "guitar",
+        "bass"
+      ],
+      "canCrossRole": true,
+      "meter": "4/4",
+      "cycleLength": 1,
+      "subdivisions": 16,
+      "onsetGrid": [
+        2,
+        3,
+        5,
+        7,
+        9
+      ],
+      "accentProfile": [
+        1,
+        0.74,
+        0.9,
+        0.68,
+        1
+      ],
+      "velocityProfile": [
+        1,
+        0.69,
+        0.9,
+        0.68,
+        0.95
+      ],
+      "syncopationRating": 1,
+      "anticipationOffset": 0,
+      "swingPercentage": 50,
+      "articulations": [
+        "accented",
+        "ghost-aware"
+      ],
+      "density": "sparse",
+      "phrasePosition": [
+        "end"
+      ],
+      "sectionUsage": [
+        "turnaround",
+        "ending",
+        "coda",
+        "remate",
+        "cierre"
+      ],
+      "harmonicContext": [
+        "dominant",
+        "turnaround",
+        "tonal or modal context"
+      ],
+      "roleDependencies": [
+        "harmony",
+        "bass"
+      ],
+      "transformations": [
+        "density",
+        "accent",
+        "phrasePosition"
+      ],
+      "variants": [
+        {
+          "id": "math-rock-cadence-17-v-01",
+          "parentPatternId": "math-rock-cadence-17",
+          "name": "Tap Riff Cadence — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            2,
+            5,
+            7
+          ],
+          "accentProfile": [
+            0.95,
+            0.69,
+            0.85
+          ],
+          "velocityProfile": [
+            0.92,
+            0.61,
+            0.8200000000000001
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "math-rock-cadence-17-v-02",
+          "parentPatternId": "math-rock-cadence-17",
+          "name": "Tap Riff Cadence — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            2,
+            3,
+            5,
+            7,
+            9
+          ],
+          "accentProfile": [
+            0.96,
+            0.82,
+            0.86,
+            0.76,
+            0.96
+          ],
+          "velocityProfile": [
+            1,
+            0.6699999999999999,
+            0.88,
+            0.74,
+            0.9299999999999999
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2
+          ]
+        },
+        {
+          "id": "math-rock-cadence-17-v-03",
+          "parentPatternId": "math-rock-cadence-17",
+          "name": "Tap Riff Cadence — transition variation",
+          "variationType": "transition",
+          "probability": 0.16,
+          "description": "Adds a final pickup/closure gesture for section transitions.",
+          "onsetGrid": [
+            2,
+            3,
+            5,
+            7,
+            9,
+            14,
+            15
+          ],
+          "accentProfile": [
+            0.98,
+            0.72,
+            0.88,
+            0.66,
+            0.98,
+            1,
+            1
+          ],
+          "velocityProfile": [
+            1,
+            0.69,
+            0.9,
+            0.68,
+            0.95,
+            0.98,
+            0.98
+          ],
+          "microtimingOffset": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            -6,
+            -6
+          ]
+        }
+      ],
+      "provenance": "GenreDAW catalog rebuild from existing Math Rock world data; generated to cover missing musical functions without runtime AI.",
+      "authenticityTags": [
+        "math-rock",
+        "tap-riff"
+      ],
+      "danceTags": [
+        "listening"
+      ],
+      "tuningSystem": "12-tet",
+      "difficulty": 2,
+      "weight": 0.7,
+      "enabled": true
     }
   ],
-  techniques: [
+  "techniques": [
     "two-hand fretboard tapping",
     "hybrid picking",
     "volume pedal swells",
     "polymetric rhythmic displacement",
     "ghost-note snare work"
   ],
-  forms: [
+  "forms": [
     "intro",
     "verse",
     "chorus",
@@ -1564,50 +3580,53 @@ export const MATH_ROCK_WORLD: GenreWorld = {
     "solo",
     "coda"
   ],
-  relationships: [
+  "relationships": [
     "guitar ↔ bass (two-hand counterpoint conversation)",
     "drums ↔ guitar (odd-meter accent lock)",
     "lead ↔ texture (ambient swell bed)"
   ],
-  transformations: [
+  "transformations": [
     "trans-density-dense",
     "trans-anticipation",
-    "trans-phrase-cadence"
+    "trans-phrase-cadence",
+    "catalog-v2-density-variation",
+    "catalog-v2-transition-coverage",
+    "catalog-v2-ensemble-interactions"
   ],
-  songBehaviors: [
+  "songBehaviors": [
     "dynamic arcs from whisper-quiet fingerpicking to massive math-rock climaxes",
     "subtle metric phase shifts that resolve every several bars",
     "avoid identical loop repetition by alternating pattern variants",
     "use fills, breaks, cadences, and bridge textures as structural events",
     "let lead/voice parts create space and response relationships"
   ],
-  instrumentIdeas: {
-    guitar: [
+  "instrumentIdeas": {
+    "guitar": [
       "clean single-coil Fender Telecaster through chimey tube amp with analog delay"
     ],
-    bass: [
+    "bass": [
       "punchy active bass with bright roundwound strings for clear tapping attack"
     ],
-    drums: [
+    "drums": [
       "crisp maple snare with tight, articulate cymbals and punchy kick"
     ]
   },
-  combinations: [
+  "combinations": [
     "Math Rock + Jazz Fusion",
     "Math Rock + Djent Metal",
     "Math Rock + Post-Rock Ambient"
   ],
-  danceTags: [
+  "danceTags": [
     "listening"
   ],
-  tuningSystem: "12-tet",
-  signatureCell: "Additive odd-meter 7/8 cell [2+2+3] with clean tapped arpeggios",
-  grooveMechanics: {
-    swingPercentage: 50,
-    anticipationOffsetSteps: 0,
-    microtimingFeel: "straight"
+  "tuningSystem": "just-intonation",
+  "signatureCell": "Additive odd-meter 7/8 cell [2+2+3] with clean tapped arpeggios",
+  "grooveMechanics": {
+    "swingPercentage": 50,
+    "anticipationOffsetSteps": 0,
+    "microtimingFeel": "straight"
   },
-  crossLinks: [
+  "crossLinks": [
     "Math Rock ↔ Metal (Djent)",
     "Math Rock ↔ Jazz Fusion",
     "Math Rock ↔ Electronic / IDM"

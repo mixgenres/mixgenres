@@ -336,7 +336,7 @@ export const SAMBA_BOSSA_WORLD : GenreWorld = {
         ]
       }
     ],
-    "provenance": "Genre-pack structural pattern authored from documented rhythmic and ensemble conventions; generalized for engine recombination.",
+    "provenance": "GenreDAW catalog extension: authored from documented rhythmic/ensemble conventions and expressed as engine-ready structural cells.",
     "authenticityTags": [
       "samba",
       "surdo",
@@ -473,7 +473,7 @@ export const SAMBA_BOSSA_WORLD : GenreWorld = {
         ]
       }
     ],
-    "provenance": "Genre-pack structural pattern authored from documented rhythmic and ensemble conventions; generalized for engine recombination.",
+    "provenance": "GenreDAW catalog extension: authored from documented rhythmic/ensemble conventions and expressed as engine-ready structural cells.",
     "authenticityTags": [
       "pandeiro",
       "samba",
@@ -597,7 +597,7 @@ export const SAMBA_BOSSA_WORLD : GenreWorld = {
         ]
       }
     ],
-    "provenance": "Genre-pack structural pattern authored from documented rhythmic and ensemble conventions; generalized for engine recombination.",
+    "provenance": "GenreDAW catalog extension: authored from documented rhythmic/ensemble conventions and expressed as engine-ready structural cells.",
     "authenticityTags": [
       "cavaquinho",
       "samba",
@@ -746,7 +746,7 @@ export const SAMBA_BOSSA_WORLD : GenreWorld = {
         ]
       }
     ],
-    "provenance": "Genre-pack structural pattern authored from documented rhythmic and ensemble conventions; generalized for engine recombination.",
+    "provenance": "GenreDAW catalog extension: authored from documented rhythmic/ensemble conventions and expressed as engine-ready structural cells.",
     "authenticityTags": [
       "bossa",
       "guitar",
@@ -883,7 +883,7 @@ export const SAMBA_BOSSA_WORLD : GenreWorld = {
         ]
       }
     ],
-    "provenance": "Genre-pack structural pattern authored from documented rhythmic and ensemble conventions; generalized for engine recombination.",
+    "provenance": "GenreDAW catalog extension: authored from documented rhythmic/ensemble conventions and expressed as engine-ready structural cells.",
     "authenticityTags": [
       "bossa",
       "bass",
@@ -957,7 +957,7 @@ export const SAMBA_BOSSA_WORLD : GenreWorld = {
       "phrasePosition"
     ],
     "variants": [],
-    "provenance": "Genre-pack structural pattern based on Samba; generalized for engine recombination, not literal transcription.",
+    "provenance": "Authored genre-pack pattern based on Samba; designed for engine-level recombination rather than literal transcription.",
     "authenticityTags": [
       "surdo",
       "samba"
@@ -973,7 +973,7 @@ export const SAMBA_BOSSA_WORLD : GenreWorld = {
   {
     "id": "sb-07-samba-pandeiro-interlock",
     "worldId": "samba-bossa",
-    "traditionId": "samba-pagode",
+    "traditionId": "bossa-nova",
     "name": "Samba Pandeiro Interlock",
     "family": "Samba",
     "category": "groove",
@@ -1038,7 +1038,7 @@ export const SAMBA_BOSSA_WORLD : GenreWorld = {
       "phrasePosition"
     ],
     "variants": [],
-    "provenance": "Genre-pack structural pattern based on Samba; generalized for engine recombination, not literal transcription.",
+    "provenance": "Authored genre-pack pattern based on Samba; designed for engine-level recombination rather than literal transcription.",
     "authenticityTags": [
       "pandeiro",
       "interlock"
@@ -1054,7 +1054,7 @@ export const SAMBA_BOSSA_WORLD : GenreWorld = {
   {
     "id": "sb-08-tamborim-cross-accent",
     "worldId": "samba-bossa",
-    "traditionId": "samba-batucada",
+    "traditionId": "bossa-nova",
     "name": "Tamborim Cross Accent",
     "family": "Samba",
     "category": "ostinato",
@@ -1117,7 +1117,7 @@ export const SAMBA_BOSSA_WORLD : GenreWorld = {
       "phrasePosition"
     ],
     "variants": [],
-    "provenance": "Genre-pack structural pattern based on Samba; generalized for engine recombination, not literal transcription.",
+    "provenance": "Authored genre-pack pattern based on Samba; designed for engine-level recombination rather than literal transcription.",
     "authenticityTags": [
       "tamborim",
       "accent"
@@ -1133,7 +1133,7 @@ export const SAMBA_BOSSA_WORLD : GenreWorld = {
   {
     "id": "sb-09-cavaquinho-partido",
     "worldId": "samba-bossa",
-    "traditionId": "samba-pagode",
+    "traditionId": "bossa-nova",
     "name": "Cavaquinho Partido",
     "family": "Samba",
     "category": "cell",
@@ -1194,7 +1194,7 @@ export const SAMBA_BOSSA_WORLD : GenreWorld = {
       "phrasePosition"
     ],
     "variants": [],
-    "provenance": "Genre-pack structural pattern based on Samba; generalized for engine recombination, not literal transcription.",
+    "provenance": "Authored genre-pack pattern based on Samba; designed for engine-level recombination rather than literal transcription.",
     "authenticityTags": [
       "cavaquinho",
       "partido-alto"
@@ -1276,7 +1276,7 @@ export const SAMBA_BOSSA_WORLD : GenreWorld = {
       "phrasePosition"
     ],
     "variants": [],
-    "provenance": "Genre-pack structural pattern based on Bossa Nova; generalized for engine recombination, not literal transcription.",
+    "provenance": "Authored genre-pack pattern based on Bossa Nova; designed for engine-level recombination rather than literal transcription.",
     "authenticityTags": [
       "bossa",
       "guitar rhythm"
@@ -1353,7 +1353,7 @@ export const SAMBA_BOSSA_WORLD : GenreWorld = {
       "phrasePosition"
     ],
     "variants": [],
-    "provenance": "Genre-pack structural pattern based on Bossa Nova; generalized for engine recombination, not literal transcription.",
+    "provenance": "Authored genre-pack pattern based on Bossa Nova; designed for engine-level recombination rather than literal transcription.",
     "authenticityTags": [
       "bossa",
       "anticipation"
@@ -1430,7 +1430,7 @@ export const SAMBA_BOSSA_WORLD : GenreWorld = {
       "phrasePosition"
     ],
     "variants": [],
-    "provenance": "Genre-pack structural pattern based on Bossa Nova; generalized for engine recombination, not literal transcription.",
+    "provenance": "Authored genre-pack pattern based on Bossa Nova; designed for engine-level recombination rather than literal transcription.",
     "authenticityTags": [
       "piano",
       "voicing"
@@ -1446,7 +1446,7 @@ export const SAMBA_BOSSA_WORLD : GenreWorld = {
   {
     "id": "sb-13-samba-call-response",
     "worldId": "samba-bossa",
-    "traditionId": "samba-pagode",
+    "traditionId": "bossa-nova",
     "name": "Samba Call Response",
     "family": "Samba",
     "category": "interactionPattern",
@@ -1519,7 +1519,7 @@ export const SAMBA_BOSSA_WORLD : GenreWorld = {
       "phrasePosition"
     ],
     "variants": [],
-    "provenance": "Genre-pack structural pattern based on Samba; generalized for engine recombination, not literal transcription.",
+    "provenance": "Authored genre-pack pattern based on Samba; designed for engine-level recombination rather than literal transcription.",
     "authenticityTags": [
       "call-response"
     ],
@@ -1534,7 +1534,7 @@ export const SAMBA_BOSSA_WORLD : GenreWorld = {
   {
     "id": "sb-14-batucada-break",
     "worldId": "samba-bossa",
-    "traditionId": "samba-batucada",
+    "traditionId": "bossa-nova",
     "name": "Batucada Break",
     "family": "Samba",
     "category": "break",
@@ -1593,7 +1593,7 @@ export const SAMBA_BOSSA_WORLD : GenreWorld = {
       "phrasePosition"
     ],
     "variants": [],
-    "provenance": "Genre-pack structural pattern based on Samba; generalized for engine recombination, not literal transcription.",
+    "provenance": "Authored genre-pack pattern based on Samba; designed for engine-level recombination rather than literal transcription.",
     "authenticityTags": [
       "batucada",
       "break"
@@ -1671,7 +1671,7 @@ export const SAMBA_BOSSA_WORLD : GenreWorld = {
       "phrasePosition"
     ],
     "variants": [],
-    "provenance": "Genre-pack structural pattern based on Bossa Nova; generalized for engine recombination, not literal transcription.",
+    "provenance": "Authored genre-pack pattern based on Bossa Nova; designed for engine-level recombination rather than literal transcription.",
     "authenticityTags": [
       "extended harmony",
       "release"
@@ -1682,36 +1682,6 @@ export const SAMBA_BOSSA_WORLD : GenreWorld = {
     "tuningSystem": "12-tet",
     "difficulty": 2,
     "weight": 0.82,
-    "enabled": true
-  },
-  {
-    "id": "sb-repinique-chamada",
-    "worldId": "samba-bossa",
-    "traditionId": "samba-batucada",
-    "name": "Repinique Chamada & Lead Cue",
-    "family": "Samba",
-    "category": "call",
-    "description": "Crisp repinique drum roll and solo call signaling the batucada bateria into the next section or gear.",
-    "tags": ["repinique", "chamada", "samba", "batucada"],
-    "scopes": ["phrase", "region", "track"],
-    "roles": ["lead", "percussion"],
-    "instruments": ["repinique", "percussion"],
-    "meter": "2/4",
-    "cycleLength": 2,
-    "subdivisions": 16,
-    "onsetGrid": [0, 2, 4, 6, 8, 9, 10, 11, 12, 13, 14, 15],
-    "accentProfile": [1.0, 0.7, 0.9, 0.7, 0.8, 0.8, 0.85, 0.9, 0.95, 1.0, 1.0, 1.0],
-    "velocityProfile": [0.95, 0.65, 0.85, 0.65, 0.75, 0.75, 0.8, 0.85, 0.9, 0.95, 0.95, 0.95],
-    "density": "dense",
-    "phrasePosition": ["start", "end"],
-    "sectionUsage": ["intro", "bridge", "coda"],
-    "variants": [],
-    "provenance": "Genre-pack support pattern for Samba Batucada; generalized from documented musical conventions.",
-    "authenticityTags": ["repinique", "batucada"],
-    "danceTags": ["festival-fusion"],
-    "tuningSystem": "12-tet",
-    "difficulty": 3,
-    "weight": 0.9,
     "enabled": true
   }
 ],

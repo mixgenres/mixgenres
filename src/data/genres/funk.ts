@@ -344,13 +344,61 @@ export const FUNK_WORLD: GenreWorld = {
           ],
           "description": "Syncopated melodic bassline using chromatic enclosures and open string shifts."
         },
-        ],
+        {
+          "id": "funk-the-one-bass-v-02",
+          "parentPatternId": "funk-the-one-bass",
+          "name": "\"The One\" 16th-Note Syncopated Bass — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            3,
+            6,
+            8,
+            10,
+            12,
+            14,
+            15
+          ],
+          "accentProfile": [
+            0.96,
+            0.6799999999999999,
+            0.86,
+            0.88,
+            0.5599999999999999,
+            1,
+            0.6599999999999999,
+            0.9299999999999999
+          ],
+          "velocityProfile": [
+            1,
+            0.58,
+            0.83,
+            0.81,
+            0.53,
+            0.88,
+            0.71,
+            0.78
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5
+          ]
+        }
+      ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 3,
       "weight": 0.7,
-      "provenance": "Funk genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Funk catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "funk"
       ],
@@ -503,13 +551,93 @@ export const FUNK_WORLD: GenreWorld = {
           ],
           "description": "Clean, isolated off-beat chord stabs leaving space for bass and vocals."
         },
-        ],
+        {
+          "id": "funk-chicken-scratch-guitar-v-02",
+          "parentPatternId": "funk-chicken-scratch-guitar",
+          "name": "Chicken-Scratch 9th Chords (Muted 16th Strum) — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15
+          ],
+          "accentProfile": [
+            0.86,
+            0.4,
+            0.4,
+            0.4,
+            0.96,
+            0.4,
+            0.9099999999999999,
+            0.4,
+            0.86,
+            0.4,
+            0.4,
+            0.4,
+            0.96,
+            0.4,
+            0.9099999999999999,
+            0.4
+          ],
+          "velocityProfile": [
+            0.9099999999999999,
+            0.4,
+            0.4,
+            0.4,
+            0.98,
+            0.4,
+            0.96,
+            0.4,
+            0.83,
+            0.4,
+            0.4,
+            0.4,
+            1,
+            0.4,
+            0.88,
+            0.4
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5
+          ]
+        }
+      ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 5,
       "weight": 0.7,
-      "provenance": "Funk genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Funk catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "funk"
       ],
@@ -648,13 +776,69 @@ export const FUNK_WORLD: GenreWorld = {
           ],
           "description": "Unquantized relaxed pocket with delayed backbeat snare."
         },
-        ],
+        {
+          "id": "funk-drum-breakbeat-v-02",
+          "parentPatternId": "funk-drum-breakbeat",
+          "name": "Clyde Stubblefield \"Funky Drummer\" Breakbeat — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            2,
+            4,
+            6,
+            7,
+            8,
+            10,
+            12,
+            14,
+            15
+          ],
+          "accentProfile": [
+            0.96,
+            0.48000000000000004,
+            0.96,
+            0.43,
+            0.4,
+            0.98,
+            0.4,
+            1,
+            0.4,
+            0.88
+          ],
+          "velocityProfile": [
+            1,
+            0.4,
+            0.9299999999999999,
+            0.4,
+            0.4,
+            0.83,
+            0.46,
+            0.9299999999999999,
+            0.4,
+            0.81
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5
+          ]
+        }
+      ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 3,
       "weight": 1,
-      "provenance": "Funk genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Funk catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "funk"
       ],
@@ -741,14 +925,105 @@ export const FUNK_WORLD: GenreWorld = {
         "chorus"
       ],
       "variants": [
-        
-        ],
+        {
+          "id": "funk-16th-strum-v-01",
+          "parentPatternId": "funk-16th-strum",
+          "name": "16th Note Strum — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            3,
+            4,
+            8,
+            10,
+            14
+          ],
+          "accentProfile": [
+            0.8999999999999999,
+            0.5499999999999999,
+            0.6499999999999999,
+            0.95,
+            0.6,
+            0.85
+          ],
+          "velocityProfile": [
+            0.8200000000000001,
+            0.42,
+            0.52,
+            0.87,
+            0.47000000000000003,
+            0.77
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6,
+            -3,
+            6
+          ]
+        },
+        {
+          "id": "funk-16th-strum-v-02",
+          "parentPatternId": "funk-16th-strum",
+          "name": "16th Note Strum — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            2,
+            3,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14
+          ],
+          "accentProfile": [
+            0.9099999999999999,
+            0.6799999999999999,
+            0.6599999999999999,
+            1,
+            0.61,
+            0.98,
+            0.5599999999999999,
+            1,
+            0.6599999999999999
+          ],
+          "velocityProfile": [
+            0.96,
+            0.48,
+            0.58,
+            1,
+            0.53,
+            0.83,
+            0.56,
+            0.9299999999999999,
+            0.58
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2
+          ]
+        }
+      ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 3,
       "weight": 1,
-      "provenance": "Funk genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Funk catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "funk"
       ],
@@ -833,14 +1108,97 @@ export const FUNK_WORLD: GenreWorld = {
         "turnaround"
       ],
       "variants": [
-        
-        ],
+        {
+          "id": "funk-slap-bass-v-01",
+          "parentPatternId": "funk-slap-bass",
+          "name": "Slap Bass — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            4,
+            7,
+            10,
+            12
+          ],
+          "accentProfile": [
+            0.95,
+            0.7999999999999999,
+            0.6499999999999999,
+            0.85,
+            0.8999999999999999
+          ],
+          "velocityProfile": [
+            0.92,
+            0.7200000000000001,
+            0.5700000000000001,
+            0.77,
+            0.8200000000000001
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "funk-slap-bass-v-02",
+          "parentPatternId": "funk-slap-bass",
+          "name": "Slap Bass — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            3,
+            4,
+            7,
+            8,
+            10,
+            12,
+            15
+          ],
+          "accentProfile": [
+            0.96,
+            0.9299999999999999,
+            0.6599999999999999,
+            0.98,
+            0.9099999999999999,
+            0.88,
+            0.6599999999999999,
+            0.9299999999999999
+          ],
+          "velocityProfile": [
+            1,
+            0.78,
+            0.63,
+            0.9099999999999999,
+            0.88,
+            0.73,
+            0.71,
+            0.78
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5
+          ]
+        }
+      ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 3,
       "weight": 1,
-      "provenance": "Funk genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Funk catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "funk"
       ],
@@ -959,13 +1317,61 @@ export const FUNK_WORLD: GenreWorld = {
             -3
           ]
         },
-        ],
+        {
+          "id": "funk-ghost-snares-v-02",
+          "parentPatternId": "funk-ghost-snares",
+          "name": "Ghost Snares — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            2,
+            3,
+            6,
+            7,
+            10,
+            11,
+            14,
+            15
+          ],
+          "accentProfile": [
+            0.41000000000000003,
+            0.58,
+            0.46,
+            0.63,
+            0.41000000000000003,
+            0.58,
+            0.46,
+            0.6799999999999999
+          ],
+          "velocityProfile": [
+            0.46,
+            0.43,
+            0.43,
+            0.56,
+            0.4,
+            0.43,
+            0.51,
+            0.53
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5
+          ]
+        }
+      ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 3,
       "weight": 1,
-      "provenance": "Funk genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Funk catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "funk"
       ],
@@ -1053,14 +1459,77 @@ export const FUNK_WORLD: GenreWorld = {
         "chorus"
       ],
       "variants": [
-        
-        ],
+        {
+          "id": "funk-clavinet-v-01",
+          "parentPatternId": "funk-clavinet",
+          "name": "Clavinet Sync — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            1,
+            7,
+            10
+          ],
+          "accentProfile": [
+            0.8999999999999999,
+            0.7,
+            0.85
+          ],
+          "velocityProfile": [
+            0.8200000000000001,
+            0.62,
+            0.77
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "funk-clavinet-v-02",
+          "parentPatternId": "funk-clavinet",
+          "name": "Clavinet Sync — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            1,
+            4,
+            7,
+            10,
+            13
+          ],
+          "accentProfile": [
+            0.9099999999999999,
+            0.83,
+            0.86,
+            0.88,
+            0.8099999999999999
+          ],
+          "velocityProfile": [
+            0.96,
+            0.6799999999999999,
+            0.83,
+            0.81,
+            0.78
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2
+          ]
+        }
+      ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 2,
       "weight": 1,
-      "provenance": "Funk genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Funk catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "funk"
       ],
@@ -1132,7 +1601,30 @@ export const FUNK_WORLD: GenreWorld = {
         "chorus"
       ],
       "variants": [
-        
+        {
+          "id": "funk-horn-section-v-01",
+          "parentPatternId": "funk-horn-section",
+          "name": "Horn Section Hits — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            12
+          ],
+          "accentProfile": [
+            0.95,
+            0.8999999999999999
+          ],
+          "velocityProfile": [
+            0.92,
+            0.8200000000000001
+          ],
+          "microtimingOffset": [
+            -3,
+            6
+          ]
+        },
         {
           "id": "funk-horn-section-v-02",
           "parentPatternId": "funk-horn-section",
@@ -1167,7 +1659,7 @@ export const FUNK_WORLD: GenreWorld = {
       ],
       "difficulty": 1,
       "weight": 1,
-      "provenance": "Funk genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Funk catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "funk"
       ],
@@ -1244,14 +1736,85 @@ export const FUNK_WORLD: GenreWorld = {
         "chorus"
       ],
       "variants": [
-        
-        ],
+        {
+          "id": "funk-soul-bass-v-01",
+          "parentPatternId": "funk-soul-bass",
+          "name": "Motown Bass — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            7,
+            8,
+            14
+          ],
+          "accentProfile": [
+            0.95,
+            0.7,
+            0.85,
+            0.7999999999999999
+          ],
+          "velocityProfile": [
+            0.87,
+            0.62,
+            0.77,
+            0.7200000000000001
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6
+          ]
+        },
+        {
+          "id": "funk-soul-bass-v-02",
+          "parentPatternId": "funk-soul-bass",
+          "name": "Motown Bass — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            4,
+            7,
+            8,
+            12,
+            14
+          ],
+          "accentProfile": [
+            0.96,
+            0.83,
+            0.86,
+            0.9299999999999999,
+            0.6599999999999999,
+            1
+          ],
+          "velocityProfile": [
+            1,
+            0.6799999999999999,
+            0.83,
+            0.8600000000000001,
+            0.63,
+            0.88
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5
+          ]
+        }
+      ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 2,
       "weight": 1,
-      "provenance": "Funk genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Funk catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "funk"
       ],
@@ -1322,14 +1885,73 @@ export const FUNK_WORLD: GenreWorld = {
         "chorus"
       ],
       "variants": [
-        
-        ],
+        {
+          "id": "funk-hihat-open-v-01",
+          "parentPatternId": "funk-hihat-open",
+          "name": "Open Hi-Hat — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            1,
+            5,
+            7
+          ],
+          "accentProfile": [
+            0.8999999999999999,
+            0.7999999999999999,
+            0.8999999999999999
+          ],
+          "velocityProfile": [
+            0.8200000000000001,
+            0.7200000000000001,
+            0.8200000000000001
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "funk-hihat-open-v-02",
+          "parentPatternId": "funk-hihat-open",
+          "name": "Open Hi-Hat — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            1,
+            3,
+            5,
+            7
+          ],
+          "accentProfile": [
+            0.9099999999999999,
+            0.9299999999999999,
+            0.9099999999999999,
+            0.98
+          ],
+          "velocityProfile": [
+            0.96,
+            0.78,
+            0.88,
+            0.9099999999999999
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5
+          ]
+        }
+      ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 1,
       "weight": 1,
-      "provenance": "Funk genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Funk catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "funk"
       ],
@@ -1428,13 +2050,45 @@ export const FUNK_WORLD: GenreWorld = {
             -3
           ]
         },
-        ],
+        {
+          "id": "funk-neo-soul-beat-v-02",
+          "parentPatternId": "funk-neo-soul-beat",
+          "name": "Neo-Soul Drag — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            5,
+            8,
+            13
+          ],
+          "accentProfile": [
+            0.96,
+            0.98,
+            0.71,
+            1
+          ],
+          "velocityProfile": [
+            1,
+            0.83,
+            0.6799999999999999,
+            0.96
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5
+          ]
+        }
+      ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 1,
       "weight": 1,
-      "provenance": "Funk genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Funk catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "funk"
       ],
@@ -1517,14 +2171,97 @@ export const FUNK_WORLD: GenreWorld = {
         "chorus"
       ],
       "variants": [
-        
-        ],
+        {
+          "id": "funk-wah-guitar-v-01",
+          "parentPatternId": "funk-wah-guitar",
+          "name": "Wah-Wah Guitar — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            4,
+            7,
+            10,
+            12
+          ],
+          "accentProfile": [
+            0.8999999999999999,
+            0.5499999999999999,
+            0.7999999999999999,
+            0.6499999999999999,
+            0.85
+          ],
+          "velocityProfile": [
+            0.8200000000000001,
+            0.47000000000000003,
+            0.7200000000000001,
+            0.5700000000000001,
+            0.77
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "funk-wah-guitar-v-02",
+          "parentPatternId": "funk-wah-guitar",
+          "name": "Wah-Wah Guitar — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            2,
+            4,
+            7,
+            8,
+            10,
+            12,
+            15
+          ],
+          "accentProfile": [
+            0.9099999999999999,
+            0.6799999999999999,
+            0.8099999999999999,
+            0.7799999999999999,
+            0.86,
+            0.73,
+            0.8099999999999999,
+            0.83
+          ],
+          "velocityProfile": [
+            0.96,
+            0.53,
+            0.78,
+            0.71,
+            0.83,
+            0.58,
+            0.8600000000000001,
+            0.6799999999999999
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5
+          ]
+        }
+      ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 3,
       "weight": 1,
-      "provenance": "Funk genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Funk catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "funk"
       ],
@@ -1636,9 +2373,92 @@ export const FUNK_WORLD: GenreWorld = {
         "phrasePosition"
       ],
       "variants": [
-        
-        ],
-      "provenance": "Funk genre-pack structural pattern; generalized for engine coverage and recombination, not a transcription of a single recording.",
+        {
+          "id": "funk-phrase-13-v-01",
+          "parentPatternId": "funk-phrase-13",
+          "name": "Vamp Phrase — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            4,
+            7,
+            11,
+            12
+          ],
+          "accentProfile": [
+            0.95,
+            0.69,
+            0.85,
+            0.63,
+            0.95
+          ],
+          "velocityProfile": [
+            0.92,
+            0.61,
+            0.8200000000000001,
+            0.6000000000000001,
+            0.87
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "funk-phrase-13-v-02",
+          "parentPatternId": "funk-phrase-13",
+          "name": "Vamp Phrase — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            3,
+            4,
+            7,
+            8,
+            11,
+            12,
+            15
+          ],
+          "accentProfile": [
+            0.96,
+            0.82,
+            0.86,
+            0.76,
+            0.96,
+            0.82,
+            0.86,
+            0.76
+          ],
+          "velocityProfile": [
+            1,
+            0.6699999999999999,
+            0.88,
+            0.74,
+            0.9299999999999999,
+            0.72,
+            0.96,
+            0.61
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5
+          ]
+        }
+      ],
+      "provenance": "GenreDAW catalog rebuild from existing Funk world data; generated to cover missing musical functions without runtime AI.",
       "authenticityTags": [
         "funk",
         "vamp"
@@ -1707,7 +2527,7 @@ export const FUNK_WORLD: GenreWorld = {
         0.57,
         0.95,
         0.62,
-        0.9,
+        0.8999999999999999,
         0.62,
         0.95,
         0.57
@@ -1742,10 +2562,148 @@ export const FUNK_WORLD: GenreWorld = {
         "phrasePosition"
       ],
       "variants": [
-        
-        
-        ],
-      "provenance": "Funk genre-pack structural pattern; generalized for engine coverage and recombination, not a transcription of a single recording.",
+        {
+          "id": "funk-call-14-v-01",
+          "parentPatternId": "funk-call-14",
+          "name": "Break Response — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            4,
+            5,
+            9,
+            12
+          ],
+          "accentProfile": [
+            0.8999999999999999,
+            0.57,
+            0.8999999999999999,
+            0.57,
+            0.8999999999999999
+          ],
+          "velocityProfile": [
+            0.87,
+            0.48999999999999994,
+            0.87,
+            0.54,
+            0.82
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "funk-call-14-v-02",
+          "parentPatternId": "funk-call-14",
+          "name": "Break Response — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            1,
+            4,
+            5,
+            8,
+            9,
+            12,
+            13
+          ],
+          "accentProfile": [
+            0.9099999999999999,
+            0.7,
+            0.9099999999999999,
+            0.7,
+            0.9099999999999999,
+            0.7,
+            0.9099999999999999,
+            0.7
+          ],
+          "velocityProfile": [
+            1,
+            0.5499999999999999,
+            0.9299999999999999,
+            0.6799999999999999,
+            0.8799999999999999,
+            0.6,
+            1,
+            0.5499999999999999
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5
+          ]
+        },
+        {
+          "id": "funk-call-14-v-03",
+          "parentPatternId": "funk-call-14",
+          "name": "Break Response — transition variation",
+          "variationType": "transition",
+          "probability": 0.16,
+          "description": "Adds a final pickup/closure gesture for section transitions.",
+          "onsetGrid": [
+            0,
+            1,
+            4,
+            5,
+            8,
+            9,
+            12,
+            13,
+            14,
+            15
+          ],
+          "accentProfile": [
+            0.9299999999999999,
+            0.6,
+            0.9299999999999999,
+            0.6,
+            0.9299999999999999,
+            0.6,
+            0.9299999999999999,
+            0.6,
+            1,
+            1
+          ],
+          "velocityProfile": [
+            0.95,
+            0.57,
+            0.95,
+            0.62,
+            0.8999999999999999,
+            0.62,
+            0.95,
+            0.57,
+            0.98,
+            0.98
+          ],
+          "microtimingOffset": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            -6,
+            -6
+          ]
+        }
+      ],
+      "provenance": "GenreDAW catalog rebuild from existing Funk world data; generated to cover missing musical functions without runtime AI.",
       "authenticityTags": [
         "funk",
         "break"
@@ -1853,9 +2811,92 @@ export const FUNK_WORLD: GenreWorld = {
         "phrasePosition"
       ],
       "variants": [
-        
-        ],
-      "provenance": "Funk genre-pack structural pattern; generalized for engine coverage and recombination, not a transcription of a single recording.",
+        {
+          "id": "funk-anchor-15-v-01",
+          "parentPatternId": "funk-anchor-15",
+          "name": "Pocket Anchor — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            1,
+            5,
+            6,
+            10,
+            13
+          ],
+          "accentProfile": [
+            0.95,
+            0.69,
+            0.85,
+            0.63,
+            0.95
+          ],
+          "velocityProfile": [
+            0.92,
+            0.61,
+            0.8200000000000001,
+            0.6000000000000001,
+            0.87
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "funk-anchor-15-v-02",
+          "parentPatternId": "funk-anchor-15",
+          "name": "Pocket Anchor — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            1,
+            2,
+            5,
+            6,
+            9,
+            10,
+            13,
+            14
+          ],
+          "accentProfile": [
+            0.96,
+            0.82,
+            0.86,
+            0.76,
+            0.96,
+            0.82,
+            0.86,
+            0.76
+          ],
+          "velocityProfile": [
+            1,
+            0.6699999999999999,
+            0.88,
+            0.74,
+            0.9299999999999999,
+            0.72,
+            0.96,
+            0.61
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5
+          ]
+        }
+      ],
+      "provenance": "GenreDAW catalog rebuild from existing Funk world data; generated to cover missing musical functions without runtime AI.",
       "authenticityTags": [
         "funk",
         "pocket"
@@ -1927,7 +2968,7 @@ export const FUNK_WORLD: GenreWorld = {
         0.95,
         0.74
       ],
-      "syncopationRating": 0.83,
+      "syncopationRating": 0.8333333333333334,
       "anticipationOffset": 0,
       "swingPercentage": 50,
       "articulations": [
@@ -1956,9 +2997,80 @@ export const FUNK_WORLD: GenreWorld = {
         "phrasePosition"
       ],
       "variants": [
-        
-        ],
-      "provenance": "Funk genre-pack structural pattern; generalized for engine coverage and recombination, not a transcription of a single recording.",
+        {
+          "id": "funk-comp-16-v-01",
+          "parentPatternId": "funk-comp-16",
+          "name": "Clav Comping — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            1,
+            6,
+            9,
+            14
+          ],
+          "accentProfile": [
+            0.95,
+            0.69,
+            0.85,
+            0.63
+          ],
+          "velocityProfile": [
+            0.92,
+            0.61,
+            0.8200000000000001,
+            0.6000000000000001
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6
+          ]
+        },
+        {
+          "id": "funk-comp-16-v-02",
+          "parentPatternId": "funk-comp-16",
+          "name": "Clav Comping — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            1,
+            4,
+            6,
+            9,
+            11,
+            14
+          ],
+          "accentProfile": [
+            0.96,
+            0.82,
+            0.86,
+            0.76,
+            0.96,
+            0.82
+          ],
+          "velocityProfile": [
+            1,
+            0.6699999999999999,
+            0.88,
+            0.74,
+            0.9299999999999999,
+            0.72
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5
+          ]
+        }
+      ],
+      "provenance": "GenreDAW catalog rebuild from existing Funk world data; generated to cover missing musical functions without runtime AI.",
       "authenticityTags": [
         "funk",
         "clav"
@@ -2026,7 +3138,7 @@ export const FUNK_WORLD: GenreWorld = {
         0.9,
         0.58
       ],
-      "syncopationRating": 0.67,
+      "syncopationRating": 0.6666666666666666,
       "anticipationOffset": 0,
       "swingPercentage": 50,
       "articulations": [
@@ -2095,8 +3207,48 @@ export const FUNK_WORLD: GenreWorld = {
             -4
           ]
         },
-        ],
-      "provenance": "Genre-pack structural pattern for dedicated vocal phrasing coverage for Funk; generalized for engine coverage, not a transcription.",
+        {
+          "id": "funk-voice-phrasing-v-final-accent",
+          "parentPatternId": "funk-voice-phrasing",
+          "name": "Funk Vocal Phrasing — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.18,
+          "description": "Same rhythmic shape with shifted emphasis on the repeat.",
+          "onsetGrid": [
+            0,
+            3,
+            5,
+            8,
+            11,
+            14
+          ],
+          "accentProfile": [
+            0.8999999999999999,
+            0.7,
+            0.8999999999999999,
+            0.7,
+            0.8999999999999999,
+            0.7
+          ],
+          "velocityProfile": [
+            0.9,
+            0.58,
+            0.9,
+            0.58,
+            0.9,
+            0.58
+          ],
+          "microtimingOffset": [
+            2,
+            -4,
+            2,
+            -4,
+            2,
+            -4
+          ]
+        }
+      ],
+      "provenance": "GenreDAW catalog rebuild: dedicated vocal phrasing coverage for Funk.",
       "authenticityTags": [
         "funk",
         "voice"

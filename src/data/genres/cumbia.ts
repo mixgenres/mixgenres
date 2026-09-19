@@ -52,9 +52,9 @@ export const CUMBIA_WORLD : GenreWorld = {
       "tuningSystem": "12-tet",
       "signatureCell": "Tambor/guacharaca interlock with a repeating gaita phrase",
       "grooveMechanics": {
-        "swingPercentage": 52,
-        "anticipationOffsetSteps": 1,
-        "microtimingFeel": "laid-back",
+        "swingPercentage": 50,
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "straight",
         "humanizeJitterMs": 9
       },
       "sectionProgressions": {
@@ -180,9 +180,9 @@ export const CUMBIA_WORLD : GenreWorld = {
       "tuningSystem": "12-tet",
       "signatureCell": "Tremolo electric-guitar melody riding a cumbia bass/drum cycle",
       "grooveMechanics": {
-        "swingPercentage": 51,
-        "anticipationOffsetSteps": 1,
-        "microtimingFeel": "laid-back",
+        "swingPercentage": 50,
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "straight",
         "humanizeJitterMs": 7
       }
     }
@@ -342,7 +342,7 @@ export const CUMBIA_WORLD : GenreWorld = {
         ]
       }
     ],
-    "provenance": "Genre-pack structural pattern authored from documented rhythmic and ensemble conventions; generalized for engine recombination.",
+    "provenance": "GenreDAW catalog extension: authored from documented rhythmic/ensemble conventions and expressed as engine-ready structural cells.",
     "authenticityTags": [
       "cumbia",
       "bass",
@@ -477,7 +477,7 @@ export const CUMBIA_WORLD : GenreWorld = {
         ]
       }
     ],
-    "provenance": "Genre-pack structural pattern authored from documented rhythmic and ensemble conventions; generalized for engine recombination.",
+    "provenance": "GenreDAW catalog extension: authored from documented rhythmic/ensemble conventions and expressed as engine-ready structural cells.",
     "authenticityTags": [
       "cumbia",
       "tambora",
@@ -634,7 +634,7 @@ export const CUMBIA_WORLD : GenreWorld = {
         ]
       }
     ],
-    "provenance": "Genre-pack structural pattern authored from documented rhythmic and ensemble conventions; generalized for engine recombination.",
+    "provenance": "GenreDAW catalog extension: authored from documented rhythmic/ensemble conventions and expressed as engine-ready structural cells.",
     "authenticityTags": [
       "guacharaca",
       "scraper",
@@ -782,7 +782,7 @@ export const CUMBIA_WORLD : GenreWorld = {
         ]
       }
     ],
-    "provenance": "Genre-pack structural pattern authored from documented rhythmic and ensemble conventions; generalized for engine recombination.",
+    "provenance": "GenreDAW catalog extension: authored from documented rhythmic/ensemble conventions and expressed as engine-ready structural cells.",
     "authenticityTags": [
       "chicha",
       "tremolo",
@@ -913,7 +913,7 @@ export const CUMBIA_WORLD : GenreWorld = {
         ]
       }
     ],
-    "provenance": "Genre-pack structural pattern authored from documented rhythmic and ensemble conventions; generalized for engine recombination.",
+    "provenance": "GenreDAW catalog extension: authored from documented rhythmic/ensemble conventions and expressed as engine-ready structural cells.",
     "authenticityTags": [
       "cumbia",
       "hook",
@@ -995,7 +995,7 @@ export const CUMBIA_WORLD : GenreWorld = {
       "phrasePosition"
     ],
     "variants": [],
-    "provenance": "Genre-pack structural pattern based on Colombian Cumbia; generalized for engine recombination, not literal transcription.",
+    "provenance": "Authored genre-pack pattern based on Colombian Cumbia; designed for engine-level recombination rather than literal transcription.",
     "authenticityTags": [
       "tumbao",
       "bass"
@@ -1011,7 +1011,7 @@ export const CUMBIA_WORLD : GenreWorld = {
   {
     "id": "cu-07-tambor-alegre-reply",
     "worldId": "cumbia",
-    "traditionId": "cumbia-colombian",
+    "traditionId": "cumbia-electric",
     "name": "Tambor Alegre Reply",
     "family": "Colombian Cumbia",
     "category": "groove",
@@ -1080,7 +1080,7 @@ export const CUMBIA_WORLD : GenreWorld = {
       "phrasePosition"
     ],
     "variants": [],
-    "provenance": "Genre-pack structural pattern based on Colombian Cumbia; generalized for engine recombination, not literal transcription.",
+    "provenance": "Authored genre-pack pattern based on Colombian Cumbia; designed for engine-level recombination rather than literal transcription.",
     "authenticityTags": [
       "tambor",
       "call-response"
@@ -1096,7 +1096,7 @@ export const CUMBIA_WORLD : GenreWorld = {
   {
     "id": "cu-08-guacharaca-scrape",
     "worldId": "cumbia",
-    "traditionId": "cumbia-colombian",
+    "traditionId": "cumbia-electric",
     "name": "Guacharaca reverse accent cycle",
     "family": "Colombian Cumbia",
     "category": "ostinato",
@@ -1169,7 +1169,7 @@ export const CUMBIA_WORLD : GenreWorld = {
       "phrasePosition"
     ],
     "variants": [],
-    "provenance": "Genre-pack structural pattern based on Colombian Cumbia; generalized for engine recombination, not literal transcription.",
+    "provenance": "Authored genre-pack pattern based on Colombian Cumbia; designed for engine-level recombination rather than literal transcription.",
     "authenticityTags": [
       "guacharaca",
       "scrape"
@@ -1185,7 +1185,7 @@ export const CUMBIA_WORLD : GenreWorld = {
   {
     "id": "cu-09-cumbia-guitar-offbeat",
     "worldId": "cumbia",
-    "traditionId": "cumbia-chicha",
+    "traditionId": "cumbia-electric",
     "name": "Cumbia guitar anticipations",
     "family": "Cumbia Guitar",
     "category": "cell",
@@ -1247,7 +1247,7 @@ export const CUMBIA_WORLD : GenreWorld = {
       "phrasePosition"
     ],
     "variants": [],
-    "provenance": "Genre-pack structural pattern based on Cumbia Guitar; generalized for engine recombination, not literal transcription.",
+    "provenance": "Authored genre-pack pattern based on Cumbia Guitar; designed for engine-level recombination rather than literal transcription.",
     "authenticityTags": [
       "offbeat guitar",
       "cumbia"
@@ -1263,7 +1263,7 @@ export const CUMBIA_WORLD : GenreWorld = {
   {
     "id": "cu-10-chicha-tremolo-figure",
     "worldId": "cumbia",
-    "traditionId": "cumbia-chicha",
+    "traditionId": "cumbia-electric",
     "name": "Chicha Tremolo Figure",
     "family": "Peruvian Cumbia / Chicha",
     "category": "ostinato",
@@ -1341,7 +1341,7 @@ export const CUMBIA_WORLD : GenreWorld = {
       "phrasePosition"
     ],
     "variants": [],
-    "provenance": "Genre-pack structural pattern based on Peruvian Cumbia / Chicha; generalized for engine recombination, not literal transcription.",
+    "provenance": "Authored genre-pack pattern based on Peruvian Cumbia / Chicha; designed for engine-level recombination rather than literal transcription.",
     "authenticityTags": [
       "chicha",
       "tremolo"
@@ -1357,7 +1357,7 @@ export const CUMBIA_WORLD : GenreWorld = {
   {
     "id": "cu-11-cumbia-organ-hook",
     "worldId": "cumbia",
-    "traditionId": "cumbia-villera",
+    "traditionId": "cumbia-electric",
     "name": "Cumbia Organ Hook",
     "family": "Electric Cumbia",
     "category": "rolePattern",
@@ -1421,7 +1421,7 @@ export const CUMBIA_WORLD : GenreWorld = {
       "phrasePosition"
     ],
     "variants": [],
-    "provenance": "Genre-pack structural pattern based on Electric Cumbia; generalized for engine recombination, not literal transcription.",
+    "provenance": "Authored genre-pack pattern based on Electric Cumbia; designed for engine-level recombination rather than literal transcription.",
     "authenticityTags": [
       "organ",
       "hook"
@@ -1437,7 +1437,7 @@ export const CUMBIA_WORLD : GenreWorld = {
   {
     "id": "cu-12-cumbia-maraca-layer",
     "worldId": "cumbia",
-    "traditionId": "cumbia-colombian",
+    "traditionId": "cumbia-electric",
     "name": "Maraca offbeat shimmer",
     "family": "Percussion",
     "category": "ostinato",
@@ -1506,7 +1506,7 @@ export const CUMBIA_WORLD : GenreWorld = {
       "phrasePosition"
     ],
     "variants": [],
-    "provenance": "Genre-pack structural pattern based on Percussion; generalized for engine recombination, not literal transcription.",
+    "provenance": "Authored genre-pack pattern based on Percussion; designed for engine-level recombination rather than literal transcription.",
     "authenticityTags": [
       "maracas",
       "texture"
@@ -1522,7 +1522,7 @@ export const CUMBIA_WORLD : GenreWorld = {
   {
     "id": "cu-13-cumbia-call-and-response",
     "worldId": "cumbia",
-    "traditionId": "cumbia-colombian",
+    "traditionId": "cumbia-electric",
     "name": "Cumbia Call-and-Response",
     "family": "Melody",
     "category": "interactionPattern",
@@ -1604,7 +1604,7 @@ export const CUMBIA_WORLD : GenreWorld = {
       "phrasePosition"
     ],
     "variants": [],
-    "provenance": "Genre-pack structural pattern based on Melody; generalized for engine recombination, not literal transcription.",
+    "provenance": "Authored genre-pack pattern based on Melody; designed for engine-level recombination rather than literal transcription.",
     "authenticityTags": [
       "call-response"
     ],
@@ -1619,7 +1619,7 @@ export const CUMBIA_WORLD : GenreWorld = {
   {
     "id": "cu-14-cumbia-stop-break",
     "worldId": "cumbia",
-    "traditionId": "cumbia-villera",
+    "traditionId": "cumbia-electric",
     "name": "Cumbia Stop Break",
     "family": "Break",
     "category": "break",
@@ -1677,7 +1677,7 @@ export const CUMBIA_WORLD : GenreWorld = {
       "phrasePosition"
     ],
     "variants": [],
-    "provenance": "Genre-pack structural pattern based on Break; generalized for engine recombination, not literal transcription.",
+    "provenance": "Authored genre-pack pattern based on Break; designed for engine-level recombination rather than literal transcription.",
     "authenticityTags": [
       "stop-time",
       "re-entry"
@@ -1693,7 +1693,7 @@ export const CUMBIA_WORLD : GenreWorld = {
   {
     "id": "cu-15-cumbia-final-tag",
     "worldId": "cumbia",
-    "traditionId": "cumbia-villera",
+    "traditionId": "cumbia-electric",
     "name": "Cumbia Final Tag",
     "family": "Cadence",
     "category": "cadence",
@@ -1753,7 +1753,7 @@ export const CUMBIA_WORLD : GenreWorld = {
       "phrasePosition"
     ],
     "variants": [],
-    "provenance": "Genre-pack structural pattern based on Cadence; generalized for engine recombination, not literal transcription.",
+    "provenance": "Authored genre-pack pattern based on Cadence; designed for engine-level recombination rather than literal transcription.",
     "authenticityTags": [
       "tag",
       "cadence"
@@ -1764,68 +1764,6 @@ export const CUMBIA_WORLD : GenreWorld = {
     "tuningSystem": "12-tet",
     "difficulty": 2,
     "weight": 0.82,
-    "enabled": true
-  },
-  {
-    "id": "cu-villera-synth-bass",
-    "worldId": "cumbia",
-    "traditionId": "cumbia-villera",
-    "name": "Villera Octave Synth Bass",
-    "family": "Bass",
-    "category": "groove",
-    "description": "Aggressive, punchy synth bass bouncing in octaves on the upbeat and downbeat of the cumbia tempo.",
-    "tags": ["villera", "synth", "bass", "cumbia"],
-    "scopes": ["measure", "phrase", "region", "track"],
-    "roles": ["bass"],
-    "instruments": ["bass", "synth"],
-    "meter": "4/4",
-    "cycleLength": 1,
-    "subdivisions": 16,
-    "onsetGrid": [0, 4, 6, 8, 12, 14],
-    "accentProfile": [1.0, 0.7, 0.9, 1.0, 0.7, 0.9],
-    "velocityProfile": [0.95, 0.65, 0.85, 0.95, 0.65, 0.85],
-    "articulations": ["staccato", "accented"],
-    "density": "medium",
-    "phrasePosition": ["start", "middle", "end"],
-    "sectionUsage": ["verse", "chorus"],
-    "variants": [],
-    "provenance": "Authored for Argentine Cumbia Villera tradition.",
-    "authenticityTags": ["villera", "bass"],
-    "danceTags": ["social-partner"],
-    "tuningSystem": "12-tet",
-    "difficulty": 2,
-    "weight": 1,
-    "enabled": true
-  },
-  {
-    "id": "cu-chicha-pentatonic-bass",
-    "worldId": "cumbia",
-    "traditionId": "cumbia-chicha",
-    "name": "Chicha Walking Pentatonic Bass",
-    "family": "Bass",
-    "category": "groove",
-    "description": "Melodic Andean pentatonic electric bass line walking between root, fifth, and minor thirds.",
-    "tags": ["chicha", "bass", "andean", "cumbia"],
-    "scopes": ["measure", "phrase", "region", "track"],
-    "roles": ["bass"],
-    "instruments": ["bass", "electric-bass"],
-    "meter": "4/4",
-    "cycleLength": 1,
-    "subdivisions": 16,
-    "onsetGrid": [0, 3, 6, 8, 11, 14],
-    "accentProfile": [1.0, 0.7, 0.85, 1.0, 0.7, 0.85],
-    "velocityProfile": [0.9, 0.65, 0.8, 0.9, 0.65, 0.8],
-    "articulations": ["legato", "syncopated"],
-    "density": "medium",
-    "phrasePosition": ["start", "middle", "end"],
-    "sectionUsage": ["verse", "chorus", "solo"],
-    "variants": [],
-    "provenance": "Authored for Peruvian Chicha tradition.",
-    "authenticityTags": ["chicha", "bass"],
-    "danceTags": ["social-partner"],
-    "tuningSystem": "12-tet",
-    "difficulty": 2,
-    "weight": 1,
     "enabled": true
   }
 ],

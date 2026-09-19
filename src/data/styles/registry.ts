@@ -1,4 +1,4 @@
-import { SongStyle, StyleKind, HarmonyGrammar } from './schema';
+import { SongStyle, StyleKind, HarmonyGrammar, FormGrammar, FormStepTemplate } from './schema';
 import { GENRE_WORLDS, GENRE_WORLDS_BY_ID } from '../genres';
 import { GENRE_FORMS, PROGRESSIONS, TEMPOS } from '../genreForms';
 import { ROOM_BY_WORLD } from '../../engine/mixer';
@@ -10,6 +10,94 @@ const STYLES_CATALOG: SongStyle[] = [];
 
 // Curated specialized style families requested by prompt
 const SPECIALIZED_STYLES: SongStyle[] = [
+  // --- FLAMENCO: keep Rumba and Sevillanas as separate, first-class song styles ---
+  {
+    id: 'flamenco-rumba',
+    name: 'Rumba Flamenca',
+    aliases: ['Rumba Gitana', 'Rumba Catalana'],
+    genres: ['flamenco'], primaryGenre: 'flamenco', kind: 'canonical', canonical: false,
+    summary: 'Dance-forward flamenco rumba with continuous rasgueado/abanico guitar, cajón and palmas interlock, bass propulsion, vocal refrains, and bright instrumental turnarounds.',
+    signatureTraits: ['Continuous abanico/rasgueado', 'Cajón + palmas interlock', 'Rumba bass movement', 'Andalusian cadence', 'Instrumental turnarounds'],
+    era: 'Traditional / modern rumba', region: 'Spain / Catalan and Gitano traditions', confidence: 'high',
+    form: {
+      sectionVocab: ['intro','verse','chorus','instrumental','breakdown','coda'],
+      templates: [{ w: 1, value: [
+        { key:'intro', label:'Guitar Intro / Rasgueado', kind:'intro', bars:8, intensity:'low' },
+        { key:'verse-1', label:'Copla / Verse 1', kind:'verse', bars:16, intensity:'medium' },
+        { key:'coro-1', label:'Coro / Hook 1', kind:'chorus', bars:12, intensity:'high' },
+        { key:'verse-2', label:'Copla / Verse 2', kind:'verse', bars:16, intensity:'medium' },
+        { key:'instrumental', label:'Guitar / Flute Turnaround', kind:'solo', bars:12, intensity:'peak' },
+        { key:'breakdown', label:'Palmas + Cajón Break', kind:'breakdown', bars:8, intensity:'low' },
+        { key:'coro-final', label:'Final Coro / Jaleo', kind:'chorus', bars:16, intensity:'peak' },
+        { key:'coda', label:'Rasgueado Coda', kind:'coda', bars:4, intensity:'low' },
+      ]}],
+      preferredMeters:['4/4'],
+    },
+    harmony: {
+      model:'functional', modePolicy:'phrygian',
+      progressionTemplates:[
+        { w:1, value:['Am','G','F','E7'] },
+        { w:.8, value:['Am','Dm','G','C','F','E7','Am','E7'] },
+        { w:.6, value:['A','G','F','E7'] },
+      ],
+      sectionProgressions:{
+        intro:['Am','G','F','E7'], verse:['Am','G','F','E7','Am','G','F','E7'],
+        chorus:['C','F','E7','Am','C','F','E7','Am'], solo:['Am','G','F','E7'],
+        breakdown:['Am','Am','E7','E7'], coda:['E7','E7','Am','Am']
+      },
+      chordVocabulary:['Am','A','C','Dm','F','G','E7','A7'], harmonicRhythm:'1-bar',
+      voicingStyle:'open-flamenco-guitar', bassMotion:'syncopated', tuningSystem:'12-tet',
+    },
+    rhythm:{ meter:'4/4', tempoRange:[100,135], defaultBpm:120, feel:'continuous-rasgueado', swingPercentage:52, anticipationOffsetSteps:0, microtimingFeel:'straight', humanizeJitterMs:7, signatureCell:'Abanico/rasgueado with cajón slap and palmas counter-rhythm' },
+    melody:{ scaleMode:'phrygian', phraseLengthsBars:[4,8], contourArchetypes:['flamenco-arch','descending-cadence','call-and-response'], ornamentVocabulary:['slide','grace-note','mordent','vibrato','picado'], chordToneTargeting:true, callAndResponse:true },
+    arrangement:{
+      ensemble:[
+        {role:'harmony',instrumentIds:['guitar'],priority:10},{role:'bass',instrumentIds:['bass','upright-bass'],priority:9},
+        {role:'percussion',instrumentIds:['cajon'],priority:9},{role:'percussion',instrumentIds:['palmas'],priority:8},
+        {role:'melody',instrumentIds:['voice','flute'],priority:7},{role:'melody',instrumentIds:['flute','guitar'],priority:6},
+        {role:'percussion',instrumentIds:['castanets'],priority:4}
+      ],
+      densityCurve:{intro:'sparse','verse-1':'normal','coro-1':'busy','verse-2':'normal',instrumental:'busy',breakdown:'sparse','coro-final':'busy',coda:'sparse'},
+      solos:['guitar','flute']
+    },
+    sound:{ instrumentPalette:[
+      {value:'guitar',w:1},{value:'cajon',w:.95},{value:'palmas',w:.85},{value:'bass',w:.8},{value:'voice',w:.75},{value:'flute',w:.55},{value:'castanets',w:.35}
+    ], articulations:{guitar:'rasgueado, abanico, golpe, muted-chuck',cajon:'grave/agudo/slap',palmas:'sordas/claras'}, masterProfile:{roomId:'studio',pocket:.55,lift:.65} },
+    patterns:{require:['flam-abanico-strum','flamenco-cajon-rumba'],avoid:[]},
+    gestures:{abanico:{id:'abanico',name:'Abanico fan strum',probability:.95},rumba_fill:{id:'rumba_fill',name:'Rumba turnaround',probability:.75},jaleo:{id:'jaleo',name:'Jaleo / final accents',probability:.7}},
+    rules:{require:[{tag:'flamenco'},{tag:'rumba'}],forbid:[{tag:'sevillanas'}]}
+  },
+  {
+    id: 'flamenco-sevillanas',
+    name: 'Sevillanas',
+    aliases: ['Sevillanas en Cuatro Coplas'],
+    genres:['flamenco'], primaryGenre:'flamenco', kind:'canonical', canonical:false,
+    summary:'Traditional Sevillanas dance form: four distinct coplas, bright 3/4 pulse, guitar rasgueado, palmas, castanets, voice, and strongly cadential phrase endings.',
+    signatureTraits:['Four-copla architecture','3/4 dance pulse','Guitar rasgueado','Palmas + castanets','Strong copla cadences'],
+    era:'Traditional / Andalusian dance repertory', region:'Seville and western Andalusia', confidence:'high',
+    form:{ sectionVocab:['intro','copla','transition','breakdown','coda'], templates:[{w:1,value:[
+      {key:'intro',label:'Introducción',kind:'intro',bars:4,intensity:'low'},
+      {key:'copla-1',label:'Primera Copla',kind:'verse',bars:12,intensity:'medium'},
+      {key:'copla-2',label:'Segunda Copla',kind:'verse',bars:12,intensity:'high'},
+      {key:'copla-3',label:'Tercera Copla',kind:'verse',bars:12,intensity:'high'},
+      {key:'copla-4',label:'Cuarta Copla / Final',kind:'chorus',bars:12,intensity:'peak'},
+      {key:'coda',label:'Remate Final',kind:'coda',bars:4,intensity:'low'}
+    ]}], preferredMeters:['3/4','6/8'] },
+    harmony:{model:'functional',modePolicy:'major',progressionTemplates:[
+      {w:1,value:['A','D','E7','A']},{w:.8,value:['A','E7','A','D','A','E7','A','A']},{w:.6,value:['Dm','G','C','A7','Dm','E7','A','A']}
+    ],sectionProgressions:{intro:['A','E7','A','A'],verse:['A','D','E7','A'],chorus:['D','A','E7','A'],coda:['E7','E7','A','A']},chordVocabulary:['A','D','E7','A7','Bm','C#m','F#m','G'],harmonicRhythm:'1-bar',voicingStyle:'open-guitar',bassMotion:'root-fifth',tuningSystem:'12-tet'},
+    rhythm:{meter:'3/4',tempoRange:[100,125],defaultBpm:116,feel:'sevillanas-waltz',swingPercentage:50,anticipationOffsetSteps:0,microtimingFeel:'straight',humanizeJitterMs:6,signatureCell:'3/4 sevillanas pulse with rasgueado, palmas and castanet punctuation'},
+    melody:{scaleMode:'major',phraseLengthsBars:[4,6,12],contourArchetypes:['dance-arch','call-and-response','cadential-turn'],ornamentVocabulary:['grace-note','slide','vibrato'],chordToneTargeting:true,callAndResponse:true},
+    arrangement:{ensemble:[
+      {role:'harmony',instrumentIds:['guitar'],priority:10},{role:'percussion',instrumentIds:['palmas'],priority:9},{role:'percussion',instrumentIds:['castanets'],priority:8},
+      {role:'bass',instrumentIds:['bass','upright-bass'],priority:6},{role:'melody',instrumentIds:['voice'],priority:7},{role:'percussion',instrumentIds:['cajon'],priority:5}
+    ],densityCurve:{intro:'sparse','copla-1':'normal','copla-2':'normal','copla-3':'busy','copla-4':'busy',coda:'sparse'},solos:['guitar']},
+    sound:{instrumentPalette:[{value:'guitar',w:1},{value:'palmas',w:.95},{value:'castanets',w:.8},{value:'voice',w:.8},{value:'cajon',w:.55},{value:'bass',w:.45}],articulations:{guitar:'rasgueado, golpe, muted-chuck',castanets:'clean-dry'},masterProfile:{roomId:'studio',pocket:.52,lift:.58}},
+    patterns:{require:['flam-abanico-strum'],avoid:['flamenco-cajon-rumba']},
+    gestures:{sevillanas_remate:{id:'sevillanas_remate',name:'Copla remate',probability:.95},castanet_accent:{id:'castanet_accent',name:'Castanet accent',probability:.8},palmas_clara:{id:'palmas_clara',name:'Palmas claras',probability:.9}},
+    rules:{require:[{tag:'flamenco'}],forbid:[{tag:'rumba'}]}
+  },
+
   // --- TANGO ---
   {
     id: 'tango-clasico',
@@ -1372,6 +1460,75 @@ function classifyStyleKind(name: string, description: string): StyleKind {
  * generic musical grammar. The tradition remains the source of truth for
  * meter, tempo, instruments, concepts, progressions and patterns.
  */
+
+function styleFormForTradition(worldId: string, tradition: any, baseForm: any): FormGrammar['templates'] {
+  const name = String(tradition.name || '').toLowerCase();
+  const text = [name, ...(tradition.keySubstyles || []), ...(tradition.coreConcepts || [])].join(' ').toLowerCase();
+  const T = (steps: FormStepTemplate[]) => [{ w: 1, value: steps }];
+
+  // Flamenco forms are palo-specific architectures, not a generic verse/chorus loop.
+  if (worldId === 'flamenco') {
+    if (/sevillana/.test(text)) return T([
+      {key:'intro',label:'Introducción',kind:'intro',bars:4,intensity:'low'},
+      {key:'copla-1',label:'Primera Copla',kind:'verse',bars:12,intensity:'medium'},
+      {key:'copla-2',label:'Segunda Copla',kind:'verse',bars:12,intensity:'high'},
+      {key:'copla-3',label:'Tercera Copla',kind:'verse',bars:12,intensity:'high'},
+      {key:'copla-4',label:'Cuarta Copla / Final',kind:'chorus',bars:12,intensity:'peak'},
+      {key:'coda',label:'Remate Final',kind:'coda',bars:4,intensity:'low'},
+    ]);
+    if (/rumba/.test(text)) return T([
+      {key:'intro',label:'Rasgueado Intro',kind:'intro',bars:8,intensity:'low'},
+      {key:'verse-1',label:'Copla 1',kind:'verse',bars:16,intensity:'medium'},
+      {key:'coro-1',label:'Coro / Jaleo',kind:'chorus',bars:12,intensity:'high'},
+      {key:'verse-2',label:'Copla 2',kind:'verse',bars:16,intensity:'medium'},
+      {key:'instrumental',label:'Instrumental / Falseta',kind:'solo',bars:12,intensity:'peak'},
+      {key:'breakdown',label:'Palmas + Cajón Break',kind:'breakdown',bars:8,intensity:'low'},
+      {key:'coro-final',label:'Coro Final / Remate',kind:'chorus',bars:16,intensity:'peak'},
+      {key:'coda',label:'Rasgueado Coda',kind:'coda',bars:4,intensity:'low'},
+    ]);
+    if (/buler[ií]a/.test(text)) return T([
+      {key:'intro',label:'Compás / Llamada',kind:'intro',bars:4,intensity:'medium'},
+      {key:'letra-1',label:'Letra 1',kind:'verse',bars:12,intensity:'high'},
+      {key:'falseta',label:'Falseta',kind:'solo',bars:12,intensity:'peak'},
+      {key:'letra-2',label:'Letra 2',kind:'verse',bars:12,intensity:'high'},
+      {key:'jaleo',label:'Jaleo / Remates',kind:'chorus',bars:8,intensity:'peak'},
+      {key:'cierre',label:'Cierre',kind:'coda',bars:4,intensity:'low'},
+    ]);
+    if (/tangos|tientos/.test(text)) return T([
+      {key:'intro',label:'Entrada / Compás',kind:'intro',bars:4,intensity:'low'},
+      {key:'letra-1',label:'Letra 1',kind:'verse',bars:16,intensity:'medium'},
+      {key:'llamada',label:'Llamada',kind:'bridge',bars:4,intensity:'high'},
+      {key:'letra-2',label:'Letra 2',kind:'verse',bars:16,intensity:'high'},
+      {key:'falseta',label:'Falseta / Variación',kind:'solo',bars:12,intensity:'peak'},
+      {key:'remate',label:'Remate',kind:'coda',bars:4,intensity:'low'},
+    ]);
+    if (/sole[áa]|canti[ñn]as|ca[ñn]a|polo/.test(text)) return T([
+      {key:'intro',label:'Entrada / Falseta',kind:'intro',bars:8,intensity:'low'},
+      {key:'letra-1',label:'Letra 1',kind:'verse',bars:12,intensity:'medium'},
+      {key:'falseta-1',label:'Falseta / Variación',kind:'solo',bars:12,intensity:'high'},
+      {key:'letra-2',label:'Letra 2',kind:'verse',bars:12,intensity:'high'},
+      {key:'llamada',label:'Llamada',kind:'bridge',bars:4,intensity:'peak'},
+      {key:'remate',label:'Remate / Cierre',kind:'coda',bars:4,intensity:'low'},
+    ]);
+  }
+
+  // Preserve the world's authored form as the base, but give traditions with strong
+  // instrumental/solo vocabulary a real development section instead of a flat loop.
+  const base = baseForm?.steps?.map((x: any) => ({...x})) ?? [];
+  if (!base.length) return [];
+  const hasSolo = /solo|falseta|variation|variaci|instrumental|improvis/.test(text);
+  const hasBreak = /break|corte|drop|bridge|mambo|montuno|call|response|coro/.test(text);
+  if (hasSolo && !base.some((x:any) => x.kind === 'solo')) {
+    const at = Math.max(1, base.length - 2);
+    base.splice(at, 0, {key:'instrumental',label:'Instrumental Variation',kind:'solo',bars:8,intensity:'high'});
+  }
+  if (hasBreak && !base.some((x:any) => x.kind === 'breakdown' || x.kind === 'bridge')) {
+    const at = Math.max(1, base.length - 1);
+    base.splice(at, 0, {key:'break',label:'Break / Turnaround',kind:'breakdown',bars:4,intensity:'low'});
+  }
+  return [{w:1,value:base}];
+}
+
 function traditionToStyle(worldId: string, tradition: any, index: number): SongStyle {
   const world = GENRE_WORLDS_BY_ID[worldId];
   const formDef = GENRE_FORMS[worldId] || { steps: [] };
@@ -1423,12 +1580,7 @@ function traditionToStyle(worldId: string, tradition: any, index: number): SongS
     region: tradition.origin || world?.name || 'Global',
     form: {
       sectionVocab: ['intro', 'verse', 'chorus', 'bridge', 'solo', 'coda'],
-      templates: formDef.steps?.length ? [{
-        w: 1.0,
-        value: formDef.steps.map(s => ({
-          key: s.key, label: s.label, kind: s.kind, bars: s.bars, intensity: s.intensity,
-        })),
-      }] : [],
+      templates: styleFormForTradition(worldId, tradition, formDef),
       preferredMeters: tradition.preferredMeters || [meter],
     },
     harmony: {
@@ -1495,6 +1647,10 @@ for (const style of SPECIALIZED_STYLES) {
 for (const world of GENRE_WORLDS) {
   if (Array.isArray(world.traditions) && world.traditions.length > 0) {
     world.traditions.forEach((trad, idx) => {
+      // The old combined flamenco tradition is retained in the raw world pack for
+      // backward compatibility, but it must not remain a selectable Song Style:
+      // Rumba Flamenca and Sevillanas now have independent grammars above.
+      if (world.id === 'flamenco' && trad.id === 'flamenco-rumba-sevillanas') return;
       if (!registeredIds.has(trad.id)) {
         const style = traditionToStyle(world.id, trad, idx);
         // If the genre doesn't have a canonical style yet, mark the first one as canonical

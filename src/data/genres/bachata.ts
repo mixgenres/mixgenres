@@ -6,7 +6,7 @@ export const BACHATA_WORLD: GenreWorld = {
   "family": "Caribbean / Latin Dance",
   "color": "#d2768e",
   "level": "world",
-  "description": "Dominican dance tradition defined by Bachata’s 3 structural gears (Derecho verse, Majao chorus, Mambo solo breakdown), lead requinto ornamentation, and high-octane Merengue Típico & Orquesta rhythm sections.",
+  "description": "Dominican and Latin dance tradition defined by Bachata’s 3 structural gears (Derecho verse, Majao chorus, Mambo solo breakdown), lead requinto picking, Merengue tambora/sax jaleos, and hypnotic Colombian Cumbia grooves.",
   "traditions": [
     {
       "id": "latin-bachata",
@@ -161,6 +161,70 @@ export const BACHATA_WORLD: GenreWorld = {
           "F",
           "G7",
           "C"
+        ]
+      }
+    },
+    {
+      "id": "latin-cumbia",
+      "worldId": "bachata",
+      "name": "Cumbia (Colombiana & Pan-Latina)",
+      "origin": "Caribbean coast of Colombia & Pan-Latin America",
+      "era": "1800s–Present",
+      "description": "Hypnotic swaying 2/4 rhythm featuring the scraping guacharaca/maracón, syncopated bass on beat 2-and, and cheerful accordion or flute counterlines.",
+      "characteristicInstruments": [
+        "accordion",
+        "flute",
+        "bass",
+        "percussion",
+        "guitar",
+        "guiro"
+      ],
+      "preferredMeters": [
+        "2/4",
+        "4/4"
+      ],
+      "tempoRange": [
+        85,
+        110
+      ],
+      "keySubstyles": [
+        "Cumbia Tradicional (Gaita)",
+        "Cumbia Colombiana",
+        "Cumbia Villera",
+        "Cumbia Sonidera"
+      ],
+      "coreConcepts": [
+        "guacharaca / maracón scrape",
+        "llamador offbeat pulse",
+        "tambor alegre improvisation",
+        "walking cumbia bass"
+      ],
+      "rhythmicGrammar": [
+        "bass landing heavily on beat 2-and (syncopated lift)",
+        "guacharaca chucu-chucu scrape"
+      ],
+      "danceTags": [
+        "social-partner"
+      ],
+      "tuningSystem": "12-tet",
+      "signatureCell": "Bass hit on beat 2-and syncopated lift",
+      "grooveMechanics": {
+        "swingPercentage": 52,
+        "anticipationOffsetSteps": 1,
+        "microtimingFeel": "laid-back"
+      },
+      "sectionProgressions": {
+        "verse": [
+          "Am",
+          "Dm",
+          "E7",
+          "Am"
+        ],
+        "chorus": [
+          "C",
+          "G",
+          "F",
+          "E7"
         ]
       }
     }
@@ -446,7 +510,7 @@ export const BACHATA_WORLD: GenreWorld = {
       ],
       "difficulty": 3,
       "weight": 0.7,
-      "provenance": "Bachata genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Bachata catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "bachata"
       ],
@@ -479,18 +543,18 @@ export const BACHATA_WORLD: GenreWorld = {
       ]
     },
     {
-      "id": "bachata-mambo-bass-drive",
+      "id": "cumbia-bass-groove",
       "worldId": "bachata",
-      "traditionId": "latin-bachata",
-      "name": "Bass Mambo Drive",
-      "family": "Bachata Bass",
+      "traditionId": "latin-cumbia",
+      "name": "Cumbia Syncopated Bassline",
+      "family": "Cumbia Bass",
       "category": "ostinato",
-      "description": "Driving syncopated bachata bass for the mambo breakdown gear.",
+      "description": "Hypnotic syncopated cumbia bass hitting on the upbeat of 2 and anticipated 4.",
       "tags": [
-        "bachata",
+        "cumbia",
         "bass",
-        "mambo",
-        "syncopated"
+        "syncopated",
+        "colombia"
       ],
       "scopes": [
         "measure",
@@ -540,13 +604,69 @@ export const BACHATA_WORLD: GenreWorld = {
         "vamp"
       ],
       "variants": [
+        {
+          "id": "cumbia-bass-villera-synth",
+          "parentPatternId": "cumbia-bass-groove",
+          "name": "Cumbia Villera Punchy Synth Bass",
+          "variationType": "dense",
+          "probability": 0.45,
+          "onsetGrid": [
+            0,
+            4,
+            6,
+            8,
+            12,
+            14
+          ],
+          "accentProfile": [
+            1,
+            0.7,
+            0.95,
+            0.8,
+            0.7,
+            1
+          ],
+          "description": "Added 8th note pump for modern urban cumbia."
+        },
+        {
+          "id": "cumbia-bass-groove-v-02",
+          "parentPatternId": "cumbia-bass-groove",
+          "name": "Cumbia Syncopated Bassline — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            6,
+            8,
+            14
+          ],
+          "accentProfile": [
+            0.86,
+            1,
+            0.76,
+            1
+          ],
+          "velocityProfile": [
+            0.9099999999999999,
+            0.98,
+            0.73,
+            0.96
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5
+          ]
+        }
       ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 1,
       "weight": 0.7,
-      "provenance": "Bachata genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Bachata catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "bachata"
       ],
@@ -633,15 +753,113 @@ export const BACHATA_WORLD: GenreWorld = {
         "verse"
       ],
       "variants": [
-        
-        
-        ],
+        {
+          "id": "bachata-bass-derecho-v-01",
+          "parentPatternId": "bachata-bass-derecho",
+          "name": "Bass Derecho — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            8,
+            12
+          ],
+          "accentProfile": [
+            0.95,
+            0.85,
+            0.7999999999999999
+          ],
+          "velocityProfile": [
+            0.87,
+            0.77,
+            0.7200000000000001
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "bachata-bass-derecho-v-02",
+          "parentPatternId": "bachata-bass-derecho",
+          "name": "Bass Derecho — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            6,
+            8,
+            12
+          ],
+          "accentProfile": [
+            0.96,
+            0.98,
+            0.8099999999999999,
+            1
+          ],
+          "velocityProfile": [
+            1,
+            0.83,
+            0.78,
+            0.96
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5
+          ]
+        },
+        {
+          "id": "bachata-bass-derecho-v-03",
+          "parentPatternId": "bachata-bass-derecho",
+          "name": "Bass Derecho — transition variation",
+          "variationType": "transition",
+          "probability": 0.16,
+          "description": "Adds a final pickup/closure gesture for section transitions.",
+          "onsetGrid": [
+            0,
+            6,
+            8,
+            12,
+            14,
+            15
+          ],
+          "accentProfile": [
+            0.98,
+            0.88,
+            0.83,
+            0.9299999999999999,
+            1,
+            1
+          ],
+          "velocityProfile": [
+            0.95,
+            0.85,
+            0.8,
+            0.9,
+            0.98,
+            0.98
+          ],
+          "microtimingOffset": [
+            0,
+            0,
+            0,
+            0,
+            -6,
+            -6
+          ]
+        }
+      ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 1,
       "weight": 1,
-      "provenance": "Bachata genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Bachata catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "bachata"
       ],
@@ -714,15 +932,101 @@ export const BACHATA_WORLD: GenreWorld = {
         "mambo"
       ],
       "variants": [
-        
-        
-        ],
+        {
+          "id": "bachata-bass-majao-v-01",
+          "parentPatternId": "bachata-bass-majao",
+          "name": "Bass Majao — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            12
+          ],
+          "accentProfile": [
+            0.95,
+            0.7999999999999999
+          ],
+          "velocityProfile": [
+            0.87,
+            0.7200000000000001
+          ],
+          "microtimingOffset": [
+            -3,
+            6
+          ]
+        },
+        {
+          "id": "bachata-bass-majao-v-02",
+          "parentPatternId": "bachata-bass-majao",
+          "name": "Bass Majao — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            8,
+            12
+          ],
+          "accentProfile": [
+            0.96,
+            0.9299999999999999,
+            0.9099999999999999
+          ],
+          "velocityProfile": [
+            1,
+            0.78,
+            0.88
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2
+          ]
+        },
+        {
+          "id": "bachata-bass-majao-v-03",
+          "parentPatternId": "bachata-bass-majao",
+          "name": "Bass Majao — transition variation",
+          "variationType": "transition",
+          "probability": 0.16,
+          "description": "Adds a final pickup/closure gesture for section transitions.",
+          "onsetGrid": [
+            0,
+            8,
+            12,
+            14,
+            15
+          ],
+          "accentProfile": [
+            0.98,
+            0.83,
+            0.9299999999999999,
+            1,
+            1
+          ],
+          "velocityProfile": [
+            0.95,
+            0.8,
+            0.9,
+            0.98,
+            0.98
+          ],
+          "microtimingOffset": [
+            0,
+            0,
+            0,
+            -6,
+            -6
+          ]
+        }
+      ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 1,
       "weight": 1,
-      "provenance": "Bachata genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Bachata catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "bachata"
       ],
@@ -811,15 +1115,149 @@ export const BACHATA_WORLD: GenreWorld = {
         "turnaround"
       ],
       "variants": [
-        
-        
-        ],
+        {
+          "id": "bachata-bongo-derecho-v-01",
+          "parentPatternId": "bachata-bongo-derecho",
+          "name": "Bongo Derecho — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            4,
+            6,
+            10,
+            12
+          ],
+          "accentProfile": [
+            0.6499999999999999,
+            0.5499999999999999,
+            0.7999999999999999,
+            0.5499999999999999,
+            0.6499999999999999
+          ],
+          "velocityProfile": [
+            0.5700000000000001,
+            0.47000000000000003,
+            0.7200000000000001,
+            0.47000000000000003,
+            0.5700000000000001
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "bachata-bongo-derecho-v-02",
+          "parentPatternId": "bachata-bongo-derecho",
+          "name": "Bongo Derecho — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            15
+          ],
+          "accentProfile": [
+            0.6599999999999999,
+            0.6799999999999999,
+            0.8099999999999999,
+            0.6799999999999999,
+            0.6599999999999999,
+            0.6799999999999999,
+            0.96,
+            0.73
+          ],
+          "velocityProfile": [
+            0.71,
+            0.53,
+            0.78,
+            0.6100000000000001,
+            0.63,
+            0.53,
+            1,
+            0.58
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5
+          ]
+        },
+        {
+          "id": "bachata-bongo-derecho-v-03",
+          "parentPatternId": "bachata-bongo-derecho",
+          "name": "Bongo Derecho — transition variation",
+          "variationType": "transition",
+          "probability": 0.16,
+          "description": "Adds a final pickup/closure gesture for section transitions.",
+          "onsetGrid": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14,
+            15
+          ],
+          "accentProfile": [
+            0.6799999999999999,
+            0.58,
+            0.83,
+            0.58,
+            0.6799999999999999,
+            0.58,
+            0.98,
+            1,
+            1
+          ],
+          "velocityProfile": [
+            0.65,
+            0.55,
+            0.8,
+            0.55,
+            0.65,
+            0.55,
+            0.95,
+            0.98,
+            0.98
+          ],
+          "microtimingOffset": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            -6,
+            -6
+          ]
+        }
+      ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 3,
       "weight": 1,
-      "provenance": "Bachata genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Bachata catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "bachata"
       ],
@@ -925,13 +1363,45 @@ export const BACHATA_WORLD: GenreWorld = {
             "use as an alternate voicing/technique"
           ]
         },
-        ],
+        {
+          "id": "bachata-bongo-majao-v-02",
+          "parentPatternId": "bachata-bongo-majao",
+          "name": "Bongo Majao — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            4,
+            8,
+            12
+          ],
+          "accentProfile": [
+            0.86,
+            1,
+            0.86,
+            1
+          ],
+          "velocityProfile": [
+            0.9099999999999999,
+            0.9299999999999999,
+            0.83,
+            1
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5
+          ]
+        }
+      ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 1,
       "weight": 1,
-      "provenance": "Bachata genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Bachata catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "bachata"
       ],
@@ -1055,14 +1525,153 @@ export const BACHATA_WORLD: GenreWorld = {
         "mambo"
       ],
       "variants": [
-        
-        ],
+        {
+          "id": "bachata-guira-majao-v-01",
+          "parentPatternId": "bachata-guira-majao",
+          "name": "Güira Majao — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            2,
+            3,
+            5,
+            6,
+            8,
+            9,
+            11,
+            12,
+            14,
+            15
+          ],
+          "accentProfile": [
+            0.95,
+            0.5499999999999999,
+            0.7999999999999999,
+            0.5499999999999999,
+            0.8999999999999999,
+            0.5499999999999999,
+            0.7999999999999999,
+            0.5499999999999999,
+            0.95,
+            0.5499999999999999,
+            0.7999999999999999
+          ],
+          "velocityProfile": [
+            0.87,
+            0.42,
+            0.7200000000000001,
+            0.42,
+            0.8200000000000001,
+            0.42,
+            0.7200000000000001,
+            0.42,
+            0.87,
+            0.42,
+            0.7200000000000001
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6,
+            -3,
+            6,
+            -3,
+            6,
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "bachata-guira-majao-v-02",
+          "parentPatternId": "bachata-guira-majao",
+          "name": "Güira Majao — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15
+          ],
+          "accentProfile": [
+            0.96,
+            0.6799999999999999,
+            0.8099999999999999,
+            0.6799999999999999,
+            0.9099999999999999,
+            0.6799999999999999,
+            0.8099999999999999,
+            0.6799999999999999,
+            0.96,
+            0.6799999999999999,
+            0.8099999999999999,
+            0.6799999999999999,
+            0.9099999999999999,
+            0.6799999999999999,
+            0.8099999999999999,
+            0.73
+          ],
+          "velocityProfile": [
+            1,
+            0.48,
+            0.78,
+            0.56,
+            0.88,
+            0.48,
+            0.8600000000000001,
+            0.48,
+            0.9299999999999999,
+            0.56,
+            0.78,
+            0.48,
+            0.96,
+            0.48,
+            0.78,
+            0.6100000000000001
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5
+          ]
+        }
+      ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 5,
       "weight": 1,
-      "provenance": "Bachata genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Bachata catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "bachata"
       ],
@@ -1151,14 +1760,73 @@ export const BACHATA_WORLD: GenreWorld = {
         "chorus"
       ],
       "variants": [
-        
-        ],
+        {
+          "id": "bachata-segunda-derecho-v-01",
+          "parentPatternId": "bachata-segunda-derecho",
+          "name": "Segunda Guitar — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            2,
+            10,
+            14
+          ],
+          "accentProfile": [
+            0.83,
+            0.9099999999999999,
+            0.83
+          ],
+          "velocityProfile": [
+            0.74,
+            0.8400000000000001,
+            0.74
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "bachata-segunda-derecho-v-02",
+          "parentPatternId": "bachata-segunda-derecho",
+          "name": "Segunda Guitar — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            2,
+            6,
+            10,
+            14
+          ],
+          "accentProfile": [
+            0.84,
+            1,
+            0.84,
+            1
+          ],
+          "velocityProfile": [
+            0.8799999999999999,
+            0.9,
+            0.7999999999999999,
+            1
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5
+          ]
+        }
+      ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 1,
       "weight": 1,
-      "provenance": "Bachata genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Bachata catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "bachata"
       ],
@@ -1194,17 +1862,16 @@ export const BACHATA_WORLD: GenreWorld = {
       ]
     },
     {
-      "id": "bachata-guira-derecho",
+      "id": "cumbia-guiro",
       "worldId": "bachata",
-      "traditionId": "latin-bachata",
-      "name": "Güira Derecho Steady Scrape",
+      "traditionId": "latin-cumbia",
+      "name": "Cumbia Güiro",
       "family": "Guiro",
       "category": "groove",
-      "description": "Classic steady 16th scraping güira pattern for the derecho verse gear.",
+      "description": "Classic cumbia shh-shh-pah scraper rhythm.",
       "tags": [
-        "bachata",
+        "cumbia",
         "guiro",
-        "derecho",
         "percussion"
       ],
       "scopes": [
@@ -1252,13 +1919,85 @@ export const BACHATA_WORLD: GenreWorld = {
         "chorus"
       ],
       "variants": [
+        {
+          "id": "cumbia-guiro-v-01",
+          "parentPatternId": "cumbia-guiro",
+          "name": "Cumbia Güiro — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            2,
+            6,
+            10,
+            14
+          ],
+          "accentProfile": [
+            0.7,
+            0.7,
+            0.95,
+            0.7
+          ],
+          "velocityProfile": [
+            0.62,
+            0.62,
+            0.87,
+            0.62
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6
+          ]
+        },
+        {
+          "id": "cumbia-guiro-v-02",
+          "parentPatternId": "cumbia-guiro",
+          "name": "Cumbia Güiro — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            2,
+            4,
+            6,
+            10,
+            12,
+            14
+          ],
+          "accentProfile": [
+            0.71,
+            0.83,
+            0.96,
+            0.83,
+            0.71,
+            1
+          ],
+          "velocityProfile": [
+            0.76,
+            0.6799999999999999,
+            0.9299999999999999,
+            0.76,
+            0.6799999999999999,
+            0.9299999999999999
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5
+          ]
+        }
       ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 2,
       "weight": 1,
-      "provenance": "Bachata genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Bachata catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "bachata"
       ],
@@ -1344,7 +2083,7 @@ export const BACHATA_WORLD: GenreWorld = {
         0.74,
         0.9
       ],
-      "syncopationRating": 0.57,
+      "syncopationRating": 0.5714285714285714,
       "anticipationOffset": 0,
       "swingPercentage": 53,
       "articulations": [
@@ -1373,8 +2112,88 @@ export const BACHATA_WORLD: GenreWorld = {
         "phrasePosition"
       ],
       "variants": [
+        {
+          "id": "bachata-roster-10-v-01",
+          "parentPatternId": "bachata-roster-10",
+          "name": "Derecho Texture — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            4,
+            7,
+            11,
+            14
+          ],
+          "accentProfile": [
+            0.95,
+            0.69,
+            0.85,
+            0.63,
+            0.95
+          ],
+          "velocityProfile": [
+            0.92,
+            0.61,
+            0.8200000000000001,
+            0.6000000000000001,
+            0.87
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "bachata-roster-10-v-02",
+          "parentPatternId": "bachata-roster-10",
+          "name": "Derecho Texture — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            2,
+            4,
+            7,
+            8,
+            11,
+            14
+          ],
+          "accentProfile": [
+            0.96,
+            0.82,
+            0.86,
+            0.76,
+            0.96,
+            0.82,
+            0.86
+          ],
+          "velocityProfile": [
+            1,
+            0.6699999999999999,
+            0.88,
+            0.74,
+            0.9299999999999999,
+            0.72,
+            0.96
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2
+          ]
+        }
       ],
-      "provenance": "Bachata genre-pack structural pattern; generalized for engine coverage and recombination, not a transcription of a single recording.",
+      "provenance": "GenreDAW catalog rebuild from existing Bachata world data; generated to cover missing musical functions without runtime AI.",
       "authenticityTags": [
         "bachata",
         "derecho"
@@ -1441,11 +2260,11 @@ export const BACHATA_WORLD: GenreWorld = {
         0.57,
         0.95,
         0.62,
-        0.9,
+        0.8999999999999999,
         0.62,
         0.95
       ],
-      "syncopationRating": 0.71,
+      "syncopationRating": 0.7142857142857143,
       "anticipationOffset": 0,
       "swingPercentage": 53,
       "articulations": [
@@ -1475,10 +2294,136 @@ export const BACHATA_WORLD: GenreWorld = {
         "phrasePosition"
       ],
       "variants": [
-        
-        
-        ],
-      "provenance": "Bachata genre-pack structural pattern; generalized for engine coverage and recombination, not a transcription of a single recording.",
+        {
+          "id": "bachata-call-11-v-01",
+          "parentPatternId": "bachata-call-11",
+          "name": "Majao Response — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            1,
+            5,
+            8,
+            12,
+            15
+          ],
+          "accentProfile": [
+            0.8999999999999999,
+            0.57,
+            0.8999999999999999,
+            0.57,
+            0.8999999999999999
+          ],
+          "velocityProfile": [
+            0.87,
+            0.48999999999999994,
+            0.87,
+            0.54,
+            0.82
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "bachata-call-11-v-02",
+          "parentPatternId": "bachata-call-11",
+          "name": "Majao Response — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            1,
+            3,
+            5,
+            8,
+            9,
+            12,
+            15
+          ],
+          "accentProfile": [
+            0.9099999999999999,
+            0.7,
+            0.9099999999999999,
+            0.7,
+            0.9099999999999999,
+            0.7,
+            0.9099999999999999
+          ],
+          "velocityProfile": [
+            1,
+            0.5499999999999999,
+            0.9299999999999999,
+            0.6799999999999999,
+            0.8799999999999999,
+            0.6,
+            1
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2
+          ]
+        },
+        {
+          "id": "bachata-call-11-v-03",
+          "parentPatternId": "bachata-call-11",
+          "name": "Majao Response — transition variation",
+          "variationType": "transition",
+          "probability": 0.16,
+          "description": "Adds a final pickup/closure gesture for section transitions.",
+          "onsetGrid": [
+            1,
+            3,
+            5,
+            8,
+            9,
+            12,
+            14,
+            15
+          ],
+          "accentProfile": [
+            0.9299999999999999,
+            0.6,
+            0.9299999999999999,
+            0.6,
+            0.9299999999999999,
+            0.6,
+            1,
+            1
+          ],
+          "velocityProfile": [
+            0.95,
+            0.57,
+            0.95,
+            0.62,
+            0.8999999999999999,
+            0.62,
+            0.98,
+            0.98
+          ],
+          "microtimingOffset": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            -6,
+            -6
+          ]
+        }
+      ],
+      "provenance": "GenreDAW catalog rebuild from existing Bachata world data; generated to cover missing musical functions without runtime AI.",
       "authenticityTags": [
         "bachata",
         "majao"
@@ -1553,7 +2498,7 @@ export const BACHATA_WORLD: GenreWorld = {
         0.74,
         0.9
       ],
-      "syncopationRating": 0.71,
+      "syncopationRating": 0.7142857142857143,
       "anticipationOffset": 0,
       "swingPercentage": 53,
       "articulations": [
@@ -1583,9 +2528,88 @@ export const BACHATA_WORLD: GenreWorld = {
         "phrasePosition"
       ],
       "variants": [
-        
-        ],
-      "provenance": "Bachata genre-pack structural pattern; generalized for engine coverage and recombination, not a transcription of a single recording.",
+        {
+          "id": "bachata-anchor-12-v-01",
+          "parentPatternId": "bachata-anchor-12",
+          "name": "Mambo Anchor — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            4,
+            6,
+            10,
+            13
+          ],
+          "accentProfile": [
+            0.95,
+            0.69,
+            0.85,
+            0.63,
+            0.95
+          ],
+          "velocityProfile": [
+            0.92,
+            0.61,
+            0.8200000000000001,
+            0.6000000000000001,
+            0.87
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "bachata-anchor-12-v-02",
+          "parentPatternId": "bachata-anchor-12",
+          "name": "Mambo Anchor — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            2,
+            4,
+            6,
+            9,
+            10,
+            13
+          ],
+          "accentProfile": [
+            0.96,
+            0.82,
+            0.86,
+            0.76,
+            0.96,
+            0.82,
+            0.86
+          ],
+          "velocityProfile": [
+            1,
+            0.6699999999999999,
+            0.88,
+            0.74,
+            0.9299999999999999,
+            0.72,
+            0.96
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2
+          ]
+        }
+      ],
+      "provenance": "GenreDAW catalog rebuild from existing Bachata world data; generated to cover missing musical functions without runtime AI.",
       "authenticityTags": [
         "bachata",
         "mambo"
@@ -1660,7 +2684,7 @@ export const BACHATA_WORLD: GenreWorld = {
         0.74,
         0.9
       ],
-      "syncopationRating": 0.57,
+      "syncopationRating": 0.5714285714285714,
       "anticipationOffset": 0,
       "swingPercentage": 53,
       "articulations": [
@@ -1689,9 +2713,88 @@ export const BACHATA_WORLD: GenreWorld = {
         "phrasePosition"
       ],
       "variants": [
-        
-        ],
-      "provenance": "Bachata genre-pack structural pattern; generalized for engine coverage and recombination, not a transcription of a single recording.",
+        {
+          "id": "bachata-comp-13-v-01",
+          "parentPatternId": "bachata-comp-13",
+          "name": "Coro Comping — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            2,
+            6,
+            8,
+            12,
+            15
+          ],
+          "accentProfile": [
+            0.95,
+            0.69,
+            0.85,
+            0.63,
+            0.95
+          ],
+          "velocityProfile": [
+            0.92,
+            0.61,
+            0.8200000000000001,
+            0.6000000000000001,
+            0.87
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "bachata-comp-13-v-02",
+          "parentPatternId": "bachata-comp-13",
+          "name": "Coro Comping — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            2,
+            4,
+            6,
+            8,
+            11,
+            12,
+            15
+          ],
+          "accentProfile": [
+            0.96,
+            0.82,
+            0.86,
+            0.76,
+            0.96,
+            0.82,
+            0.86
+          ],
+          "velocityProfile": [
+            1,
+            0.6699999999999999,
+            0.88,
+            0.74,
+            0.9299999999999999,
+            0.72,
+            0.96
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2
+          ]
+        }
+      ],
+      "provenance": "GenreDAW catalog rebuild from existing Bachata world data; generated to cover missing musical functions without runtime AI.",
       "authenticityTags": [
         "bachata",
         "coro"
@@ -1768,7 +2871,7 @@ export const BACHATA_WORLD: GenreWorld = {
         0.74,
         0.9
       ],
-      "syncopationRating": 0.86,
+      "syncopationRating": 0.8571428571428571,
       "anticipationOffset": 0,
       "swingPercentage": 53,
       "articulations": [
@@ -1797,8 +2900,86 @@ export const BACHATA_WORLD: GenreWorld = {
         "phrasePosition"
       ],
       "variants": [
-        
-        
+        {
+          "id": "bachata-intro-14-v-01",
+          "parentPatternId": "bachata-intro-14",
+          "name": "Requinto Intro — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            1,
+            6,
+            8,
+            13,
+            15
+          ],
+          "accentProfile": [
+            0.95,
+            0.69,
+            0.85,
+            0.63,
+            0.95
+          ],
+          "velocityProfile": [
+            0.92,
+            0.61,
+            0.8200000000000001,
+            0.6000000000000001,
+            0.87
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "bachata-intro-14-v-02",
+          "parentPatternId": "bachata-intro-14",
+          "name": "Requinto Intro — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            1,
+            3,
+            6,
+            8,
+            11,
+            13,
+            15
+          ],
+          "accentProfile": [
+            0.96,
+            0.82,
+            0.86,
+            0.76,
+            0.96,
+            0.82,
+            0.86
+          ],
+          "velocityProfile": [
+            1,
+            0.6699999999999999,
+            0.88,
+            0.74,
+            0.9299999999999999,
+            0.72,
+            0.96
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2
+          ]
+        },
         {
           "id": "bachata-intro-14-v-03",
           "parentPatternId": "bachata-intro-14",
@@ -1848,7 +3029,7 @@ export const BACHATA_WORLD: GenreWorld = {
           ]
         }
       ],
-      "provenance": "Bachata genre-pack structural pattern; generalized for engine coverage and recombination, not a transcription of a single recording.",
+      "provenance": "GenreDAW catalog rebuild from existing Bachata world data; generated to cover missing musical functions without runtime AI.",
       "authenticityTags": [
         "bachata",
         "requinto"
@@ -1931,7 +3112,7 @@ export const BACHATA_WORLD: GenreWorld = {
         0.74,
         0.9
       ],
-      "syncopationRating": 0.57,
+      "syncopationRating": 0.5714285714285714,
       "anticipationOffset": 0,
       "swingPercentage": 53,
       "articulations": [
@@ -1960,9 +3141,88 @@ export const BACHATA_WORLD: GenreWorld = {
         "phrasePosition"
       ],
       "variants": [
-        
-        ],
-      "provenance": "Bachata genre-pack structural pattern; generalized for engine coverage and recombination, not a transcription of a single recording.",
+        {
+          "id": "bachata-verse-15-v-01",
+          "parentPatternId": "bachata-verse-15",
+          "name": "Derecho Verse Variation — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            4,
+            7,
+            12,
+            14
+          ],
+          "accentProfile": [
+            0.95,
+            0.69,
+            0.85,
+            0.63,
+            0.95
+          ],
+          "velocityProfile": [
+            0.92,
+            0.61,
+            0.8200000000000001,
+            0.6000000000000001,
+            0.87
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "bachata-verse-15-v-02",
+          "parentPatternId": "bachata-verse-15",
+          "name": "Derecho Verse Variation — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            2,
+            4,
+            7,
+            9,
+            12,
+            14
+          ],
+          "accentProfile": [
+            0.96,
+            0.82,
+            0.86,
+            0.76,
+            0.96,
+            0.82,
+            0.86
+          ],
+          "velocityProfile": [
+            1,
+            0.6699999999999999,
+            0.88,
+            0.74,
+            0.9299999999999999,
+            0.72,
+            0.96
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2
+          ]
+        }
+      ],
+      "provenance": "GenreDAW catalog rebuild from existing Bachata world data; generated to cover missing musical functions without runtime AI.",
       "authenticityTags": [
         "bachata",
         "derecho"
@@ -2045,7 +3305,7 @@ export const BACHATA_WORLD: GenreWorld = {
         0.74,
         0.9
       ],
-      "syncopationRating": 0.86,
+      "syncopationRating": 0.8571428571428571,
       "anticipationOffset": 1,
       "swingPercentage": 53,
       "articulations": [
@@ -2075,8 +3335,86 @@ export const BACHATA_WORLD: GenreWorld = {
         "phrasePosition"
       ],
       "variants": [
-        
-        
+        {
+          "id": "bachata-chorus-16-v-01",
+          "parentPatternId": "bachata-chorus-16",
+          "name": "Majao Chorus Lift — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            1,
+            5,
+            8,
+            13,
+            15
+          ],
+          "accentProfile": [
+            0.95,
+            0.69,
+            0.85,
+            0.63,
+            0.95
+          ],
+          "velocityProfile": [
+            0.92,
+            0.61,
+            0.8200000000000001,
+            0.6000000000000001,
+            0.87
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "bachata-chorus-16-v-02",
+          "parentPatternId": "bachata-chorus-16",
+          "name": "Majao Chorus Lift — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            1,
+            3,
+            5,
+            8,
+            10,
+            13,
+            15
+          ],
+          "accentProfile": [
+            0.96,
+            0.82,
+            0.86,
+            0.76,
+            0.96,
+            0.82,
+            0.86
+          ],
+          "velocityProfile": [
+            1,
+            0.6699999999999999,
+            0.88,
+            0.74,
+            0.9299999999999999,
+            0.72,
+            0.96
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2
+          ]
+        },
         {
           "id": "bachata-chorus-16-v-03",
           "parentPatternId": "bachata-chorus-16",
@@ -2126,7 +3464,7 @@ export const BACHATA_WORLD: GenreWorld = {
           ]
         }
       ],
-      "provenance": "Bachata genre-pack structural pattern; generalized for engine coverage and recombination, not a transcription of a single recording.",
+      "provenance": "GenreDAW catalog rebuild from existing Bachata world data; generated to cover missing musical functions without runtime AI.",
       "authenticityTags": [
         "bachata",
         "majao"
@@ -2194,7 +3532,7 @@ export const BACHATA_WORLD: GenreWorld = {
         0.9,
         0.58
       ],
-      "syncopationRating": 0.67,
+      "syncopationRating": 0.6666666666666666,
       "anticipationOffset": 0,
       "swingPercentage": 50,
       "articulations": [
@@ -2263,8 +3601,48 @@ export const BACHATA_WORLD: GenreWorld = {
             -4
           ]
         },
-        ],
-      "provenance": "Genre-pack structural pattern for dedicated vocal phrasing coverage for Bachata; generalized for engine coverage, not a transcription.",
+        {
+          "id": "bachata-voice-phrasing-v-final-accent",
+          "parentPatternId": "bachata-voice-phrasing",
+          "name": "Bachata Vocal Phrasing — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.18,
+          "description": "Same rhythmic shape with shifted emphasis on the repeat.",
+          "onsetGrid": [
+            0,
+            3,
+            5,
+            8,
+            11,
+            14
+          ],
+          "accentProfile": [
+            0.8999999999999999,
+            0.7,
+            0.8999999999999999,
+            0.7,
+            0.8999999999999999,
+            0.7
+          ],
+          "velocityProfile": [
+            0.9,
+            0.58,
+            0.9,
+            0.58,
+            0.9,
+            0.58
+          ],
+          "microtimingOffset": [
+            2,
+            -4,
+            2,
+            -4,
+            2,
+            -4
+          ]
+        }
+      ],
+      "provenance": "GenreDAW catalog rebuild: dedicated vocal phrasing coverage for Bachata.",
       "authenticityTags": [
         "bachata",
         "voice"
@@ -2275,161 +3653,6 @@ export const BACHATA_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "difficulty": 2,
       "weight": 0.9,
-      "enabled": true
-    },
-    {
-      "id": "merengue-tambora-golpe",
-      "worldId": "bachata",
-      "traditionId": "latin-merengue",
-      "name": "Merengue Tambora Golpe & Repique",
-      "family": "Merengue Rhythm Section",
-      "category": "groove",
-      "description": "Two-headed Dominican tambora gallop with wood rim strikes, open tones, and crisp hand slaps.",
-      "tags": ["merengue", "tambora", "percussion", "drums", "pulse"],
-      "scopes": ["measure", "phrase", "region", "track"],
-      "roles": ["percussion", "drums", "pulse"],
-      "instruments": ["percussion", "drums"],
-      "meter": "2/2",
-      "cycleLength": 1,
-      "subdivisions": 16,
-      "onsetGrid": [0, 4, 7, 8, 10, 12, 14, 15],
-      "accentProfile": [1.0, 0.7, 0.9, 0.95, 0.7, 0.9, 0.85, 0.8],
-      "velocityProfile": [0.95, 0.65, 0.85, 0.95, 0.65, 0.85, 0.8, 0.75],
-      "articulations": ["slap", "rimshot", "open"],
-      "density": "dense",
-      "phrasePosition": ["start", "middle", "end"],
-      "sectionUsage": ["verse", "chorus", "mambo"],
-      "variants": [],
-      "provenance": "Genre-pack support pattern for Merengue Típico & Orquesta; generalized from documented musical conventions.",
-      "authenticityTags": ["merengue", "tambora"],
-      "danceTags": ["social-partner"],
-      "tuningSystem": "12-tet",
-      "difficulty": 3,
-      "weight": 1,
-      "enabled": true
-    },
-    {
-      "id": "merengue-guira-repique",
-      "worldId": "bachata",
-      "traditionId": "latin-merengue",
-      "name": "Merengue Güira Continuous Fast Scrape",
-      "family": "Merengue Rhythm Section",
-      "category": "timeline",
-      "description": "Relentless metallic güira driving the fast 2/2 merengue engine with sharp downbeat rim accents.",
-      "tags": ["merengue", "guira", "percussion", "pulse"],
-      "scopes": ["measure", "phrase", "region", "track"],
-      "roles": ["percussion", "guiro"],
-      "instruments": ["guiro", "percussion"],
-      "meter": "2/2",
-      "cycleLength": 1,
-      "subdivisions": 16,
-      "onsetGrid": [0, 2, 4, 6, 8, 10, 12, 14],
-      "accentProfile": [1.0, 0.6, 0.8, 0.6, 0.95, 0.6, 0.8, 0.6],
-      "velocityProfile": [0.95, 0.6, 0.75, 0.6, 0.9, 0.6, 0.75, 0.6],
-      "articulations": ["scraped", "accented"],
-      "density": "dense",
-      "phrasePosition": ["start", "middle", "end"],
-      "sectionUsage": ["verse", "chorus", "mambo"],
-      "variants": [],
-      "provenance": "Genre-pack support pattern for Merengue Típico & Orquesta; generalized from documented musical conventions.",
-      "authenticityTags": ["merengue", "guira"],
-      "danceTags": ["social-partner"],
-      "tuningSystem": "12-tet",
-      "difficulty": 2,
-      "weight": 1,
-      "enabled": true
-    },
-    {
-      "id": "merengue-bass-gallop",
-      "worldId": "bachata",
-      "traditionId": "latin-merengue",
-      "name": "Merengue Gallop Bass",
-      "family": "Merengue Bass Section",
-      "category": "bass",
-      "description": "Fast rolling 2-beat gallop bass walking between root and fifth with chromatic slide lead-ins.",
-      "tags": ["merengue", "bass", "gallop", "pulse"],
-      "scopes": ["measure", "phrase", "region", "track"],
-      "roles": ["bass", "pulse"],
-      "instruments": ["bass"],
-      "meter": "2/2",
-      "cycleLength": 1,
-      "subdivisions": 16,
-      "onsetGrid": [0, 4, 6, 8, 12, 14],
-      "accentProfile": [1.0, 0.7, 0.85, 0.95, 0.7, 0.85],
-      "velocityProfile": [0.95, 0.7, 0.8, 0.9, 0.7, 0.8],
-      "articulations": ["staccato", "tenuto"],
-      "density": "medium",
-      "phrasePosition": ["start", "middle", "end"],
-      "sectionUsage": ["verse", "chorus", "mambo"],
-      "variants": [],
-      "provenance": "Genre-pack support pattern for Merengue Típico & Orquesta; generalized from documented musical conventions.",
-      "authenticityTags": ["merengue", "bass"],
-      "danceTags": ["social-partner"],
-      "tuningSystem": "12-tet",
-      "difficulty": 2,
-      "weight": 1,
-      "enabled": true
-    },
-    {
-      "id": "merengue-sax-jaleo",
-      "worldId": "bachata",
-      "traditionId": "latin-merengue",
-      "name": "Merengue Saxophone Jaleo & Mambo Riff",
-      "family": "Merengue Horn Section",
-      "category": "lead",
-      "description": "Frantic, tightly synchronized alto/tenor saxophone syncopated jaleo riffs.",
-      "tags": ["merengue", "sax", "jaleo", "horns", "lead"],
-      "scopes": ["measure", "phrase", "region", "track"],
-      "roles": ["lead", "sax", "brass", "horn-section"],
-      "instruments": ["sax", "trumpet"],
-      "meter": "2/2",
-      "cycleLength": 1,
-      "subdivisions": 16,
-      "onsetGrid": [2, 4, 7, 8, 10, 12, 14, 15],
-      "accentProfile": [0.85, 0.9, 0.75, 0.95, 0.8, 0.9, 0.85, 0.95],
-      "velocityProfile": [0.8, 0.85, 0.7, 0.9, 0.75, 0.85, 0.8, 0.9],
-      "articulations": ["staccato", "accented"],
-      "density": "dense",
-      "phrasePosition": ["start", "middle"],
-      "sectionUsage": ["chorus", "mambo", "solo"],
-      "variants": [],
-      "provenance": "Genre-pack support pattern for Merengue Típico & Orquesta; generalized from documented musical conventions.",
-      "authenticityTags": ["merengue", "sax"],
-      "danceTags": ["social-partner"],
-      "tuningSystem": "12-tet",
-      "difficulty": 3,
-      "weight": 1,
-      "enabled": true
-    },
-    {
-      "id": "merengue-piano-montuno",
-      "worldId": "bachata",
-      "traditionId": "latin-merengue",
-      "name": "Merengue Piano Montuno & Accordion Jaleo",
-      "family": "Merengue Harmony Section",
-      "category": "montuno",
-      "description": "Rapid syncopated octaves and accordion flourishes providing the harmonic bounce for merengue.",
-      "tags": ["merengue", "piano", "accordion", "harmony", "keys"],
-      "scopes": ["measure", "phrase", "region", "track"],
-      "roles": ["harmony", "piano", "accordion", "keys"],
-      "instruments": ["piano", "accordion", "keys"],
-      "meter": "2/2",
-      "cycleLength": 1,
-      "subdivisions": 16,
-      "onsetGrid": [0, 3, 6, 8, 11, 14],
-      "accentProfile": [0.95, 0.8, 0.9, 0.95, 0.8, 0.9],
-      "velocityProfile": [0.9, 0.75, 0.85, 0.9, 0.75, 0.85],
-      "articulations": ["martellato", "staccato"],
-      "density": "medium",
-      "phrasePosition": ["start", "middle", "end"],
-      "sectionUsage": ["verse", "chorus", "mambo"],
-      "variants": [],
-      "provenance": "Genre-pack support pattern for Merengue Típico & Orquesta; generalized from documented musical conventions.",
-      "authenticityTags": ["merengue", "piano"],
-      "danceTags": ["social-partner"],
-      "tuningSystem": "12-tet",
-      "difficulty": 3,
-      "weight": 1,
       "enabled": true
     }
   ],
@@ -2486,10 +3709,10 @@ export const BACHATA_WORLD: GenreWorld = {
     ]
   },
   "combinations": [
-    "Bachata + Merengue",
     "Bachata + R&B",
-    "Bachata + Dembow",
-    "Bachata + Pop"
+    "Cumbia + Dub / Reggae",
+    "Merengue + Funk",
+    "Latin Dance + Jazz"
   ],
   "danceTags": [
     "social-partner",
@@ -2503,10 +3726,7 @@ export const BACHATA_WORLD: GenreWorld = {
     "microtimingFeel": "pushed"
   },
   "crossLinks": [
-    "Bachata ↔ Merengue (Dominican sister tradition)",
-    "Bachata ↔ Cumbia (see Cumbia world)",
-    "Bachata ↔ Dembow / Reggaeton",
-    "Bachata ↔ Bolero",
-    "Bachata ↔ R&B"
+    "Bachata ↔ R&B",
+    "Bachata ↔ Dembow / Reggaeton"
   ]
 };

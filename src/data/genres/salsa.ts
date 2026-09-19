@@ -218,13 +218,12 @@ export const SALSA_WORLD: GenreWorld = {
         "festival-fusion",
         "listening"
       ],
-      "tuningSystem": "12-tet",
+      "tuningSystem": "just-intonation",
       "signatureCell": "Rumba clave with interlocking quinto and salidor conga tones",
       "grooveMechanics": {
-        "swingPercentage": 56,
-        "anticipationOffsetSteps": 1,
-        "microtimingFeel": "atrasado",
-        "humanizeJitterMs": 16
+        "swingPercentage": 52,
+        "anticipationOffsetSteps": 0,
+        "microtimingFeel": "straight"
       },
       "sectionProgressions": {
         "intro": [
@@ -295,10 +294,9 @@ export const SALSA_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "signatureCell": "Guiro rasp with cha-cha-chá shuffle on beats 4-and-1",
       "grooveMechanics": {
-        "swingPercentage": 52,
+        "swingPercentage": 50,
         "anticipationOffsetSteps": 0,
-        "microtimingFeel": "laid-back",
-        "humanizeJitterMs": 8
+        "microtimingFeel": "straight"
       },
       "sectionProgressions": {
         "intro": [
@@ -528,7 +526,7 @@ export const SALSA_WORLD: GenreWorld = {
       ],
       "difficulty": 2,
       "weight": 0.7,
-      "provenance": "Salsa genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Salsa catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "salsa"
       ],
@@ -665,7 +663,7 @@ export const SALSA_WORLD: GenreWorld = {
       ],
       "difficulty": 1,
       "weight": 0.7,
-      "provenance": "Salsa genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Salsa catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "salsa"
       ],
@@ -829,13 +827,77 @@ export const SALSA_WORLD: GenreWorld = {
           ],
           "description": "Aggressive two-handed dissonant block chords characteristic of Eddie Palmieri."
         },
-        ],
+        {
+          "id": "afro-piano-montuno-v-02",
+          "parentPatternId": "afro-piano-montuno",
+          "name": "Piano Montuno / Guajeo (Interlocking Arpeggios) — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            3,
+            6,
+            8,
+            11,
+            14,
+            16,
+            19,
+            22,
+            24,
+            27,
+            30
+          ],
+          "accentProfile": [
+            0.86,
+            0.7799999999999999,
+            0.9099999999999999,
+            0.7799999999999999,
+            0.86,
+            1,
+            0.86,
+            0.7799999999999999,
+            0.9099999999999999,
+            0.7799999999999999,
+            0.86,
+            1
+          ],
+          "velocityProfile": [
+            0.9099999999999999,
+            0.63,
+            0.88,
+            0.71,
+            0.83,
+            0.88,
+            0.9099999999999999,
+            0.63,
+            0.88,
+            0.71,
+            0.83,
+            0.9299999999999999
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5
+          ]
+        }
+      ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 4,
       "weight": 0.7,
-      "provenance": "Salsa genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Salsa catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "salsa"
       ],
@@ -1001,13 +1063,93 @@ export const SALSA_WORLD: GenreWorld = {
           ],
           "description": "Switch from cáscara to heavy hand-held cowbell driving the montuno/coro."
         },
-        ],
+        {
+          "id": "afro-timbal-cascara-v-02",
+          "parentPatternId": "afro-timbal-cascara",
+          "name": "Timbal Cáscara Pattern (Side-Shell Stick) — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14,
+            16,
+            18,
+            20,
+            22,
+            24,
+            26,
+            28,
+            30
+          ],
+          "accentProfile": [
+            0.9099999999999999,
+            0.48000000000000004,
+            0.86,
+            0.48000000000000004,
+            0.9099999999999999,
+            0.48000000000000004,
+            0.86,
+            0.48000000000000004,
+            0.9099999999999999,
+            0.48000000000000004,
+            0.86,
+            0.48000000000000004,
+            0.9099999999999999,
+            0.48000000000000004,
+            0.9099999999999999,
+            0.48000000000000004
+          ],
+          "velocityProfile": [
+            0.96,
+            0.4,
+            0.83,
+            0.46,
+            0.88,
+            0.4,
+            0.9099999999999999,
+            0.4,
+            0.88,
+            0.46,
+            0.83,
+            0.4,
+            0.96,
+            0.4,
+            0.88,
+            0.46
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5
+          ]
+        }
+      ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 5,
       "weight": 0.7,
-      "provenance": "Salsa genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Salsa catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "salsa"
       ],
@@ -1203,7 +1345,7 @@ export const SALSA_WORLD: GenreWorld = {
       ],
       "difficulty": 3,
       "weight": 0.7,
-      "provenance": "Salsa genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Salsa catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "salsa"
       ],
@@ -1334,13 +1476,53 @@ export const SALSA_WORLD: GenreWorld = {
           ],
           "description": "Full band unison stop-time break."
         },
-        ],
+        {
+          "id": "afro-mambo-horn-hits-v-02",
+          "parentPatternId": "afro-mambo-horn-hits",
+          "name": "Mambo Section Horn Stabs & Punctuation — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            6,
+            12,
+            14,
+            22,
+            28,
+            30
+          ],
+          "accentProfile": [
+            0.96,
+            1,
+            0.96,
+            1,
+            0.9099999999999999,
+            1
+          ],
+          "velocityProfile": [
+            1,
+            0.88,
+            0.98,
+            1,
+            0.88,
+            0.98
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5
+          ]
+        }
+      ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 2,
       "weight": 0.7,
-      "provenance": "Salsa genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Salsa catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "salsa"
       ],
@@ -1418,14 +1600,93 @@ export const SALSA_WORLD: GenreWorld = {
         "chorus"
       ],
       "variants": [
-        
-        ],
+        {
+          "id": "salsa-campana-v-01",
+          "parentPatternId": "salsa-campana",
+          "name": "Campana (Bongo Bell) — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            6,
+            8,
+            12,
+            14
+          ],
+          "accentProfile": [
+            0.95,
+            0.6499999999999999,
+            0.85,
+            0.8999999999999999,
+            0.6
+          ],
+          "velocityProfile": [
+            0.87,
+            0.5700000000000001,
+            0.77,
+            0.8200000000000001,
+            0.52
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "salsa-campana-v-02",
+          "parentPatternId": "salsa-campana",
+          "name": "Campana (Bongo Bell) — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14
+          ],
+          "accentProfile": [
+            0.96,
+            0.7799999999999999,
+            0.86,
+            1,
+            0.61,
+            1,
+            0.8099999999999999
+          ],
+          "velocityProfile": [
+            1,
+            0.63,
+            0.83,
+            0.96,
+            0.58,
+            0.88,
+            0.8600000000000001
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2
+          ]
+        }
+      ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 2,
       "weight": 1,
-      "provenance": "Salsa genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Salsa catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "salsa"
       ],
@@ -1520,14 +1781,125 @@ export const SALSA_WORLD: GenreWorld = {
         "chorus"
       ],
       "variants": [
-        
-        ],
+        {
+          "id": "salsa-guiro-v-01",
+          "parentPatternId": "salsa-guiro",
+          "name": "Guiro Pattern — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            3,
+            4,
+            7,
+            8,
+            11,
+            12,
+            15
+          ],
+          "accentProfile": [
+            0.95,
+            0.45,
+            0.6499999999999999,
+            0.95,
+            0.45,
+            0.6499999999999999,
+            0.95,
+            0.45
+          ],
+          "velocityProfile": [
+            0.87,
+            0.4,
+            0.5700000000000001,
+            0.87,
+            0.4,
+            0.5700000000000001,
+            0.87,
+            0.4
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6,
+            -3,
+            6,
+            -3,
+            6
+          ]
+        },
+        {
+          "id": "salsa-guiro-v-02",
+          "parentPatternId": "salsa-guiro",
+          "name": "Guiro Pattern — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            2,
+            3,
+            4,
+            6,
+            7,
+            8,
+            10,
+            11,
+            12,
+            14,
+            15
+          ],
+          "accentProfile": [
+            0.96,
+            0.58,
+            0.6599999999999999,
+            1,
+            0.46,
+            0.7799999999999999,
+            0.96,
+            0.58,
+            0.6599999999999999,
+            1,
+            0.46,
+            0.7799999999999999
+          ],
+          "velocityProfile": [
+            1,
+            0.43,
+            0.63,
+            1,
+            0.43,
+            0.63,
+            1,
+            0.43,
+            0.63,
+            1,
+            0.43,
+            0.63
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5
+          ]
+        }
+      ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 4,
       "weight": 1,
-      "provenance": "Salsa genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Salsa catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "salsa"
       ],
@@ -1612,14 +1984,97 @@ export const SALSA_WORLD: GenreWorld = {
         "turnaround"
       ],
       "variants": [
-        
-        ],
+        {
+          "id": "salsa-maracas-v-01",
+          "parentPatternId": "salsa-maracas",
+          "name": "Maracas — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            2,
+            3,
+            5,
+            6
+          ],
+          "accentProfile": [
+            0.95,
+            0.5499999999999999,
+            0.85,
+            0.5499999999999999,
+            0.8999999999999999
+          ],
+          "velocityProfile": [
+            0.87,
+            0.47000000000000003,
+            0.77,
+            0.47000000000000003,
+            0.8200000000000001
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "salsa-maracas-v-02",
+          "parentPatternId": "salsa-maracas",
+          "name": "Maracas — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "accentProfile": [
+            0.96,
+            0.6799999999999999,
+            0.86,
+            0.6799999999999999,
+            0.9099999999999999,
+            0.6799999999999999,
+            0.86,
+            0.73
+          ],
+          "velocityProfile": [
+            1,
+            0.53,
+            0.83,
+            0.6100000000000001,
+            0.88,
+            0.53,
+            0.9099999999999999,
+            0.58
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5
+          ]
+        }
+      ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 3,
       "weight": 1,
-      "provenance": "Salsa genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Salsa catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "salsa"
       ],
@@ -1693,14 +2148,77 @@ export const SALSA_WORLD: GenreWorld = {
         "chorus"
       ],
       "variants": [
-        
-        ],
+        {
+          "id": "salsa-clave-32-v-01",
+          "parentPatternId": "salsa-clave-32",
+          "name": "3-2 Son Clave — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            6,
+            10
+          ],
+          "accentProfile": [
+            0.95,
+            0.7999999999999999,
+            0.8999999999999999
+          ],
+          "velocityProfile": [
+            0.87,
+            0.7200000000000001,
+            0.8200000000000001
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "salsa-clave-32-v-02",
+          "parentPatternId": "salsa-clave-32",
+          "name": "3-2 Son Clave — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            3,
+            6,
+            10,
+            12
+          ],
+          "accentProfile": [
+            0.96,
+            0.9299999999999999,
+            0.9099999999999999,
+            0.98,
+            0.8099999999999999
+          ],
+          "velocityProfile": [
+            1,
+            0.78,
+            0.88,
+            0.9099999999999999,
+            0.78
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2
+          ]
+        }
+      ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 2,
       "weight": 1,
-      "provenance": "Salsa genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Salsa catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "salsa"
       ],
@@ -1783,14 +2301,97 @@ export const SALSA_WORLD: GenreWorld = {
         "chorus"
       ],
       "variants": [
-        
-        ],
+        {
+          "id": "salsa-timbal-bell-v-01",
+          "parentPatternId": "salsa-timbal-bell",
+          "name": "Timbal Mambo Bell — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            4,
+            7,
+            11,
+            12
+          ],
+          "accentProfile": [
+            0.95,
+            0.6,
+            0.7999999999999999,
+            0.6499999999999999,
+            0.8999999999999999
+          ],
+          "velocityProfile": [
+            0.87,
+            0.52,
+            0.7200000000000001,
+            0.5700000000000001,
+            0.8200000000000001
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "salsa-timbal-bell-v-02",
+          "parentPatternId": "salsa-timbal-bell",
+          "name": "Timbal Mambo Bell — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            3,
+            4,
+            7,
+            8,
+            11,
+            12,
+            15
+          ],
+          "accentProfile": [
+            0.96,
+            0.73,
+            0.8099999999999999,
+            0.7799999999999999,
+            0.9099999999999999,
+            0.73,
+            0.8099999999999999,
+            0.7799999999999999
+          ],
+          "velocityProfile": [
+            1,
+            0.58,
+            0.78,
+            0.71,
+            0.88,
+            0.58,
+            0.8600000000000001,
+            0.63
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5
+          ]
+        }
+      ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 3,
       "weight": 1,
-      "provenance": "Salsa genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
+      "provenance": "Salsa catalog rebuild: retained source material or generated structural support pattern.",
       "authenticityTags": [
         "salsa"
       ],
@@ -1867,7 +2468,7 @@ export const SALSA_WORLD: GenreWorld = {
         0.95,
         0.74
       ],
-      "syncopationRating": 0.83,
+      "syncopationRating": 0.8333333333333334,
       "anticipationOffset": 0,
       "swingPercentage": 53,
       "articulations": [
@@ -1896,9 +2497,80 @@ export const SALSA_WORLD: GenreWorld = {
         "phrasePosition"
       ],
       "variants": [
-        
-        ],
-      "provenance": "Salsa genre-pack structural pattern; generalized for engine coverage and recombination, not a transcription of a single recording.",
+        {
+          "id": "salsa-phrase-12-v-01",
+          "parentPatternId": "salsa-phrase-12",
+          "name": "Coro Phrase — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            2,
+            6,
+            9,
+            14
+          ],
+          "accentProfile": [
+            0.95,
+            0.69,
+            0.85,
+            0.63
+          ],
+          "velocityProfile": [
+            0.92,
+            0.61,
+            0.8200000000000001,
+            0.6000000000000001
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6
+          ]
+        },
+        {
+          "id": "salsa-phrase-12-v-02",
+          "parentPatternId": "salsa-phrase-12",
+          "name": "Coro Phrase — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            2,
+            5,
+            6,
+            9,
+            12,
+            14
+          ],
+          "accentProfile": [
+            0.96,
+            0.82,
+            0.86,
+            0.76,
+            0.96,
+            0.82
+          ],
+          "velocityProfile": [
+            1,
+            0.6699999999999999,
+            0.88,
+            0.74,
+            0.9299999999999999,
+            0.72
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5
+          ]
+        }
+      ],
+      "provenance": "GenreDAW catalog rebuild from existing Salsa world data; generated to cover missing musical functions without runtime AI.",
       "authenticityTags": [
         "salsa",
         "coro"
@@ -1963,7 +2635,7 @@ export const SALSA_WORLD: GenreWorld = {
         0.57,
         0.95,
         0.62,
-        0.9,
+        0.8999999999999999,
         0.62
       ],
       "syncopationRating": 1,
@@ -1996,10 +2668,124 @@ export const SALSA_WORLD: GenreWorld = {
         "phrasePosition"
       ],
       "variants": [
-        
-        
-        ],
-      "provenance": "Salsa genre-pack structural pattern; generalized for engine coverage and recombination, not a transcription of a single recording.",
+        {
+          "id": "salsa-call-13-v-01",
+          "parentPatternId": "salsa-call-13",
+          "name": "Mambo Response — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            3,
+            7,
+            10,
+            15
+          ],
+          "accentProfile": [
+            0.8999999999999999,
+            0.57,
+            0.8999999999999999,
+            0.57
+          ],
+          "velocityProfile": [
+            0.87,
+            0.48999999999999994,
+            0.87,
+            0.54
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6
+          ]
+        },
+        {
+          "id": "salsa-call-13-v-02",
+          "parentPatternId": "salsa-call-13",
+          "name": "Mambo Response — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            3,
+            6,
+            7,
+            10,
+            13,
+            15
+          ],
+          "accentProfile": [
+            0.9099999999999999,
+            0.7,
+            0.9099999999999999,
+            0.7,
+            0.9099999999999999,
+            0.7
+          ],
+          "velocityProfile": [
+            1,
+            0.5499999999999999,
+            0.9299999999999999,
+            0.6799999999999999,
+            0.8799999999999999,
+            0.6
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5
+          ]
+        },
+        {
+          "id": "salsa-call-13-v-03",
+          "parentPatternId": "salsa-call-13",
+          "name": "Mambo Response — transition variation",
+          "variationType": "transition",
+          "probability": 0.16,
+          "description": "Adds a final pickup/closure gesture for section transitions.",
+          "onsetGrid": [
+            3,
+            6,
+            7,
+            10,
+            13,
+            14,
+            15
+          ],
+          "accentProfile": [
+            0.9299999999999999,
+            0.6,
+            0.9299999999999999,
+            0.6,
+            0.9299999999999999,
+            1,
+            1
+          ],
+          "velocityProfile": [
+            0.95,
+            0.57,
+            0.95,
+            0.62,
+            0.8999999999999999,
+            0.98,
+            0.98
+          ],
+          "microtimingOffset": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            -6,
+            -6
+          ]
+        }
+      ],
+      "provenance": "GenreDAW catalog rebuild from existing Salsa world data; generated to cover missing musical functions without runtime AI.",
       "authenticityTags": [
         "salsa",
         "mambo"
@@ -2101,9 +2887,80 @@ export const SALSA_WORLD: GenreWorld = {
         "phrasePosition"
       ],
       "variants": [
-        
-        ],
-      "provenance": "Salsa genre-pack structural pattern; generalized for engine coverage and recombination, not a transcription of a single recording.",
+        {
+          "id": "salsa-anchor-14-v-01",
+          "parentPatternId": "salsa-anchor-14",
+          "name": "Tumbao Anchor — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            7,
+            8,
+            14
+          ],
+          "accentProfile": [
+            0.95,
+            0.69,
+            0.85,
+            0.63
+          ],
+          "velocityProfile": [
+            0.92,
+            0.61,
+            0.8200000000000001,
+            0.6000000000000001
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6
+          ]
+        },
+        {
+          "id": "salsa-anchor-14-v-02",
+          "parentPatternId": "salsa-anchor-14",
+          "name": "Tumbao Anchor — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            4,
+            7,
+            8,
+            11,
+            14
+          ],
+          "accentProfile": [
+            0.96,
+            0.82,
+            0.86,
+            0.76,
+            0.96,
+            0.82
+          ],
+          "velocityProfile": [
+            1,
+            0.6699999999999999,
+            0.88,
+            0.74,
+            0.9299999999999999,
+            0.72
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5
+          ]
+        }
+      ],
+      "provenance": "GenreDAW catalog rebuild from existing Salsa world data; generated to cover missing musical functions without runtime AI.",
       "authenticityTags": [
         "salsa",
         "tumbao"
@@ -2177,7 +3034,7 @@ export const SALSA_WORLD: GenreWorld = {
         0.95,
         0.74
       ],
-      "syncopationRating": 0.83,
+      "syncopationRating": 0.8333333333333334,
       "anticipationOffset": 0,
       "swingPercentage": 53,
       "articulations": [
@@ -2206,9 +3063,80 @@ export const SALSA_WORLD: GenreWorld = {
         "phrasePosition"
       ],
       "variants": [
-        
-        ],
-      "provenance": "Salsa genre-pack structural pattern; generalized for engine coverage and recombination, not a transcription of a single recording.",
+        {
+          "id": "salsa-comp-15-v-01",
+          "parentPatternId": "salsa-comp-15",
+          "name": "Son Clave Comping — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            6,
+            9,
+            13
+          ],
+          "accentProfile": [
+            0.95,
+            0.69,
+            0.85,
+            0.63
+          ],
+          "velocityProfile": [
+            0.92,
+            0.61,
+            0.8200000000000001,
+            0.6000000000000001
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6
+          ]
+        },
+        {
+          "id": "salsa-comp-15-v-02",
+          "parentPatternId": "salsa-comp-15",
+          "name": "Son Clave Comping — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            2,
+            6,
+            9,
+            10,
+            13
+          ],
+          "accentProfile": [
+            0.96,
+            0.82,
+            0.86,
+            0.76,
+            0.96,
+            0.82
+          ],
+          "velocityProfile": [
+            1,
+            0.6699999999999999,
+            0.88,
+            0.74,
+            0.9299999999999999,
+            0.72
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5
+          ]
+        }
+      ],
+      "provenance": "GenreDAW catalog rebuild from existing Salsa world data; generated to cover missing musical functions without runtime AI.",
       "authenticityTags": [
         "salsa",
         "son-clave"
@@ -2319,8 +3247,90 @@ export const SALSA_WORLD: GenreWorld = {
         "phrasePosition"
       ],
       "variants": [
-        
-        
+        {
+          "id": "salsa-intro-16-v-01",
+          "parentPatternId": "salsa-intro-16",
+          "name": "Montuno Intro — sparse variation",
+          "variationType": "sparse",
+          "probability": 0.22,
+          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "onsetGrid": [
+            0,
+            4,
+            7,
+            11,
+            12
+          ],
+          "accentProfile": [
+            0.95,
+            0.69,
+            0.85,
+            0.63,
+            0.95
+          ],
+          "velocityProfile": [
+            0.92,
+            0.61,
+            0.8200000000000001,
+            0.6000000000000001,
+            0.87
+          ],
+          "microtimingOffset": [
+            -3,
+            6,
+            -3,
+            6,
+            -3
+          ]
+        },
+        {
+          "id": "salsa-intro-16-v-02",
+          "parentPatternId": "salsa-intro-16",
+          "name": "Montuno Intro — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.2,
+          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "onsetGrid": [
+            0,
+            3,
+            4,
+            7,
+            8,
+            11,
+            12,
+            14
+          ],
+          "accentProfile": [
+            0.96,
+            0.82,
+            0.86,
+            0.76,
+            0.96,
+            0.82,
+            0.86,
+            0.76
+          ],
+          "velocityProfile": [
+            1,
+            0.6699999999999999,
+            0.88,
+            0.74,
+            0.9299999999999999,
+            0.72,
+            0.96,
+            0.61
+          ],
+          "microtimingOffset": [
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5,
+            2,
+            -5
+          ]
+        },
         {
           "id": "salsa-intro-16-v-03",
           "parentPatternId": "salsa-intro-16",
@@ -2374,7 +3384,7 @@ export const SALSA_WORLD: GenreWorld = {
           ]
         }
       ],
-      "provenance": "Salsa genre-pack structural pattern; generalized for engine coverage and recombination, not a transcription of a single recording.",
+      "provenance": "GenreDAW catalog rebuild from existing Salsa world data; generated to cover missing musical functions without runtime AI.",
       "authenticityTags": [
         "salsa",
         "montuno"
@@ -2442,7 +3452,7 @@ export const SALSA_WORLD: GenreWorld = {
         0.9,
         0.58
       ],
-      "syncopationRating": 0.67,
+      "syncopationRating": 0.6666666666666666,
       "anticipationOffset": 0,
       "swingPercentage": 50,
       "articulations": [
@@ -2512,8 +3522,48 @@ export const SALSA_WORLD: GenreWorld = {
             -4
           ]
         },
-        ],
-      "provenance": "Genre-pack structural pattern for dedicated vocal phrasing coverage for Salsa; generalized for engine coverage, not a transcription.",
+        {
+          "id": "salsa-voice-phrasing-v-final-accent",
+          "parentPatternId": "salsa-voice-phrasing",
+          "name": "Salsa Vocal Phrasing — accent shift",
+          "variationType": "accentShift",
+          "probability": 0.18,
+          "description": "Same rhythmic shape with shifted emphasis on the repeat.",
+          "onsetGrid": [
+            0,
+            3,
+            5,
+            8,
+            11,
+            14
+          ],
+          "accentProfile": [
+            0.8999999999999999,
+            0.7,
+            0.8999999999999999,
+            0.7,
+            0.8999999999999999,
+            0.7
+          ],
+          "velocityProfile": [
+            0.9,
+            0.58,
+            0.9,
+            0.58,
+            0.9,
+            0.58
+          ],
+          "microtimingOffset": [
+            2,
+            -4,
+            2,
+            -4,
+            2,
+            -4
+          ]
+        }
+      ],
+      "provenance": "GenreDAW catalog rebuild: dedicated vocal phrasing coverage for Salsa.",
       "authenticityTags": [
         "salsa",
         "voice"
@@ -2524,254 +3574,6 @@ export const SALSA_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "difficulty": 2,
       "weight": 0.9,
-      "enabled": true
-    },
-    {
-      "id": "salsa-rumba-clave-guaguanco",
-      "worldId": "salsa",
-      "traditionId": "afro-rumba",
-      "name": "Rumba Clave (Guaguancó) 3–2",
-      "family": "Rumba Rhythm Section",
-      "category": "timeline",
-      "description": "The fundamental structural timeline of Cuban Rumba with delayed 3rd hit on the three-side.",
-      "tags": ["rumba", "clave", "guaguanco", "timeline", "pulse"],
-      "scopes": ["measure", "phrase", "region", "track", "song"],
-      "roles": ["pulse", "percussion", "bell"],
-      "instruments": ["hand-percussion", "percussion", "drums"],
-      "meter": "4/4",
-      "cycleLength": 2,
-      "subdivisions": 32,
-      "onsetGrid": [0, 6, 11, 16, 22],
-      "accentProfile": [1.0, 0.85, 0.95, 0.85, 0.9],
-      "velocityProfile": [1.0, 0.8, 0.95, 0.85, 0.9],
-      "articulations": ["accented", "staccato"],
-      "density": "sparse",
-      "phrasePosition": ["start", "middle", "end"],
-      "sectionUsage": ["intro", "verse", "chorus", "solo", "coda"],
-      "variants": [],
-      "provenance": "Genre-pack support pattern for Afro-Cuban Rumba; generalized from documented musical conventions.",
-      "authenticityTags": ["rumba", "clave"],
-      "danceTags": ["social-partner"],
-      "tuningSystem": "12-tet",
-      "difficulty": 3,
-      "weight": 1,
-      "enabled": true
-    },
-    {
-      "id": "salsa-rumba-conga-interlock",
-      "worldId": "salsa",
-      "traditionId": "afro-rumba",
-      "name": "Rumba Congas Interlock (Quinto, Tres Golpes, Salidor)",
-      "family": "Rumba Rhythm Section",
-      "category": "groove",
-      "description": "Three-conga polyrhythmic conversation: steady salidor heartbeat, resonant tres golpes, and conversational quinto slaps.",
-      "tags": ["rumba", "congas", "quinto", "salidor", "hand-percussion"],
-      "scopes": ["measure", "phrase", "region", "track"],
-      "roles": ["percussion", "hand-percussion"],
-      "instruments": ["congas", "hand-percussion", "percussion"],
-      "meter": "4/4",
-      "cycleLength": 1,
-      "subdivisions": 16,
-      "onsetGrid": [0, 3, 4, 7, 8, 10, 12, 14, 15],
-      "accentProfile": [0.9, 0.7, 0.95, 0.7, 0.9, 0.75, 0.95, 0.8, 0.85],
-      "velocityProfile": [0.85, 0.7, 0.9, 0.7, 0.85, 0.75, 0.9, 0.8, 0.8],
-      "articulations": ["slap", "open", "palm"],
-      "density": "dense",
-      "phrasePosition": ["start", "middle", "end"],
-      "sectionUsage": ["verse", "chorus", "solo"],
-      "variants": [],
-      "provenance": "Genre-pack support pattern for Afro-Cuban Rumba; generalized from documented musical conventions.",
-      "authenticityTags": ["rumba", "conga"],
-      "danceTags": ["social-partner"],
-      "tuningSystem": "12-tet",
-      "difficulty": 3,
-      "weight": 1,
-      "enabled": true
-    },
-    {
-      "id": "salsa-rumba-cata-bamboo",
-      "worldId": "salsa",
-      "traditionId": "afro-rumba",
-      "name": "Catá / Guagua Bamboo Stick Pattern",
-      "family": "Rumba Rhythm Section",
-      "category": "ostinato",
-      "description": "Wooden bamboo catá pattern played with two sticks reinforcing the rumba drive.",
-      "tags": ["rumba", "cata", "guagua", "percussion"],
-      "scopes": ["measure", "phrase", "region", "track"],
-      "roles": ["percussion", "aux-percussion"],
-      "instruments": ["percussion", "hand-percussion", "drums"],
-      "meter": "4/4",
-      "cycleLength": 1,
-      "subdivisions": 16,
-      "onsetGrid": [0, 2, 3, 6, 8, 10, 11, 14],
-      "accentProfile": [0.95, 0.7, 0.85, 0.9, 0.7, 0.85, 0.8, 0.9],
-      "velocityProfile": [0.9, 0.65, 0.8, 0.85, 0.65, 0.8, 0.75, 0.85],
-      "articulations": ["martellato", "staccato"],
-      "density": "medium",
-      "phrasePosition": ["start", "middle", "end"],
-      "sectionUsage": ["verse", "chorus", "solo"],
-      "variants": [],
-      "provenance": "Genre-pack support pattern for Afro-Cuban Rumba; generalized from documented musical conventions.",
-      "authenticityTags": ["rumba", "cata"],
-      "danceTags": ["social-partner"],
-      "tuningSystem": "12-tet",
-      "difficulty": 2,
-      "weight": 1,
-      "enabled": true
-    },
-    {
-      "id": "salsa-rumba-bass-diana",
-      "worldId": "salsa",
-      "traditionId": "afro-rumba",
-      "name": "Rumba Acoustic Bass & Diana Drive",
-      "family": "Rumba Harmonic Ground",
-      "category": "bass",
-      "description": "Deep grounded acoustic bass pulse supporting the opening diana vocal chant.",
-      "tags": ["rumba", "bass", "diana", "pulse"],
-      "scopes": ["measure", "phrase", "region", "track"],
-      "roles": ["bass", "pulse"],
-      "instruments": ["bass", "voice"],
-      "meter": "4/4",
-      "cycleLength": 1,
-      "subdivisions": 16,
-      "onsetGrid": [0, 6, 10, 12, 14],
-      "accentProfile": [1.0, 0.8, 0.85, 0.9, 0.75],
-      "velocityProfile": [0.95, 0.75, 0.8, 0.85, 0.7],
-      "articulations": ["tenuto", "staccato"],
-      "density": "medium",
-      "phrasePosition": ["start", "middle", "end"],
-      "sectionUsage": ["intro", "verse", "chorus"],
-      "variants": [],
-      "provenance": "Genre-pack support pattern for Afro-Cuban Rumba; generalized from documented musical conventions.",
-      "authenticityTags": ["rumba", "bass"],
-      "danceTags": ["listening"],
-      "tuningSystem": "12-tet",
-      "difficulty": 2,
-      "weight": 1,
-      "enabled": true
-    },
-    {
-      "id": "salsa-chachacha-guiro-step",
-      "worldId": "salsa",
-      "traditionId": "afro-chachacha-danzon",
-      "name": "Cha-cha-chá Güiro & Maraca 4-and-1 Drive",
-      "family": "Charanga Rhythm Section",
-      "category": "groove",
-      "description": "Crisp scraped güiro and maracas driving the iconic cha-cha-chá shuffle on beats 4-and-1.",
-      "tags": ["chachacha", "guiro", "maracas", "charanga", "percussion"],
-      "scopes": ["measure", "phrase", "region", "track"],
-      "roles": ["percussion", "guiro", "aux-percussion"],
-      "instruments": ["guiro", "percussion", "hand-percussion"],
-      "meter": "4/4",
-      "cycleLength": 1,
-      "subdivisions": 16,
-      "onsetGrid": [0, 4, 8, 12, 14, 15],
-      "accentProfile": [0.95, 0.8, 0.85, 1.0, 0.9, 0.8],
-      "velocityProfile": [0.9, 0.75, 0.8, 0.95, 0.85, 0.75],
-      "articulations": ["scraped", "staccato"],
-      "density": "medium",
-      "phrasePosition": ["start", "middle", "end"],
-      "sectionUsage": ["verse", "chorus", "bridge"],
-      "variants": [],
-      "provenance": "Genre-pack support pattern for Cha-cha-chá & Danzón; generalized from documented musical conventions.",
-      "authenticityTags": ["chachacha", "guiro"],
-      "danceTags": ["social-partner"],
-      "tuningSystem": "12-tet",
-      "difficulty": 2,
-      "weight": 1,
-      "enabled": true
-    },
-    {
-      "id": "salsa-chachacha-piano-montuno",
-      "worldId": "salsa",
-      "traditionId": "afro-chachacha-danzon",
-      "name": "Cha-cha-chá Elegant Piano Guajeo",
-      "family": "Charanga Harmony Section",
-      "category": "montuno",
-      "description": "Lighter, syncopated parlour piano guajeo emphasizing elegance and swing over pure salsa velocity.",
-      "tags": ["chachacha", "piano", "guajeo", "harmony", "keys"],
-      "scopes": ["measure", "phrase", "region", "track"],
-      "roles": ["harmony", "piano", "keys"],
-      "instruments": ["piano", "keys"],
-      "meter": "4/4",
-      "cycleLength": 1,
-      "subdivisions": 16,
-      "onsetGrid": [0, 3, 6, 8, 12, 14],
-      "accentProfile": [0.9, 0.8, 0.9, 0.85, 0.95, 0.8],
-      "velocityProfile": [0.85, 0.75, 0.85, 0.8, 0.9, 0.75],
-      "articulations": ["staccato", "tenuto"],
-      "density": "medium",
-      "phrasePosition": ["start", "middle", "end"],
-      "sectionUsage": ["verse", "chorus", "solo"],
-      "variants": [],
-      "provenance": "Genre-pack support pattern for Cha-cha-chá & Danzón; generalized from documented musical conventions.",
-      "authenticityTags": ["chachacha", "piano"],
-      "danceTags": ["social-partner"],
-      "tuningSystem": "12-tet",
-      "difficulty": 2,
-      "weight": 1,
-      "enabled": true
-    },
-    {
-      "id": "salsa-chachacha-flute-lead",
-      "worldId": "salsa",
-      "traditionId": "afro-chachacha-danzon",
-      "name": "Charanga Flute Melodic Ostinato",
-      "family": "Charanga Lead Section",
-      "category": "melody",
-      "description": "Wood wooden/silver charanga flute running sweet high-register arpeggios and trills.",
-      "tags": ["charanga", "flute", "melody", "lead"],
-      "scopes": ["measure", "phrase", "region", "track"],
-      "roles": ["lead", "flute", "melody"],
-      "instruments": ["flute", "strings", "violin"],
-      "meter": "4/4",
-      "cycleLength": 1,
-      "subdivisions": 16,
-      "onsetGrid": [2, 4, 7, 8, 10, 12, 14],
-      "accentProfile": [0.85, 0.9, 0.75, 0.85, 0.8, 0.95, 0.9],
-      "velocityProfile": [0.8, 0.85, 0.7, 0.8, 0.75, 0.9, 0.85],
-      "articulations": ["legato", "ornamented"],
-      "density": "medium",
-      "phrasePosition": ["start", "middle"],
-      "sectionUsage": ["verse", "chorus", "solo"],
-      "variants": [],
-      "provenance": "Genre-pack support pattern for Cha-cha-chá & Danzón; generalized from documented musical conventions.",
-      "authenticityTags": ["charanga", "flute"],
-      "danceTags": ["social-partner"],
-      "tuningSystem": "12-tet",
-      "difficulty": 2,
-      "weight": 1,
-      "enabled": true
-    },
-    {
-      "id": "salsa-danzon-baqueteo-bass",
-      "worldId": "salsa",
-      "traditionId": "afro-chachacha-danzon",
-      "name": "Danzón Baqueteo Bass",
-      "family": "Charanga Bass Section",
-      "category": "bass",
-      "description": "Traditional baqueteo-derived grounded acoustic bassline walking through Danzón and Cha-cha-chá sections.",
-      "tags": ["danzon", "bass", "baqueteo", "pulse"],
-      "scopes": ["measure", "phrase", "region", "track"],
-      "roles": ["bass", "pulse"],
-      "instruments": ["bass"],
-      "meter": "4/4",
-      "cycleLength": 1,
-      "subdivisions": 16,
-      "onsetGrid": [0, 4, 6, 8, 12, 14],
-      "accentProfile": [1.0, 0.7, 0.85, 0.9, 0.8, 0.85],
-      "velocityProfile": [0.95, 0.7, 0.8, 0.85, 0.75, 0.8],
-      "articulations": ["tenuto", "pizzicato"],
-      "density": "medium",
-      "phrasePosition": ["start", "middle", "end"],
-      "sectionUsage": ["intro", "verse", "chorus"],
-      "variants": [],
-      "provenance": "Genre-pack support pattern for Cha-cha-chá & Danzón; generalized from documented musical conventions.",
-      "authenticityTags": ["danzon", "bass"],
-      "danceTags": ["social-partner"],
-      "tuningSystem": "12-tet",
-      "difficulty": 2,
-      "weight": 1,
       "enabled": true
     }
   ],
