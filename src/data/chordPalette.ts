@@ -783,6 +783,146 @@ export const CHORD_PALETTE: ChordOption[] = [
     blurb: 'Dark borrowed chords and a deliberately broken cadence',
     heardIn: ['electronic', 'rock'],
   },
+  {
+    "id": "flamenco-andalusian-cadence",
+    "name": "Andalusian Cadence",
+    "chords": [
+      "Am",
+      "G",
+      "F",
+      "E7"
+    ],
+    "mood": "exotic-borrowed",
+    "origin": "Flamenco / Andalusian cadence",
+    "blurb": "The core Phrygian-descending cadence used across many flamenco palos.",
+    "heardIn": [
+      "flamenco"
+    ]
+  },
+  {
+    "id": "flamenco-por-medio",
+    "name": "Por Medio",
+    "chords": [
+      "Dm",
+      "C",
+      "Bb",
+      "A7"
+    ],
+    "mood": "tense-dramatic",
+    "origin": "Flamenco guitar por medio",
+    "blurb": "A practical transposed Phrygian accompaniment frame around A7.",
+    "heardIn": [
+      "flamenco"
+    ]
+  },
+  {
+    "id": "flamenco-solea-turn",
+    "name": "Soleá Cierre Turn",
+    "chords": [
+      "Am",
+      "Dm",
+      "G",
+      "C",
+      "F",
+      "E7",
+      "Am",
+      "E7"
+    ],
+    "mood": "tense-dramatic",
+    "origin": "Soleá",
+    "blurb": "Longer Soleá-family harmonic road with a strong dominant return.",
+    "heardIn": [
+      "flamenco"
+    ]
+  },
+  {
+    "id": "flamenco-alegrias-major",
+    "name": "Alegrías Major",
+    "chords": [
+      "C",
+      "F",
+      "G7",
+      "C"
+    ],
+    "mood": "festive-celebratory",
+    "origin": "Alegrías / Cantiñas",
+    "blurb": "Bright major-key cantiñas color for Cádiz-style Alegrías.",
+    "heardIn": [
+      "flamenco"
+    ]
+  },
+  {
+    "id": "flamenco-tientos-gravity",
+    "name": "Tientos Gravity",
+    "chords": [
+      "Am",
+      "G",
+      "F",
+      "E7",
+      "Dm",
+      "E7",
+      "Am",
+      "Am"
+    ],
+    "mood": "tense-dramatic",
+    "origin": "Tientos",
+    "blurb": "Slow, weighty binary harmony suited to Tientos and jondo singing.",
+    "heardIn": [
+      "flamenco"
+    ]
+  },
+  {
+    "id": "flamenco-farruca-minor",
+    "name": "Farruca Minor",
+    "chords": [
+      "Am",
+      "E7",
+      "Am",
+      "Dm"
+    ],
+    "mood": "mysterious-eerie",
+    "origin": "Farruca",
+    "blurb": "Dry minor binary cycle for grounded Farruca dance phrasing.",
+    "heardIn": [
+      "flamenco"
+    ]
+  },
+  {
+    "id": "flamenco-guajira",
+    "name": "Guajira Ida y Vuelta",
+    "chords": [
+      "C",
+      "G7",
+      "C",
+      "F"
+    ],
+    "mood": "playful-bouncy",
+    "origin": "Guajira / Cuba",
+    "blurb": "Light major-key ida-y-vuelta color with Cuban inflection.",
+    "heardIn": [
+      "flamenco"
+    ]
+  },
+  {
+    "id": "flamenco-fandango",
+    "name": "Fandango Copla",
+    "chords": [
+      "Am",
+      "G",
+      "F",
+      "E7",
+      "C",
+      "F",
+      "G7",
+      "C"
+    ],
+    "mood": "festive-celebratory",
+    "origin": "Fandangos de Huelva",
+    "blurb": "Modal-to-major copla movement across four ternary phrases.",
+    "heardIn": [
+      "flamenco"
+    ]
+  },
 ];
 
 export function chordsForMood(mood: ChordMood): ChordOption[] {

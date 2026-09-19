@@ -11,6 +11,2534 @@ const STYLES_CATALOG: SongStyle[] = [];
 // Curated specialized style families requested by prompt
 const SPECIALIZED_STYLES: SongStyle[] = [
   // --- FLAMENCO: keep Rumba and Sevillanas as separate, first-class song styles ---
+  // --- FLAMENCO: palo-specific styles -------------------------------------
+  {
+    "id": "flamenco-solea-style",
+    "name": "Soleá",
+    "aliases": [],
+    "genres": [
+      "flamenco"
+    ],
+    "primaryGenre": "flamenco",
+    "kind": "canonical",
+    "canonical": true,
+    "summary": "Deep cante-jondo Soleá: measured 12-beat compás, Phrygian gravity, falsetas, llamadas and decisive cierres.",
+    "signatureTraits": [
+      "12-beat 3+3+2+2+2",
+      "Heavy 3/10/12",
+      "Phrygian / Andalusian cadence",
+      "Cante–guitar breathing",
+      "Llamada / cierre"
+    ],
+    "era": "Traditional / modern",
+    "region": "Andalusia, Spain",
+    "confidence": "high",
+    "authoringNotes": "Palo-specific patch: compás, harmonic color, phrase vocabulary and starter ensemble are intentionally coupled.",
+    "form": {
+      "sectionVocab": [
+        "intro",
+        "verse",
+        "solo",
+        "verse",
+        "chorus",
+        "ending"
+      ],
+      "templates": [
+        {
+          "w": 1,
+          "value": [
+            {
+              "key": "intro",
+              "label": "Salida / Falseta",
+              "kind": "intro",
+              "bars": 8,
+              "intensity": "low"
+            },
+            {
+              "key": "letra-1",
+              "label": "Letra 1",
+              "kind": "verse",
+              "bars": 12,
+              "intensity": "medium"
+            },
+            {
+              "key": "falseta",
+              "label": "Falseta",
+              "kind": "solo",
+              "bars": 12,
+              "intensity": "high"
+            },
+            {
+              "key": "letra-2",
+              "label": "Letra 2",
+              "kind": "verse",
+              "bars": 12,
+              "intensity": "medium"
+            },
+            {
+              "key": "remate",
+              "label": "Remate / Cierre",
+              "kind": "chorus",
+              "bars": 8,
+              "intensity": "peak"
+            },
+            {
+              "key": "coda",
+              "label": "Cierre",
+              "kind": "ending",
+              "bars": 4,
+              "intensity": "low"
+            }
+          ]
+        }
+      ],
+      "preferredMeters": [
+        "12/8"
+      ]
+    },
+    "harmony": {
+      "model": "functional",
+      "modePolicy": "phrygian",
+      "progressionTemplates": [
+        {
+          "w": 1,
+          "value": [
+            "Am",
+            "G",
+            "F",
+            "E7"
+          ]
+        },
+        {
+          "w": 0.7,
+          "value": [
+            "Am",
+            "Dm",
+            "G",
+            "C",
+            "F",
+            "E7",
+            "Am",
+            "E7"
+          ]
+        }
+      ],
+      "sectionProgressions": {
+        "intro": [
+          "Am",
+          "G",
+          "F",
+          "E7"
+        ],
+        "verse": [
+          "Am",
+          "G",
+          "F",
+          "E7",
+          "Am",
+          "G",
+          "F",
+          "E7"
+        ],
+        "solo": [
+          "Dm",
+          "C",
+          "Bb",
+          "A7",
+          "Dm",
+          "E7",
+          "Am",
+          "E7"
+        ],
+        "coda": [
+          "E7",
+          "E7",
+          "Am",
+          "Am"
+        ]
+      },
+      "chordVocabulary": [
+        "Am",
+        "G",
+        "F",
+        "E7",
+        "Dm",
+        "C",
+        "Bb",
+        "A7"
+      ],
+      "harmonicRhythm": "1-bar",
+      "voicingStyle": "open-flamenco-guitar",
+      "bassMotion": "drone",
+      "tuningSystem": "12-tet"
+    },
+    "rhythm": {
+      "meter": "12/8",
+      "tempoRange": [
+        70,
+        100
+      ],
+      "defaultBpm": 84,
+      "feel": "measured-jondo",
+      "swingPercentage": 50,
+      "anticipationOffsetSteps": 0,
+      "microtimingFeel": "straight",
+      "humanizeJitterMs": 7,
+      "signatureCell": "12-beat compás: 12, 3, 6, 8, 10; strong closure at 10 and release into 12."
+    },
+    "melody": {
+      "scaleMode": "phrygian",
+      "phraseLengthsBars": [
+        2,
+        4,
+        8
+      ],
+      "contourArchetypes": [
+        "flamenco-arch",
+        "descending-cadence",
+        "call-and-response"
+      ],
+      "ornamentVocabulary": [
+        "slide",
+        "grace-note",
+        "vibrato",
+        "mordent",
+        "picado"
+      ],
+      "chordToneTargeting": true,
+      "callAndResponse": true
+    },
+    "arrangement": {
+      "ensemble": [
+        {
+          "role": "harmony",
+          "instrumentIds": [
+            "guitar"
+          ],
+          "priority": 10
+        },
+        {
+          "role": "melody",
+          "instrumentIds": [
+            "voice"
+          ],
+          "priority": 10
+        },
+        {
+          "role": "percussion",
+          "instrumentIds": [
+            "palmas"
+          ],
+          "priority": 6
+        },
+        {
+          "role": "percussion",
+          "instrumentIds": [
+            "cajon"
+          ],
+          "priority": 4
+        }
+      ],
+      "densityCurve": {
+        "intro": "sparse",
+        "letra-1": "normal",
+        "falseta": "normal",
+        "letra-2": "normal",
+        "remate": "busy",
+        "coda": "sparse"
+      },
+      "solos": [
+        "guitar"
+      ]
+    },
+    "sound": {
+      "instrumentPalette": [
+        {
+          "value": "guitar",
+          "w": 1
+        },
+        {
+          "value": "voice",
+          "w": 0.95
+        },
+        {
+          "value": "palmas",
+          "w": 0.7
+        },
+        {
+          "value": "cajon",
+          "w": 0.35
+        }
+      ],
+      "articulations": {
+        "guitar": "rasgueado, golpe, alzapúa, picado, tremolo",
+        "cajon": "grave/agudo/slap",
+        "palmas": "sordas/claras",
+        "voice": "cante / melisma"
+      },
+      "masterProfile": {
+        "roomId": "studio",
+        "pocket": 0.52,
+        "lift": 0.62
+      }
+    },
+    "patterns": {
+      "require": [
+        "flam-solea-guitar-compas",
+        "flam-solea-palmas",
+        "flam-llamada-12",
+        "flam-remate-12"
+      ],
+      "avoid": []
+    },
+    "gestures": {
+      "llamada": {
+        "id": "llamada",
+        "name": "Llamada",
+        "probability": 0.9
+      },
+      "cierre": {
+        "id": "cierre",
+        "name": "Cierre on 10",
+        "probability": 0.9
+      },
+      "falseta": {
+        "id": "falseta",
+        "name": "Falseta interlude",
+        "probability": 0.8
+      }
+    },
+    "rules": {
+      "require": [
+        {
+          "tag": "flamenco"
+        }
+      ],
+      "forbid": []
+    }
+  },
+  {
+    "id": "flamenco-buleria-style",
+    "name": "Bulerías de Jerez",
+    "aliases": [],
+    "genres": [
+      "flamenco"
+    ],
+    "primaryGenre": "flamenco",
+    "kind": "form",
+    "canonical": false,
+    "summary": "Fast festive 12-beat Bulería built for jaleo, contratiempo, rapid llamadas and remates; ideal fin de fiesta.",
+    "signatureTraits": [
+      "Fast 12-beat compás",
+      "Contratiempo palmas",
+      "Cortes and remates",
+      "Jaleo / fin de fiesta",
+      "Alzapúa and rasgueado"
+    ],
+    "era": "Traditional / modern",
+    "region": "Andalusia, Spain",
+    "confidence": "high",
+    "authoringNotes": "Palo-specific patch: compás, harmonic color, phrase vocabulary and starter ensemble are intentionally coupled.",
+    "form": {
+      "sectionVocab": [
+        "intro",
+        "verse",
+        "chorus",
+        "solo",
+        "ending"
+      ],
+      "templates": [
+        {
+          "w": 1,
+          "value": [
+            {
+              "key": "intro",
+              "label": "Llamada",
+              "kind": "intro",
+              "bars": 4,
+              "intensity": "medium"
+            },
+            {
+              "key": "letra",
+              "label": "Letras / Chuflas",
+              "kind": "verse",
+              "bars": 12,
+              "intensity": "high"
+            },
+            {
+              "key": "jaleo",
+              "label": "Jaleo / Respuestas",
+              "kind": "chorus",
+              "bars": 12,
+              "intensity": "peak"
+            },
+            {
+              "key": "pataita",
+              "label": "Pataíta / Falseta",
+              "kind": "solo",
+              "bars": 12,
+              "intensity": "peak"
+            },
+            {
+              "key": "fin",
+              "label": "Fin de Fiesta",
+              "kind": "ending",
+              "bars": 8,
+              "intensity": "peak"
+            }
+          ]
+        }
+      ],
+      "preferredMeters": [
+        "12/8"
+      ]
+    },
+    "harmony": {
+      "model": "functional",
+      "modePolicy": "phrygian",
+      "progressionTemplates": [
+        {
+          "w": 1,
+          "value": [
+            "Am",
+            "G",
+            "F",
+            "E7"
+          ]
+        },
+        {
+          "w": 0.7,
+          "value": [
+            "Dm",
+            "C",
+            "Bb",
+            "A7",
+            "Dm",
+            "E7",
+            "Am",
+            "E7"
+          ]
+        }
+      ],
+      "sectionProgressions": {
+        "intro": [
+          "Am",
+          "G",
+          "F",
+          "E7"
+        ],
+        "verse": [
+          "Dm",
+          "C",
+          "Bb",
+          "A7"
+        ],
+        "chorus": [
+          "Am",
+          "G",
+          "F",
+          "E7"
+        ],
+        "solo": [
+          "Dm",
+          "C",
+          "Bb",
+          "A7"
+        ],
+        "ending": [
+          "E7",
+          "E7",
+          "Am",
+          "Am"
+        ]
+      },
+      "chordVocabulary": [
+        "Am",
+        "G",
+        "F",
+        "E7",
+        "Dm",
+        "C",
+        "Bb",
+        "A7"
+      ],
+      "harmonicRhythm": "1-bar",
+      "voicingStyle": "open-flamenco-guitar",
+      "bassMotion": "drone",
+      "tuningSystem": "12-tet"
+    },
+    "rhythm": {
+      "meter": "12/8",
+      "tempoRange": [
+        180,
+        240
+      ],
+      "defaultBpm": 210,
+      "feel": "buleria-fast-contratiempo",
+      "swingPercentage": 50,
+      "anticipationOffsetSteps": 0,
+      "microtimingFeel": "straight",
+      "humanizeJitterMs": 7,
+      "signatureCell": "12-beat bulería with flexible accents, contratiempo and abrupt cortes."
+    },
+    "melody": {
+      "scaleMode": "phrygian",
+      "phraseLengthsBars": [
+        2,
+        4,
+        8
+      ],
+      "contourArchetypes": [
+        "flamenco-arch",
+        "descending-cadence",
+        "call-and-response"
+      ],
+      "ornamentVocabulary": [
+        "slide",
+        "grace-note",
+        "vibrato",
+        "mordent",
+        "picado"
+      ],
+      "chordToneTargeting": true,
+      "callAndResponse": true
+    },
+    "arrangement": {
+      "ensemble": [
+        {
+          "role": "harmony",
+          "instrumentIds": [
+            "guitar"
+          ],
+          "priority": 10
+        },
+        {
+          "role": "percussion",
+          "instrumentIds": [
+            "palmas"
+          ],
+          "priority": 9
+        },
+        {
+          "role": "percussion",
+          "instrumentIds": [
+            "cajon"
+          ],
+          "priority": 8
+        },
+        {
+          "role": "melody",
+          "instrumentIds": [
+            "voice"
+          ],
+          "priority": 8
+        },
+        {
+          "role": "bass",
+          "instrumentIds": [
+            "bass"
+          ],
+          "priority": 5
+        }
+      ],
+      "densityCurve": {
+        "intro": "normal",
+        "letra": "normal",
+        "jaleo": "busy",
+        "pataita": "busy",
+        "fin": "busy"
+      },
+      "solos": [
+        "guitar"
+      ]
+    },
+    "sound": {
+      "instrumentPalette": [
+        {
+          "value": "guitar",
+          "w": 1
+        },
+        {
+          "value": "palmas",
+          "w": 0.95
+        },
+        {
+          "value": "cajon",
+          "w": 0.8
+        },
+        {
+          "value": "voice",
+          "w": 0.8
+        },
+        {
+          "value": "bass",
+          "w": 0.35
+        }
+      ],
+      "articulations": {
+        "guitar": "rasgueado, golpe, alzapúa, picado, tremolo",
+        "cajon": "grave/agudo/slap",
+        "palmas": "sordas/claras",
+        "voice": "cante / melisma"
+      },
+      "masterProfile": {
+        "roomId": "studio",
+        "pocket": 0.52,
+        "lift": 0.62
+      }
+    },
+    "patterns": {
+      "require": [
+        "flam-buleria-compas",
+        "flam-buleria-palmas",
+        "flam-alzapua-12",
+        "flam-remate-12"
+      ],
+      "avoid": []
+    },
+    "gestures": {
+      "jaleo": {
+        "id": "jaleo",
+        "name": "Jaleo",
+        "probability": 0.9
+      },
+      "corte": {
+        "id": "corte",
+        "name": "Bulería Corte",
+        "probability": 0.8
+      },
+      "remate": {
+        "id": "remate",
+        "name": "Remate",
+        "probability": 0.9
+      }
+    },
+    "rules": {
+      "require": [
+        {
+          "tag": "flamenco"
+        }
+      ],
+      "forbid": []
+    }
+  },
+  {
+    "id": "flamenco-alegrias-style",
+    "name": "Alegrías / Cantiñas",
+    "aliases": [],
+    "genres": [
+      "flamenco"
+    ],
+    "primaryGenre": "flamenco",
+    "kind": "form",
+    "canonical": false,
+    "summary": "Bright Cádiz 12-beat palo: major-key color, buoyant palmas, letras, silencio/falseta and a lift toward the final bulería.",
+    "signatureTraits": [
+      "Cádiz / Cantiñas",
+      "Major-key brightness",
+      "12-beat 3+3+2+2+2",
+      "Silencio + falseta",
+      "Escobilla / subida"
+    ],
+    "era": "Traditional / modern",
+    "region": "Andalusia, Spain",
+    "confidence": "high",
+    "authoringNotes": "Palo-specific patch: compás, harmonic color, phrase vocabulary and starter ensemble are intentionally coupled.",
+    "form": {
+      "sectionVocab": [
+        "intro",
+        "verse",
+        "bridge",
+        "solo",
+        "chorus",
+        "ending"
+      ],
+      "templates": [
+        {
+          "w": 1,
+          "value": [
+            {
+              "key": "salida",
+              "label": "Salida / Tirititrán",
+              "kind": "intro",
+              "bars": 8,
+              "intensity": "medium"
+            },
+            {
+              "key": "letra",
+              "label": "Letra",
+              "kind": "verse",
+              "bars": 12,
+              "intensity": "high"
+            },
+            {
+              "key": "silencio",
+              "label": "Silencio / Falseta",
+              "kind": "bridge",
+              "bars": 8,
+              "intensity": "low"
+            },
+            {
+              "key": "escobilla",
+              "label": "Escobilla",
+              "kind": "solo",
+              "bars": 12,
+              "intensity": "peak"
+            },
+            {
+              "key": "subida",
+              "label": "Subida / Remate",
+              "kind": "chorus",
+              "bars": 8,
+              "intensity": "peak"
+            },
+            {
+              "key": "buleria",
+              "label": "Final por Bulerías",
+              "kind": "ending",
+              "bars": 8,
+              "intensity": "peak"
+            }
+          ]
+        }
+      ],
+      "preferredMeters": [
+        "12/8"
+      ]
+    },
+    "harmony": {
+      "model": "functional",
+      "modePolicy": "major",
+      "progressionTemplates": [
+        {
+          "w": 1,
+          "value": [
+            "C",
+            "F",
+            "G7",
+            "C"
+          ]
+        },
+        {
+          "w": 0.7,
+          "value": [
+            "C",
+            "G7",
+            "Am",
+            "Dm",
+            "G7",
+            "C",
+            "F",
+            "G7"
+          ]
+        }
+      ],
+      "sectionProgressions": {
+        "intro": [
+          "C",
+          "G7",
+          "C",
+          "C"
+        ],
+        "verse": [
+          "C",
+          "F",
+          "G7",
+          "C"
+        ],
+        "bridge": [
+          "Am",
+          "Dm",
+          "G7",
+          "C"
+        ],
+        "chorus": [
+          "F",
+          "C",
+          "G7",
+          "C"
+        ],
+        "solo": [
+          "Am",
+          "Dm",
+          "G7",
+          "C"
+        ],
+        "ending": [
+          "G7",
+          "G7",
+          "C",
+          "C"
+        ]
+      },
+      "chordVocabulary": [
+        "C",
+        "F",
+        "G7",
+        "Am",
+        "Dm",
+        "E7",
+        "A7"
+      ],
+      "harmonicRhythm": "1-bar",
+      "voicingStyle": "open-flamenco-guitar",
+      "bassMotion": "drone",
+      "tuningSystem": "12-tet"
+    },
+    "rhythm": {
+      "meter": "12/8",
+      "tempoRange": [
+        120,
+        160
+      ],
+      "defaultBpm": 138,
+      "feel": "alegrias-bright",
+      "swingPercentage": 50,
+      "anticipationOffsetSteps": 0,
+      "microtimingFeel": "straight",
+      "humanizeJitterMs": 7,
+      "signatureCell": "Bright 12-beat cantiñas compás with buoyant 3/10/12 accents."
+    },
+    "melody": {
+      "scaleMode": "major",
+      "phraseLengthsBars": [
+        2,
+        4,
+        8
+      ],
+      "contourArchetypes": [
+        "flamenco-arch",
+        "descending-cadence",
+        "call-and-response"
+      ],
+      "ornamentVocabulary": [
+        "slide",
+        "grace-note",
+        "vibrato",
+        "mordent",
+        "picado"
+      ],
+      "chordToneTargeting": true,
+      "callAndResponse": true
+    },
+    "arrangement": {
+      "ensemble": [
+        {
+          "role": "harmony",
+          "instrumentIds": [
+            "guitar"
+          ],
+          "priority": 10
+        },
+        {
+          "role": "melody",
+          "instrumentIds": [
+            "voice"
+          ],
+          "priority": 9
+        },
+        {
+          "role": "percussion",
+          "instrumentIds": [
+            "palmas"
+          ],
+          "priority": 8
+        },
+        {
+          "role": "percussion",
+          "instrumentIds": [
+            "cajon",
+            "zapateado"
+          ],
+          "priority": 7
+        }
+      ],
+      "densityCurve": {
+        "salida": "normal",
+        "letra": "normal",
+        "silencio": "sparse",
+        "escobilla": "busy",
+        "subida": "busy",
+        "buleria": "busy"
+      },
+      "solos": [
+        "guitar"
+      ]
+    },
+    "sound": {
+      "instrumentPalette": [
+        {
+          "value": "guitar",
+          "w": 1
+        },
+        {
+          "value": "voice",
+          "w": 0.9
+        },
+        {
+          "value": "palmas",
+          "w": 0.85
+        },
+        {
+          "value": "cajon",
+          "w": 0.55
+        },
+        {
+          "value": "zapateado",
+          "w": 0.35
+        }
+      ],
+      "articulations": {
+        "guitar": "rasgueado, golpe, alzapúa, picado, tremolo",
+        "cajon": "grave/agudo/slap",
+        "palmas": "sordas/claras",
+        "voice": "cante / melisma"
+      },
+      "masterProfile": {
+        "roomId": "studio",
+        "pocket": 0.52,
+        "lift": 0.62
+      }
+    },
+    "patterns": {
+      "require": [
+        "flam-alegrias-compas",
+        "flam-alegrias-palmas",
+        "flam-escobilla-12",
+        "flam-remate-12"
+      ],
+      "avoid": []
+    },
+    "gestures": {
+      "silencio": {
+        "id": "silencio",
+        "name": "Silencio",
+        "probability": 0.75
+      },
+      "subida": {
+        "id": "subida",
+        "name": "Subida",
+        "probability": 0.85
+      }
+    },
+    "rules": {
+      "require": [
+        {
+          "tag": "flamenco"
+        }
+      ],
+      "forbid": []
+    }
+  },
+  {
+    "id": "flamenco-tangos-style",
+    "name": "Tangos Flamencos",
+    "aliases": [],
+    "genres": [
+      "flamenco"
+    ],
+    "primaryGenre": "flamenco",
+    "kind": "form",
+    "canonical": false,
+    "summary": "Binary flamenco dance palo with a breathing downbeat, weighted 2–3–4, rasgueado, palmas and compact remates.",
+    "signatureTraits": [
+      "4/4 binary compás",
+      "Weight on 2–3–4",
+      "Phrygian por medio/por arriba",
+      "Rasgueado + golpe",
+      "Compact remates"
+    ],
+    "era": "Traditional / modern",
+    "region": "Andalusia, Spain",
+    "confidence": "high",
+    "authoringNotes": "Palo-specific patch: compás, harmonic color, phrase vocabulary and starter ensemble are intentionally coupled.",
+    "form": {
+      "sectionVocab": [
+        "intro",
+        "verse",
+        "chorus",
+        "solo",
+        "ending"
+      ],
+      "templates": [
+        {
+          "w": 1,
+          "value": [
+            {
+              "key": "intro",
+              "label": "Compás Intro",
+              "kind": "intro",
+              "bars": 4,
+              "intensity": "low"
+            },
+            {
+              "key": "letra",
+              "label": "Letra",
+              "kind": "verse",
+              "bars": 16,
+              "intensity": "medium"
+            },
+            {
+              "key": "estribillo",
+              "label": "Estribillo",
+              "kind": "chorus",
+              "bars": 8,
+              "intensity": "high"
+            },
+            {
+              "key": "falseta",
+              "label": "Falseta",
+              "kind": "solo",
+              "bars": 8,
+              "intensity": "high"
+            },
+            {
+              "key": "remate",
+              "label": "Remate",
+              "kind": "ending",
+              "bars": 4,
+              "intensity": "peak"
+            }
+          ]
+        }
+      ],
+      "preferredMeters": [
+        "4/4"
+      ]
+    },
+    "harmony": {
+      "model": "functional",
+      "modePolicy": "phrygian",
+      "progressionTemplates": [
+        {
+          "w": 1,
+          "value": [
+            "Am",
+            "G",
+            "F",
+            "E7"
+          ]
+        },
+        {
+          "w": 0.7,
+          "value": [
+            "Dm",
+            "C",
+            "Bb",
+            "A7",
+            "Dm",
+            "E7",
+            "Am",
+            "E7"
+          ]
+        }
+      ],
+      "sectionProgressions": {
+        "intro": [
+          "Am",
+          "G",
+          "F",
+          "E7"
+        ],
+        "verse": [
+          "Am",
+          "G",
+          "F",
+          "E7"
+        ],
+        "chorus": [
+          "Dm",
+          "C",
+          "Bb",
+          "A7"
+        ],
+        "solo": [
+          "Am",
+          "G",
+          "F",
+          "E7"
+        ],
+        "ending": [
+          "E7",
+          "E7",
+          "Am",
+          "Am"
+        ]
+      },
+      "chordVocabulary": [
+        "Am",
+        "G",
+        "F",
+        "E7",
+        "Dm",
+        "C",
+        "Bb",
+        "A7"
+      ],
+      "harmonicRhythm": "1-bar",
+      "voicingStyle": "open-flamenco-guitar",
+      "bassMotion": "drone",
+      "tuningSystem": "12-tet"
+    },
+    "rhythm": {
+      "meter": "4/4",
+      "tempoRange": [
+        110,
+        150
+      ],
+      "defaultBpm": 128,
+      "feel": "tangos-binary",
+      "swingPercentage": 50,
+      "anticipationOffsetSteps": 0,
+      "microtimingFeel": "straight",
+      "humanizeJitterMs": 7,
+      "signatureCell": "4/4: beat 1 breathes; 2, 3 and 4 carry the dance weight."
+    },
+    "melody": {
+      "scaleMode": "phrygian",
+      "phraseLengthsBars": [
+        2,
+        4,
+        8
+      ],
+      "contourArchetypes": [
+        "flamenco-arch",
+        "descending-cadence",
+        "call-and-response"
+      ],
+      "ornamentVocabulary": [
+        "slide",
+        "grace-note",
+        "vibrato",
+        "mordent",
+        "picado"
+      ],
+      "chordToneTargeting": true,
+      "callAndResponse": true
+    },
+    "arrangement": {
+      "ensemble": [
+        {
+          "role": "harmony",
+          "instrumentIds": [
+            "guitar"
+          ],
+          "priority": 10
+        },
+        {
+          "role": "melody",
+          "instrumentIds": [
+            "voice"
+          ],
+          "priority": 8
+        },
+        {
+          "role": "percussion",
+          "instrumentIds": [
+            "palmas"
+          ],
+          "priority": 8
+        },
+        {
+          "role": "percussion",
+          "instrumentIds": [
+            "cajon"
+          ],
+          "priority": 7
+        },
+        {
+          "role": "bass",
+          "instrumentIds": [
+            "bass"
+          ],
+          "priority": 5
+        }
+      ],
+      "densityCurve": {
+        "intro": "sparse",
+        "letra": "normal",
+        "estribillo": "normal",
+        "falseta": "normal",
+        "remate": "busy"
+      },
+      "solos": [
+        "guitar"
+      ]
+    },
+    "sound": {
+      "instrumentPalette": [
+        {
+          "value": "guitar",
+          "w": 1
+        },
+        {
+          "value": "palmas",
+          "w": 0.9
+        },
+        {
+          "value": "cajon",
+          "w": 0.7
+        },
+        {
+          "value": "voice",
+          "w": 0.8
+        },
+        {
+          "value": "bass",
+          "w": 0.4
+        }
+      ],
+      "articulations": {
+        "guitar": "rasgueado, golpe, alzapúa, picado, tremolo",
+        "cajon": "grave/agudo/slap",
+        "palmas": "sordas/claras",
+        "voice": "cante / melisma"
+      },
+      "masterProfile": {
+        "roomId": "studio",
+        "pocket": 0.52,
+        "lift": 0.62
+      }
+    },
+    "patterns": {
+      "require": [
+        "flam-tangos-guitar",
+        "flam-tangos-compas",
+        "flamenco-golpe"
+      ],
+      "avoid": []
+    },
+    "gestures": {
+      "golpe": {
+        "id": "golpe",
+        "name": "Golpe",
+        "probability": 0.85
+      }
+    },
+    "rules": {
+      "require": [
+        {
+          "tag": "flamenco"
+        }
+      ],
+      "forbid": []
+    }
+  },
+  {
+    "id": "flamenco-tientos-style",
+    "name": "Tientos",
+    "aliases": [],
+    "genres": [
+      "flamenco"
+    ],
+    "primaryGenre": "flamenco",
+    "kind": "form",
+    "canonical": false,
+    "summary": "Slow, weighty binary flamenco with grave cante, dense guitar punctuation and a traditional path into faster tangos.",
+    "signatureTraits": [
+      "Slow 4/4",
+      "Phrygian gravity",
+      "Triplet-like traditional feel",
+      "Cante jondo",
+      "Often closes into Tangos"
+    ],
+    "era": "Traditional / modern",
+    "region": "Andalusia, Spain",
+    "confidence": "high",
+    "authoringNotes": "Palo-specific patch: compás, harmonic color, phrase vocabulary and starter ensemble are intentionally coupled.",
+    "form": {
+      "sectionVocab": [
+        "intro",
+        "verse",
+        "solo",
+        "bridge",
+        "chorus"
+      ],
+      "templates": [
+        {
+          "w": 1,
+          "value": [
+            {
+              "key": "salida",
+              "label": "Salida",
+              "kind": "intro",
+              "bars": 4,
+              "intensity": "low"
+            },
+            {
+              "key": "letra",
+              "label": "Letra Tientos",
+              "kind": "verse",
+              "bars": 16,
+              "intensity": "medium"
+            },
+            {
+              "key": "falseta",
+              "label": "Falseta",
+              "kind": "solo",
+              "bars": 8,
+              "intensity": "high"
+            },
+            {
+              "key": "subida",
+              "label": "Subida",
+              "kind": "bridge",
+              "bars": 8,
+              "intensity": "peak"
+            },
+            {
+              "key": "tangos",
+              "label": "Salida por Tangos",
+              "kind": "chorus",
+              "bars": 8,
+              "intensity": "peak"
+            }
+          ]
+        }
+      ],
+      "preferredMeters": [
+        "4/4"
+      ]
+    },
+    "harmony": {
+      "model": "functional",
+      "modePolicy": "phrygian",
+      "progressionTemplates": [
+        {
+          "w": 1,
+          "value": [
+            "Am",
+            "G",
+            "F",
+            "E7"
+          ]
+        },
+        {
+          "w": 0.7,
+          "value": [
+            "Am",
+            "Dm",
+            "G",
+            "C",
+            "F",
+            "E7",
+            "Am",
+            "E7"
+          ]
+        }
+      ],
+      "sectionProgressions": {
+        "intro": [
+          "Am",
+          "G",
+          "F",
+          "E7"
+        ],
+        "verse": [
+          "Am",
+          "G",
+          "F",
+          "E7"
+        ],
+        "solo": [
+          "Dm",
+          "C",
+          "Bb",
+          "A7"
+        ],
+        "ending": [
+          "E7",
+          "E7",
+          "Am",
+          "Am"
+        ]
+      },
+      "chordVocabulary": [
+        "Am",
+        "G",
+        "F",
+        "E7",
+        "Dm",
+        "C",
+        "Bb",
+        "A7"
+      ],
+      "harmonicRhythm": "1-bar",
+      "voicingStyle": "open-flamenco-guitar",
+      "bassMotion": "drone",
+      "tuningSystem": "12-tet"
+    },
+    "rhythm": {
+      "meter": "4/4",
+      "tempoRange": [
+        50,
+        85
+      ],
+      "defaultBpm": 68,
+      "feel": "tientos-heavy",
+      "swingPercentage": 50,
+      "anticipationOffsetSteps": 0,
+      "microtimingFeel": "straight",
+      "humanizeJitterMs": 7,
+      "signatureCell": "Slow binary compás with heavy space and triplet-like internal subdivision."
+    },
+    "melody": {
+      "scaleMode": "phrygian",
+      "phraseLengthsBars": [
+        2,
+        4,
+        8
+      ],
+      "contourArchetypes": [
+        "flamenco-arch",
+        "descending-cadence",
+        "call-and-response"
+      ],
+      "ornamentVocabulary": [
+        "slide",
+        "grace-note",
+        "vibrato",
+        "mordent",
+        "picado"
+      ],
+      "chordToneTargeting": true,
+      "callAndResponse": true
+    },
+    "arrangement": {
+      "ensemble": [
+        {
+          "role": "harmony",
+          "instrumentIds": [
+            "guitar"
+          ],
+          "priority": 10
+        },
+        {
+          "role": "melody",
+          "instrumentIds": [
+            "voice"
+          ],
+          "priority": 9
+        },
+        {
+          "role": "percussion",
+          "instrumentIds": [
+            "palmas"
+          ],
+          "priority": 5
+        },
+        {
+          "role": "percussion",
+          "instrumentIds": [
+            "cajon"
+          ],
+          "priority": 4
+        }
+      ],
+      "densityCurve": {
+        "salida": "sparse",
+        "letra": "normal",
+        "falseta": "normal",
+        "subida": "busy",
+        "tangos": "busy"
+      },
+      "solos": [
+        "guitar"
+      ]
+    },
+    "sound": {
+      "instrumentPalette": [
+        {
+          "value": "guitar",
+          "w": 1
+        },
+        {
+          "value": "voice",
+          "w": 0.95
+        },
+        {
+          "value": "palmas",
+          "w": 0.5
+        },
+        {
+          "value": "cajon",
+          "w": 0.3
+        }
+      ],
+      "articulations": {
+        "guitar": "rasgueado, golpe, alzapúa, picado, tremolo",
+        "cajon": "grave/agudo/slap",
+        "palmas": "sordas/claras",
+        "voice": "cante / melisma"
+      },
+      "masterProfile": {
+        "roomId": "studio",
+        "pocket": 0.52,
+        "lift": 0.62
+      }
+    },
+    "patterns": {
+      "require": [
+        "flam-tientos-compas",
+        "flam-tientos-palmas",
+        "flam-tangos-guitar"
+      ],
+      "avoid": []
+    },
+    "gestures": {
+      "subida": {
+        "id": "subida",
+        "name": "Subida into Tangos",
+        "probability": 0.85
+      }
+    },
+    "rules": {
+      "require": [
+        {
+          "tag": "flamenco"
+        }
+      ],
+      "forbid": []
+    }
+  },
+  {
+    "id": "flamenco-seguiriya-style",
+    "name": "Seguiriya",
+    "aliases": [],
+    "genres": [
+      "flamenco"
+    ],
+    "primaryGenre": "flamenco",
+    "kind": "form",
+    "canonical": false,
+    "summary": "Asymmetric, dramatic cante-jondo palo with 2+2+3+3+2 grouping, sparse support and high expressive tension.",
+    "signatureTraits": [
+      "2+2+3+3+2 grouping",
+      "Cante jondo",
+      "Sparse palmas",
+      "Dramatic closures",
+      "Rubato inside compás"
+    ],
+    "era": "Traditional / modern",
+    "region": "Andalusia, Spain",
+    "confidence": "high",
+    "authoringNotes": "Palo-specific patch: compás, harmonic color, phrase vocabulary and starter ensemble are intentionally coupled.",
+    "form": {
+      "sectionVocab": [
+        "intro",
+        "verse",
+        "solo",
+        "ending"
+      ],
+      "templates": [
+        {
+          "w": 1,
+          "value": [
+            {
+              "key": "salida",
+              "label": "Salida / Quejío",
+              "kind": "intro",
+              "bars": 6,
+              "intensity": "low"
+            },
+            {
+              "key": "letra",
+              "label": "Letra",
+              "kind": "verse",
+              "bars": 12,
+              "intensity": "medium"
+            },
+            {
+              "key": "falseta",
+              "label": "Falseta",
+              "kind": "solo",
+              "bars": 12,
+              "intensity": "high"
+            },
+            {
+              "key": "remate",
+              "label": "Remate / Corte",
+              "kind": "ending",
+              "bars": 6,
+              "intensity": "peak"
+            }
+          ]
+        }
+      ],
+      "preferredMeters": [
+        "12/8"
+      ]
+    },
+    "harmony": {
+      "model": "functional",
+      "modePolicy": "phrygian",
+      "progressionTemplates": [
+        {
+          "w": 1,
+          "value": [
+            "Am",
+            "G",
+            "F",
+            "E7"
+          ]
+        },
+        {
+          "w": 0.7,
+          "value": [
+            "Dm",
+            "C",
+            "Bb",
+            "A7",
+            "Dm",
+            "E7",
+            "Am",
+            "E7"
+          ]
+        }
+      ],
+      "sectionProgressions": {
+        "intro": [
+          "Am",
+          "G",
+          "F",
+          "E7"
+        ],
+        "verse": [
+          "Am",
+          "G",
+          "F",
+          "E7"
+        ],
+        "solo": [
+          "Dm",
+          "C",
+          "Bb",
+          "A7"
+        ],
+        "ending": [
+          "E7",
+          "E7",
+          "Am",
+          "Am"
+        ]
+      },
+      "chordVocabulary": [
+        "Am",
+        "G",
+        "F",
+        "E7",
+        "Dm",
+        "C",
+        "Bb",
+        "A7"
+      ],
+      "harmonicRhythm": "1-bar",
+      "voicingStyle": "open-flamenco-guitar",
+      "bassMotion": "drone",
+      "tuningSystem": "12-tet"
+    },
+    "rhythm": {
+      "meter": "12/8",
+      "tempoRange": [
+        90,
+        140
+      ],
+      "defaultBpm": 112,
+      "feel": "seguiriya-elastic",
+      "swingPercentage": 50,
+      "anticipationOffsetSteps": 0,
+      "microtimingFeel": "straight",
+      "humanizeJitterMs": 7,
+      "signatureCell": "2+2+3+3+2 asymmetric cycle; do not substitute the smoother Soleá accent map."
+    },
+    "melody": {
+      "scaleMode": "phrygian",
+      "phraseLengthsBars": [
+        2,
+        4,
+        8
+      ],
+      "contourArchetypes": [
+        "flamenco-arch",
+        "descending-cadence",
+        "call-and-response"
+      ],
+      "ornamentVocabulary": [
+        "slide",
+        "grace-note",
+        "vibrato",
+        "mordent",
+        "picado"
+      ],
+      "chordToneTargeting": true,
+      "callAndResponse": true
+    },
+    "arrangement": {
+      "ensemble": [
+        {
+          "role": "harmony",
+          "instrumentIds": [
+            "guitar"
+          ],
+          "priority": 10
+        },
+        {
+          "role": "melody",
+          "instrumentIds": [
+            "voice"
+          ],
+          "priority": 10
+        },
+        {
+          "role": "percussion",
+          "instrumentIds": [
+            "palmas"
+          ],
+          "priority": 4
+        }
+      ],
+      "densityCurve": {
+        "salida": "sparse",
+        "letra": "normal",
+        "falseta": "normal",
+        "remate": "busy"
+      },
+      "solos": [
+        "guitar"
+      ]
+    },
+    "sound": {
+      "instrumentPalette": [
+        {
+          "value": "guitar",
+          "w": 1
+        },
+        {
+          "value": "voice",
+          "w": 1
+        },
+        {
+          "value": "palmas",
+          "w": 0.35
+        }
+      ],
+      "articulations": {
+        "guitar": "rasgueado, golpe, alzapúa, picado, tremolo",
+        "cajon": "grave/agudo/slap",
+        "palmas": "sordas/claras",
+        "voice": "cante / melisma"
+      },
+      "masterProfile": {
+        "roomId": "studio",
+        "pocket": 0.52,
+        "lift": 0.62
+      }
+    },
+    "patterns": {
+      "require": [
+        "flam-seguiriya-compas",
+        "flam-seguiriya-palmas"
+      ],
+      "avoid": []
+    },
+    "gestures": {
+      "quejio": {
+        "id": "quejio",
+        "name": "Quejío Space",
+        "probability": 0.9
+      },
+      "corte": {
+        "id": "corte",
+        "name": "Dramatic Corte",
+        "probability": 0.85
+      }
+    },
+    "rules": {
+      "require": [
+        {
+          "tag": "flamenco"
+        }
+      ],
+      "forbid": []
+    }
+  },
+  {
+    "id": "flamenco-farruca-style",
+    "name": "Farruca",
+    "aliases": [],
+    "genres": [
+      "flamenco"
+    ],
+    "primaryGenre": "flamenco",
+    "kind": "form",
+    "canonical": false,
+    "summary": "Grounded slow binary dance palo in minor, dry guitar punctuation and a controlled subida toward a fast ending.",
+    "signatureTraits": [
+      "Slow binary pulse",
+      "Minor tonality",
+      "Dry golpes",
+      "Grounded dance phrasing",
+      "Subida / acceleration"
+    ],
+    "era": "Traditional / modern",
+    "region": "Andalusia, Spain",
+    "confidence": "high",
+    "authoringNotes": "Palo-specific patch: compás, harmonic color, phrase vocabulary and starter ensemble are intentionally coupled.",
+    "form": {
+      "sectionVocab": [
+        "intro",
+        "verse",
+        "solo",
+        "chorus",
+        "ending"
+      ],
+      "templates": [
+        {
+          "w": 1,
+          "value": [
+            {
+              "key": "intro",
+              "label": "Tran-tran / Intro",
+              "kind": "intro",
+              "bars": 4,
+              "intensity": "low"
+            },
+            {
+              "key": "letra",
+              "label": "Letra",
+              "kind": "verse",
+              "bars": 16,
+              "intensity": "medium"
+            },
+            {
+              "key": "escobilla",
+              "label": "Escobilla",
+              "kind": "solo",
+              "bars": 12,
+              "intensity": "high"
+            },
+            {
+              "key": "subida",
+              "label": "Subida",
+              "kind": "chorus",
+              "bars": 8,
+              "intensity": "peak"
+            },
+            {
+              "key": "coda",
+              "label": "Coda",
+              "kind": "ending",
+              "bars": 4,
+              "intensity": "low"
+            }
+          ]
+        }
+      ],
+      "preferredMeters": [
+        "4/4"
+      ]
+    },
+    "harmony": {
+      "model": "functional",
+      "modePolicy": "minor",
+      "progressionTemplates": [
+        {
+          "w": 1,
+          "value": [
+            "Am",
+            "E7",
+            "Am",
+            "Dm"
+          ]
+        },
+        {
+          "w": 0.7,
+          "value": [
+            "Am",
+            "G",
+            "F",
+            "E7",
+            "Am",
+            "E7",
+            "Am",
+            "Am"
+          ]
+        }
+      ],
+      "sectionProgressions": {
+        "intro": [
+          "Am",
+          "E7",
+          "Am",
+          "E7"
+        ],
+        "verse": [
+          "Am",
+          "E7",
+          "Am",
+          "Dm"
+        ],
+        "solo": [
+          "Dm",
+          "Am",
+          "E7",
+          "Am"
+        ],
+        "ending": [
+          "E7",
+          "E7",
+          "Am",
+          "Am"
+        ]
+      },
+      "chordVocabulary": [
+        "Am",
+        "E7",
+        "Dm",
+        "F",
+        "G"
+      ],
+      "harmonicRhythm": "1-bar",
+      "voicingStyle": "open-flamenco-guitar",
+      "bassMotion": "drone",
+      "tuningSystem": "12-tet"
+    },
+    "rhythm": {
+      "meter": "4/4",
+      "tempoRange": [
+        50,
+        90
+      ],
+      "defaultBpm": 68,
+      "feel": "farruca-grounded",
+      "swingPercentage": 50,
+      "anticipationOffsetSteps": 0,
+      "microtimingFeel": "straight",
+      "humanizeJitterMs": 7,
+      "signatureCell": "Slow 4/4 minor compás with dry punctuation and a controlled acceleration."
+    },
+    "melody": {
+      "scaleMode": "minor",
+      "phraseLengthsBars": [
+        2,
+        4,
+        8
+      ],
+      "contourArchetypes": [
+        "flamenco-arch",
+        "descending-cadence",
+        "call-and-response"
+      ],
+      "ornamentVocabulary": [
+        "slide",
+        "grace-note",
+        "vibrato",
+        "mordent",
+        "picado"
+      ],
+      "chordToneTargeting": true,
+      "callAndResponse": true
+    },
+    "arrangement": {
+      "ensemble": [
+        {
+          "role": "harmony",
+          "instrumentIds": [
+            "guitar"
+          ],
+          "priority": 10
+        },
+        {
+          "role": "melody",
+          "instrumentIds": [
+            "voice"
+          ],
+          "priority": 8
+        },
+        {
+          "role": "percussion",
+          "instrumentIds": [
+            "cajon",
+            "zapateado"
+          ],
+          "priority": 7
+        }
+      ],
+      "densityCurve": {
+        "intro": "sparse",
+        "letra": "normal",
+        "escobilla": "normal",
+        "subida": "busy",
+        "coda": "sparse"
+      },
+      "solos": [
+        "guitar"
+      ]
+    },
+    "sound": {
+      "instrumentPalette": [
+        {
+          "value": "guitar",
+          "w": 1
+        },
+        {
+          "value": "cajon",
+          "w": 0.65
+        },
+        {
+          "value": "zapateado",
+          "w": 0.55
+        },
+        {
+          "value": "voice",
+          "w": 0.7
+        }
+      ],
+      "articulations": {
+        "guitar": "rasgueado, golpe, alzapúa, picado, tremolo",
+        "cajon": "grave/agudo/slap",
+        "palmas": "sordas/claras",
+        "voice": "cante / melisma"
+      },
+      "masterProfile": {
+        "roomId": "studio",
+        "pocket": 0.52,
+        "lift": 0.62
+      }
+    },
+    "patterns": {
+      "require": [
+        "flam-farruca-guitar"
+      ],
+      "avoid": []
+    },
+    "gestures": {
+      "subida": {
+        "id": "subida",
+        "name": "Farruca Subida",
+        "probability": 0.85
+      }
+    },
+    "rules": {
+      "require": [
+        {
+          "tag": "flamenco"
+        }
+      ],
+      "forbid": []
+    }
+  },
+  {
+    "id": "flamenco-guajira-style",
+    "name": "Guajira",
+    "aliases": [],
+    "genres": [
+      "flamenco"
+    ],
+    "primaryGenre": "flamenco",
+    "kind": "form",
+    "canonical": false,
+    "summary": "Flamenco ida-y-vuelta palo with Cuban-inflected 12-beat lilt, lighter major-key harmony and elegant guitar phrasing.",
+    "signatureTraits": [
+      "Ida-y-vuelta",
+      "12-beat lilt",
+      "Major/modal brightness",
+      "Cuban influence",
+      "Lyrical guitar"
+    ],
+    "era": "Traditional / modern",
+    "region": "Andalusia, Spain",
+    "confidence": "high",
+    "authoringNotes": "Palo-specific patch: compás, harmonic color, phrase vocabulary and starter ensemble are intentionally coupled.",
+    "form": {
+      "sectionVocab": [
+        "intro",
+        "verse",
+        "solo",
+        "ending"
+      ],
+      "templates": [
+        {
+          "w": 1,
+          "value": [
+            {
+              "key": "intro",
+              "label": "Salida",
+              "kind": "intro",
+              "bars": 8,
+              "intensity": "low"
+            },
+            {
+              "key": "letra",
+              "label": "Letra",
+              "kind": "verse",
+              "bars": 12,
+              "intensity": "medium"
+            },
+            {
+              "key": "falseta",
+              "label": "Falseta",
+              "kind": "solo",
+              "bars": 12,
+              "intensity": "high"
+            },
+            {
+              "key": "remate",
+              "label": "Remate",
+              "kind": "ending",
+              "bars": 8,
+              "intensity": "peak"
+            }
+          ]
+        }
+      ],
+      "preferredMeters": [
+        "12/8"
+      ]
+    },
+    "harmony": {
+      "model": "functional",
+      "modePolicy": "major",
+      "progressionTemplates": [
+        {
+          "w": 1,
+          "value": [
+            "C",
+            "G7",
+            "C",
+            "F"
+          ]
+        },
+        {
+          "w": 0.7,
+          "value": [
+            "Am",
+            "Dm",
+            "G7",
+            "C",
+            "F",
+            "G7",
+            "C",
+            "C"
+          ]
+        }
+      ],
+      "sectionProgressions": {
+        "intro": [
+          "C",
+          "G7",
+          "C",
+          "C"
+        ],
+        "verse": [
+          "C",
+          "F",
+          "G7",
+          "C"
+        ],
+        "chorus": [
+          "Am",
+          "Dm",
+          "G7",
+          "C"
+        ],
+        "solo": [
+          "C",
+          "F",
+          "G7",
+          "C"
+        ],
+        "ending": [
+          "G7",
+          "G7",
+          "C",
+          "C"
+        ]
+      },
+      "chordVocabulary": [
+        "C",
+        "F",
+        "G7",
+        "Am",
+        "Dm",
+        "E7"
+      ],
+      "harmonicRhythm": "1-bar",
+      "voicingStyle": "open-flamenco-guitar",
+      "bassMotion": "drone",
+      "tuningSystem": "12-tet"
+    },
+    "rhythm": {
+      "meter": "12/8",
+      "tempoRange": [
+        105,
+        145
+      ],
+      "defaultBpm": 125,
+      "feel": "guajira-ida-y-vuelta",
+      "swingPercentage": 50,
+      "anticipationOffsetSteps": 0,
+      "microtimingFeel": "straight",
+      "humanizeJitterMs": 7,
+      "signatureCell": "Light 12-beat ida-y-vuelta compás with songful Cuban-inflected motion."
+    },
+    "melody": {
+      "scaleMode": "major",
+      "phraseLengthsBars": [
+        2,
+        4,
+        8
+      ],
+      "contourArchetypes": [
+        "flamenco-arch",
+        "descending-cadence",
+        "call-and-response"
+      ],
+      "ornamentVocabulary": [
+        "slide",
+        "grace-note",
+        "vibrato",
+        "mordent",
+        "picado"
+      ],
+      "chordToneTargeting": true,
+      "callAndResponse": true
+    },
+    "arrangement": {
+      "ensemble": [
+        {
+          "role": "harmony",
+          "instrumentIds": [
+            "guitar"
+          ],
+          "priority": 10
+        },
+        {
+          "role": "melody",
+          "instrumentIds": [
+            "voice"
+          ],
+          "priority": 9
+        },
+        {
+          "role": "percussion",
+          "instrumentIds": [
+            "palmas"
+          ],
+          "priority": 6
+        }
+      ],
+      "densityCurve": {
+        "intro": "sparse",
+        "letra": "normal",
+        "falseta": "normal",
+        "remate": "busy"
+      },
+      "solos": [
+        "guitar"
+      ]
+    },
+    "sound": {
+      "instrumentPalette": [
+        {
+          "value": "guitar",
+          "w": 1
+        },
+        {
+          "value": "voice",
+          "w": 0.85
+        },
+        {
+          "value": "palmas",
+          "w": 0.5
+        }
+      ],
+      "articulations": {
+        "guitar": "rasgueado, golpe, alzapúa, picado, tremolo",
+        "cajon": "grave/agudo/slap",
+        "palmas": "sordas/claras",
+        "voice": "cante / melisma"
+      },
+      "masterProfile": {
+        "roomId": "studio",
+        "pocket": 0.52,
+        "lift": 0.62
+      }
+    },
+    "patterns": {
+      "require": [
+        "flam-guajira-12"
+      ],
+      "avoid": []
+    },
+    "gestures": {
+      "remate": {
+        "id": "remate",
+        "name": "Guajira Remate",
+        "probability": 0.7
+      }
+    },
+    "rules": {
+      "require": [
+        {
+          "tag": "flamenco"
+        }
+      ],
+      "forbid": []
+    }
+  },
+  {
+    "id": "flamenco-fandango-style",
+    "name": "Fandangos de Huelva",
+    "aliases": [],
+    "genres": [
+      "flamenco"
+    ],
+    "primaryGenre": "flamenco",
+    "kind": "form",
+    "canonical": false,
+    "summary": "Ternary flamenco/folk bridge built from four 3-beat phrases, with modal opening and bright major/minor lyric turns.",
+    "signatureTraits": [
+      "3/4 ternary",
+      "Four 3-beat phrases",
+      "Modal-to-major movement",
+      "Huelva identity",
+      "Flexible vocal phrasing"
+    ],
+    "era": "Traditional / modern",
+    "region": "Andalusia, Spain",
+    "confidence": "high",
+    "authoringNotes": "Palo-specific patch: compás, harmonic color, phrase vocabulary and starter ensemble are intentionally coupled.",
+    "form": {
+      "sectionVocab": [
+        "intro",
+        "verse",
+        "solo",
+        "ending"
+      ],
+      "templates": [
+        {
+          "w": 1,
+          "value": [
+            {
+              "key": "intro",
+              "label": "Guitar Intro",
+              "kind": "intro",
+              "bars": 4,
+              "intensity": "low"
+            },
+            {
+              "key": "copla",
+              "label": "Copla",
+              "kind": "verse",
+              "bars": 12,
+              "intensity": "medium"
+            },
+            {
+              "key": "falseta",
+              "label": "Falseta",
+              "kind": "solo",
+              "bars": 8,
+              "intensity": "high"
+            },
+            {
+              "key": "coda",
+              "label": "Cierre",
+              "kind": "ending",
+              "bars": 4,
+              "intensity": "low"
+            }
+          ]
+        }
+      ],
+      "preferredMeters": [
+        "3/4"
+      ]
+    },
+    "harmony": {
+      "model": "functional",
+      "modePolicy": "major",
+      "progressionTemplates": [
+        {
+          "w": 1,
+          "value": [
+            "Am",
+            "G",
+            "F",
+            "E7"
+          ]
+        },
+        {
+          "w": 0.7,
+          "value": [
+            "C",
+            "G7",
+            "C",
+            "F",
+            "G7",
+            "C"
+          ]
+        }
+      ],
+      "sectionProgressions": {
+        "intro": [
+          "Am",
+          "G",
+          "F",
+          "E7"
+        ],
+        "verse": [
+          "Am",
+          "G",
+          "F",
+          "E7"
+        ],
+        "solo": [
+          "C",
+          "F",
+          "G7",
+          "C"
+        ],
+        "ending": [
+          "G7",
+          "G7",
+          "C",
+          "C"
+        ]
+      },
+      "chordVocabulary": [
+        "Am",
+        "G",
+        "F",
+        "E7",
+        "C",
+        "F",
+        "G7"
+      ],
+      "harmonicRhythm": "1-bar",
+      "voicingStyle": "open-flamenco-guitar",
+      "bassMotion": "drone",
+      "tuningSystem": "12-tet"
+    },
+    "rhythm": {
+      "meter": "3/4",
+      "tempoRange": [
+        130,
+        150
+      ],
+      "defaultBpm": 140,
+      "feel": "fandango-ternary",
+      "swingPercentage": 50,
+      "anticipationOffsetSteps": 0,
+      "microtimingFeel": "straight",
+      "humanizeJitterMs": 7,
+      "signatureCell": "Four phrases of 3/4 with modal opening and major/minor melodic turns."
+    },
+    "melody": {
+      "scaleMode": "major",
+      "phraseLengthsBars": [
+        2,
+        4,
+        8
+      ],
+      "contourArchetypes": [
+        "flamenco-arch",
+        "descending-cadence",
+        "call-and-response"
+      ],
+      "ornamentVocabulary": [
+        "slide",
+        "grace-note",
+        "vibrato",
+        "mordent",
+        "picado"
+      ],
+      "chordToneTargeting": true,
+      "callAndResponse": true
+    },
+    "arrangement": {
+      "ensemble": [
+        {
+          "role": "harmony",
+          "instrumentIds": [
+            "guitar"
+          ],
+          "priority": 10
+        },
+        {
+          "role": "melody",
+          "instrumentIds": [
+            "voice"
+          ],
+          "priority": 9
+        },
+        {
+          "role": "percussion",
+          "instrumentIds": [
+            "palmas"
+          ],
+          "priority": 5
+        }
+      ],
+      "densityCurve": {
+        "intro": "sparse",
+        "copla": "normal",
+        "falseta": "normal",
+        "coda": "sparse"
+      },
+      "solos": [
+        "guitar"
+      ]
+    },
+    "sound": {
+      "instrumentPalette": [
+        {
+          "value": "guitar",
+          "w": 1
+        },
+        {
+          "value": "voice",
+          "w": 0.9
+        },
+        {
+          "value": "palmas",
+          "w": 0.45
+        }
+      ],
+      "articulations": {
+        "guitar": "rasgueado, golpe, alzapúa, picado, tremolo",
+        "cajon": "grave/agudo/slap",
+        "palmas": "sordas/claras",
+        "voice": "cante / melisma"
+      },
+      "masterProfile": {
+        "roomId": "studio",
+        "pocket": 0.52,
+        "lift": 0.62
+      }
+    },
+    "patterns": {
+      "require": [
+        "flam-fandango-3"
+      ],
+      "avoid": []
+    },
+    "gestures": {
+      "copla": {
+        "id": "copla",
+        "name": "Fandango Copla",
+        "probability": 0.8
+      }
+    },
+    "rules": {
+      "require": [
+        {
+          "tag": "flamenco"
+        }
+      ],
+      "forbid": []
+    }
+  },
   {
     id: 'flamenco-rumba',
     name: 'Rumba Flamenca',

@@ -325,20 +325,356 @@ export const FLAMENCO_WORLD: GenreWorld = {
         ]
       }
     }
-  ],
+,
+
+    {
+        "id": "flamenco-alegrias",
+        "worldId": "flamenco",
+        "name": "Alegrías & Cantiñas",
+        "origin": "Cádiz, western Andalusia",
+        "era": "19th century–present",
+        "description": "Bright 12-beat cantiñas family centered on Alegrías, with major-key guitar, buoyant palmas, letras, silencio/falseta, escobilla and subida.",
+        "characteristicInstruments": [
+            "guitar",
+            "voice",
+            "percussion"
+        ],
+        "preferredMeters": [
+            "12/8",
+            "6/8",
+            "3/4"
+        ],
+        "tempoRange": [
+            120,
+            160
+        ],
+        "keySubstyles": [
+            "Alegrías de Cádiz",
+            "Romeras",
+            "Caracoles",
+            "Mirabrás"
+        ],
+        "coreConcepts": [
+            "cantiñas",
+            "silencio",
+            "escobilla",
+            "subida",
+            "tirititrán"
+        ],
+        "rhythmicGrammar": [
+            "12-beat cantiñas grouping 3+3+2+2+2",
+            "bright palmas and dance remates"
+        ],
+        "danceTags": [
+            "social-partner",
+            "festival-fusion"
+        ],
+        "tuningSystem": "phrygian-mode",
+        "signatureCell": "12-beat cantiñas compás with major-key brightness and clear dance punctuation.",
+        "grooveMechanics": {
+            "swingPercentage": 50,
+            "anticipationOffsetSteps": 0,
+            "microtimingFeel": "straight"
+        }
+    },
+    {
+        "id": "flamenco-seguiriya",
+        "worldId": "flamenco",
+        "name": "Seguiriya",
+        "origin": "Andalusia",
+        "era": "19th century–present",
+        "description": "Cante-jondo palo with an asymmetric 2+2+3+3+2 rhythmic grouping, sparse accompaniment and extreme expressive tension.",
+        "characteristicInstruments": [
+            "guitar",
+            "voice",
+            "percussion"
+        ],
+        "preferredMeters": [
+            "12/8",
+            "6/8"
+        ],
+        "tempoRange": [
+            90,
+            140
+        ],
+        "keySubstyles": [
+            "Seguiriya",
+            "Cabales",
+            "Liviana",
+            "Serranas"
+        ],
+        "coreConcepts": [
+            "quejío",
+            "jondo",
+            "2+2+3+3+2",
+            "corte",
+            "remate"
+        ],
+        "rhythmicGrammar": [
+            "2+2+3+3+2 grouping",
+            "space around the cante",
+            "elastic internal phrasing"
+        ],
+        "danceTags": [
+            "listening"
+        ],
+        "tuningSystem": "phrygian-mode",
+        "signatureCell": "2+2+3+3+2 asymmetry rather than the standard Soleá-family accent map.",
+        "grooveMechanics": {
+            "swingPercentage": 50,
+            "anticipationOffsetSteps": 0,
+            "microtimingFeel": "rubato"
+        }
+    },
+    {
+        "id": "flamenco-tangos-style",
+        "worldId": "flamenco",
+        "name": "Tangos Flamencos",
+        "origin": "Cádiz, Triana, Granada",
+        "era": "19th century–present",
+        "description": "Binary flamenco dance family related to Tientos, with 4/4 pulse, Phrygian color and characteristic weight on 2–3–4.",
+        "characteristicInstruments": [
+            "guitar",
+            "voice",
+            "percussion",
+            "bass"
+        ],
+        "preferredMeters": [
+            "4/4",
+            "2/4"
+        ],
+        "tempoRange": [
+            110,
+            150
+        ],
+        "keySubstyles": [
+            "Tangos de Triana",
+            "Tangos de Cádiz",
+            "Tangos de Granada"
+        ],
+        "coreConcepts": [
+            "binary compás",
+            "2-3-4 weight",
+            "por medio",
+            "por arriba",
+            "golpe"
+        ],
+        "rhythmicGrammar": [
+            "4/4 with breathing beat 1",
+            "accented 2, 3 and 4",
+            "contratiempo pickups"
+        ],
+        "danceTags": [
+            "social-partner",
+            "festival-fusion"
+        ],
+        "tuningSystem": "phrygian-mode",
+        "signatureCell": "4/4 flamenco tangos with a breathing downbeat and weighted 2–3–4.",
+        "grooveMechanics": {
+            "swingPercentage": 50,
+            "anticipationOffsetSteps": 0,
+            "microtimingFeel": "straight"
+        }
+    },
+    {
+        "id": "flamenco-tientos",
+        "worldId": "flamenco",
+        "name": "Tientos",
+        "origin": "Andalusia",
+        "era": "19th century–present",
+        "description": "Slow, grave binary palo closely related to Tangos; traditional versions may feel slightly tripletized and commonly accelerate into Tangos.",
+        "characteristicInstruments": [
+            "guitar",
+            "voice",
+            "percussion"
+        ],
+        "preferredMeters": [
+            "4/4",
+            "2/4"
+        ],
+        "tempoRange": [
+            50,
+            90
+        ],
+        "keySubstyles": [
+            "Tientos",
+            "Tientos por Tangos"
+        ],
+        "coreConcepts": [
+            "slow binary",
+            "jondo",
+            "subida",
+            "tangos ending"
+        ],
+        "rhythmicGrammar": [
+            "slow 4-beat compás",
+            "space and weight",
+            "controlled acceleration"
+        ],
+        "danceTags": [
+            "listening",
+            "social-partner"
+        ],
+        "tuningSystem": "phrygian-mode",
+        "signatureCell": "Slow binary compás with heavy space and a path toward Tangos.",
+        "grooveMechanics": {
+            "swingPercentage": 50,
+            "anticipationOffsetSteps": 0,
+            "microtimingFeel": "straight"
+        }
+    },
+    {
+        "id": "flamenco-farruca",
+        "worldId": "flamenco",
+        "name": "Farruca",
+        "origin": "Northern Spain adopted into flamenco",
+        "era": "20th century–present",
+        "description": "Slow binary dance palo in minor with dry guitar punctuation, grounded dance phrasing and a characteristic subida.",
+        "characteristicInstruments": [
+            "guitar",
+            "voice",
+            "percussion"
+        ],
+        "preferredMeters": [
+            "4/4"
+        ],
+        "tempoRange": [
+            50,
+            90
+        ],
+        "keySubstyles": [
+            "Farruca"
+        ],
+        "coreConcepts": [
+            "minor",
+            "golpe",
+            "escobilla",
+            "subida"
+        ],
+        "rhythmicGrammar": [
+            "slow 4-beat pulse",
+            "dry punctuation",
+            "accelerating final section"
+        ],
+        "danceTags": [
+            "social-partner",
+            "listening"
+        ],
+        "tuningSystem": "12-tet",
+        "signatureCell": "Grounded slow 4/4 minor pulse with dry golpes and controlled subida.",
+        "grooveMechanics": {
+            "swingPercentage": 50,
+            "anticipationOffsetSteps": 0,
+            "microtimingFeel": "straight"
+        }
+    },
+    {
+        "id": "flamenco-guajira",
+        "worldId": "flamenco",
+        "name": "Guajira (Ida y Vuelta)",
+        "origin": "Andalusia / Cuba",
+        "era": "19th century–present",
+        "description": "Ida-y-vuelta flamenco family with Cuban influence, a lighter 12-beat lilt and songful major-key guitar language.",
+        "characteristicInstruments": [
+            "guitar",
+            "voice",
+            "percussion"
+        ],
+        "preferredMeters": [
+            "12/8",
+            "6/8"
+        ],
+        "tempoRange": [
+            105,
+            145
+        ],
+        "keySubstyles": [
+            "Guajira"
+        ],
+        "coreConcepts": [
+            "ida-y-vuelta",
+            "Cuban influence",
+            "12-beat lilt",
+            "major color"
+        ],
+        "rhythmicGrammar": [
+            "light 12-beat compás",
+            "syncopated guitar",
+            "songful phrasing"
+        ],
+        "danceTags": [
+            "social-partner",
+            "festival-fusion"
+        ],
+        "tuningSystem": "12-tet",
+        "signatureCell": "Light 12-beat ida-y-vuelta lilt with Cuban-inflected harmony.",
+        "grooveMechanics": {
+            "swingPercentage": 50,
+            "anticipationOffsetSteps": 0,
+            "microtimingFeel": "straight"
+        }
+    },
+    {
+        "id": "flamenco-fandango",
+        "worldId": "flamenco",
+        "name": "Fandangos de Huelva",
+        "origin": "Huelva, Andalusia",
+        "era": "19th century–present",
+        "description": "Ternary flamenco/folk family organized in four three-beat phrases, with modal openings and bright major/minor turns.",
+        "characteristicInstruments": [
+            "guitar",
+            "voice",
+            "percussion"
+        ],
+        "preferredMeters": [
+            "3/4",
+            "6/8"
+        ],
+        "tempoRange": [
+            130,
+            150
+        ],
+        "keySubstyles": [
+            "Fandangos de Huelva",
+            "Fandangos personales"
+        ],
+        "coreConcepts": [
+            "four 3-beat phrases",
+            "copla",
+            "modal opening",
+            "major/minor turn"
+        ],
+        "rhythmicGrammar": [
+            "3/4 ternary cycle",
+            "four-phrase copla architecture"
+        ],
+        "danceTags": [
+            "social-partner",
+            "listening"
+        ],
+        "tuningSystem": "12-tet",
+        "signatureCell": "Four 3/4 phrases with modal opening and major/minor melodic turns.",
+        "grooveMechanics": {
+            "swingPercentage": 50,
+            "anticipationOffsetSteps": 0,
+            "microtimingFeel": "straight"
+        }
+    }  ],
   "substyles": [
-    "Soleá",
-    "Bulerías de Jerez",
-    "Alegrías de Cádiz",
-    "Tangos de Triana",
-    "Tientos",
-    "Seguiriya",
-    "Rumba Flamenca",
-    "Sevillanas",
-    "Fandangos de Huelva",
-    "Guajiras",
-    "Taranta y Granadinas",
-    "Flamenco Jazz / Nuevo Flamenco"
+  "Soleá",
+  "Bulerías de Jerez",
+  "Alegrías de Cádiz",
+  "Tangos de Triana",
+  "Tientos",
+  "Seguiriya",
+  "Farruca",
+  "Rumba Flamenca",
+  "Sevillanas",
+  "Fandangos de Huelva",
+  "Guajiras",
+  "Taranta y Granadinas",
+  "Soleá por Bulerías",
+  "Flamenco Jazz / Nuevo Flamenco"
   ],
   "artists": [
     "Paco de Lucía",
@@ -397,7 +733,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
       "virtuoso picado"
     ]
   },
-  "patterns": [
+  "patterns":   [
     {
       "id": "flam-abanico-strum",
       "worldId": "flamenco",
@@ -2071,11 +2407,15 @@ export const FLAMENCO_WORLD: GenreWorld = {
       "roles": [
         "voice"
       ],
-      "instruments": ["voice"],
+      "instruments": [
+        "voice"
+      ],
       "compatibleRoles": [
         "voice"
       ],
-      "compatibleInstruments": ["voice"],
+      "compatibleInstruments": [
+        "voice"
+      ],
       "canCrossRole": true,
       "meter": "4/4",
       "cycleLength": 1,
@@ -2251,11 +2591,15 @@ export const FLAMENCO_WORLD: GenreWorld = {
       "roles": [
         "voice"
       ],
-      "instruments": ["voice"],
+      "instruments": [
+        "voice"
+      ],
       "compatibleRoles": [
         "voice"
       ],
-      "compatibleInstruments": ["voice"],
+      "compatibleInstruments": [
+        "voice"
+      ],
       "canCrossRole": true,
       "meter": "4/4",
       "cycleLength": 1,
@@ -3640,16 +3984,2105 @@ export const FLAMENCO_WORLD: GenreWorld = {
       "difficulty": 1,
       "weight": 0.7,
       "enabled": true
+    },
+    {
+      "id": "flam-solea-guitar-compas",
+      "worldId": "flamenco",
+      "traditionId": "flamenco-solea-style",
+      "substyleId": "flamenco-solea-style",
+      "name": "Soleá Guitar Compás",
+      "family": "12-beat compás",
+      "category": "ostinato",
+      "description": "Soleá accompaniment skeleton: weight on 12, 3, 6, 8 and 10, with 10 as a major cierre point and room for cante.",
+      "tags": [
+        "solea",
+        "compas",
+        "cierre",
+        "rasgueado"
+      ],
+      "scopes": [
+        "measure",
+        "phrase",
+        "region",
+        "track",
+        "song"
+      ],
+      "roles": [
+        "harmony",
+        "rhythm-guitar",
+        "pulse"
+      ],
+      "instruments": [
+        "guitar"
+      ],
+      "meter": "12/8",
+      "cycleLength": 1,
+      "subdivisions": 12,
+      "onsetGrid": [
+        11,
+        2,
+        5,
+        7,
+        9
+      ],
+      "accentProfile": [
+        1,
+        0.82,
+        0.9,
+        1,
+        0.92
+      ],
+      "velocityProfile": [
+        0.98,
+        0.94,
+        0.96,
+        0.98,
+        0.96
+      ],
+      "syncopationRating": 0.8,
+      "articulations": [
+        "rasgueado"
+      ],
+      "density": "medium",
+      "phrasePosition": [
+        "start",
+        "middle",
+        "end"
+      ],
+      "sectionUsage": [
+        "intro",
+        "verse",
+        "solo"
+      ],
+      "harmonicContext": [
+        "flamenco-modal",
+        "Andalusian-cadence"
+      ],
+      "roleDependencies": [
+        "harmony",
+        "rhythm-guitar"
+      ],
+      "transformations": [
+        "density",
+        "accent",
+        "phrasePosition"
+      ],
+      "variants": [
+        {
+          "id": "flam-solea-guitar-cierre",
+          "parentPatternId": "flam-solea-guitar-compas",
+          "name": "Soleá Cierre at 10",
+          "variationType": "cadence",
+          "probability": 0.45,
+          "description": "Land on 10, then breathe into 11–12.",
+          "onsetGrid": [
+            11,
+            2,
+            5,
+            7,
+            9,
+            10,
+            11
+          ],
+          "accentProfile": [
+            1,
+            0.85,
+            0.9,
+            1,
+            0.98,
+            0.55,
+            1
+          ],
+          "velocityProfile": [
+            0.98,
+            0.95,
+            0.96,
+            0.98,
+            0.98,
+            0.89,
+            0.98
+          ]
+        }
+      ],
+      "provenance": "Flamenco genre patch: authored from palo-specific compás and accompaniment grammar.",
+      "authenticityTags": [
+        "flamenco",
+        "flamenco-solea-style"
+      ],
+      "danceTags": [
+        "listening"
+      ],
+      "tuningSystem": "12-tet",
+      "difficulty": 2,
+      "weight": 0.98,
+      "enabled": true
+    },
+    {
+      "id": "flam-solea-palmas",
+      "worldId": "flamenco",
+      "traditionId": "flamenco-solea-style",
+      "substyleId": "flamenco-solea-style",
+      "name": "Soleá Palmas Contratiempo",
+      "family": "Palmas",
+      "category": "rolePattern",
+      "description": "Cupped and clear hand-clap dialogue that reinforces the 12-beat skeleton while leaving the cante breathing space.",
+      "tags": [
+        "solea",
+        "palmas",
+        "contratiempo"
+      ],
+      "scopes": [
+        "measure",
+        "phrase",
+        "region",
+        "track",
+        "song"
+      ],
+      "roles": [
+        "percussion",
+        "hand-percussion"
+      ],
+      "instruments": [
+        "palmas"
+      ],
+      "meter": "12/8",
+      "cycleLength": 1,
+      "subdivisions": 12,
+      "onsetGrid": [
+        0,
+        1,
+        3,
+        4,
+        6,
+        8,
+        10
+      ],
+      "accentProfile": [
+        0.35,
+        0.7,
+        0.45,
+        0.68,
+        0.5,
+        0.7,
+        0.5
+      ],
+      "velocityProfile": [
+        0.85,
+        0.92,
+        0.87,
+        0.92,
+        0.88,
+        0.92,
+        0.88
+      ],
+      "syncopationRating": 0.29,
+      "articulations": [
+        "palmas-sordas/claras"
+      ],
+      "density": "medium",
+      "phrasePosition": [
+        "start",
+        "middle",
+        "end"
+      ],
+      "sectionUsage": [
+        "verse",
+        "solo"
+      ],
+      "harmonicContext": [
+        "flamenco-modal",
+        "Andalusian-cadence"
+      ],
+      "roleDependencies": [
+        "percussion",
+        "hand-percussion"
+      ],
+      "transformations": [
+        "density",
+        "accent",
+        "phrasePosition"
+      ],
+      "variants": [],
+      "provenance": "Flamenco genre patch: authored from palo-specific compás and accompaniment grammar.",
+      "authenticityTags": [
+        "flamenco",
+        "flamenco-solea-style"
+      ],
+      "danceTags": [
+        "listening"
+      ],
+      "tuningSystem": "12-tet",
+      "difficulty": 2,
+      "weight": 0.94,
+      "enabled": true,
+      "canCrossRole": true
+    },
+    {
+      "id": "flam-llamada-12",
+      "worldId": "flamenco",
+      "traditionId": "flamenco-solea-style",
+      "substyleId": "flamenco-solea-style",
+      "name": "Llamada into Cante",
+      "family": "Cante/Guitar Interaction",
+      "category": "transition",
+      "description": "Short guitar-and-compás calling gesture that announces a letra or dance entrance; not a generic fill.",
+      "tags": [
+        "llamada",
+        "solea",
+        "transition"
+      ],
+      "scopes": [
+        "measure",
+        "phrase",
+        "region",
+        "track",
+        "song"
+      ],
+      "roles": [
+        "harmony",
+        "lead",
+        "pulse"
+      ],
+      "instruments": [
+        "guitar"
+      ],
+      "meter": "12/8",
+      "cycleLength": 1,
+      "subdivisions": 12,
+      "onsetGrid": [
+        9,
+        10,
+        11,
+        0,
+        2
+      ],
+      "accentProfile": [
+        0.55,
+        0.75,
+        1,
+        0.9,
+        0.75
+      ],
+      "velocityProfile": [
+        0.89,
+        0.93,
+        0.98,
+        0.96,
+        0.93
+      ],
+      "syncopationRating": 0.4,
+      "articulations": [
+        "golpe + rasgueado"
+      ],
+      "density": "medium",
+      "phrasePosition": [
+        "end",
+        "start"
+      ],
+      "sectionUsage": [
+        "intro",
+        "verse",
+        "bridge"
+      ],
+      "harmonicContext": [
+        "flamenco-modal",
+        "Andalusian-cadence"
+      ],
+      "roleDependencies": [
+        "harmony",
+        "lead"
+      ],
+      "transformations": [
+        "density",
+        "accent",
+        "phrasePosition"
+      ],
+      "variants": [
+        {
+          "id": "flam-llamada-12-v2",
+          "parentPatternId": "flam-llamada-12",
+          "name": "Llamada with final golpe",
+          "variationType": "transition",
+          "probability": 0.4,
+          "description": "Tightens the final two beats into a clear entrance.",
+          "onsetGrid": [
+            9,
+            10,
+            11,
+            0,
+            1,
+            2
+          ],
+          "accentProfile": [
+            0.6,
+            0.8,
+            1,
+            0.9,
+            0.65,
+            0.95
+          ],
+          "velocityProfile": [
+            0.9,
+            0.94,
+            0.98,
+            0.96,
+            0.91,
+            0.97
+          ]
+        }
+      ],
+      "provenance": "Flamenco genre patch: authored from palo-specific compás and accompaniment grammar.",
+      "authenticityTags": [
+        "flamenco",
+        "flamenco-solea-style"
+      ],
+      "danceTags": [
+        "listening"
+      ],
+      "tuningSystem": "12-tet",
+      "difficulty": 2,
+      "weight": 0.97,
+      "enabled": true
+    },
+    {
+      "id": "flam-remate-12",
+      "worldId": "flamenco",
+      "traditionId": "flamenco-remate",
+      "substyleId": "flamenco-remate",
+      "name": "12-Beat Remate",
+      "family": "Cadential Punctuation",
+      "category": "cadence",
+      "description": "Ensemble remate: synchronized accent and release at the end of a compás, leaving a deliberate pocket before the next phrase.",
+      "tags": [
+        "remate",
+        "corte",
+        "compas"
+      ],
+      "scopes": [
+        "measure",
+        "phrase",
+        "region",
+        "track",
+        "song"
+      ],
+      "roles": [
+        "harmony",
+        "percussion",
+        "pulse"
+      ],
+      "instruments": [
+        "guitar",
+        "palmas",
+        "cajon"
+      ],
+      "meter": "12/8",
+      "cycleLength": 1,
+      "subdivisions": 12,
+      "onsetGrid": [
+        9,
+        10,
+        11,
+        0,
+        2
+      ],
+      "accentProfile": [
+        0.7,
+        0.95,
+        1,
+        0.85,
+        0.9
+      ],
+      "velocityProfile": [
+        0.92,
+        0.97,
+        0.98,
+        0.95,
+        0.96
+      ],
+      "syncopationRating": 0.4,
+      "articulations": [
+        "golpe/corte"
+      ],
+      "density": "dense",
+      "phrasePosition": [
+        "end"
+      ],
+      "sectionUsage": [
+        "verse",
+        "chorus",
+        "ending"
+      ],
+      "harmonicContext": [
+        "flamenco-modal",
+        "Andalusian-cadence"
+      ],
+      "roleDependencies": [
+        "harmony",
+        "percussion"
+      ],
+      "transformations": [
+        "density",
+        "accent",
+        "phrasePosition"
+      ],
+      "variants": [],
+      "provenance": "Flamenco genre patch: authored from palo-specific compás and accompaniment grammar.",
+      "authenticityTags": [
+        "flamenco",
+        "flamenco-remate"
+      ],
+      "danceTags": [
+        "listening"
+      ],
+      "tuningSystem": "12-tet",
+      "difficulty": 3,
+      "weight": 0.99,
+      "enabled": true
+    },
+    {
+      "id": "flam-buleria-compas",
+      "worldId": "flamenco",
+      "traditionId": "flamenco-buleria-style",
+      "substyleId": "flamenco-buleria-style",
+      "name": "Bulería Compás / Jerez Drive",
+      "family": "Bulería Compás",
+      "category": "groove",
+      "description": "Fast 12-beat bulería framework with elastic emphasis around 12, 3, 6, 8, 10 and contratiempo.",
+      "tags": [
+        "buleria",
+        "compas",
+        "contratiempo",
+        "fin-de-fiesta"
+      ],
+      "scopes": [
+        "measure",
+        "phrase",
+        "region",
+        "track",
+        "song"
+      ],
+      "roles": [
+        "pulse",
+        "percussion",
+        "harmony"
+      ],
+      "instruments": [
+        "guitar",
+        "palmas",
+        "cajon"
+      ],
+      "meter": "12/8",
+      "cycleLength": 1,
+      "subdivisions": 12,
+      "onsetGrid": [
+        11,
+        2,
+        5,
+        7,
+        8,
+        9,
+        10
+      ],
+      "accentProfile": [
+        1,
+        0.9,
+        0.75,
+        1,
+        0.55,
+        0.92,
+        0.55
+      ],
+      "velocityProfile": [
+        0.98,
+        0.96,
+        0.93,
+        0.98,
+        0.89,
+        0.96,
+        0.89
+      ],
+      "syncopationRating": 0.57,
+      "articulations": [
+        "rasgueado"
+      ],
+      "density": "dense",
+      "phrasePosition": [
+        "start",
+        "middle",
+        "end"
+      ],
+      "sectionUsage": [
+        "verse",
+        "chorus",
+        "solo"
+      ],
+      "harmonicContext": [
+        "flamenco-modal",
+        "Andalusian-cadence"
+      ],
+      "roleDependencies": [
+        "pulse",
+        "percussion"
+      ],
+      "transformations": [
+        "density",
+        "accent",
+        "phrasePosition"
+      ],
+      "variants": [
+        {
+          "id": "flam-buleria-compas-corte",
+          "parentPatternId": "flam-buleria-compas",
+          "name": "Bulería Corte / Stop",
+          "variationType": "cadence",
+          "probability": 0.35,
+          "description": "Quick corte before the next respuesta.",
+          "onsetGrid": [
+            8,
+            9,
+            10,
+            11,
+            2
+          ],
+          "accentProfile": [
+            0.6,
+            0.85,
+            1,
+            0.9,
+            1
+          ],
+          "velocityProfile": [
+            0.9,
+            0.95,
+            0.98,
+            0.96,
+            0.98
+          ]
+        }
+      ],
+      "provenance": "Flamenco genre patch: authored from palo-specific compás and accompaniment grammar.",
+      "authenticityTags": [
+        "flamenco",
+        "flamenco-buleria-style"
+      ],
+      "danceTags": [
+        "listening"
+      ],
+      "tuningSystem": "12-tet",
+      "difficulty": 3,
+      "weight": 0.99,
+      "enabled": true
+    },
+    {
+      "id": "flam-buleria-palmas",
+      "worldId": "flamenco",
+      "traditionId": "flamenco-buleria-style",
+      "substyleId": "flamenco-buleria-style",
+      "name": "Bulería Palmas Contratiempo",
+      "family": "Bulería Palmas",
+      "category": "rolePattern",
+      "description": "Fast clear/contratiempo palmas that articulate the Jerez party pulse without filling every subdivision.",
+      "tags": [
+        "buleria",
+        "palmas",
+        "contratiempo",
+        "jaleo"
+      ],
+      "scopes": [
+        "measure",
+        "phrase",
+        "region",
+        "track",
+        "song"
+      ],
+      "roles": [
+        "percussion",
+        "hand-percussion"
+      ],
+      "instruments": [
+        "palmas"
+      ],
+      "meter": "12/8",
+      "cycleLength": 1,
+      "subdivisions": 12,
+      "onsetGrid": [
+        0,
+        2,
+        3,
+        5,
+        7,
+        8,
+        9,
+        11
+      ],
+      "accentProfile": [
+        0.5,
+        0.8,
+        0.55,
+        0.8,
+        1,
+        0.55,
+        0.8,
+        0.95
+      ],
+      "velocityProfile": [
+        0.88,
+        0.94,
+        0.89,
+        0.94,
+        0.98,
+        0.89,
+        0.94,
+        0.97
+      ],
+      "syncopationRating": 0.62,
+      "articulations": [
+        "palmas-claras"
+      ],
+      "density": "dense",
+      "phrasePosition": [
+        "start",
+        "middle",
+        "end"
+      ],
+      "sectionUsage": [
+        "verse",
+        "chorus",
+        "ending"
+      ],
+      "harmonicContext": [
+        "flamenco-modal",
+        "Andalusian-cadence"
+      ],
+      "roleDependencies": [
+        "percussion",
+        "hand-percussion"
+      ],
+      "transformations": [
+        "density",
+        "accent",
+        "phrasePosition"
+      ],
+      "variants": [],
+      "provenance": "Flamenco genre patch: authored from palo-specific compás and accompaniment grammar.",
+      "authenticityTags": [
+        "flamenco",
+        "flamenco-buleria-style"
+      ],
+      "danceTags": [
+        "listening"
+      ],
+      "tuningSystem": "12-tet",
+      "difficulty": 3,
+      "weight": 0.98,
+      "enabled": true,
+      "canCrossRole": true
+    },
+    {
+      "id": "flam-alzapua-12",
+      "worldId": "flamenco",
+      "traditionId": "flamenco-buleria-style",
+      "substyleId": "flamenco-buleria-style",
+      "name": "Alzapúa over 12-Beat Compás",
+      "family": "Thumb Technique",
+      "category": "rolePattern",
+      "description": "Thumb-driven bass/brush engine used as a guitar texture inside fast 12-beat compás rather than a generic 4/4 bass loop.",
+      "tags": [
+        "buleria",
+        "alzapua",
+        "pulgar"
+      ],
+      "scopes": [
+        "measure",
+        "phrase",
+        "region",
+        "track",
+        "song"
+      ],
+      "roles": [
+        "bass",
+        "harmony",
+        "counterline"
+      ],
+      "instruments": [
+        "guitar"
+      ],
+      "meter": "12/8",
+      "cycleLength": 1,
+      "subdivisions": 12,
+      "onsetGrid": [
+        11,
+        0,
+        2,
+        4,
+        5,
+        7,
+        8,
+        9,
+        11
+      ],
+      "accentProfile": [
+        1,
+        0.55,
+        0.9,
+        0.5,
+        0.7,
+        0.95,
+        0.5,
+        0.9,
+        1
+      ],
+      "velocityProfile": [
+        0.98,
+        0.89,
+        0.96,
+        0.88,
+        0.92,
+        0.97,
+        0.88,
+        0.96,
+        0.98
+      ],
+      "syncopationRating": 0.56,
+      "articulations": [
+        "alzapúa"
+      ],
+      "density": "dense",
+      "phrasePosition": [
+        "start",
+        "middle",
+        "end"
+      ],
+      "sectionUsage": [
+        "solo",
+        "chorus"
+      ],
+      "harmonicContext": [
+        "flamenco-modal",
+        "Andalusian-cadence"
+      ],
+      "roleDependencies": [
+        "bass",
+        "harmony"
+      ],
+      "transformations": [
+        "density",
+        "accent",
+        "phrasePosition"
+      ],
+      "variants": [],
+      "provenance": "Flamenco genre patch: authored from palo-specific compás and accompaniment grammar.",
+      "authenticityTags": [
+        "flamenco",
+        "flamenco-buleria-style"
+      ],
+      "danceTags": [
+        "listening"
+      ],
+      "tuningSystem": "12-tet",
+      "difficulty": 3,
+      "weight": 0.96,
+      "enabled": true
+    },
+    {
+      "id": "flam-alegrias-compas",
+      "worldId": "flamenco",
+      "traditionId": "flamenco-alegrias-style",
+      "substyleId": "flamenco-alegrias-style",
+      "name": "Alegrías / Cantiñas Bright Compás",
+      "family": "Cantiñas Compás",
+      "category": "ostinato",
+      "description": "Bright 12-beat cantiñas framework: the soleá-family accent architecture with lighter forward motion and major-key guitar harmony.",
+      "tags": [
+        "alegrias",
+        "cantinas",
+        "compas",
+        "cadiz"
+      ],
+      "scopes": [
+        "measure",
+        "phrase",
+        "region",
+        "track",
+        "song"
+      ],
+      "roles": [
+        "harmony",
+        "pulse"
+      ],
+      "instruments": [
+        "guitar"
+      ],
+      "meter": "12/8",
+      "cycleLength": 1,
+      "subdivisions": 12,
+      "onsetGrid": [
+        11,
+        2,
+        5,
+        7,
+        9
+      ],
+      "accentProfile": [
+        1,
+        0.75,
+        0.78,
+        0.95,
+        0.9
+      ],
+      "velocityProfile": [
+        0.98,
+        0.93,
+        0.94,
+        0.97,
+        0.96
+      ],
+      "syncopationRating": 0.8,
+      "articulations": [
+        "rasgueado"
+      ],
+      "density": "medium",
+      "phrasePosition": [
+        "start",
+        "middle",
+        "end"
+      ],
+      "sectionUsage": [
+        "verse",
+        "chorus",
+        "solo"
+      ],
+      "harmonicContext": [
+        "flamenco-modal",
+        "Andalusian-cadence"
+      ],
+      "roleDependencies": [
+        "harmony",
+        "pulse"
+      ],
+      "transformations": [
+        "density",
+        "accent",
+        "phrasePosition"
+      ],
+      "variants": [],
+      "provenance": "Flamenco genre patch: authored from palo-specific compás and accompaniment grammar.",
+      "authenticityTags": [
+        "flamenco",
+        "flamenco-alegrias-style"
+      ],
+      "danceTags": [
+        "listening"
+      ],
+      "tuningSystem": "12-tet",
+      "difficulty": 2,
+      "weight": 0.98,
+      "enabled": true
+    },
+    {
+      "id": "flam-alegrias-palmas",
+      "worldId": "flamenco",
+      "traditionId": "flamenco-alegrias-style",
+      "substyleId": "flamenco-alegrias-style",
+      "name": "Alegrías Palmas",
+      "family": "Cantiñas Palmas",
+      "category": "rolePattern",
+      "description": "Clear, buoyant palmas for Alegrías, brighter than Soleá and suited to dance entrances and escobilla.",
+      "tags": [
+        "alegrias",
+        "palmas",
+        "cadiz"
+      ],
+      "scopes": [
+        "measure",
+        "phrase",
+        "region",
+        "track",
+        "song"
+      ],
+      "roles": [
+        "percussion",
+        "hand-percussion"
+      ],
+      "instruments": [
+        "palmas"
+      ],
+      "meter": "12/8",
+      "cycleLength": 1,
+      "subdivisions": 12,
+      "onsetGrid": [
+        0,
+        2,
+        4,
+        5,
+        7,
+        9,
+        11
+      ],
+      "accentProfile": [
+        0.45,
+        0.8,
+        0.45,
+        0.7,
+        0.95,
+        0.75,
+        0.95
+      ],
+      "velocityProfile": [
+        0.87,
+        0.94,
+        0.87,
+        0.92,
+        0.97,
+        0.93,
+        0.97
+      ],
+      "syncopationRating": 0.57,
+      "articulations": [
+        "palmas-claras"
+      ],
+      "density": "medium",
+      "phrasePosition": [
+        "start",
+        "middle",
+        "end"
+      ],
+      "sectionUsage": [
+        "verse",
+        "chorus"
+      ],
+      "harmonicContext": [
+        "flamenco-modal",
+        "Andalusian-cadence"
+      ],
+      "roleDependencies": [
+        "percussion",
+        "hand-percussion"
+      ],
+      "transformations": [
+        "density",
+        "accent",
+        "phrasePosition"
+      ],
+      "variants": [],
+      "provenance": "Flamenco genre patch: authored from palo-specific compás and accompaniment grammar.",
+      "authenticityTags": [
+        "flamenco",
+        "flamenco-alegrias-style"
+      ],
+      "danceTags": [
+        "listening"
+      ],
+      "tuningSystem": "12-tet",
+      "difficulty": 2,
+      "weight": 0.95,
+      "enabled": true,
+      "canCrossRole": true
+    },
+    {
+      "id": "flam-escobilla-12",
+      "worldId": "flamenco",
+      "traditionId": "flamenco-alegrias-style",
+      "substyleId": "flamenco-alegrias-style",
+      "name": "Escobilla Footwork Pulse",
+      "family": "Dance Footwork",
+      "category": "pulse",
+      "description": "Repeated footwork-support cell for the escobilla section: dry, even attacks that intensify without changing the underlying compás.",
+      "tags": [
+        "escobilla",
+        "alegrias",
+        "zapateado"
+      ],
+      "scopes": [
+        "measure",
+        "phrase",
+        "region",
+        "track",
+        "song"
+      ],
+      "roles": [
+        "percussion",
+        "pulse"
+      ],
+      "instruments": [
+        "zapateado",
+        "cajon"
+      ],
+      "meter": "12/8",
+      "cycleLength": 1,
+      "subdivisions": 12,
+      "onsetGrid": [
+        0,
+        2,
+        4,
+        5,
+        7,
+        8,
+        9,
+        11
+      ],
+      "accentProfile": [
+        0.6,
+        0.55,
+        0.6,
+        0.75,
+        0.85,
+        0.6,
+        0.9,
+        0.8
+      ],
+      "velocityProfile": [
+        0.9,
+        0.89,
+        0.9,
+        0.93,
+        0.95,
+        0.9,
+        0.96,
+        0.94
+      ],
+      "syncopationRating": 0.5,
+      "articulations": [
+        "taconeo"
+      ],
+      "density": "dense",
+      "phrasePosition": [
+        "start",
+        "middle",
+        "end"
+      ],
+      "sectionUsage": [
+        "solo",
+        "chorus"
+      ],
+      "harmonicContext": [
+        "flamenco-modal",
+        "Andalusian-cadence"
+      ],
+      "roleDependencies": [
+        "percussion",
+        "pulse"
+      ],
+      "transformations": [
+        "density",
+        "accent",
+        "phrasePosition"
+      ],
+      "variants": [],
+      "provenance": "Flamenco genre patch: authored from palo-specific compás and accompaniment grammar.",
+      "authenticityTags": [
+        "flamenco",
+        "flamenco-alegrias-style"
+      ],
+      "danceTags": [
+        "listening"
+      ],
+      "tuningSystem": "12-tet",
+      "difficulty": 3,
+      "weight": 0.93,
+      "enabled": true,
+      "canCrossRole": true
+    },
+    {
+      "id": "flam-seguiriya-compas",
+      "worldId": "flamenco",
+      "traditionId": "flamenco-seguiriya-style",
+      "substyleId": "flamenco-seguiriya-style",
+      "name": "Seguiriya 2+2+3+3+2",
+      "family": "Seguiriya Compás",
+      "category": "phrasePattern",
+      "description": "Seguiriya's asymmetric 2+2+3+3+2 grouping, deliberately unlike the smoother Soleá/Bulería accent profile.",
+      "tags": [
+        "seguiriya",
+        "2+2+3+3+2",
+        "jondo",
+        "tension"
+      ],
+      "scopes": [
+        "measure",
+        "phrase",
+        "region",
+        "track",
+        "song"
+      ],
+      "roles": [
+        "pulse",
+        "percussion",
+        "harmony"
+      ],
+      "instruments": [
+        "guitar",
+        "palmas"
+      ],
+      "meter": "12/8",
+      "cycleLength": 1,
+      "subdivisions": 12,
+      "onsetGrid": [
+        0,
+        2,
+        4,
+        7,
+        10
+      ],
+      "accentProfile": [
+        1,
+        0.82,
+        1,
+        0.95,
+        0.9
+      ],
+      "velocityProfile": [
+        0.98,
+        0.94,
+        0.98,
+        0.97,
+        0.96
+      ],
+      "syncopationRating": 0.2,
+      "articulations": [
+        "golpe + rasgueado"
+      ],
+      "density": "medium",
+      "phrasePosition": [
+        "start",
+        "middle",
+        "end"
+      ],
+      "sectionUsage": [
+        "verse",
+        "solo",
+        "ending"
+      ],
+      "harmonicContext": [
+        "flamenco-modal",
+        "Andalusian-cadence"
+      ],
+      "roleDependencies": [
+        "pulse",
+        "percussion"
+      ],
+      "transformations": [
+        "density",
+        "accent",
+        "phrasePosition"
+      ],
+      "variants": [
+        {
+          "id": "flam-seguiriya-compas-corte",
+          "parentPatternId": "flam-seguiriya-compas",
+          "name": "Seguiriya Cierre",
+          "variationType": "cadence",
+          "probability": 0.4,
+          "description": "Compressed closing gesture with dramatic space after the final accent.",
+          "onsetGrid": [
+            0,
+            2,
+            4,
+            7,
+            9,
+            10
+          ],
+          "accentProfile": [
+            1,
+            0.8,
+            0.95,
+            0.9,
+            0.65,
+            1
+          ],
+          "velocityProfile": [
+            0.98,
+            0.94,
+            0.97,
+            0.96,
+            0.91,
+            0.98
+          ]
+        }
+      ],
+      "provenance": "Flamenco genre patch: authored from palo-specific compás and accompaniment grammar.",
+      "authenticityTags": [
+        "flamenco",
+        "flamenco-seguiriya-style"
+      ],
+      "danceTags": [
+        "listening"
+      ],
+      "tuningSystem": "12-tet",
+      "difficulty": 2,
+      "weight": 0.99,
+      "enabled": true
+    },
+    {
+      "id": "flam-seguiriya-palmas",
+      "worldId": "flamenco",
+      "traditionId": "flamenco-seguiriya-style",
+      "substyleId": "flamenco-seguiriya-style",
+      "name": "Seguiriya Sparse Palmas",
+      "family": "Seguiriya Palmas",
+      "category": "rolePattern",
+      "description": "Restrained hand percussion for cante jondo: sparse support, not a festive continuous clap.",
+      "tags": [
+        "seguiriya",
+        "palmas",
+        "jondo",
+        "sparse"
+      ],
+      "scopes": [
+        "measure",
+        "phrase",
+        "region",
+        "track",
+        "song"
+      ],
+      "roles": [
+        "percussion",
+        "hand-percussion"
+      ],
+      "instruments": [
+        "palmas"
+      ],
+      "meter": "12/8",
+      "cycleLength": 1,
+      "subdivisions": 12,
+      "onsetGrid": [
+        2,
+        4,
+        7,
+        10
+      ],
+      "accentProfile": [
+        0.7,
+        0.8,
+        0.85,
+        1
+      ],
+      "velocityProfile": [
+        0.92,
+        0.94,
+        0.95,
+        0.98
+      ],
+      "syncopationRating": 0.25,
+      "articulations": [
+        "palmas-sordas"
+      ],
+      "density": "sparse",
+      "phrasePosition": [
+        "start",
+        "middle",
+        "end"
+      ],
+      "sectionUsage": [
+        "verse",
+        "solo"
+      ],
+      "harmonicContext": [
+        "flamenco-modal",
+        "Andalusian-cadence"
+      ],
+      "roleDependencies": [
+        "percussion",
+        "hand-percussion"
+      ],
+      "transformations": [
+        "density",
+        "accent",
+        "phrasePosition"
+      ],
+      "variants": [],
+      "provenance": "Flamenco genre patch: authored from palo-specific compás and accompaniment grammar.",
+      "authenticityTags": [
+        "flamenco",
+        "flamenco-seguiriya-style"
+      ],
+      "danceTags": [
+        "listening"
+      ],
+      "tuningSystem": "12-tet",
+      "difficulty": 2,
+      "weight": 0.94,
+      "enabled": true,
+      "canCrossRole": true
+    },
+    {
+      "id": "flam-tangos-guitar",
+      "worldId": "flamenco",
+      "traditionId": "flamenco-tangos-style",
+      "substyleId": "flamenco-tangos-style",
+      "name": "Tangos Flamencos Guitar Compás",
+      "family": "Binary Compás",
+      "category": "ostinato",
+      "description": "Flamenco tangos guitar pulse: beat 1 breathes while 2–3–4 carry the body of the compás, with optional contratiempo pickups.",
+      "tags": [
+        "tangos",
+        "binary",
+        "compas",
+        "triana"
+      ],
+      "scopes": [
+        "measure",
+        "phrase",
+        "region",
+        "track",
+        "song"
+      ],
+      "roles": [
+        "harmony",
+        "rhythm-guitar",
+        "pulse"
+      ],
+      "instruments": [
+        "guitar"
+      ],
+      "meter": "4/4",
+      "cycleLength": 1,
+      "subdivisions": 16,
+      "onsetGrid": [
+        2,
+        4,
+        6,
+        8,
+        10,
+        12,
+        14
+      ],
+      "accentProfile": [
+        0.55,
+        0.9,
+        0.7,
+        1,
+        0.65,
+        0.92,
+        0.8
+      ],
+      "velocityProfile": [
+        0.89,
+        0.96,
+        0.92,
+        0.98,
+        0.91,
+        0.96,
+        0.94
+      ],
+      "syncopationRating": 0.0,
+      "articulations": [
+        "rasgueado"
+      ],
+      "density": "medium",
+      "phrasePosition": [
+        "start",
+        "middle",
+        "end"
+      ],
+      "sectionUsage": [
+        "verse",
+        "chorus",
+        "solo"
+      ],
+      "harmonicContext": [
+        "flamenco-modal",
+        "Andalusian-cadence"
+      ],
+      "roleDependencies": [
+        "harmony",
+        "rhythm-guitar"
+      ],
+      "transformations": [
+        "density",
+        "accent",
+        "phrasePosition"
+      ],
+      "variants": [],
+      "provenance": "Flamenco genre patch: authored from palo-specific compás and accompaniment grammar.",
+      "authenticityTags": [
+        "flamenco",
+        "flamenco-tangos-style"
+      ],
+      "danceTags": [
+        "listening"
+      ],
+      "tuningSystem": "12-tet",
+      "difficulty": 2,
+      "weight": 0.98,
+      "enabled": true
+    },
+    {
+      "id": "flam-tientos-compas",
+      "worldId": "flamenco",
+      "traditionId": "flamenco-tientos-style",
+      "substyleId": "flamenco-tientos-style",
+      "name": "Tientos Slow Binary Compás",
+      "family": "Tientos Compás",
+      "category": "ostinato",
+      "description": "Slower, heavier binary accompaniment related to tangos; more space, weight and triplet-like subdivision in the traditional feel.",
+      "tags": [
+        "tientos",
+        "slow",
+        "binary",
+        "jondo"
+      ],
+      "scopes": [
+        "measure",
+        "phrase",
+        "region",
+        "track",
+        "song"
+      ],
+      "roles": [
+        "harmony",
+        "pulse"
+      ],
+      "instruments": [
+        "guitar"
+      ],
+      "meter": "4/4",
+      "cycleLength": 1,
+      "subdivisions": 16,
+      "onsetGrid": [
+        0,
+        4,
+        6,
+        8,
+        12,
+        14
+      ],
+      "accentProfile": [
+        0.75,
+        0.95,
+        0.8,
+        1,
+        0.85,
+        0.9
+      ],
+      "velocityProfile": [
+        0.93,
+        0.97,
+        0.94,
+        0.98,
+        0.95,
+        0.96
+      ],
+      "syncopationRating": 0.0,
+      "articulations": [
+        "rasgueado"
+      ],
+      "density": "medium",
+      "phrasePosition": [
+        "start",
+        "middle",
+        "end"
+      ],
+      "sectionUsage": [
+        "verse",
+        "solo"
+      ],
+      "harmonicContext": [
+        "flamenco-modal",
+        "Andalusian-cadence"
+      ],
+      "roleDependencies": [
+        "harmony",
+        "pulse"
+      ],
+      "transformations": [
+        "density",
+        "accent",
+        "phrasePosition"
+      ],
+      "variants": [],
+      "provenance": "Flamenco genre patch: authored from palo-specific compás and accompaniment grammar.",
+      "authenticityTags": [
+        "flamenco",
+        "flamenco-tientos-style"
+      ],
+      "danceTags": [
+        "listening"
+      ],
+      "tuningSystem": "12-tet",
+      "difficulty": 2,
+      "weight": 0.98,
+      "enabled": true
+    },
+    {
+      "id": "flam-tientos-palmas",
+      "worldId": "flamenco",
+      "traditionId": "flamenco-tientos-style",
+      "substyleId": "flamenco-tientos-style",
+      "name": "Tientos Sparse Palmas",
+      "family": "Tientos Palmas",
+      "category": "rolePattern",
+      "description": "Measured palmas supporting tientos without turning the palo into festive tangos.",
+      "tags": [
+        "tientos",
+        "palmas",
+        "sparse"
+      ],
+      "scopes": [
+        "measure",
+        "phrase",
+        "region",
+        "track",
+        "song"
+      ],
+      "roles": [
+        "percussion",
+        "hand-percussion"
+      ],
+      "instruments": [
+        "palmas"
+      ],
+      "meter": "4/4",
+      "cycleLength": 1,
+      "subdivisions": 16,
+      "onsetGrid": [
+        2,
+        6,
+        10,
+        14
+      ],
+      "accentProfile": [
+        0.7,
+        0.85,
+        0.75,
+        0.9
+      ],
+      "velocityProfile": [
+        0.92,
+        0.95,
+        0.93,
+        0.96
+      ],
+      "syncopationRating": 0.0,
+      "articulations": [
+        "palmas-sordas"
+      ],
+      "density": "sparse",
+      "phrasePosition": [
+        "start",
+        "middle",
+        "end"
+      ],
+      "sectionUsage": [
+        "verse",
+        "solo"
+      ],
+      "harmonicContext": [
+        "flamenco-modal",
+        "Andalusian-cadence"
+      ],
+      "roleDependencies": [
+        "percussion",
+        "hand-percussion"
+      ],
+      "transformations": [
+        "density",
+        "accent",
+        "phrasePosition"
+      ],
+      "variants": [],
+      "provenance": "Flamenco genre patch: authored from palo-specific compás and accompaniment grammar.",
+      "authenticityTags": [
+        "flamenco",
+        "flamenco-tientos-style"
+      ],
+      "danceTags": [
+        "listening"
+      ],
+      "tuningSystem": "12-tet",
+      "difficulty": 2,
+      "weight": 0.93,
+      "enabled": true,
+      "canCrossRole": true
+    },
+    {
+      "id": "flam-farruca-guitar",
+      "worldId": "flamenco",
+      "traditionId": "flamenco-farruca-style",
+      "substyleId": "flamenco-farruca-style",
+      "name": "Farruca Slow Binary Guitar",
+      "family": "Farruca Compás",
+      "category": "ostinato",
+      "description": "Dry slow 4-beat farruca accompaniment in minor, designed for grounded dance phrasing and a later subida.",
+      "tags": [
+        "farruca",
+        "binary",
+        "minor",
+        "dance"
+      ],
+      "scopes": [
+        "measure",
+        "phrase",
+        "region",
+        "track",
+        "song"
+      ],
+      "roles": [
+        "harmony",
+        "pulse"
+      ],
+      "instruments": [
+        "guitar"
+      ],
+      "meter": "4/4",
+      "cycleLength": 1,
+      "subdivisions": 16,
+      "onsetGrid": [
+        0,
+        4,
+        8,
+        12,
+        14
+      ],
+      "accentProfile": [
+        1,
+        0.7,
+        0.9,
+        0.75,
+        0.9
+      ],
+      "velocityProfile": [
+        0.98,
+        0.92,
+        0.96,
+        0.93,
+        0.96
+      ],
+      "syncopationRating": 0.0,
+      "articulations": [
+        "golpe"
+      ],
+      "density": "medium",
+      "phrasePosition": [
+        "start",
+        "middle",
+        "end"
+      ],
+      "sectionUsage": [
+        "intro",
+        "verse",
+        "solo"
+      ],
+      "harmonicContext": [
+        "flamenco-modal",
+        "Andalusian-cadence"
+      ],
+      "roleDependencies": [
+        "harmony",
+        "pulse"
+      ],
+      "transformations": [
+        "density",
+        "accent",
+        "phrasePosition"
+      ],
+      "variants": [],
+      "provenance": "Flamenco genre patch: authored from palo-specific compás and accompaniment grammar.",
+      "authenticityTags": [
+        "flamenco",
+        "flamenco-farruca-style"
+      ],
+      "danceTags": [
+        "listening"
+      ],
+      "tuningSystem": "12-tet",
+      "difficulty": 2,
+      "weight": 0.92,
+      "enabled": true
+    },
+    {
+      "id": "flam-sevillanas-compas",
+      "worldId": "flamenco",
+      "traditionId": "flamenco-sevillanas-style",
+      "substyleId": "flamenco-sevillanas-style",
+      "name": "Sevillanas 3/4 Copla Pulse",
+      "family": "Sevillanas Compás",
+      "category": "ostinato",
+      "description": "Three-beat dance pulse organized for the four-copla Sevillanas form, with crisp guitar punctuation and copla remates.",
+      "tags": [
+        "sevillanas",
+        "3/4",
+        "copla",
+        "dance"
+      ],
+      "scopes": [
+        "measure",
+        "phrase",
+        "region",
+        "track",
+        "song"
+      ],
+      "roles": [
+        "harmony",
+        "pulse"
+      ],
+      "instruments": [
+        "guitar"
+      ],
+      "meter": "3/4",
+      "cycleLength": 1,
+      "subdivisions": 12,
+      "onsetGrid": [
+        0,
+        4,
+        8,
+        10
+      ],
+      "accentProfile": [
+        1,
+        0.65,
+        0.8,
+        0.9
+      ],
+      "velocityProfile": [
+        0.98,
+        0.91,
+        0.94,
+        0.96
+      ],
+      "syncopationRating": 0.0,
+      "articulations": [
+        "rasgueado"
+      ],
+      "density": "medium",
+      "phrasePosition": [
+        "start",
+        "middle",
+        "end"
+      ],
+      "sectionUsage": [
+        "intro",
+        "verse",
+        "chorus",
+        "ending"
+      ],
+      "harmonicContext": [
+        "flamenco-modal",
+        "Andalusian-cadence"
+      ],
+      "roleDependencies": [
+        "harmony",
+        "pulse"
+      ],
+      "transformations": [
+        "density",
+        "accent",
+        "phrasePosition"
+      ],
+      "variants": [],
+      "provenance": "Flamenco genre patch: authored from palo-specific compás and accompaniment grammar.",
+      "authenticityTags": [
+        "flamenco",
+        "flamenco-sevillanas-style"
+      ],
+      "danceTags": [
+        "listening"
+      ],
+      "tuningSystem": "12-tet",
+      "difficulty": 2,
+      "weight": 0.97,
+      "enabled": true
+    },
+    {
+      "id": "flam-rumba-bass",
+      "worldId": "flamenco",
+      "traditionId": "flamenco-rumba-style",
+      "substyleId": "flamenco-rumba-style",
+      "name": "Rumba Flamenca Bass Propulsion",
+      "family": "Rumba Groove",
+      "category": "bass",
+      "description": "Rumba flamenca bass motion follows the guitar's forward strum, using roots, fifths and anticipatory pickups rather than generic rock bass.",
+      "tags": [
+        "rumba",
+        "bass",
+        "pickup",
+        "abanico"
+      ],
+      "scopes": [
+        "measure",
+        "phrase",
+        "region",
+        "track",
+        "song"
+      ],
+      "roles": [
+        "bass"
+      ],
+      "instruments": [
+        "bass",
+        "upright-bass"
+      ],
+      "meter": "4/4",
+      "cycleLength": 1,
+      "subdivisions": 16,
+      "onsetGrid": [
+        0,
+        3,
+        6,
+        8,
+        10,
+        12,
+        14
+      ],
+      "accentProfile": [
+        0.9,
+        0.55,
+        0.85,
+        0.8,
+        0.65,
+        0.9,
+        0.75
+      ],
+      "velocityProfile": [
+        0.96,
+        0.89,
+        0.95,
+        0.94,
+        0.91,
+        0.96,
+        0.93
+      ],
+      "syncopationRating": 0.14,
+      "articulations": [
+        "syncopated"
+      ],
+      "density": "medium",
+      "phrasePosition": [
+        "start",
+        "middle",
+        "end"
+      ],
+      "sectionUsage": [
+        "verse",
+        "chorus",
+        "solo"
+      ],
+      "harmonicContext": [
+        "flamenco-modal",
+        "Andalusian-cadence"
+      ],
+      "roleDependencies": [
+        "bass"
+      ],
+      "transformations": [
+        "density",
+        "accent",
+        "phrasePosition"
+      ],
+      "variants": [],
+      "provenance": "Flamenco genre patch: authored from palo-specific compás and accompaniment grammar.",
+      "authenticityTags": [
+        "flamenco",
+        "flamenco-rumba-style"
+      ],
+      "danceTags": [
+        "listening"
+      ],
+      "tuningSystem": "12-tet",
+      "difficulty": 2,
+      "weight": 0.94,
+      "enabled": true
+    },
+    {
+      "id": "flam-guajira-12",
+      "worldId": "flamenco",
+      "traditionId": "flamenco-guajira-style",
+      "substyleId": "flamenco-guajira-style",
+      "name": "Guajira 12-Beat Ternary/Binary Lilt",
+      "family": "Guajira Compás",
+      "category": "groove",
+      "description": "Guajira's 12-beat ida-y-vuelta feel: light, syncopated guitar with a more songful and major-key profile than Soleá.",
+      "tags": [
+        "guajira",
+        "ida-y-vuelta",
+        "12beat",
+        "cuba"
+      ],
+      "scopes": [
+        "measure",
+        "phrase",
+        "region",
+        "track",
+        "song"
+      ],
+      "roles": [
+        "harmony",
+        "pulse"
+      ],
+      "instruments": [
+        "guitar"
+      ],
+      "meter": "12/8",
+      "cycleLength": 1,
+      "subdivisions": 12,
+      "onsetGrid": [
+        11,
+        2,
+        5,
+        7,
+        9
+      ],
+      "accentProfile": [
+        1,
+        0.7,
+        0.75,
+        0.85,
+        0.8
+      ],
+      "velocityProfile": [
+        0.98,
+        0.92,
+        0.93,
+        0.95,
+        0.94
+      ],
+      "syncopationRating": 0.8,
+      "articulations": [
+        "rasgueado"
+      ],
+      "density": "medium",
+      "phrasePosition": [
+        "start",
+        "middle",
+        "end"
+      ],
+      "sectionUsage": [
+        "verse",
+        "chorus",
+        "solo"
+      ],
+      "harmonicContext": [
+        "flamenco-modal",
+        "Andalusian-cadence"
+      ],
+      "roleDependencies": [
+        "harmony",
+        "pulse"
+      ],
+      "transformations": [
+        "density",
+        "accent",
+        "phrasePosition"
+      ],
+      "variants": [],
+      "provenance": "Flamenco genre patch: authored from palo-specific compás and accompaniment grammar.",
+      "authenticityTags": [
+        "flamenco",
+        "flamenco-guajira-style"
+      ],
+      "danceTags": [
+        "listening"
+      ],
+      "tuningSystem": "12-tet",
+      "difficulty": 2,
+      "weight": 0.9,
+      "enabled": true
+    },
+    {
+      "id": "flam-fandango-3",
+      "worldId": "flamenco",
+      "traditionId": "flamenco-fandango-style",
+      "substyleId": "flamenco-fandango-style",
+      "name": "Fandango 3/4 Guitar Cycle",
+      "family": "Fandango Ternary",
+      "category": "ostinato",
+      "description": "Ternary fandango accompaniment: four three-beat phrases with the characteristic move between modal opening and major/minor melodic centers.",
+      "tags": [
+        "fandango",
+        "3/4",
+        "huelva",
+        "ternary"
+      ],
+      "scopes": [
+        "measure",
+        "phrase",
+        "region",
+        "track",
+        "song"
+      ],
+      "roles": [
+        "harmony",
+        "pulse"
+      ],
+      "instruments": [
+        "guitar"
+      ],
+      "meter": "3/4",
+      "cycleLength": 1,
+      "subdivisions": 12,
+      "onsetGrid": [
+        0,
+        4,
+        8
+      ],
+      "accentProfile": [
+        1,
+        0.65,
+        0.85
+      ],
+      "velocityProfile": [
+        0.98,
+        0.91,
+        0.95
+      ],
+      "syncopationRating": 0.0,
+      "articulations": [
+        "rasgueado"
+      ],
+      "density": "medium",
+      "phrasePosition": [
+        "start",
+        "middle",
+        "end"
+      ],
+      "sectionUsage": [
+        "verse",
+        "solo"
+      ],
+      "harmonicContext": [
+        "flamenco-modal",
+        "Andalusian-cadence"
+      ],
+      "roleDependencies": [
+        "harmony",
+        "pulse"
+      ],
+      "transformations": [
+        "density",
+        "accent",
+        "phrasePosition"
+      ],
+      "variants": [],
+      "provenance": "Flamenco genre patch: authored from palo-specific compás and accompaniment grammar.",
+      "authenticityTags": [
+        "flamenco",
+        "flamenco-fandango-style"
+      ],
+      "danceTags": [
+        "listening"
+      ],
+      "tuningSystem": "12-tet",
+      "difficulty": 2,
+      "weight": 0.9,
+      "enabled": true
     }
   ],
   "techniques": [
-    "rasgueado (4-finger fan)",
-    "abanico (thumb-finger-golpe continuous fan)",
-    "alzapúa (3-stroke thumb engine)",
-    "picado (rapid alternating rest-stroke scale run)",
-    "golpe (finger-strike on soundboard)",
-    "tremolo flamenco (p-i-a-m-i 5-note figure)",
-    "palmas sordas (cupped hands) & fuertes (flat fingers)"
+    "rasgueado (four/five-finger fan strum)",
+    "abanico (thumb-finger-golpe fan)",
+    "alzapúa (thumb bass/brush engine)",
+    "picado (alternating rest-stroke scale run)",
+    "arpeggio (p-i-m-a / p-a-m-i patterns)",
+    "flamenco tremolo (p-i-a-m-i five-note figure)",
+    "golpe (soundboard tap)",
+    "ligado (hammer-on/pull-off)",
+    "pulgar (thumb apoyando/free stroke)",
+    "trémolo de tres (compact tremolo)",
+    "palmas sordas (cupped) and palmas claras (bright)",
+    "jaleo / vocal interjections",
+    "zapateado / taconeo",
+    "silencio / space as an authored event",
+    "llamada → respuesta → remate → cierre"
   ],
   "forms": [
     "llamada",
@@ -3684,6 +6117,19 @@ export const FLAMENCO_WORLD: GenreWorld = {
     "use fills, breaks, cadences, and bridge textures as structural events",
     "let lead/voice parts create space and response relationships"
   ],
+  "engineProfile": {
+    "phraseLengthsBars": [2,4,8,12],
+    "primaryPulse": ["12-beat compás","4/4 binary compás","3/4 ternary compás","free/rubato cante"],
+    "rhythmicPriorities": ["palo-specific compás before generic meter","accent architecture before subdivision density","llamada/remate/cierre at phrase boundaries","palmas and guitar interlock","space under cante"],
+    "harmonicStrategy": ["Phrygian/Andalusian cadence for jondo palos","major-key cantiñas/Alegrías","minor binary for Farruca","major/modal ida-y-vuelta colors for Guajira","do not force functional pop cadences"],
+    "melodicStrategy": ["cante-like ornament and melisma","falseta between letras","chord-tone targeting inside modal color","expressive slides and vibrato","space before response"],
+    "arrangementStrategy": "Treat guitar compás as the clock; add palmas/cajón according to palo; use voice/cante as the foreground; make llamadas, cortes, remates and cierres structural events.",
+    "engineConstraints": ["Never substitute a 4/4 groove for a 12-beat palo","Seguiriya uses 2+2+3+3+2 accents, not the Soleá map","Alegrías should not inherit Soleá's dark harmonic profile","Bulería density comes from interaction and cuts, not constant subdivision spam","Rumba and Sevillanas are separate dance vocabularies","Use bass sparingly outside Rumba/New Flamenco contexts"],
+    "variationStrategy": "Prefer authored palo variants at phrase boundaries; alternate rasgueado density, palmas response, falseta and remate rather than generic fills.",
+    "harmonicModel": "functional-harmony",
+    "pitchModel": "flamenco-phrygian-plus-major-cantiñas",
+    "timingModel": "authored-phrase"
+  },
   "instrumentIdeas": {
     "guitar": [
       "abanico strums",

@@ -361,7 +361,9 @@ export const WORLD_INSTRUMENT_HINTS: Record<string, string[]> = {
   tango: ['bandoneon', 'piano', 'upright-bass', 'violin', 'cello'],
   salsa: ['piano', 'bass', 'congas', 'timbales', 'trumpet'],
   timba: ['piano', 'bass', 'timbales', 'congas', 'trombone'],
-  flamenco: ['guitar', 'requinto', 'upright-bass', 'cajon', 'flute'],
+  // Flamenco core ensemble only. Palo-specific extras (castanets, flute, bass)
+  // belong to individual styles rather than the genre-wide starter pack.
+  flamenco: ['guitar', 'voice', 'palmas', 'cajon', 'zapateado'],
   jazz: ['piano', 'upright-bass', 'brush-kit', 'tenor-sax', 'jazz-guitar'],
   blues: ['electric-guitar', 'bass', 'drums', 'piano', 'harmonica'],
   rock: ['overdrive-guitar', 'bass', 'drums', 'electric-guitar', 'organ'],
