@@ -6,7 +6,7 @@ import { INSTRUMENT_CATALOG, FAMILY_LABELS, FAMILY_ORDER, instrument } from '../
 import { ALL_PATTERNS, GENRE_WORLDS_BY_ID, cleanPatternName, FEEL_ORDER, FEEL_LABELS, feelsForPattern, PatternFeel } from '../data/genres';
 import { Voice, toBar, BAR_CHOICES, FEELS, getGenreForm, PartDensity } from '../engine/arrange';
 import { Region } from '../types';
-import { CHORD_PALETTE, CHORD_MOODS, CHORD_MOOD_ORDER, ChordMood, suggestedPaletteForGenre } from '../data/chordPalette';
+import { CHORD_PALETTE, CHORD_MOODS, CHORD_MOOD_ORDER, ChordMood, suggestedPaletteForStyle } from '../data/chordPalette';
 import { formSummary } from '../data/genreForms';
 import { grooveSummary } from '../engine/groove';
 import { ROOMS, roomFor } from '../engine/mixer';
@@ -280,28 +280,14 @@ export function PatternSheet({
 
   const categoryOptions = useMemo(() => {
     const labels: Record<string, string> = {
-      cell: 'Cell',
-      ostinato: 'Ostinato',
-      rolePattern: 'Role',
-      phrasePattern: 'Phrase',
-      sectionPattern: 'Part',
-      interactionPattern: 'Interaction',
+      groove: 'Groove',
+      bass: 'Bass',
+      comping: 'Comping',
+      lead: 'Lead',
+      phrase: 'Phrase',
       fill: 'Fill',
       break: 'Break',
-      cadence: 'Cadence',
-      groove: 'Groove',
-      ornament: 'Ornament',
-      bass: 'Bass',
       texture: 'Texture',
-      counterline: 'Counterline',
-      motif: 'Motif',
-      pulse: 'Pulse',
-      comping: 'Comping',
-      accompaniment: 'Accompaniment',
-      lead: 'Lead',
-      drone: 'Drone',
-      transition: 'Transition',
-      polyrhythm: 'Polyrhythm',
     };
     const present = new Set(ALL_PATTERNS.filter(p => p.enabled !== false).map(p => p.category));
     return Object.entries(labels)
@@ -483,6 +469,7 @@ export function PatternSheet({
 export function ChordsControl({
   region,
   currentWorldId,
+  styleId,
   onChords,
   customProgressions = [],
   onAddCustomChords,
@@ -491,6 +478,7 @@ export function ChordsControl({
 }: {
   region: Region;
   currentWorldId?: string;
+  styleId?: string;
   onChords?: (chords: string[]) => void;
   customProgressions?: any[];
   onAddCustomChords?: (name: string, chords: string[]) => void;
@@ -656,7 +644,7 @@ export function ChordsControl({
       {/* Suggested for this style */}
       {(() => {
         const genreId = region.genre ?? currentWorldId ?? 'tango';
-        const suggested = suggestedPaletteForGenre(genreId);
+        const suggested = suggestedPaletteForStyle(styleId, genreId);
         return (
           <>
             <div className="flex items-center justify-between mb-2">
@@ -754,6 +742,7 @@ export function ChordSheet({
   onClose,
   region,
   currentWorldId,
+  styleId,
   onChords,
   customProgressions = [],
   onAddCustomChords,
@@ -764,6 +753,7 @@ export function ChordSheet({
   onClose: () => void;
   region: Region | null;
   currentWorldId?: string;
+  styleId?: string;
   onChords?: (chords: string[]) => void;
   customProgressions?: any[];
   onAddCustomChords?: (name: string, chords: string[]) => void;
@@ -784,6 +774,7 @@ export function ChordSheet({
       <ChordsControl
         region={region}
         currentWorldId={currentWorldId}
+        styleId={styleId}
         onChords={onChords}
         customProgressions={customProgressions}
         onAddCustomChords={onAddCustomChords}

@@ -6,15 +6,15 @@ export const SAMBA_BOSSA_WORLD: GenreWorld = {
   "family": "Brazilian",
   "color": "#3f8f7a",
   "level": "world",
-  "description": "Samba and bossa nova share ancestry but need different engine grammar: batucada/pagode use layered 2/4 percussion and cavaquinho interlock, while bossa nova centers on quiet guitar/bass independence and jazz harmony. They are kept in one world for intentional crossover without erasing the distinction.",
-  "traditions": [
+  "description": "Samba and bossa nova share ancestry",
+  "styleDefinitions": [
     {
       "id": "samba-bossa-bossa-nova",
       "worldId": "samba-bossa",
       "name": "Bossa Nova",
       "origin": "Rio de Janeiro (Ipanema / Copacabana)",
       "era": "Late 1950s–1960s",
-      "description": "Nylon Guitar • Whispering Vocals • Saudade\nIntimate, sophisticated Brazilian cool jazz.\nAntônio Carlos Jobim · João Gilberto",
+      "description": "Nylon Guitar • Whispering Vocals •",
       "characteristicInstruments": [
         "acoustic-guitar",
         "piano",
@@ -95,7 +95,7 @@ export const SAMBA_BOSSA_WORLD: GenreWorld = {
       "name": "Samba de Enredo",
       "origin": "Rio de Janeiro (Sambadrome / Escolas de Samba)",
       "era": "1930s–Present",
-      "description": "Bateria • Surdo Accent • Carnival Glory\nMonumental carnival parade percussion engine.\nCartola · Jamelão",
+      "description": "Bateria • Surdo Accent • Carnival",
       "characteristicInstruments": [
         "surdo",
         "tamborim",
@@ -175,7 +175,7 @@ export const SAMBA_BOSSA_WORLD: GenreWorld = {
       "name": "Pagode",
       "origin": "Rio de Janeiro (Fundo de Quintal)",
       "era": "Late 1970s–Present",
-      "description": "Tantan • Pandeiro • Backyard Party\nWarm, friendly informal backyard samba.\nFundo de Quintal · Zeca Pagodinho",
+      "description": "Tantan • Pandeiro • Backyard Party\nWarm,",
       "characteristicInstruments": [
         "cavaquinho",
         "pandeiro",
@@ -254,7 +254,7 @@ export const SAMBA_BOSSA_WORLD: GenreWorld = {
       "name": "Samba-Reggae",
       "origin": "Salvador da Bahia (Pelourinho / Olodum)",
       "era": "1980s–Present",
-      "description": "Afro-Bahian Drums • Slow Swing • Black Pride\nPowerful Afro-Bahian carnival bloc rhythm.\nOlodum · Ilê Aiyê",
+      "description": "Afro-Bahian Drums • Slow Swing •",
       "characteristicInstruments": [
         "surdo",
         "timbal",
@@ -372,11 +372,11 @@ export const SAMBA_BOSSA_WORLD: GenreWorld = {
     {
       "id": "sb-surdo-foundation",
       "worldId": "samba-bossa",
-      "traditionId": "samba-batucada",
+      "styleIds": ["samba-batucada"],
       "name": "Surdo Two-Beat Foundation",
       "family": "Samba Low Drums",
       "category": "groove",
-      "description": "Low/high surdo cycle with complementary accents rather than a simple four-on-floor.",
+      "description": "Low/high surdo cycle with complementary accents",
       "tags": [
         "samba",
         "surdo",
@@ -445,7 +445,7 @@ export const SAMBA_BOSSA_WORLD: GenreWorld = {
           "name": "Surdo Two-Beat Foundation — sparse",
           "variationType": "sparse",
           "probability": 0.35,
-          "description": "Leaves selected attacks open for a played repetition.",
+          "description": "Leaves selected attacks open for a",
           "onsetGrid": [
             0,
             6
@@ -461,7 +461,7 @@ export const SAMBA_BOSSA_WORLD: GenreWorld = {
           "name": "Surdo Two-Beat Foundation — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Retains the cell while moving emphasis between repeated attacks.",
+          "description": "Retains the cell while moving emphasis",
           "onsetGrid": [
             0,
             4,
@@ -491,11 +491,11 @@ export const SAMBA_BOSSA_WORLD: GenreWorld = {
     {
       "id": "sb-pandeiro",
       "worldId": "samba-bossa",
-      "traditionId": "samba-pagode",
+      "styleIds": ["samba-pagode"],
       "name": "Pandeiro Syncopation",
       "family": "Samba Hand Percussion",
       "category": "groove",
-      "description": "Thumb/finger-like alternating attacks translated to a compact pandeiro pattern.",
+      "description": "Thumb/finger-like alternating attacks translated to a",
       "tags": [
         "pandeiro",
         "samba",
@@ -574,7 +574,7 @@ export const SAMBA_BOSSA_WORLD: GenreWorld = {
           "name": "Pandeiro Syncopation — sparse",
           "variationType": "sparse",
           "probability": 0.35,
-          "description": "Leaves selected attacks open for a played repetition.",
+          "description": "Leaves selected attacks open for a",
           "onsetGrid": [
             0,
             3,
@@ -592,7 +592,7 @@ export const SAMBA_BOSSA_WORLD: GenreWorld = {
           "name": "Pandeiro Syncopation — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Retains the cell while moving emphasis between repeated attacks.",
+          "description": "Retains the cell while moving emphasis",
           "onsetGrid": [
             0,
             2,
@@ -628,11 +628,11 @@ export const SAMBA_BOSSA_WORLD: GenreWorld = {
     {
       "id": "sb-cavaquinho",
       "worldId": "samba-bossa",
-      "traditionId": "samba-pagode",
+      "styleIds": ["samba-pagode"],
       "name": "Cavaquinho Comp",
       "family": "Cavaquinho Chords",
       "category": "ostinato",
-      "description": "Short syncopated chord attacks that interlock with the pandeiro rather than sit on every beat.",
+      "description": "Short syncopated chord attacks that interlock",
       "tags": [
         "cavaquinho",
         "samba",
@@ -704,7 +704,7 @@ export const SAMBA_BOSSA_WORLD: GenreWorld = {
           "name": "Cavaquinho Comp — sparse",
           "variationType": "sparse",
           "probability": 0.35,
-          "description": "Leaves selected attacks open for a played repetition.",
+          "description": "Leaves selected attacks open for a",
           "onsetGrid": [
             1,
             5
@@ -720,7 +720,7 @@ export const SAMBA_BOSSA_WORLD: GenreWorld = {
           "name": "Cavaquinho Comp — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Retains the cell while moving emphasis between repeated attacks.",
+          "description": "Retains the cell while moving emphasis",
           "onsetGrid": [
             1,
             3,
@@ -752,11 +752,11 @@ export const SAMBA_BOSSA_WORLD: GenreWorld = {
     {
       "id": "sb-bossa-guitar",
       "worldId": "samba-bossa",
-      "traditionId": "bossa-nova",
+      "styleIds": ["bossa-nova"],
       "name": "Bossa nova guitar syncopation",
       "family": "Bossa Guitar",
       "category": "groove",
-      "description": "Independent thumb-and-finger guitar syncopation: bass notes anchor the harmony while upper notes answer around the beat.",
+      "description": "Independent thumb-and-finger guitar syncopation: bass notes",
       "tags": [
         "bossa",
         "guitar",
@@ -841,7 +841,7 @@ export const SAMBA_BOSSA_WORLD: GenreWorld = {
           "name": "Bossa Nova Guitar Cell — sparse",
           "variationType": "sparse",
           "probability": 0.35,
-          "description": "Leaves selected attacks open for a played repetition.",
+          "description": "Leaves selected attacks open for a",
           "onsetGrid": [
             0,
             5,
@@ -861,7 +861,7 @@ export const SAMBA_BOSSA_WORLD: GenreWorld = {
           "name": "Bossa Nova Guitar Cell — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Retains the cell while moving emphasis between repeated attacks.",
+          "description": "Retains the cell while moving emphasis",
           "onsetGrid": [
             0,
             2,
@@ -901,11 +901,11 @@ export const SAMBA_BOSSA_WORLD: GenreWorld = {
     {
       "id": "sb-bossa-bass",
       "worldId": "samba-bossa",
-      "traditionId": "bossa-nova",
+      "styleIds": ["bossa-nova"],
       "name": "Bossa bass anchor / anticipation",
       "family": "Bossa Bass",
       "category": "ostinato",
-      "description": "Root/approach bass contour that supports the guitar syncopation without mechanically doubling it.",
+      "description": "Root/approach bass contour that supports the",
       "tags": [
         "bossa",
         "bass",
@@ -984,7 +984,7 @@ export const SAMBA_BOSSA_WORLD: GenreWorld = {
           "name": "Bossa Nova Bass — sparse",
           "variationType": "sparse",
           "probability": 0.35,
-          "description": "Leaves selected attacks open for a played repetition.",
+          "description": "Leaves selected attacks open for a",
           "onsetGrid": [
             0,
             6,
@@ -1002,7 +1002,7 @@ export const SAMBA_BOSSA_WORLD: GenreWorld = {
           "name": "Bossa Nova Bass — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Retains the cell while moving emphasis between repeated attacks.",
+          "description": "Retains the cell while moving emphasis",
           "onsetGrid": [
             0,
             3,
@@ -1038,11 +1038,11 @@ export const SAMBA_BOSSA_WORLD: GenreWorld = {
     {
       "id": "sb-06-samba-surdo-foundation",
       "worldId": "samba-bossa",
-      "traditionId": "samba-batucada",
+      "styleIds": ["samba-batucada"],
       "name": "Samba Surdo Foundation",
       "family": "Samba",
       "category": "groove",
-      "description": "Low surdo articulates the large pulse while avoiding a generic kick-drum pattern.",
+      "description": "Low surdo articulates the large pulse",
       "tags": [
         "surdo",
         "samba"
@@ -1111,11 +1111,11 @@ export const SAMBA_BOSSA_WORLD: GenreWorld = {
     {
       "id": "sb-07-samba-pandeiro-interlock",
       "worldId": "samba-bossa",
-      "traditionId": "bossa-nova",
+      "styleIds": ["bossa-nova"],
       "name": "Samba Pandeiro Interlock",
       "family": "Samba",
       "category": "groove",
-      "description": "Pandeiro combines bass slap and high articulation into an interlocking subdivision.",
+      "description": "Pandeiro combines bass slap and high",
       "tags": [
         "pandeiro",
         "interlock"
@@ -1192,11 +1192,11 @@ export const SAMBA_BOSSA_WORLD: GenreWorld = {
     {
       "id": "sb-08-tamborim-cross-accent",
       "worldId": "samba-bossa",
-      "traditionId": "bossa-nova",
+      "styleIds": ["bossa-nova"],
       "name": "Tamborim Cross Accent",
       "family": "Samba",
       "category": "ostinato",
-      "description": "Bright tamborim pattern with displaced accents; it should float above the surdo rather than duplicate it.",
+      "description": "Bright tamborim pattern with displaced accents;",
       "tags": [
         "tamborim",
         "accent"
@@ -1271,11 +1271,11 @@ export const SAMBA_BOSSA_WORLD: GenreWorld = {
     {
       "id": "sb-09-cavaquinho-partido",
       "worldId": "samba-bossa",
-      "traditionId": "bossa-nova",
+      "styleIds": ["bossa-nova"],
       "name": "Cavaquinho Partido",
       "family": "Samba",
       "category": "cell",
-      "description": "Short chord strokes outlining the syncopated partido-alto groove.",
+      "description": "Short chord strokes outlining the syncopated",
       "tags": [
         "cavaquinho",
         "partido-alto"
@@ -1348,11 +1348,11 @@ export const SAMBA_BOSSA_WORLD: GenreWorld = {
     {
       "id": "sb-10-bossa-guitar-clave",
       "worldId": "samba-bossa",
-      "traditionId": "bossa-nova",
+      "styleIds": ["bossa-nova"],
       "name": "Bossa Guitar Clave",
       "family": "Bossa Nova",
       "category": "ostinato",
-      "description": "Quiet syncopated guitar voicing pattern combining bass note and chord attack.",
+      "description": "Quiet syncopated guitar voicing pattern combining",
       "tags": [
         "bossa",
         "guitar rhythm"
@@ -1430,11 +1430,11 @@ export const SAMBA_BOSSA_WORLD: GenreWorld = {
     {
       "id": "sb-11-bossa-bass-anticipation",
       "worldId": "samba-bossa",
-      "traditionId": "bossa-nova",
+      "styleIds": ["bossa-nova"],
       "name": "Bossa Bass Anticipation",
       "family": "Bossa Nova",
       "category": "bass",
-      "description": "Root/approach notes anticipate the next chord, with long decay and restrained dynamics.",
+      "description": "Root/approach notes anticipate the next chord,",
       "tags": [
         "bossa",
         "anticipation"
@@ -1507,11 +1507,11 @@ export const SAMBA_BOSSA_WORLD: GenreWorld = {
     {
       "id": "sb-12-bossa-piano-voicing",
       "worldId": "samba-bossa",
-      "traditionId": "bossa-nova",
+      "styleIds": ["bossa-nova"],
       "name": "Bossa piano chord punctuation",
       "family": "Bossa Nova",
       "category": "rolePattern",
-      "description": "Sparse chord punctuation for a piano-led bossa texture; lets the guitar occupy the denser syncopation.",
+      "description": "Sparse chord punctuation for a piano-led",
       "tags": [
         "piano",
         "voicing"
@@ -1584,11 +1584,11 @@ export const SAMBA_BOSSA_WORLD: GenreWorld = {
     {
       "id": "sb-13-samba-call-response",
       "worldId": "samba-bossa",
-      "traditionId": "bossa-nova",
+      "styleIds": ["bossa-nova"],
       "name": "Samba Call Response",
       "family": "Samba",
       "category": "interactionPattern",
-      "description": "Percussion group answers a vocal or cavaquinho phrase at the end of the bar.",
+      "description": "Percussion group answers a vocal or",
       "tags": [
         "call-response"
       ],
@@ -1648,7 +1648,7 @@ export const SAMBA_BOSSA_WORLD: GenreWorld = {
           "timingOffsetSteps": 2,
           "probability": 0.75,
           "worldId": "samba-bossa",
-          "description": "Enter only after the source phrase leaves a response window."
+          "description": "Enter only after the source phrase"
         }
       ],
       "transformations": [
@@ -1672,11 +1672,11 @@ export const SAMBA_BOSSA_WORLD: GenreWorld = {
     {
       "id": "sb-14-batucada-break",
       "worldId": "samba-bossa",
-      "traditionId": "bossa-nova",
+      "styleIds": ["bossa-nova"],
       "name": "Batucada Break",
       "family": "Samba",
       "category": "break",
-      "description": "Brief reduction to surdo and a high percussion cue before full ensemble re-entry.",
+      "description": "Brief reduction to surdo and a",
       "tags": [
         "batucada",
         "break"
@@ -1747,11 +1747,11 @@ export const SAMBA_BOSSA_WORLD: GenreWorld = {
     {
       "id": "sb-15-bossa-ending-turn",
       "worldId": "samba-bossa",
-      "traditionId": "bossa-nova",
+      "styleIds": ["bossa-nova"],
       "name": "Bossa ending cadence",
       "family": "Bossa Nova",
       "category": "cadence",
-      "description": "Short harmonic cadence figure for a final tag or turnaround.",
+      "description": "Short harmonic cadence figure for a",
       "tags": [
         "extended harmony",
         "release"
@@ -1881,7 +1881,7 @@ export const SAMBA_BOSSA_WORLD: GenreWorld = {
     "keep samba layers interlocking",
     "do not make bossa into generic swing",
     "allow quiet dynamics in bossa",
-    "use 2/4-native patterns for samba traditions",
+    "use 2/4-native patterns for samba styles",
     "Phrase in 1–4 bar units before making a major pattern change.",
     "Prioritize interlocking percussion and syncopated accompaniment as the identity layer.",
     "Use syncopated guitar/cavaquinho and lyric melody for development rather than generic fills."

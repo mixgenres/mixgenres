@@ -6,15 +6,15 @@ export const CUMBIA_WORLD: GenreWorld = {
   "family": "Colombian / Latin American",
   "color": "#3f9b62",
   "level": "world",
-  "description": "Cumbia is treated as a family of related traditions rather than a single generic Latin beat: Colombian drum/gaita roots, Argentine electric cumbia, and Peruvian chicha each get distinct pattern families while sharing the underlying cumbia pulse.",
-  "traditions": [
+  "description": "Cumbia is treated as a family",
+  "styleDefinitions": [
     {
       "id": "cumbia-colombiana",
       "worldId": "cumbia",
       "name": "Cumbia Colombiana",
       "origin": "Caribbean Coast, Colombia",
       "era": "1940s–Present",
-      "description": "Classic • 2/4 • Guache Shaker\nTraditional accordion & coastal rhythm.\nLucho Bermúdez · Los Gaiteros de San Jacinto",
+      "description": "Classic • 2/4 • Guache Shaker\nTraditional",
       "characteristicInstruments": [
         "accordion",
         "drums",
@@ -95,7 +95,7 @@ export const CUMBIA_WORLD: GenreWorld = {
       "name": "Villera",
       "origin": "Buenos Aires, Argentina (Villas Miseria)",
       "era": "Late 1990s–Present",
-      "description": "Gritty • Synthesizer • Keytar\nRaw Argentine barrio cumbia.\nDamas Gratis · Pibes Chorros",
+      "description": "Gritty • Synthesizer • Keytar\nRaw Argentine",
       "characteristicInstruments": [
         "synth",
         "drums",
@@ -176,7 +176,7 @@ export const CUMBIA_WORLD: GenreWorld = {
       "name": "Chicha",
       "origin": "Lima / Peruvian Amazon",
       "era": "1970s–1980s",
-      "description": "Psychedelic • Pentatonic • Surf Guitar\nAndean pentatonics with fuzz electric guitar.\nLos Mirlos · Chacalón",
+      "description": "Psychedelic • Pentatonic • Surf Guitar\nAndean",
       "characteristicInstruments": [
         "electric-guitar",
         "synth",
@@ -258,7 +258,7 @@ export const CUMBIA_WORLD: GenreWorld = {
       "name": "Sonora",
       "origin": "Mexico / Cuba / Colombia",
       "era": "1950s–1970s",
-      "description": "Big Band • Trumpets • Polished\nBig band orchestral Mexican cumbia.\nSonora Dinamita · Sonora Santanera",
+      "description": "Big Band • Trumpets • Polished\nBig",
       "characteristicInstruments": [
         "trumpet",
         "brass",
@@ -339,7 +339,7 @@ export const CUMBIA_WORLD: GenreWorld = {
       "name": "Rebajada",
       "origin": "Monterrey, Mexico (Sonidero Culture)",
       "era": "Late 1970s–Present",
-      "description": "Slowed-down • Deep • Hypnotic\nPitch-shifted pitched down sonidero grooves.\nSonido Dueñez · Celso Piña",
+      "description": "Slowed-down • Deep • Hypnotic\nPitch-shifted pitched",
       "characteristicInstruments": [
         "accordion",
         "bass",
@@ -420,7 +420,7 @@ export const CUMBIA_WORLD: GenreWorld = {
       "name": "Digitale",
       "origin": "Buenos Aires / Mexico City / Global",
       "era": "2008–Present",
-      "description": "Electronic • Bass • Crossover\nFolktronica meets 808 sub-bass.\nZZK Records · Nicola Cruz",
+      "description": "Electronic • Bass • Crossover\nFolktronica meets",
       "characteristicInstruments": [
         "synth",
         "sampler",
@@ -502,7 +502,7 @@ export const CUMBIA_WORLD: GenreWorld = {
       "name": "Santafesina",
       "origin": "Santa Fe, Argentina",
       "era": "1970s–Present",
-      "description": "Romantic • Guitar-led • Melodic\nAcoustic guitar driven Argentine cumbia.\nLos Palmeras · Leo Mattioli",
+      "description": "Romantic • Guitar-led • Melodic\nAcoustic guitar",
       "characteristicInstruments": [
         "accordion",
         "guitar",
@@ -582,7 +582,7 @@ export const CUMBIA_WORLD: GenreWorld = {
       "name": "Porro",
       "origin": "Sucre / Córdoba, Colombia",
       "era": "Traditional / 20th Century",
-      "description": "Brass Band • Festive • Syncopated\nPelayero brass band dance rhythm.\nBanda 19 de Enero · Totó La Momposina",
+      "description": "Brass Band • Festive • Syncopated\nPelayero",
       "characteristicInstruments": [
         "brass",
         "trumpet",
@@ -714,11 +714,11 @@ export const CUMBIA_WORLD: GenreWorld = {
     {
       "id": "cu-cumbia-bass",
       "worldId": "cumbia",
-      "traditionId": "cumbia-colombian",
+      "styleIds": ["cumbia-colombian"],
       "name": "Cumbia bass anticipation",
       "family": "Cumbia Bass",
       "category": "ostinato",
-      "description": "Short-long bass anticipation that leaves the characteristic scraper/percussion layer audible; distinct from the steadier tumbao variant.",
+      "description": "Short-long bass anticipation that leaves the",
       "tags": [
         "cumbia",
         "bass",
@@ -797,7 +797,7 @@ export const CUMBIA_WORLD: GenreWorld = {
           "name": "Cumbia Bass Pulse — sparse",
           "variationType": "sparse",
           "probability": 0.35,
-          "description": "Leaves selected attacks open for a played repetition.",
+          "description": "Leaves selected attacks open for a",
           "onsetGrid": [
             0,
             8
@@ -813,7 +813,7 @@ export const CUMBIA_WORLD: GenreWorld = {
           "name": "Cumbia Bass Pulse — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Retains the cell while moving emphasis between repeated attacks.",
+          "description": "Retains the cell while moving emphasis",
           "onsetGrid": [
             0,
             4,
@@ -845,11 +845,11 @@ export const CUMBIA_WORLD: GenreWorld = {
     {
       "id": "cu-cumbia-drum",
       "worldId": "cumbia",
-      "traditionId": "cumbia-colombian",
+      "styleIds": ["cumbia-colombian"],
       "name": "Tambora / alegre conversation",
       "family": "Cumbia Drums",
       "category": "groove",
-      "description": "Abstracted low/high hand-drum conversation for a cumbia ensemble; the renderer uses a dedicated cumbia drum carrier rather than generic conga/cajón.",
+      "description": "Abstracted low/high hand-drum conversation for a",
       "tags": [
         "cumbia",
         "tambora",
@@ -926,7 +926,7 @@ export const CUMBIA_WORLD: GenreWorld = {
           "name": "Tambora / Alegre Interlock — sparse",
           "variationType": "sparse",
           "probability": 0.35,
-          "description": "Leaves selected attacks open for a played repetition.",
+          "description": "Leaves selected attacks open for a",
           "onsetGrid": [
             0,
             6,
@@ -944,7 +944,7 @@ export const CUMBIA_WORLD: GenreWorld = {
           "name": "Tambora / Alegre Interlock — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Retains the cell while moving emphasis between repeated attacks.",
+          "description": "Retains the cell while moving emphasis",
           "onsetGrid": [
             0,
             3,
@@ -980,11 +980,11 @@ export const CUMBIA_WORLD: GenreWorld = {
     {
       "id": "cu-guacharaca",
       "worldId": "cumbia",
-      "traditionId": "cumbia-colombian",
+      "styleIds": ["cumbia-colombian"],
       "name": "Guacharaca scraper pulse",
       "family": "Cumbia Scrapers",
       "category": "ostinato",
-      "description": "Continuous scraper motion with accented downstrokes; a guacharaca is a ribbed Colombian scraper, not a maraca pattern.",
+      "description": "Continuous scraper motion with accented downstrokes;",
       "tags": [
         "guacharaca",
         "scraper",
@@ -1077,7 +1077,7 @@ export const CUMBIA_WORLD: GenreWorld = {
           "name": "Guacharaca Scrape — sparse",
           "variationType": "sparse",
           "probability": 0.35,
-          "description": "Leaves selected attacks open for a played repetition.",
+          "description": "Leaves selected attacks open for a",
           "onsetGrid": [
             0,
             4,
@@ -1097,7 +1097,7 @@ export const CUMBIA_WORLD: GenreWorld = {
           "name": "Guacharaca Scrape — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Retains the cell while moving emphasis between repeated attacks.",
+          "description": "Retains the cell while moving emphasis",
           "onsetGrid": [
             0,
             2,
@@ -1137,11 +1137,11 @@ export const CUMBIA_WORLD: GenreWorld = {
     {
       "id": "cu-chicha-guitar",
       "worldId": "cumbia",
-      "traditionId": "cumbia-chicha",
+      "styleIds": ["cumbia-chicha"],
       "name": "Chicha Tremolo Guitar",
       "family": "Chicha Guitar",
       "category": "ostinato",
-      "description": "Fast tremolo-picked pentatonic melody that sits above the cumbia pulse and can be fragmented for verse space.",
+      "description": "Fast tremolo-picked pentatonic melody that sits",
       "tags": [
         "chicha",
         "tremolo",
@@ -1225,7 +1225,7 @@ export const CUMBIA_WORLD: GenreWorld = {
           "name": "Chicha Tremolo Guitar — sparse",
           "variationType": "sparse",
           "probability": 0.35,
-          "description": "Leaves selected attacks open for a played repetition.",
+          "description": "Leaves selected attacks open for a",
           "onsetGrid": [
             0,
             4,
@@ -1245,7 +1245,7 @@ export const CUMBIA_WORLD: GenreWorld = {
           "name": "Chicha Tremolo Guitar — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Retains the cell while moving emphasis between repeated attacks.",
+          "description": "Retains the cell while moving emphasis",
           "onsetGrid": [
             0,
             2,
@@ -1285,11 +1285,11 @@ export const CUMBIA_WORLD: GenreWorld = {
     {
       "id": "cu-keyboard-hook",
       "worldId": "cumbia",
-      "traditionId": "cumbia-villera",
+      "styleIds": ["cumbia-villera"],
       "name": "Keyboard Hook",
       "family": "Cumbia Hooks",
       "category": "rolePattern",
-      "description": "Short repeating keyboard hook placed between vocal phrases, not continuously underneath them.",
+      "description": "Short repeating keyboard hook placed between",
       "tags": [
         "cumbia",
         "hook",
@@ -1364,7 +1364,7 @@ export const CUMBIA_WORLD: GenreWorld = {
           "name": "Keyboard Hook — sparse",
           "variationType": "sparse",
           "probability": 0.35,
-          "description": "Leaves selected attacks open for a played repetition.",
+          "description": "Leaves selected attacks open for a",
           "onsetGrid": [
             0,
             6,
@@ -1382,7 +1382,7 @@ export const CUMBIA_WORLD: GenreWorld = {
           "name": "Keyboard Hook — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Retains the cell while moving emphasis between repeated attacks.",
+          "description": "Retains the cell while moving emphasis",
           "onsetGrid": [
             0,
             3,
@@ -1416,11 +1416,11 @@ export const CUMBIA_WORLD: GenreWorld = {
     {
       "id": "cu-06-cumbia-bass-tumbao",
       "worldId": "cumbia",
-      "traditionId": "cumbia-colombian",
+      "styleIds": ["cumbia-colombian"],
       "name": "Cumbia tumbao bass",
       "family": "Colombian Cumbia",
       "category": "bass",
-      "description": "A syncopated tumbao-like bass cycle used in Colombian-derived and later cumbia arrangements; more active than the basic bass anticipation.",
+      "description": "A syncopated tumbao-like bass cycle used",
       "tags": [
         "tumbao",
         "bass"
@@ -1497,11 +1497,11 @@ export const CUMBIA_WORLD: GenreWorld = {
     {
       "id": "cu-07-tambor-alegre-reply",
       "worldId": "cumbia",
-      "traditionId": "cumbia-electric",
+      "styleIds": ["cumbia-electric"],
       "name": "Tambor Alegre Reply",
       "family": "Colombian Cumbia",
       "category": "groove",
-      "description": "Hand-drum answer pattern that sits around the main pulse rather than becoming a straight backbeat.",
+      "description": "Hand-drum answer pattern that sits around",
       "tags": [
         "tambor",
         "call-response"
@@ -1582,11 +1582,11 @@ export const CUMBIA_WORLD: GenreWorld = {
     {
       "id": "cu-08-guacharaca-scrape",
       "worldId": "cumbia",
-      "traditionId": "cumbia-electric",
+      "styleIds": ["cumbia-electric"],
       "name": "Guacharaca reverse accent cycle",
       "family": "Colombian Cumbia",
       "category": "ostinato",
-      "description": "A denser guacharaca variant with displaced accents for phrase development.",
+      "description": "A denser guacharaca variant with displaced",
       "tags": [
         "guacharaca",
         "scrape"
@@ -1671,11 +1671,11 @@ export const CUMBIA_WORLD: GenreWorld = {
     {
       "id": "cu-09-cumbia-guitar-offbeat",
       "worldId": "cumbia",
-      "traditionId": "cumbia-electric",
+      "styleIds": ["cumbia-electric"],
       "name": "Cumbia guitar anticipations",
       "family": "Cumbia Guitar",
       "category": "cell",
-      "description": "Short anticipated guitar attacks that sit between the main pulse rather than copying a reggae-style skank.",
+      "description": "Short anticipated guitar attacks that sit",
       "tags": [
         "offbeat guitar",
         "cumbia"
@@ -1749,11 +1749,11 @@ export const CUMBIA_WORLD: GenreWorld = {
     {
       "id": "cu-10-chicha-tremolo-figure",
       "worldId": "cumbia",
-      "traditionId": "cumbia-electric",
+      "styleIds": ["cumbia-electric"],
       "name": "Chicha Tremolo Figure",
       "family": "Peruvian Cumbia / Chicha",
       "category": "ostinato",
-      "description": "Electric-guitar tremolo line with minor-key contour, characteristic of chicha-derived cumbia textures.",
+      "description": "Electric-guitar tremolo line with minor-key contour,",
       "tags": [
         "chicha",
         "tremolo"
@@ -1843,11 +1843,11 @@ export const CUMBIA_WORLD: GenreWorld = {
     {
       "id": "cu-11-cumbia-organ-hook",
       "worldId": "cumbia",
-      "traditionId": "cumbia-electric",
+      "styleIds": ["cumbia-electric"],
       "name": "Cumbia Organ Hook",
       "family": "Electric Cumbia",
       "category": "rolePattern",
-      "description": "Short organ riff repeating over the dance cycle; the hook should remain rhythmically simple.",
+      "description": "Short organ riff repeating over the",
       "tags": [
         "organ",
         "hook"
@@ -1923,11 +1923,11 @@ export const CUMBIA_WORLD: GenreWorld = {
     {
       "id": "cu-12-cumbia-maraca-layer",
       "worldId": "cumbia",
-      "traditionId": "cumbia-electric",
+      "styleIds": ["cumbia-electric"],
       "name": "Maraca offbeat shimmer",
       "family": "Percussion",
       "category": "ostinato",
-      "description": "Even offbeat maraca layer; kept separate from the guacharaca scraper vocabulary.",
+      "description": "Even offbeat maraca layer; kept separate",
       "tags": [
         "maracas",
         "texture"
@@ -2008,11 +2008,11 @@ export const CUMBIA_WORLD: GenreWorld = {
     {
       "id": "cu-13-cumbia-call-and-response",
       "worldId": "cumbia",
-      "traditionId": "cumbia-electric",
+      "styleIds": ["cumbia-electric"],
       "name": "Cumbia Call-and-Response",
       "family": "Melody",
       "category": "interactionPattern",
-      "description": "Lead phrase is answered by guitar/organ in the following half-bar.",
+      "description": "Lead phrase is answered by guitar/organ",
       "tags": [
         "call-response"
       ],
@@ -2081,7 +2081,7 @@ export const CUMBIA_WORLD: GenreWorld = {
           "timingOffsetSteps": 2,
           "probability": 0.75,
           "worldId": "cumbia",
-          "description": "Enter only after the source phrase leaves a response window."
+          "description": "Enter only after the source phrase"
         }
       ],
       "transformations": [
@@ -2105,11 +2105,11 @@ export const CUMBIA_WORLD: GenreWorld = {
     {
       "id": "cu-14-cumbia-stop-break",
       "worldId": "cumbia",
-      "traditionId": "cumbia-electric",
+      "styleIds": ["cumbia-electric"],
       "name": "Cumbia Stop Break",
       "family": "Break",
       "category": "break",
-      "description": "Band cuts the scraper and bass briefly, leaving a drum cue before re-entry.",
+      "description": "Band cuts the scraper and bass",
       "tags": [
         "stop-time",
         "re-entry"
@@ -2179,11 +2179,11 @@ export const CUMBIA_WORLD: GenreWorld = {
     {
       "id": "cu-15-cumbia-final-tag",
       "worldId": "cumbia",
-      "traditionId": "cumbia-electric",
+      "styleIds": ["cumbia-electric"],
       "name": "Cumbia Final Tag",
       "family": "Cadence",
       "category": "cadence",
-      "description": "Compact percussion and bass tag to close a chorus or instrumental round.",
+      "description": "Compact percussion and bass tag to",
       "tags": [
         "tag",
         "cadence"
@@ -2308,7 +2308,7 @@ export const CUMBIA_WORLD: GenreWorld = {
   "songBehaviors": [
     "keep the pulse cyclical",
     "let scraper remain lighter than drums",
-    "use regional lead colors by tradition",
+    "use regional lead colors by style",
     "avoid turning all cumbia into four-on-the-floor pop",
     "Phrase in 1–2 bar units before making a major pattern change.",
     "Prioritize guacharaca continuity and bass/tambor interlock as the identity layer.",

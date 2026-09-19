@@ -6,15 +6,15 @@ export const COUNTRY_WORLD: GenreWorld = {
   "family": "Americana / Folk",
   "color": "#C7CEEA",
   "level": "world",
-  "description": "Story-driven American roots music featuring honky-tonk shuffles, train beats, acoustic flatpicking, and polished Nashville arrangements.",
-  "traditions": [
+  "description": "Story-driven American roots music featuring honky-tonk",
+  "styleDefinitions": [
     {
       "id": "country-neotraditional",
       "worldId": "country",
       "name": "Neotraditional",
       "origin": "Nashville / Texas",
       "era": "1980s–Present",
-      "description": "Fiddle & Steel • 4/4 • Storytelling\n80s revival of classic honky-tonk sound.\nGeorge Strait · Randy Travis",
+      "description": "Fiddle & Steel • 4/4 •",
       "characteristicInstruments": [
         "steel-guitar",
         "fiddle",
@@ -101,7 +101,7 @@ export const COUNTRY_WORLD: GenreWorld = {
       "name": "Outlaw",
       "origin": "Austin, Texas / Nashville",
       "era": "1970s",
-      "description": "Gritty • Driving • Rebellious\nRaw, rock-edged anti-Nashville stance.\nWaylon Jennings · Willie Nelson",
+      "description": "Gritty • Driving • Rebellious\nRaw, rock-edged",
       "characteristicInstruments": [
         "electric-guitar",
         "acoustic-guitar",
@@ -182,7 +182,7 @@ export const COUNTRY_WORLD: GenreWorld = {
       "name": "Bluegrass",
       "origin": "Kentucky / Appalachia",
       "era": "1940s–Present",
-      "description": "Acoustic • High-Speed • Virtuosic\nFast banjo, fiddle, mandolin chop.\nBill Monroe · Flatt & Scruggs",
+      "description": "Acoustic • High-Speed • Virtuosic\nFast banjo,",
       "characteristicInstruments": [
         "banjo",
         "mandolin",
@@ -270,7 +270,7 @@ export const COUNTRY_WORLD: GenreWorld = {
       "name": "Honky-Tonk",
       "origin": "Texas / Oklahoma / Nashville",
       "era": "1940s–1950s",
-      "description": "Twin Fiddle • Steel • 2-Step\nBeer-joint two-step dance rhythm.\nHank Williams · Lefty Frizzell",
+      "description": "Twin Fiddle • Steel • 2-Step\nBeer-joint",
       "characteristicInstruments": [
         "fiddle",
         "steel-guitar",
@@ -350,7 +350,7 @@ export const COUNTRY_WORLD: GenreWorld = {
       "name": "Bakersfield",
       "origin": "Bakersfield, California",
       "era": "1950s–1960s",
-      "description": "Twangy • Telecaster • Loud\nWest Coast hard-driving electric country.\nBuck Owens · Merle Haggard",
+      "description": "Twangy • Telecaster • Loud\nWest Coast",
       "characteristicInstruments": [
         "electric-guitar",
         "steel-guitar",
@@ -439,7 +439,7 @@ export const COUNTRY_WORLD: GenreWorld = {
       "name": "Americana",
       "origin": "USA",
       "era": "1990s–Present",
-      "description": "Rootsy • Acoustic • Soulful\nContemporary folk-country hybrid.\nJason Isbell · Gillian Welch",
+      "description": "Rootsy • Acoustic • Soulful\nContemporary folk-country",
       "characteristicInstruments": [
         "acoustic-guitar",
         "fiddle",
@@ -522,7 +522,7 @@ export const COUNTRY_WORLD: GenreWorld = {
       "name": "Nashville Sound",
       "origin": "Nashville, Tennessee",
       "era": "Late 1950s–1960s",
-      "description": "Smooth • Strings • Polished\nPop-country crossover with vocal chorus.\nPatsy Cline · Jim Reeves",
+      "description": "Smooth • Strings • Polished\nPop-country crossover",
       "characteristicInstruments": [
         "strings",
         "piano",
@@ -612,7 +612,7 @@ export const COUNTRY_WORLD: GenreWorld = {
       "name": "Western Swing",
       "origin": "Texas / Oklahoma",
       "era": "1930s–1950s",
-      "description": "Swinging • Big Band • Jazzy\nFiddle-driven Texas swing dance.\nBob Wills & His Texas Playboys · Asleep at the Wheel",
+      "description": "Swinging • Big Band • Jazzy\nFiddle-driven",
       "characteristicInstruments": [
         "fiddle",
         "steel-guitar",
@@ -758,11 +758,11 @@ export const COUNTRY_WORLD: GenreWorld = {
     {
       "id": "country-boom-chuck",
       "worldId": "country",
-      "traditionId": "country-honky-tonk",
+      "styleIds": ["country-honky-tonk"],
       "name": "Boom-Chuck",
       "family": "Rhythm",
       "category": "fill",
-      "description": "Alternating root/fifth bass and upbeat chord chucks.",
+      "description": "Alternating root/fifth bass and upbeat chord",
       "tags": [
         "country",
         "honky-tonk"
@@ -814,7 +814,7 @@ export const COUNTRY_WORLD: GenreWorld = {
           "name": "Bluegrass 2/4",
           "variationType": "instrumentSpecific",
           "probability": 0.18,
-          "description": "Fast 2/4 cut-time rhythm with high-speed flatpicking pulse. Retained as a variation rather than a separate pattern entry.",
+          "description": "Fast 2/4 cut-time rhythm with high-speed",
           "onsetGrid": [
             0,
             2,
@@ -844,7 +844,7 @@ export const COUNTRY_WORLD: GenreWorld = {
           "name": "Country Pop Rock",
           "variationType": "instrumentSpecific",
           "probability": 0.18,
-          "description": "Straight 8ths rock backbeat for contemporary Nashville anthems. Retained as a variation rather than a separate pattern entry.",
+          "description": "Straight 8ths rock backbeat for contemporary",
           "onsetGrid": [
             0,
             2,
@@ -901,11 +901,11 @@ export const COUNTRY_WORLD: GenreWorld = {
     {
       "id": "country-train",
       "worldId": "country",
-      "traditionId": "country-honky-tonk",
+      "styleIds": ["country-honky-tonk"],
       "name": "Train Beat",
       "family": "Beat",
       "category": "break",
-      "description": "Continuous 16ths snare train beat with rim accents on 2 and 4.",
+      "description": "Continuous 16ths snare train beat with",
       "tags": [
         "country",
         "honky-tonk"
@@ -991,7 +991,7 @@ export const COUNTRY_WORLD: GenreWorld = {
           "name": "Train Beat — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             2,
@@ -1051,7 +1051,7 @@ export const COUNTRY_WORLD: GenreWorld = {
           "name": "Train Beat — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             1,
@@ -1157,11 +1157,11 @@ export const COUNTRY_WORLD: GenreWorld = {
     {
       "id": "country-trap-hats",
       "worldId": "country",
-      "traditionId": "country-contemporary",
+      "styleIds": ["country-contemporary"],
       "name": "Hick-Hop Trap Hi-Hats",
       "family": "Beat",
       "category": "cadence",
-      "description": "Modern country-trap crossover: rolling hi-hat bursts and an 808-style kick layered under acoustic instrumentation.",
+      "description": "Modern country-trap crossover: rolling hi-hat bursts",
       "tags": [
         "country",
         "trap",
@@ -1226,7 +1226,7 @@ export const COUNTRY_WORLD: GenreWorld = {
           "name": "Hick-Hop Trap Hi-Hats — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             8,
@@ -1262,7 +1262,7 @@ export const COUNTRY_WORLD: GenreWorld = {
           "name": "Hick-Hop Trap Hi-Hats — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             4,
@@ -1336,11 +1336,11 @@ export const COUNTRY_WORLD: GenreWorld = {
     {
       "id": "country-outlaw",
       "worldId": "country",
-      "traditionId": "country-honky-tonk",
+      "styleIds": ["country-honky-tonk"],
       "name": "Outlaw 8ths",
       "family": "Bass",
       "category": "groove",
-      "description": "Heavy driving 8th note bass line in the style of Waylon Jennings.",
+      "description": "Heavy driving 8th note bass line",
       "tags": [
         "country",
         "outlaw"
@@ -1402,7 +1402,7 @@ export const COUNTRY_WORLD: GenreWorld = {
           "name": "Outlaw 8ths — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             2,
@@ -1438,7 +1438,7 @@ export const COUNTRY_WORLD: GenreWorld = {
           "name": "Outlaw 8ths — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             1,
@@ -1511,7 +1511,7 @@ export const COUNTRY_WORLD: GenreWorld = {
           "sourceRole": "drums",
           "targetRole": "bass",
           "relationship": "reinforce",
-          "description": "Low-end attacks reinforce the main pulse without doubling every subdivision.",
+          "description": "Low-end attacks reinforce the main pulse",
           "timingOffsetSteps": 0,
           "probability": 0.78
         }
@@ -1524,11 +1524,11 @@ export const COUNTRY_WORLD: GenreWorld = {
     {
       "id": "country-waltz",
       "worldId": "country",
-      "traditionId": "country-honky-tonk",
+      "styleIds": ["country-honky-tonk"],
       "name": "Country Waltz",
       "family": "Beat",
       "category": "groove",
-      "description": "Classic 3/4 country waltz with accented bass on one.",
+      "description": "Classic 3/4 country waltz with accented",
       "tags": [
         "country",
         "waltz"
@@ -1577,7 +1577,7 @@ export const COUNTRY_WORLD: GenreWorld = {
           "name": "Country Waltz — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             4
@@ -1601,7 +1601,7 @@ export const COUNTRY_WORLD: GenreWorld = {
           "name": "Country Waltz — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             2,
@@ -1655,7 +1655,7 @@ export const COUNTRY_WORLD: GenreWorld = {
           "sourceRole": "voice",
           "targetRole": "harmony",
           "relationship": "leaveSpace",
-          "description": "Harmony reduces density under vocal entries so the phrase remains foregrounded.",
+          "description": "Harmony reduces density under vocal entries",
           "timingOffsetSteps": 0,
           "probability": 0.72
         }
@@ -1668,11 +1668,11 @@ export const COUNTRY_WORLD: GenreWorld = {
     {
       "id": "country-western-swing",
       "worldId": "country",
-      "traditionId": "country-honky-tonk",
+      "styleIds": ["country-honky-tonk"],
       "name": "Western Swing",
       "family": "Beat",
       "category": "groove",
-      "description": "4/4 swung jazzy Texas swing feel with four-to-the-bar rhythm.",
+      "description": "4/4 swung jazzy Texas swing feel",
       "tags": [
         "country",
         "western-swing"
@@ -1724,7 +1724,7 @@ export const COUNTRY_WORLD: GenreWorld = {
           "name": "Western Swing — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             6,
@@ -1752,7 +1752,7 @@ export const COUNTRY_WORLD: GenreWorld = {
           "name": "Western Swing — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             3,
@@ -1810,7 +1810,7 @@ export const COUNTRY_WORLD: GenreWorld = {
           "sourceRole": "bass",
           "targetRole": "drums",
           "relationship": "accentWith",
-          "description": "Bass accents align with selected kick/backbeat events for a tighter pocket.",
+          "description": "Bass accents align with selected kick/backbeat",
           "timingOffsetSteps": 0,
           "probability": 0.65
         }
@@ -1823,11 +1823,11 @@ export const COUNTRY_WORLD: GenreWorld = {
     {
       "id": "country-nashville",
       "worldId": "country",
-      "traditionId": "country-contemporary",
+      "styleIds": ["country-contemporary"],
       "name": "Nashville Smooth",
       "family": "Beat",
       "category": "groove",
-      "description": "Smooth 4/4 session groove with tasteful ghost pushes.",
+      "description": "Smooth 4/4 session groove with tasteful",
       "tags": [
         "country",
         "contemporary"
@@ -1880,7 +1880,7 @@ export const COUNTRY_WORLD: GenreWorld = {
           "name": "Nashville Smooth — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             8,
@@ -1908,7 +1908,7 @@ export const COUNTRY_WORLD: GenreWorld = {
           "name": "Nashville Smooth — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             4,
@@ -1970,11 +1970,11 @@ export const COUNTRY_WORLD: GenreWorld = {
     {
       "id": "country-pedal-steel-swell",
       "worldId": "country",
-      "traditionId": "country-contemporary",
+      "styleIds": ["country-contemporary"],
       "name": "Pedal Steel Volume Swell",
       "family": "Texture",
       "category": "cell",
-      "description": "Crying pedal-steel volume-pedal swells fading in under sustained chords, the weeping signature texture of Nashville ballads.",
+      "description": "Crying pedal-steel volume-pedal swells fading in",
       "tags": [
         "country",
         "pedal-steel",
@@ -2020,7 +2020,7 @@ export const COUNTRY_WORLD: GenreWorld = {
           "name": "Pedal Steel Volume Swell — played variation",
           "variationType": "accentShift",
           "probability": 0.18,
-          "description": "A light played variation for sparse patterns with only a few attacks.",
+          "description": "A light played variation for sparse",
           "onsetGrid": [
             0,
             5
@@ -2044,7 +2044,7 @@ export const COUNTRY_WORLD: GenreWorld = {
           "name": "Pedal Steel Volume Swell — played variation",
           "variationType": "accentShift",
           "probability": 0.18,
-          "description": "A light played variation for sparse patterns with only a few attacks.",
+          "description": "A light played variation for sparse",
           "onsetGrid": [
             0,
             5
@@ -2094,11 +2094,11 @@ export const COUNTRY_WORLD: GenreWorld = {
     {
       "id": "country-chicken",
       "worldId": "country",
-      "traditionId": "country-honky-tonk",
+      "styleIds": ["country-honky-tonk"],
       "name": "Chicken Pickin",
       "family": "Guitar",
       "category": "groove",
-      "description": "Syncopated muted telecaster lead licks and snappy bends.",
+      "description": "Syncopated muted telecaster lead licks and",
       "tags": [
         "country",
         "guitar"
@@ -2160,7 +2160,7 @@ export const COUNTRY_WORLD: GenreWorld = {
           "name": "Chicken Pickin — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             4,
@@ -2196,7 +2196,7 @@ export const COUNTRY_WORLD: GenreWorld = {
           "name": "Chicken Pickin — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             3,
@@ -2270,7 +2270,7 @@ export const COUNTRY_WORLD: GenreWorld = {
     {
       "id": "country-ballad",
       "worldId": "country",
-      "traditionId": "country-contemporary",
+      "styleIds": ["country-contemporary"],
       "name": "Slow Ballad 6/8",
       "family": "Beat",
       "category": "groove",
@@ -2320,7 +2320,7 @@ export const COUNTRY_WORLD: GenreWorld = {
           "name": "Slow Ballad 6/8 — played variation",
           "variationType": "accentShift",
           "probability": 0.18,
-          "description": "A light played variation for sparse patterns with only a few attacks.",
+          "description": "A light played variation for sparse",
           "onsetGrid": [
             0,
             3
@@ -2344,7 +2344,7 @@ export const COUNTRY_WORLD: GenreWorld = {
           "name": "Slow Ballad 6/8 — played variation",
           "variationType": "accentShift",
           "probability": 0.18,
-          "description": "A light played variation for sparse patterns with only a few attacks.",
+          "description": "A light played variation for sparse",
           "onsetGrid": [
             0,
             3
@@ -2395,11 +2395,11 @@ export const COUNTRY_WORLD: GenreWorld = {
     {
       "id": "country-phrase-11",
       "worldId": "country",
-      "traditionId": "country-honky-tonk",
+      "styleIds": ["country-honky-tonk"],
       "name": "Train Phrase",
       "family": "Train",
       "category": "phrasePattern",
-      "description": "A phrase-level rhythmic template that leaves deliberate space for melodic expression. Built around train beat and the train vocabulary of Country.",
+      "description": "A phrase-level rhythmic template that leaves",
       "tags": [
         "country",
         "train",
@@ -2491,7 +2491,7 @@ export const COUNTRY_WORLD: GenreWorld = {
           "name": "Train Phrase — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             3,
@@ -2527,7 +2527,7 @@ export const COUNTRY_WORLD: GenreWorld = {
           "name": "Train Phrase — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             2,
@@ -2587,11 +2587,11 @@ export const COUNTRY_WORLD: GenreWorld = {
     {
       "id": "country-call-12",
       "worldId": "country",
-      "traditionId": "country-honky-tonk",
+      "styleIds": ["country-honky-tonk"],
       "name": "Nashville Response",
       "family": "Nashville",
       "category": "interactionPattern",
-      "description": "A call-and-response shape that leaves the next phrase open for an answer. Built around storytelling vocal and the nashville vocabulary of Country.",
+      "description": "A call-and-response shape that leaves the",
       "tags": [
         "country",
         "nashville",
@@ -2684,7 +2684,7 @@ export const COUNTRY_WORLD: GenreWorld = {
           "name": "Nashville Response — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             3,
@@ -2720,7 +2720,7 @@ export const COUNTRY_WORLD: GenreWorld = {
           "name": "Nashville Response — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             1,
@@ -2768,7 +2768,7 @@ export const COUNTRY_WORLD: GenreWorld = {
           "name": "Nashville Response — transition variation",
           "variationType": "transition",
           "probability": 0.16,
-          "description": "Adds a final pickup/closure gesture for section transitions.",
+          "description": "Adds a final pickup/closure gesture for",
           "onsetGrid": [
             0,
             1,
@@ -2836,11 +2836,11 @@ export const COUNTRY_WORLD: GenreWorld = {
     {
       "id": "country-anchor-13",
       "worldId": "country",
-      "traditionId": "country-honky-tonk",
+      "styleIds": ["country-honky-tonk"],
       "name": "Chicken Pickin Anchor",
       "family": "Chicken Pickin",
       "category": "ostinato",
-      "description": "A repeating anchor that locks the low end to the groove. Built around pedal-steel fills and the chicken pickin vocabulary of Country.",
+      "description": "A repeating anchor that locks the",
       "tags": [
         "country",
         "chicken-pickin",
@@ -2933,7 +2933,7 @@ export const COUNTRY_WORLD: GenreWorld = {
           "name": "Chicken Pickin Anchor — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             1,
             4,
@@ -2969,7 +2969,7 @@ export const COUNTRY_WORLD: GenreWorld = {
           "name": "Chicken Pickin Anchor — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             1,
             2,
@@ -3029,11 +3029,11 @@ export const COUNTRY_WORLD: GenreWorld = {
     {
       "id": "country-comp-14",
       "worldId": "country",
-      "traditionId": "country-honky-tonk",
+      "styleIds": ["country-honky-tonk"],
       "name": "Steel Comping",
       "family": "Steel",
       "category": "groove",
-      "description": "A genre-shaped accompaniment cell that supports the lead without occupying every subdivision. Built around country shuffle and the steel vocabulary of Country.",
+      "description": "A genre-shaped accompaniment cell that supports",
       "tags": [
         "country",
         "steel",
@@ -3125,7 +3125,7 @@ export const COUNTRY_WORLD: GenreWorld = {
           "name": "Steel Comping — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             4,
@@ -3161,7 +3161,7 @@ export const COUNTRY_WORLD: GenreWorld = {
           "name": "Steel Comping — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             3,
@@ -3221,11 +3221,11 @@ export const COUNTRY_WORLD: GenreWorld = {
     {
       "id": "country-intro-15",
       "worldId": "country",
-      "traditionId": "country-honky-tonk",
+      "styleIds": ["country-honky-tonk"],
       "name": "Boom-Chuck Intro",
       "family": "Boom-Chuck",
       "category": "sectionPattern",
-      "description": "A reduced entrance used to establish the genre before the full groove arrives. Built around boom-chuck in Country.",
+      "description": "A reduced entrance used to establish",
       "tags": [
         "country",
         "boom-chuck",
@@ -3310,7 +3310,7 @@ export const COUNTRY_WORLD: GenreWorld = {
           "name": "Boom-Chuck Intro — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             1,
             4,
@@ -3338,7 +3338,7 @@ export const COUNTRY_WORLD: GenreWorld = {
           "name": "Boom-Chuck Intro — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             1,
             2,
@@ -3374,7 +3374,7 @@ export const COUNTRY_WORLD: GenreWorld = {
           "name": "Boom-Chuck Intro — transition variation",
           "variationType": "transition",
           "probability": 0.16,
-          "description": "Adds a final pickup/closure gesture for section transitions.",
+          "description": "Adds a final pickup/closure gesture for",
           "onsetGrid": [
             1,
             2,
@@ -3430,11 +3430,11 @@ export const COUNTRY_WORLD: GenreWorld = {
     {
       "id": "country-verse-16",
       "worldId": "country",
-      "traditionId": "country-honky-tonk",
+      "styleIds": ["country-honky-tonk"],
       "name": "Train Verse Variation",
       "family": "Train",
       "category": "groove",
-      "description": "A restrained verse variation with intentional headroom for melody. Built around train beat and the train vocabulary of Country.",
+      "description": "A restrained verse variation with intentional",
       "tags": [
         "country",
         "train",
@@ -3531,7 +3531,7 @@ export const COUNTRY_WORLD: GenreWorld = {
           "name": "Train Verse Variation — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             2,
             6,
@@ -3567,7 +3567,7 @@ export const COUNTRY_WORLD: GenreWorld = {
           "name": "Train Verse Variation — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             2,
             4,
@@ -3623,11 +3623,11 @@ export const COUNTRY_WORLD: GenreWorld = {
     {
       "id": "country-voice-phrasing",
       "worldId": "country",
-      "traditionId": "country-honky-tonk",
+      "styleIds": ["country-honky-tonk"],
       "name": "Country Vocal Phrasing",
       "family": "Vocal Phrasing",
       "category": "phrasePattern",
-      "description": "Storytelling verse vocal placement with room for fills and the boom-chuck foundation.",
+      "description": "Storytelling verse vocal placement with room",
       "tags": [
         "country",
         "voice",
@@ -3713,7 +3713,7 @@ export const COUNTRY_WORLD: GenreWorld = {
           "name": "Country Vocal Phrasing — alternate phrasing",
           "variationType": "phraseStart",
           "probability": 0.2,
-          "description": "Alternate vocal entry placement for a second pass through the phrase.",
+          "description": "Alternate vocal entry placement for a",
           "onsetGrid": [
             0,
             3,
@@ -3753,7 +3753,7 @@ export const COUNTRY_WORLD: GenreWorld = {
           "name": "Country Vocal Phrasing — accent shift",
           "variationType": "accentShift",
           "probability": 0.18,
-          "description": "Same rhythmic shape with shifted emphasis on the repeat.",
+          "description": "Same rhythmic shape with shifted emphasis",
           "onsetGrid": [
             0,
             3,

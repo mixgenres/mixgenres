@@ -6,15 +6,15 @@ export const ZOUK_WORLD: GenreWorld = {
   "family": "French Caribbean / Antillean",
   "color": "#55a6a1",
   "level": "world",
-  "description": "The revolutionary sound of Guadeloupe and Martinique created by Kassav’: driving Zouk Béton carnival energy, syncopated basslines, clean chawa guitar skanks, ti-bwa woodblock ostinatos, punchy brass horn stabs, and romantic Zouk Love DX7 Rhodes progressions.",
-  "traditions": [
+  "description": "The revolutionary sound of Guadeloupe and",
+  "styleDefinitions": [
     {
       "id": "zouk-zouk-beton",
       "worldId": "zouk",
       "name": "Zouk Béton",
       "origin": "Guadeloupe & Martinique",
       "era": "1980s",
-      "description": "Carnival Horns • Fast 4/4 • Power Bass\nThe explosive Antillean carnival dance engine.\nKassav' · Jocelyne Béroard",
+      "description": "Carnival Horns • Fast 4/4 •",
       "characteristicInstruments": [
         "brass",
         "drums",
@@ -95,7 +95,7 @@ export const ZOUK_WORLD: GenreWorld = {
       "name": "Zouk Love",
       "origin": "Guadeloupe & Martinique / Paris",
       "era": "Late 1980s–1990s",
-      "description": "Slow • Sensual • Romantic Keyboards\nRomantic, intimate Antillean partner dance.\nPatrick Saint-Éloi · Gilles Floro",
+      "description": "Slow • Sensual • Romantic Keyboards\nRomantic,",
       "characteristicInstruments": [
         "synth",
         "bass",
@@ -175,7 +175,7 @@ export const ZOUK_WORLD: GenreWorld = {
       "name": "Ghetto Zouk",
       "origin": "Lisbon / Rotterdam / Paris",
       "era": "2000s–Present",
-      "description": "R&B Chords • Modern Beat • Smooth\nEuropean electronic zouk-R&B crossover.\nNelson Freitas · Kaysha",
+      "description": "R&B Chords • Modern Beat •",
       "characteristicInstruments": [
         "synth",
         "drums",
@@ -255,7 +255,7 @@ export const ZOUK_WORLD: GenreWorld = {
       "name": "Neo-Zouk",
       "origin": "Rio de Janeiro / Sao Paulo",
       "era": "2010s–Present",
-      "description": "Lyrical • Head Movements • Modern Bass\nBrazilian Zouk dancefloor evolution.\nAlok · Mafie Zouker",
+      "description": "Lyrical • Head Movements • Modern",
       "characteristicInstruments": [
         "synth",
         "sub-bass",
@@ -382,11 +382,11 @@ export const ZOUK_WORLD: GenreWorld = {
     {
       "id": "zouk-bass-movement",
       "worldId": "zouk",
-      "traditionId": "zouk-beton",
+      "styleIds": ["zouk-beton"],
       "name": "Zouk Syncopated Bass Movement",
       "family": "Zouk Basslines",
       "category": "ostinato",
-      "description": "Warm, round bass with syncopated 16th pushes, slides, and root-octave leaps locking with the kick drum.",
+      "description": "Warm, round bass with syncopated 16th",
       "tags": [
         "zouk",
         "bass",
@@ -470,7 +470,7 @@ export const ZOUK_WORLD: GenreWorld = {
             0.8,
             0.95
           ],
-          "description": "Slower, heavier sub-bass pattern ideal for sensual Zouk Love."
+          "description": "Slower, heavier sub-bass pattern ideal for"
         },
         {
           "id": "zouk-bass-movement-v-02",
@@ -478,7 +478,7 @@ export const ZOUK_WORLD: GenreWorld = {
           "name": "Zouk Syncopated Bass Movement — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             3,
@@ -543,7 +543,7 @@ export const ZOUK_WORLD: GenreWorld = {
           "sourceRole": "drums",
           "targetRole": "bass",
           "relationship": "reinforce",
-          "description": "Low-end attacks reinforce the main pulse without doubling every subdivision.",
+          "description": "Low-end attacks reinforce the main pulse",
           "timingOffsetSteps": 0,
           "probability": 0.78
         }
@@ -552,11 +552,11 @@ export const ZOUK_WORLD: GenreWorld = {
     {
       "id": "zouk-guitar-skank-chawa",
       "worldId": "zouk",
-      "traditionId": "zouk-love",
+      "styleIds": ["zouk-love"],
       "name": "Chawa Guitar Skank",
       "family": "Zouk Guitar Chawa",
       "category": "ostinato",
-      "description": "Crisp, muted single-coil electric guitar chops hitting syncopated offbeats with chorus and delay.",
+      "description": "Crisp, muted single-coil electric guitar chops",
       "tags": [
         "guitar",
         "skank",
@@ -642,7 +642,7 @@ export const ZOUK_WORLD: GenreWorld = {
             1,
             0.5
           ],
-          "description": "Rapid double-stroke chops for high-energy Zouk Béton sections."
+          "description": "Rapid double-stroke chops for high-energy Zouk"
         },
         {
           "id": "zouk-guitar-skank-chawa-v-02",
@@ -650,7 +650,7 @@ export const ZOUK_WORLD: GenreWorld = {
           "name": "Chawa Guitar Skank — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             2,
             6,
@@ -708,7 +708,7 @@ export const ZOUK_WORLD: GenreWorld = {
           "sourceRole": "voice",
           "targetRole": "harmony",
           "relationship": "leaveSpace",
-          "description": "Harmony reduces density under vocal entries so the phrase remains foregrounded.",
+          "description": "Harmony reduces density under vocal entries",
           "timingOffsetSteps": 0,
           "probability": 0.72
         }
@@ -717,11 +717,11 @@ export const ZOUK_WORLD: GenreWorld = {
     {
       "id": "zouk-french-bass",
       "worldId": "zouk",
-      "traditionId": "zouk-beton",
+      "styleIds": ["zouk-beton"],
       "name": "French Antillean Zouk Bass",
       "family": "Bass",
       "category": "break",
-      "description": "Melodic driving bass line with Caribbean syncopation and octave leaps.",
+      "description": "Melodic driving bass line with Caribbean",
       "tags": [
         "zouk",
         "bass",
@@ -775,7 +775,7 @@ export const ZOUK_WORLD: GenreWorld = {
           "name": "French Antillean Zouk Bass — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             6,
@@ -803,7 +803,7 @@ export const ZOUK_WORLD: GenreWorld = {
           "name": "French Antillean Zouk Bass — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             3,
@@ -865,11 +865,11 @@ export const ZOUK_WORLD: GenreWorld = {
     {
       "id": "zouk-shaker",
       "worldId": "zouk",
-      "traditionId": "zouk-love",
+      "styleIds": ["zouk-love"],
       "name": "Zouk Shaker",
       "family": "Percussion",
       "category": "cadence",
-      "description": "Continuous 16ths shaker with accented 8th pulses providing forward motion.",
+      "description": "Continuous 16ths shaker with accented 8th",
       "tags": [
         "zouk",
         "shaker",
@@ -958,7 +958,7 @@ export const ZOUK_WORLD: GenreWorld = {
           "name": "Zouk Shaker — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             2,
@@ -1018,7 +1018,7 @@ export const ZOUK_WORLD: GenreWorld = {
           "name": "Zouk Shaker — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             1,
@@ -1124,11 +1124,11 @@ export const ZOUK_WORLD: GenreWorld = {
     {
       "id": "zouk-ti-bwa",
       "worldId": "zouk",
-      "traditionId": "zouk-beton",
+      "styleIds": ["zouk-beton"],
       "name": "Ti-Bwa Woodblock Ostinato",
       "family": "Percussion",
       "category": "groove",
-      "description": "Traditional Martinique/Guadeloupe ti-bwa stick pattern on woodblock driving the carnival syncopation.",
+      "description": "Traditional Martinique/Guadeloupe ti-bwa stick pattern on",
       "tags": [
         "zouk",
         "ti-bwa",
@@ -1191,7 +1191,7 @@ export const ZOUK_WORLD: GenreWorld = {
           "name": "Ti-Bwa Woodblock Ostinato — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             6,
@@ -1227,7 +1227,7 @@ export const ZOUK_WORLD: GenreWorld = {
           "name": "Ti-Bwa Woodblock Ostinato — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             3,
@@ -1296,7 +1296,7 @@ export const ZOUK_WORLD: GenreWorld = {
           "sourceRole": "lead",
           "targetRole": "voice",
           "relationship": "answer",
-          "description": "Lead instrument answers a vocal phrase in the open space after the line.",
+          "description": "Lead instrument answers a vocal phrase",
           "timingOffsetSteps": 2,
           "probability": 0.58
         }
@@ -1309,11 +1309,11 @@ export const ZOUK_WORLD: GenreWorld = {
     {
       "id": "zouk-synth-chords",
       "worldId": "zouk",
-      "traditionId": "zouk-love",
+      "styleIds": ["zouk-love"],
       "name": "Zouk DX7 Synth Stabs",
       "family": "Synth",
       "category": "groove",
-      "description": "Syncopated DX7 electric piano and FM synth chord stabs pushed before the beat.",
+      "description": "Syncopated DX7 electric piano and FM",
       "tags": [
         "zouk",
         "dx7",
@@ -1367,7 +1367,7 @@ export const ZOUK_WORLD: GenreWorld = {
           "name": "Zouk DX7 Synth Stabs — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             3,
             10,
@@ -1395,7 +1395,7 @@ export const ZOUK_WORLD: GenreWorld = {
           "name": "Zouk DX7 Synth Stabs — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             3,
             6,
@@ -1452,7 +1452,7 @@ export const ZOUK_WORLD: GenreWorld = {
           "sourceRole": "bass",
           "targetRole": "drums",
           "relationship": "accentWith",
-          "description": "Bass accents align with selected kick/backbeat events for a tighter pocket.",
+          "description": "Bass accents align with selected kick/backbeat",
           "timingOffsetSteps": 0,
           "probability": 0.65
         }
@@ -1465,11 +1465,11 @@ export const ZOUK_WORLD: GenreWorld = {
     {
       "id": "zouk-snare",
       "worldId": "zouk",
-      "traditionId": "zouk-beton",
+      "styleIds": ["zouk-beton"],
       "name": "Zouk Snare Rimshot",
       "family": "Beat",
       "category": "groove",
-      "description": "Snare rimshot on the backbeat locking with the Antillean bass.",
+      "description": "Snare rimshot on the backbeat locking",
       "tags": [
         "zouk",
         "snare",
@@ -1514,7 +1514,7 @@ export const ZOUK_WORLD: GenreWorld = {
           "name": "Zouk Snare Rimshot — played variation",
           "variationType": "accentShift",
           "probability": 0.18,
-          "description": "A light played variation for sparse patterns with only a few attacks.",
+          "description": "A light played variation for sparse",
           "onsetGrid": [
             4,
             12
@@ -1538,7 +1538,7 @@ export const ZOUK_WORLD: GenreWorld = {
           "name": "Zouk Snare Rimshot — played variation",
           "variationType": "accentShift",
           "probability": 0.18,
-          "description": "A light played variation for sparse patterns with only a few attacks.",
+          "description": "A light played variation for sparse",
           "onsetGrid": [
             4,
             12
@@ -1587,7 +1587,7 @@ export const ZOUK_WORLD: GenreWorld = {
           "sourceRole": "harmony",
           "targetRole": "lead",
           "relationship": "leaveSpace",
-          "description": "Accompaniment thins when the instrumental lead enters.",
+          "description": "Accompaniment thins when the instrumental lead",
           "timingOffsetSteps": 0,
           "probability": 0.62
         }
@@ -1600,11 +1600,11 @@ export const ZOUK_WORLD: GenreWorld = {
     {
       "id": "zouk-horn-stabs",
       "worldId": "zouk",
-      "traditionId": "zouk-beton",
+      "styleIds": ["zouk-beton"],
       "name": "Kassav Horn Section Stabs",
       "family": "Brass",
       "category": "groove",
-      "description": "Punchy Kassav-style brass horn section stabs emphasizing syncopated offbeat cadences.",
+      "description": "Punchy Kassav-style brass horn section stabs",
       "tags": [
         "zouk",
         "brass",
@@ -1660,7 +1660,7 @@ export const ZOUK_WORLD: GenreWorld = {
           "name": "Kassav Horn Section Stabs — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             3,
             11,
@@ -1688,7 +1688,7 @@ export const ZOUK_WORLD: GenreWorld = {
           "name": "Kassav Horn Section Stabs — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             3,
             6,
@@ -1745,11 +1745,11 @@ export const ZOUK_WORLD: GenreWorld = {
     {
       "id": "zouk-phrase-9",
       "worldId": "zouk",
-      "traditionId": "zouk-beton",
+      "styleIds": ["zouk-beton"],
       "name": "Hook Phrase",
       "family": "Hook",
       "category": "phrasePattern",
-      "description": "A phrase-level rhythmic template that leaves deliberate space for melodic expression. Built around synth stabs and the hook vocabulary of Zouk.",
+      "description": "A phrase-level rhythmic template that leaves",
       "tags": [
         "zouk",
         "hook",
@@ -1835,7 +1835,7 @@ export const ZOUK_WORLD: GenreWorld = {
           "name": "Hook Phrase — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             1,
             6,
@@ -1867,7 +1867,7 @@ export const ZOUK_WORLD: GenreWorld = {
           "name": "Hook Phrase — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             1,
             4,
@@ -1919,11 +1919,11 @@ export const ZOUK_WORLD: GenreWorld = {
     {
       "id": "zouk-call-10",
       "worldId": "zouk",
-      "traditionId": "zouk-beton",
+      "styleIds": ["zouk-beton"],
       "name": "Tarraxinha Response",
       "family": "Tarraxinha",
       "category": "interactionPattern",
-      "description": "A call-and-response shape that leaves the next phrase open for an answer. Built around tarraxinha in Zouk.",
+      "description": "A call-and-response shape that leaves the",
       "tags": [
         "zouk",
         "tarraxinha",
@@ -2010,7 +2010,7 @@ export const ZOUK_WORLD: GenreWorld = {
           "name": "Tarraxinha Response — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             2,
             7,
@@ -2042,7 +2042,7 @@ export const ZOUK_WORLD: GenreWorld = {
           "name": "Tarraxinha Response — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             2,
             5,
@@ -2082,7 +2082,7 @@ export const ZOUK_WORLD: GenreWorld = {
           "name": "Tarraxinha Response — transition variation",
           "variationType": "transition",
           "probability": 0.16,
-          "description": "Adds a final pickup/closure gesture for section transitions.",
+          "description": "Adds a final pickup/closure gesture for",
           "onsetGrid": [
             2,
             5,
@@ -2138,11 +2138,11 @@ export const ZOUK_WORLD: GenreWorld = {
     {
       "id": "zouk-anchor-11",
       "worldId": "zouk",
-      "traditionId": "zouk-beton",
+      "styleIds": ["zouk-beton"],
       "name": "Chawa Anchor",
       "family": "Chawa",
       "category": "ostinato",
-      "description": "A repeating anchor that locks the low end to the groove. Built around chawa in Zouk.",
+      "description": "A repeating anchor that locks the",
       "tags": [
         "zouk",
         "chawa",
@@ -2229,7 +2229,7 @@ export const ZOUK_WORLD: GenreWorld = {
           "name": "Chawa Anchor — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             6,
@@ -2261,7 +2261,7 @@ export const ZOUK_WORLD: GenreWorld = {
           "name": "Chawa Anchor — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             3,
@@ -2313,11 +2313,11 @@ export const ZOUK_WORLD: GenreWorld = {
     {
       "id": "zouk-comp-12",
       "worldId": "zouk",
-      "traditionId": "zouk-beton",
+      "styleIds": ["zouk-beton"],
       "name": "Zouk Love Comping",
       "family": "Zouk Love",
       "category": "groove",
-      "description": "A genre-shaped accompaniment cell that supports the lead without occupying every subdivision. Built around syncopated bass and the zouk love vocabulary of Zouk.",
+      "description": "A genre-shaped accompaniment cell that supports",
       "tags": [
         "zouk",
         "zouk-love",
@@ -2405,7 +2405,7 @@ export const ZOUK_WORLD: GenreWorld = {
           "name": "Zouk Love Comping — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             2,
             8,
@@ -2437,7 +2437,7 @@ export const ZOUK_WORLD: GenreWorld = {
           "name": "Zouk Love Comping — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             2,
             5,
@@ -2489,11 +2489,11 @@ export const ZOUK_WORLD: GenreWorld = {
     {
       "id": "zouk-intro-13",
       "worldId": "zouk",
-      "traditionId": "zouk-beton",
+      "styleIds": ["zouk-beton"],
       "name": "Drop Intro",
       "family": "Drop",
       "category": "sectionPattern",
-      "description": "A reduced entrance used to establish the genre before the full groove arrives. Built around sensual vocal phrasing and the drop vocabulary of Zouk.",
+      "description": "A reduced entrance used to establish",
       "tags": [
         "zouk",
         "drop",
@@ -2586,7 +2586,7 @@ export const ZOUK_WORLD: GenreWorld = {
           "name": "Drop Intro — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             5,
@@ -2622,7 +2622,7 @@ export const ZOUK_WORLD: GenreWorld = {
           "name": "Drop Intro — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             2,
@@ -2666,7 +2666,7 @@ export const ZOUK_WORLD: GenreWorld = {
           "name": "Drop Intro — transition variation",
           "variationType": "transition",
           "probability": 0.16,
-          "description": "Adds a final pickup/closure gesture for section transitions.",
+          "description": "Adds a final pickup/closure gesture for",
           "onsetGrid": [
             0,
             2,
@@ -2726,11 +2726,11 @@ export const ZOUK_WORLD: GenreWorld = {
     {
       "id": "zouk-verse-14",
       "worldId": "zouk",
-      "traditionId": "zouk-beton",
+      "styleIds": ["zouk-beton"],
       "name": "Hook Verse Variation",
       "family": "Hook",
       "category": "groove",
-      "description": "A restrained verse variation with intentional headroom for melody. Built around synth stabs and the hook vocabulary of Zouk.",
+      "description": "A restrained verse variation with intentional",
       "tags": [
         "zouk",
         "hook",
@@ -2827,7 +2827,7 @@ export const ZOUK_WORLD: GenreWorld = {
           "name": "Hook Verse Variation — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             3,
@@ -2863,7 +2863,7 @@ export const ZOUK_WORLD: GenreWorld = {
           "name": "Hook Verse Variation — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             1,
@@ -2919,11 +2919,11 @@ export const ZOUK_WORLD: GenreWorld = {
     {
       "id": "zouk-chorus-15",
       "worldId": "zouk",
-      "traditionId": "zouk-beton",
+      "styleIds": ["zouk-beton"],
       "name": "Tarraxinha Chorus Lift",
       "family": "Tarraxinha",
       "category": "sectionPattern",
-      "description": "A higher-energy chorus layer that increases density without changing the genre identity. Built around tarraxinha in Zouk.",
+      "description": "A higher-energy chorus layer that increases",
       "tags": [
         "zouk",
         "tarraxinha",
@@ -3021,7 +3021,7 @@ export const ZOUK_WORLD: GenreWorld = {
           "name": "Tarraxinha Chorus Lift — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             1,
             4,
@@ -3057,7 +3057,7 @@ export const ZOUK_WORLD: GenreWorld = {
           "name": "Tarraxinha Chorus Lift — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             1,
             2,
@@ -3101,7 +3101,7 @@ export const ZOUK_WORLD: GenreWorld = {
           "name": "Tarraxinha Chorus Lift — transition variation",
           "variationType": "transition",
           "probability": 0.16,
-          "description": "Adds a final pickup/closure gesture for section transitions.",
+          "description": "Adds a final pickup/closure gesture for",
           "onsetGrid": [
             1,
             2,
@@ -3161,11 +3161,11 @@ export const ZOUK_WORLD: GenreWorld = {
     {
       "id": "zouk-bridge-16",
       "worldId": "zouk",
-      "traditionId": "zouk-beton",
+      "styleIds": ["zouk-beton"],
       "name": "Chawa Bridge",
       "family": "Chawa",
       "category": "sectionPattern",
-      "description": "A contrasting bridge texture designed to reset repetition before the final return. Built around chawa in Zouk.",
+      "description": "A contrasting bridge texture designed to",
       "tags": [
         "zouk",
         "chawa",
@@ -3259,7 +3259,7 @@ export const ZOUK_WORLD: GenreWorld = {
           "name": "Chawa Bridge — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             4,
@@ -3295,7 +3295,7 @@ export const ZOUK_WORLD: GenreWorld = {
           "name": "Chawa Bridge — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             3,
@@ -3339,7 +3339,7 @@ export const ZOUK_WORLD: GenreWorld = {
           "name": "Chawa Bridge — transition variation",
           "variationType": "transition",
           "probability": 0.16,
-          "description": "Adds a final pickup/closure gesture for section transitions.",
+          "description": "Adds a final pickup/closure gesture for",
           "onsetGrid": [
             0,
             3,
@@ -3399,11 +3399,11 @@ export const ZOUK_WORLD: GenreWorld = {
     {
       "id": "zouk-voice-phrasing",
       "worldId": "zouk",
-      "traditionId": "zouk-beton",
+      "styleIds": ["zouk-beton"],
       "name": "Zouk Vocal Phrasing",
       "family": "Vocal Phrasing",
       "category": "phrasePattern",
-      "description": "Breathy lead-vocal placement that leaves space around the syncopated bass pocket.",
+      "description": "Breathy lead-vocal placement that leaves space",
       "tags": [
         "zouk",
         "voice",
@@ -3489,7 +3489,7 @@ export const ZOUK_WORLD: GenreWorld = {
           "name": "Zouk Vocal Phrasing — alternate phrasing",
           "variationType": "phraseStart",
           "probability": 0.2,
-          "description": "Alternate vocal entry placement for a second pass through the phrase.",
+          "description": "Alternate vocal entry placement for a",
           "onsetGrid": [
             0,
             3,
@@ -3529,7 +3529,7 @@ export const ZOUK_WORLD: GenreWorld = {
           "name": "Zouk Vocal Phrasing — accent shift",
           "variationType": "accentShift",
           "probability": 0.18,
-          "description": "Same rhythmic shape with shifted emphasis on the repeat.",
+          "description": "Same rhythmic shape with shifted emphasis",
           "onsetGrid": [
             0,
             3,

@@ -6,15 +6,15 @@ export const AFROBEATS_WORLD: GenreWorld = {
   "family": "West African Pop / Global Groove",
   "color": "#d48834",
   "level": "world",
-  "description": "Vibrant West African dance music continuum: from classic 1970s Afrobeat horn vamps and Highlife clean guitar picking to modern Afropop syncopated pockets and South African Amapiano log-drum basslines.",
-  "traditions": [
+  "description": "Vibrant West African dance music continuum:",
+  "styleDefinitions": [
     {
       "id": "afrobeats-afro-pop",
       "worldId": "afrobeats",
       "name": "Afro-Pop",
       "origin": "Nigeria / Ghana / Pan-African",
       "era": "2010s–Present",
-      "description": "Upbeat • 4/4 Syncopated • Bright\nPolished global dance sound.\nWizkid · Davido",
+      "description": "Upbeat • 4/4 Syncopated • Bright\nPolished",
       "characteristicInstruments": [
         "drums",
         "bass",
@@ -88,7 +88,7 @@ export const AFROBEATS_WORLD: GenreWorld = {
       "name": "Afrobeat",
       "origin": "Lagos, Nigeria",
       "era": "1970s–1980s",
-      "description": "Polyrhythmic • Big Band • Foundation\nFela's original orchestral funk.\nFela Kuti · Tony Allen",
+      "description": "Polyrhythmic • Big Band • Foundation\nFela's",
       "characteristicInstruments": [
         "drums",
         "bass",
@@ -161,7 +161,7 @@ export const AFROBEATS_WORLD: GenreWorld = {
       "name": "Amapiano",
       "origin": "South Africa",
       "era": "2018–Present",
-      "description": "Driving • 4/4 Log Drum • Hypnotic\nSouth African house crossover.\nAsake · Focalistic",
+      "description": "Driving • 4/4 Log Drum •",
       "characteristicInstruments": [
         "drums",
         "bass",
@@ -234,7 +234,7 @@ export const AFROBEATS_WORLD: GenreWorld = {
       "name": "Gqom",
       "origin": "Durban, South Africa",
       "era": "2012–Present",
-      "description": "Raw • Heavy Percussion • Dark\nDurban minimalist club thunder.\nDJ Lag · Griffit Vigo",
+      "description": "Raw • Heavy Percussion • Dark\nDurban",
       "characteristicInstruments": [
         "drums",
         "sub-bass",
@@ -305,7 +305,7 @@ export const AFROBEATS_WORLD: GenreWorld = {
       "name": "Afro-House",
       "origin": "South Africa / Angola",
       "era": "2000s–Present",
-      "description": "Steady • 4/4 • Hypnotic\nDeep electronic club groove.\nBlack Coffee · Sun-El Musician",
+      "description": "Steady • 4/4 • Hypnotic\nDeep electronic",
       "characteristicInstruments": [
         "drums",
         "bass",
@@ -378,7 +378,7 @@ export const AFROBEATS_WORLD: GenreWorld = {
       "name": "Highlife",
       "origin": "Ghana / Nigeria",
       "era": "1950s–Present",
-      "description": "Bouncy • Bright Guitars • Horns\nFoundational West African pop.\nThe Cavemen · E.T. Mensah",
+      "description": "Bouncy • Bright Guitars • Horns\nFoundational",
       "characteristicInstruments": [
         "guitar",
         "bass",
@@ -458,7 +458,7 @@ export const AFROBEATS_WORLD: GenreWorld = {
       "name": "Palm-Wine",
       "origin": "Sierra Leone / Ghana / Nigeria",
       "era": "1920s–1960s",
-      "description": "Acoustic • Laid Back • Folk\nRaw street-level acoustic roots.\nKoo Nimo · S.E. Rogie",
+      "description": "Acoustic • Laid Back • Folk\nRaw",
       "characteristicInstruments": [
         "guitar",
         "percussion",
@@ -534,7 +534,7 @@ export const AFROBEATS_WORLD: GenreWorld = {
       "name": "Alté",
       "origin": "Lagos, Nigeria / London",
       "era": "2016–Present",
-      "description": "Experimental • Chill • Eclectic\nLo-fi West African R&B.\nSanti · Lady Donli",
+      "description": "Experimental • Chill • Eclectic\nLo-fi West",
       "characteristicInstruments": [
         "synth",
         "bass",
@@ -671,11 +671,11 @@ export const AFROBEATS_WORLD: GenreWorld = {
     {
       "id": "afro-log-drum-bass",
       "worldId": "afrobeats",
-      "traditionId": "afrobeats-modern",
+      "styleIds": ["afrobeats-modern"],
       "name": "Pitched Log Drum Bass Groove",
       "family": "Log Drum",
       "category": "groove",
-      "description": "Resonant FM synth log drum bassline providing harmonic weight and syncopated rhythmic propulsion.",
+      "description": "Resonant FM synth log drum bassline",
       "tags": [
         "afrobeats",
         "bass",
@@ -742,7 +742,7 @@ export const AFROBEATS_WORLD: GenreWorld = {
           "name": "Pitched Log Drum Bass Groove — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             6,
@@ -774,7 +774,7 @@ export const AFROBEATS_WORLD: GenreWorld = {
           "name": "Pitched Log Drum Bass Groove — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             3,
@@ -839,7 +839,7 @@ export const AFROBEATS_WORLD: GenreWorld = {
           "sourceRole": "drums",
           "targetRole": "bass",
           "relationship": "reinforce",
-          "description": "Low-end attacks reinforce the main pulse without doubling every subdivision.",
+          "description": "Low-end attacks reinforce the main pulse",
           "timingOffsetSteps": 0,
           "probability": 0.78
         }
@@ -852,11 +852,11 @@ export const AFROBEATS_WORLD: GenreWorld = {
     {
       "id": "afro-syncopated-kit",
       "worldId": "afrobeats",
-      "traditionId": "afrobeats-modern",
+      "styleIds": ["afrobeats-modern"],
       "name": "Modern Afropop Kick & Rim Pocket",
       "family": "Afrobeats Drums",
       "category": "groove",
-      "description": "Signature Afrobeats syncopated kick placement with crisp wooden rimshot and shaker engine.",
+      "description": "Signature Afrobeats syncopated kick placement with",
       "tags": [
         "afrobeats",
         "drums",
@@ -918,7 +918,7 @@ export const AFROBEATS_WORLD: GenreWorld = {
           "name": "Modern Afropop Kick & Rim Pocket — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             10,
@@ -946,7 +946,7 @@ export const AFROBEATS_WORLD: GenreWorld = {
           "name": "Modern Afropop Kick & Rim Pocket — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             6,
@@ -1007,7 +1007,7 @@ export const AFROBEATS_WORLD: GenreWorld = {
           "sourceRole": "voice",
           "targetRole": "harmony",
           "relationship": "leaveSpace",
-          "description": "Harmony reduces density under vocal entries so the phrase remains foregrounded.",
+          "description": "Harmony reduces density under vocal entries",
           "timingOffsetSteps": 0,
           "probability": 0.72
         }
@@ -1020,11 +1020,11 @@ export const AFROBEATS_WORLD: GenreWorld = {
     {
       "id": "afro-highlife-guitar",
       "worldId": "afrobeats",
-      "traditionId": "afrobeats-modern",
+      "styleIds": ["afrobeats-modern"],
       "name": "Highlife Fingerstyle Clean Guitar",
       "family": "Highlife Guitar",
       "category": "ostinato",
-      "description": "Bright clean electric guitar playing rhythmic two-finger arpeggiated chops.",
+      "description": "Bright clean electric guitar playing rhythmic",
       "tags": [
         "afrobeats",
         "guitar",
@@ -1089,7 +1089,7 @@ export const AFROBEATS_WORLD: GenreWorld = {
           "name": "Highlife Fingerstyle Clean Guitar — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             2,
             7,
@@ -1125,7 +1125,7 @@ export const AFROBEATS_WORLD: GenreWorld = {
           "name": "Highlife Fingerstyle Clean Guitar — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             2,
             4,
@@ -1195,7 +1195,7 @@ export const AFROBEATS_WORLD: GenreWorld = {
           "sourceRole": "lead",
           "targetRole": "voice",
           "relationship": "answer",
-          "description": "Lead instrument answers a vocal phrase in the open space after the line.",
+          "description": "Lead instrument answers a vocal phrase",
           "timingOffsetSteps": 2,
           "probability": 0.58
         }
@@ -1208,11 +1208,11 @@ export const AFROBEATS_WORLD: GenreWorld = {
     {
       "id": "afro-shekere-shaker",
       "worldId": "afrobeats",
-      "traditionId": "afrobeat-fela",
+      "styleIds": ["afrobeat-fela"],
       "name": "Shekere & Gourd Shaker Engine",
       "family": "Afro Percussion",
       "category": "groove",
-      "description": "Continuous 16th-note gourd shaker rattle with accented palm drops on beats 1 and 3.",
+      "description": "Continuous 16th-note gourd shaker rattle with",
       "tags": [
         "afrobeat",
         "percussion",
@@ -1304,7 +1304,7 @@ export const AFROBEATS_WORLD: GenreWorld = {
           "name": "Shekere & Gourd Shaker Engine — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             2,
@@ -1364,7 +1364,7 @@ export const AFROBEATS_WORLD: GenreWorld = {
           "name": "Shekere & Gourd Shaker Engine — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             1,
@@ -1469,7 +1469,7 @@ export const AFROBEATS_WORLD: GenreWorld = {
           "sourceRole": "bass",
           "targetRole": "drums",
           "relationship": "accentWith",
-          "description": "Bass accents align with selected kick/backbeat events for a tighter pocket.",
+          "description": "Bass accents align with selected kick/backbeat",
           "timingOffsetSteps": 0,
           "probability": 0.65
         }
@@ -1482,11 +1482,11 @@ export const AFROBEATS_WORLD: GenreWorld = {
     {
       "id": "afro-horn-stabs",
       "worldId": "afrobeats",
-      "traditionId": "afrobeat-fela",
+      "styleIds": ["afrobeat-fela"],
       "name": "Fela Afrobeat Horn Section Stabs",
       "family": "Afro Horns",
       "category": "cadence",
-      "description": "Pungent brass section horn stabs locking with the kit snare.",
+      "description": "Pungent brass section horn stabs locking",
       "tags": [
         "afrobeat",
         "horns",
@@ -1544,7 +1544,7 @@ export const AFROBEATS_WORLD: GenreWorld = {
           "name": "Fela Afrobeat Horn Section Stabs — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             3,
             11,
@@ -1572,7 +1572,7 @@ export const AFROBEATS_WORLD: GenreWorld = {
           "name": "Fela Afrobeat Horn Section Stabs — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             3,
             7,
@@ -1604,7 +1604,7 @@ export const AFROBEATS_WORLD: GenreWorld = {
           "name": "Fela Afrobeat Horn Section Stabs — transition variation",
           "variationType": "transition",
           "probability": 0.16,
-          "description": "Adds a final pickup/closure gesture for section transitions.",
+          "description": "Adds a final pickup/closure gesture for",
           "onsetGrid": [
             3,
             7,
@@ -1665,11 +1665,11 @@ export const AFROBEATS_WORLD: GenreWorld = {
     {
       "id": "afro-amapiano-pad",
       "worldId": "afrobeats",
-      "traditionId": "afrobeats-amapiano",
+      "styleIds": ["afrobeats-amapiano"],
       "name": "Airy Rhodes & Synth Pad Comping",
       "family": "Amapiano Keys",
       "category": "groove",
-      "description": "Spacious, warm electric piano voicings floating over the deep log drum baseline.",
+      "description": "Spacious, warm electric piano voicings floating",
       "tags": [
         "amapiano",
         "keys",
@@ -1722,7 +1722,7 @@ export const AFROBEATS_WORLD: GenreWorld = {
           "name": "Airy Rhodes & Synth Pad Comping — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             14
@@ -1746,7 +1746,7 @@ export const AFROBEATS_WORLD: GenreWorld = {
           "name": "Airy Rhodes & Synth Pad Comping — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             8,
@@ -1800,7 +1800,7 @@ export const AFROBEATS_WORLD: GenreWorld = {
           "sourceRole": "harmony",
           "targetRole": "lead",
           "relationship": "leaveSpace",
-          "description": "Accompaniment thins when the instrumental lead enters.",
+          "description": "Accompaniment thins when the instrumental lead",
           "timingOffsetSteps": 0,
           "probability": 0.62
         }
@@ -1813,11 +1813,11 @@ export const AFROBEATS_WORLD: GenreWorld = {
     {
       "id": "afrobeats-call-7",
       "worldId": "afrobeats",
-      "traditionId": "afrobeats-modern",
+      "styleIds": ["afrobeats-modern"],
       "name": "Shekere Response",
       "family": "Shekere",
       "category": "interactionPattern",
-      "description": "A call-and-response shape that leaves the next phrase open for an answer. Built around highlife guitar and the shekere vocabulary of Afrobeats.",
+      "description": "A call-and-response shape that leaves the",
       "tags": [
         "afrobeats",
         "shekere",
@@ -1904,7 +1904,7 @@ export const AFROBEATS_WORLD: GenreWorld = {
           "name": "Shekere Response — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             1,
             7,
@@ -1936,7 +1936,7 @@ export const AFROBEATS_WORLD: GenreWorld = {
           "name": "Shekere Response — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             1,
             4,
@@ -1976,7 +1976,7 @@ export const AFROBEATS_WORLD: GenreWorld = {
           "name": "Shekere Response — transition variation",
           "variationType": "transition",
           "probability": 0.16,
-          "description": "Adds a final pickup/closure gesture for section transitions.",
+          "description": "Adds a final pickup/closure gesture for",
           "onsetGrid": [
             1,
             4,
@@ -2032,11 +2032,11 @@ export const AFROBEATS_WORLD: GenreWorld = {
     {
       "id": "afrobeats-anchor-8",
       "worldId": "afrobeats",
-      "traditionId": "afrobeats-modern",
+      "styleIds": ["afrobeats-modern"],
       "name": "Hook Anchor",
       "family": "Hook",
       "category": "ostinato",
-      "description": "A repeating anchor that locks the low end to the groove. Built around shekere and the hook vocabulary of Afrobeats.",
+      "description": "A repeating anchor that locks the",
       "tags": [
         "afrobeats",
         "hook",
@@ -2123,7 +2123,7 @@ export const AFROBEATS_WORLD: GenreWorld = {
           "name": "Hook Anchor — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             5,
@@ -2155,7 +2155,7 @@ export const AFROBEATS_WORLD: GenreWorld = {
           "name": "Hook Anchor — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             2,
@@ -2207,11 +2207,11 @@ export const AFROBEATS_WORLD: GenreWorld = {
     {
       "id": "afrobeats-comp-9",
       "worldId": "afrobeats",
-      "traditionId": "afrobeats-modern",
+      "styleIds": ["afrobeats-modern"],
       "name": "Horn Comping",
       "family": "Horn",
       "category": "groove",
-      "description": "A genre-shaped accompaniment cell that supports the lead without occupying every subdivision. Built around vocal hook and the horn vocabulary of Afrobeats.",
+      "description": "A genre-shaped accompaniment cell that supports",
       "tags": [
         "afrobeats",
         "horn",
@@ -2297,7 +2297,7 @@ export const AFROBEATS_WORLD: GenreWorld = {
           "name": "Horn Comping — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             2,
             7,
@@ -2329,7 +2329,7 @@ export const AFROBEATS_WORLD: GenreWorld = {
           "name": "Horn Comping — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             2,
             4,
@@ -2381,11 +2381,11 @@ export const AFROBEATS_WORLD: GenreWorld = {
     {
       "id": "afrobeats-intro-10",
       "worldId": "afrobeats",
-      "traditionId": "afrobeats-modern",
+      "styleIds": ["afrobeats-modern"],
       "name": "Afrobeat Intro",
       "family": "Afrobeat",
       "category": "sectionPattern",
-      "description": "A reduced entrance used to establish the genre before the full groove arrives. Built around syncopated pocket and the afrobeat vocabulary of Afrobeats.",
+      "description": "A reduced entrance used to establish",
       "tags": [
         "afrobeats",
         "afrobeat",
@@ -2479,7 +2479,7 @@ export const AFROBEATS_WORLD: GenreWorld = {
           "name": "Afrobeat Intro — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             1,
             4,
@@ -2515,7 +2515,7 @@ export const AFROBEATS_WORLD: GenreWorld = {
           "name": "Afrobeat Intro — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             1,
             3,
@@ -2563,7 +2563,7 @@ export const AFROBEATS_WORLD: GenreWorld = {
           "name": "Afrobeat Intro — transition variation",
           "variationType": "transition",
           "probability": 0.16,
-          "description": "Adds a final pickup/closure gesture for section transitions.",
+          "description": "Adds a final pickup/closure gesture for",
           "onsetGrid": [
             1,
             3,
@@ -2627,11 +2627,11 @@ export const AFROBEATS_WORLD: GenreWorld = {
     {
       "id": "afrobeats-verse-11",
       "worldId": "afrobeats",
-      "traditionId": "afrobeats-modern",
+      "styleIds": ["afrobeats-modern"],
       "name": "Log Drum Verse Variation",
       "family": "Log Drum",
       "category": "groove",
-      "description": "A restrained verse variation with intentional headroom for melody. Built around log drum in Afrobeats.",
+      "description": "A restrained verse variation with intentional",
       "tags": [
         "afrobeats",
         "log-drum",
@@ -2731,7 +2731,7 @@ export const AFROBEATS_WORLD: GenreWorld = {
           "name": "Log Drum Verse Variation — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             2,
             5,
@@ -2767,7 +2767,7 @@ export const AFROBEATS_WORLD: GenreWorld = {
           "name": "Log Drum Verse Variation — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             2,
             4,
@@ -2827,11 +2827,11 @@ export const AFROBEATS_WORLD: GenreWorld = {
     {
       "id": "afrobeats-chorus-12",
       "worldId": "afrobeats",
-      "traditionId": "afrobeats-modern",
+      "styleIds": ["afrobeats-modern"],
       "name": "Shekere Chorus Lift",
       "family": "Shekere",
       "category": "sectionPattern",
-      "description": "A higher-energy chorus layer that increases density without changing the genre identity. Built around highlife guitar and the shekere vocabulary of Afrobeats.",
+      "description": "A higher-energy chorus layer that increases",
       "tags": [
         "afrobeats",
         "shekere",
@@ -2932,7 +2932,7 @@ export const AFROBEATS_WORLD: GenreWorld = {
           "name": "Shekere Chorus Lift — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             5,
@@ -2968,7 +2968,7 @@ export const AFROBEATS_WORLD: GenreWorld = {
           "name": "Shekere Chorus Lift — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             3,
@@ -3016,7 +3016,7 @@ export const AFROBEATS_WORLD: GenreWorld = {
           "name": "Shekere Chorus Lift — transition variation",
           "variationType": "transition",
           "probability": 0.16,
-          "description": "Adds a final pickup/closure gesture for section transitions.",
+          "description": "Adds a final pickup/closure gesture for",
           "onsetGrid": [
             0,
             3,
@@ -3080,11 +3080,11 @@ export const AFROBEATS_WORLD: GenreWorld = {
     {
       "id": "afrobeats-bridge-13",
       "worldId": "afrobeats",
-      "traditionId": "afrobeats-modern",
+      "styleIds": ["afrobeats-modern"],
       "name": "Hook Bridge",
       "family": "Hook",
       "category": "sectionPattern",
-      "description": "A contrasting bridge texture designed to reset repetition before the final return. Built around shekere and the hook vocabulary of Afrobeats.",
+      "description": "A contrasting bridge texture designed to",
       "tags": [
         "afrobeats",
         "hook",
@@ -3179,7 +3179,7 @@ export const AFROBEATS_WORLD: GenreWorld = {
           "name": "Hook Bridge — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             5,
@@ -3215,7 +3215,7 @@ export const AFROBEATS_WORLD: GenreWorld = {
           "name": "Hook Bridge — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             2,
@@ -3263,7 +3263,7 @@ export const AFROBEATS_WORLD: GenreWorld = {
           "name": "Hook Bridge — transition variation",
           "variationType": "transition",
           "probability": 0.16,
-          "description": "Adds a final pickup/closure gesture for section transitions.",
+          "description": "Adds a final pickup/closure gesture for",
           "onsetGrid": [
             0,
             2,
@@ -3327,11 +3327,11 @@ export const AFROBEATS_WORLD: GenreWorld = {
     {
       "id": "afrobeats-fill-14",
       "worldId": "afrobeats",
-      "traditionId": "afrobeats-modern",
+      "styleIds": ["afrobeats-modern"],
       "name": "Horn Fill",
       "family": "Horn",
       "category": "fill",
-      "description": "A short transition fill that signals the next section instead of looping the main groove unchanged. Built around vocal hook and the horn vocabulary of Afrobeats.",
+      "description": "A short transition fill that signals",
       "tags": [
         "afrobeats",
         "horn",
@@ -3421,7 +3421,7 @@ export const AFROBEATS_WORLD: GenreWorld = {
           "name": "Horn Fill — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             6,
@@ -3453,7 +3453,7 @@ export const AFROBEATS_WORLD: GenreWorld = {
           "name": "Horn Fill — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             4,
@@ -3493,7 +3493,7 @@ export const AFROBEATS_WORLD: GenreWorld = {
           "name": "Horn Fill — transition variation",
           "variationType": "transition",
           "probability": 0.16,
-          "description": "Adds a final pickup/closure gesture for section transitions.",
+          "description": "Adds a final pickup/closure gesture for",
           "onsetGrid": [
             0,
             4,
@@ -3549,11 +3549,11 @@ export const AFROBEATS_WORLD: GenreWorld = {
     {
       "id": "afrobeats-break-15",
       "worldId": "afrobeats",
-      "traditionId": "afrobeats-modern",
+      "styleIds": ["afrobeats-modern"],
       "name": "Afrobeat Break",
       "family": "Afrobeat",
       "category": "break",
-      "description": "A deliberate drop in density for a breakdown or stop-time moment. Built around syncopated pocket and the afrobeat vocabulary of Afrobeats.",
+      "description": "A deliberate drop in density for",
       "tags": [
         "afrobeats",
         "afrobeat",
@@ -3646,7 +3646,7 @@ export const AFROBEATS_WORLD: GenreWorld = {
           "name": "Afrobeat Break — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             1,
             7,
@@ -3678,7 +3678,7 @@ export const AFROBEATS_WORLD: GenreWorld = {
           "name": "Afrobeat Break — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             1,
             5,
@@ -3718,7 +3718,7 @@ export const AFROBEATS_WORLD: GenreWorld = {
           "name": "Afrobeat Break — transition variation",
           "variationType": "transition",
           "probability": 0.16,
-          "description": "Adds a final pickup/closure gesture for section transitions.",
+          "description": "Adds a final pickup/closure gesture for",
           "onsetGrid": [
             1,
             5,
@@ -3774,11 +3774,11 @@ export const AFROBEATS_WORLD: GenreWorld = {
     {
       "id": "afrobeats-cadence-16",
       "worldId": "afrobeats",
-      "traditionId": "afrobeats-modern",
+      "styleIds": ["afrobeats-modern"],
       "name": "Log Drum Cadence",
       "family": "Log Drum",
       "category": "cadence",
-      "description": "A phrase-ending cadence that gives the arrangement a clear point of release. Built around log drum in Afrobeats.",
+      "description": "A phrase-ending cadence that gives the",
       "tags": [
         "afrobeats",
         "log-drum",
@@ -3872,7 +3872,7 @@ export const AFROBEATS_WORLD: GenreWorld = {
           "name": "Log Drum Cadence — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             6,
@@ -3904,7 +3904,7 @@ export const AFROBEATS_WORLD: GenreWorld = {
           "name": "Log Drum Cadence — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             2,
@@ -3944,7 +3944,7 @@ export const AFROBEATS_WORLD: GenreWorld = {
           "name": "Log Drum Cadence — transition variation",
           "variationType": "transition",
           "probability": 0.16,
-          "description": "Adds a final pickup/closure gesture for section transitions.",
+          "description": "Adds a final pickup/closure gesture for",
           "onsetGrid": [
             0,
             2,
@@ -4000,11 +4000,11 @@ export const AFROBEATS_WORLD: GenreWorld = {
     {
       "id": "afrobeats-voice-phrasing",
       "worldId": "afrobeats",
-      "traditionId": "afrobeats-modern",
+      "styleIds": ["afrobeats-modern"],
       "name": "Afrobeats Vocal Phrasing",
       "family": "Vocal Phrasing",
       "category": "phrasePattern",
-      "description": "Hook-driven vocal placement designed around syncopated pocket, log-drum movement, and call-response space.",
+      "description": "Hook-driven vocal placement designed around syncopated",
       "tags": [
         "afrobeats",
         "voice",
@@ -4090,7 +4090,7 @@ export const AFROBEATS_WORLD: GenreWorld = {
           "name": "Afrobeats Vocal Phrasing — alternate phrasing",
           "variationType": "phraseStart",
           "probability": 0.2,
-          "description": "Alternate vocal entry placement for a second pass through the phrase.",
+          "description": "Alternate vocal entry placement for a",
           "onsetGrid": [
             0,
             3,
@@ -4130,7 +4130,7 @@ export const AFROBEATS_WORLD: GenreWorld = {
           "name": "Afrobeats Vocal Phrasing — accent shift",
           "variationType": "accentShift",
           "probability": 0.18,
-          "description": "Same rhythmic shape with shifted emphasis on the repeat.",
+          "description": "Same rhythmic shape with shifted emphasis",
           "onsetGrid": [
             0,
             3,

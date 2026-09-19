@@ -19,8 +19,8 @@ import {
 import { getCanonicalStyle, getStyle } from './registry';
 
 export interface ResolveStyleOptions {
-  genreId: string;
-  styleId?: string;
+  genreId?: string;
+  styleId: string;
   influences?: StyleInfluence[];
   userOverrides?: Partial<SongStyle>;
 }
@@ -30,7 +30,7 @@ const resolveCache = new Map<string, ResolvedStyle>();
 
 function cacheKey(opts: ResolveStyleOptions): string {
   return JSON.stringify({
-    genreId: opts.genreId,
+    genreId: opts.genreId ?? '',
     styleId: opts.styleId,
     influences: (opts.influences ?? []).map(inf => ({
       s: inf.source.styleId ?? inf.source.genreId,
@@ -85,12 +85,27 @@ function blendFx(base: SoundFxPreset = {}, inf: SoundFxPreset = {}, w: number): 
  * Resolves a style with full inheritance (extends chain), influences, and user overrides.
  * Pure, deterministic, memoized, frozen output.
  */
+export function getDefaultStyleForGenre(genreId: string): SongStyle {
+  return getCanonicalStyle(genreId);
+}
+
+export function resolveGenreStyle(genreId: string, opts: Omit<ResolveStyleOptions, 'genreId' | 'styleId'> = {}): ResolvedStyle {
+  const style = getDefaultStyleForGenre(genreId);
+  return resolveStyle({ ...opts, genreId, styleId: style.id });
+}
+
 export function resolveStyle(opts: ResolveStyleOptions): ResolvedStyle {
   const key = cacheKey(opts);
   const cached = resolveCache.get(key);
   if (cached) return cached;
 
-  const targetStyle = (opts.styleId && getStyle(opts.styleId)) || getCanonicalStyle(opts.genreId);
+  const targetStyle = getStyle(opts.styleId);
+  if (!targetStyle) {
+    throw new Error(`Unknown SongStyle: ${opts.styleId}`);
+  }
+  if (opts.genreId && !targetStyle.genres.includes(opts.genreId) && targetStyle.primaryGenre !== opts.genreId) {
+    throw new Error(`SongStyle ${opts.styleId} does not belong to genre ${opts.genreId}`);
+  }
   const extendsChain: string[] = [];
   const visited = new Set<string>();
 
@@ -217,15 +232,26 @@ export function resolveStyle(opts: ResolveStyleOptions): ResolvedStyle {
       recordDecision('sound', merged.sound, srcType, child.id);
     }
 
+    // Pattern contract: concrete style ownership is first-class. A child style
+    // may tighten/extend the pattern set, but never inherits a sibling style's patterns.
+    if (child.patterns) {
+      merged.patterns = {
+        ...merged.patterns,
+        ...child.patterns,
+        require: child.patterns.require?.length ? child.patterns.require : merged.patterns?.require,
+        preferred: child.patterns.preferred?.length ? child.patterns.preferred : merged.patterns?.preferred,
+        allowed: child.patterns.allowed?.length ? child.patterns.allowed : merged.patterns?.allowed,
+        avoid: Array.from(new Set([...(merged.patterns?.avoid ?? []), ...(child.patterns.avoid ?? [])])),
+      };
+      recordDecision('patterns', merged.patterns, srcType, child.id);
+    }
+
     // Gestures & Rules
     merged.gestures = { ...merged.gestures, ...child.gestures };
     merged.rules = {
       require: [...(merged.rules?.require ?? []), ...(child.rules?.require ?? [])],
       forbid: [...(merged.rules?.forbid ?? []), ...(child.rules?.forbid ?? [])],
     };
-    if (child.legacy) {
-      merged.legacy = { ...merged.legacy, ...child.legacy };
-    }
   }
 
   // 3. Apply Influences
@@ -398,7 +424,7 @@ export function resolveStyle(opts: ResolveStyleOptions): ResolvedStyle {
     rules: (merged.rules ?? { require: [], forbid: [] }) as { require: RuleRef[]; forbid: RuleRef[] },
     resolvedFrom: {
       baseStyleId: targetStyle.id,
-      genreId: opts.genreId,
+      genreId: opts.genreId ?? '',
       extendsChain,
       appliedInfluences,
     },

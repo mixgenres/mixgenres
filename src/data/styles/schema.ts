@@ -158,10 +158,9 @@ export interface SongStyle {
   melody?: Partial<MelodyGrammar>;         // scale/mode, range per section, contour archetypes, phrase lengths, motif-development ops, ornament vocabulary, chord-tone targeting, call/response
   arrangement?: Partial<ArrangementGrammar>; // ensemble template by role, entrance/exit schedule per section, density curve, register allocation, doubling, stabs/hits, solos
   sound?: Partial<SoundProfile>;           // instrument palette (weighted), patch/soundfont picks, articulation, FX chains, reverb/delay character, saturation/compression, stereo image, master profile
-  patterns?: { require?: string[]; avoid?: string[] };
+  patterns?: { require?: string[]; preferred?: string[]; allowed?: string[]; avoid?: string[] };
   gestures?: Record<string, GestureRule>; // signature moves (arrastre, yumba, dembow fill, riser...) with per-context probabilities; 0 = style refrains from it
   rules?: { require?: RuleRef[]; forbid?: RuleRef[] };
-  legacy?: Record<string, unknown>; // migrated tradition fields not yet mapped to a grammar section
 }
 
 export interface DecisionTraceItem {
@@ -181,7 +180,7 @@ export interface ResolvedStyle extends SongStyle {
   melody: MelodyGrammar;
   arrangement: ArrangementGrammar;
   sound: SoundProfile;
-  patterns?: { require?: string[]; avoid?: string[] };
+  patterns?: { require?: string[]; preferred?: string[]; allowed?: string[]; avoid?: string[] };
   gestures: Record<string, GestureRule>;
   rules: { require: RuleRef[]; forbid: RuleRef[] };
   resolvedFrom: {

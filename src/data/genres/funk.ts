@@ -6,15 +6,15 @@ export const FUNK_WORLD: GenreWorld = {
   "family": "African American Groove",
   "color": "#e28743",
   "level": "world",
-  "description": "The masters of groove: \"The One\" downbeat architecture, 16th-note syncopated slap bass, chicken-scratch 9th guitar chords, Clyde Stubblefield breakbeats, and warm Neo-Soul/Motown harmonic pockets.",
-  "traditions": [
+  "description": "The masters of groove: \"The One\"",
+  "styleDefinitions": [
     {
       "id": "funk-p-funk",
       "worldId": "funk",
       "name": "P-Funk",
       "origin": "Plainfield, NJ / Detroit",
       "era": "1970s",
-      "description": "Heavy On The One • Space Bass • Psychedelic\nGeorge Clinton's cosmic funk universe.\nParliament · Funkadelic",
+      "description": "Heavy On The One • Space",
       "characteristicInstruments": [
         "bass",
         "drums",
@@ -96,7 +96,7 @@ export const FUNK_WORLD: GenreWorld = {
       "name": "Deep Funk",
       "origin": "New Orleans / Cincinnati",
       "era": "Late 1960s–1970s",
-      "description": "Raw • Syncopated • Tight\nAnalog rhythm section workouts.\nThe Meters · Sharon Jones & The Dap-Kings",
+      "description": "Raw • Syncopated • Tight\nAnalog rhythm",
       "characteristicInstruments": [
         "drums",
         "bass",
@@ -176,7 +176,7 @@ export const FUNK_WORLD: GenreWorld = {
       "name": "Synth Funk",
       "origin": "Minneapolis / Los Angeles",
       "era": "1980s",
-      "description": "Electronic • Drum Machine • Slap Bass\n80s electro-funk Minneapolis sound.\nPrince · Cameo",
+      "description": "Electronic • Drum Machine • Slap",
       "characteristicInstruments": [
         "synth",
         "drums",
@@ -257,7 +257,7 @@ export const FUNK_WORLD: GenreWorld = {
       "name": "Disco",
       "origin": "New York City / Philadelphia",
       "era": "1970s",
-      "description": "Four-on-the-floor • Strings • Glamorous\nOrchestral dance club groove.\nChic · Donna Summer",
+      "description": "Four-on-the-floor • Strings • Glamorous\nOrchestral dance",
       "characteristicInstruments": [
         "drums",
         "bass",
@@ -339,7 +339,7 @@ export const FUNK_WORLD: GenreWorld = {
       "name": "Go-Go",
       "origin": "Washington, D.C.",
       "era": "1970s–1980s",
-      "description": "Percussive • Call-and-Response • Non-stop\nD.C. continuous cowbell dance marathon.\nChuck Brown · Trouble Funk",
+      "description": "Percussive • Call-and-Response • Non-stop\nD.C. continuous",
       "characteristicInstruments": [
         "drums",
         "cowbell",
@@ -421,7 +421,7 @@ export const FUNK_WORLD: GenreWorld = {
       "name": "Boogie",
       "origin": "New York / London",
       "era": "Late 1970s–Early 1980s",
-      "description": "Mid-tempo • Synth Bass • Electric\nPost-disco electronic funk groove.\nEvelyn \"Champagne\" King · D-Train",
+      "description": "Mid-tempo • Synth Bass • Electric\nPost-disco",
       "characteristicInstruments": [
         "synth",
         "bass",
@@ -502,7 +502,7 @@ export const FUNK_WORLD: GenreWorld = {
       "name": "Afrobeat",
       "origin": "Lagos, Nigeria",
       "era": "1970s",
-      "description": "Polyrhythmic • Horn Section • Endless Groove\nFela Kuti's funk-jazz revolution.\nFela Kuti · Tony Allen",
+      "description": "Polyrhythmic • Horn Section • Endless",
       "characteristicInstruments": [
         "drums",
         "bass",
@@ -579,7 +579,7 @@ export const FUNK_WORLD: GenreWorld = {
       "name": "Funk Carioca",
       "origin": "Rio de Janeiro Favelas, Brazil",
       "era": "1990s–Present",
-      "description": "Volt Mix Beat • Vocal Chants • Raw\nRio favela baile funk energy.\nMC Marcinho · Anitta",
+      "description": "Volt Mix Beat • Vocal Chants",
       "characteristicInstruments": [
         "drums",
         "sub-bass",
@@ -722,11 +722,11 @@ export const FUNK_WORLD: GenreWorld = {
     {
       "id": "funk-the-one-bass",
       "worldId": "funk",
-      "traditionId": "funk-pfunk-neworleans",
+      "styleIds": ["funk-pfunk-neworleans"],
       "name": "\"The One\" 16th-Note Syncopated Bass",
       "family": "Funk Basslines",
       "category": "ostinato",
-      "description": "Explosive root hit on beat 1 (\"The One\") followed by rapid 16th ghost notes, hammer-ons, and syncopated pops.",
+      "description": "Explosive root hit on beat 1",
       "tags": [
         "funk",
         "bass",
@@ -824,7 +824,7 @@ export const FUNK_WORLD: GenreWorld = {
             0.95,
             0.8
           ],
-          "description": "Syncopated melodic bassline using chromatic enclosures and open string shifts."
+          "description": "Syncopated melodic bassline using chromatic enclosures"
         },
         {
           "id": "funk-the-one-bass-v-02",
@@ -832,7 +832,7 @@ export const FUNK_WORLD: GenreWorld = {
           "name": "\"The One\" 16th-Note Syncopated Bass — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             3,
@@ -905,7 +905,7 @@ export const FUNK_WORLD: GenreWorld = {
           "sourceRole": "drums",
           "targetRole": "bass",
           "relationship": "reinforce",
-          "description": "Low-end attacks reinforce the main pulse without doubling every subdivision.",
+          "description": "Low-end attacks reinforce the main pulse",
           "timingOffsetSteps": 0,
           "probability": 0.78
         }
@@ -914,11 +914,11 @@ export const FUNK_WORLD: GenreWorld = {
     {
       "id": "funk-chicken-scratch-guitar",
       "worldId": "funk",
-      "traditionId": "funk-pfunk-neworleans",
+      "styleIds": ["funk-pfunk-neworleans"],
       "name": "Chicken-Scratch 9th Chords (Muted 16th Strum)",
       "family": "Funk Guitar",
       "category": "ostinato",
-      "description": "Rapid 16th-note muted rhythmic scratches with sharp dominant 9th chord accents on syncopated upbeats.",
+      "description": "Rapid 16th-note muted rhythmic scratches with",
       "tags": [
         "guitar",
         "funk",
@@ -1031,7 +1031,7 @@ export const FUNK_WORLD: GenreWorld = {
             1,
             1
           ],
-          "description": "Clean, isolated off-beat chord stabs leaving space for bass and vocals."
+          "description": "Clean, isolated off-beat chord stabs leaving"
         },
         {
           "id": "funk-chicken-scratch-guitar-v-02",
@@ -1039,7 +1039,7 @@ export const FUNK_WORLD: GenreWorld = {
           "name": "Chicken-Scratch 9th Chords (Muted 16th Strum) — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             1,
@@ -1145,7 +1145,7 @@ export const FUNK_WORLD: GenreWorld = {
           "sourceRole": "voice",
           "targetRole": "harmony",
           "relationship": "leaveSpace",
-          "description": "Harmony reduces density under vocal entries so the phrase remains foregrounded.",
+          "description": "Harmony reduces density under vocal entries",
           "timingOffsetSteps": 0,
           "probability": 0.72
         }
@@ -1154,11 +1154,11 @@ export const FUNK_WORLD: GenreWorld = {
     {
       "id": "funk-drum-breakbeat",
       "worldId": "funk",
-      "traditionId": "funk-pfunk-neworleans",
+      "styleIds": ["funk-pfunk-neworleans"],
       "name": "Clyde Stubblefield \"Funky Drummer\" Breakbeat",
       "family": "Funk Drumming",
       "category": "fill",
-      "description": "The most sampled groove in music history: ghosted snare chatter, syncopated kick pulse, and tight hi-hat accents.",
+      "description": "The most sampled groove in music",
       "tags": [
         "drums",
         "breakbeat",
@@ -1256,7 +1256,7 @@ export const FUNK_WORLD: GenreWorld = {
             1,
             0.6
           ],
-          "description": "Unquantized relaxed pocket with delayed backbeat snare."
+          "description": "Unquantized relaxed pocket with delayed backbeat"
         },
         {
           "id": "funk-drum-breakbeat-v-02",
@@ -1264,7 +1264,7 @@ export const FUNK_WORLD: GenreWorld = {
           "name": "Clyde Stubblefield \"Funky Drummer\" Breakbeat — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             2,
@@ -1347,11 +1347,11 @@ export const FUNK_WORLD: GenreWorld = {
     {
       "id": "funk-16th-strum",
       "worldId": "funk",
-      "traditionId": "soul-motown-neosoul",
+      "styleIds": ["soul-motown-neosoul"],
       "name": "16th Note Strum",
       "family": "Guitar",
       "category": "break",
-      "description": "Continuous 16ths chicken-scratch with accented backbeat chops.",
+      "description": "Continuous 16ths chicken-scratch with accented backbeat",
       "tags": [],
       "scopes": [
         "measure"
@@ -1413,7 +1413,7 @@ export const FUNK_WORLD: GenreWorld = {
           "name": "16th Note Strum — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             3,
@@ -1453,7 +1453,7 @@ export const FUNK_WORLD: GenreWorld = {
           "name": "16th Note Strum — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             2,
@@ -1531,11 +1531,11 @@ export const FUNK_WORLD: GenreWorld = {
     {
       "id": "funk-slap-bass",
       "worldId": "funk",
-      "traditionId": "funk-pfunk-neworleans",
+      "styleIds": ["funk-pfunk-neworleans"],
       "name": "Slap Bass",
       "family": "Bass",
       "category": "cadence",
-      "description": "Thumb slap on downbeats and syncopated index pops.",
+      "description": "Thumb slap on downbeats and syncopated",
       "tags": [],
       "scopes": [
         "measure"
@@ -1596,7 +1596,7 @@ export const FUNK_WORLD: GenreWorld = {
           "name": "Slap Bass — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             4,
@@ -1632,7 +1632,7 @@ export const FUNK_WORLD: GenreWorld = {
           "name": "Slap Bass — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             3,
@@ -1706,11 +1706,11 @@ export const FUNK_WORLD: GenreWorld = {
     {
       "id": "funk-ghost-snares",
       "worldId": "funk",
-      "traditionId": "funk-pfunk-neworleans",
+      "styleIds": ["funk-pfunk-neworleans"],
       "name": "Ghost Snares",
       "family": "Drums",
       "category": "groove",
-      "description": "Subtle 16th ghost note chatter dancing around backbeat hits.",
+      "description": "Subtle 16th ghost note chatter dancing",
       "tags": [],
       "scopes": [
         "measure"
@@ -1769,7 +1769,7 @@ export const FUNK_WORLD: GenreWorld = {
           "name": "Ghost Snares — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             2,
             6,
@@ -1805,7 +1805,7 @@ export const FUNK_WORLD: GenreWorld = {
           "name": "Ghost Snares — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             2,
             3,
@@ -1878,7 +1878,7 @@ export const FUNK_WORLD: GenreWorld = {
           "sourceRole": "bass",
           "targetRole": "drums",
           "relationship": "accentWith",
-          "description": "Bass accents align with selected kick/backbeat events for a tighter pocket.",
+          "description": "Bass accents align with selected kick/backbeat",
           "timingOffsetSteps": 0,
           "probability": 0.65
         }
@@ -1891,11 +1891,11 @@ export const FUNK_WORLD: GenreWorld = {
     {
       "id": "funk-clavinet",
       "worldId": "funk",
-      "traditionId": "funk-pfunk-neworleans",
+      "styleIds": ["funk-pfunk-neworleans"],
       "name": "Clavinet Sync",
       "family": "Keys",
       "category": "groove",
-      "description": "Perceptive syncopated clavinet riff driving forward motion.",
+      "description": "Perceptive syncopated clavinet riff driving forward",
       "tags": [],
       "scopes": [
         "measure"
@@ -1947,7 +1947,7 @@ export const FUNK_WORLD: GenreWorld = {
           "name": "Clavinet Sync — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             1,
             7,
@@ -1975,7 +1975,7 @@ export const FUNK_WORLD: GenreWorld = {
           "name": "Clavinet Sync — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             1,
             4,
@@ -2037,11 +2037,11 @@ export const FUNK_WORLD: GenreWorld = {
     {
       "id": "funk-horn-section",
       "worldId": "funk",
-      "traditionId": "funk-pfunk-neworleans",
+      "styleIds": ["funk-pfunk-neworleans"],
       "name": "Horn Section Hits",
       "family": "Brass",
       "category": "groove",
-      "description": "Explosive unison brass stabs marking rhythmic landmarks.",
+      "description": "Explosive unison brass stabs marking rhythmic",
       "tags": [],
       "scopes": [
         "measure"
@@ -2089,7 +2089,7 @@ export const FUNK_WORLD: GenreWorld = {
           "name": "Horn Section Hits — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             12
@@ -2113,7 +2113,7 @@ export const FUNK_WORLD: GenreWorld = {
           "name": "Horn Section Hits — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             6,
@@ -2167,11 +2167,11 @@ export const FUNK_WORLD: GenreWorld = {
     {
       "id": "funk-soul-bass",
       "worldId": "funk",
-      "traditionId": "soul-motown-neosoul",
+      "styleIds": ["soul-motown-neosoul"],
       "name": "Motown Bass",
       "family": "Bass",
       "category": "groove",
-      "description": "Melodic James Jamerson style syncopated walking bass.",
+      "description": "Melodic James Jamerson style syncopated walking",
       "tags": [],
       "scopes": [
         "measure"
@@ -2224,7 +2224,7 @@ export const FUNK_WORLD: GenreWorld = {
           "name": "Motown Bass — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             7,
@@ -2256,7 +2256,7 @@ export const FUNK_WORLD: GenreWorld = {
           "name": "Motown Bass — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             4,
@@ -2322,7 +2322,7 @@ export const FUNK_WORLD: GenreWorld = {
     {
       "id": "funk-hihat-open",
       "worldId": "funk",
-      "traditionId": "funk-pfunk-neworleans",
+      "styleIds": ["funk-pfunk-neworleans"],
       "name": "Open Hi-Hat",
       "family": "Drums",
       "category": "groove",
@@ -2373,7 +2373,7 @@ export const FUNK_WORLD: GenreWorld = {
           "name": "Open Hi-Hat — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             1,
             5,
@@ -2401,7 +2401,7 @@ export const FUNK_WORLD: GenreWorld = {
           "name": "Open Hi-Hat — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             1,
             3,
@@ -2459,11 +2459,11 @@ export const FUNK_WORLD: GenreWorld = {
     {
       "id": "funk-neo-soul-beat",
       "worldId": "funk",
-      "traditionId": "soul-motown-neosoul",
+      "styleIds": ["soul-motown-neosoul"],
       "name": "Neo-Soul Drag",
       "family": "Drums",
       "category": "groove",
-      "description": "Dilla-style unquantized groove with laid-back snare pocket.",
+      "description": "Dilla-style unquantized groove with laid-back snare",
       "tags": [],
       "scopes": [
         "measure"
@@ -2510,7 +2510,7 @@ export const FUNK_WORLD: GenreWorld = {
           "name": "Neo-Soul Drag — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             8,
@@ -2538,7 +2538,7 @@ export const FUNK_WORLD: GenreWorld = {
           "name": "Neo-Soul Drag — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             5,
@@ -2596,11 +2596,11 @@ export const FUNK_WORLD: GenreWorld = {
     {
       "id": "funk-wah-guitar",
       "worldId": "funk",
-      "traditionId": "funk-pfunk-neworleans",
+      "styleIds": ["funk-pfunk-neworleans"],
       "name": "Wah-Wah Guitar",
       "family": "Guitar",
       "category": "groove",
-      "description": "Expressive wah pedal rhythm sweeping through frequencies.",
+      "description": "Expressive wah pedal rhythm sweeping through",
       "tags": [],
       "scopes": [
         "measure"
@@ -2659,7 +2659,7 @@ export const FUNK_WORLD: GenreWorld = {
           "name": "Wah-Wah Guitar — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             4,
@@ -2695,7 +2695,7 @@ export const FUNK_WORLD: GenreWorld = {
           "name": "Wah-Wah Guitar — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             2,
@@ -2769,11 +2769,11 @@ export const FUNK_WORLD: GenreWorld = {
     {
       "id": "funk-phrase-13",
       "worldId": "funk",
-      "traditionId": "funk-pfunk-neworleans",
+      "styleIds": ["funk-pfunk-neworleans"],
       "name": "Vamp Phrase",
       "family": "Vamp",
       "category": "phrasePattern",
-      "description": "A phrase-level rhythmic template that leaves deliberate space for melodic expression. Built around horn hits and the vamp vocabulary of Funk.",
+      "description": "A phrase-level rhythmic template that leaves",
       "tags": [
         "funk",
         "vamp",
@@ -2865,7 +2865,7 @@ export const FUNK_WORLD: GenreWorld = {
           "name": "Vamp Phrase — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             4,
@@ -2901,7 +2901,7 @@ export const FUNK_WORLD: GenreWorld = {
           "name": "Vamp Phrase — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             3,
@@ -2961,11 +2961,11 @@ export const FUNK_WORLD: GenreWorld = {
     {
       "id": "funk-call-14",
       "worldId": "funk",
-      "traditionId": "funk-pfunk-neworleans",
+      "styleIds": ["funk-pfunk-neworleans"],
       "name": "Break Response",
       "family": "Break",
       "category": "interactionPattern",
-      "description": "A call-and-response shape that leaves the next phrase open for an answer. Built around syncopated guitar and the break vocabulary of Funk.",
+      "description": "A call-and-response shape that leaves the",
       "tags": [
         "funk",
         "break",
@@ -3058,7 +3058,7 @@ export const FUNK_WORLD: GenreWorld = {
           "name": "Break Response — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             4,
@@ -3094,7 +3094,7 @@ export const FUNK_WORLD: GenreWorld = {
           "name": "Break Response — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             1,
@@ -3142,7 +3142,7 @@ export const FUNK_WORLD: GenreWorld = {
           "name": "Break Response — transition variation",
           "variationType": "transition",
           "probability": 0.16,
-          "description": "Adds a final pickup/closure gesture for section transitions.",
+          "description": "Adds a final pickup/closure gesture for",
           "onsetGrid": [
             0,
             1,
@@ -3210,11 +3210,11 @@ export const FUNK_WORLD: GenreWorld = {
     {
       "id": "funk-anchor-15",
       "worldId": "funk",
-      "traditionId": "funk-pfunk-neworleans",
+      "styleIds": ["funk-pfunk-neworleans"],
       "name": "Pocket Anchor",
       "family": "Pocket",
       "category": "ostinato",
-      "description": "A repeating anchor that locks the low end to the groove. Built around 16ths and the pocket vocabulary of Funk.",
+      "description": "A repeating anchor that locks the",
       "tags": [
         "funk",
         "pocket",
@@ -3307,7 +3307,7 @@ export const FUNK_WORLD: GenreWorld = {
           "name": "Pocket Anchor — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             1,
             5,
@@ -3343,7 +3343,7 @@ export const FUNK_WORLD: GenreWorld = {
           "name": "Pocket Anchor — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             1,
             2,
@@ -3403,11 +3403,11 @@ export const FUNK_WORLD: GenreWorld = {
     {
       "id": "funk-comp-16",
       "worldId": "funk",
-      "traditionId": "funk-pfunk-neworleans",
+      "styleIds": ["funk-pfunk-neworleans"],
       "name": "Clav Comping",
       "family": "Clav",
       "category": "groove",
-      "description": "A genre-shaped accompaniment cell that supports the lead without occupying every subdivision. Built around ghost notes and the clav vocabulary of Funk.",
+      "description": "A genre-shaped accompaniment cell that supports",
       "tags": [
         "funk",
         "clav",
@@ -3493,7 +3493,7 @@ export const FUNK_WORLD: GenreWorld = {
           "name": "Clav Comping — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             1,
             6,
@@ -3525,7 +3525,7 @@ export const FUNK_WORLD: GenreWorld = {
           "name": "Clav Comping — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             1,
             4,
@@ -3577,11 +3577,11 @@ export const FUNK_WORLD: GenreWorld = {
     {
       "id": "funk-voice-phrasing",
       "worldId": "funk",
-      "traditionId": "funk-pfunk-neworleans",
+      "styleIds": ["funk-pfunk-neworleans"],
       "name": "Funk Vocal Phrasing",
       "family": "Vocal Phrasing",
       "category": "phrasePattern",
-      "description": "Rhythmic vocal hook template that uses syncopated gaps instead of constant subdivision.",
+      "description": "Rhythmic vocal hook template that uses",
       "tags": [
         "funk",
         "voice",
@@ -3667,7 +3667,7 @@ export const FUNK_WORLD: GenreWorld = {
           "name": "Funk Vocal Phrasing — alternate phrasing",
           "variationType": "phraseStart",
           "probability": 0.2,
-          "description": "Alternate vocal entry placement for a second pass through the phrase.",
+          "description": "Alternate vocal entry placement for a",
           "onsetGrid": [
             0,
             3,
@@ -3707,7 +3707,7 @@ export const FUNK_WORLD: GenreWorld = {
           "name": "Funk Vocal Phrasing — accent shift",
           "variationType": "accentShift",
           "probability": 0.18,
-          "description": "Same rhythmic shape with shifted emphasis on the repeat.",
+          "description": "Same rhythmic shape with shifted emphasis",
           "onsetGrid": [
             0,
             3,

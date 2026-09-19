@@ -7,15 +7,15 @@ export const TIMBA_WORLD: GenreWorld = {
   "color": "#8964cf",
   "level": "family",
   "parentId": "afro-cuban",
-  "description": "High-energy modern Cuban popular music: dynamic gear changes (marcha, presión, bomba, pedal), songo drum grooves, funk-slap displaced basslines, piano bloques, and tight horn stabs.",
-  "traditions": [
+  "description": "High-energy modern Cuban popular music: dynamic",
+  "styleDefinitions": [
     {
       "id": "timba-timba-habanera",
       "worldId": "timba",
       "name": "Timba Habanera",
       "origin": "Havana, Cuba",
       "era": "1990s–Present",
-      "description": "Funk Slap Bass • Gear Shifts • Clave 3-2\nCuba's explosive polyrhythmic salsa revolution.\nLos Van Van · NG La Banda",
+      "description": "Funk Slap Bass • Gear Shifts",
       "characteristicInstruments": [
         "drums",
         "timbales",
@@ -93,7 +93,7 @@ export const TIMBA_WORLD: GenreWorld = {
       "name": "Songo",
       "origin": "Havana, Cuba (Los Van Van)",
       "era": "1970s–1980s",
-      "description": "Changuito Drum Groove • Cowbell • Funk-Son\nFoundational rhythmic fusion created by Changuito.\nChanguito · Juan Formell",
+      "description": "Changuito Drum Groove • Cowbell •",
       "characteristicInstruments": [
         "drums",
         "congas",
@@ -210,11 +210,11 @@ export const TIMBA_WORLD: GenreWorld = {
     {
       "id": "timba-gear-marcha",
       "worldId": "timba",
-      "traditionId": "timba-havana-modern",
+      "styleIds": ["timba-havana-modern"],
       "name": "Gear Change: Marcha (Standard Drive)",
       "family": "Timba Gear System",
       "category": "sectionPattern",
-      "description": "Base gear featuring full driving groove with piano montuno, driving cáscara, and displaced bass.",
+      "description": "Base gear featuring full driving groove",
       "tags": [
         "timba",
         "gear",
@@ -314,7 +314,7 @@ export const TIMBA_WORLD: GenreWorld = {
             0.85,
             0.95
           ],
-          "description": "Drop to raw sub-bass slap and floor tom / kick drum pulse."
+          "description": "Drop to raw sub-bass slap and"
         },
         {
           "id": "timba-gear-presion",
@@ -358,7 +358,7 @@ export const TIMBA_WORLD: GenreWorld = {
             1,
             1
           ],
-          "description": "Maximum density and cowbell acceleration for peak dancer energy."
+          "description": "Maximum density and cowbell acceleration for"
         },
         {
           "id": "timba-gear-marcha-v-03",
@@ -366,7 +366,7 @@ export const TIMBA_WORLD: GenreWorld = {
           "name": "Gear Change: Marcha (Standard Drive) — transition variation",
           "variationType": "transition",
           "probability": 0.16,
-          "description": "Adds a final pickup/closure gesture for section transitions.",
+          "description": "Adds a final pickup/closure gesture for",
           "onsetGrid": [
             0,
             4,
@@ -459,7 +459,7 @@ export const TIMBA_WORLD: GenreWorld = {
           "sourceRole": "drums",
           "targetRole": "bass",
           "relationship": "reinforce",
-          "description": "Low-end attacks reinforce the main pulse without doubling every subdivision.",
+          "description": "Low-end attacks reinforce the main pulse",
           "timingOffsetSteps": 0,
           "probability": 0.78
         }
@@ -472,11 +472,11 @@ export const TIMBA_WORLD: GenreWorld = {
     {
       "id": "timba-songo-groove",
       "worldId": "timba",
-      "traditionId": "timba-havana-modern",
+      "styleIds": ["timba-havana-modern"],
       "name": "Songo Drum Kit & Cowbell Groove (Changuito / Los Van Van)",
       "family": "Songo Drumming",
       "category": "fill",
-      "description": "Changuito’s revolutionary drum groove combining foot cowbell, snare ghost notes, and tom accents.",
+      "description": "Changuito’s revolutionary drum groove combining foot",
       "tags": [
         "songo",
         "drums",
@@ -575,7 +575,7 @@ export const TIMBA_WORLD: GenreWorld = {
             1,
             0.6
           ],
-          "description": "Syncopated linear snare fills weaving between tom accents."
+          "description": "Syncopated linear snare fills weaving between"
         },
         {
           "id": "timba-songo-groove-variant-bongo-bell-drive",
@@ -583,7 +583,7 @@ export const TIMBA_WORLD: GenreWorld = {
           "name": "Bongo Bell Drive",
           "variationType": "instrumentSpecific",
           "probability": 0.18,
-          "description": "Driving cowbell syncopation for high-energy presión sections. Retained as a variation rather than a separate pattern entry.",
+          "description": "Driving cowbell syncopation for high-energy presión",
           "onsetGrid": [
             0,
             2,
@@ -652,11 +652,11 @@ export const TIMBA_WORLD: GenreWorld = {
     {
       "id": "timba-displaced-bass",
       "worldId": "timba",
-      "traditionId": "timba-havana-modern",
+      "styleIds": ["timba-havana-modern"],
       "name": "Displaced Funk / Timba Bassline",
       "family": "Timba Bass Systems",
       "category": "ostinato",
-      "description": "Syncopated bass utilizing slap thumb pops, 16th-note ghost notes, and displaced metric pivots.",
+      "description": "Syncopated bass utilizing slap thumb pops,",
       "tags": [
         "bass",
         "slap",
@@ -732,7 +732,7 @@ export const TIMBA_WORLD: GenreWorld = {
             0.8,
             0.95
           ],
-          "description": "Heavy sustained pedal point creating tension before a gear release."
+          "description": "Heavy sustained pedal point creating tension"
         },
         {
           "id": "timba-displaced-bass-v-02",
@@ -740,7 +740,7 @@ export const TIMBA_WORLD: GenreWorld = {
           "name": "Displaced Funk / Timba Bassline — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             3,
@@ -805,7 +805,7 @@ export const TIMBA_WORLD: GenreWorld = {
           "sourceRole": "voice",
           "targetRole": "harmony",
           "relationship": "leaveSpace",
-          "description": "Harmony reduces density under vocal entries so the phrase remains foregrounded.",
+          "description": "Harmony reduces density under vocal entries",
           "timingOffsetSteps": 0,
           "probability": 0.72
         }
@@ -818,11 +818,11 @@ export const TIMBA_WORLD: GenreWorld = {
     {
       "id": "timba-conga-gear",
       "worldId": "timba",
-      "traditionId": "timba-havana-modern",
+      "styleIds": ["timba-havana-modern"],
       "name": "Timba Conga Gear",
       "family": "Conga",
       "category": "break",
-      "description": "Dense modern timba conga pattern with heel-toe, slap, and resonant open tones.",
+      "description": "Dense modern timba conga pattern with",
       "tags": [],
       "scopes": [
         "measure"
@@ -881,7 +881,7 @@ export const TIMBA_WORLD: GenreWorld = {
           "name": "Timba Conga Gear — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             4,
@@ -917,7 +917,7 @@ export const TIMBA_WORLD: GenreWorld = {
           "name": "Timba Conga Gear — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             3,
@@ -991,11 +991,11 @@ export const TIMBA_WORLD: GenreWorld = {
     {
       "id": "timba-bata-fusion",
       "worldId": "timba",
-      "traditionId": "timba-havana-modern",
+      "styleIds": ["timba-havana-modern"],
       "name": "Bata Fusion",
       "family": "Percussion",
       "category": "cadence",
-      "description": "Bata drum accents blended into drumkit polyrhythm.",
+      "description": "Bata drum accents blended into drumkit",
       "tags": [],
       "scopes": [
         "measure"
@@ -1047,7 +1047,7 @@ export const TIMBA_WORLD: GenreWorld = {
           "name": "Bata Fusion — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             8,
@@ -1075,7 +1075,7 @@ export const TIMBA_WORLD: GenreWorld = {
           "name": "Bata Fusion — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             4,
@@ -1137,11 +1137,11 @@ export const TIMBA_WORLD: GenreWorld = {
     {
       "id": "timba-synth-bass",
       "worldId": "timba",
-      "traditionId": "timba-havana-modern",
+      "styleIds": ["timba-havana-modern"],
       "name": "Synth Bass Tumbao",
       "family": "Bass",
       "category": "groove",
-      "description": "Aggressive synth bass timba line punching offbeats.",
+      "description": "Aggressive synth bass timba line punching",
       "tags": [],
       "scopes": [
         "measure"
@@ -1190,7 +1190,7 @@ export const TIMBA_WORLD: GenreWorld = {
           "name": "Synth Bass Tumbao — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             2,
             10,
@@ -1218,7 +1218,7 @@ export const TIMBA_WORLD: GenreWorld = {
           "name": "Synth Bass Tumbao — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             2,
             6,
@@ -1275,7 +1275,7 @@ export const TIMBA_WORLD: GenreWorld = {
           "sourceRole": "bass",
           "targetRole": "drums",
           "relationship": "accentWith",
-          "description": "Bass accents align with selected kick/backbeat events for a tighter pocket.",
+          "description": "Bass accents align with selected kick/backbeat",
           "timingOffsetSteps": 0,
           "probability": 0.65
         }
@@ -1288,7 +1288,7 @@ export const TIMBA_WORLD: GenreWorld = {
     {
       "id": "timba-piano-guajeo",
       "worldId": "timba",
-      "traditionId": "timba-havana-modern",
+      "styleIds": ["timba-havana-modern"],
       "name": "Piano Guajeo",
       "family": "Piano",
       "category": "groove",
@@ -1347,7 +1347,7 @@ export const TIMBA_WORLD: GenreWorld = {
           "name": "Piano Guajeo — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             6,
@@ -1379,7 +1379,7 @@ export const TIMBA_WORLD: GenreWorld = {
           "name": "Piano Guajeo — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             3,
@@ -1445,11 +1445,11 @@ export const TIMBA_WORLD: GenreWorld = {
     {
       "id": "timba-kick-bomobo",
       "worldId": "timba",
-      "traditionId": "timba-havana-modern",
+      "styleIds": ["timba-havana-modern"],
       "name": "Kick Bombo",
       "family": "Drum Kit",
       "category": "groove",
-      "description": "Kick hitting the bombo note heavily before beat 3 and 1.",
+      "description": "Kick hitting the bombo note heavily",
       "tags": [],
       "scopes": [
         "measure"
@@ -1490,7 +1490,7 @@ export const TIMBA_WORLD: GenreWorld = {
           "name": "Kick Bombo — played variation",
           "variationType": "accentShift",
           "probability": 0.18,
-          "description": "A light played variation for sparse patterns with only a few attacks.",
+          "description": "A light played variation for sparse",
           "onsetGrid": [
             6,
             14
@@ -1514,7 +1514,7 @@ export const TIMBA_WORLD: GenreWorld = {
           "name": "Kick Bombo — played variation",
           "variationType": "accentShift",
           "probability": 0.18,
-          "description": "A light played variation for sparse patterns with only a few attacks.",
+          "description": "A light played variation for sparse",
           "onsetGrid": [
             6,
             14
@@ -1564,11 +1564,11 @@ export const TIMBA_WORLD: GenreWorld = {
     {
       "id": "timba-horn-moña",
       "worldId": "timba",
-      "traditionId": "timba-havana-modern",
+      "styleIds": ["timba-havana-modern"],
       "name": "Horn Moña",
       "family": "Horns",
       "category": "groove",
-      "description": "Interlocking brass riffs cutting through the texture.",
+      "description": "Interlocking brass riffs cutting through the",
       "tags": [],
       "scopes": [
         "measure"
@@ -1620,7 +1620,7 @@ export const TIMBA_WORLD: GenreWorld = {
           "name": "Horn Moña — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             1,
             7,
@@ -1648,7 +1648,7 @@ export const TIMBA_WORLD: GenreWorld = {
           "name": "Horn Moña — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             1,
             4,
@@ -1710,11 +1710,11 @@ export const TIMBA_WORLD: GenreWorld = {
     {
       "id": "timba-clave-rumba",
       "worldId": "timba",
-      "traditionId": "timba-havana-modern",
+      "styleIds": ["timba-havana-modern"],
       "name": "2-3 Rumba Clave",
       "family": "Clave",
       "category": "groove",
-      "description": "Rumba clave direction fundamental to modern timba.",
+      "description": "Rumba clave direction fundamental to modern",
       "tags": [],
       "scopes": [
         "measure"
@@ -1764,7 +1764,7 @@ export const TIMBA_WORLD: GenreWorld = {
           "name": "2-3 Rumba Clave — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             2,
             8,
@@ -1792,7 +1792,7 @@ export const TIMBA_WORLD: GenreWorld = {
           "name": "2-3 Rumba Clave — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             2,
             4,
@@ -1854,11 +1854,11 @@ export const TIMBA_WORLD: GenreWorld = {
     {
       "id": "timba-anticipated-pedal",
       "worldId": "timba",
-      "traditionId": "timba-havana-modern",
+      "styleIds": ["timba-havana-modern"],
       "name": "Anticipated Presión Pedal",
       "family": "Bass",
       "category": "groove",
-      "description": "Bass hits landing a 16th note ahead of every beat, an aggressively anticipated pedal used to ratchet tension into the presión climax.",
+      "description": "Bass hits landing a 16th note",
       "tags": [
         "timba",
         "anticipated",
@@ -1910,7 +1910,7 @@ export const TIMBA_WORLD: GenreWorld = {
           "name": "Anticipated Presión Pedal — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             3,
             11,
@@ -1938,7 +1938,7 @@ export const TIMBA_WORLD: GenreWorld = {
           "name": "Anticipated Presión Pedal — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             3,
             7,
@@ -1996,11 +1996,11 @@ export const TIMBA_WORLD: GenreWorld = {
     {
       "id": "timba-phrase-12",
       "worldId": "timba",
-      "traditionId": "timba-havana-modern",
+      "styleIds": ["timba-havana-modern"],
       "name": "Gear Change Phrase",
       "family": "Gear Change",
       "category": "phrasePattern",
-      "description": "A phrase-level rhythmic template that leaves deliberate space for melodic expression. Built around songo and the gear change vocabulary of Timba.",
+      "description": "A phrase-level rhythmic template that leaves",
       "tags": [
         "timba",
         "gear-change",
@@ -2089,7 +2089,7 @@ export const TIMBA_WORLD: GenreWorld = {
           "name": "Gear Change Phrase — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             6,
@@ -2125,7 +2125,7 @@ export const TIMBA_WORLD: GenreWorld = {
           "name": "Gear Change Phrase — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             2,
@@ -2181,11 +2181,11 @@ export const TIMBA_WORLD: GenreWorld = {
     {
       "id": "timba-call-13",
       "worldId": "timba",
-      "traditionId": "timba-havana-modern",
+      "styleIds": ["timba-havana-modern"],
       "name": "Coro Response",
       "family": "Coro / backing vocals",
       "category": "interactionPattern",
-      "description": "A call-and-response shape that leaves the next phrase open for an answer. Built around bomba and the coro vocabulary of Timba.",
+      "description": "A call-and-response shape that leaves the",
       "tags": [
         "timba",
         "coro",
@@ -2275,7 +2275,7 @@ export const TIMBA_WORLD: GenreWorld = {
           "name": "Coro Response — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             3,
@@ -2311,7 +2311,7 @@ export const TIMBA_WORLD: GenreWorld = {
           "name": "Coro Response — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             1,
@@ -2355,7 +2355,7 @@ export const TIMBA_WORLD: GenreWorld = {
           "name": "Coro Response — transition variation",
           "variationType": "transition",
           "probability": 0.16,
-          "description": "Adds a final pickup/closure gesture for section transitions.",
+          "description": "Adds a final pickup/closure gesture for",
           "onsetGrid": [
             0,
             1,
@@ -2419,11 +2419,11 @@ export const TIMBA_WORLD: GenreWorld = {
     {
       "id": "timba-anchor-14",
       "worldId": "timba",
-      "traditionId": "timba-havana-modern",
+      "styleIds": ["timba-havana-modern"],
       "name": "Moña Anchor",
       "family": "Moña",
       "category": "ostinato",
-      "description": "A repeating anchor that locks the low end to the groove. Built around moña in Timba.",
+      "description": "A repeating anchor that locks the",
       "tags": [
         "timba",
         "mona",
@@ -2513,7 +2513,7 @@ export const TIMBA_WORLD: GenreWorld = {
           "name": "Moña Anchor — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             1,
             4,
@@ -2549,7 +2549,7 @@ export const TIMBA_WORLD: GenreWorld = {
           "name": "Moña Anchor — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             1,
             2,
@@ -2605,11 +2605,11 @@ export const TIMBA_WORLD: GenreWorld = {
     {
       "id": "timba-comp-15",
       "worldId": "timba",
-      "traditionId": "timba-havana-modern",
+      "styleIds": ["timba-havana-modern"],
       "name": "Presión Comping",
       "family": "Presión",
       "category": "groove",
-      "description": "A genre-shaped accompaniment cell that supports the lead without occupying every subdivision. Built around gear changes and the presión vocabulary of Timba.",
+      "description": "A genre-shaped accompaniment cell that supports",
       "tags": [
         "timba",
         "presion",
@@ -2698,7 +2698,7 @@ export const TIMBA_WORLD: GenreWorld = {
           "name": "Presión Comping — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             4,
@@ -2734,7 +2734,7 @@ export const TIMBA_WORLD: GenreWorld = {
           "name": "Presión Comping — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             3,
@@ -2790,11 +2790,11 @@ export const TIMBA_WORLD: GenreWorld = {
     {
       "id": "timba-intro-16",
       "worldId": "timba",
-      "traditionId": "timba-havana-modern",
+      "styleIds": ["timba-havana-modern"],
       "name": "Marcha Intro",
       "family": "Marcha",
       "category": "sectionPattern",
-      "description": "A reduced entrance used to establish the genre before the full groove arrives. Built around presión and the marcha vocabulary of Timba.",
+      "description": "A reduced entrance used to establish",
       "tags": [
         "timba",
         "marcha",
@@ -2882,7 +2882,7 @@ export const TIMBA_WORLD: GenreWorld = {
           "name": "Marcha Intro — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             1,
             6,
@@ -2914,7 +2914,7 @@ export const TIMBA_WORLD: GenreWorld = {
           "name": "Marcha Intro — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             1,
             4,
@@ -2954,7 +2954,7 @@ export const TIMBA_WORLD: GenreWorld = {
           "name": "Marcha Intro — transition variation",
           "variationType": "transition",
           "probability": 0.16,
-          "description": "Adds a final pickup/closure gesture for section transitions.",
+          "description": "Adds a final pickup/closure gesture for",
           "onsetGrid": [
             1,
             4,
@@ -3010,11 +3010,11 @@ export const TIMBA_WORLD: GenreWorld = {
     {
       "id": "timba-voice-phrasing",
       "worldId": "timba",
-      "traditionId": "timba-havana-modern",
+      "styleIds": ["timba-havana-modern"],
       "name": "Timba Vocal Phrasing",
       "family": "Vocal Phrasing",
       "category": "phrasePattern",
-      "description": "Coro and sonero phrasing template shaped around gear changes, presión, and short response cells.",
+      "description": "Coro and sonero phrasing template shaped",
       "tags": [
         "timba",
         "voice",
@@ -3101,7 +3101,7 @@ export const TIMBA_WORLD: GenreWorld = {
           "name": "Timba Vocal Phrasing — alternate phrasing",
           "variationType": "phraseStart",
           "probability": 0.2,
-          "description": "Alternate vocal entry placement for a second pass through the phrase.",
+          "description": "Alternate vocal entry placement for a",
           "onsetGrid": [
             0,
             3,
@@ -3141,7 +3141,7 @@ export const TIMBA_WORLD: GenreWorld = {
           "name": "Timba Vocal Phrasing — accent shift",
           "variationType": "accentShift",
           "probability": 0.18,
-          "description": "Same rhythmic shape with shifted emphasis on the repeat.",
+          "description": "Same rhythmic shape with shifted emphasis",
           "onsetGrid": [
             0,
             3,

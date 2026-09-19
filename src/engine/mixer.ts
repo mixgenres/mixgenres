@@ -56,6 +56,19 @@ export const ROOM_BY_WORLD: Record<string, string> = {
   'house-techno': 'club', 'reggae-dub': 'tape', ska: 'room', 'samba-bossa': 'room',
 };
 
+
+const CANONICAL_ROOM_SOURCES: Record<string, string> = {
+  afrobeats:'afrobeats', bachata:'bachata', blues:'blues', brazilian:'samba-bossa', country:'country',
+  cumbia:'cumbia', disco:'funk', electronic:'electronic', folk:'folk', funk:'funk', gospel:'folk',
+  'hip-hop':'hip-hop', house:'house-techno', jazz:'jazz', kizomba:'kizomba', 'latin-pop':'reggaeton-dembow',
+  tango:'tango', flamenco:'flamenco', metal:'metal', 'r-and-b':'funk', reggae:'reggae-dub', reggaeton:'reggaeton-dembow',
+  rock:'rock', salsa:'salsa', ska:'ska', soul:'funk', swing:'swing', timba:'timba', zouk:'zouk',
+  'drum-and-bass':'electronic', industrial:'metal', 'punk-hardcore':'rock', 'uk-bass':'house-techno',
+};
+for (const [genreId, sourceId] of Object.entries(CANONICAL_ROOM_SOURCES)) {
+  if (!ROOM_BY_WORLD[genreId] && ROOM_BY_WORLD[sourceId]) ROOM_BY_WORLD[genreId] = ROOM_BY_WORLD[sourceId];
+}
+
 export function roomFor(worldId: string): RoomPreset {
   const id = ROOM_BY_WORLD[worldId] ?? 'studio';
   return ROOMS.find(r => r.id === id) ?? ROOMS[1];

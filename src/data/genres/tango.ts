@@ -6,15 +6,15 @@ export const TANGO_WORLD: GenreWorld = {
   "family": "Río de la Plata",
   "color": "#c87561",
   "level": "world",
-  "description": "A deep architectural Tango lens: marcato en 2 & 4, yumba, síncopa a tierra, arrastres, bordoneos, cuts (cortes), and Piazzolla’s 3+3+2 additive frameworks.",
-  "traditions": [
+  "description": "A deep architectural Tango lens: marcato",
+  "styleDefinitions": [
     {
       "id": "tango-tango-tradicional",
       "worldId": "tango",
       "name": "Tango Tradicional",
       "origin": "Buenos Aires / Montevideo",
       "era": "Golden Age (1935–1955)",
-      "description": "Marcato • Bandoneón • Golden Age\nThe quintessential Golden Age milonga sound.\nJuan D'Arienzo · Carlos Di Sarli",
+      "description": "Marcato • Bandoneón • Golden Age\nThe",
       "characteristicInstruments": [
         "bandoneon",
         "violin",
@@ -84,7 +84,7 @@ export const TANGO_WORLD: GenreWorld = {
       "name": "Tango Nuevo",
       "origin": "Buenos Aires / Paris",
       "era": "1960s–1990s",
-      "description": "3+3+2 • Dissonance • Bandoneón Virtuosity\nAstor Piazzolla's modern concert tango.\nAstor Piazzolla · Quinteto Real",
+      "description": "3+3+2 • Dissonance • Bandoneón Virtuosity\nAstor",
       "characteristicInstruments": [
         "bandoneon",
         "violin",
@@ -154,7 +154,7 @@ export const TANGO_WORLD: GenreWorld = {
       "name": "Milonga",
       "origin": "Río de la Plata",
       "era": "Late 19th Century–Present",
-      "description": "Fast • Habanera Syncopation • Bouncy\nFast, playful ancestor of tango.\nFrancisco Canaro · Edgardo Donato",
+      "description": "Fast • Habanera Syncopation • Bouncy\nFast,",
       "characteristicInstruments": [
         "bandoneon",
         "violin",
@@ -224,7 +224,7 @@ export const TANGO_WORLD: GenreWorld = {
       "name": "Tango Vals",
       "origin": "Río de la Plata",
       "era": "Golden Age (1930s–1950s)",
-      "description": "Lyrical • 3/4 Waltzing • Flowing\nFlowing, rotational waltz with tango soul.\nAlfredo De Angelis · Osvaldo Pugliese",
+      "description": "Lyrical • 3/4 Waltzing • Flowing\nFlowing,",
       "characteristicInstruments": [
         "violin",
         "bandoneon",
@@ -293,7 +293,7 @@ export const TANGO_WORLD: GenreWorld = {
       "name": "Tango Electrónico",
       "origin": "Paris / Buenos Aires",
       "era": "2000s–Present",
-      "description": "Trip-Hop Beats • Bandoneón Sample • Sensual\nModern electronic lounge & club tango.\nGotan Project · Bajofondo",
+      "description": "Trip-Hop Beats • Bandoneón Sample •",
       "characteristicInstruments": [
         "bandoneon",
         "sub-bass",
@@ -439,11 +439,11 @@ export const TANGO_WORLD: GenreWorld = {
     {
       "id": "tango-marcato-4",
       "worldId": "tango",
-      "traditionId": "tango-epoca-oro",
+      "styleIds": ["tango-epoca-oro"],
       "name": "Marcato en 4 (Orquesta Típica)",
       "family": "Marcato Accompaniment",
       "category": "ostinato",
-      "description": "Strict four-beat staccato accompaniment providing rhythmic drive for dancers.",
+      "description": "Strict four-beat staccato accompaniment providing rhythmic",
       "tags": [
         "pulse",
         "tango",
@@ -524,7 +524,7 @@ export const TANGO_WORLD: GenreWorld = {
             1,
             0.95
           ],
-          "description": "Crisp, driving staccato characteristic of Juan D’Arienzo."
+          "description": "Crisp, driving staccato characteristic of Juan"
         },
         {
           "id": "tango-m4-with-eighth-fill",
@@ -548,7 +548,7 @@ export const TANGO_WORLD: GenreWorld = {
             0.95,
             0.7
           ],
-          "description": "Enlivened beat 3-4 with running eighth note propulsion."
+          "description": "Enlivened beat 3-4 with running eighth"
         },
         {
           "id": "tango-marcato-4-variant-yumba-osvaldo-pugliese",
@@ -556,7 +556,7 @@ export const TANGO_WORLD: GenreWorld = {
           "name": "Yumba (Osvaldo Pugliese)",
           "variationType": "instrumentSpecific",
           "probability": 0.18,
-          "description": "Pugliese’s celebrated deep on-beat \"Yum\" (beats 1 & 3) contrasted with light buoyant \"Ba\" (beats 2 & 4). Retained as a variation rather than a separate pattern entry.",
+          "description": "Pugliese’s celebrated deep on-beat \"Yum\" (beats",
           "onsetGrid": [
             0,
             4,
@@ -613,7 +613,7 @@ export const TANGO_WORLD: GenreWorld = {
           "sourceRole": "drums",
           "targetRole": "bass",
           "relationship": "reinforce",
-          "description": "Low-end attacks reinforce the main pulse without doubling every subdivision.",
+          "description": "Low-end attacks reinforce the main pulse",
           "timingOffsetSteps": 0,
           "probability": 0.78
         }
@@ -622,11 +622,11 @@ export const TANGO_WORLD: GenreWorld = {
     {
       "id": "tango-marcato-2",
       "worldId": "tango",
-      "traditionId": "tango-epoca-oro",
+      "styleIds": ["tango-epoca-oro"],
       "name": "Marcato en 2 (Troilo / Di Sarli)",
       "family": "Marcato Accompaniment",
       "category": "ostinato",
-      "description": "Heavier two-beat pulse on 1 and 3 leaving space for melodic expressive rubato.",
+      "description": "Heavier two-beat pulse on 1 and",
       "tags": [
         "pulse",
         "tango",
@@ -699,7 +699,7 @@ export const TANGO_WORLD: GenreWorld = {
             1,
             0.85
           ],
-          "description": "Preceded by chromatic drag into beat 1."
+          "description": "Preceded by chromatic drag into beat"
         },
         {
           "id": "tango-marcato-2-v-02-safe",
@@ -707,7 +707,7 @@ export const TANGO_WORLD: GenreWorld = {
           "name": "Marcato en 2 (Troilo / Di Sarli) — played variation",
           "variationType": "accentShift",
           "probability": 0.18,
-          "description": "A light played variation for sparse patterns with only a few attacks.",
+          "description": "A light played variation for sparse",
           "onsetGrid": [
             0,
             8
@@ -757,7 +757,7 @@ export const TANGO_WORLD: GenreWorld = {
           "sourceRole": "voice",
           "targetRole": "harmony",
           "relationship": "leaveSpace",
-          "description": "Harmony reduces density under vocal entries so the phrase remains foregrounded.",
+          "description": "Harmony reduces density under vocal entries",
           "timingOffsetSteps": 0,
           "probability": 0.72
         }
@@ -766,11 +766,11 @@ export const TANGO_WORLD: GenreWorld = {
     {
       "id": "tango-sincopa",
       "worldId": "tango",
-      "traditionId": "tango-epoca-oro",
+      "styleIds": ["tango-epoca-oro"],
       "name": "Síncopa a Tierra (Standard Syncopation)",
       "family": "Syncopated Figures",
       "category": "cell",
-      "description": "Off-beat accent landing on the \"and\" of 1 and resolving crisply to downbeat of 3.",
+      "description": "Off-beat accent landing on the \"and\"",
       "tags": [
         "sincopa",
         "syncopation",
@@ -850,7 +850,7 @@ export const TANGO_WORLD: GenreWorld = {
             0.85,
             0.9
           ],
-          "description": "Síncopa concluding with an accented anticipation on beat 4-and."
+          "description": "Síncopa concluding with an accented anticipation"
         },
         {
           "id": "tango-sincopa-v-02",
@@ -858,7 +858,7 @@ export const TANGO_WORLD: GenreWorld = {
           "name": "Síncopa a Tierra (Standard Syncopation) — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             2,
@@ -913,11 +913,11 @@ export const TANGO_WORLD: GenreWorld = {
     {
       "id": "tango-arrastre",
       "worldId": "tango",
-      "traditionId": "tango-epoca-oro",
+      "styleIds": ["tango-epoca-oro"],
       "name": "Arrastre (Chromatic Drag Lead-in)",
       "family": "Ornamental Transitions",
       "category": "phrasePattern",
-      "description": "Upbeat glissando / drag that scoops into a climactic downbeat.",
+      "description": "Upbeat glissando / drag that scoops",
       "tags": [
         "arrastre",
         "drag",
@@ -998,7 +998,7 @@ export const TANGO_WORLD: GenreWorld = {
             0.85,
             1
           ],
-          "description": "Long sweep from contrabajo bottom C to arrival pitch."
+          "description": "Long sweep from contrabajo bottom C"
         },
         {
           "id": "tango-arrastre-v-02",
@@ -1006,7 +1006,7 @@ export const TANGO_WORLD: GenreWorld = {
           "name": "Arrastre (Chromatic Drag Lead-in) — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             13,
             14,
@@ -1063,7 +1063,7 @@ export const TANGO_WORLD: GenreWorld = {
           "sourceRole": "lead",
           "targetRole": "voice",
           "relationship": "answer",
-          "description": "Lead instrument answers a vocal phrase in the open space after the line.",
+          "description": "Lead instrument answers a vocal phrase",
           "timingOffsetSteps": 2,
           "probability": 0.58
         }
@@ -1072,11 +1072,11 @@ export const TANGO_WORLD: GenreWorld = {
     {
       "id": "tango-bordoneo",
       "worldId": "tango",
-      "traditionId": "tango-guardia-vieja",
+      "styleIds": ["tango-guardia-vieja"],
       "name": "Bordoneo Criollo (Guitar Bass Movement)",
       "family": "Guitar Bordoneos",
       "category": "rolePattern",
-      "description": "Melodic low-string counterlines and turns typical of Uruguayan & Argentine criollo guitars.",
+      "description": "Melodic low-string counterlines and turns typical",
       "tags": [
         "guitar",
         "bordoneo",
@@ -1172,7 +1172,7 @@ export const TANGO_WORLD: GenreWorld = {
           "name": "Bordoneo Criollo (Guitar Bass Movement) — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             3,
@@ -1239,11 +1239,11 @@ export const TANGO_WORLD: GenreWorld = {
     {
       "id": "tango-332-piazzolla",
       "worldId": "tango",
-      "traditionId": "tango-nuevo",
+      "styleIds": ["tango-nuevo"],
       "name": "3+3+2 Nuevo Tango Pulse (Piazzolla)",
       "family": "Additive Rhythms",
       "category": "ostinato",
-      "description": "Piazzolla’s definitive 3+3+2 eighth-note syncopation across 4/4 time.",
+      "description": "Piazzolla’s definitive 3+3+2 eighth-note syncopation across",
       "tags": [
         "piazzolla",
         "332",
@@ -1355,7 +1355,7 @@ export const TANGO_WORLD: GenreWorld = {
             0.9,
             0.5
           ],
-          "description": "Accents on 0, 6, 12 layered with string body chiche scrapes."
+          "description": "Accents on 0, 6, 12 layered"
         }
       ],
       "harmonicContext": [
@@ -1389,7 +1389,7 @@ export const TANGO_WORLD: GenreWorld = {
           "sourceRole": "bass",
           "targetRole": "drums",
           "relationship": "accentWith",
-          "description": "Bass accents align with selected kick/backbeat events for a tighter pocket.",
+          "description": "Bass accents align with selected kick/backbeat",
           "timingOffsetSteps": 0,
           "probability": 0.65
         }
@@ -1398,11 +1398,11 @@ export const TANGO_WORLD: GenreWorld = {
     {
       "id": "tango-fraseo-bandoneon",
       "worldId": "tango",
-      "traditionId": "tango-epoca-oro",
+      "styleIds": ["tango-epoca-oro"],
       "name": "Fraseo y Rubato (Bandoneón Lead)",
       "family": "Lyrical Lead Phrases",
       "category": "phrasePattern",
-      "description": "Expressive lyrical phrasing with flexible rubato, dynamic swell, and dramatic pause.",
+      "description": "Expressive lyrical phrasing with flexible rubato,",
       "tags": [
         "lead",
         "melody",
@@ -1505,7 +1505,7 @@ export const TANGO_WORLD: GenreWorld = {
             0.8,
             1
           ],
-          "description": "Sudden dynamic silence / corte on measure 2 beat 3."
+          "description": "Sudden dynamic silence / corte on"
         },
         {
           "id": "tango-fraseo-bandoneon-v-02",
@@ -1513,7 +1513,7 @@ export const TANGO_WORLD: GenreWorld = {
           "name": "Fraseo y Rubato (Bandoneón Lead) — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             4,
@@ -1591,7 +1591,7 @@ export const TANGO_WORLD: GenreWorld = {
           "sourceRole": "harmony",
           "targetRole": "lead",
           "relationship": "leaveSpace",
-          "description": "Accompaniment thins when the instrumental lead enters.",
+          "description": "Accompaniment thins when the instrumental lead",
           "timingOffsetSteps": 0,
           "probability": 0.62
         }
@@ -1600,11 +1600,11 @@ export const TANGO_WORLD: GenreWorld = {
     {
       "id": "tango-bandoneon-chords",
       "worldId": "tango",
-      "traditionId": "tango-guardia-vieja",
+      "styleIds": ["tango-guardia-vieja"],
       "name": "Bandoneon Chords",
       "family": "Bandoneon",
       "category": "fill",
-      "description": "Staccato chordal accents with marcato dynamic shape.",
+      "description": "Staccato chordal accents with marcato dynamic",
       "tags": [],
       "scopes": [
         "measure"
@@ -1653,7 +1653,7 @@ export const TANGO_WORLD: GenreWorld = {
           "name": "Bandoneon Chords — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             4,
@@ -1681,7 +1681,7 @@ export const TANGO_WORLD: GenreWorld = {
           "name": "Bandoneon Chords — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             2,
@@ -1739,7 +1739,7 @@ export const TANGO_WORLD: GenreWorld = {
     {
       "id": "tango-violin-melody",
       "worldId": "tango",
-      "traditionId": "tango-epoca-oro",
+      "styleIds": ["tango-epoca-oro"],
       "name": "Violin Legato",
       "family": "Strings",
       "category": "break",
@@ -1786,7 +1786,7 @@ export const TANGO_WORLD: GenreWorld = {
           "name": "Violin Legato — played variation",
           "variationType": "accentShift",
           "probability": 0.18,
-          "description": "A light played variation for sparse patterns with only a few attacks.",
+          "description": "A light played variation for sparse",
           "onsetGrid": [
             0,
             4
@@ -1810,7 +1810,7 @@ export const TANGO_WORLD: GenreWorld = {
           "name": "Violin Legato — played variation",
           "variationType": "accentShift",
           "probability": 0.18,
-          "description": "A light played variation for sparse patterns with only a few attacks.",
+          "description": "A light played variation for sparse",
           "onsetGrid": [
             0,
             4
@@ -1860,11 +1860,11 @@ export const TANGO_WORLD: GenreWorld = {
     {
       "id": "tango-piano-chumba",
       "worldId": "tango",
-      "traditionId": "tango-epoca-oro",
+      "styleIds": ["tango-epoca-oro"],
       "name": "Piano Chumba",
       "family": "Piano",
       "category": "cadence",
-      "description": "Heavy bass anchor on beats 1 & 3 with staccato chords on 2 & 4.",
+      "description": "Heavy bass anchor on beats 1",
       "tags": [],
       "scopes": [
         "measure"
@@ -1915,7 +1915,7 @@ export const TANGO_WORLD: GenreWorld = {
           "name": "Piano Chumba — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             4,
@@ -1943,7 +1943,7 @@ export const TANGO_WORLD: GenreWorld = {
           "name": "Piano Chumba — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             1,
@@ -2001,7 +2001,7 @@ export const TANGO_WORLD: GenreWorld = {
     {
       "id": "tango-bass-pizzicato",
       "worldId": "tango",
-      "traditionId": "tango-nuevo",
+      "styleIds": ["tango-nuevo"],
       "name": "Pizzicato Bass",
       "family": "Bass",
       "category": "groove",
@@ -2049,7 +2049,7 @@ export const TANGO_WORLD: GenreWorld = {
           "name": "Pizzicato Bass — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             6
@@ -2073,7 +2073,7 @@ export const TANGO_WORLD: GenreWorld = {
           "name": "Pizzicato Bass — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             3,
@@ -2127,11 +2127,11 @@ export const TANGO_WORLD: GenreWorld = {
     {
       "id": "tango-phrase-12",
       "worldId": "tango",
-      "traditionId": "tango-guardia-vieja",
+      "styleIds": ["tango-guardia-vieja"],
       "name": "Marcato Phrase",
       "family": "Marcato",
       "category": "phrasePattern",
-      "description": "A phrase-level rhythmic template that leaves deliberate space for melodic expression. Built around yumba and the marcato vocabulary of Tango.",
+      "description": "A phrase-level rhythmic template that leaves",
       "tags": [
         "tango",
         "marcato",
@@ -2219,7 +2219,7 @@ export const TANGO_WORLD: GenreWorld = {
           "name": "Marcato Phrase — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             5,
@@ -2255,7 +2255,7 @@ export const TANGO_WORLD: GenreWorld = {
           "name": "Marcato Phrase — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             3,
@@ -2310,11 +2310,11 @@ export const TANGO_WORLD: GenreWorld = {
     {
       "id": "tango-call-13",
       "worldId": "tango",
-      "traditionId": "tango-guardia-vieja",
+      "styleIds": ["tango-guardia-vieja"],
       "name": "Síncopa Response",
       "family": "Síncopa",
       "category": "interactionPattern",
-      "description": "A call-and-response shape that leaves the next phrase open for an answer. Built around síncopa in Tango.",
+      "description": "A call-and-response shape that leaves the",
       "tags": [
         "tango",
         "sincopa",
@@ -2410,7 +2410,7 @@ export const TANGO_WORLD: GenreWorld = {
           "name": "Síncopa Response — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             4,
@@ -2446,7 +2446,7 @@ export const TANGO_WORLD: GenreWorld = {
           "name": "Síncopa Response — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             1,
@@ -2490,7 +2490,7 @@ export const TANGO_WORLD: GenreWorld = {
           "name": "Síncopa Response — transition variation",
           "variationType": "transition",
           "probability": 0.16,
-          "description": "Adds a final pickup/closure gesture for section transitions.",
+          "description": "Adds a final pickup/closure gesture for",
           "onsetGrid": [
             0,
             1,
@@ -2553,11 +2553,11 @@ export const TANGO_WORLD: GenreWorld = {
     {
       "id": "tango-anchor-14",
       "worldId": "tango",
-      "traditionId": "tango-guardia-vieja",
+      "styleIds": ["tango-guardia-vieja"],
       "name": "Arrastre Anchor",
       "family": "Arrastre",
       "category": "ostinato",
-      "description": "A repeating anchor that locks the low end to the groove. Built around rubato and the arrastre vocabulary of Tango.",
+      "description": "A repeating anchor that locks the",
       "tags": [
         "tango",
         "arrastre",
@@ -2646,7 +2646,7 @@ export const TANGO_WORLD: GenreWorld = {
           "name": "Arrastre Anchor — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             1,
             5,
@@ -2682,7 +2682,7 @@ export const TANGO_WORLD: GenreWorld = {
           "name": "Arrastre Anchor — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             1,
             2,
@@ -2737,11 +2737,11 @@ export const TANGO_WORLD: GenreWorld = {
     {
       "id": "tango-comp-15",
       "worldId": "tango",
-      "traditionId": "tango-guardia-vieja",
+      "styleIds": ["tango-guardia-vieja"],
       "name": "Yumba Comping",
       "family": "Yumba",
       "category": "groove",
-      "description": "A genre-shaped accompaniment cell that supports the lead without occupying every subdivision. Built around marcato en 4 and the yumba vocabulary of Tango.",
+      "description": "A genre-shaped accompaniment cell that supports",
       "tags": [
         "tango",
         "yumba",
@@ -2831,7 +2831,7 @@ export const TANGO_WORLD: GenreWorld = {
           "name": "Yumba Comping — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             4,
@@ -2867,7 +2867,7 @@ export const TANGO_WORLD: GenreWorld = {
           "name": "Yumba Comping — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             3,
@@ -2922,11 +2922,11 @@ export const TANGO_WORLD: GenreWorld = {
     {
       "id": "tango-intro-16",
       "worldId": "tango",
-      "traditionId": "tango-guardia-vieja",
+      "styleIds": ["tango-guardia-vieja"],
       "name": "Marcato Intro",
       "family": "Marcato",
       "category": "sectionPattern",
-      "description": "A reduced entrance used to establish the genre before the full groove arrives. Built around arrastre and the marcato vocabulary of Tango.",
+      "description": "A reduced entrance used to establish",
       "tags": [
         "tango",
         "marcato",
@@ -3015,7 +3015,7 @@ export const TANGO_WORLD: GenreWorld = {
           "name": "Marcato Intro — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             2,
             6,
@@ -3047,7 +3047,7 @@ export const TANGO_WORLD: GenreWorld = {
           "name": "Marcato Intro — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             2,
             5,
@@ -3087,7 +3087,7 @@ export const TANGO_WORLD: GenreWorld = {
           "name": "Marcato Intro — transition variation",
           "variationType": "transition",
           "probability": 0.16,
-          "description": "Adds a final pickup/closure gesture for section transitions.",
+          "description": "Adds a final pickup/closure gesture for",
           "onsetGrid": [
             2,
             5,
@@ -3142,11 +3142,11 @@ export const TANGO_WORLD: GenreWorld = {
     {
       "id": "tango-verse-17",
       "worldId": "tango",
-      "traditionId": "tango-guardia-vieja",
+      "styleIds": ["tango-guardia-vieja"],
       "name": "Síncopa Verse Variation",
       "family": "Síncopa",
       "category": "groove",
-      "description": "A restrained verse variation with intentional headroom for melody. Built around yumba and the síncopa vocabulary of Tango.",
+      "description": "A restrained verse variation with intentional",
       "tags": [
         "tango",
         "sincopa",
@@ -3239,7 +3239,7 @@ export const TANGO_WORLD: GenreWorld = {
           "name": "Síncopa Verse Variation — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             3,
             7,
@@ -3271,7 +3271,7 @@ export const TANGO_WORLD: GenreWorld = {
           "name": "Síncopa Verse Variation — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             3,
             6,

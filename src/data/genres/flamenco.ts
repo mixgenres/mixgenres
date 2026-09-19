@@ -6,14 +6,14 @@ export const FLAMENCO_WORLD: GenreWorld = {
   "family": "Andalusia / Iberian",
   "color": "#d9914e",
   "level": "world",
-  "description": "Deep Flamenco compás architectures: Soleá and Bulerías 12-beat cycles, Tangos de Triana binary pulses, alzapúa thumb sweeps, abanico fan strums, picado runs, and interlocking palmas/cajón.",
-  "traditions": [
+  "description": "Deep Flamenco compás architectures: Soleá and",
+  "styleDefinitions": [
     {
       "id": "flamenco-solea-style",
       "worldId": "flamenco",
       "name": "Soleá",
       "origin": "Andalusia (Seville, Cádiz, Jerez)",
-      "description": "Deep • 12-beat • Phrygian\nThe foundation of Flamenco.\nPaco de Lucía · Camarón · Fernanda",
+      "description": "Deep • 12-beat • Phrygian\nThe foundation",
       "characteristicInstruments": [
         "guitar",
         "voice",
@@ -94,7 +94,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
       "worldId": "flamenco",
       "name": "Bulerías",
       "origin": "Jerez de la Frontera & Triana",
-      "description": "Fast • 12-beat • Contratiempo\nPlayful, explosive, endlessly interactive.\nLa Paquera · Camarón",
+      "description": "Fast • 12-beat • Contratiempo\nPlayful, explosive,",
       "characteristicInstruments": [
         "guitar",
         "voice",
@@ -175,7 +175,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
       "worldId": "flamenco",
       "name": "Alegrías",
       "origin": "Cádiz, western Andalusia",
-      "description": "Bright • 12-beat • Major\nCadiz sparkle, escobilla and fiesta.\nChano Lobato · Carmen Linares",
+      "description": "Bright • 12-beat • Major\nCadiz sparkle,",
       "characteristicInstruments": [
         "guitar",
         "voice",
@@ -224,7 +224,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
       "worldId": "flamenco",
       "name": "Tangos",
       "origin": "Cádiz, Triana, Granada",
-      "description": "Grounded • 4-beat • Phrygian\nHeavy pulse, palmas and swagger.\nFernanda de Utrera · La Repompa",
+      "description": "Grounded • 4-beat • Phrygian\nHeavy pulse,",
       "characteristicInstruments": [
         "guitar",
         "voice",
@@ -300,7 +300,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
       "worldId": "flamenco",
       "name": "Seguiriya",
       "origin": "Andalusia",
-      "description": "Dark • Asymmetric • Cante jondo\nRaw, dramatic and rhythmically severe.\nManuel Torre · Antonio Mairena",
+      "description": "Dark • Asymmetric • Cante jondo\nRaw,",
       "characteristicInstruments": [
         "guitar",
         "voice",
@@ -347,7 +347,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
       "worldId": "flamenco",
       "name": "Tientos",
       "origin": "Andalusia",
-      "description": "Slow • 4-beat • Modal\nTangos stretched into tension.\nEl Chocolate · Carmen Linares",
+      "description": "Slow • 4-beat • Modal\nTangos stretched",
       "characteristicInstruments": [
         "guitar",
         "voice",
@@ -394,7 +394,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
       "worldId": "flamenco",
       "name": "Fandangos",
       "origin": "Huelva, Andalusia",
-      "description": "Folk-rooted • 3-beat • Expressive\nCoplas, melody and regional character.\nPaco Toronjo",
+      "description": "Folk-rooted • 3-beat • Expressive\nCoplas, melody",
       "characteristicInstruments": [
         "guitar",
         "voice",
@@ -439,7 +439,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
       "worldId": "flamenco",
       "name": "Rumba",
       "origin": "Catalonia, Andalusia & Caribbean crossover",
-      "description": "Driving • 4-beat • Crossover\nFlamenco guitar meets Latin groove.\nCamarón · Paco de Lucía",
+      "description": "Driving • 4-beat • Crossover\nFlamenco guitar",
       "characteristicInstruments": [
         "guitar",
         "cajon",
@@ -584,11 +584,11 @@ export const FLAMENCO_WORLD: GenreWorld = {
     {
       "id": "flam-abanico-strum",
       "worldId": "flamenco",
-      "traditionId": "flamenco-rumba",
+      "styleIds": ["flamenco-rumba"],
       "name": "Abanico Fan Strum (Rumba)",
       "family": "Rasgueado Strumming",
       "category": "ostinato",
-      "description": "Continuous triplets and fan strums utilizing down-finger, up-thumb, and percussive golpe on the guitar body.",
+      "description": "Continuous triplets and fan strums utilizing",
       "tags": [
         "guitar",
         "abanico",
@@ -690,7 +690,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
             1,
             0.4
           ],
-          "description": "Rapid rasgueado triplet lead-in to beat 1 and 3."
+          "description": "Rapid rasgueado triplet lead-in to beat"
         },
         {
           "id": "flam-abanico-strum-variant-caj-n-palmas-interlocking-groove",
@@ -698,7 +698,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
           "name": "Cajón & Palmas Interlocking Groove",
           "variationType": "instrumentSpecific",
           "probability": 0.18,
-          "description": "Deep bass box thump on beats 1 & 3, high snare edge slap on beats 2 & 4, woven with contratiempo hand claps. Retained as a variation rather than a separate pattern entry.",
+          "description": "Deep bass box thump on beats",
           "onsetGrid": [
             0,
             2,
@@ -741,7 +741,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
           "name": "Rumba Strum",
           "variationType": "instrumentSpecific",
           "probability": 0.18,
-          "description": "Continuous Catalan rumba strumming with rhythmic chucks. Retained as a variation rather than a separate pattern entry.",
+          "description": "Continuous Catalan rumba strumming with rhythmic",
           "onsetGrid": [
             0,
             2,
@@ -809,7 +809,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
           "sourceRole": "drums",
           "targetRole": "bass",
           "relationship": "reinforce",
-          "description": "Low-end attacks reinforce the main pulse without doubling every subdivision.",
+          "description": "Low-end attacks reinforce the main pulse",
           "timingOffsetSteps": 0,
           "probability": 0.78
         }
@@ -818,11 +818,11 @@ export const FLAMENCO_WORLD: GenreWorld = {
     {
       "id": "flam-tangos-compas",
       "worldId": "flamenco",
-      "traditionId": "flamenco-tangos-tientos",
+      "styleIds": ["flamenco-tangos-tientos"],
       "name": "Tangos de Triana (Binary Compás)",
       "family": "Tangos Rhythm",
       "category": "ostinato",
-      "description": "Iconic 4/4 flamenco pulse where beat 1 breathes and beats 2, 3, 4 are driven with sharp rasgueados and palmas.",
+      "description": "Iconic 4/4 flamenco pulse where beat",
       "tags": [
         "tangos",
         "triana",
@@ -905,7 +905,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
             0.8,
             0.95
           ],
-          "description": "Ending cadence with rapid 16th note finger flourish."
+          "description": "Ending cadence with rapid 16th note"
         },
         {
           "id": "flam-tangos-compas-v-02",
@@ -913,7 +913,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
           "name": "Tangos de Triana (Binary Compás) — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             4,
             8,
@@ -970,7 +970,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
           "sourceRole": "voice",
           "targetRole": "harmony",
           "relationship": "leaveSpace",
-          "description": "Harmony reduces density under vocal entries so the phrase remains foregrounded.",
+          "description": "Harmony reduces density under vocal entries",
           "timingOffsetSteps": 0,
           "probability": 0.72
         }
@@ -979,11 +979,11 @@ export const FLAMENCO_WORLD: GenreWorld = {
     {
       "id": "flam-solea-12beat",
       "worldId": "flamenco",
-      "traditionId": "flamenco-solea",
+      "styleIds": ["flamenco-solea-style"],
       "name": "Soleá 12-Beat Compás Framework",
       "family": "12-Beat Metrical Cycles",
       "category": "phrasePattern",
-      "description": "The foundation of cante jondo, counted 1 2 [3] 4 5 [6] 7 [8] 9 [10] 11 [12].",
+      "description": "The foundation of cante jondo, counted",
       "tags": [
         "solea",
         "12beat",
@@ -1067,7 +1067,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
             0.95,
             1
           ],
-          "description": "Decisive closing golpe and silence on beat 10."
+          "description": "Decisive closing golpe and silence on"
         },
         {
           "id": "flam-solea-12beat-v-02",
@@ -1075,7 +1075,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
           "name": "Soleá 12-Beat Compás Framework — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             2,
             5,
@@ -1137,7 +1137,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
           "sourceRole": "lead",
           "targetRole": "voice",
           "relationship": "answer",
-          "description": "Lead instrument answers a vocal phrase in the open space after the line.",
+          "description": "Lead instrument answers a vocal phrase",
           "timingOffsetSteps": 2,
           "probability": 0.58
         }
@@ -1146,11 +1146,11 @@ export const FLAMENCO_WORLD: GenreWorld = {
     {
       "id": "flam-alzapua-bass",
       "worldId": "flamenco",
-      "traditionId": "flamenco-bulerias",
+      "styleIds": ["flamenco-bulerias"],
       "name": "Alzapúa Thumb Technique (Bass Driver)",
       "family": "Thumb Virtuosity",
       "category": "rolePattern",
-      "description": "Iconic three-stroke thumb mechanic: down-stroke on bass string, up-stroke brush, and percussive down-stroke tap.",
+      "description": "Iconic three-stroke thumb mechanic: down-stroke on",
       "tags": [
         "alzapua",
         "thumb",
@@ -1259,7 +1259,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
             0.9,
             0.85
           ],
-          "description": "Polyrhythmic thumb grouping cutting across the meter."
+          "description": "Polyrhythmic thumb grouping cutting across the"
         },
         {
           "id": "flam-alzapua-bass-v-02",
@@ -1267,7 +1267,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
           "name": "Alzapúa Thumb Technique (Bass Driver) — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             2,
@@ -1354,11 +1354,11 @@ export const FLAMENCO_WORLD: GenreWorld = {
     {
       "id": "flam-falseta-melodic",
       "worldId": "flamenco",
-      "traditionId": "flamenco-solea",
+      "styleIds": ["flamenco-solea-style"],
       "name": "Falseta Melodic Development",
       "family": "Solo Falsetas",
       "category": "phrasePattern",
-      "description": "Self-contained lyric guitar or instrumental solo passage developed within the compás cycle.",
+      "description": "Self-contained lyric guitar or instrumental solo",
       "tags": [
         "falseta",
         "picado",
@@ -1488,7 +1488,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
             0.4,
             0.4
           ],
-          "description": "Thumb bass note followed by p-i-a-m-i 4-finger rapid sustained tremolo."
+          "description": "Thumb bass note followed by p-i-a-m-i"
         },
         {
           "id": "flam-falseta-melodic-v-02",
@@ -1496,7 +1496,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
           "name": "Falseta Melodic Development — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             3,
@@ -1586,7 +1586,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
           "sourceRole": "bass",
           "targetRole": "drums",
           "relationship": "accentWith",
-          "description": "Bass accents align with selected kick/backbeat events for a tighter pocket.",
+          "description": "Bass accents align with selected kick/backbeat",
           "timingOffsetSteps": 0,
           "probability": 0.65
         }
@@ -1595,11 +1595,11 @@ export const FLAMENCO_WORLD: GenreWorld = {
     {
       "id": "flamenco-golpe",
       "worldId": "flamenco",
-      "traditionId": "flamenco-solea",
+      "styleIds": ["flamenco-solea-style"],
       "name": "Golpe (Tap)",
       "family": "Percussion",
       "category": "fill",
-      "description": "Resonant finger taps on the tapador/guitar soundboard.",
+      "description": "Resonant finger taps on the tapador/guitar",
       "tags": [],
       "scopes": [
         "measure"
@@ -1648,7 +1648,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
           "name": "Golpe (Tap) — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             8,
@@ -1676,7 +1676,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
           "name": "Golpe (Tap) — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             4,
@@ -1735,11 +1735,11 @@ export const FLAMENCO_WORLD: GenreWorld = {
     {
       "id": "flamenco-bulerias-palmas",
       "worldId": "flamenco",
-      "traditionId": "flamenco-bulerias",
+      "styleIds": ["flamenco-bulerias"],
       "name": "Bulerias Palmas",
       "family": "Palmas",
       "category": "break",
-      "description": "12-beat compás cycle handclaps with classic accents on 12, 3, 7, 8, 10.",
+      "description": "12-beat compás cycle handclaps with classic",
       "tags": [],
       "scopes": [
         "measure"
@@ -1789,7 +1789,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
           "name": "Bulerias Palmas — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             7,
@@ -1817,7 +1817,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
           "name": "Bulerias Palmas — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             3,
@@ -1879,7 +1879,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
     {
       "id": "flamenco-picado",
       "worldId": "flamenco",
-      "traditionId": "flamenco-tangos-tientos",
+      "styleIds": ["flamenco-tangos-tientos"],
       "name": "Picado Scale",
       "family": "Guitar",
       "category": "cadence",
@@ -1944,7 +1944,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
           "name": "Flamenco Tremolo",
           "variationType": "instrumentSpecific",
           "probability": 0.18,
-          "description": "5-note tremolo pattern (p-i-a-m-i) with thumb bass attack. Retained as a variation rather than a separate pattern entry.",
+          "description": "5-note tremolo pattern (p-i-a-m-i) with thumb",
           "onsetGrid": [
             0,
             1,
@@ -1992,7 +1992,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
           "name": "Picado Scale — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             1,
@@ -2066,11 +2066,11 @@ export const FLAMENCO_WORLD: GenreWorld = {
     {
       "id": "flamenco-cajon-rumba",
       "worldId": "flamenco",
-      "traditionId": "flamenco-rumba",
+      "styleIds": ["flamenco-rumba"],
       "name": "Cajon Rumba",
       "family": "Cajon",
       "category": "groove",
-      "description": "Cajón rhythm for rumba flamenca with low thump and high slap.",
+      "description": "Cajón rhythm for rumba flamenca with",
       "tags": [],
       "scopes": [
         "measure"
@@ -2125,7 +2125,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
           "name": "Cajon Rumba — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             6,
@@ -2157,7 +2157,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
           "name": "Cajon Rumba — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             3,
@@ -2223,7 +2223,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
           "sourceRole": "harmony",
           "targetRole": "lead",
           "relationship": "leaveSpace",
-          "description": "Accompaniment thins when the instrumental lead enters.",
+          "description": "Accompaniment thins when the instrumental lead",
           "timingOffsetSteps": 0,
           "probability": 0.62
         }
@@ -2236,11 +2236,11 @@ export const FLAMENCO_WORLD: GenreWorld = {
     {
       "id": "flamenco-phrase-10",
       "worldId": "flamenco",
-      "traditionId": "flamenco-solea",
+      "styleIds": ["flamenco-solea-style"],
       "name": "Llamada Phrase",
       "family": "Llamada",
       "category": "phrasePattern",
-      "description": "A phrase-level rhythmic template that leaves deliberate space for melodic expression. Built around compás and the llamada vocabulary of Flamenco.",
+      "description": "A phrase-level rhythmic template that leaves",
       "tags": [
         "flamenco",
         "llamada",
@@ -2328,7 +2328,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
           "name": "Llamada Phrase — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             6,
@@ -2364,7 +2364,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
           "name": "Llamada Phrase — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             2,
@@ -2420,11 +2420,11 @@ export const FLAMENCO_WORLD: GenreWorld = {
     {
       "id": "flamenco-call-11",
       "worldId": "flamenco",
-      "traditionId": "flamenco-solea",
+      "styleIds": ["flamenco-solea-style"],
       "name": "Remate Response",
       "family": "Remate",
       "category": "interactionPattern",
-      "description": "A call-and-response shape that leaves the next phrase open for an answer. Built around llamada and the remate vocabulary of Flamenco.",
+      "description": "A call-and-response shape that leaves the",
       "tags": [
         "flamenco",
         "remate",
@@ -2513,7 +2513,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
           "name": "Remate Response — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             3,
@@ -2549,7 +2549,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
           "name": "Remate Response — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             1,
@@ -2593,7 +2593,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
           "name": "Remate Response — transition variation",
           "variationType": "transition",
           "probability": 0.16,
-          "description": "Adds a final pickup/closure gesture for section transitions.",
+          "description": "Adds a final pickup/closure gesture for",
           "onsetGrid": [
             0,
             1,
@@ -2657,11 +2657,11 @@ export const FLAMENCO_WORLD: GenreWorld = {
     {
       "id": "flamenco-anchor-12",
       "worldId": "flamenco",
-      "traditionId": "flamenco-solea",
+      "styleIds": ["flamenco-solea-style"],
       "name": "Rasgueado Anchor",
       "family": "Rasgueado",
       "category": "ostinato",
-      "description": "A repeating anchor that locks the low end to the groove. Built around remate and the rasgueado vocabulary of Flamenco.",
+      "description": "A repeating anchor that locks the",
       "tags": [
         "flamenco",
         "rasgueado",
@@ -2750,7 +2750,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
           "name": "Rasgueado Anchor — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             1,
             4,
@@ -2786,7 +2786,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
           "name": "Rasgueado Anchor — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             1,
             2,
@@ -2842,11 +2842,11 @@ export const FLAMENCO_WORLD: GenreWorld = {
     {
       "id": "flamenco-comp-13",
       "worldId": "flamenco",
-      "traditionId": "flamenco-solea",
+      "styleIds": ["flamenco-solea-style"],
       "name": "Falseta Comping",
       "family": "Falseta",
       "category": "groove",
-      "description": "A genre-shaped accompaniment cell that supports the lead without occupying every subdivision. Built around palmas and the falseta vocabulary of Flamenco.",
+      "description": "A genre-shaped accompaniment cell that supports",
       "tags": [
         "flamenco",
         "falseta",
@@ -2928,7 +2928,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
           "name": "Falseta Comping — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             3,
@@ -2956,7 +2956,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
           "name": "Falseta Comping — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             2,
@@ -3004,11 +3004,11 @@ export const FLAMENCO_WORLD: GenreWorld = {
     {
       "id": "flamenco-intro-14",
       "worldId": "flamenco",
-      "traditionId": "flamenco-solea",
+      "styleIds": ["flamenco-solea-style"],
       "name": "Compás Intro",
       "family": "Compás",
       "category": "sectionPattern",
-      "description": "A reduced entrance used to establish the genre before the full groove arrives. Built around falseta and the compás vocabulary of Flamenco.",
+      "description": "A reduced entrance used to establish",
       "tags": [
         "flamenco",
         "compas",
@@ -3095,7 +3095,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
           "name": "Compás Intro — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             1,
             6,
@@ -3127,7 +3127,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
           "name": "Compás Intro — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             1,
             4,
@@ -3167,7 +3167,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
           "name": "Compás Intro — transition variation",
           "variationType": "transition",
           "probability": 0.16,
-          "description": "Adds a final pickup/closure gesture for section transitions.",
+          "description": "Adds a final pickup/closure gesture for",
           "onsetGrid": [
             1,
             4,
@@ -3223,11 +3223,11 @@ export const FLAMENCO_WORLD: GenreWorld = {
     {
       "id": "flamenco-verse-15",
       "worldId": "flamenco",
-      "traditionId": "flamenco-solea",
+      "styleIds": ["flamenco-solea-style"],
       "name": "Llamada Verse Variation",
       "family": "Llamada",
       "category": "groove",
-      "description": "A restrained verse variation with intentional headroom for melody. Built around compás and the llamada vocabulary of Flamenco.",
+      "description": "A restrained verse variation with intentional",
       "tags": [
         "flamenco",
         "llamada",
@@ -3320,7 +3320,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
           "name": "Llamada Verse Variation — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             2,
             7,
@@ -3352,7 +3352,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
           "name": "Llamada Verse Variation — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             2,
             5,
@@ -3404,11 +3404,11 @@ export const FLAMENCO_WORLD: GenreWorld = {
     {
       "id": "flamenco-chorus-16",
       "worldId": "flamenco",
-      "traditionId": "flamenco-solea",
+      "styleIds": ["flamenco-solea-style"],
       "name": "Remate Chorus Lift",
       "family": "Remate",
       "category": "sectionPattern",
-      "description": "A higher-energy chorus layer that increases density without changing the genre identity. Built around llamada and the remate vocabulary of Flamenco.",
+      "description": "A higher-energy chorus layer that increases",
       "tags": [
         "flamenco",
         "remate",
@@ -3502,7 +3502,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
           "name": "Remate Chorus Lift — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             6,
@@ -3534,7 +3534,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
           "name": "Remate Chorus Lift — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             3,
@@ -3574,7 +3574,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
           "name": "Remate Chorus Lift — transition variation",
           "variationType": "transition",
           "probability": 0.16,
-          "description": "Adds a final pickup/closure gesture for section transitions.",
+          "description": "Adds a final pickup/closure gesture for",
           "onsetGrid": [
             0,
             3,
@@ -3634,11 +3634,11 @@ export const FLAMENCO_WORLD: GenreWorld = {
     {
       "id": "flamenco-bridge-17",
       "worldId": "flamenco",
-      "traditionId": "flamenco-solea",
+      "styleIds": ["flamenco-solea-style"],
       "name": "Rasgueado Bridge",
       "family": "Rasgueado",
       "category": "sectionPattern",
-      "description": "A contrasting bridge texture designed to reset repetition before the final return. Built around remate and the rasgueado vocabulary of Flamenco.",
+      "description": "A contrasting bridge texture designed to",
       "tags": [
         "flamenco",
         "rasgueado",
@@ -3723,7 +3723,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
           "name": "Rasgueado Bridge — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             2,
             6,
@@ -3751,7 +3751,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
           "name": "Rasgueado Bridge — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             2,
             4,
@@ -3783,7 +3783,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
           "name": "Rasgueado Bridge — transition variation",
           "variationType": "transition",
           "probability": 0.16,
-          "description": "Adds a final pickup/closure gesture for section transitions.",
+          "description": "Adds a final pickup/closure gesture for",
           "onsetGrid": [
             2,
             4,
@@ -3835,12 +3835,11 @@ export const FLAMENCO_WORLD: GenreWorld = {
     {
       "id": "flam-solea-guitar-compas",
       "worldId": "flamenco",
-      "traditionId": "flamenco-solea-style",
-      "substyleId": "flamenco-solea-style",
+      "styleIds": ["flamenco-solea-style", "flamenco-solea-style"],
       "name": "Soleá Guitar Compás",
       "family": "12-beat compás",
       "category": "ostinato",
-      "description": "Soleá accompaniment skeleton: weight on 12, 3, 6, 8 and 10, with 10 as a major cierre point and room for cante.",
+      "description": "Soleá accompaniment skeleton: weight on 12,",
       "tags": [
         "solea",
         "compas",
@@ -3921,7 +3920,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
           "name": "Soleá Cierre at 10",
           "variationType": "cadence",
           "probability": 0.45,
-          "description": "Land on 10, then breathe into 11–12.",
+          "description": "Land on 10, then breathe into",
           "onsetGrid": [
             11,
             2,
@@ -3967,12 +3966,11 @@ export const FLAMENCO_WORLD: GenreWorld = {
     {
       "id": "flam-solea-palmas",
       "worldId": "flamenco",
-      "traditionId": "flamenco-solea-style",
-      "substyleId": "flamenco-solea-style",
+      "styleIds": ["flamenco-solea-style", "flamenco-solea-style"],
       "name": "Soleá Palmas Contratiempo",
       "family": "Palmas",
       "category": "rolePattern",
-      "description": "Cupped and clear hand-clap dialogue that reinforces the 12-beat skeleton while leaving the cante breathing space.",
+      "description": "Cupped and clear hand-clap dialogue that",
       "tags": [
         "solea",
         "palmas",
@@ -4067,12 +4065,11 @@ export const FLAMENCO_WORLD: GenreWorld = {
     {
       "id": "flam-llamada-12",
       "worldId": "flamenco",
-      "traditionId": "flamenco-solea-style",
-      "substyleId": "flamenco-solea-style",
+      "styleIds": ["flamenco-solea-style", "flamenco-solea-style"],
       "name": "Llamada into Cante",
       "family": "Cante/Guitar Interaction",
       "category": "transition",
-      "description": "Short guitar-and-compás calling gesture that announces a letra or dance entrance; not a generic fill.",
+      "description": "Short guitar-and-compás calling gesture that announces",
       "tags": [
         "llamada",
         "solea",
@@ -4151,7 +4148,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
           "name": "Llamada with final golpe",
           "variationType": "transition",
           "probability": 0.4,
-          "description": "Tightens the final two beats into a clear entrance.",
+          "description": "Tightens the final two beats into",
           "onsetGrid": [
             9,
             10,
@@ -4194,12 +4191,11 @@ export const FLAMENCO_WORLD: GenreWorld = {
     {
       "id": "flam-remate-12",
       "worldId": "flamenco",
-      "traditionId": "flamenco-remate",
-      "substyleId": "flamenco-remate",
+      "styleIds": ["flamenco-remate", "flamenco-remate"],
       "name": "12-Beat Remate",
       "family": "Cadential Punctuation",
       "category": "cadence",
-      "description": "Ensemble remate: synchronized accent and release at the end of a compás, leaving a deliberate pocket before the next phrase.",
+      "description": "Ensemble remate: synchronized accent and release",
       "tags": [
         "remate",
         "corte",
@@ -4289,12 +4285,11 @@ export const FLAMENCO_WORLD: GenreWorld = {
     {
       "id": "flam-buleria-compas",
       "worldId": "flamenco",
-      "traditionId": "flamenco-buleria-style",
-      "substyleId": "flamenco-buleria-style",
+      "styleIds": ["flamenco-buleria-style", "flamenco-buleria-style"],
       "name": "Bulería Compás / Jerez Drive",
       "family": "Bulería Compás",
       "category": "groove",
-      "description": "Fast 12-beat bulería framework with elastic emphasis around 12, 3, 6, 8, 10 and contratiempo.",
+      "description": "Fast 12-beat bulería framework with elastic",
       "tags": [
         "buleria",
         "compas",
@@ -4423,12 +4418,11 @@ export const FLAMENCO_WORLD: GenreWorld = {
     {
       "id": "flam-buleria-palmas",
       "worldId": "flamenco",
-      "traditionId": "flamenco-buleria-style",
-      "substyleId": "flamenco-buleria-style",
+      "styleIds": ["flamenco-buleria-style", "flamenco-buleria-style"],
       "name": "Bulería Palmas Contratiempo",
       "family": "Bulería Palmas",
       "category": "rolePattern",
-      "description": "Fast clear/contratiempo palmas that articulate the Jerez party pulse without filling every subdivision.",
+      "description": "Fast clear/contratiempo palmas that articulate the",
       "tags": [
         "buleria",
         "palmas",
@@ -4528,12 +4522,11 @@ export const FLAMENCO_WORLD: GenreWorld = {
     {
       "id": "flam-alzapua-12",
       "worldId": "flamenco",
-      "traditionId": "flamenco-buleria-style",
-      "substyleId": "flamenco-buleria-style",
+      "styleIds": ["flamenco-buleria-style", "flamenco-buleria-style"],
       "name": "Alzapúa over 12-Beat Compás",
       "family": "Thumb Technique",
       "category": "rolePattern",
-      "description": "Thumb-driven bass/brush engine used as a guitar texture inside fast 12-beat compás rather than a generic 4/4 bass loop.",
+      "description": "Thumb-driven bass/brush engine used as a",
       "tags": [
         "buleria",
         "alzapua",
@@ -4634,12 +4627,11 @@ export const FLAMENCO_WORLD: GenreWorld = {
     {
       "id": "flam-alegrias-compas",
       "worldId": "flamenco",
-      "traditionId": "flamenco-alegrias-style",
-      "substyleId": "flamenco-alegrias-style",
+      "styleIds": ["flamenco-alegrias-style", "flamenco-alegrias-style"],
       "name": "Alegrías / Cantiñas Bright Compás",
       "family": "Cantiñas Compás",
       "category": "ostinato",
-      "description": "Bright 12-beat cantiñas framework: the soleá-family accent architecture with lighter forward motion and major-key guitar harmony.",
+      "description": "Bright 12-beat cantiñas framework: the soleá-family",
       "tags": [
         "alegrias",
         "cantinas",
@@ -4729,12 +4721,11 @@ export const FLAMENCO_WORLD: GenreWorld = {
     {
       "id": "flam-alegrias-palmas",
       "worldId": "flamenco",
-      "traditionId": "flamenco-alegrias-style",
-      "substyleId": "flamenco-alegrias-style",
+      "styleIds": ["flamenco-alegrias-style", "flamenco-alegrias-style"],
       "name": "Alegrías Palmas",
       "family": "Cantiñas Palmas",
       "category": "rolePattern",
-      "description": "Clear, buoyant palmas for Alegrías, brighter than Soleá and suited to dance entrances and escobilla.",
+      "description": "Clear, buoyant palmas for Alegrías, brighter",
       "tags": [
         "alegrias",
         "palmas",
@@ -4829,12 +4820,11 @@ export const FLAMENCO_WORLD: GenreWorld = {
     {
       "id": "flam-escobilla-12",
       "worldId": "flamenco",
-      "traditionId": "flamenco-alegrias-style",
-      "substyleId": "flamenco-alegrias-style",
+      "styleIds": ["flamenco-alegrias-style", "flamenco-alegrias-style"],
       "name": "Escobilla Footwork Pulse",
       "family": "Dance Footwork",
       "category": "pulse",
-      "description": "Repeated footwork-support cell for the escobilla section: dry, even attacks that intensify without changing the underlying compás.",
+      "description": "Repeated footwork-support cell for the escobilla",
       "tags": [
         "escobilla",
         "alegrias",
@@ -4933,12 +4923,11 @@ export const FLAMENCO_WORLD: GenreWorld = {
     {
       "id": "flam-seguiriya-compas",
       "worldId": "flamenco",
-      "traditionId": "flamenco-seguiriya-style",
-      "substyleId": "flamenco-seguiriya-style",
+      "styleIds": ["flamenco-seguiriya-style", "flamenco-seguiriya-style"],
       "name": "Seguiriya 2+2+3+3+2",
       "family": "Seguiriya Compás",
       "category": "phrasePattern",
-      "description": "Seguiriya's asymmetric 2+2+3+3+2 grouping, deliberately unlike the smoother Soleá/Bulería accent profile.",
+      "description": "Seguiriya's asymmetric 2+2+3+3+2 grouping, deliberately unlike",
       "tags": [
         "seguiriya",
         "2+2+3+3+2",
@@ -5020,7 +5009,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
           "name": "Seguiriya Cierre",
           "variationType": "cadence",
           "probability": 0.4,
-          "description": "Compressed closing gesture with dramatic space after the final accent.",
+          "description": "Compressed closing gesture with dramatic space",
           "onsetGrid": [
             0,
             2,
@@ -5063,12 +5052,11 @@ export const FLAMENCO_WORLD: GenreWorld = {
     {
       "id": "flam-seguiriya-palmas",
       "worldId": "flamenco",
-      "traditionId": "flamenco-seguiriya-style",
-      "substyleId": "flamenco-seguiriya-style",
+      "styleIds": ["flamenco-seguiriya-style", "flamenco-seguiriya-style"],
       "name": "Seguiriya Sparse Palmas",
       "family": "Seguiriya Palmas",
       "category": "rolePattern",
-      "description": "Restrained hand percussion for cante jondo: sparse support, not a festive continuous clap.",
+      "description": "Restrained hand percussion for cante jondo:",
       "tags": [
         "seguiriya",
         "palmas",
@@ -5155,12 +5143,11 @@ export const FLAMENCO_WORLD: GenreWorld = {
     {
       "id": "flam-tangos-guitar",
       "worldId": "flamenco",
-      "traditionId": "flamenco-tangos-style",
-      "substyleId": "flamenco-tangos-style",
+      "styleIds": ["flamenco-tangos-style", "flamenco-tangos-style"],
       "name": "Tangos Flamencos Guitar Compás",
       "family": "Binary Compás",
       "category": "ostinato",
-      "description": "Flamenco tangos guitar pulse: beat 1 breathes while 2–3–4 carry the body of the compás, with optional contratiempo pickups.",
+      "description": "Flamenco tangos guitar pulse: beat 1",
       "tags": [
         "tangos",
         "binary",
@@ -5257,12 +5244,11 @@ export const FLAMENCO_WORLD: GenreWorld = {
     {
       "id": "flam-tientos-compas",
       "worldId": "flamenco",
-      "traditionId": "flamenco-tientos-style",
-      "substyleId": "flamenco-tientos-style",
+      "styleIds": ["flamenco-tientos-style", "flamenco-tientos-style"],
       "name": "Tientos Slow Binary Compás",
       "family": "Tientos Compás",
       "category": "ostinato",
-      "description": "Slower, heavier binary accompaniment related to tangos; more space, weight and triplet-like subdivision in the traditional feel.",
+      "description": "Slower, heavier binary accompaniment related to",
       "tags": [
         "tientos",
         "slow",
@@ -5354,12 +5340,11 @@ export const FLAMENCO_WORLD: GenreWorld = {
     {
       "id": "flam-tientos-palmas",
       "worldId": "flamenco",
-      "traditionId": "flamenco-tientos-style",
-      "substyleId": "flamenco-tientos-style",
+      "styleIds": ["flamenco-tientos-style", "flamenco-tientos-style"],
       "name": "Tientos Sparse Palmas",
       "family": "Tientos Palmas",
       "category": "rolePattern",
-      "description": "Measured palmas supporting tientos without turning the palo into festive tangos.",
+      "description": "Measured palmas supporting tientos without turning",
       "tags": [
         "tientos",
         "palmas",
@@ -5445,12 +5430,11 @@ export const FLAMENCO_WORLD: GenreWorld = {
     {
       "id": "flam-rumba-bass",
       "worldId": "flamenco",
-      "traditionId": "flamenco-rumba",
-      "substyleId": "flamenco-rumba",
+      "styleIds": ["flamenco-rumba", "flamenco-rumba"],
       "name": "Rumba Flamenca Bass Propulsion",
       "family": "Rumba Groove",
       "category": "bass",
-      "description": "Rumba flamenca bass motion follows the guitar's forward strum, using roots, fifths and anticipatory pickups rather than generic rock bass.",
+      "description": "Rumba flamenca bass motion follows the",
       "tags": [
         "rumba",
         "bass",
@@ -5545,12 +5529,11 @@ export const FLAMENCO_WORLD: GenreWorld = {
     {
       "id": "flam-fandango-3",
       "worldId": "flamenco",
-      "traditionId": "flamenco-fandango-style",
-      "substyleId": "flamenco-fandango-style",
+      "styleIds": ["flamenco-fandango-style", "flamenco-fandango-style"],
       "name": "Fandango 3/4 Guitar Cycle",
       "family": "Fandango Ternary",
       "category": "ostinato",
-      "description": "Ternary fandango accompaniment: four three-beat phrases with the characteristic move between modal opening and major/minor melodic centers.",
+      "description": "Ternary fandango accompaniment: four three-beat phrases",
       "tags": [
         "fandango",
         "3/4",

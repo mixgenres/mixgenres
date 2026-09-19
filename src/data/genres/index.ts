@@ -1,341 +1,148 @@
-import { GenreWorld, MusicalPattern, Tradition } from '../../types';
+import { GenreWorld, MusicalPattern } from '../../types';
+
 import { TANGO_WORLD } from './tango';
+import { FLAMENCO_WORLD } from './flamenco';
 import { SALSA_WORLD } from './salsa';
 import { TIMBA_WORLD } from './timba';
-import { FLAMENCO_WORLD } from './flamenco';
-import { JAZZ_WORLD } from './jazz';
-import { BLUES_WORLD } from './blues';
-import { ROCK_WORLD } from './rock';
-import { ROCK_EN_ESPANOL_WORLD } from './rockEnEspanol';
+import { BACHATA_WORLD } from './bachata';
+import { CUMBIA_WORLD } from './cumbia';
+import { REGGAETON_DEMBOW_WORLD } from './reggaetonDembow';
 import { ZOUK_WORLD } from './zouk';
 import { KIZOMBA_WORLD } from './kizomba';
+import { BLUES_WORLD } from './blues';
+import { JAZZ_WORLD } from './jazz';
+import { SWING_WORLD } from './swing';
 import { FUNK_WORLD } from './funk';
+import { ROCK_WORLD } from './rock';
 import { METAL_WORLD } from './metal';
-import { BACHATA_WORLD } from './bachata';
 import { HIP_HOP_WORLD } from './hipHop';
 import { ELECTRONIC_WORLD } from './electronic';
-import { COUNTRY_WORLD } from './country';
-import { SWING_WORLD } from './swing';
-import { MATH_ROCK_WORLD } from './mathRock';
-import { AFROBEATS_WORLD } from './afrobeats';
-import { JPOP_WORLD } from './jpop';
-import { CHINESE_ROCK_WORLD } from './chineseRock';
-import { FUSION_AMBIENT_WORLD } from './fusionAmbient';
-import { CHINESE_TRADITIONAL_WORLD } from './chineseTraditional';
-import { JAPANESE_TRADITIONAL_WORLD } from './japaneseTraditional';
-import { REGGAETON_DEMBOW_WORLD } from './reggaetonDembow';
-import { CUMBIA_WORLD } from './cumbia';
-import { TROVA_WORLD } from './trova';
-import { FOLCLORICO_WORLD } from './folclorico';
 import { HOUSE_TECHNO_WORLD } from './houseTechno';
+import { AFROBEATS_WORLD } from './afrobeats';
+import { COUNTRY_WORLD } from './country';
+import { FOLK_WORLD } from './folk';
 import { REGGAE_DUB_WORLD } from './reggaeDub';
 import { SKA_WORLD } from './ska';
 import { SAMBA_BOSSA_WORLD } from './sambaBossa';
-import { CELTIC_TRAD_WORLD } from './celticTrad';
-import { FOLK_WORLD } from './folk';
-import { CHINESE_TRADITIONAL_WORLD } from './chineseTraditional';
-import { JAPANESE_TRADITIONAL_WORLD } from './japaneseTraditional';
 
+/**
+ * Canonical public genre hierarchy.  Missing leaves deliberately borrow an
+ * existing source world; musical definitions stay shared instead of cloned.
+ */
+export const GENRE_SOURCE_MAP: Record<string, string> = {
+  afrobeats: 'afrobeats', bachata: 'bachata', blues: 'blues', brazilian: 'samba-bossa',
+  country: 'country', cumbia: 'cumbia', disco: 'funk', electronic: 'electronic',
+  folk: 'folk', funk: 'funk', gospel: 'folk', 'hip-hop': 'hip-hop', house: 'house-techno',
+  jazz: 'jazz', kizomba: 'kizomba', 'latin-pop': 'reggaeton-dembow', tango: 'tango',
+  flamenco: 'flamenco', metal: 'metal', 'r-and-b': 'funk', reggae: 'reggae-dub',
+  reggaeton: 'reggaeton-dembow', rock: 'rock', salsa: 'salsa', ska: 'ska', soul: 'funk',
+  swing: 'swing', timba: 'timba', zouk: 'zouk', 'drum-and-bass': 'electronic',
+  industrial: 'metal', 'punk-hardcore': 'rock', 'uk-bass': 'electronic',
+};
+
+export const GENRE_NAMES: Record<string, string> = {
+  afrobeats: 'Afrobeats', bachata: 'Bachata', blues: 'Blues', brazilian: 'Brazilian',
+  country: 'Country', cumbia: 'Cumbia', disco: 'Disco', electronic: 'Electronic',
+  folk: 'Folk', funk: 'Funk', gospel: 'Gospel', 'hip-hop': 'Hip Hop', house: 'House',
+  jazz: 'Jazz', kizomba: 'Kizomba', 'latin-pop': 'Latin Pop', tango: 'Tango', flamenco: 'Flamenco',
+  metal: 'Metal', 'r-and-b': 'R&B', reggae: 'Reggae', reggaeton: 'Reggaeton', rock: 'Rock',
+  salsa: 'Salsa', ska: 'Ska', soul: 'Soul', swing: 'Swing', timba: 'Timba', zouk: 'Zouk',
+  'drum-and-bass': 'Drum & Bass', industrial: 'Industrial', 'punk-hardcore': 'Punk / Hardcore',
+  'uk-bass': 'UK Bass',
+};
+
+const SOURCE_WORLDS: Record<string, GenreWorld> = Object.fromEntries([
+  TANGO_WORLD, FLAMENCO_WORLD, SALSA_WORLD, TIMBA_WORLD, BACHATA_WORLD, CUMBIA_WORLD,
+  REGGAETON_DEMBOW_WORLD, ZOUK_WORLD, KIZOMBA_WORLD, BLUES_WORLD, JAZZ_WORLD, SWING_WORLD,
+  FUNK_WORLD, ROCK_WORLD, METAL_WORLD, HIP_HOP_WORLD, ELECTRONIC_WORLD, HOUSE_TECHNO_WORLD, AFROBEATS_WORLD,
+  COUNTRY_WORLD, FOLK_WORLD, REGGAE_DUB_WORLD, SKA_WORLD, SAMBA_BOSSA_WORLD,
+].map(world => [world.id, world]));
+
+function cloneStyleSeeds(source: GenreWorld, genreId: string): GenreWorld['styleDefinitions'] {
+  return (source.styleDefinitions ?? []).map((seed, index) => ({
+    ...seed,
+    id: `${genreId}-${seed.name.toLowerCase().normalize('NFKD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || index}`,
+    worldId: genreId,
+  }));
+}
+
+function makeGenreWorld(genreId: string): GenreWorld {
+  const source = SOURCE_WORLDS[GENRE_SOURCE_MAP[genreId]];
+  if (!source) throw new Error(`Missing source world for ${genreId}`);
+  return {
+    ...source,
+    id: genreId,
+    name: GENRE_NAMES[genreId],
+    family: source.family,
+    level: 'world',
+    parentId: undefined,
+    styleDefinitions: cloneStyleSeeds(source, genreId),
+    // Patterns are intentionally shared source objects. No genre clones.
+    patterns: source.patterns,
+  };
+}
+
+export const GENRE_WORLDS: GenreWorld[] = Object.keys(GENRE_NAMES).map(makeGenreWorld);
+export const GENRE_WORLDS_BY_ID: Record<string, GenreWorld> = Object.fromEntries(
+  GENRE_WORLDS.map(world => [world.id, world])
+);
+
+function shortDescription(value: string): string {
+  return String(value ?? '').replace(/\s+/g, ' ').trim().split(' ').slice(0, 6).join(' ');
+}
 
 export function cleanPatternName(name: string, shortName?: string): string {
-  if (shortName) return shortName;
-  // Pattern labels are UI names, not identifiers: keep them short, musical,
-  // and recognizable across every genre. Source data can remain descriptive.
-  const labelMap: Record<string, string> = {
-    '"The One" 16th-Note Syncopated Bass': '"The One" Syncopated Bass',
-    'Clyde Stubblefield "Funky Drummer" Breakbeat': 'Funky Drummer Breakbeat',
-    'Bossa nova guitar syncopation': 'Bossa Guitar Sync',
-    'Bossa bass anchor / anticipation': 'Bossa Bass Anticipation',
-    'Bossa piano chord punctuation': 'Bossa Piano Punct.',
-    'Abanico Fan Strum (Rumba & Sevillanas)': 'Abanico Strum',
-    'Tangos de Triana (Binary Compás)': 'Tangos de Triana',
-    'Soleá 12-Beat Compás Framework': 'Soleá Compás',
-    'Alzapúa Thumb Technique (Bass Driver)': 'Alzapúa Bass',
-    'Bombo legüero low/high alternation': 'Bombo Low/High',
-    'Requinto Derecho (Verse Picking)': 'Requinto Derecho',
-    'Classic dembow two-bar answer': 'Dembow Answer',
-    'Reggaetón piano offbeat stab': 'Dembow Piano Stab',
-    'Modern Dembow Phrase-End Turn': 'Dembow End Turn',
-    'Koto pitch-inflection gesture': 'Koto Pitch Gesture',
-    'Spang-a-Lang Verse Variation': 'Spang-a-Lang Variant',
-    'Arena Ballad Root-Fifth Bass': 'Arena Root-Fifth Bass',
-    'Mandopop Acoustic Verse Strum': 'Mandopop Strum',
-    'Beyond-Style Pentatonic Lead Hook': 'Pentatonic Lead Hook',
-    'Dynamic Arena Rock Drum Build': 'Arena Drum Build',
-    'Chinese Rock & Pop strings part': 'Rock/Pop Strings',
-    'Marcato en 4 (Orquesta Típica)': 'Marcato en 4',
-    'Marcato en 2 (Troilo / Di Sarli)': 'Marcato en 2',
-    'Síncopa a Tierra (Standard Syncopation)': 'Síncopa a Tierra',
-    'Arrastre (Chromatic Drag Lead-in)': 'Arrastre',
-    'Bordoneo Criollo (Guitar Bass Movement)': 'Bordoneo Criollo',
-    '3+3+2 Nuevo Tango Pulse (Piazzolla)': '3+3+2 Tango',
-    'Fraseo y Rubato (Bandoneón Lead)': 'Fraseo y Rubato',
-    'Old-Time Fiddle Drone & Shuffle Bow': 'Old-Time Fiddle',
-    'Kizomba Batida & Sub-Kick Beat': 'Kizomba Batida',
-    'Kizomba Vocal Phrase Response': 'Kizomba Vocal Reply',
-    'Slow Breathing Sub-Bass Drone': 'Breathing Sub Drone',
-    'Downtempo Pocket & Ghost Kit': 'Downtempo Ghost Kit',
-    'Felt Piano Intimate Arpeggiation': 'Felt Piano Arpeggio',
-    'Organic Shaker & Clay Drum Interlock': 'Shaker/Clay Interlock',
-    'Granular Ambient Atmosphere Wash': 'Granular Atmosphere',
-    'Tambora / alegre conversation': 'Tambora/Alegre Reply',
-    'Guacharaca reverse accent cycle': 'Guacharaca Reverse Cycle',
-    'Son Clave 2–3 Structural Timeline': 'Son Clave 2–3',
-    'Bass Tumbao (Anticipated Harmony)': 'Bass Tumbao',
-    'Piano Montuno / Guajeo (Interlocking Arpeggios)': 'Piano Montuno/Guajeo',
-    'Timbal Cáscara Pattern (Side-Shell Stick)': 'Timbal Cáscara',
-    'Conga Marcha (Slap & Open Tones)': 'Conga Marcha',
-    'Mambo Section Horn Stabs & Punctuation': 'Mambo Horn Stabs',
-    'Midwest Clean Tapped Arpeggio (7/8)': 'Midwest Tap Arpeggio',
-    'Odd-Meter Precision Kit Groove': 'Odd-Meter Kit',
-    'Conversational Tapped Bassline': 'Tapped Bassline',
-    'Polymetric 5-Against-4 Guitar Ostinato': '5:4 Guitar Ostinato',
-    'Four-on-the-Floor Foundation': 'Four-on-Floor',
-    'Four-floor kick with bar accent': 'Four-Floor Kick Accent',
-    'Gear Change: Marcha (Standard Drive)': 'Marcha Gear Change',
-    'Songo Drum Kit & Cowbell Groove (Changuito / Los Van Van)': 'Songo + Cowbell',
-    'Displaced Funk / Timba Bassline': 'Displaced Timba Bass',
-    'Pitched Log Drum Bass Groove': 'Log Drum Bass',
-    'Modern Afropop Kick & Rim Pocket': 'Afropop Kick/Rim',
-    'Highlife Fingerstyle Clean Guitar': 'Highlife Fingerstyle',
-    'Shekere & Gourd Shaker Engine': 'Shekere/Shaker',
-    'Fela Afrobeat Horn Section Stabs': 'Afrobeat Horn Stabs',
-    'Airy Rhodes & Synth Pad Comping': 'Rhodes/Synth Comp',
-    'City Pop Slap & Thumb Groove': 'City Pop Thumb Groove',
-    'Jazzy 7th/9th Electric Piano Comping': '7th/9th EPiano Comp',
-    'Tokyo Studio Funk Pocket Kit': 'Tokyo Funk Pocket',
-    'J-Rock Melodic Driving 8th Bass': 'J-Rock 8th Bass',
-    'Chorus-Drenched Analog Synth Wash': 'Analog Synth Wash',
-    'Walking Bass (Continuous Harmonic Navigation)': 'Walking Bass',
-    'Jazz Ride Cymbal (Spang-a-Lang)': 'Jazz Ride',
-    'Syncopated Piano Comping (Charleston & Red Garland Pluck)': 'Sync Piano Comp',
-    'The Gallop Rhythm (Iron Maiden / Steve Harris)': 'Metal Gallop',
-    'Trova descending harmonic turn': 'Trova Descending Turn',
-    'Zouk Syncopated Bass Movement': 'Zouk Bass Sync',
-    'Offbeat Guitar + Percussion Lock': 'Guitar/Percussion Lock',
-    'Xiqu gong / woodblock punctuation': 'Xiqu Gong/Woodblock',
-    'Chinese open-string drone color': 'Open-String Drone',
-    'Jinghu vocal-response gesture': 'Jinghu Vocal Reply',
-    'Chicken-Scratch 9th Chords (Muted 16th Strum)': 'Chicken-Scratch 9ths',
-  };
-
-  const base = labelMap[name] ?? name
-    .replace(/\s*\([^)]*GM[^)]*\)/gi, '')
-    .replace(/\s*\([^)]*approx[^)]*\)/gi, '')
-    .replace(/\s*\([^)]*\)/g, '')
-    .trim()
-    .replace(/\s*\/\s*/g, '/')
-    .replace(/\bComping\b/g, 'Comp')
-    .replace(/\bVariation\b/g, 'Variant')
-    .replace(/\bPunctuation\b/g, 'Punct.');
-
-  // Collapse common variant suffixes so the base pattern remains easy to scan.
-  const suffixes: Array<[RegExp, string]> = [
-    [/\s*[—-]\s*sparse(?: variation)?$/i, ' · Sparse'],
-    [/\s*[—-]\s*accent shift$/i, ' · Accent'],
-    [/\s*[—-]\s*transition variation$/i, ' · Transition'],
-    [/\s*[—-]\s*played variation$/i, ' · Played'],
-    [/\s*[—-]\s*dense variation$/i, ' · Dense'],
-    [/\s*[—-]\s*instrument-specific variation$/i, ' · Instrument'],
-  ];
-  for (const [pattern, suffix] of suffixes) {
-    if (pattern.test(base)) return base.replace(pattern, suffix);
-  }
-  return base;
+  return shortName || String(name ?? '').replace(/\s*\([^)]*\)/g, '').replace(/\s*\/\s*/g, '/').trim();
 }
 
 export function cleanGenreName(id: string, name?: string): string {
-  const DISPLAY_NAMES: Record<string, string> = {
-    'tango': 'Tango',
-    'salsa': 'Salsa',
-    'timba': 'Timba',
-    'flamenco': 'Flamenco',
-    'bachata': 'Bachata',
-    'zouk': 'Zouk',
-    'kizomba': 'Kizomba',
-    'jazz': 'Jazz',
-    'blues': 'Blues',
-    'funk': 'Funk',
-    'rock': 'Rock',
-    'rock-en-espanol': 'Rock en Español',
-    'metal': 'Metal',
-    'folk': 'Folk',
-    'hip-hop': 'Hip Hop',
-    'electronic': 'Electronic',
-    'country': 'Country',
-    'swing': 'Swing',
-    'math-rock': 'Math Rock',
-    'afrobeats': 'Afrobeats',
-    'j-pop': 'J-Pop',
-    'jpop': 'J-Pop',
-    'chinese-rock': 'Chinese Rock',
-    'fusion-ambient': 'Fusion Ambient',
-    'chinese-traditional': 'Chinese Trad',
-    'japanese-traditional': 'Japanese Trad',
-    'reggaeton-dembow': 'Reggaeton',
-    'reggaeton': 'Reggaeton',
-    'cumbia': 'Cumbia',
-    'trova': 'Trova',
-    'folclorico': 'Folclórico',
-    'house-techno': 'House / Techno',
-    'reggae-dub': 'Reggae / Dub',
-    'ska': 'Ska',
-    'samba-bossa': 'Samba / Bossa',
-    'celtic-trad': 'Celtic Trad',
-  };
-  if (DISPLAY_NAMES[id]) return DISPLAY_NAMES[id];
-  const base = name || id;
-  return base
-    .replace(/\s*\/\s*Dembow/gi, '')
-    .replace(/\s*Traditional/gi, ' Trad')
-    .trim();
+  return GENRE_NAMES[id] ?? name ?? id;
 }
 
-const SOURCE_WORLDS: Record<string, GenreWorld> = Object.fromEntries([
-  TANGO_WORLD, FLAMENCO_WORLD, SALSA_WORLD, TIMBA_WORLD, BACHATA_WORLD,
-  CUMBIA_WORLD, REGGAETON_DEMBOW_WORLD, ZOUK_WORLD, KIZOMBA_WORLD,
-  BLUES_WORLD, JAZZ_WORLD, SWING_WORLD, FUNK_WORLD, ROCK_WORLD,
-  ROCK_EN_ESPANOL_WORLD, METAL_WORLD, HIP_HOP_WORLD, HOUSE_TECHNO_WORLD,
-  ELECTRONIC_WORLD, AFROBEATS_WORLD, SAMBA_BOSSA_WORLD,
-].map(world => [world.id, world]));
-
-type TaxonomySpec = {
-  id: string;
-  name: string;
-  family: string;
-  description: string;
-  sourceIds: string[];
-  substyles: string[];
-};
-
-// One intentionally small top-level taxonomy. Existing detailed worlds remain
-// the source of truth for their musical grammar, patterns, traditions and
-// engine profiles; this layer only groups them for discovery.
-const TAXONOMY: TaxonomySpec[] = [
-  { id: 'latin', name: 'Latin', family: 'Latin', description: 'Cyclical rhythm, interlocking percussion, syncopation.', sourceIds: ['salsa', 'timba', 'bachata', 'cumbia', 'reggaeton-dembow'], substyles: ['Salsa', 'Timba', 'Bachata', 'Cumbia', 'Merengue', 'Reggaeton', 'Vallenato'] },
-  { id: 'flamenco', name: 'Flamenco', family: 'Flamenco', description: FLAMENCO_WORLD.description, sourceIds: ['flamenco'], substyles: ['Soleá', 'Bulería', 'Tangos', 'Fandangos', 'Rumba', 'Nuevo Flamenco'] },
-  { id: 'blues', name: 'Blues', family: 'Blues', description: 'Cycles, call-and-response, expressive phrasing.', sourceIds: ['blues'], substyles: ['Delta', 'Chicago', 'Slow Blues', 'Shuffle', 'Boogie', 'Soul Blues'] },
-  { id: 'zouk', name: 'Zouk', family: 'Zouk', description: 'Elastic groove, flow, sensual phrasing.', sourceIds: ['zouk'], substyles: ['Zouk', 'Lambada', 'Zouk Pop', 'Zouk R&B', 'Neo Zouk', 'Ghetto Zouk'] },
-  { id: 'kizomba', name: 'Kizomba', family: 'Kizomba', description: 'Grounded groove, space, close rhythmic phrasing.', sourceIds: ['kizomba'], substyles: ['Kizomba', 'Semba', 'Tarraxinha', 'Ghetto Zouk', 'Urban Kiz', 'Kizomba Fusion'] },
-  { id: 'tango', name: 'Tango', family: 'Tango', description: TANGO_WORLD.description, sourceIds: ['tango'], substyles: ['Tango', 'Milonga', 'Vals', 'Nuevo Tango', 'Electro Tango', 'Contemporary Tango'] },
-  { id: 'jazz', name: 'Jazz', family: 'Jazz', description: 'Improvisation, harmonic movement, musical conversation.', sourceIds: ['jazz', 'swing'], substyles: ['Swing', 'Bebop', 'Cool', 'Modal', 'Fusion', 'Free Jazz'] },
-  { id: 'funk', name: 'Funk', family: 'Funk', description: 'Pocket, syncopation, bass and drum interlock.', sourceIds: ['funk'], substyles: ['Funk', 'P Funk', 'Boogie', 'Disco', 'Neo Soul', 'R&B'] },
-  { id: 'rock', name: 'Rock', family: 'Rock', description: 'Riffs, backbeat, distortion, dynamic impact.', sourceIds: ['rock', 'rock-en-espanol', 'metal'], substyles: ['Classic Rock', 'Garage', 'Punk', 'Alternative', 'Psychedelic', 'Post Rock'] },
-  { id: 'hip-hop', name: 'Hip Hop', family: 'Hip Hop', description: 'Loops, sampling, pocket, rhythmic vocal phrasing.', sourceIds: ['hip-hop'], substyles: ['Boom Bap', 'G Funk', 'Trap', 'Drill', 'Lo Fi', 'Experimental'] },
-  { id: 'club', name: 'Club', family: 'Club', description: 'Continuous beat, layering, repetition, tension and release.', sourceIds: ['house-techno'], substyles: ['House', 'Techno', 'Trance', 'Deep House', 'Electro', 'Nu Disco'] },
-  { id: 'electronic', name: 'Electronic', family: 'Electronic', description: 'Texture, synthesis, repetition, transformation.', sourceIds: ['electronic'], substyles: ['Ambient', 'IDM', 'Downtempo', 'Glitch', 'Drone', 'Experimental'] },
-  { id: 'traditional', name: 'Traditional', family: 'Traditional', description: 'Folkloric melody, cyclical rhythm, regional ornament, drones and acoustic interlocking.', sourceIds: ['folk', 'celtic-trad', 'chinese-traditional', 'japanese-traditional'], substyles: ['Indian Traditional', 'Celtic', 'Chacarera', 'Marimba Traditions', 'Andean Folk', 'Balkan Folk', 'Appalachian', 'East Asian Traditional'] },
-  { id: 'groove', name: 'Groove', family: 'Groove', description: 'Polyrhythm, layered percussion, syncopated bass movement.', sourceIds: ['afrobeats', 'samba-bossa'], substyles: ['Afrobeats', 'Amapiano', 'Highlife', 'Afro House', 'Afro Funk', 'Kuduro'] },
-];
-
-function buildTaxonomyWorld(spec: TaxonomySpec): GenreWorld {
-  const sources = spec.sourceIds.map(id => SOURCE_WORLDS[id]).filter(Boolean);
-  const base = sources[0];
-  const patterns = sources.flatMap(world => world.patterns).map(pattern => ({ ...pattern, worldId: spec.id }));
-  const traditions = sources.flatMap(world => world.traditions).map(tradition => ({ ...tradition, worldId: spec.id }));
+function normalizePattern(p: MusicalPattern): MusicalPattern {
   return {
-    ...base,
-    id: spec.id,
-    name: spec.name,
-    family: spec.family,
-    description: spec.description,
-    level: 'world',
-    substyles: spec.substyles,
-    patterns,
-    traditions,
-    concepts: [...new Set(sources.flatMap(world => world.concepts))],
-    techniques: [...new Set(sources.flatMap(world => world.techniques))],
-    forms: [...new Set(sources.flatMap(world => world.forms))],
-    relationships: [...new Set(sources.flatMap(world => world.relationships))],
-    transformations: [...new Set(sources.flatMap(world => world.transformations))],
-    songBehaviors: [...new Set(sources.flatMap(world => world.songBehaviors))],
-    combinations: [...new Set(sources.flatMap(world => world.combinations ?? []))],
+    ...p,
+    name: cleanPatternName(p.name, p.shortName),
+    description: shortDescription(p.description),
+    variants: (p.variants ?? []).map(v => ({ ...v, description: v.description ? shortDescription(v.description) : v.description })),
   };
 }
 
-const RAW_GENRE_WORLDS: GenreWorld[] = TAXONOMY.map(spec =>
-  spec.id === 'tango' ? TANGO_WORLD : spec.id === 'flamenco' ? FLAMENCO_WORLD : buildTaxonomyWorld(spec)
-);
-
-export const GENRE_WORLDS: GenreWorld[] = RAW_GENRE_WORLDS.map(w => {
-  // The user explicitly requested that these two mature catalogs remain intact.
-  if (w.id === 'tango' || w.id === 'flamenco') return w;
-  return {
-    ...w,
-    name: cleanGenreName(w.id, w.name),
-    traditions: w.traditions.map(t => ({ ...t, name: t.name })),
-    patterns: w.patterns.map(p => ({
-      ...p,
-      name: cleanPatternName(p.name, p.shortName),
-      variants: p.variants?.map(v => ({ ...v, name: cleanPatternName(v.name, v.shortName) })),
-    })),
-  };
-});
-
-export const GENRE_WORLDS_BY_ID: Record<string, GenreWorld> = Object.fromEntries(
-  GENRE_WORLDS.map(w => [w.id, w])
-);
-
-export const ALL_PATTERNS = GENRE_WORLDS.flatMap(w => w.patterns);
-
-export const PATTERNS_BY_WORLD: Record<string, MusicalPattern[]> = (() => {
-  const map: Record<string, MusicalPattern[]> = {};
-  for (const p of ALL_PATTERNS) {
-    if (!map[p.worldId]) map[p.worldId] = [];
-    map[p.worldId].push(p);
+// Preserve one definition per authored pattern. Shared source patterns are
+// reused by multiple canonical genres through the style contract.
+const uniquePatterns = new Map<string, MusicalPattern>();
+for (const source of Object.values(SOURCE_WORLDS)) {
+  for (const raw of source.patterns) {
+    const p = normalizePattern(raw);
+    const signature = [p.meter, p.cycleLength, p.subdivisions, p.category, (p.onsetGrid ?? []).join(','), (p.roles ?? []).slice().sort().join(',')].join('|');
+    if (!uniquePatterns.has(signature)) uniquePatterns.set(signature, p);
   }
-  return map;
-})();
+}
 
-export const PATTERNS_BY_ID: Record<string, MusicalPattern> = Object.fromEntries(
-  ALL_PATTERNS.map(p => [p.id, p])
-);
+export const ALL_PATTERNS: MusicalPattern[] = [...uniquePatterns.values()];
+export const PATTERNS_BY_ID: Record<string, MusicalPattern> = Object.fromEntries(ALL_PATTERNS.map(p => [p.id, p]));
 
-export const TRADITIONS_BY_ID: Record<string, Tradition> = Object.fromEntries(
-  GENRE_WORLDS.flatMap(w => w.traditions).map(t => [t.id, t])
+/** Genre views contain shared pattern objects, never genre-specific clones. */
+export const PATTERNS_BY_WORLD: Record<string, MusicalPattern[]> = Object.fromEntries(
+  GENRE_WORLDS.map(world => [
+    world.id,
+    ALL_PATTERNS.filter(p => p.worldId === GENRE_SOURCE_MAP[world.id] || p.canCrossRole),
+  ])
 );
+export const PATTERNS_BY_GENRE = PATTERNS_BY_WORLD;
 
 export function getPatternById(id: string): MusicalPattern | undefined {
   return PATTERNS_BY_ID[id];
 }
-export const ALL_TRADITIONS = GENRE_WORLDS.flatMap(w => w.traditions);
 
-/* ========================================================================== */
-/*  Feels — a few playful, cross-genre categories layered on top of the       */
-/*  catalog. A pattern keeps living in its home genre; it just also shows up  */
-/*  here when it's a good fit for the mood.                                   */
-/* ========================================================================== */
 export type PatternFeel = 'laid-back' | 'bouncy' | 'rolling' | 'hypnotic' | 'cinematic';
-
 export const FEEL_LABELS: Record<PatternFeel, string> = {
-  'laid-back': 'Laid-back',
-  bouncy: 'Bouncy',
-  rolling: 'Rolling',
-  hypnotic: 'Hypnotic',
-  cinematic: 'Cinematic',
+  'laid-back': 'Laid-back', bouncy: 'Bouncy', rolling: 'Rolling', hypnotic: 'Hypnotic', cinematic: 'Cinematic',
 };
-
-// Alphabetical by label, so the filter chips read the same way every other
-// picklist in the app does.
 export const FEEL_ORDER: PatternFeel[] = ['laid-back', 'bouncy', 'rolling', 'hypnotic', 'cinematic'];
-
 const PATTERN_FEELS: Record<string, PatternFeel[]> = {
-  'sb-bossa-bass': ['laid-back'],
-  'rd-one-drop': ['laid-back'],
-  'kizomba-batida-groove': ['laid-back'],
-  'flam-abanico-strum-variant-rumba-strum': ['bouncy'],
-  'sk-11-two-tone-guitar-pulse': ['bouncy'],
-  'jazz-walking-bass': ['hypnotic'],
-  'elec-offbeat-hats': ['hypnotic'],
-  'ct-uilleann-drone': ['hypnotic'],
-  'fusion-deep-granular-pad': ['cinematic'],
-  'hiphop-trap-hats': ['rolling'],
+  'sb-bossa-bass': ['laid-back'], 'rd-one-drop': ['laid-back'], 'kizomba-batida-groove': ['laid-back'],
+  'jazz-walking-bass': ['hypnotic'], 'elec-offbeat-hats': ['hypnotic'], 'hiphop-trap-hats': ['rolling'],
 };
-
-export function feelsForPattern(id: string): PatternFeel[] {
-  return PATTERN_FEELS[id] ?? [];
-}
-
-export function patternsForFeel(feel: PatternFeel): MusicalPattern[] {
-  return ALL_PATTERNS.filter(p => (PATTERN_FEELS[p.id] ?? []).includes(feel));
-}
+export function feelsForPattern(id: string): PatternFeel[] { return PATTERN_FEELS[id] ?? []; }
+export function patternsForFeel(feel: PatternFeel): MusicalPattern[] { return ALL_PATTERNS.filter(p => (PATTERN_FEELS[p.id] ?? []).includes(feel)); }

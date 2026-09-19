@@ -6,15 +6,15 @@ export const JAZZ_WORLD: GenreWorld = {
   "family": "Improvisation / Harmony",
   "color": "#5f83bb",
   "level": "world",
-  "description": "The monumental Jazz tradition: Swing and Bebop ride cymbal phrasing, four-to-the-bar walking basslines, Charleston syncopation, McCoy Tyner quartal voicings, and improvisational motif development.",
-  "traditions": [
+  "description": "The monumental Jazz style: Swing and",
+  "styleDefinitions": [
     {
       "id": "jazz-bebop",
       "worldId": "jazz",
       "name": "Bebop",
       "origin": "Harlem, New York City",
       "era": "1940s",
-      "description": "Fast • Chromatic • Virtuosic\nRapid harmonic changes and angular lines.\nCharlie Parker · Dizzy Gillespie",
+      "description": "Fast • Chromatic • Virtuosic\nRapid harmonic",
       "characteristicInstruments": [
         "alto-sax",
         "trumpet",
@@ -94,7 +94,7 @@ export const JAZZ_WORLD: GenreWorld = {
       "name": "Cool Jazz",
       "origin": "New York / Los Angeles (West Coast)",
       "era": "Late 1940s–1950s",
-      "description": "Subtle • Relaxed • Lyricism\nRestrained, understated modal warmth.\nMiles Davis · Chet Baker",
+      "description": "Subtle • Relaxed • Lyricism\nRestrained, understated",
       "characteristicInstruments": [
         "trumpet",
         "alto-sax",
@@ -176,7 +176,7 @@ export const JAZZ_WORLD: GenreWorld = {
       "name": "Hard Bop",
       "origin": "New York / Philadelphia / Detroit",
       "era": "1950s–1960s",
-      "description": "Soulful • Blues-infused • Driving\nGospel and blues drenched post-bop.\nArt Blakey & The Jazz Messengers · Horace Silver",
+      "description": "Soulful • Blues-infused • Driving\nGospel and",
       "characteristicInstruments": [
         "tenor-sax",
         "trumpet",
@@ -256,7 +256,7 @@ export const JAZZ_WORLD: GenreWorld = {
       "name": "Free Jazz",
       "origin": "New York City / Los Angeles",
       "era": "Late 1950s–1960s",
-      "description": "Avant-Garde • Atonal • Unbound\nRadical improvisation breaking chord rules.\nOrnette Coleman · John Coltrane",
+      "description": "Avant-Garde • Atonal • Unbound\nRadical improvisation",
       "characteristicInstruments": [
         "tenor-sax",
         "alto-sax",
@@ -312,9 +312,9 @@ export const JAZZ_WORLD: GenreWorld = {
       "id": "jazz-gypsy-jazz",
       "worldId": "jazz",
       "name": "Gypsy Jazz",
-      "origin": "Paris, France (Manouche Tradition)",
+      "origin": "Paris, France (Manouche GenreStyleDefinition)",
       "era": "1930s–1940s",
-      "description": "La Pompe • Acoustic Guitar • Virtuosic\nDjango Reinhardt French hot swing.\nDjango Reinhardt · Stephane Grappelli",
+      "description": "La Pompe • Acoustic Guitar •",
       "characteristicInstruments": [
         "acoustic-guitar",
         "violin",
@@ -393,7 +393,7 @@ export const JAZZ_WORLD: GenreWorld = {
       "name": "Fusion",
       "origin": "New York / Los Angeles",
       "era": "Late 1960s–1970s",
-      "description": "Electric • Complex Meter • High Energy\nJazz improvisation meets rock electricity.\nWeather Report · Return to Forever",
+      "description": "Electric • Complex Meter • High",
       "characteristicInstruments": [
         "synth",
         "electric-guitar",
@@ -475,7 +475,7 @@ export const JAZZ_WORLD: GenreWorld = {
       "name": "Spiritual Jazz",
       "origin": "New York / Chicago / Global",
       "era": "Late 1960s–1970s",
-      "description": "Modal Drone • Cosmic • Transcendental\nSearching spiritual modal explorations.\nPharoah Sanders · Alice Coltrane",
+      "description": "Modal Drone • Cosmic • Transcendental\nSearching",
       "characteristicInstruments": [
         "tenor-sax",
         "harp",
@@ -554,7 +554,7 @@ export const JAZZ_WORLD: GenreWorld = {
       "name": "Ragtime",
       "origin": "Sedalia / St. Louis, Missouri",
       "era": "1890s–1910s",
-      "description": "Syncopated • Marching Bass • Piano\nFoundational syncopated piano classic.\nScott Joplin · Jelly Roll Morton",
+      "description": "Syncopated • Marching Bass • Piano\nFoundational",
       "characteristicInstruments": [
         "piano",
         "upright-bass",
@@ -698,11 +698,11 @@ export const JAZZ_WORLD: GenreWorld = {
     {
       "id": "jazz-walking-bass",
       "worldId": "jazz",
-      "traditionId": "jazz-swing-bebop",
+      "styleIds": ["jazz-swing-bebop"],
       "name": "Walking Bass (Continuous Harmonic Navigation)",
       "family": "Walking Basslines",
       "category": "ostinato",
-      "description": "Continuous four-to-the-bar walking bass connecting roots, chord tones, and chromatic approach notes.",
+      "description": "Continuous four-to-the-bar walking bass connecting roots,",
       "tags": [
         "bass",
         "walking",
@@ -776,7 +776,7 @@ export const JAZZ_WORLD: GenreWorld = {
             1,
             0.9
           ],
-          "description": "Half-note pulse used during head statements before opening up to 4-feel walking in solos."
+          "description": "Half-note pulse used during head statements"
         },
         {
           "id": "jazz-walking-with-triplet-skip",
@@ -798,7 +798,7 @@ export const JAZZ_WORLD: GenreWorld = {
             0.85,
             1
           ],
-          "description": "Ray Brown-style ghosted triplet skip note leading into beat 3."
+          "description": "Ray Brown-style ghosted triplet skip note"
         }
       ],
       "harmonicContext": [
@@ -831,7 +831,7 @@ export const JAZZ_WORLD: GenreWorld = {
           "sourceRole": "drums",
           "targetRole": "bass",
           "relationship": "reinforce",
-          "description": "Low-end attacks reinforce the main pulse without doubling every subdivision.",
+          "description": "Low-end attacks reinforce the main pulse",
           "timingOffsetSteps": 0,
           "probability": 0.78
         }
@@ -840,11 +840,11 @@ export const JAZZ_WORLD: GenreWorld = {
     {
       "id": "jazz-ride-spangalang",
       "worldId": "jazz",
-      "traditionId": "jazz-swing-bebop",
+      "styleIds": ["jazz-swing-bebop"],
       "name": "Jazz Ride Cymbal (Spang-a-Lang)",
       "family": "Jazz Drumming",
       "category": "ostinato",
-      "description": "The definitive jazz swing ride pattern with hi-hat pedal snapping crisply on beats 2 & 4.",
+      "description": "The definitive jazz swing ride pattern",
       "tags": [
         "drums",
         "ride",
@@ -925,7 +925,7 @@ export const JAZZ_WORLD: GenreWorld = {
             0.6,
             0.8
           ],
-          "description": "Gentle circular wire brush sweeps on snare drum."
+          "description": "Gentle circular wire brush sweeps on"
         },
         {
           "id": "jazz-ride-spangalang-v-02",
@@ -933,7 +933,7 @@ export const JAZZ_WORLD: GenreWorld = {
           "name": "Jazz Ride Cymbal (Spang-a-Lang) — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             4,
@@ -999,7 +999,7 @@ export const JAZZ_WORLD: GenreWorld = {
           "sourceRole": "voice",
           "targetRole": "harmony",
           "relationship": "leaveSpace",
-          "description": "Harmony reduces density under vocal entries so the phrase remains foregrounded.",
+          "description": "Harmony reduces density under vocal entries",
           "timingOffsetSteps": 0,
           "probability": 0.72
         }
@@ -1012,11 +1012,11 @@ export const JAZZ_WORLD: GenreWorld = {
     {
       "id": "jazz-piano-comping",
       "worldId": "jazz",
-      "traditionId": "jazz-swing-bebop",
+      "styleIds": ["jazz-swing-bebop"],
       "name": "Syncopated Piano Comping (Charleston & Red Garland Pluck)",
       "family": "Piano Comping",
       "category": "ostinato",
-      "description": "Sparse, syncopated chord voicings placed around the soloist’s phrasing (Charleston rhythm on beat 1 and 2-and).",
+      "description": "Sparse, syncopated chord voicings placed around",
       "tags": [
         "piano",
         "comping",
@@ -1094,7 +1094,7 @@ export const JAZZ_WORLD: GenreWorld = {
             0.9,
             1
           ],
-          "description": "Powerful fourth-based modal chords with pentatonic rhythmic accents."
+          "description": "Powerful fourth-based modal chords with pentatonic"
         },
         {
           "id": "jazz-piano-comping-v-02",
@@ -1102,7 +1102,7 @@ export const JAZZ_WORLD: GenreWorld = {
           "name": "Syncopated Piano Comping (Charleston & Red Garland Pluck) — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             6,
@@ -1155,7 +1155,7 @@ export const JAZZ_WORLD: GenreWorld = {
           "sourceRole": "lead",
           "targetRole": "voice",
           "relationship": "answer",
-          "description": "Lead instrument answers a vocal phrase in the open space after the line.",
+          "description": "Lead instrument answers a vocal phrase",
           "timingOffsetSteps": 2,
           "probability": 0.58
         }
@@ -1168,11 +1168,11 @@ export const JAZZ_WORLD: GenreWorld = {
     {
       "id": "jazz-brushes-swing",
       "worldId": "jazz",
-      "traditionId": "jazz-swing-bebop",
+      "styleIds": ["jazz-swing-bebop"],
       "name": "Brushes Swing",
       "family": "Drums",
       "category": "fill",
-      "description": "Sweeping wire brush circular patterns on snare.",
+      "description": "Sweeping wire brush circular patterns on",
       "tags": [],
       "scopes": [
         "measure"
@@ -1231,7 +1231,7 @@ export const JAZZ_WORLD: GenreWorld = {
           "name": "Brushes Swing — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             3,
@@ -1267,7 +1267,7 @@ export const JAZZ_WORLD: GenreWorld = {
           "name": "Brushes Swing — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             2,
@@ -1341,11 +1341,11 @@ export const JAZZ_WORLD: GenreWorld = {
     {
       "id": "jazz-latin-montuno-comp",
       "worldId": "jazz",
-      "traditionId": "jazz-modal-contemporary",
+      "styleIds": ["jazz-modal-contemporary"],
       "name": "Latin Jazz Montuno Comping",
       "family": "Piano Comping",
       "category": "ostinato",
-      "description": "Syncopated two-handed montuno piano ostinato bringing an Afro-Cuban Latin Jazz clave feel into modal harmony.",
+      "description": "Syncopated two-handed montuno piano ostinato bringing",
       "tags": [
         "jazz",
         "latin-jazz",
@@ -1406,7 +1406,7 @@ export const JAZZ_WORLD: GenreWorld = {
           "name": "Latin Jazz Montuno Comping — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             2,
             7,
@@ -1438,7 +1438,7 @@ export const JAZZ_WORLD: GenreWorld = {
           "name": "Latin Jazz Montuno Comping — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             2,
             4,
@@ -1503,7 +1503,7 @@ export const JAZZ_WORLD: GenreWorld = {
           "sourceRole": "bass",
           "targetRole": "drums",
           "relationship": "accentWith",
-          "description": "Bass accents align with selected kick/backbeat events for a tighter pocket.",
+          "description": "Bass accents align with selected kick/backbeat",
           "timingOffsetSteps": 0,
           "probability": 0.65
         }
@@ -1516,7 +1516,7 @@ export const JAZZ_WORLD: GenreWorld = {
     {
       "id": "jazz-piano-red-garland",
       "worldId": "jazz",
-      "traditionId": "jazz-swing-bebop",
+      "styleIds": ["jazz-swing-bebop"],
       "name": "Block Chords",
       "family": "Piano",
       "category": "break",
@@ -1566,7 +1566,7 @@ export const JAZZ_WORLD: GenreWorld = {
           "name": "Block Chords — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             5
@@ -1590,7 +1590,7 @@ export const JAZZ_WORLD: GenreWorld = {
           "name": "Block Chords — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             3,
@@ -1644,11 +1644,11 @@ export const JAZZ_WORLD: GenreWorld = {
     {
       "id": "jazz-hihat-2-4",
       "worldId": "jazz",
-      "traditionId": "jazz-swing-bebop",
+      "styleIds": ["jazz-swing-bebop"],
       "name": "Hi-Hat 2 & 4",
       "family": "Drums",
       "category": "cadence",
-      "description": "Crisp foot hi-hat chick locking beats 2 and 4.",
+      "description": "Crisp foot hi-hat chick locking beats",
       "tags": [],
       "scopes": [
         "measure"
@@ -1691,7 +1691,7 @@ export const JAZZ_WORLD: GenreWorld = {
           "name": "Hi-Hat 2 & 4 — played variation",
           "variationType": "accentShift",
           "probability": 0.18,
-          "description": "A light played variation for sparse patterns with only a few attacks.",
+          "description": "A light played variation for sparse",
           "onsetGrid": [
             1,
             3
@@ -1715,7 +1715,7 @@ export const JAZZ_WORLD: GenreWorld = {
           "name": "Hi-Hat 2 & 4 — played variation",
           "variationType": "accentShift",
           "probability": 0.18,
-          "description": "A light played variation for sparse patterns with only a few attacks.",
+          "description": "A light played variation for sparse",
           "onsetGrid": [
             1,
             3
@@ -1765,7 +1765,7 @@ export const JAZZ_WORLD: GenreWorld = {
     {
       "id": "jazz-ride-broken",
       "worldId": "jazz",
-      "traditionId": "jazz-modal-contemporary",
+      "styleIds": ["jazz-modal-contemporary"],
       "name": "Broken Ride",
       "family": "Drums",
       "category": "groove",
@@ -1819,7 +1819,7 @@ export const JAZZ_WORLD: GenreWorld = {
           "name": "Broken Ride — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             6,
@@ -1847,7 +1847,7 @@ export const JAZZ_WORLD: GenreWorld = {
           "name": "Broken Ride — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             3,
@@ -1908,7 +1908,7 @@ export const JAZZ_WORLD: GenreWorld = {
           "sourceRole": "harmony",
           "targetRole": "lead",
           "relationship": "leaveSpace",
-          "description": "Accompaniment thins when the instrumental lead enters.",
+          "description": "Accompaniment thins when the instrumental lead",
           "timingOffsetSteps": 0,
           "probability": 0.62
         }
@@ -1921,11 +1921,11 @@ export const JAZZ_WORLD: GenreWorld = {
     {
       "id": "jazz-bass-pedal",
       "worldId": "jazz",
-      "traditionId": "jazz-modal-contemporary",
+      "styleIds": ["jazz-modal-contemporary"],
       "name": "Pedal Point",
       "family": "Bass",
       "category": "groove",
-      "description": "Repeating root pedal anchor building modal tension.",
+      "description": "Repeating root pedal anchor building modal",
       "tags": [],
       "scopes": [
         "measure"
@@ -1972,7 +1972,7 @@ export const JAZZ_WORLD: GenreWorld = {
           "name": "Pedal Point — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             4,
@@ -2000,7 +2000,7 @@ export const JAZZ_WORLD: GenreWorld = {
           "name": "Pedal Point — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             2,
@@ -2058,7 +2058,7 @@ export const JAZZ_WORLD: GenreWorld = {
     {
       "id": "jazz-comping-sync",
       "worldId": "jazz",
-      "traditionId": "jazz-modal-contemporary",
+      "styleIds": ["jazz-modal-contemporary"],
       "name": "Syncopated Comping",
       "family": "Piano",
       "category": "groove",
@@ -2108,7 +2108,7 @@ export const JAZZ_WORLD: GenreWorld = {
           "name": "Syncopated Comping — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             1,
             7
@@ -2132,7 +2132,7 @@ export const JAZZ_WORLD: GenreWorld = {
           "name": "Syncopated Comping — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             1,
             4,
@@ -2186,11 +2186,11 @@ export const JAZZ_WORLD: GenreWorld = {
     {
       "id": "jazz-snare-comp",
       "worldId": "jazz",
-      "traditionId": "jazz-swing-bebop",
+      "styleIds": ["jazz-swing-bebop"],
       "name": "Snare Comping",
       "family": "Drums",
       "category": "groove",
-      "description": "Dropping bombs and snare commentary behind soloist.",
+      "description": "Dropping bombs and snare commentary behind",
       "tags": [],
       "scopes": [
         "measure"
@@ -2234,7 +2234,7 @@ export const JAZZ_WORLD: GenreWorld = {
           "name": "Snare Comping — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             2,
             10
@@ -2258,7 +2258,7 @@ export const JAZZ_WORLD: GenreWorld = {
           "name": "Snare Comping — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             2,
             7,
@@ -2312,11 +2312,11 @@ export const JAZZ_WORLD: GenreWorld = {
     {
       "id": "jazz-waltz-ride",
       "worldId": "jazz",
-      "traditionId": "jazz-modal-contemporary",
+      "styleIds": ["jazz-modal-contemporary"],
       "name": "Jazz Waltz Ride",
       "family": "Drums",
       "category": "groove",
-      "description": "Swinging triplet ride pattern in 3/4 meter.",
+      "description": "Swinging triplet ride pattern in 3/4",
       "tags": [],
       "scopes": [
         "measure"
@@ -2369,7 +2369,7 @@ export const JAZZ_WORLD: GenreWorld = {
           "name": "Jazz Waltz Ride — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             3,
@@ -2401,7 +2401,7 @@ export const JAZZ_WORLD: GenreWorld = {
           "name": "Jazz Waltz Ride — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             2,
@@ -2467,11 +2467,11 @@ export const JAZZ_WORLD: GenreWorld = {
     {
       "id": "jazz-phrase-13",
       "worldId": "jazz",
-      "traditionId": "jazz-swing-bebop",
+      "styleIds": ["jazz-swing-bebop"],
       "name": "Solo Phrase",
       "family": "Solo",
       "category": "phrasePattern",
-      "description": "A phrase-level rhythmic template that leaves deliberate space for melodic expression. Built around horn head and the solo vocabulary of Jazz.",
+      "description": "A phrase-level rhythmic template that leaves",
       "tags": [
         "jazz",
         "solo",
@@ -2554,7 +2554,7 @@ export const JAZZ_WORLD: GenreWorld = {
           "name": "Solo Phrase — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             1,
             6,
@@ -2582,7 +2582,7 @@ export const JAZZ_WORLD: GenreWorld = {
           "name": "Solo Phrase — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             1,
             4,
@@ -2629,11 +2629,11 @@ export const JAZZ_WORLD: GenreWorld = {
     {
       "id": "jazz-call-14",
       "worldId": "jazz",
-      "traditionId": "jazz-swing-bebop",
+      "styleIds": ["jazz-swing-bebop"],
       "name": "Horn Head & Solo Phrase",
       "family": "Horn Head",
       "category": "interactionPattern",
-      "description": "A horn-head/solo contour slot that gives the rhythm section a melodic identity.",
+      "description": "A horn-head/solo contour slot that gives",
       "tags": [
         "jazz",
         "shout",
@@ -2718,7 +2718,7 @@ export const JAZZ_WORLD: GenreWorld = {
           "name": "Shout Response — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             2,
             7,
@@ -2746,7 +2746,7 @@ export const JAZZ_WORLD: GenreWorld = {
           "name": "Shout Response — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             2,
             5,
@@ -2782,7 +2782,7 @@ export const JAZZ_WORLD: GenreWorld = {
           "name": "Shout Response — transition variation",
           "variationType": "transition",
           "probability": 0.16,
-          "description": "Adds a final pickup/closure gesture for section transitions.",
+          "description": "Adds a final pickup/closure gesture for",
           "onsetGrid": [
             2,
             5,
@@ -2837,11 +2837,11 @@ export const JAZZ_WORLD: GenreWorld = {
     {
       "id": "jazz-anchor-15",
       "worldId": "jazz",
-      "traditionId": "jazz-swing-bebop",
+      "styleIds": ["jazz-swing-bebop"],
       "name": "Head Anchor",
       "family": "Head",
       "category": "ostinato",
-      "description": "A repeating anchor that locks the low end to the groove. Built around swing and the head vocabulary of Jazz.",
+      "description": "A repeating anchor that locks the",
       "tags": [
         "jazz",
         "head",
@@ -2925,7 +2925,7 @@ export const JAZZ_WORLD: GenreWorld = {
           "name": "Head Anchor — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             3,
             8,
@@ -2953,7 +2953,7 @@ export const JAZZ_WORLD: GenreWorld = {
           "name": "Head Anchor — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             3,
             6,
@@ -3000,11 +3000,11 @@ export const JAZZ_WORLD: GenreWorld = {
     {
       "id": "jazz-comp-16",
       "worldId": "jazz",
-      "traditionId": "jazz-swing-bebop",
+      "styleIds": ["jazz-swing-bebop"],
       "name": "Comping Comping",
       "family": "Comping",
       "category": "groove",
-      "description": "A genre-shaped accompaniment cell that supports the lead without occupying every subdivision. Built around comping in Jazz.",
+      "description": "A genre-shaped accompaniment cell that supports",
       "tags": [
         "jazz",
         "comping",
@@ -3087,7 +3087,7 @@ export const JAZZ_WORLD: GenreWorld = {
           "name": "Comping Comping — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             5,
             10,
@@ -3115,7 +3115,7 @@ export const JAZZ_WORLD: GenreWorld = {
           "name": "Comping Comping — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             5,
             8,
@@ -3162,11 +3162,11 @@ export const JAZZ_WORLD: GenreWorld = {
     {
       "id": "jazz-intro-17",
       "worldId": "jazz",
-      "traditionId": "jazz-swing-bebop",
+      "styleIds": ["jazz-swing-bebop"],
       "name": "Shout Horn Answer",
       "family": "Turnaround",
       "category": "sectionPattern",
-      "description": "A reduced entrance used to establish the genre before the full groove arrives. Built around walking bass and the turnaround vocabulary of Jazz.",
+      "description": "A reduced entrance used to establish",
       "tags": [
         "jazz",
         "turnaround",
@@ -3256,7 +3256,7 @@ export const JAZZ_WORLD: GenreWorld = {
           "name": "Turnaround Intro — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             4,
@@ -3288,7 +3288,7 @@ export const JAZZ_WORLD: GenreWorld = {
           "name": "Turnaround Intro — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             2,
@@ -3328,7 +3328,7 @@ export const JAZZ_WORLD: GenreWorld = {
           "name": "Turnaround Intro — transition variation",
           "variationType": "transition",
           "probability": 0.16,
-          "description": "Adds a final pickup/closure gesture for section transitions.",
+          "description": "Adds a final pickup/closure gesture for",
           "onsetGrid": [
             0,
             2,

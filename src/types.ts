@@ -165,7 +165,6 @@ export type DominanceLevel = 'foundational' | 'prominent' | 'occasional' | 'rare
 
 export interface UserPatternPreference {
   familyId?: string;
-  traditionId?: string;
   worldId?: string;
   role?: Role;
   dominance: DominanceLevel;
@@ -199,8 +198,8 @@ export interface InteractionRule {
   description: string;
   timingOffsetSteps?: number; // e.g. -1 for anticipation, +2 for response
   probability: number;
-  worldId?: string;
-  traditionId?: string;
+  worldId?: string; // legacy catalog field; not used for musical decisions
+  styleIds?: string[];
   constraints?: string[];
 }
 
@@ -210,14 +209,13 @@ export interface PatternTransformation {
   type: 'density' | 'anticipation' | 'accent' | 'ornament' | 'phrasePosition' | 'swing' | 'syncopation';
   parameter: number | string;
   description: string;
-  allowedWorlds?: string[];
+  allowedGenres?: string[];
 }
 
 export interface MusicalPattern {
   id: string;
-  worldId: string;
-  traditionId?: string;
-  substyleId?: string;
+  worldId: string; // genre/catalog key; musical identity is styleIds
+  styleIds?: string[];
   name: string;
   shortName?: string;
   family: string;
@@ -274,7 +272,7 @@ export interface MusicalPattern {
   enabled?: boolean;
 }
 
-export interface Tradition {
+export interface GenreStyleDefinition {
   id: string;
   worldId: string;
   name: string;
@@ -317,7 +315,7 @@ export interface GenreWorld {
   description: string;
   parentId?: LensId;
   level: 'world' | 'family' | 'substyle' | 'artist' | 'cross-world';
-  traditions: Tradition[];
+  styleDefinitions: GenreStyleDefinition[]; // catalog-only style definition; never consulted by musical runtime
   substyles: string[];
   artists: string[];
   concepts: string[];
@@ -352,7 +350,6 @@ export interface Measure {
   patternByTrack: Record<string, string>;
   patternDetailsByTrack?: Record<string, {
     patternId: string;
-    traditionId?: string;
     styleId?: string;
     variantId?: string;
     onsetGrid: number[];
@@ -460,7 +457,7 @@ export interface SelectionScoreDetails {
   totalScore: number;
   factors: {
     genreMatch: number;
-    traditionMatch: number;
+    styleMatch: number;
     sectionMatch: number;
     roleMatch: number;
     instrumentMatch: number;
@@ -479,7 +476,7 @@ export interface SelectionScoreDetails {
 export interface GenreCoverageReportItem {
   worldId: string;
   worldName: string;
-  traditionsCount: number;
+  stylesCount: number;
   rhythmicFamiliesCount: number;
   corePatternsCount: number;
   variantsCount: number;

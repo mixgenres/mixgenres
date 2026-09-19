@@ -6,15 +6,15 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
   "family": "Caribbean / Latin urban",
   "color": "#d14b7a",
   "level": "world",
-  "description": "Reggaetón and dembow are represented as drum-first rhythmic worlds: the dembow timeline is structural, bass answers it, and harmony/voice are deliberately prevented from washing out the groove. The world distinguishes classic and modern production grammar.",
-  "traditions": [
+  "description": "Reggaetón and dembow are represented as",
+  "styleDefinitions": [
     {
       "id": "reggaeton-dembow-perreo",
       "worldId": "reggaeton-dembow",
       "name": "Perreo",
       "origin": "San Juan, Puerto Rico",
       "era": "2000s",
-      "description": "Heavy Dembow • 4/4 3-3-2 • Street Party\nThe iconic raw Puerto Rican party beat.\nDaddy Yankee · Don Omar",
+      "description": "Heavy Dembow • 4/4 3-3-2 •",
       "characteristicInstruments": [
         "drums",
         "sub-bass",
@@ -94,7 +94,7 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
       "name": "Melodic",
       "origin": "Medellín, Colombia / Puerto Rico",
       "era": "2015–Present",
-      "description": "Smooth • Pop-Sensibility • Romantic\nPolished Colombian romantic reggaeton.\nJ Balvin · Maluma",
+      "description": "Smooth • Pop-Sensibility • Romantic\nPolished Colombian",
       "characteristicInstruments": [
         "synth",
         "drums",
@@ -173,7 +173,7 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
       "name": "Neoperreo",
       "origin": "Santiago, Chile / Mexico / Spain",
       "era": "2018–Present",
-      "description": "Distorted • Cyberpunk • Club Underground\nDistorted avant-garde feminist party music.\nMs Nina · Tomasa del Real",
+      "description": "Distorted • Cyberpunk • Club Underground\nDistorted",
       "characteristicInstruments": [
         "sampler",
         "drums",
@@ -252,7 +252,7 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
       "name": "Dancehall",
       "origin": "Panama / Puerto Rico",
       "era": "1990s",
-      "description": "Spanish Reggae • Roots • Jamaican Beat\nThe Panamanian roots of reggaeton.\nEl General · Nando Boom",
+      "description": "Spanish Reggae • Roots • Jamaican",
       "characteristicInstruments": [
         "drums",
         "bass",
@@ -332,7 +332,7 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
       "name": "Pop-Reggaeton",
       "origin": "Miami / San Juan / Madrid",
       "era": "2017–Present",
-      "description": "Commercial • Acoustic Guitar • Global Hit\nGlobal stadium Latin pop anthems.\nLuis Fonsi · Rosalía",
+      "description": "Commercial • Acoustic Guitar • Global",
       "characteristicInstruments": [
         "acoustic-guitar",
         "synth",
@@ -413,7 +413,7 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
       "name": "Trap",
       "origin": "San Juan, Puerto Rico",
       "era": "2016–Present",
-      "description": "808 • Dark • Melancholic\nLatin trap street narratives and 808s.\nBad Bunny · Anuel AA",
+      "description": "808 • Dark • Melancholic\nLatin trap",
       "characteristicInstruments": [
         "sub-bass",
         "drums",
@@ -492,7 +492,7 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
       "name": "Playero",
       "origin": "San Juan, Puerto Rico (Casas & Mixtapes)",
       "era": "1990s",
-      "description": "Underground • Mixtape • Raw Loops\nDJ Playero's original underground tapes.\nDJ Playero · DJ Negro",
+      "description": "Underground • Mixtape • Raw Loops\nDJ",
       "characteristicInstruments": [
         "sampler",
         "drums",
@@ -562,7 +562,7 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
       "name": "Bachata",
       "origin": "Dominican Republic / Puerto Rico",
       "era": "2000s–Present",
-      "description": "Requinto • Bongo • Dembow Fusion\nBachata-reggaeton romantic hybrid (Bachaton).\nAventura · Don Omar",
+      "description": "Requinto • Bongo • Dembow Fusion\nBachata-reggaeton",
       "characteristicInstruments": [
         "requinto",
         "bongo",
@@ -691,11 +691,11 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
     {
       "id": "rg-dembow-core",
       "worldId": "reggaeton-dembow",
-      "traditionId": "reggaeton-dembow",
+      "styleIds": ["reggaeton-dembow"],
       "name": "Dembow Core Timeline",
       "family": "Dembow Drums",
       "category": "groove",
-      "description": "The canonical engine cell: kick attacks and snare answers form a two-bar conversation with enough gaps for vocals.",
+      "description": "The canonical engine cell: kick attacks",
       "tags": [
         "dembow",
         "reggaeton",
@@ -823,7 +823,7 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
           "name": "Dembow Core Timeline — sparse",
           "variationType": "sparse",
           "probability": 0.05,
-          "description": "Leaves selected attacks open for a played repetition.",
+          "description": "Leaves selected attacks open for a",
           "onsetGrid": [
             0,
             8,
@@ -849,7 +849,7 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
           "name": "Dembow Core Timeline — accent shift",
           "variationType": "accentShift",
           "probability": 0.12,
-          "description": "Retains the cell while moving emphasis between repeated attacks.",
+          "description": "Retains the cell while moving emphasis",
           "onsetGrid": [
             0,
             3,
@@ -923,11 +923,11 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
     {
       "id": "rg-dembow-bass",
       "worldId": "reggaeton-dembow",
-      "traditionId": "reggaeton-dembow",
+      "styleIds": ["reggaeton-dembow"],
       "name": "Dembow Syncopated Bass",
       "family": "Dembow Bass",
       "category": "ostinato",
-      "description": "Short sub-bass notes answer the kick cell rather than simply doubling it.",
+      "description": "Short sub-bass notes answer the kick",
       "tags": [
         "dembow",
         "bass",
@@ -1013,7 +1013,7 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
           "name": "Dembow Syncopated Bass — sparse",
           "variationType": "sparse",
           "probability": 0.35,
-          "description": "Leaves selected attacks open for a played repetition.",
+          "description": "Leaves selected attacks open for a",
           "onsetGrid": [
             0,
             8,
@@ -1033,7 +1033,7 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
           "name": "Dembow Syncopated Bass — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Retains the cell while moving emphasis between repeated attacks.",
+          "description": "Retains the cell while moving emphasis",
           "onsetGrid": [
             0,
             5,
@@ -1073,11 +1073,11 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
     {
       "id": "rg-perc-ghost",
       "worldId": "reggaeton-dembow",
-      "traditionId": "reggaeton-modern",
+      "styleIds": ["reggaeton-modern"],
       "name": "Percussive Ghost Layer",
       "family": "Modern Reggaetón Percussion",
       "category": "rolePattern",
-      "description": "A sparse shaker/click layer fills selected sixteenth gaps while preserving the dembow skeleton.",
+      "description": "A sparse shaker/click layer fills selected",
       "tags": [
         "negative-space",
         "shaker"
@@ -1148,7 +1148,7 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
           "name": "Percussive Ghost Layer — sparse",
           "variationType": "sparse",
           "probability": 0.35,
-          "description": "Leaves selected attacks open for a played repetition.",
+          "description": "Leaves selected attacks open for a",
           "onsetGrid": [
             2,
             6,
@@ -1166,7 +1166,7 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
           "name": "Percussive Ghost Layer — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Retains the cell while moving emphasis between repeated attacks.",
+          "description": "Retains the cell while moving emphasis",
           "onsetGrid": [
             2,
             4,
@@ -1201,11 +1201,11 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
     {
       "id": "rg-synth-stab",
       "worldId": "reggaeton-dembow",
-      "traditionId": "reggaeton-modern",
+      "styleIds": ["reggaeton-modern"],
       "name": "Offbeat Synth Stab",
       "family": "Reggaetón Stabs",
       "category": "ostinato",
-      "description": "Short chord/synth stabs reinforce the offbeat spaces instead of carpeting every subdivision.",
+      "description": "Short chord/synth stabs reinforce the offbeat",
       "tags": [
         "stabs",
         "offbeat",
@@ -1277,7 +1277,7 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
           "name": "Offbeat Synth Stab — sparse",
           "variationType": "sparse",
           "probability": 0.35,
-          "description": "Leaves selected attacks open for a played repetition.",
+          "description": "Leaves selected attacks open for a",
           "onsetGrid": [
             2,
             10
@@ -1293,7 +1293,7 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
           "name": "Offbeat Synth Stab — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Retains the cell while moving emphasis between repeated attacks.",
+          "description": "Retains the cell while moving emphasis",
           "onsetGrid": [
             2,
             6,
@@ -1325,11 +1325,11 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
     {
       "id": "rg-dembow-break",
       "worldId": "reggaeton-dembow",
-      "traditionId": "reggaeton-dembow",
+      "styleIds": ["reggaeton-dembow"],
       "name": "Dembow Break & Pickup",
       "family": "Breaks",
       "category": "break",
-      "description": "Drops the main kick for a half-bar, then restores the snare/pickup into the next phrase.",
+      "description": "Drops the main kick for a",
       "tags": [
         "break",
         "pickup",
@@ -1412,7 +1412,7 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
           "name": "Dembow Break & Pickup — sparse",
           "variationType": "sparse",
           "probability": 0.35,
-          "description": "Leaves selected attacks open for a played repetition.",
+          "description": "Leaves selected attacks open for a",
           "onsetGrid": [
             0,
             8,
@@ -1430,7 +1430,7 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
           "name": "Dembow Break & Pickup — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Retains the cell while moving emphasis between repeated attacks.",
+          "description": "Retains the cell while moving emphasis",
           "onsetGrid": [
             0,
             4,
@@ -1464,11 +1464,11 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
     {
       "id": "rg-06-classic-dembow-skeleton",
       "worldId": "reggaeton-dembow",
-      "traditionId": "reggaeton-dembow",
+      "styleIds": ["reggaeton-dembow"],
       "name": "Classic dembow two-bar answer",
       "family": "Dembow",
       "category": "groove",
-      "description": "Two-bar dembow skeleton with a second-bar answer; deliberately not a duplicate of the one-bar core.",
+      "description": "Two-bar dembow skeleton with a second-bar",
       "tags": [
         "dembow",
         "timeline"
@@ -1585,11 +1585,11 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
     {
       "id": "rg-07-dembow-clave-like-ghosts",
       "worldId": "reggaeton-dembow",
-      "traditionId": "reggaeton-modern",
+      "styleIds": ["reggaeton-modern"],
       "name": "Dembow Offbeat Texture",
       "family": "Dembow",
       "category": "groove",
-      "description": "A sparse 2-bar shaker/click texture that reinforces the dembow subdivision without importing a separate clave grammar.",
+      "description": "A sparse 2-bar shaker/click texture that",
       "tags": [
         "offbeat texture",
         "negative space"
@@ -1671,11 +1671,11 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
     {
       "id": "rg-08-reggaeton-sub-answer",
       "worldId": "reggaeton-dembow",
-      "traditionId": "reggaeton-modern",
+      "styleIds": ["reggaeton-modern"],
       "name": "Reggaeton Sub Answer",
       "family": "Bass",
       "category": "rolePattern",
-      "description": "Short sub-bass answer lands around the drum cell instead of copying every kick.",
+      "description": "Short sub-bass answer lands around the",
       "tags": [
         "sub-bass",
         "syncopation"
@@ -1756,11 +1756,11 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
     {
       "id": "rg-09-reggaeton-piano-stab",
       "worldId": "reggaeton-dembow",
-      "traditionId": "reggaeton-modern",
+      "styleIds": ["reggaeton-modern"],
       "name": "Reggaetón piano offbeat stab",
       "family": "Harmony",
       "category": "cell",
-      "description": "Short piano/synth anticipations that leave the kick and vocal pocket open.",
+      "description": "Short piano/synth anticipations that leave the",
       "tags": [
         "stabs",
         "offbeat"
@@ -1834,11 +1834,11 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
     {
       "id": "rg-10-perreo-shaker-layer",
       "worldId": "reggaeton-dembow",
-      "traditionId": "reggaeton-modern",
+      "styleIds": ["reggaeton-modern"],
       "name": "Perreo shaker displacement",
       "family": "Percussion",
       "category": "ostinato",
-      "description": "Straight eighth-note shaker pulse kept quiet so the dembow displacement remains audible underneath it.",
+      "description": "Straight eighth-note shaker pulse kept quiet",
       "tags": [
         "shaker",
         "density control"
@@ -1919,11 +1919,11 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
     {
       "id": "rg-11-dembow-vocal-pickup",
       "worldId": "reggaeton-dembow",
-      "traditionId": "reggaeton-modern",
+      "styleIds": ["reggaeton-modern"],
       "name": "Dembow Vocal Pickup",
       "family": "Voice",
       "category": "phrasePattern",
-      "description": "Short pickup into the next bar, leaving the main downbeat open for the groove.",
+      "description": "Short pickup into the next bar,",
       "tags": [
         "pickup",
         "vocal pocket"
@@ -1994,11 +1994,11 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
     {
       "id": "rg-12-reggaeton-hook-lift",
       "worldId": "reggaeton-dembow",
-      "traditionId": "reggaeton-modern",
+      "styleIds": ["reggaeton-modern"],
       "name": "Reggaeton Hook Dembow Lift",
       "family": "Dembow",
       "category": "sectionPattern",
-      "description": "Two-bar chorus variation: the core dembow remains intact while the second bar adds a short clap/syncopation lift. Drum-only so the engine preserves track separation.",
+      "description": "Two-bar chorus variation: the core dembow",
       "tags": [
         "hook lift",
         "dembow",
@@ -2116,11 +2116,11 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
     {
       "id": "rg-13-dembow-break-silence",
       "worldId": "reggaeton-dembow",
-      "traditionId": "reggaeton-modern",
+      "styleIds": ["reggaeton-modern"],
       "name": "Dembow Break / Re-entry",
       "family": "Breaks",
       "category": "break",
-      "description": "A sparse dembow break that keeps the displaced snare relationship audible before the full groove returns.",
+      "description": "A sparse dembow break that keeps",
       "tags": [
         "dropout",
         "re-entry"
@@ -2205,11 +2205,11 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
     {
       "id": "rg-14-modern-dembow-triplet-fill",
       "worldId": "reggaeton-dembow",
-      "traditionId": "reggaeton-modern",
+      "styleIds": ["reggaeton-modern"],
       "name": "Modern Dembow Phrase-End Turn",
       "family": "Fill",
       "category": "fill",
-      "description": "A short 16th-note phrase-end turn that punctuates the dembow cycle without introducing a generic triplet-rock fill.",
+      "description": "A short 16th-note phrase-end turn that",
       "tags": [
         "fill",
         "phrase end",
@@ -2286,11 +2286,11 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
     {
       "id": "rg-15-reggaeton-tag-turn",
       "worldId": "reggaeton-dembow",
-      "traditionId": "reggaeton-modern",
+      "styleIds": ["reggaeton-modern"],
       "name": "Dembow tag turnaround",
       "family": "Cadence",
       "category": "cadence",
-      "description": "Four-hit turnaround into the next loop or vocal section.",
+      "description": "Four-hit turnaround into the next loop",
       "tags": [
         "tag",
         "transition"

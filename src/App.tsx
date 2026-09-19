@@ -1374,6 +1374,7 @@ export default function App() {
         onClose={() => setChordOpen(false)}
         region={region}
         currentWorldId={sectionGenreId}
+        styleId={song.styleId}
         onChords={prog => edit(s => setSectionChords(s, region.id, prog))}
         customProgressions={song.customProgressions ?? []}
         onAddCustomChords={(name, chords) => edit(s => {

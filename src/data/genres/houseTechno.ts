@@ -6,15 +6,15 @@ export const HOUSE_TECHNO_WORLD: GenreWorld = {
   "family": "Electronic dance music",
   "color": "#5b67c8",
   "level": "world",
-  "description": "House and techno share a club-oriented engine layer but are not collapsed into one groove: deep/Chicago house emphasizes humanized pocket and offbeat hats, Detroit techno emphasizes machine repetition and sequence mutation, and acid traditions emphasize accent/slide sequences.",
-  "traditions": [
+  "description": "House and techno share a club-oriented",
+  "styleDefinitions": [
     {
       "id": "house-techno-peak-time",
       "worldId": "house-techno",
       "name": "Peak Time",
       "origin": "Berlin / Ibiza / Amsterdam",
       "era": "2010s–Present",
-      "description": "Pounding 909 • Big Room Drop • High Energy\nFestival main-room techno driver.\nCharlotte de Witte · Enrico Sangiuliano",
+      "description": "Pounding 909 • Big Room Drop",
       "characteristicInstruments": [
         "drums",
         "synth",
@@ -89,7 +89,7 @@ export const HOUSE_TECHNO_WORLD: GenreWorld = {
       "name": "Minimal",
       "origin": "Berlin / Frankfurt",
       "era": "2000s",
-      "description": "Sparse • Sub-bass • Micro-sounds\nSubtle hypnotic clicks and cuts.\nRichie Hawtin · Ricardo Villalobos",
+      "description": "Sparse • Sub-bass • Micro-sounds\nSubtle hypnotic",
       "characteristicInstruments": [
         "drums",
         "sampler",
@@ -146,7 +146,7 @@ export const HOUSE_TECHNO_WORLD: GenreWorld = {
       "name": "Dub Techno",
       "origin": "Berlin / Detroit",
       "era": "1990s–Present",
-      "description": "Echo • Filter Sweep • Cavernous\nBasic Channel space and delay.\nBasic Channel · Deepchord",
+      "description": "Echo • Filter Sweep • Cavernous\nBasic",
       "characteristicInstruments": [
         "synth",
         "sub-bass",
@@ -216,7 +216,7 @@ export const HOUSE_TECHNO_WORLD: GenreWorld = {
       "name": "Detroit Techno",
       "origin": "Detroit, Michigan",
       "era": "1980s–1990s",
-      "description": "Soulful • Futuristic • Strings\nThe original Motor City soul-machine.\nJuan Atkins · Derrick May",
+      "description": "Soulful • Futuristic • Strings\nThe original",
       "characteristicInstruments": [
         "synth",
         "drums",
@@ -285,7 +285,7 @@ export const HOUSE_TECHNO_WORLD: GenreWorld = {
       "name": "Acid Techno",
       "origin": "Chicago / London",
       "era": "Late 1980s–1990s",
-      "description": "TB-303 Squawk • Resonant • Fast\nRoland 303 squelching bassline fire.\nDJ Pierre · Hardfloor",
+      "description": "TB-303 Squawk • Resonant • Fast\nRoland",
       "characteristicInstruments": [
         "synth",
         "drums",
@@ -353,7 +353,7 @@ export const HOUSE_TECHNO_WORLD: GenreWorld = {
       "name": "Hard Techno",
       "origin": "Berlin / Netherlands / UK",
       "era": "2000s–Present",
-      "description": "Industrial • 140+ BPM • Distorted Kick\nBrutal industrial warehouse energy.\nI Hate Models · Paula Temple",
+      "description": "Industrial • 140+ BPM • Distorted",
       "characteristicInstruments": [
         "drums",
         "sub-bass",
@@ -421,7 +421,7 @@ export const HOUSE_TECHNO_WORLD: GenreWorld = {
       "name": "Melodic Techno",
       "origin": "Berlin / Italy / Ibiza",
       "era": "2015–Present",
-      "description": "Emotional • Plucks • Cinematic\nEthereal lead synths and deep pulse.\nTale of Us · Stephan Bodzin",
+      "description": "Emotional • Plucks • Cinematic\nEthereal lead",
       "characteristicInstruments": [
         "synth",
         "drums",
@@ -500,7 +500,7 @@ export const HOUSE_TECHNO_WORLD: GenreWorld = {
       "name": "EBM",
       "origin": "Belgium / Germany",
       "era": "1980s–Present",
-      "description": "Aggressive • 16th Bassline • Cyberpunk\nElectronic Body Music post-punk drive.\nFront 242 · Nitzer Ebb",
+      "description": "Aggressive • 16th Bassline • Cyberpunk\nElectronic",
       "characteristicInstruments": [
         "synth",
         "drums",
@@ -621,11 +621,11 @@ export const HOUSE_TECHNO_WORLD: GenreWorld = {
     {
       "id": "ht-four-floor",
       "worldId": "house-techno",
-      "traditionId": "house-deep",
+      "styleIds": ["house-deep"],
       "name": "Four-on-the-Floor Foundation",
       "family": "House Kick",
       "category": "groove",
-      "description": "Unbroken quarter-note kick foundation; other parts are expected to articulate around it.",
+      "description": "Unbroken quarter-note kick foundation; other parts",
       "tags": [
         "house",
         "four-on-floor",
@@ -699,7 +699,7 @@ export const HOUSE_TECHNO_WORLD: GenreWorld = {
           "name": "Four-on-the-Floor Foundation — sparse",
           "variationType": "sparse",
           "probability": 0.35,
-          "description": "Leaves selected attacks open for a played repetition.",
+          "description": "Leaves selected attacks open for a",
           "onsetGrid": [
             0,
             8
@@ -715,7 +715,7 @@ export const HOUSE_TECHNO_WORLD: GenreWorld = {
           "name": "Four-on-the-Floor Foundation — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Retains the cell while moving emphasis between repeated attacks.",
+          "description": "Retains the cell while moving emphasis",
           "onsetGrid": [
             0,
             4,
@@ -747,11 +747,11 @@ export const HOUSE_TECHNO_WORLD: GenreWorld = {
     {
       "id": "ht-offbeat-hat",
       "worldId": "house-techno",
-      "traditionId": "house-deep",
+      "styleIds": ["house-deep"],
       "name": "Offbeat Hat",
       "family": "House Hats",
       "category": "ostinato",
-      "description": "Open or closed hat on the offbeats, with restrained velocity variation.",
+      "description": "Open or closed hat on the",
       "tags": [
         "house",
         "hat",
@@ -823,7 +823,7 @@ export const HOUSE_TECHNO_WORLD: GenreWorld = {
           "name": "Offbeat Hat — sparse",
           "variationType": "sparse",
           "probability": 0.35,
-          "description": "Leaves selected attacks open for a played repetition.",
+          "description": "Leaves selected attacks open for a",
           "onsetGrid": [
             2,
             10
@@ -839,7 +839,7 @@ export const HOUSE_TECHNO_WORLD: GenreWorld = {
           "name": "Offbeat Hat — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Retains the cell while moving emphasis between repeated attacks.",
+          "description": "Retains the cell while moving emphasis",
           "onsetGrid": [
             2,
             6,
@@ -871,11 +871,11 @@ export const HOUSE_TECHNO_WORLD: GenreWorld = {
     {
       "id": "ht-house-bass",
       "worldId": "house-techno",
-      "traditionId": "house-deep",
+      "styleIds": ["house-deep"],
       "name": "House Syncopated Bass",
       "family": "House Bass",
       "category": "ostinato",
-      "description": "Bass notes land between kicks, creating the characteristic push-pull pocket.",
+      "description": "Bass notes land between kicks, creating",
       "tags": [
         "house",
         "bass",
@@ -953,7 +953,7 @@ export const HOUSE_TECHNO_WORLD: GenreWorld = {
           "name": "House Syncopated Bass — sparse",
           "variationType": "sparse",
           "probability": 0.35,
-          "description": "Leaves selected attacks open for a played repetition.",
+          "description": "Leaves selected attacks open for a",
           "onsetGrid": [
             0,
             6,
@@ -971,7 +971,7 @@ export const HOUSE_TECHNO_WORLD: GenreWorld = {
           "name": "House Syncopated Bass — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Retains the cell while moving emphasis between repeated attacks.",
+          "description": "Retains the cell while moving emphasis",
           "onsetGrid": [
             0,
             3,
@@ -1007,11 +1007,11 @@ export const HOUSE_TECHNO_WORLD: GenreWorld = {
     {
       "id": "ht-techno-sequence",
       "worldId": "house-techno",
-      "traditionId": "house-techno-detroit",
+      "styleIds": ["house-techno-detroit"],
       "name": "Detroit 16th Sequence",
       "family": "Techno Sequences",
       "category": "ostinato",
-      "description": "A machine-tight repeating synth sequence whose interest comes from accent and timbral evolution.",
+      "description": "A machine-tight repeating synth sequence whose",
       "tags": [
         "techno",
         "sequence",
@@ -1096,7 +1096,7 @@ export const HOUSE_TECHNO_WORLD: GenreWorld = {
           "name": "Detroit 16th Sequence — sparse",
           "variationType": "sparse",
           "probability": 0.35,
-          "description": "Leaves selected attacks open for a played repetition.",
+          "description": "Leaves selected attacks open for a",
           "onsetGrid": [
             0,
             3,
@@ -1116,7 +1116,7 @@ export const HOUSE_TECHNO_WORLD: GenreWorld = {
           "name": "Detroit 16th Sequence — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Retains the cell while moving emphasis between repeated attacks.",
+          "description": "Retains the cell while moving emphasis",
           "onsetGrid": [
             0,
             2,
@@ -1156,11 +1156,11 @@ export const HOUSE_TECHNO_WORLD: GenreWorld = {
     {
       "id": "ht-acid-303",
       "worldId": "house-techno",
-      "traditionId": "house-techno-acid",
+      "styleIds": ["house-techno-acid"],
       "name": "Acid 16-Step Sequence",
       "family": "Acid Bass",
       "category": "phrasePattern",
-      "description": "16-step bass sequence with rests, accents and implied slides; designed to mutate by variant rather than chord-loop.",
+      "description": "16-step bass sequence with rests, accents",
       "tags": [
         "acid",
         "303",
@@ -1246,7 +1246,7 @@ export const HOUSE_TECHNO_WORLD: GenreWorld = {
           "name": "Acid 16-Step Sequence — sparse",
           "variationType": "sparse",
           "probability": 0.35,
-          "description": "Leaves selected attacks open for a played repetition.",
+          "description": "Leaves selected attacks open for a",
           "onsetGrid": [
             0,
             5,
@@ -1266,7 +1266,7 @@ export const HOUSE_TECHNO_WORLD: GenreWorld = {
           "name": "Acid 16-Step Sequence — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Retains the cell while moving emphasis between repeated attacks.",
+          "description": "Retains the cell while moving emphasis",
           "onsetGrid": [
             0,
             3,
@@ -1306,11 +1306,11 @@ export const HOUSE_TECHNO_WORLD: GenreWorld = {
     {
       "id": "ht-06-four-on-the-floor-kick",
       "worldId": "house-techno",
-      "traditionId": "house-chicago-deep",
+      "styleIds": ["house-chicago-deep"],
       "name": "Four-floor kick with bar accent",
       "family": "House",
       "category": "groove",
-      "description": "Stable four-on-the-floor foundation; kept as a subtle accent variant of the core rather than a separate groove claim.",
+      "description": "Stable four-on-the-floor foundation; kept as a",
       "tags": [
         "four-on-floor"
       ],
@@ -1382,11 +1382,11 @@ export const HOUSE_TECHNO_WORLD: GenreWorld = {
     {
       "id": "ht-07-offbeat-hat",
       "worldId": "house-techno",
-      "traditionId": "techno-detroit",
+      "styleIds": ["techno-detroit"],
       "name": "Open-hat lift",
       "family": "House",
       "category": "ostinato",
-      "description": "Sparse open-hat lift on offbeats, leaving space for kick and bass.",
+      "description": "Sparse open-hat lift on offbeats, leaving",
       "tags": [
         "offbeat hat"
       ],
@@ -1452,11 +1452,11 @@ export const HOUSE_TECHNO_WORLD: GenreWorld = {
     {
       "id": "ht-08-house-bass-lock",
       "worldId": "house-techno",
-      "traditionId": "techno-detroit",
+      "styleIds": ["techno-detroit"],
       "name": "House Bass Lock",
       "family": "House",
       "category": "bass",
-      "description": "Short bass notes interlock with kick rather than sustaining over it.",
+      "description": "Short bass notes interlock with kick",
       "tags": [
         "bass lock"
       ],
@@ -1527,11 +1527,11 @@ export const HOUSE_TECHNO_WORLD: GenreWorld = {
     {
       "id": "ht-09-house-chord-stab",
       "worldId": "house-techno",
-      "traditionId": "techno-detroit",
+      "styleIds": ["techno-detroit"],
       "name": "House Chord Stab",
       "family": "House",
       "category": "cell",
-      "description": "Syncopated chord stab on the offbeat with short decay.",
+      "description": "Syncopated chord stab on the offbeat",
       "tags": [
         "stab",
         "offbeat"
@@ -1605,11 +1605,11 @@ export const HOUSE_TECHNO_WORLD: GenreWorld = {
     {
       "id": "ht-10-detroit-sequence",
       "worldId": "house-techno",
-      "traditionId": "techno-detroit",
+      "styleIds": ["techno-detroit"],
       "name": "Detroit Sequence",
       "family": "Detroit Techno",
       "category": "ostinato",
-      "description": "Repeating 16th-note synth sequence with small pitch/accent mutation over a static vamp.",
+      "description": "Repeating 16th-note synth sequence with small",
       "tags": [
         "Detroit",
         "sequence"
@@ -1696,11 +1696,11 @@ export const HOUSE_TECHNO_WORLD: GenreWorld = {
     {
       "id": "ht-11-acid-303-accent",
       "worldId": "house-techno",
-      "traditionId": "techno-detroit",
+      "styleIds": ["techno-detroit"],
       "name": "Acid 303 Accent",
       "family": "Acid",
       "category": "ostinato",
-      "description": "Resonant 16th-note bass sequence with rests and accented slides; avoid constant note density.",
+      "description": "Resonant 16th-note bass sequence with rests",
       "tags": [
         "acid",
         "slide",
@@ -1793,11 +1793,11 @@ export const HOUSE_TECHNO_WORLD: GenreWorld = {
     {
       "id": "ht-12-techno-clap-backbeat",
       "worldId": "house-techno",
-      "traditionId": "techno-detroit",
+      "styleIds": ["techno-detroit"],
       "name": "Techno Clap Backbeat",
       "family": "Techno",
       "category": "groove",
-      "description": "Sparse clap/snare at 2 and 4, often delayed behind the kick grid.",
+      "description": "Sparse clap/snare at 2 and 4,",
       "tags": [
         "clap",
         "backbeat"
@@ -1867,11 +1867,11 @@ export const HOUSE_TECHNO_WORLD: GenreWorld = {
     {
       "id": "ht-13-riser-build",
       "worldId": "house-techno",
-      "traditionId": "techno-detroit",
+      "styleIds": ["techno-detroit"],
       "name": "Riser Build",
       "family": "Arrangement",
       "category": "sectionPattern",
-      "description": "Production-style build cue represented as a pattern envelope; use sparingly and never as a substitute for rhythmic development.",
+      "description": "Production-style build cue represented as a",
       "tags": [
         "build",
         "automation"
@@ -1954,11 +1954,11 @@ export const HOUSE_TECHNO_WORLD: GenreWorld = {
     {
       "id": "ht-14-club-breakdown",
       "worldId": "house-techno",
-      "traditionId": "techno-detroit",
+      "styleIds": ["techno-detroit"],
       "name": "Club Breakdown",
       "family": "Arrangement",
       "category": "break",
-      "description": "Remove kick and bass for a short atmospheric reset before the drop.",
+      "description": "Remove kick and bass for a",
       "tags": [
         "breakdown",
         "tension"
@@ -2030,11 +2030,11 @@ export const HOUSE_TECHNO_WORLD: GenreWorld = {
     {
       "id": "ht-15-drop-re-entry",
       "worldId": "house-techno",
-      "traditionId": "techno-detroit",
+      "styleIds": ["techno-detroit"],
       "name": "Post-break re-entry stack",
       "family": "Arrangement",
       "category": "sectionPattern",
-      "description": "Section-level re-entry cue combining kick return with synchronized bass/synth attacks; it is an arrangement event, not a standalone groove.",
+      "description": "Section-level re-entry cue combining kick return",
       "tags": [
         "drop",
         "re-entry"

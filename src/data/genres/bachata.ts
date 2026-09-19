@@ -6,15 +6,15 @@ export const BACHATA_WORLD: GenreWorld = {
   "family": "Caribbean / Latin Dance",
   "color": "#d2768e",
   "level": "world",
-  "description": "Dominican and Latin dance tradition defined by Bachata’s 3 structural gears (Derecho verse, Majao chorus, Mambo solo breakdown), lead requinto picking, Merengue tambora/sax jaleos, and hypnotic Colombian Cumbia grooves.",
-  "traditions": [
+  "description": "Dominican and Latin dance style defined",
+  "styleDefinitions": [
     {
       "id": "bachata-urbana",
       "worldId": "bachata",
       "name": "Urbana",
       "origin": "Bronx, New York / Dominican Republic",
       "era": "1999–Present",
-      "description": "Smooth • 4/4 • Guitar-driven\nPop and R&B infused.\nAventura · Romeo Santos",
+      "description": "Smooth • 4/4 • Guitar-driven\nPop and",
       "characteristicInstruments": [
         "guitar",
         "bass",
@@ -105,7 +105,7 @@ export const BACHATA_WORLD: GenreWorld = {
       "name": "Tradicional",
       "origin": "Dominican Republic (Campesino Roots)",
       "era": "1960s–1980s",
-      "description": "Fast • Arpeggiated • Raw\nAcoustic guitar and bongos.\nLuis Vargas · Anthony Santos",
+      "description": "Fast • Arpeggiated • Raw\nAcoustic guitar",
       "characteristicInstruments": [
         "guitar",
         "bass",
@@ -195,7 +195,7 @@ export const BACHATA_WORLD: GenreWorld = {
       "name": "Sensual",
       "origin": "Cadiz, Spain / European Social Circuit",
       "era": "2005–Present",
-      "description": "Slow • Expressive • Body rolls\nModern European social style.\nDani J · DJ Tronky",
+      "description": "Slow • Expressive • Body rolls\nModern",
       "characteristicInstruments": [
         "guitar",
         "bass",
@@ -283,7 +283,7 @@ export const BACHATA_WORLD: GenreWorld = {
       "name": "Bachata Moderna",
       "origin": "Dominican Republic / USA",
       "era": "2000s–2010s",
-      "description": "Balanced • Pop-infused • Clear Syncopation\nVersatile pop turn-pattern timing.\nJohnny Sky · Toby Love",
+      "description": "Balanced • Pop-infused • Clear Syncopation\nVersatile",
       "characteristicInstruments": [
         "guitar",
         "bass",
@@ -363,7 +363,7 @@ export const BACHATA_WORLD: GenreWorld = {
       "name": "Bolero Bachata",
       "origin": "Santo Domingo, Dominican Republic",
       "era": "1950s–1960s",
-      "description": "Slow • Vintage • Lyrical\n50s romantic precursor style.\nJose Manuel Calderon · Leonardo Paniagua",
+      "description": "Slow • Vintage • Lyrical\n50s romantic",
       "characteristicInstruments": [
         "guitar",
         "upright-bass",
@@ -443,7 +443,7 @@ export const BACHATA_WORLD: GenreWorld = {
       "name": "Bachatango",
       "origin": "Buenos Aires / Dominican Republic / Europe",
       "era": "2000s–Present",
-      "description": "Dramatic • Bandoneón • Fusion\nTango strings with bachata rhythm.\nGrace Jones · Steve Morrill",
+      "description": "Dramatic • Bandoneón • Fusion\nTango strings",
       "characteristicInstruments": [
         "bandoneon",
         "violin",
@@ -524,7 +524,7 @@ export const BACHATA_WORLD: GenreWorld = {
       "name": "Campestre",
       "origin": "Rural Cibao, Dominican Republic",
       "era": "1970s–1980s",
-      "description": "Raw • Unpolished • Folk\nHinterland Dominican guitar roots.\nEdilio Paredes · Leonardo Paniagua",
+      "description": "Raw • Unpolished • Folk\nHinterland Dominican",
       "characteristicInstruments": [
         "guitar",
         "bass",
@@ -603,7 +603,7 @@ export const BACHATA_WORLD: GenreWorld = {
       "name": "Merengue de Guitarra",
       "origin": "Dominican Republic",
       "era": "1970s–Present",
-      "description": "Fast • Driving Tambora • Guitar-led\nHigh-tempo fingerpicked guitar rhythm.\nJoan Soriano · Antony Santos",
+      "description": "Fast • Driving Tambora • Guitar-led\nHigh-tempo",
       "characteristicInstruments": [
         "guitar",
         "bass",
@@ -737,11 +737,11 @@ export const BACHATA_WORLD: GenreWorld = {
     {
       "id": "bachata-requinto-derecho",
       "worldId": "bachata",
-      "traditionId": "latin-bachata",
+      "styleIds": ["latin-bachata"],
       "name": "Requinto Derecho (Verse Picking)",
       "family": "Bachata Requinto",
       "category": "ostinato",
-      "description": "Crisp lead guitar arpeggiation with muted thumb strokes and bright treble ornamentations during the verse (Derecho gear).",
+      "description": "Crisp lead guitar arpeggiation with muted",
       "tags": [
         "bachata",
         "requinto",
@@ -834,7 +834,7 @@ export const BACHATA_WORLD: GenreWorld = {
             0.9,
             1
           ],
-          "description": "Syncopated sync-pluck driving the energetic Majao chorus."
+          "description": "Syncopated sync-pluck driving the energetic Majao"
         },
         {
           "id": "bachata-requinto-mambo-solo",
@@ -874,7 +874,7 @@ export const BACHATA_WORLD: GenreWorld = {
             1,
             0.7
           ],
-          "description": "Rapid 16th-note scalar runs and bends in the instrumental mambo section."
+          "description": "Rapid 16th-note scalar runs and bends"
         },
         {
           "id": "bachata-requinto-derecho-variant-bongo-martillo-g-ira-repique",
@@ -882,7 +882,7 @@ export const BACHATA_WORLD: GenreWorld = {
           "name": "Bongo Martillo & Güira Repique",
           "variationType": "instrumentSpecific",
           "probability": 0.18,
-          "description": "Bongo alternating between low thumb and high rim pop on beat 4, locked with continuous metallic güira rasping. Retained as a variation rather than a separate pattern entry.",
+          "description": "Bongo alternating between low thumb and",
           "onsetGrid": [
             0,
             2,
@@ -924,7 +924,7 @@ export const BACHATA_WORLD: GenreWorld = {
           "name": "Bachata Mambo Solo",
           "variationType": "instrumentSpecific",
           "probability": 0.18,
-          "description": "Fast virtuosic arpeggiated requinto lines for the instrumental mambo gear. Retained as a variation rather than a separate pattern entry.",
+          "description": "Fast virtuosic arpeggiated requinto lines for",
           "onsetGrid": [
             0,
             2,
@@ -992,7 +992,7 @@ export const BACHATA_WORLD: GenreWorld = {
           "sourceRole": "drums",
           "targetRole": "bass",
           "relationship": "reinforce",
-          "description": "Low-end attacks reinforce the main pulse without doubling every subdivision.",
+          "description": "Low-end attacks reinforce the main pulse",
           "timingOffsetSteps": 0,
           "probability": 0.78
         }
@@ -1001,11 +1001,11 @@ export const BACHATA_WORLD: GenreWorld = {
     {
       "id": "cumbia-bass-groove",
       "worldId": "bachata",
-      "traditionId": "latin-cumbia",
+      "styleIds": ["latin-cumbia"],
       "name": "Cumbia Syncopated Bassline",
       "family": "Cumbia Bass",
       "category": "ostinato",
-      "description": "Hypnotic syncopated cumbia bass hitting on the upbeat of 2 and anticipated 4.",
+      "description": "Hypnotic syncopated cumbia bass hitting on",
       "tags": [
         "cumbia",
         "bass",
@@ -1082,7 +1082,7 @@ export const BACHATA_WORLD: GenreWorld = {
             0.7,
             1
           ],
-          "description": "Added 8th note pump for modern urban cumbia."
+          "description": "Added 8th note pump for modern"
         },
         {
           "id": "cumbia-bass-groove-v-02",
@@ -1090,7 +1090,7 @@ export const BACHATA_WORLD: GenreWorld = {
           "name": "Cumbia Syncopated Bassline — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             6,
@@ -1147,7 +1147,7 @@ export const BACHATA_WORLD: GenreWorld = {
           "sourceRole": "voice",
           "targetRole": "harmony",
           "relationship": "leaveSpace",
-          "description": "Harmony reduces density under vocal entries so the phrase remains foregrounded.",
+          "description": "Harmony reduces density under vocal entries",
           "timingOffsetSteps": 0,
           "probability": 0.72
         }
@@ -1160,11 +1160,11 @@ export const BACHATA_WORLD: GenreWorld = {
     {
       "id": "bachata-bass-derecho",
       "worldId": "bachata",
-      "traditionId": "latin-bachata",
+      "styleIds": ["latin-bachata"],
       "name": "Bass Derecho",
       "family": "Bass",
       "category": "fill",
-      "description": "Standard bachata bass on 1, 2-and, 3, 4 anchoring the derecho rhythm.",
+      "description": "Standard bachata bass on 1, 2-and,",
       "tags": [
         "bachata",
         "bass",
@@ -1215,7 +1215,7 @@ export const BACHATA_WORLD: GenreWorld = {
           "name": "Bass Derecho — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             8,
@@ -1243,7 +1243,7 @@ export const BACHATA_WORLD: GenreWorld = {
           "name": "Bass Derecho — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             6,
@@ -1275,7 +1275,7 @@ export const BACHATA_WORLD: GenreWorld = {
           "name": "Bass Derecho — transition variation",
           "variationType": "transition",
           "probability": 0.16,
-          "description": "Adds a final pickup/closure gesture for section transitions.",
+          "description": "Adds a final pickup/closure gesture for",
           "onsetGrid": [
             0,
             6,
@@ -1341,11 +1341,11 @@ export const BACHATA_WORLD: GenreWorld = {
     {
       "id": "bachata-bass-majao",
       "worldId": "bachata",
-      "traditionId": "latin-bachata",
+      "styleIds": ["latin-bachata"],
       "name": "Bass Majao",
       "family": "Bass",
       "category": "break",
-      "description": "Driving syncopated bass pattern for majao choruses and high energy lifts.",
+      "description": "Driving syncopated bass pattern for majao",
       "tags": [
         "bachata",
         "bass",
@@ -1394,7 +1394,7 @@ export const BACHATA_WORLD: GenreWorld = {
           "name": "Bass Majao — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             12
@@ -1418,7 +1418,7 @@ export const BACHATA_WORLD: GenreWorld = {
           "name": "Bass Majao — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             8,
@@ -1446,7 +1446,7 @@ export const BACHATA_WORLD: GenreWorld = {
           "name": "Bass Majao — transition variation",
           "variationType": "transition",
           "probability": 0.16,
-          "description": "Adds a final pickup/closure gesture for section transitions.",
+          "description": "Adds a final pickup/closure gesture for",
           "onsetGrid": [
             0,
             8,
@@ -1508,11 +1508,11 @@ export const BACHATA_WORLD: GenreWorld = {
     {
       "id": "bachata-bongo-derecho",
       "worldId": "bachata",
-      "traditionId": "latin-bachata",
+      "styleIds": ["latin-bachata"],
       "name": "Bongo Derecho",
       "family": "Bongo",
       "category": "cadence",
-      "description": "Martillo bongo pattern for verses with open tone pop on 4.",
+      "description": "Martillo bongo pattern for verses with",
       "tags": [
         "bachata",
         "bongo",
@@ -1577,7 +1577,7 @@ export const BACHATA_WORLD: GenreWorld = {
           "name": "Bongo Derecho — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             4,
@@ -1613,7 +1613,7 @@ export const BACHATA_WORLD: GenreWorld = {
           "name": "Bongo Derecho — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             2,
@@ -1661,7 +1661,7 @@ export const BACHATA_WORLD: GenreWorld = {
           "name": "Bongo Derecho — transition variation",
           "variationType": "transition",
           "probability": 0.16,
-          "description": "Adds a final pickup/closure gesture for section transitions.",
+          "description": "Adds a final pickup/closure gesture for",
           "onsetGrid": [
             0,
             2,
@@ -1739,11 +1739,11 @@ export const BACHATA_WORLD: GenreWorld = {
     {
       "id": "bachata-bongo-majao",
       "worldId": "bachata",
-      "traditionId": "latin-bachata",
+      "styleIds": ["latin-bachata"],
       "name": "Bongo Majao",
       "family": "Bongo",
       "category": "groove",
-      "description": "Heavy bongo pattern with resonant bell tones for majao choruses.",
+      "description": "Heavy bongo pattern with resonant bell",
       "tags": [
         "bachata",
         "bongo",
@@ -1795,7 +1795,7 @@ export const BACHATA_WORLD: GenreWorld = {
           "name": "Requinto Majao Chops",
           "variationType": "instrumentSpecific",
           "probability": 0.18,
-          "description": "Rhythmic chord chops on the requinto locking with the güira. Retained as a variation rather than a separate pattern entry.",
+          "description": "Rhythmic chord chops on the requinto",
           "onsetGrid": [
             0,
             4,
@@ -1825,7 +1825,7 @@ export const BACHATA_WORLD: GenreWorld = {
           "name": "Bongo Majao — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             4,
@@ -1882,7 +1882,7 @@ export const BACHATA_WORLD: GenreWorld = {
           "sourceRole": "lead",
           "targetRole": "voice",
           "relationship": "answer",
-          "description": "Lead instrument answers a vocal phrase in the open space after the line.",
+          "description": "Lead instrument answers a vocal phrase",
           "timingOffsetSteps": 2,
           "probability": 0.58
         }
@@ -1895,11 +1895,11 @@ export const BACHATA_WORLD: GenreWorld = {
     {
       "id": "bachata-guira-majao",
       "worldId": "bachata",
-      "traditionId": "latin-bachata",
+      "styleIds": ["latin-bachata"],
       "name": "Güira Majao",
       "family": "Guira",
       "category": "groove",
-      "description": "Continuous 16ths on the metal güira with accented downbeats.",
+      "description": "Continuous 16ths on the metal güira",
       "tags": [
         "bachata",
         "guira",
@@ -1987,7 +1987,7 @@ export const BACHATA_WORLD: GenreWorld = {
           "name": "Güira Majao — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             2,
@@ -2047,7 +2047,7 @@ export const BACHATA_WORLD: GenreWorld = {
           "name": "Güira Majao — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             1,
@@ -2152,7 +2152,7 @@ export const BACHATA_WORLD: GenreWorld = {
           "sourceRole": "bass",
           "targetRole": "drums",
           "relationship": "accentWith",
-          "description": "Bass accents align with selected kick/backbeat events for a tighter pocket.",
+          "description": "Bass accents align with selected kick/backbeat",
           "timingOffsetSteps": 0,
           "probability": 0.65
         }
@@ -2165,11 +2165,11 @@ export const BACHATA_WORLD: GenreWorld = {
     {
       "id": "bachata-segunda-derecho",
       "worldId": "bachata",
-      "traditionId": "latin-bachata",
+      "styleIds": ["latin-bachata"],
       "name": "Segunda Guitar",
       "family": "Guitar",
       "category": "groove",
-      "description": "Rhythm acoustic guitar striking syncopated upbeats with a dynamic 4-beat pulse.",
+      "description": "Rhythm acoustic guitar striking syncopated upbeats",
       "tags": [
         "bachata",
         "guitar",
@@ -2222,7 +2222,7 @@ export const BACHATA_WORLD: GenreWorld = {
           "name": "Segunda Guitar — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             2,
             10,
@@ -2250,7 +2250,7 @@ export const BACHATA_WORLD: GenreWorld = {
           "name": "Segunda Guitar — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             2,
             6,
@@ -2307,7 +2307,7 @@ export const BACHATA_WORLD: GenreWorld = {
           "sourceRole": "harmony",
           "targetRole": "lead",
           "relationship": "leaveSpace",
-          "description": "Accompaniment thins when the instrumental lead enters.",
+          "description": "Accompaniment thins when the instrumental lead",
           "timingOffsetSteps": 0,
           "probability": 0.62
         }
@@ -2320,7 +2320,7 @@ export const BACHATA_WORLD: GenreWorld = {
     {
       "id": "cumbia-guiro",
       "worldId": "bachata",
-      "traditionId": "latin-cumbia",
+      "styleIds": ["latin-cumbia"],
       "name": "Cumbia Güiro",
       "family": "Guiro",
       "category": "groove",
@@ -2381,7 +2381,7 @@ export const BACHATA_WORLD: GenreWorld = {
           "name": "Cumbia Güiro — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             2,
             6,
@@ -2413,7 +2413,7 @@ export const BACHATA_WORLD: GenreWorld = {
           "name": "Cumbia Güiro — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             2,
             4,
@@ -2479,11 +2479,11 @@ export const BACHATA_WORLD: GenreWorld = {
     {
       "id": "bachata-roster-drums",
       "worldId": "bachata",
-      "traditionId": "latin-bachata",
+      "styleIds": ["latin-bachata"],
       "name": "Bachata drums part",
       "family": "Derecho",
       "category": "rolePattern",
-      "description": "A default-roster coverage pattern that gives this genre an authored part for one of its declared instruments. Built around derecho in Bachata.",
+      "description": "A default-roster coverage pattern that gives",
       "tags": [
         "bachata",
         "derecho",
@@ -2574,7 +2574,7 @@ export const BACHATA_WORLD: GenreWorld = {
           "name": "Derecho Texture — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             4,
@@ -2610,7 +2610,7 @@ export const BACHATA_WORLD: GenreWorld = {
           "name": "Derecho Texture — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             2,
@@ -2666,11 +2666,11 @@ export const BACHATA_WORLD: GenreWorld = {
     {
       "id": "bachata-call-11",
       "worldId": "bachata",
-      "traditionId": "latin-bachata",
+      "styleIds": ["latin-bachata"],
       "name": "Majao Response",
       "family": "Majao",
       "category": "interactionPattern",
-      "description": "A call-and-response shape that leaves the next phrase open for an answer. Built around majao in Bachata.",
+      "description": "A call-and-response shape that leaves the",
       "tags": [
         "bachata",
         "majao",
@@ -2760,7 +2760,7 @@ export const BACHATA_WORLD: GenreWorld = {
           "name": "Majao Response — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             1,
             5,
@@ -2796,7 +2796,7 @@ export const BACHATA_WORLD: GenreWorld = {
           "name": "Majao Response — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             1,
             3,
@@ -2840,7 +2840,7 @@ export const BACHATA_WORLD: GenreWorld = {
           "name": "Majao Response — transition variation",
           "variationType": "transition",
           "probability": 0.16,
-          "description": "Adds a final pickup/closure gesture for section transitions.",
+          "description": "Adds a final pickup/closure gesture for",
           "onsetGrid": [
             1,
             3,
@@ -2900,11 +2900,11 @@ export const BACHATA_WORLD: GenreWorld = {
     {
       "id": "bachata-anchor-12",
       "worldId": "bachata",
-      "traditionId": "latin-bachata",
+      "styleIds": ["latin-bachata"],
       "name": "Mambo Anchor",
       "family": "Mambo",
       "category": "ostinato",
-      "description": "A repeating anchor that locks the low end to the groove. Built around requinto and the mambo vocabulary of Bachata.",
+      "description": "A repeating anchor that locks the",
       "tags": [
         "bachata",
         "mambo",
@@ -2994,7 +2994,7 @@ export const BACHATA_WORLD: GenreWorld = {
           "name": "Mambo Anchor — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             4,
@@ -3030,7 +3030,7 @@ export const BACHATA_WORLD: GenreWorld = {
           "name": "Mambo Anchor — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             2,
@@ -3086,11 +3086,11 @@ export const BACHATA_WORLD: GenreWorld = {
     {
       "id": "bachata-comp-13",
       "worldId": "bachata",
-      "traditionId": "latin-bachata",
+      "styleIds": ["latin-bachata"],
       "name": "Coro Comping",
       "family": "Coro / backing vocals",
       "category": "groove",
-      "description": "A genre-shaped accompaniment cell that supports the lead without occupying every subdivision. Built around mambo and the coro vocabulary of Bachata.",
+      "description": "A genre-shaped accompaniment cell that supports",
       "tags": [
         "bachata",
         "coro",
@@ -3179,7 +3179,7 @@ export const BACHATA_WORLD: GenreWorld = {
           "name": "Coro Comping — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             2,
             6,
@@ -3215,7 +3215,7 @@ export const BACHATA_WORLD: GenreWorld = {
           "name": "Coro Comping — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             2,
             4,
@@ -3271,11 +3271,11 @@ export const BACHATA_WORLD: GenreWorld = {
     {
       "id": "bachata-intro-14",
       "worldId": "bachata",
-      "traditionId": "latin-bachata",
+      "styleIds": ["latin-bachata"],
       "name": "Requinto Intro",
       "family": "Requinto",
       "category": "sectionPattern",
-      "description": "A reduced entrance used to establish the genre before the full groove arrives. Built around güira/bongo interplay and the requinto vocabulary of Bachata.",
+      "description": "A reduced entrance used to establish",
       "tags": [
         "bachata",
         "requinto",
@@ -3366,7 +3366,7 @@ export const BACHATA_WORLD: GenreWorld = {
           "name": "Requinto Intro — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             1,
             6,
@@ -3402,7 +3402,7 @@ export const BACHATA_WORLD: GenreWorld = {
           "name": "Requinto Intro — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             1,
             3,
@@ -3446,7 +3446,7 @@ export const BACHATA_WORLD: GenreWorld = {
           "name": "Requinto Intro — transition variation",
           "variationType": "transition",
           "probability": 0.16,
-          "description": "Adds a final pickup/closure gesture for section transitions.",
+          "description": "Adds a final pickup/closure gesture for",
           "onsetGrid": [
             1,
             3,
@@ -3506,11 +3506,11 @@ export const BACHATA_WORLD: GenreWorld = {
     {
       "id": "bachata-verse-15",
       "worldId": "bachata",
-      "traditionId": "latin-bachata",
+      "styleIds": ["latin-bachata"],
       "name": "Derecho Verse Variation",
       "family": "Derecho",
       "category": "groove",
-      "description": "A restrained verse variation with intentional headroom for melody. Built around derecho in Bachata.",
+      "description": "A restrained verse variation with intentional",
       "tags": [
         "bachata",
         "derecho",
@@ -3607,7 +3607,7 @@ export const BACHATA_WORLD: GenreWorld = {
           "name": "Derecho Verse Variation — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             4,
@@ -3643,7 +3643,7 @@ export const BACHATA_WORLD: GenreWorld = {
           "name": "Derecho Verse Variation — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             2,
@@ -3699,11 +3699,11 @@ export const BACHATA_WORLD: GenreWorld = {
     {
       "id": "bachata-chorus-16",
       "worldId": "bachata",
-      "traditionId": "latin-bachata",
+      "styleIds": ["latin-bachata"],
       "name": "Majao Chorus Lift",
       "family": "Majao",
       "category": "sectionPattern",
-      "description": "A higher-energy chorus layer that increases density without changing the genre identity. Built around majao in Bachata.",
+      "description": "A higher-energy chorus layer that increases",
       "tags": [
         "bachata",
         "majao",
@@ -3801,7 +3801,7 @@ export const BACHATA_WORLD: GenreWorld = {
           "name": "Majao Chorus Lift — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             1,
             5,
@@ -3837,7 +3837,7 @@ export const BACHATA_WORLD: GenreWorld = {
           "name": "Majao Chorus Lift — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             1,
             3,
@@ -3881,7 +3881,7 @@ export const BACHATA_WORLD: GenreWorld = {
           "name": "Majao Chorus Lift — transition variation",
           "variationType": "transition",
           "probability": 0.16,
-          "description": "Adds a final pickup/closure gesture for section transitions.",
+          "description": "Adds a final pickup/closure gesture for",
           "onsetGrid": [
             1,
             3,
@@ -3941,11 +3941,11 @@ export const BACHATA_WORLD: GenreWorld = {
     {
       "id": "bachata-voice-phrasing",
       "worldId": "bachata",
-      "traditionId": "latin-bachata",
+      "styleIds": ["latin-bachata"],
       "name": "Bachata Vocal Phrasing",
       "family": "Vocal Phrasing",
       "category": "phrasePattern",
-      "description": "Romantic verse/coro phrase placement that leaves room for requinto answers and instrumental mambo.",
+      "description": "Romantic verse/coro phrase placement that leaves",
       "tags": [
         "bachata",
         "voice",
@@ -4031,7 +4031,7 @@ export const BACHATA_WORLD: GenreWorld = {
           "name": "Bachata Vocal Phrasing — alternate phrasing",
           "variationType": "phraseStart",
           "probability": 0.2,
-          "description": "Alternate vocal entry placement for a second pass through the phrase.",
+          "description": "Alternate vocal entry placement for a",
           "onsetGrid": [
             0,
             3,
@@ -4071,7 +4071,7 @@ export const BACHATA_WORLD: GenreWorld = {
           "name": "Bachata Vocal Phrasing — accent shift",
           "variationType": "accentShift",
           "probability": 0.18,
-          "description": "Same rhythmic shape with shifted emphasis on the repeat.",
+          "description": "Same rhythmic shape with shifted emphasis",
           "onsetGrid": [
             0,
             3,

@@ -6,15 +6,15 @@ export const FOLK_WORLD: GenreWorld = {
   "family": "Acoustic / Traditional",
   "color": "#DFE2C7",
   "level": "world",
-  "description": "Acoustic-driven music centered around storytelling, fingerpicking, strumming, and vocal harmony.",
-  "traditions": [
+  "description": "Acoustic-driven music centered around storytelling, fingerpicking,",
+  "styleDefinitions": [
     {
       "id": "folk-indie-folk",
       "worldId": "folk",
       "name": "Indie Folk",
       "origin": "Pacific Northwest / Global",
       "era": "2000s–Present",
-      "description": "Acoustic • 4/4 • Warm Harmonies\nModern acoustic songwriting with lush texture.\nFleet Foxes · Bon Iver",
+      "description": "Acoustic • 4/4 • Warm Harmonies\nModern",
       "characteristicInstruments": [
         "acoustic-guitar",
         "banjo",
@@ -97,7 +97,7 @@ export const FOLK_WORLD: GenreWorld = {
       "name": "Old-Time",
       "origin": "Appalachian Mountains, USA",
       "era": "19th Century–Early 20th Century",
-      "description": "Clawhammer • Fiddle • Drone\nRaw mountain dance music.\nDoc Watson · Tommy Jarrell",
+      "description": "Clawhammer • Fiddle • Drone\nRaw mountain",
       "characteristicInstruments": [
         "banjo",
         "fiddle",
@@ -177,7 +177,7 @@ export const FOLK_WORLD: GenreWorld = {
       "name": "Protest",
       "origin": "Greenwich Village, New York",
       "era": "1960s",
-      "description": "Lyrical • Acoustic • Message-driven\nTopical songs of political change.\nBob Dylan · Joan Baez",
+      "description": "Lyrical • Acoustic • Message-driven\nTopical songs",
       "characteristicInstruments": [
         "acoustic-guitar",
         "harmonica",
@@ -253,7 +253,7 @@ export const FOLK_WORLD: GenreWorld = {
       "name": "Psychedelic Folk",
       "origin": "UK / San Francisco",
       "era": "Late 1960s–1970s",
-      "description": "Dreamy • Exotic • Expansive\nAcid-tinged mystical acoustic journeys.\nThe Incredible String Band · Devendra Banhart",
+      "description": "Dreamy • Exotic • Expansive\nAcid-tinged mystical",
       "characteristicInstruments": [
         "acoustic-guitar",
         "sitar",
@@ -336,7 +336,7 @@ export const FOLK_WORLD: GenreWorld = {
       "name": "Anti-Folk",
       "origin": "East Village, New York",
       "era": "1980s–2000s",
-      "description": "Quirky • Raw • Irreverent\nPunk attitude with acoustic instruments.\nMoldy Peaches · Regina Spektor",
+      "description": "Quirky • Raw • Irreverent\nPunk attitude",
       "characteristicInstruments": [
         "acoustic-guitar",
         "piano",
@@ -416,7 +416,7 @@ export const FOLK_WORLD: GenreWorld = {
       "name": "Bluegrass",
       "origin": "Appalachia / Kentucky",
       "era": "1940s–Present",
-      "description": "High-Speed • Banjo • Chop\nVirtuosic multi-instrumental acoustic fire.\nTony Rice · Béla Fleck",
+      "description": "High-Speed • Banjo • Chop\nVirtuosic multi-instrumental",
       "characteristicInstruments": [
         "banjo",
         "mandolin",
@@ -503,7 +503,7 @@ export const FOLK_WORLD: GenreWorld = {
       "name": "Neo-Traditional",
       "origin": "UK / North America",
       "era": "1990s–Present",
-      "description": "Pure • Modal • Fingerstyle\nRefined preservation of ancient ballads.\nShirley Collins · Laura Marling",
+      "description": "Pure • Modal • Fingerstyle\nRefined preservation",
       "characteristicInstruments": [
         "acoustic-guitar",
         "voice",
@@ -573,7 +573,7 @@ export const FOLK_WORLD: GenreWorld = {
       "name": "Chamber Folk",
       "origin": "North America / Europe",
       "era": "2000s–Present",
-      "description": "Orchestral • Intricate • Elegant\nAcoustic songwriting with strings and winds.\nSufjan Stevens · Andrew Bird",
+      "description": "Orchestral • Intricate • Elegant\nAcoustic songwriting",
       "characteristicInstruments": [
         "acoustic-guitar",
         "strings",
@@ -710,7 +710,7 @@ export const FOLK_WORLD: GenreWorld = {
     {
       "id": "folk-travis",
       "worldId": "folk",
-      "traditionId": "folk-singer-songwriter",
+      "styleIds": ["folk-singer-songwriter"],
       "name": "Travis Picking",
       "family": "Fingerpicking",
       "category": "phrasePattern",
@@ -770,7 +770,7 @@ export const FOLK_WORLD: GenreWorld = {
           "name": "Clawhammer Feel",
           "variationType": "instrumentSpecific",
           "probability": 0.18,
-          "description": "Bum-ditty rhythm translated to guitar. Retained as a variation rather than a separate pattern entry.",
+          "description": "Bum-ditty rhythm translated to guitar. Retained",
           "onsetGrid": [
             0,
             2,
@@ -806,7 +806,7 @@ export const FOLK_WORLD: GenreWorld = {
           "name": "Travis Picking — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             4,
@@ -871,7 +871,7 @@ export const FOLK_WORLD: GenreWorld = {
           "sourceRole": "drums",
           "targetRole": "bass",
           "relationship": "reinforce",
-          "description": "Low-end attacks reinforce the main pulse without doubling every subdivision.",
+          "description": "Low-end attacks reinforce the main pulse",
           "timingOffsetSteps": 0,
           "probability": 0.78
         }
@@ -884,7 +884,7 @@ export const FOLK_WORLD: GenreWorld = {
     {
       "id": "folk-travis-sync",
       "worldId": "folk",
-      "traditionId": "folk-singer-songwriter",
+      "styleIds": ["folk-singer-songwriter"],
       "name": "Syncopated Travis",
       "family": "Fingerpicking",
       "category": "fill",
@@ -944,7 +944,7 @@ export const FOLK_WORLD: GenreWorld = {
           "name": "Syncopated Travis — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             7,
@@ -976,7 +976,7 @@ export const FOLK_WORLD: GenreWorld = {
           "name": "Syncopated Travis — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             4,
@@ -1042,7 +1042,7 @@ export const FOLK_WORLD: GenreWorld = {
     {
       "id": "folk-strum-basic",
       "worldId": "folk",
-      "traditionId": "folk-singer-songwriter",
+      "styleIds": ["folk-singer-songwriter"],
       "name": "Basic Strum",
       "family": "Strumming",
       "category": "break",
@@ -1096,7 +1096,7 @@ export const FOLK_WORLD: GenreWorld = {
           "name": "Carter Scratch",
           "variationType": "instrumentSpecific",
           "probability": 0.18,
-          "description": "Melody on bass notes followed by strum. Retained as a variation rather than a separate pattern entry.",
+          "description": "Melody on bass notes followed by",
           "onsetGrid": [
             0,
             2,
@@ -1126,7 +1126,7 @@ export const FOLK_WORLD: GenreWorld = {
           "name": "Basic Strum — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             2,
@@ -1184,7 +1184,7 @@ export const FOLK_WORLD: GenreWorld = {
     {
       "id": "folk-strum-sync",
       "worldId": "folk",
-      "traditionId": "folk-singer-songwriter",
+      "styleIds": ["folk-singer-songwriter"],
       "name": "Syncopated Strum",
       "family": "Strumming",
       "category": "cadence",
@@ -1243,7 +1243,7 @@ export const FOLK_WORLD: GenreWorld = {
           "name": "Syncopated Strum — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             5,
@@ -1271,7 +1271,7 @@ export const FOLK_WORLD: GenreWorld = {
           "name": "Syncopated Strum — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             2,
@@ -1333,11 +1333,11 @@ export const FOLK_WORLD: GenreWorld = {
     {
       "id": "folk-waltz",
       "worldId": "folk",
-      "traditionId": "folk-singer-songwriter",
+      "styleIds": ["folk-singer-songwriter"],
       "name": "Waltz Strum",
       "family": "Strumming",
       "category": "groove",
-      "description": "Bass on 1, strum on 2 and 3.",
+      "description": "Bass on 1, strum on 2",
       "tags": [
         "folk",
         "strumming"
@@ -1384,7 +1384,7 @@ export const FOLK_WORLD: GenreWorld = {
           "name": "Waltz Strum — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             4
@@ -1408,7 +1408,7 @@ export const FOLK_WORLD: GenreWorld = {
           "name": "Waltz Strum — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             2,
@@ -1461,7 +1461,7 @@ export const FOLK_WORLD: GenreWorld = {
           "sourceRole": "voice",
           "targetRole": "harmony",
           "relationship": "leaveSpace",
-          "description": "Harmony reduces density under vocal entries so the phrase remains foregrounded.",
+          "description": "Harmony reduces density under vocal entries",
           "timingOffsetSteps": 0,
           "probability": 0.72
         }
@@ -1474,7 +1474,7 @@ export const FOLK_WORLD: GenreWorld = {
     {
       "id": "folk-waltz-pick",
       "worldId": "folk",
-      "traditionId": "folk-singer-songwriter",
+      "styleIds": ["folk-singer-songwriter"],
       "name": "Waltz Fingerpick",
       "family": "Fingerpicking",
       "category": "groove",
@@ -1534,7 +1534,7 @@ export const FOLK_WORLD: GenreWorld = {
           "name": "Waltz Fingerpick — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             2,
@@ -1566,7 +1566,7 @@ export const FOLK_WORLD: GenreWorld = {
           "name": "Waltz Fingerpick — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             1,
@@ -1631,7 +1631,7 @@ export const FOLK_WORLD: GenreWorld = {
           "sourceRole": "bass",
           "targetRole": "drums",
           "relationship": "accentWith",
-          "description": "Bass accents align with selected kick/backbeat events for a tighter pocket.",
+          "description": "Bass accents align with selected kick/backbeat",
           "timingOffsetSteps": 0,
           "probability": 0.65
         }
@@ -1644,7 +1644,7 @@ export const FOLK_WORLD: GenreWorld = {
     {
       "id": "folk-68-arpeggio",
       "worldId": "folk",
-      "traditionId": "folk-singer-songwriter",
+      "styleIds": ["folk-singer-songwriter"],
       "name": "6/8 Arpeggio",
       "family": "Fingerpicking",
       "category": "groove",
@@ -1704,7 +1704,7 @@ export const FOLK_WORLD: GenreWorld = {
           "name": "6/8 Arpeggio — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             2,
@@ -1736,7 +1736,7 @@ export const FOLK_WORLD: GenreWorld = {
           "name": "6/8 Arpeggio — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             1,
@@ -1802,11 +1802,11 @@ export const FOLK_WORLD: GenreWorld = {
     {
       "id": "folk-fiddle-drone",
       "worldId": "folk",
-      "traditionId": "folk-bluegrass",
+      "styleIds": ["folk-bluegrass"],
       "name": "Old-Time Fiddle Drone & Shuffle Bow",
       "family": "Fiddle",
       "category": "ostinato",
-      "description": "Sustained open-string drone under a rhythmic shuffle-bow melody, the backbone of old-time Appalachian fiddle tunes.",
+      "description": "Sustained open-string drone under a rhythmic",
       "tags": [
         "folk",
         "old-time",
@@ -1863,7 +1863,7 @@ export const FOLK_WORLD: GenreWorld = {
           "name": "Old-Time Fiddle Drone & Shuffle Bow — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             4,
@@ -1895,7 +1895,7 @@ export const FOLK_WORLD: GenreWorld = {
           "name": "Old-Time Fiddle Drone & Shuffle Bow — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             3,
@@ -1961,7 +1961,7 @@ export const FOLK_WORLD: GenreWorld = {
     {
       "id": "folk-fast-bluegrass",
       "worldId": "folk",
-      "traditionId": "folk-bluegrass",
+      "styleIds": ["folk-bluegrass"],
       "name": "Fast Bluegrass Drive",
       "family": "Rhythm",
       "category": "groove",
@@ -2015,7 +2015,7 @@ export const FOLK_WORLD: GenreWorld = {
           "name": "Fast Bluegrass Drive — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             2,
@@ -2043,7 +2043,7 @@ export const FOLK_WORLD: GenreWorld = {
           "name": "Fast Bluegrass Drive — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             1,
@@ -2101,7 +2101,7 @@ export const FOLK_WORLD: GenreWorld = {
     {
       "id": "folk-driving-8ths",
       "worldId": "folk",
-      "traditionId": "folk-singer-songwriter",
+      "styleIds": ["folk-singer-songwriter"],
       "name": "Driving 8ths",
       "family": "Strumming",
       "category": "groove",
@@ -2167,7 +2167,7 @@ export const FOLK_WORLD: GenreWorld = {
           "name": "Driving 8ths — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             2,
@@ -2203,7 +2203,7 @@ export const FOLK_WORLD: GenreWorld = {
           "name": "Driving 8ths — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             1,
@@ -2277,11 +2277,11 @@ export const FOLK_WORLD: GenreWorld = {
     {
       "id": "folk-roster-bass",
       "worldId": "folk",
-      "traditionId": "folk-singer-songwriter",
+      "styleIds": ["folk-singer-songwriter"],
       "name": "Folk bass part",
       "family": "Flatpick",
       "category": "rolePattern",
-      "description": "A default-roster coverage pattern that gives this genre an authored part for one of its declared instruments. Built around alternating bass and the flatpick vocabulary of Folk.",
+      "description": "A default-roster coverage pattern that gives",
       "tags": [
         "folk",
         "flatpick",
@@ -2364,7 +2364,7 @@ export const FOLK_WORLD: GenreWorld = {
           "name": "Flatpick Texture — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             6,
@@ -2392,7 +2392,7 @@ export const FOLK_WORLD: GenreWorld = {
           "name": "Flatpick Texture — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             3,
@@ -2440,11 +2440,11 @@ export const FOLK_WORLD: GenreWorld = {
     {
       "id": "folk-roster-voice",
       "worldId": "folk",
-      "traditionId": "folk-singer-songwriter",
+      "styleIds": ["folk-singer-songwriter"],
       "name": "Folk voice part",
       "family": "Banjo Roll",
       "category": "rolePattern",
-      "description": "A default-roster coverage pattern that gives this genre an authored part for one of its declared instruments. Built around flatpicking and the banjo roll vocabulary of Folk.",
+      "description": "A default-roster coverage pattern that gives",
       "tags": [
         "folk",
         "banjo-roll",
@@ -2527,7 +2527,7 @@ export const FOLK_WORLD: GenreWorld = {
           "name": "Banjo Roll Texture — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             1,
             7,
@@ -2555,7 +2555,7 @@ export const FOLK_WORLD: GenreWorld = {
           "name": "Banjo Roll Texture — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             1,
             4,
@@ -2603,11 +2603,11 @@ export const FOLK_WORLD: GenreWorld = {
     {
       "id": "folk-call-13",
       "worldId": "folk",
-      "traditionId": "folk-singer-songwriter",
+      "styleIds": ["folk-singer-songwriter"],
       "name": "Fiddle Break Response",
       "family": "Fiddle Break",
       "category": "interactionPattern",
-      "description": "A call-and-response shape that leaves the next phrase open for an answer. Built around storytelling vocal and the fiddle break vocabulary of Folk.",
+      "description": "A call-and-response shape that leaves the",
       "tags": [
         "folk",
         "fiddle-break",
@@ -2691,7 +2691,7 @@ export const FOLK_WORLD: GenreWorld = {
           "name": "Fiddle Break Response — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             1,
             7,
@@ -2719,7 +2719,7 @@ export const FOLK_WORLD: GenreWorld = {
           "name": "Fiddle Break Response — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             1,
             4,
@@ -2755,7 +2755,7 @@ export const FOLK_WORLD: GenreWorld = {
           "name": "Fiddle Break Response — transition variation",
           "variationType": "transition",
           "probability": 0.16,
-          "description": "Adds a final pickup/closure gesture for section transitions.",
+          "description": "Adds a final pickup/closure gesture for",
           "onsetGrid": [
             1,
             4,
@@ -2811,11 +2811,11 @@ export const FOLK_WORLD: GenreWorld = {
     {
       "id": "folk-anchor-14",
       "worldId": "folk",
-      "traditionId": "folk-singer-songwriter",
+      "styleIds": ["folk-singer-songwriter"],
       "name": "Vocal Harmony Anchor",
       "family": "Vocal Harmony",
       "category": "ostinato",
-      "description": "A repeating anchor that locks the low end to the groove. Built around fiddle breaks and the vocal harmony vocabulary of Folk.",
+      "description": "A repeating anchor that locks the",
       "tags": [
         "folk",
         "vocal-harmony",
@@ -2899,7 +2899,7 @@ export const FOLK_WORLD: GenreWorld = {
           "name": "Vocal Harmony Anchor — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             2,
             8,
@@ -2927,7 +2927,7 @@ export const FOLK_WORLD: GenreWorld = {
           "name": "Vocal Harmony Anchor — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             2,
             5,
@@ -2975,11 +2975,11 @@ export const FOLK_WORLD: GenreWorld = {
     {
       "id": "folk-comp-15",
       "worldId": "folk",
-      "traditionId": "folk-singer-songwriter",
+      "styleIds": ["folk-singer-songwriter"],
       "name": "Fingerpick Comping",
       "family": "Fingerpick",
       "category": "groove",
-      "description": "A genre-shaped accompaniment cell that supports the lead without occupying every subdivision. Built around fingerpicking and the fingerpick vocabulary of Folk.",
+      "description": "A genre-shaped accompaniment cell that supports",
       "tags": [
         "folk",
         "fingerpick",
@@ -3056,7 +3056,7 @@ export const FOLK_WORLD: GenreWorld = {
           "name": "Fingerpick Comping — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             4
@@ -3080,7 +3080,7 @@ export const FOLK_WORLD: GenreWorld = {
           "name": "Fingerpick Comping — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             2,
@@ -3120,11 +3120,11 @@ export const FOLK_WORLD: GenreWorld = {
     {
       "id": "folk-intro-16",
       "worldId": "folk",
-      "traditionId": "folk-singer-songwriter",
+      "styleIds": ["folk-singer-songwriter"],
       "name": "Flatpick Intro",
       "family": "Flatpick",
       "category": "sectionPattern",
-      "description": "A reduced entrance used to establish the genre before the full groove arrives. Built around alternating bass and the flatpick vocabulary of Folk.",
+      "description": "A reduced entrance used to establish",
       "tags": [
         "folk",
         "flatpick",
@@ -3218,7 +3218,7 @@ export const FOLK_WORLD: GenreWorld = {
           "name": "Flatpick Intro — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             4,
@@ -3254,7 +3254,7 @@ export const FOLK_WORLD: GenreWorld = {
           "name": "Flatpick Intro — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             1,
@@ -3302,7 +3302,7 @@ export const FOLK_WORLD: GenreWorld = {
           "name": "Flatpick Intro — transition variation",
           "variationType": "transition",
           "probability": 0.16,
-          "description": "Adds a final pickup/closure gesture for section transitions.",
+          "description": "Adds a final pickup/closure gesture for",
           "onsetGrid": [
             0,
             1,
@@ -3366,11 +3366,11 @@ export const FOLK_WORLD: GenreWorld = {
     {
       "id": "folk-verse-17",
       "worldId": "folk",
-      "traditionId": "folk-singer-songwriter",
+      "styleIds": ["folk-singer-songwriter"],
       "name": "Banjo Roll Verse Variation",
       "family": "Banjo Roll",
       "category": "groove",
-      "description": "A restrained verse variation with intentional headroom for melody. Built around flatpicking and the banjo roll vocabulary of Folk.",
+      "description": "A restrained verse variation with intentional",
       "tags": [
         "folk",
         "banjo-roll",
@@ -3470,7 +3470,7 @@ export const FOLK_WORLD: GenreWorld = {
           "name": "Banjo Roll Verse Variation — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             1,
             5,
@@ -3506,7 +3506,7 @@ export const FOLK_WORLD: GenreWorld = {
           "name": "Banjo Roll Verse Variation — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             1,
             2,

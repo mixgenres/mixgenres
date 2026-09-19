@@ -6,15 +6,15 @@ export const SKA_WORLD: GenreWorld = {
   "family": "Jamaican / UK revival",
   "color": "#d4a72c",
   "level": "world",
-  "description": "Ska gets its own world because its offbeat guitar/piano language, walking bass and horn responses are not interchangeable with reggae. First-wave Jamaican ska, 2 Tone and the ska-to-rocksteady continuum receive distinct patterns and groove profiles.",
-  "traditions": [
+  "description": "Ska gets its own world because",
+  "styleDefinitions": [
     {
       "id": "ska-trad-ska",
       "worldId": "ska",
       "name": "Traditional Ska",
       "origin": "Kingston, Jamaica",
       "era": "Late 1950s–1960s",
-      "description": "Upbeat Chop • Big Band Horns • Walking Bass\nThe birth of Jamaican popular music.\nThe Skatalites · Prince Buster",
+      "description": "Upbeat Chop • Big Band Horns",
       "characteristicInstruments": [
         "brass",
         "electric-guitar",
@@ -94,7 +94,7 @@ export const SKA_WORLD: GenreWorld = {
       "name": "Two-Tone",
       "origin": "Coventry / London, UK",
       "era": "Late 1970s–Early 1980s",
-      "description": "Punk Energy • Checkered • Social Unity\nBritish punk-ska antiracist explosion.\nThe Specials · Madness",
+      "description": "Punk Energy • Checkered • Social",
       "characteristicInstruments": [
         "electric-guitar",
         "organ",
@@ -174,7 +174,7 @@ export const SKA_WORLD: GenreWorld = {
       "name": "Ska-Punk",
       "origin": "California / Gainesville / Boston",
       "era": "1990s",
-      "description": "Distortion • Blistering Speed • Horn Lines\n90s third wave skate-punk horn madness.\nSublime · Reel Big Fish",
+      "description": "Distortion • Blistering Speed • Horn",
       "characteristicInstruments": [
         "electric-guitar",
         "brass",
@@ -289,11 +289,11 @@ export const SKA_WORLD: GenreWorld = {
     {
       "id": "sk-offbeat-chop",
       "worldId": "ska",
-      "traditionId": "ska-first-wave",
+      "styleIds": ["ska-first-wave"],
       "name": "Ska Offbeat Chop",
       "family": "Ska Skank",
       "category": "ostinato",
-      "description": "Short guitar/piano attacks on every offbeat, with velocity shaped toward the upbeat.",
+      "description": "Short guitar/piano attacks on every offbeat,",
       "tags": [
         "ska",
         "upstroke",
@@ -365,7 +365,7 @@ export const SKA_WORLD: GenreWorld = {
           "name": "Ska Offbeat Chop — sparse",
           "variationType": "sparse",
           "probability": 0.35,
-          "description": "Leaves selected attacks open for a played repetition.",
+          "description": "Leaves selected attacks open for a",
           "onsetGrid": [
             2,
             10
@@ -381,7 +381,7 @@ export const SKA_WORLD: GenreWorld = {
           "name": "Ska Offbeat Chop — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Retains the cell while moving emphasis between repeated attacks.",
+          "description": "Retains the cell while moving emphasis",
           "onsetGrid": [
             2,
             6,
@@ -413,11 +413,11 @@ export const SKA_WORLD: GenreWorld = {
     {
       "id": "sk-walking-bass",
       "worldId": "ska",
-      "traditionId": "ska-first-wave",
+      "styleIds": ["ska-first-wave"],
       "name": "Ska Walking Bass",
       "family": "Ska Bass",
       "category": "phrasePattern",
-      "description": "Walking bass connects chord roots with passing tones while leaving the offbeat chop visible.",
+      "description": "Walking bass connects chord roots with",
       "tags": [
         "ska",
         "walking",
@@ -502,7 +502,7 @@ export const SKA_WORLD: GenreWorld = {
           "name": "Ska Walking Bass — sparse",
           "variationType": "sparse",
           "probability": 0.35,
-          "description": "Leaves selected attacks open for a played repetition.",
+          "description": "Leaves selected attacks open for a",
           "onsetGrid": [
             0,
             4,
@@ -522,7 +522,7 @@ export const SKA_WORLD: GenreWorld = {
           "name": "Ska Walking Bass — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Retains the cell while moving emphasis between repeated attacks.",
+          "description": "Retains the cell while moving emphasis",
           "onsetGrid": [
             0,
             2,
@@ -562,11 +562,11 @@ export const SKA_WORLD: GenreWorld = {
     {
       "id": "sk-horn-answer",
       "worldId": "ska",
-      "traditionId": "ska-first-wave",
+      "styleIds": ["ska-first-wave"],
       "name": "Horn Section Answer",
       "family": "Ska Horns",
       "category": "interactionPattern",
-      "description": "Short brass riff answers the guitar/vocal phrase at the end of each two-bar unit.",
+      "description": "Short brass riff answers the guitar/vocal",
       "tags": [
         "ska",
         "horn",
@@ -637,7 +637,7 @@ export const SKA_WORLD: GenreWorld = {
           "sourceRole": "harmony",
           "targetRole": "lead",
           "relationship": "answer",
-          "description": "Horn section fills the gap left by the guitar/vocal phrase.",
+          "description": "Horn section fills the gap left",
           "timingOffsetSteps": 0,
           "probability": 0.75,
           "worldId": "ska"
@@ -655,7 +655,7 @@ export const SKA_WORLD: GenreWorld = {
           "name": "Horn Section Answer — sparse",
           "variationType": "sparse",
           "probability": 0.35,
-          "description": "Leaves selected attacks open for a played repetition.",
+          "description": "Leaves selected attacks open for a",
           "onsetGrid": [
             16,
             22,
@@ -673,7 +673,7 @@ export const SKA_WORLD: GenreWorld = {
           "name": "Horn Section Answer — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Retains the cell while moving emphasis between repeated attacks.",
+          "description": "Retains the cell while moving emphasis",
           "onsetGrid": [
             16,
             20,
@@ -709,11 +709,11 @@ export const SKA_WORLD: GenreWorld = {
     {
       "id": "sk-two-tone-drive",
       "worldId": "ska",
-      "traditionId": "ska-two-tone",
+      "styleIds": ["ska-two-tone"],
       "name": "Two-tone upstroke drive",
       "family": "2 Tone Rhythm",
       "category": "groove",
-      "description": "Tighter revival-era offbeat guitar with a more aggressive attack than first-wave ska; same placement, different articulation and section role.",
+      "description": "Tighter revival-era offbeat guitar with a",
       "tags": [
         "2tone",
         "ska",
@@ -785,7 +785,7 @@ export const SKA_WORLD: GenreWorld = {
           "name": "2 Tone Drive — sparse",
           "variationType": "sparse",
           "probability": 0.35,
-          "description": "Leaves selected attacks open for a played repetition.",
+          "description": "Leaves selected attacks open for a",
           "onsetGrid": [
             2,
             10
@@ -801,7 +801,7 @@ export const SKA_WORLD: GenreWorld = {
           "name": "2 Tone Drive — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Retains the cell while moving emphasis between repeated attacks.",
+          "description": "Retains the cell while moving emphasis",
           "onsetGrid": [
             2,
             6,
@@ -833,11 +833,11 @@ export const SKA_WORLD: GenreWorld = {
     {
       "id": "sk-rocksteady-bass",
       "worldId": "ska",
-      "traditionId": "ska-rocksteady-bridge",
+      "styleIds": ["ska-rocksteady-bridge"],
       "name": "Rocksteady Bass Hold",
       "family": "Rocksteady Bass",
       "category": "ostinato",
-      "description": "Longer bass notes and fewer attacks shift the continuum toward reggae while preserving offbeat accompaniment.",
+      "description": "Longer bass notes and fewer attacks",
       "tags": [
         "rocksteady",
         "bass",
@@ -910,7 +910,7 @@ export const SKA_WORLD: GenreWorld = {
           "name": "Rocksteady Bass Hold — sparse",
           "variationType": "sparse",
           "probability": 0.35,
-          "description": "Leaves selected attacks open for a played repetition.",
+          "description": "Leaves selected attacks open for a",
           "onsetGrid": [
             0,
             8
@@ -926,7 +926,7 @@ export const SKA_WORLD: GenreWorld = {
           "name": "Rocksteady Bass Hold — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Retains the cell while moving emphasis between repeated attacks.",
+          "description": "Retains the cell while moving emphasis",
           "onsetGrid": [
             0,
             4,
@@ -958,11 +958,11 @@ export const SKA_WORLD: GenreWorld = {
     {
       "id": "sk-06-first-wave-offbeat-chop",
       "worldId": "ska",
-      "traditionId": "ska-first-wave",
+      "styleIds": ["ska-first-wave"],
       "name": "First-Wave Offbeat Chop",
       "family": "First-Wave Ska",
       "category": "cell",
-      "description": "Crisp guitar/piano upstrokes on the offbeats, tightly separated from the bass.",
+      "description": "Crisp guitar/piano upstrokes on the offbeats,",
       "tags": [
         "offbeat chop"
       ],
@@ -1033,11 +1033,11 @@ export const SKA_WORLD: GenreWorld = {
     {
       "id": "sk-07-walking-ska-bass",
       "worldId": "ska",
-      "traditionId": "ska-two-tone",
+      "styleIds": ["ska-two-tone"],
       "name": "Ska walking bass contour",
       "family": "First-Wave Ska",
       "category": "bass",
-      "description": "Walking bass contour with an approach tone, rather than a straight quarter-note pulse.",
+      "description": "Walking bass contour with an approach",
       "tags": [
         "walking bass"
       ],
@@ -1116,11 +1116,11 @@ export const SKA_WORLD: GenreWorld = {
     {
       "id": "sk-08-horn-section-answer",
       "worldId": "ska",
-      "traditionId": "ska-two-tone",
+      "styleIds": ["ska-two-tone"],
       "name": "Horn Section Answer",
       "family": "First-Wave Ska",
       "category": "interactionPattern",
-      "description": "Short horn riff responds after vocal/guitar phrase, often in tight ensemble hits.",
+      "description": "Short horn riff responds after vocal/guitar",
       "tags": [
         "horn answer"
       ],
@@ -1185,7 +1185,7 @@ export const SKA_WORLD: GenreWorld = {
           "timingOffsetSteps": 2,
           "probability": 0.75,
           "worldId": "ska",
-          "description": "Enter only after the source phrase leaves a response window."
+          "description": "Enter only after the source phrase"
         }
       ],
       "transformations": [
@@ -1209,11 +1209,11 @@ export const SKA_WORLD: GenreWorld = {
     {
       "id": "sk-09-ska-drum-drive",
       "worldId": "ska",
-      "traditionId": "ska-two-tone",
+      "styleIds": ["ska-two-tone"],
       "name": "Ska Drum Drive",
       "family": "First-Wave Ska",
       "category": "groove",
-      "description": "Up-tempo drum pattern that keeps the backbeat crisp while the guitar occupies the offbeats.",
+      "description": "Up-tempo drum pattern that keeps the",
       "tags": [
         "drive"
       ],
@@ -1287,11 +1287,11 @@ export const SKA_WORLD: GenreWorld = {
     {
       "id": "sk-10-rocksteady-transition",
       "worldId": "ska",
-      "traditionId": "ska-two-tone",
+      "styleIds": ["ska-two-tone"],
       "name": "Rocksteady Transition",
       "family": "Ska → Rocksteady",
       "category": "sectionPattern",
-      "description": "Reduce tempo feel and rhythmic density, emphasizing bass and vocal space.",
+      "description": "Reduce tempo feel and rhythmic density,",
       "tags": [
         "rocksteady"
       ],
@@ -1362,11 +1362,11 @@ export const SKA_WORLD: GenreWorld = {
     {
       "id": "sk-11-two-tone-guitar-pulse",
       "worldId": "ska",
-      "traditionId": "ska-two-tone",
+      "styleIds": ["ska-two-tone"],
       "name": "Two-Tone Guitar Pulse",
       "family": "Two-Tone",
       "category": "groove",
-      "description": "Sharper punk-influenced offbeat guitar with slightly denser drum accents.",
+      "description": "Sharper punk-influenced offbeat guitar with slightly",
       "tags": [
         "two-tone"
       ],
@@ -1439,11 +1439,11 @@ export const SKA_WORLD: GenreWorld = {
     {
       "id": "sk-12-ska-piano-bubble",
       "worldId": "ska",
-      "traditionId": "ska-two-tone",
+      "styleIds": ["ska-two-tone"],
       "name": "Piano bubble response",
       "family": "First-Wave Ska",
       "category": "cell",
-      "description": "Offbeat piano bubble used as a lighter keyboard counterpart to guitar upstrokes.",
+      "description": "Offbeat piano bubble used as a",
       "tags": [
         "piano bubble"
       ],
@@ -1513,11 +1513,11 @@ export const SKA_WORLD: GenreWorld = {
     {
       "id": "sk-13-ska-horn-stab",
       "worldId": "ska",
-      "traditionId": "ska-two-tone",
+      "styleIds": ["ska-two-tone"],
       "name": "Horn offbeat punctuations",
       "family": "Horn Section",
       "category": "cell",
-      "description": "Short horn punctuation displaced from the guitar chop, allowing the two layers to interlock.",
+      "description": "Short horn punctuation displaced from the",
       "tags": [
         "horn stab"
       ],
@@ -1588,11 +1588,11 @@ export const SKA_WORLD: GenreWorld = {
     {
       "id": "sk-14-ska-break-call",
       "worldId": "ska",
-      "traditionId": "ska-two-tone",
+      "styleIds": ["ska-two-tone"],
       "name": "Ska Break Call",
       "family": "Break",
       "category": "break",
-      "description": "Band stop followed by horn pickup or drum cue into the next chorus.",
+      "description": "Band stop followed by horn pickup",
       "tags": [
         "stop-time",
         "pickup"
@@ -1664,11 +1664,11 @@ export const SKA_WORLD: GenreWorld = {
     {
       "id": "sk-15-ska-final-shout",
       "worldId": "ska",
-      "traditionId": "ska-two-tone",
+      "styleIds": ["ska-two-tone"],
       "name": "Ska Final Shout",
       "family": "Cadence",
       "category": "cadence",
-      "description": "Full-band accent sequence for the ending, with horns and drums resolving together.",
+      "description": "Full-band accent sequence for the ending,",
       "tags": [
         "final hit"
       ],

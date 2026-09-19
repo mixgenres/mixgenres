@@ -1,11 +1,12 @@
 import { Song, Region, Track, Measure, SectionType, PatternVariant, MusicalPattern } from '../types';
 import { GENRE_WORLDS_BY_ID, ALL_PATTERNS, PATTERNS_BY_ID, PATTERNS_BY_WORLD } from '../data/genres';
-import { INSTRUMENTS_BY_ID, INSTRUMENT_CATALOG, WORLD_INSTRUMENT_HINTS, instrument, instrumentPatternKinds } from '../data/instruments';
+import { INSTRUMENTS_BY_ID, INSTRUMENT_CATALOG, instrument, instrumentPatternKinds } from '../data/instruments';
 import { sliceBarNative } from './grid';
 import { progressionForSection } from './arrangement';
 import { inferKey, parseChord, SHARP_NAMES } from './theory';
-import { resolveStyle, StyleRuntime, StyleInfluence, SongStyle, getCanonicalStyle, getStylesForGenre } from '../data/styles';
+import { resolveStyle, StyleRuntime, StyleInfluence, SongStyle, getCanonicalStyle, getStyle } from '../data/styles';
 import { roomFor } from './mixer';
+import { suggestedPaletteForGenre } from '../data/chordPalette';
 
 export interface Voice extends Track {
   instrumentId: string;
@@ -198,44 +199,29 @@ export function patternStyleFit(
   genreId?: string
 ): number {
   if (!styleId) return 0;
-  const targetGenre = genreId || pattern.worldId;
-  const resolved = resolveStyle({ genreId: targetGenre, styleId });
+  const resolved = resolveStyle({ genreId, styleId });
+  const stylePatternIds = resolved.patterns ?? {};
 
-  // Hard filter check for avoid list
-  const avoidList = resolved.patterns?.avoid || [];
-  if (avoidList.includes(pattern.id)) return Number.NEGATIVE_INFINITY;
-
-  // Hard filter check for forbid rules
-  const forbidRules = resolved.rules?.forbid || [];
-  if (pattern.tags?.some(tag => forbidRules.some(r => r.tag === tag || r.tag === `tag:${tag}`))) {
+  if (stylePatternIds.avoid?.includes(pattern.id)) return Number.NEGATIVE_INFINITY;
+  if (pattern.tags?.some(tag => resolved.rules?.forbid?.some(r => r.tag === tag || r.tag === `tag:${tag}`))) {
     return Number.NEGATIVE_INFINITY;
   }
 
-  // Exact style match: pattern.traditionId === styleId or pattern.substyleId === styleId
-  if (pattern.traditionId === styleId || (pattern as any).styleId === styleId || pattern.substyleId === styleId) {
-    return 75;
+  const ids = new Set(pattern.styleIds ?? []);
+  // A concrete style owns its authored patterns. Style-specific material from a
+  // different style is never allowed to leak into the current style.
+  if (ids.size > 0 && !ids.has(styleId)) return Number.NEGATIVE_INFINITY;
+  if (stylePatternIds.allowed?.length && !stylePatternIds.allowed.includes(pattern.id) && !ids.has(styleId)) {
+    return Number.NEGATIVE_INFINITY;
   }
 
-  // Ancestor style / extends chain match
-  if (resolved.extends && (pattern.traditionId === resolved.extends || pattern.substyleId === resolved.extends)) {
-    return 40;
-  }
+  if (ids.has(styleId)) return 100;
+  if (stylePatternIds.require?.includes(pattern.id)) return 90;
+  if (stylePatternIds.preferred?.includes(pattern.id)) return 70;
 
-  // Style require list boost
-  const requireList = resolved.patterns?.require || [];
-  if (requireList.includes(pattern.id)) return 35;
-
-  // Catalog bulk/neutral pattern
-  if (pattern.id.startsWith('cat-') || pattern.id.startsWith('cv2-')) {
-    return 0;
-  }
-
-  // Sibling style penalty
-  if (pattern.traditionId && pattern.traditionId !== styleId && pattern.worldId === (genreId || resolved.primaryGenre)) {
-    return -35;
-  }
-
-  return 0;
+  // Unscoped catalog patterns are reusable building blocks, but are deliberately
+  // weaker than anything authored for the concrete style.
+  return ids.size === 0 ? 0 : Number.NEGATIVE_INFINITY;
 }
 
 /** How well a pattern sits on a voice. Never a veto — only an ordering. */
@@ -313,7 +299,8 @@ function synthesizeBoundaryVariant(
   const baseOnsets = p.onsetGrid;
   if (!baseOnsets?.length) return undefined;
 
-  let resolvedStyle = styleId ? resolveStyle({ genreId: p.worldId, styleId }) : undefined;
+  const styleGenre = styleId ? getStyle(styleId)?.primaryGenre : undefined;
+  let resolvedStyle = styleId && styleGenre ? resolveStyle({ genreId: styleGenre, styleId }) : undefined;
   const gestures = resolvedStyle?.gestures || {};
 
   // Check if style forbids cadence or has explicit gesture rates
@@ -468,8 +455,8 @@ export function suggestPattern(
     .map(p => {
       let n = affinity(p.id, voice, worldId, styleId);
       if (!Number.isFinite(n)) return { id: p.id, n: Number.NEGATIVE_INFINITY };
-      if (p.id === DEFAULT_PATTERN_PREFERENCES[worldId]?.[voice.instrumentId]) n += 40;
-      if (styleId && (p.traditionId === styleId || (p as any).styleId === styleId)) n += 25;
+      if (p.id === DEFAULT_PATTERN_PREFERENCES[worldId]?.[voice.instrumentId]) n += 8;
+      if (styleId && p.styleIds?.includes(styleId)) n += 30;
       if (sectionKind && p.sectionUsage?.includes(sectionKind as any)) n += 8;
       if (partDensity) {
         if (p.density === partDensity) n += 18;
@@ -559,12 +546,14 @@ export function rebuild(sheet: Sheet): Sheet {
               .filter(p => p.enabled !== false)
               .filter(p => !base || p.family === base.family || p.category === base.category)
               .filter(p => {
-                const world = r.genre ?? sheet.worldId;
-                const segmented = world === 'chinese-traditional' || world === 'japanese-traditional';
-                return !segmented || !base?.traditionId || !p.traditionId || p.traditionId === base.traditionId;
+                const styleId = (r as any).styleId ?? sheet.styleId;
+                if (!styleId) return true;
+                const ids = p.styleIds ?? [];
+                const baseIds = base?.styleIds ?? [];
+                return ids.length === 0 || ids.includes(styleId) || (baseIds.includes(styleId) && ids.some(id => baseIds.includes(id)));
               })
               .map(p => {
-                let score = affinity(p.id, track as Voice, r.genre ?? sheet.worldId);
+                let score = affinity(p.id, track as Voice, r.genre ?? sheet.worldId, (r as any).styleId ?? sheet.styleId);
                 if (p.id === basePatternId) score += 18;
                 if (base && p.family === base.family) score += 12;
                 if (base && p.category === base.category) score += 4;
@@ -637,8 +626,7 @@ export function rebuild(sheet: Sheet): Sheet {
 
         details[track.id] = {
           patternId: p.id,
-          traditionId: p.traditionId ?? sheet.styleId,
-          styleId: sheet.styleId ?? p.traditionId,
+          styleId: (r as any).styleId ?? sheet.styleId,
           variantId: v?.id,
           onsetGrid: bar.onsets,
           accentProfile: bar.accents,
@@ -675,7 +663,7 @@ export function setKind(sheet: Sheet, regionId: string, formKey: string): Sheet 
   const region = sheet.regions.find(r => r.id === regionId);
   const worldId = (region as any)?.genre ?? sheet.worldId;
   const styleId = (region as any)?.styleId ?? sheet.styleId;
-  const resolved = resolveStyle({ genreId: worldId, styleId });
+  const resolved = resolveStyle({ genreId: worldId, styleId: styleId ?? getCanonicalStyle(worldId).id });
   const templates = resolved.form?.templates;
   const styleSteps = templates?.[0]?.value ?? [];
   const foundStep = styleSteps.find(s => s.key === formKey || s.kind === formKey);
@@ -760,11 +748,11 @@ export function addSensibleSectionAfter(sheet: Sheet, regionId: string): { sheet
   const src = i >= 0 ? sheet.regions[i] : sheet.regions[sheet.regions.length - 1];
   const worldId = (src as any)?.genre ?? sheet.worldId ?? 'rock';
   const styleId = (src as any)?.styleId ?? sheet.styleId;
-  const resolved = resolveStyle({ genreId: worldId, styleId });
+  const resolved = resolveStyle({ genreId: worldId, styleId: styleId ?? getCanonicalStyle(worldId).id });
   const templates = resolved.form?.templates;
   const steps = (templates && templates.length > 0 && templates[0].value)
     ? templates[0].value
-    : getGenreForm(worldId).steps;
+    : [{ key: 'verse', label: 'Verse', kind: 'verse', bars: 8, intensity: 'medium' as const }];
 
   // Determine what step comes next sensibly for this section of the song
   let nextStep: FormStep | undefined;
@@ -800,11 +788,8 @@ export function addSensibleSectionAfter(sheet: Sheet, regionId: string): { sheet
 
   // Sensible chords for this section
   const sectionChords = (resolved.harmony?.sectionProgressions as Record<string, string[]>) ?? {};
-  const chordsFallback = resolved.harmony?.progressionTemplates?.[0]?.value ?? PROGRESSIONS[worldId] ?? PROGRESSIONS.tango;
-  const traditionalWorld = (worldId === 'chinese-traditional' || worldId === 'japanese-traditional') && resolved.harmony.model !== 'functional';
-  const pickedChords = traditionalWorld
-    ? ['D5']
-    : progressionForSection(sectionChords, key, kind, chordsFallback);
+  const chordsFallback = (suggestedPaletteForGenre(worldId)[0]?.chords as string[] | undefined) ?? PROGRESSIONS[worldId] ?? PROGRESSIONS.tango;
+  const pickedChords = progressionForSection(sectionChords, key, kind, chordsFallback, worldId);
 
   const id = `r${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 6)}`;
   const fresh: Region = {
@@ -828,8 +813,8 @@ export function addSensibleSectionAfter(sheet: Sheet, regionId: string): { sheet
   regions.splice(insertIndex, 0, fresh);
 
   // Sensible arrangement & densities for tracks
-  const form = getGenreForm(worldId);
-  const formDensities = form.densities ?? {};
+  const styleDensityCurve = resolved.arrangement?.densityCurve ?? {};
+  const formDensities: Record<string, PartDensity> = Object.fromEntries(Object.entries(styleDensityCurve).map(([k, v]) => [k, v as PartDensity]));
   const sectionDensities = formDensities[key] ?? formDensities[kind] ?? {};
   const arrangement = { ...sheet.arrangement, [id]: {} as Record<string, string> };
   const densities = { ...sheet.densities, [id]: {} as Record<string, PartDensity> };
@@ -844,7 +829,7 @@ export function addSensibleSectionAfter(sheet: Sheet, regionId: string): { sheet
     const p = suggestPattern(v, worldId, insertIndex * 31 + ti * 13 + 7, String(kind), taken, d, styleId);
     if (p) {
       arrangement[id][v.id] = p;
-      if (!traditionalWorld) taken.add(p);
+      if (p) taken.add(p);
     }
   }
 
@@ -901,7 +886,7 @@ export function setInstrument(sheet: Sheet, trackId: string, instrumentId: strin
       const used = new Set(Object.values(arrangement[region.id] ?? {}));
       used.delete(current);
       const density = sheet.densities?.[region.id]?.[trackId];
-      const p = suggestPattern(newVoice, sheet.worldId, ri * 31 + 17, String(region.kind), used, density);
+      const p = suggestPattern(newVoice, sheet.worldId, ri * 31 + 17, String(region.kind), used, density, (region as any).styleId ?? sheet.styleId);
       if (p) {
         arrangement[region.id] = { ...(arrangement[region.id] ?? {}), [trackId]: p };
       }
@@ -930,17 +915,17 @@ let rankCacheWorldId = '';
  * strong boost, but the broader catalog is searched too, so randomisation can
  * actually produce a new ensemble instead of shuffling the same five names.
  */
-function rankInstrumentsForWorld(worldId: string, targetRole?: string): string[] {
+function rankInstrumentsForWorld(worldId: string, targetRole?: string, styleId?: string): string[] {
   if (rankCacheWorldId !== worldId) {
     rankCache.clear();
     rankCacheWorldId = worldId;
   }
-  const cacheKey = targetRole ?? '';
+  const cacheKey = `${styleId ?? ''}|${targetRole ?? ''}`;
   if (rankCache.has(cacheKey)) {
     return rankCache.get(cacheKey)!;
   }
 
-  const hintIds = WORLD_INSTRUMENT_HINTS[worldId] ?? [];
+  const hintIds: string[] = [];
   const scored = INSTRUMENT_CATALOG
     .filter(def => def.id !== 'silence' && !!INSTRUMENTS_BY_ID[def.id])
     .map(def => {
@@ -951,7 +936,7 @@ function rankInstrumentsForWorld(worldId: string, targetRole?: string): string[]
       } as Voice;
       const best = (PATTERNS_BY_WORLD[worldId] || [])
         .filter(p => p.enabled !== false)
-        .map(p => affinity(p.id, fakeVoice, worldId))
+        .map(p => affinity(p.id, fakeVoice, worldId, styleId))
         .filter(Number.isFinite)
         .sort((a, b) => b - a)[0] ?? -100;
       let n = best * 0.55;
@@ -995,7 +980,7 @@ function patternCandidatesForVoice(
       if (previous) {
         if (p.id === previous.id) n += 10;
         if (p.family === previous.family) n += 8;
-        if (p.traditionId && previous.traditionId && p.traditionId === previous.traditionId) n += 6;
+        if (styleId && p.styleIds?.includes(styleId) && previous?.styleIds?.includes(styleId)) n += 6;
         if (p.category === previous.category) n += 3;
       }
       if (['verse', 'pre-chorus', 'bridge'].includes(sectionKind) && ['fill', 'cadence', 'sectionPattern'].includes(p.category)) n -= 15;
@@ -1008,12 +993,13 @@ function patternCandidatesForVoice(
 /** Randomise instruments while staying inside the current genre's strongest vocabulary. */
 export function randomizeInstruments(sheet: Sheet, repickPatterns = true): Sheet {
   const worldId = sheet.worldId;
-  const ranked = rankInstrumentsForWorld(worldId);
+  const styleId = sheet.styleId ?? getCanonicalStyle(worldId).id;
+  const ranked = rankInstrumentsForWorld(worldId, undefined, styleId);
   const current = sheet.tracks.map(t => t.instrumentId);
   const selected: string[] = [];
   for (let i = 0; i < sheet.tracks.length; i++) {
     const role = (sheet.tracks[i] as Voice).role;
-    const roleRanked = rankInstrumentsForWorld(worldId, role);
+    const roleRanked = rankInstrumentsForWorld(worldId, role, styleId);
     const pool = roleRanked.filter(id => !selected.includes(id));
     const fallback = ranked.filter(id => !selected.includes(id));
     const candidates = (pool.length ? pool : fallback).slice(0, Math.min(10, (pool.length ? pool : fallback).length));
@@ -1056,7 +1042,6 @@ export function randomizePatternsForSection(sheet: Sheet, regionId: string): She
   const arrangement = { ...sheet.arrangement };
   const next = { ...(arrangement[regionId] ?? {}) };
   const used = new Set<string>();
-  const culturalShared = worldId === 'chinese-traditional' || worldId === 'japanese-traditional';
 
   for (const track of sheet.tracks) {
     const current = next[track.id];
@@ -1072,7 +1057,7 @@ export function randomizePatternsForSection(sheet: Sheet, regionId: string): She
     const pick = pool[Math.floor(Math.random() * pool.length)];
     const picked = pick?.p.id ?? current;
     next[track.id] = picked;
-    if (!culturalShared) used.add(picked);
+    used.add(picked);
   }
 
   arrangement[regionId] = next;
@@ -1094,8 +1079,6 @@ export function randomizePatternsForSong(sheet: Sheet): Sheet {
     const worldId = region.genre ?? out.worldId;
     const styleId = (region as any).styleId ?? out.styleId;
     const used = new Set<string>();
-    const culturalShared = worldId === 'chinese-traditional' || worldId === 'japanese-traditional';
-
     for (const track of out.tracks) {
       const current = next[track.id];
       if (current === 'silent') continue;
@@ -1111,7 +1094,7 @@ export function randomizePatternsForSong(sheet: Sheet): Sheet {
       if (!picked) continue;
       next[track.id] = picked;
       chosenByTrack[track.id] = picked;
-      if (!culturalShared) used.add(picked);
+      used.add(picked);
     }
 
     arrangement[region.id] = next;
@@ -1127,43 +1110,8 @@ export function randomizePatternsForSong(sheet: Sheet): Sheet {
  * Collect authored harmonic templates for a style and genre. Templates come from the
  * style's own harmonic grammars first, with genre fallbacks as a last resort.
  */
-function chordTemplatesForRegion(worldId: string, region: Region, styleId?: string): string[][] {
-  const styles = styleId ? [resolveStyle({ genreId: worldId, styleId })] : getStylesForGenre(worldId);
-  const wantedKeys = [String(region.formKey ?? ''), String(region.kind ?? ''), String(region.kind ?? '').replace(/-/g, ''), 'verse'];
-  const templates: string[][] = [];
-
-  for (const style of styles) {
-    const sectionProgressions = style.harmony?.sectionProgressions;
-    if (sectionProgressions && typeof sectionProgressions === 'object') {
-      for (const key of wantedKeys) {
-        const found = (sectionProgressions as Record<string, string[]>)[key];
-        if (Array.isArray(found) && found.length) templates.push(found.slice());
-      }
-    }
-    if (style.harmony?.progressionTemplates) {
-      for (const pt of style.harmony.progressionTemplates) {
-        if (Array.isArray(pt.value) && pt.value.length) templates.push(pt.value.slice());
-      }
-    }
-  }
-
-  const world = GENRE_WORLDS_BY_ID[worldId] as any;
-  const traditions = Array.isArray(world?.traditions) ? world.traditions : [];
-  for (const tradition of traditions) {
-    const sectionProgressions = tradition?.sectionProgressions;
-    if (!sectionProgressions || typeof sectionProgressions !== 'object') continue;
-    for (const key of wantedKeys) {
-      const found = sectionProgressions[key];
-      if (Array.isArray(found) && found.length) templates.push(found.slice());
-    }
-  }
-
-  const fallback = PROGRESSIONS[worldId];
-  if (Array.isArray(fallback) && fallback.length) templates.push(fallback.slice());
-
-  const unique = new Map<string, string[]>();
-  for (const t of templates) unique.set(t.join('|'), t);
-  return [...unique.values()];
+function chordTemplatesForRegion(worldId: string, _region: Region, _styleId?: string): string[][] {
+  return suggestedPaletteForGenre(worldId).map(cell => cell.chords as string[]);
 }
 
 function transposeChordSymbol(symbol: string, delta: number): string {
@@ -1176,14 +1124,6 @@ function transposeChordSymbol(symbol: string, delta: number): string {
     return SHARP_NAMES[(pc + delta + 120) % 12];
   };
   return `${transposeName(match[1])}${match[2] ?? ''}${match[3] ? `/${transposeName(match[3])}` : ''}`;
-}
-
-function fitChordCount(chords: string[], targetLength: number): string[] {
-  if (!chords.length || !targetLength || chords.length === targetLength) return chords.slice();
-  if (chords.length > targetLength) return chords.slice(0, targetLength);
-  const out: string[] = [];
-  for (let i = 0; i < targetLength; i++) out.push(chords[i % chords.length]);
-  return out;
 }
 
 function chordTemplateInKey(template: string[], targetKeyName: string): string[] {
@@ -1227,14 +1167,13 @@ export function randomizeChordsForSection(sheet: Sheet, regionId: string): Sheet
   if (!region) return sheet;
   const worldId = region.genre ?? sheet.worldId;
   const allCurrent = sheet.regions.flatMap(r => r.chords ?? []);
-  const key = inferKey(allCurrent.length ? allCurrent : (PROGRESSIONS[worldId] ?? PROGRESSIONS.tango));
+  const key = inferKey(allCurrent.length ? allCurrent : ((suggestedPaletteForGenre(worldId)[0]?.chords as string[]) ?? PROGRESSIONS[worldId] ?? PROGRESSIONS.tango));
   const targetKey = key.name;
-  const current = region.chords ?? PROGRESSIONS[worldId] ?? PROGRESSIONS.tango;
+  const current = region.chords ?? ((suggestedPaletteForGenre(worldId)[0]?.chords as string[]) ?? PROGRESSIONS[worldId] ?? PROGRESSIONS.tango);
   const currentStr = current.join(',');
-  const templates = chordTemplatesForRegion(worldId, region)
+  const templates = chordTemplatesForRegion(worldId, region, (region as any).styleId ?? sheet.styleId)
     .map(t => chordTemplateInKey(t, targetKey))
-    .map(t => fitChordCount(t, current.length))
-    .filter(t => t.length);
+        .filter(t => t.length);
   if (!templates.length) return sheet;
 
   const scored = templates
@@ -1271,10 +1210,9 @@ export function randomizeChordsForSong(sheet: Sheet): Sheet {
     const current = region.chords ?? PROGRESSIONS[region.genre ?? sheet.worldId] ?? PROGRESSIONS.tango;
     const currentStr = current.join(',');
     const worldId = region.genre ?? sheet.worldId;
-    const candidates = chordTemplatesForRegion(worldId, region)
+    const candidates = chordTemplatesForRegion(worldId, region, (region as any).styleId ?? sheet.styleId)
       .map(t => chordTemplateInKey(t, targetKey))
-      .map(t => fitChordCount(t, current.length))
-      .filter(t => t.length);
+            .filter(t => t.length);
     if (!candidates.length) {
       chosen.push(region);
       previousLast = current[current.length - 1];
@@ -1294,20 +1232,6 @@ export function randomizeChordsForSong(sheet: Sheet): Sheet {
     previousLast = pick[pick.length - 1];
   }
 
-  // Give the closing section a clear return to the song's tonic without
-  // forcing a Western cadence onto traditions whose authored material is a
-  // drone/pedal language (their candidate templates already remain intact).
-  if (chosen.length) {
-    const last = chosen[chosen.length - 1];
-    const tonic = inferKey(chosen.flatMap(r => r.chords ?? [])).name;
-    if (!/^D5$/.test((last.chords ?? [])[0] ?? '') && last.chords?.length) {
-      const closing = last.chords.slice();
-      if (parseChord(closing[closing.length - 1]).rootPc !== parseChord(tonic).rootPc) {
-        closing[closing.length - 1] = tonic;
-      }
-      chosen[chosen.length - 1] = { ...last, chords: closing };
-    }
-  }
 
   return rebuild({ ...sheet, regions: chosen });
 }
@@ -1418,7 +1342,7 @@ export function unsilenceVoiceInSection(sheet: Sheet, trackId: string, regionId:
   if (!pId) {
     const region = sheet.regions.find(r => r.id === regionId);
     const taken = new Set(Object.values(sheet.arrangement[regionId] ?? {}));
-    pId = suggestPattern(voice, sheet.worldId, sheet.tracks.length * 17 + 5, String(region?.kind ?? 'verse'), taken, sheet.densities?.[regionId]?.[voice.id])
+    pId = suggestPattern(voice, sheet.worldId, sheet.tracks.length * 17 + 5, String(region?.kind ?? 'verse'), taken, sheet.densities?.[regionId]?.[voice.id], (region as any)?.styleId ?? sheet.styleId)
       ?? ALL_PATTERNS.find(p => p.roles.includes(voice.role as any))?.id
       ?? ALL_PATTERNS[0]?.id;
   }
@@ -1439,7 +1363,7 @@ export function unsilenceVoiceInAll(sheet: Sheet, trackId: string): Sheet {
     let pId = remembered && remembered !== 'silent' ? remembered : undefined;
     if (!pId) {
       const taken = new Set(Object.values(arrangement[r.id] ?? {}));
-      pId = suggestPattern(voice, sheet.worldId, ri * 31 + sheet.tracks.length * 13 + 7, String(r.kind), taken, sheet.densities?.[r.id]?.[voice.id])
+      pId = suggestPattern(voice, sheet.worldId, ri * 31 + sheet.tracks.length * 13 + 7, String(r.kind), taken, sheet.densities?.[r.id]?.[voice.id], (r as any).styleId ?? sheet.styleId)
         ?? ALL_PATTERNS.find(p => p.roles.includes(voice.role as any))?.id
         ?? ALL_PATTERNS[0]?.id;
     }
@@ -1488,12 +1412,12 @@ export function setSectionDensity(sheet: Sheet, regionId: string, density: PartD
           i * 31 + 17,
           String(region.kind),
           taken,
-          density
+          density,
+          (region as any).styleId ?? sheet.styleId
         );
         if (p) {
           arrangement[regionId] = { ...(arrangement[regionId] ?? {}), [track.id]: p };
-          const culturalShared = (sheet.worldId === 'chinese-traditional' || sheet.worldId === 'japanese-traditional');
-          if (!culturalShared) taken.add(p);
+          taken.add(p);
         }
       }
     }
@@ -1526,6 +1450,7 @@ export function setPartDensity(sheet: Sheet, regionId: string, trackId: string, 
         String(region.kind),
         used,
         density,
+        (region as any).styleId ?? sheet.styleId,
       );
       if (p) {
         arrangement[regionId] = { ...(arrangement[regionId] ?? {}), [trackId]: p };
@@ -1574,7 +1499,7 @@ export function addVoice(
   if (scope === 'section' && regionId) {
     const targetRegion = sheet.regions.find(r => r.id === regionId) ?? sheet.regions[0];
     const taken = new Set(Object.values(arrangement[targetRegion.id] ?? {}));
-    const p = suggestPattern(voice, sheet.worldId, sheet.tracks.length * 19 + 7, String(targetRegion.kind), taken, 'normal');
+    const p = suggestPattern(voice, sheet.worldId, sheet.tracks.length * 19 + 7, String(targetRegion.kind), taken, 'normal', (targetRegion as any).styleId ?? sheet.styleId);
 
     for (const r of sheet.regions) {
       if (r.id === targetRegion.id) {
@@ -1586,7 +1511,7 @@ export function addVoice(
   } else {
     for (const [ri, r] of sheet.regions.entries()) {
       const taken = new Set(Object.values(arrangement[r.id] ?? {}));
-      const p = suggestPattern(voice, sheet.worldId, ri * 31 + sheet.tracks.length * 13 + 7, String(r.kind), taken, 'normal');
+      const p = suggestPattern(voice, sheet.worldId, ri * 31 + sheet.tracks.length * 13 + 7, String(r.kind), taken, 'normal', (r as any).styleId ?? sheet.styleId);
       if (p) arrangement[r.id] = { ...(arrangement[r.id] ?? {}), [id]: p };
     }
   }
@@ -1601,7 +1526,8 @@ export function addRandomInstrument(
   scope: 'section' | 'song' = 'section'
 ): Sheet {
   const worldId = sheet.worldId;
-  const ranked = rankInstrumentsForWorld(worldId);
+  const styleId = sheet.styleId ?? getCanonicalStyle(worldId).id;
+  const ranked = rankInstrumentsForWorld(worldId, undefined, styleId);
   const current = new Set(sheet.tracks.map(t => t.instrumentId));
   const fresh = ranked.filter(id => !current.has(id));
   const pool = fresh.length ? fresh : ranked;
@@ -1639,10 +1565,10 @@ export function toggleVoice(sheet: Sheet, trackId: string): Sheet {
 /**
  * The meter the world's patterns are actually written in.
  *
- * Traditions declare the meter a musicologist would name — tango as 2/4,
+ * Traditional Styles declare the meter a musicologist would name — tango as 2/4,
  * flamenco as 12/8, math rock as 7/8 — but the patterns themselves are almost
  * always authored as one 4/4 bar, with the compás expressed as a 12- or
- * 14-step subdivision inside it. Taking the tradition's meter literally made
+ * 14-step subdivision inside it. Taking the style's meter literally made
  * every tango bar half the length its patterns expected, so the grooves ran at
  * double speed. Trust what the patterns say.
  */
@@ -1662,7 +1588,7 @@ export function makeSheet(
   overrides?: Partial<SongStyle>
 ): Sheet {
   const genreId = typeof worldOrOptions === 'string' ? worldOrOptions : worldOrOptions.genreId;
-  const styleId = typeof worldOrOptions === 'string' ? explicitStyleId : worldOrOptions.styleId;
+  const styleId = (typeof worldOrOptions === 'string' ? explicitStyleId : worldOrOptions.styleId) ?? getCanonicalStyle(genreId).id;
   const appliedInfluences = typeof worldOrOptions === 'string' ? influences : worldOrOptions.influences;
   const appliedOverrides = typeof worldOrOptions === 'string' ? overrides : worldOrOptions.overrides;
 
@@ -1678,17 +1604,12 @@ export function makeSheet(
   const formTemplates = runtime.getFormTemplate(42);
   const form = formTemplates && formTemplates.length > 0
     ? formTemplates
-    : expandedFormSteps(genreId);
-  const chords = (resolved.harmony?.progressionTemplates?.[0]?.value) ?? PROGRESSIONS[genreId] ?? PROGRESSIONS.tango;
+    : [{ key: 'verse', label: 'Verse', kind: 'verse', bars: 8, intensity: 'medium' as const }];
+  const chordCells = suggestedPaletteForGenre(genreId).map(cell => cell.chords as string[]);
+  const chords = chordCells[0] ?? ['C','G','Am','F'];
 
-  const sectionChords = (resolved.harmony?.sectionProgressions as Record<string, string[]>) ??
-    (world?.traditions?.find(t => t.sectionProgressions)?.sectionProgressions as Record<string, string[]> | undefined);
-
-  const traditionalWorld = (genreId === 'chinese-traditional' || genreId === 'japanese-traditional') && resolved.harmony.model !== 'functional';
   const regions: Region[] = form.map((f, i) => {
-    const picked = traditionalWorld
-      ? ['D5']
-      : progressionForSection(sectionChords, f.key, f.kind, chords);
+    const picked = chordCells.length ? chordCells[i % chordCells.length] : chords;
     return {
       id: `r${i}`, name: f.label, kind: f.kind, formKey: f.key, formLabel: f.label,
       intensity: f.intensity, start: 0, end: f.bars,
@@ -1699,21 +1620,12 @@ export function makeSheet(
     } as Region;
   });
 
-  if (regions.length > 1 && !traditionalWorld) {
-    const all = regions.flatMap(r => r.chords ?? []);
-    const key = inferKey(all);
-    const powerHeavy = all.filter(c => /5$/.test(c)).length > all.length / 2;
-    const tonic = powerHeavy ? `${key.name.replace(/m$/, '')}5` : key.name;
-    const last = regions[regions.length - 1];
-    const approach = (last.chords ?? [tonic])[0];
-    last.chords = last.bars && last.bars > 4 ? [approach, tonic, tonic, tonic] : [tonic, tonic];
-  }
 
   // Instrument hints from resolved style palette or genre defaults
   const stylePalette = runtime.getInstrumentPalette();
   const ensembleIds = (resolved.arrangement?.ensemble ?? [])
     .flatMap(e => e.instrumentIds ?? []);
-  const rawHints = [...ensembleIds, ...stylePalette, ...(WORLD_INSTRUMENT_HINTS[genreId] ?? [])];
+  const rawHints = [...ensembleIds, ...stylePalette];
   const candidates = rawHints.filter((id, i, arr) => INSTRUMENTS_BY_ID[id] && arr.indexOf(id) === i);
   const roleOrder = ['bass', 'percussion', 'harmony', 'melody', 'voice', 'texture'];
   const hints: string[] = [];
@@ -1722,7 +1634,7 @@ export function makeSheet(
     if (id) hints.push(id);
   }
   for (const id of candidates) {
-    if (hints.length >= 7) break;
+    if (hints.length >= 5) break;
     if (!hints.includes(id)) hints.push(id);
   }
   if (hints.length < 5) {
@@ -1732,7 +1644,7 @@ export function makeSheet(
     }
   }
 
-  const tracks: Voice[] = hints.slice(0, 7).map((instrumentId, i) => {
+  const tracks: Voice[] = hints.slice(0, 5).map((instrumentId, i) => {
     const def = instrument(instrumentId);
     return {
       id: `v${i}`, instrumentId, name: def.name, instrument: def.name,
@@ -1748,10 +1660,12 @@ export function makeSheet(
     arrangement[r.id] = {};
     densities[r.id] = {};
     
-    // Authored density from genre template
-    const formDensities = GENRE_FORMS[genreId]?.densities ?? {};
+    // Density is part of the selected SongStyle's arrangement grammar.
     const styleDensity = resolved.arrangement?.densityCurve?.[r.formKey ?? ''] ?? resolved.arrangement?.densityCurve?.[r.kind];
-    const sectionDensities = formDensities[r.formKey ?? ''] ?? formDensities[r.kind] ?? {};
+    const sectionDensities: Record<string, PartDensity> = {};
+    for (const [key, value] of Object.entries(resolved.arrangement?.densityCurve ?? {})) {
+      sectionDensities[key] = value as PartDensity;
+    }
 
     const taken = new Set<string>();
     for (const [i, v] of tracks.entries()) {
@@ -1761,17 +1675,10 @@ export function makeSheet(
                         ?? (r.intensity === 'low' ? 'sparse' : (r.intensity === 'peak' ? 'busy' : 'normal'));
       densities[r.id][v.id] = d;
 
-      let p: string | undefined;
-      const preferred = DEFAULT_PATTERN_PREFERENCES[genreId]?.[v.instrumentId];
-      if (ri === 0 && preferred && (world?.patterns ?? []).some(pat => pat.id === preferred)) {
-        p = preferred;
-      } else {
-        p = suggestPattern(v, genreId, ri * 31 + i * 13 + 7, String(r.kind), taken, d, resolved.id);
-      }
+      const p = suggestPattern(v, genreId, ri * 31 + i * 13 + 7, String(r.kind), taken, d, resolved.id);
       if (p) {
         arrangement[r.id][v.id] = p;
-        const culturalShared = (genreId === 'chinese-traditional' || genreId === 'japanese-traditional');
-        if (!culturalShared) taken.add(p);
+        taken.add(p);
       }
     }
   }
@@ -1848,7 +1755,7 @@ export function switchSectionWorld(sheet: Sheet, regionId: string, worldId: stri
   const targetStyleId = styleId ?? canonical.id;
   const resolved = resolveStyle({ genreId: worldId, styleId: targetStyleId });
 
-  const newChords = (resolved.harmony?.progressionTemplates?.[0]?.value) ?? PROGRESSIONS[worldId] ?? PROGRESSIONS.tango;
+  const newChords = (suggestedPaletteForGenre(worldId)[0]?.chords as string[]) ?? PROGRESSIONS[worldId] ?? PROGRESSIONS.tango;
   const regions = sheet.regions.map(reg => {
     if (reg.id !== regionId) return reg;
     const formStep = getFormStep(String(reg.formKey ?? reg.kind), worldId);

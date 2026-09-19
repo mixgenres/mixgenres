@@ -6,15 +6,15 @@ export const ROCK_WORLD: GenreWorld = {
   "family": "Amplified / Guitar Music",
   "color": "#b45b68",
   "level": "world",
-  "description": "A broad rock vocabulary organized around riffs, backbeats, power chords, dynamic song forms, guitar/bass locks, instrumental development, and contrasting textures.",
-  "traditions": [
+  "description": "A broad rock vocabulary organized around",
+  "styleDefinitions": [
     {
       "id": "rock-hard-rock",
       "worldId": "rock",
       "name": "Hard Rock",
       "origin": "London / Los Angeles",
       "era": "Late 1960s–1980s",
-      "description": "Heavy Riffs • Marshall Stacks • High Vocals\nDriving overdrive guitar power chords.\nLed Zeppelin · AC/DC",
+      "description": "Heavy Riffs • Marshall Stacks •",
       "characteristicInstruments": [
         "electric-guitar",
         "bass",
@@ -99,7 +99,7 @@ export const ROCK_WORLD: GenreWorld = {
       "name": "Grunge",
       "origin": "Seattle, Washington",
       "era": "Late 1980s–1990s",
-      "description": "Loud-Quiet-Loud • Fuzz • Anguish\nRaw flannel-clad Pacific Northwest angst.\nNirvana · Soundgarden",
+      "description": "Loud-Quiet-Loud • Fuzz • Anguish\nRaw flannel-clad",
       "characteristicInstruments": [
         "electric-guitar",
         "bass",
@@ -179,7 +179,7 @@ export const ROCK_WORLD: GenreWorld = {
       "name": "Progressive Rock",
       "origin": "London / Cambridge, UK",
       "era": "Late 1960s–1970s",
-      "description": "Odd Meters • Mellotron • Multi-Movement\nComplex artistic symphonic suites.\nPink Floyd · Yes",
+      "description": "Odd Meters • Mellotron • Multi-Movement\nComplex",
       "characteristicInstruments": [
         "electric-guitar",
         "mellotron",
@@ -264,7 +264,7 @@ export const ROCK_WORLD: GenreWorld = {
       "name": "Punk Rock",
       "origin": "New York / London",
       "era": "Mid 1970s",
-      "description": "Fast Downstrokes • 3 Chords • Anti-establishment\nStripped-down high-speed raw rebellion.\nRamones · The Clash",
+      "description": "Fast Downstrokes • 3 Chords •",
       "characteristicInstruments": [
         "electric-guitar",
         "bass",
@@ -343,7 +343,7 @@ export const ROCK_WORLD: GenreWorld = {
       "name": "Garage Rock",
       "origin": "Detroit / Detroit / NYC",
       "era": "1960s / 2000s Revival",
-      "description": "Lo-Fi Fuzz • Catchy Riffs • Raw Drums\nGritty, punchy analog basement rock.\nThe Stooges · The Strokes",
+      "description": "Lo-Fi Fuzz • Catchy Riffs •",
       "characteristicInstruments": [
         "electric-guitar",
         "bass",
@@ -422,7 +422,7 @@ export const ROCK_WORLD: GenreWorld = {
       "name": "Psychedelic",
       "origin": "San Francisco / London",
       "era": "Late 1960s",
-      "description": "Wah-wah • Tape Delay • Mind-expanding\nAcid-soaked exploratory sonic journeys.\nThe Jimi Hendrix Experience · The Doors",
+      "description": "Wah-wah • Tape Delay • Mind-expanding\nAcid-soaked",
       "characteristicInstruments": [
         "electric-guitar",
         "organ",
@@ -503,7 +503,7 @@ export const ROCK_WORLD: GenreWorld = {
       "name": "Post-Rock",
       "origin": "Montreal / Reykjavik / Texas",
       "era": "Late 1990s–Present",
-      "description": "Crescendo • Cinematic • Instrumental\nEpic dynamic sonic architecture.\nGodspeed You! Black Emperor · Explosions in the Sky",
+      "description": "Crescendo • Cinematic • Instrumental\nEpic dynamic",
       "characteristicInstruments": [
         "electric-guitar",
         "bass",
@@ -584,7 +584,7 @@ export const ROCK_WORLD: GenreWorld = {
       "name": "Shoegaze",
       "origin": "London / Oxford / Dublin",
       "era": "Late 1980s–Early 1990s",
-      "description": "Glide Guitar • Wall of Sound • Dreamy\nDistorted reverse-reverb ocean of sound.\nMy Bloody Valentine · Slowdive",
+      "description": "Glide Guitar • Wall of Sound",
       "characteristicInstruments": [
         "electric-guitar",
         "bass",
@@ -719,11 +719,11 @@ export const ROCK_WORLD: GenreWorld = {
     {
       "id": "rock-riff-lock",
       "worldId": "rock",
-      "traditionId": "rock-classic",
+      "styleIds": ["rock-classic"],
       "name": "Riff + Bass Lock",
       "family": "Riff",
       "category": "ostinato",
-      "description": "Electric guitar and bass share a repeating riff while kick accents reinforce its structural points.",
+      "description": "Electric guitar and bass share a",
       "tags": [
         "rock",
         "riff",
@@ -803,7 +803,7 @@ export const ROCK_WORLD: GenreWorld = {
             1,
             1
           ],
-          "description": "The riff collapses into accented hits, creating a clear break before the groove returns."
+          "description": "The riff collapses into accented hits,"
         },
         {
           "id": "rock-riff-lock-v-02",
@@ -811,7 +811,7 @@ export const ROCK_WORLD: GenreWorld = {
           "name": "Riff + Bass Lock — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             3,
@@ -882,7 +882,7 @@ export const ROCK_WORLD: GenreWorld = {
           "sourceRole": "drums",
           "targetRole": "bass",
           "relationship": "reinforce",
-          "description": "Low-end attacks reinforce the main pulse without doubling every subdivision.",
+          "description": "Low-end attacks reinforce the main pulse",
           "timingOffsetSteps": 0,
           "probability": 0.78
         }
@@ -895,11 +895,11 @@ export const ROCK_WORLD: GenreWorld = {
     {
       "id": "rock-straight-drive",
       "worldId": "rock",
-      "traditionId": "rock-punk",
+      "styleIds": ["rock-punk"],
       "name": "Straight-Eighth Drive",
       "family": "Driving Eighths",
       "category": "phrasePattern",
-      "description": "Continuous guitar eighths with a firm bass/kick foundation and snare backbeat.",
+      "description": "Continuous guitar eighths with a firm",
       "tags": [
         "rock",
         "punk",
@@ -973,7 +973,7 @@ export const ROCK_WORLD: GenreWorld = {
           "name": "Straight-Eighth Drive — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             4,
@@ -1009,7 +1009,7 @@ export const ROCK_WORLD: GenreWorld = {
           "name": "Straight-Eighth Drive — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             2,
@@ -1084,7 +1084,7 @@ export const ROCK_WORLD: GenreWorld = {
           "sourceRole": "voice",
           "targetRole": "harmony",
           "relationship": "leaveSpace",
-          "description": "Harmony reduces density under vocal entries so the phrase remains foregrounded.",
+          "description": "Harmony reduces density under vocal entries",
           "timingOffsetSteps": 0,
           "probability": 0.72
         }
@@ -1097,11 +1097,11 @@ export const ROCK_WORLD: GenreWorld = {
     {
       "id": "rock-open-close",
       "worldId": "rock",
-      "traditionId": "rock-alt",
+      "styleIds": ["rock-alt"],
       "name": "Open Verse → Full Chorus",
       "family": "Dynamic Arrangement",
       "category": "sectionPattern",
-      "description": "A sparse verse leaves negative space before additional guitar layers, cymbals and sustained harmony arrive for the chorus.",
+      "description": "A sparse verse leaves negative space",
       "tags": [
         "rock",
         "arrangement",
@@ -1163,7 +1163,7 @@ export const ROCK_WORLD: GenreWorld = {
           "name": "Open Verse → Full Chorus — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             8,
@@ -1191,7 +1191,7 @@ export const ROCK_WORLD: GenreWorld = {
           "name": "Open Verse → Full Chorus — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             4,
@@ -1223,7 +1223,7 @@ export const ROCK_WORLD: GenreWorld = {
           "name": "Open Verse → Full Chorus — transition variation",
           "variationType": "transition",
           "probability": 0.16,
-          "description": "Adds a final pickup/closure gesture for section transitions.",
+          "description": "Adds a final pickup/closure gesture for",
           "onsetGrid": [
             0,
             4,
@@ -1290,7 +1290,7 @@ export const ROCK_WORLD: GenreWorld = {
           "sourceRole": "bass",
           "targetRole": "drums",
           "relationship": "accentWith",
-          "description": "Bass accents align with selected kick/backbeat events for a tighter pocket.",
+          "description": "Bass accents align with selected kick/backbeat",
           "timingOffsetSteps": 0,
           "probability": 0.65
         }
@@ -1303,11 +1303,11 @@ export const ROCK_WORLD: GenreWorld = {
     {
       "id": "rock-odd-meter",
       "worldId": "rock",
-      "traditionId": "rock-progressive",
+      "styleIds": ["rock-progressive"],
       "name": "7/8 Accent Group",
       "family": "Odd Meter",
       "category": "ostinato",
-      "description": "A seven-eighth-note cycle grouped 2+2+3, with bass, guitar and kick sharing the same structural accents.",
+      "description": "A seven-eighth-note cycle grouped 2+2+3, with",
       "tags": [
         "rock",
         "progressive",
@@ -1367,7 +1367,7 @@ export const ROCK_WORLD: GenreWorld = {
           "name": "7/8 Accent Group — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             8,
@@ -1395,7 +1395,7 @@ export const ROCK_WORLD: GenreWorld = {
           "name": "7/8 Accent Group — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             4,
@@ -1455,11 +1455,11 @@ export const ROCK_WORLD: GenreWorld = {
     {
       "id": "rock-power-chords",
       "worldId": "rock",
-      "traditionId": "rock-punk",
+      "styleIds": ["rock-punk"],
       "name": "Power Chords",
       "family": "Guitar",
       "category": "fill",
-      "description": "Distorted 8th note power chords driving straight through.",
+      "description": "Distorted 8th note power chords driving",
       "tags": [],
       "scopes": [
         "measure"
@@ -1518,7 +1518,7 @@ export const ROCK_WORLD: GenreWorld = {
           "name": "Power Chords — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             2,
@@ -1554,7 +1554,7 @@ export const ROCK_WORLD: GenreWorld = {
           "name": "Power Chords — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             1,
@@ -1628,11 +1628,11 @@ export const ROCK_WORLD: GenreWorld = {
     {
       "id": "rock-halftime-groove",
       "worldId": "rock",
-      "traditionId": "rock-alt",
+      "styleIds": ["rock-alt"],
       "name": "Half-Time Groove",
       "family": "Drums",
       "category": "break",
-      "description": "Spacious half-time groove with massive snare on beat 3.",
+      "description": "Spacious half-time groove with massive snare",
       "tags": [],
       "scopes": [
         "measure"
@@ -1673,7 +1673,7 @@ export const ROCK_WORLD: GenreWorld = {
           "name": "Half-Time Groove — played variation",
           "variationType": "accentShift",
           "probability": 0.18,
-          "description": "A light played variation for sparse patterns with only a few attacks.",
+          "description": "A light played variation for sparse",
           "onsetGrid": [
             0,
             4
@@ -1697,7 +1697,7 @@ export const ROCK_WORLD: GenreWorld = {
           "name": "Half-Time Groove — played variation",
           "variationType": "accentShift",
           "probability": 0.18,
-          "description": "A light played variation for sparse patterns with only a few attacks.",
+          "description": "A light played variation for sparse",
           "onsetGrid": [
             0,
             4
@@ -1747,11 +1747,11 @@ export const ROCK_WORLD: GenreWorld = {
     {
       "id": "rock-tom-beat",
       "worldId": "rock",
-      "traditionId": "rock-alt",
+      "styleIds": ["rock-alt"],
       "name": "Tom Groove",
       "family": "Drums",
       "category": "cadence",
-      "description": "Tribal tom-tom beat for atmospheric verses and builds.",
+      "description": "Tribal tom-tom beat for atmospheric verses",
       "tags": [],
       "scopes": [
         "measure"
@@ -1812,7 +1812,7 @@ export const ROCK_WORLD: GenreWorld = {
           "name": "Tom Groove — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             4,
@@ -1848,7 +1848,7 @@ export const ROCK_WORLD: GenreWorld = {
           "name": "Tom Groove — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             3,
@@ -1922,11 +1922,11 @@ export const ROCK_WORLD: GenreWorld = {
     {
       "id": "rock-organ-sustain",
       "worldId": "rock",
-      "traditionId": "rock-classic",
+      "styleIds": ["rock-classic"],
       "name": "Hammond Organ Sustain",
       "family": "Keys",
       "category": "cell",
-      "description": "Sustained Hammond B3 chords with Leslie swirl, filling harmonic space beneath the guitars in classic rock ballads and jams.",
+      "description": "Sustained Hammond B3 chords with Leslie",
       "tags": [
         "rock",
         "organ",
@@ -1978,7 +1978,7 @@ export const ROCK_WORLD: GenreWorld = {
           "name": "Hammond Organ Sustain — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             8,
@@ -2006,7 +2006,7 @@ export const ROCK_WORLD: GenreWorld = {
           "name": "Hammond Organ Sustain — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             7,
@@ -2064,11 +2064,11 @@ export const ROCK_WORLD: GenreWorld = {
     {
       "id": "rock-prog-7-8",
       "worldId": "rock",
-      "traditionId": "rock-progressive",
+      "styleIds": ["rock-progressive"],
       "name": "7/8 Riff",
       "family": "Guitar",
       "category": "groove",
-      "description": "Odd meter guitar riff in 2+2+3 asymmetric phrasing.",
+      "description": "Odd meter guitar riff in 2+2+3",
       "tags": [],
       "scopes": [
         "measure"
@@ -2115,7 +2115,7 @@ export const ROCK_WORLD: GenreWorld = {
           "name": "7/8 Riff — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             4,
@@ -2143,7 +2143,7 @@ export const ROCK_WORLD: GenreWorld = {
           "name": "7/8 Riff — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             2,
@@ -2201,11 +2201,11 @@ export const ROCK_WORLD: GenreWorld = {
     {
       "id": "rock-prog-synth",
       "worldId": "rock",
-      "traditionId": "rock-progressive",
+      "styleIds": ["rock-progressive"],
       "name": "Prog Synth Arp",
       "family": "Synth",
       "category": "groove",
-      "description": "Fast synth arpeggiator creating swirling harmonic motion.",
+      "description": "Fast synth arpeggiator creating swirling harmonic",
       "tags": [],
       "scopes": [
         "measure"
@@ -2290,7 +2290,7 @@ export const ROCK_WORLD: GenreWorld = {
           "name": "Prog Synth Arp — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             2,
@@ -2350,7 +2350,7 @@ export const ROCK_WORLD: GenreWorld = {
           "name": "Prog Synth Arp — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             1,
@@ -2456,11 +2456,11 @@ export const ROCK_WORLD: GenreWorld = {
     {
       "id": "rock-acoustic-strum",
       "worldId": "rock",
-      "traditionId": "rock-classic",
+      "styleIds": ["rock-classic"],
       "name": "Acoustic Strum",
       "family": "Guitar",
       "category": "groove",
-      "description": "Acoustic guitar layering with accented down-up syncopation.",
+      "description": "Acoustic guitar layering with accented down-up",
       "tags": [],
       "scopes": [
         "measure"
@@ -2513,7 +2513,7 @@ export const ROCK_WORLD: GenreWorld = {
           "name": "Acoustic Strum — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             4,
@@ -2545,7 +2545,7 @@ export const ROCK_WORLD: GenreWorld = {
           "name": "Acoustic Strum — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             2,
@@ -2611,11 +2611,11 @@ export const ROCK_WORLD: GenreWorld = {
     {
       "id": "rock-lead-bend",
       "worldId": "rock",
-      "traditionId": "rock-classic",
+      "styleIds": ["rock-classic"],
       "name": "Lead Guitar Bend",
       "family": "Guitar",
       "category": "groove",
-      "description": "Sustained bending lead note answering vocal phrases.",
+      "description": "Sustained bending lead note answering vocal",
       "tags": [],
       "scopes": [
         "measure"
@@ -2657,7 +2657,7 @@ export const ROCK_WORLD: GenreWorld = {
           "name": "Lead Guitar Bend — played variation",
           "variationType": "accentShift",
           "probability": 0.18,
-          "description": "A light played variation for sparse patterns with only a few attacks.",
+          "description": "A light played variation for sparse",
           "onsetGrid": [
             2,
             6
@@ -2681,7 +2681,7 @@ export const ROCK_WORLD: GenreWorld = {
           "name": "Lead Guitar Bend — played variation",
           "variationType": "accentShift",
           "probability": 0.18,
-          "description": "A light played variation for sparse patterns with only a few attacks.",
+          "description": "A light played variation for sparse",
           "onsetGrid": [
             2,
             6
@@ -2731,11 +2731,11 @@ export const ROCK_WORLD: GenreWorld = {
     {
       "id": "rock-roster-voice",
       "worldId": "rock",
-      "traditionId": "rock-classic",
+      "styleIds": ["rock-classic"],
       "name": "Rock voice part",
       "family": "Build",
       "category": "rolePattern",
-      "description": "A default-roster coverage pattern that gives this genre an authored part for one of its declared instruments. Built around vocal hook and the build vocabulary of Rock.",
+      "description": "A default-roster coverage pattern that gives",
       "tags": [
         "rock",
         "build",
@@ -2820,7 +2820,7 @@ export const ROCK_WORLD: GenreWorld = {
           "name": "Build Texture — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             8,
@@ -2848,7 +2848,7 @@ export const ROCK_WORLD: GenreWorld = {
           "name": "Build Texture — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             4,
@@ -2892,11 +2892,11 @@ export const ROCK_WORLD: GenreWorld = {
     {
       "id": "rock-call-14",
       "worldId": "rock",
-      "traditionId": "rock-classic",
+      "styleIds": ["rock-classic"],
       "name": "Break Response",
       "family": "Break",
       "category": "interactionPattern",
-      "description": "A call-and-response shape that leaves the next phrase open for an answer. Built around dynamic build and the break vocabulary of Rock.",
+      "description": "A call-and-response shape that leaves the",
       "tags": [
         "rock",
         "break",
@@ -2976,7 +2976,7 @@ export const ROCK_WORLD: GenreWorld = {
           "name": "Break Response — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             1,
             9,
@@ -3004,7 +3004,7 @@ export const ROCK_WORLD: GenreWorld = {
           "name": "Break Response — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             1,
             5,
@@ -3036,7 +3036,7 @@ export const ROCK_WORLD: GenreWorld = {
           "name": "Break Response — transition variation",
           "variationType": "transition",
           "probability": 0.16,
-          "description": "Adds a final pickup/closure gesture for section transitions.",
+          "description": "Adds a final pickup/closure gesture for",
           "onsetGrid": [
             1,
             5,
@@ -3088,11 +3088,11 @@ export const ROCK_WORLD: GenreWorld = {
     {
       "id": "rock-anchor-15",
       "worldId": "rock",
-      "traditionId": "rock-classic",
+      "styleIds": ["rock-classic"],
       "name": "Power Chord Anchor",
       "family": "Power Chord",
       "category": "ostinato",
-      "description": "A repeating anchor that locks the low end to the groove. Built around power chords and the power chord vocabulary of Rock.",
+      "description": "A repeating anchor that locks the",
       "tags": [
         "rock",
         "power-chord",
@@ -3172,7 +3172,7 @@ export const ROCK_WORLD: GenreWorld = {
           "name": "Power Chord Anchor — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             2,
             10,
@@ -3200,7 +3200,7 @@ export const ROCK_WORLD: GenreWorld = {
           "name": "Power Chord Anchor — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             2,
             6,
@@ -3244,11 +3244,11 @@ export const ROCK_WORLD: GenreWorld = {
     {
       "id": "rock-comp-16",
       "worldId": "rock",
-      "traditionId": "rock-classic",
+      "styleIds": ["rock-classic"],
       "name": "Backbeat Comping",
       "family": "Backbeat",
       "category": "groove",
-      "description": "A genre-shaped accompaniment cell that supports the lead without occupying every subdivision. Built around backbeat in Rock.",
+      "description": "A genre-shaped accompaniment cell that supports",
       "tags": [
         "rock",
         "backbeat",
@@ -3329,7 +3329,7 @@ export const ROCK_WORLD: GenreWorld = {
           "name": "Backbeat Comping — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             3,
             11,
@@ -3357,7 +3357,7 @@ export const ROCK_WORLD: GenreWorld = {
           "name": "Backbeat Comping — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             3,
             7,
@@ -3401,11 +3401,11 @@ export const ROCK_WORLD: GenreWorld = {
     {
       "id": "rock-verse-17",
       "worldId": "rock",
-      "traditionId": "rock-classic",
+      "styleIds": ["rock-classic"],
       "name": "Solo Verse Variation",
       "family": "Solo",
       "category": "groove",
-      "description": "A restrained verse variation with intentional headroom for melody. Built around guitar solo and the solo vocabulary of Rock.",
+      "description": "A restrained verse variation with intentional",
       "tags": [
         "rock",
         "solo",
@@ -3504,7 +3504,7 @@ export const ROCK_WORLD: GenreWorld = {
           "name": "Solo Verse Variation — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             1,
             5,
@@ -3540,7 +3540,7 @@ export const ROCK_WORLD: GenreWorld = {
           "name": "Solo Verse Variation — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             1,
             3,

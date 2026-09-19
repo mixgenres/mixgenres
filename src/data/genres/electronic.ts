@@ -6,15 +6,15 @@ export const ELECTRONIC_WORLD: GenreWorld = {
   "family": "Electronic / Dance",
   "color": "#C7E2E0",
   "level": "world",
-  "description": "Synthesizer and drum machine driven music spanning hypnotic four-on-the-floor house to heavy syncopated bass breaks.",
-  "traditions": [
+  "description": "Synthesizer and drum machine driven music",
+  "styleDefinitions": [
     {
       "id": "electronic-downtempo",
       "worldId": "electronic",
       "name": "Downtempo",
       "origin": "Bristol / Vienna / Ibiza",
       "era": "1990s–Present",
-      "description": "Chilled • 4/4 • Atmospheric\nRelaxed, lush electronic beats.\nBonobo · Tycho",
+      "description": "Chilled • 4/4 • Atmospheric\nRelaxed, lush",
       "characteristicInstruments": [
         "synth",
         "drums",
@@ -95,7 +95,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
       "name": "Trip-Hop",
       "origin": "Bristol, UK",
       "era": "1990s",
-      "description": "Moody • Cinematic • Heavy\nSlow hip-hop beats with dark soul.\nMassive Attack · Portishead",
+      "description": "Moody • Cinematic • Heavy\nSlow hip-hop",
       "characteristicInstruments": [
         "drums",
         "bass",
@@ -176,7 +176,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
       "name": "IDM",
       "origin": "UK / Europe",
       "era": "1990s–Present",
-      "description": "Complex • Glitchy • Brain Dance\nIntricate micro-programmed rhythms.\nAphex Twin · Boards of Canada",
+      "description": "Complex • Glitchy • Brain Dance\nIntricate",
       "characteristicInstruments": [
         "sampler",
         "synth",
@@ -247,7 +247,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
       "name": "Dubstep",
       "origin": "Croydon, South London",
       "era": "2000s",
-      "description": "Heavy Sub • Half-step • Dark\n140 BPM deep sub-bass wobbles.\nBurial · Skream",
+      "description": "Heavy Sub • Half-step • Dark\n140",
       "characteristicInstruments": [
         "sub-bass",
         "drums",
@@ -327,7 +327,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
       "name": "Garage",
       "origin": "London, UK",
       "era": "Late 1990s–Present",
-      "description": "Skippy • 2-Step • Vocal chops\nSyncopated bass and chopped R&B vocals.\nMJ Cole · Todd Edwards",
+      "description": "Skippy • 2-Step • Vocal chops\nSyncopated",
       "characteristicInstruments": [
         "drums",
         "bass",
@@ -409,7 +409,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
       "name": "Synthwave",
       "origin": "France / USA / Internet",
       "era": "2000s–Present",
-      "description": "80s Nostalgia • Arpeggios • Gated Reverb\nRetro-futuristic analog synth action.\nKavinsky · The Midnight",
+      "description": "80s Nostalgia • Arpeggios • Gated",
       "characteristicInstruments": [
         "synth",
         "drums",
@@ -488,7 +488,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
       "name": "Ambient",
       "origin": "UK / Global",
       "era": "1970s–Present",
-      "description": "Timbral • Beatless • Expansive\nSubtle sonic texture and drone spaces.\nBrian Eno · Stars of the Lid",
+      "description": "Timbral • Beatless • Expansive\nSubtle sonic",
       "characteristicInstruments": [
         "synth",
         "sampler",
@@ -557,7 +557,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
       "name": "Techno",
       "origin": "Detroit, Michigan / Berlin",
       "era": "1980s–Present",
-      "description": "Relentless • 4/4 • Industrial\nMachine-driven hypnotic dance pulse.\nJuan Atkins · Jeff Mills",
+      "description": "Relentless • 4/4 • Industrial\nMachine-driven hypnotic",
       "characteristicInstruments": [
         "drums",
         "synth",
@@ -686,11 +686,11 @@ export const ELECTRONIC_WORLD: GenreWorld = {
     {
       "id": "elec-4onfloor",
       "worldId": "electronic",
-      "traditionId": "electronic-house",
+      "styleIds": ["electronic-house"],
       "name": "Four on the Floor",
       "family": "Beat",
       "category": "fill",
-      "description": "Kick on every quarter note driving the club pulse.",
+      "description": "Kick on every quarter note driving",
       "tags": [
         "electronic",
         "house"
@@ -740,7 +740,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
           "name": "Four on the Floor — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             8,
@@ -768,7 +768,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
           "name": "Four on the Floor — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             4,
@@ -826,11 +826,11 @@ export const ELECTRONIC_WORLD: GenreWorld = {
     {
       "id": "elec-offbeat-hats",
       "worldId": "electronic",
-      "traditionId": "electronic-house",
+      "styleIds": ["electronic-house"],
       "name": "Offbeat Hats",
       "family": "Beat",
       "category": "break",
-      "description": "Open hi-hats on the upbeats creating forward momentum.",
+      "description": "Open hi-hats on the upbeats creating",
       "tags": [
         "electronic",
         "house"
@@ -880,7 +880,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
           "name": "Offbeat Hats — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             2,
             10,
@@ -908,7 +908,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
           "name": "Offbeat Hats — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             2,
             6,
@@ -966,11 +966,11 @@ export const ELECTRONIC_WORLD: GenreWorld = {
     {
       "id": "elec-techno-rumble",
       "worldId": "electronic",
-      "traditionId": "electronic-house",
+      "styleIds": ["electronic-house"],
       "name": "Techno Rumble",
       "family": "Beat",
       "category": "cadence",
-      "description": "Driving 16th note bass/kick interaction and sub rumble.",
+      "description": "Driving 16th note bass/kick interaction and",
       "tags": [
         "electronic",
         "techno"
@@ -1048,7 +1048,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
           "name": "Techno Rumble — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             3,
@@ -1096,7 +1096,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
           "name": "Techno Rumble — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             2,
@@ -1187,11 +1187,11 @@ export const ELECTRONIC_WORLD: GenreWorld = {
     {
       "id": "elec-trance-16ths",
       "worldId": "electronic",
-      "traditionId": "electronic-house",
+      "styleIds": ["electronic-house"],
       "name": "Trance Bass 16ths",
       "family": "Bass",
       "category": "groove",
-      "description": "Driving 16th note arpeggiated bass with sidechain pumping curve.",
+      "description": "Driving 16th note arpeggiated bass with",
       "tags": [
         "electronic",
         "trance"
@@ -1279,7 +1279,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
           "name": "Trance Bass 16ths — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             2,
@@ -1339,7 +1339,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
           "name": "Trance Bass 16ths — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             1,
@@ -1444,7 +1444,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
           "sourceRole": "drums",
           "targetRole": "bass",
           "relationship": "reinforce",
-          "description": "Low-end attacks reinforce the main pulse without doubling every subdivision.",
+          "description": "Low-end attacks reinforce the main pulse",
           "timingOffsetSteps": 0,
           "probability": 0.78
         }
@@ -1457,11 +1457,11 @@ export const ELECTRONIC_WORLD: GenreWorld = {
     {
       "id": "elec-dubstep-half",
       "worldId": "electronic",
-      "traditionId": "electronic-bass",
+      "styleIds": ["electronic-bass"],
       "name": "Dubstep Half-Time",
       "family": "Beat",
       "category": "groove",
-      "description": "Heavy kick on 1 and crushing snare on 3 in 140bpm half-time.",
+      "description": "Heavy kick on 1 and crushing",
       "tags": [
         "electronic",
         "dubstep"
@@ -1505,7 +1505,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
           "name": "Dubstep Half-Time — played variation",
           "variationType": "accentShift",
           "probability": 0.18,
-          "description": "A light played variation for sparse patterns with only a few attacks.",
+          "description": "A light played variation for sparse",
           "onsetGrid": [
             0,
             8
@@ -1529,7 +1529,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
           "name": "Dubstep Half-Time — played variation",
           "variationType": "accentShift",
           "probability": 0.18,
-          "description": "A light played variation for sparse patterns with only a few attacks.",
+          "description": "A light played variation for sparse",
           "onsetGrid": [
             0,
             8
@@ -1578,7 +1578,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
           "sourceRole": "voice",
           "targetRole": "harmony",
           "relationship": "leaveSpace",
-          "description": "Harmony reduces density under vocal entries so the phrase remains foregrounded.",
+          "description": "Harmony reduces density under vocal entries",
           "timingOffsetSteps": 0,
           "probability": 0.72
         }
@@ -1591,11 +1591,11 @@ export const ELECTRONIC_WORLD: GenreWorld = {
     {
       "id": "elec-dnb-amen",
       "worldId": "electronic",
-      "traditionId": "electronic-bass",
+      "styleIds": ["electronic-bass"],
       "name": "DnB Break",
       "family": "Beat",
       "category": "groove",
-      "description": "Fast syncopated breakbeat at 174 BPM with ghost snares.",
+      "description": "Fast syncopated breakbeat at 174 BPM",
       "tags": [
         "electronic",
         "dnb"
@@ -1651,7 +1651,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
           "name": "DnB Break — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             7,
@@ -1683,7 +1683,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
           "name": "DnB Break — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             4,
@@ -1748,7 +1748,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
           "sourceRole": "lead",
           "targetRole": "voice",
           "relationship": "answer",
-          "description": "Lead instrument answers a vocal phrase in the open space after the line.",
+          "description": "Lead instrument answers a vocal phrase",
           "timingOffsetSteps": 2,
           "probability": 0.58
         }
@@ -1761,11 +1761,11 @@ export const ELECTRONIC_WORLD: GenreWorld = {
     {
       "id": "elec-footwork",
       "worldId": "electronic",
-      "traditionId": "electronic-bass",
+      "styleIds": ["electronic-bass"],
       "name": "Chicago Footwork / Juke",
       "family": "Footwork",
       "category": "groove",
-      "description": "Rapid, chopped kick pattern with triplet-displaced snares built for Chicago juke and footwork dance battles.",
+      "description": "Rapid, chopped kick pattern with triplet-displaced",
       "tags": [
         "electronic",
         "footwork",
@@ -1828,7 +1828,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
           "name": "Chicago Footwork / Juke — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             6,
@@ -1864,7 +1864,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
           "name": "Chicago Footwork / Juke — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             3,
@@ -1937,7 +1937,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
           "sourceRole": "bass",
           "targetRole": "drums",
           "relationship": "accentWith",
-          "description": "Bass accents align with selected kick/backbeat events for a tighter pocket.",
+          "description": "Bass accents align with selected kick/backbeat",
           "timingOffsetSteps": 0,
           "probability": 0.65
         }
@@ -1950,11 +1950,11 @@ export const ELECTRONIC_WORLD: GenreWorld = {
     {
       "id": "elec-ukg",
       "worldId": "electronic",
-      "traditionId": "electronic-house",
+      "styleIds": ["electronic-house"],
       "name": "UK Garage Swung",
       "family": "Beat",
       "category": "groove",
-      "description": "Swung 16ths with skipping 2-step kicks and crisp snare snaps.",
+      "description": "Swung 16ths with skipping 2-step kicks",
       "tags": [
         "electronic",
         "ukg"
@@ -2010,7 +2010,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
           "name": "UK Garage Swung — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             7,
@@ -2042,7 +2042,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
           "name": "UK Garage Swung — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             4,
@@ -2107,7 +2107,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
           "sourceRole": "harmony",
           "targetRole": "lead",
           "relationship": "leaveSpace",
-          "description": "Accompaniment thins when the instrumental lead enters.",
+          "description": "Accompaniment thins when the instrumental lead",
           "timingOffsetSteps": 0,
           "probability": 0.62
         }
@@ -2120,7 +2120,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
     {
       "id": "elec-electro",
       "worldId": "electronic",
-      "traditionId": "electronic-house",
+      "styleIds": ["electronic-house"],
       "name": "Electro 808",
       "family": "Beat",
       "category": "groove",
@@ -2180,7 +2180,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
           "name": "Electro 808 — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             7,
@@ -2212,7 +2212,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
           "name": "Electro 808 — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             4,
@@ -2278,11 +2278,11 @@ export const ELECTRONIC_WORLD: GenreWorld = {
     {
       "id": "elec-ambient",
       "worldId": "electronic",
-      "traditionId": "electronic-house",
+      "styleIds": ["electronic-house"],
       "name": "Ambient Pulse",
       "family": "Synth",
       "category": "groove",
-      "description": "Slow evolving chord pulses with gentle dynamic decay.",
+      "description": "Slow evolving chord pulses with gentle",
       "tags": [
         "electronic",
         "ambient"
@@ -2328,7 +2328,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
           "name": "Ambient Pulse — played variation",
           "variationType": "accentShift",
           "probability": 0.18,
-          "description": "A light played variation for sparse patterns with only a few attacks.",
+          "description": "A light played variation for sparse",
           "onsetGrid": [
             0,
             2
@@ -2352,7 +2352,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
           "name": "Ambient Pulse — played variation",
           "variationType": "accentShift",
           "probability": 0.18,
-          "description": "A light played variation for sparse patterns with only a few attacks.",
+          "description": "A light played variation for sparse",
           "onsetGrid": [
             0,
             2
@@ -2402,11 +2402,11 @@ export const ELECTRONIC_WORLD: GenreWorld = {
     {
       "id": "elec-synthwave",
       "worldId": "electronic",
-      "traditionId": "electronic-house",
+      "styleIds": ["electronic-house"],
       "name": "Synthwave 8ths",
       "family": "Bass",
       "category": "groove",
-      "description": "Straight 8th note driving retro synth bass with rolling cutoff filter.",
+      "description": "Straight 8th note driving retro synth",
       "tags": [
         "electronic",
         "synthwave"
@@ -2470,7 +2470,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
           "name": "Synthwave 8ths — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             2,
@@ -2506,7 +2506,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
           "name": "Synthwave 8ths — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             1,
@@ -2580,11 +2580,11 @@ export const ELECTRONIC_WORLD: GenreWorld = {
     {
       "id": "elec-acid-303",
       "worldId": "electronic",
-      "traditionId": "electronic-house",
+      "styleIds": ["electronic-house"],
       "name": "Acid House 303 Bassline",
       "family": "Acid Bass",
       "category": "ostinato",
-      "description": "Squelchy Roland TB-303 style syncopated 16th-note bassline with accented slides and rests, the signature Chicago acid-house hook.",
+      "description": "Squelchy Roland TB-303 style syncopated 16th-note",
       "tags": [
         "electronic",
         "acid-house",
@@ -2646,7 +2646,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
           "name": "Acid House 303 Bassline — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             4,
@@ -2682,7 +2682,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
           "name": "Acid House 303 Bassline — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             3,
@@ -2752,11 +2752,11 @@ export const ELECTRONIC_WORLD: GenreWorld = {
     {
       "id": "electronic-phrase-13",
       "worldId": "electronic",
-      "traditionId": "electronic-house",
+      "styleIds": ["electronic-house"],
       "name": "Pluck Phrase",
       "family": "Pluck",
       "category": "phrasePattern",
-      "description": "A phrase-level rhythmic template that leaves deliberate space for melodic expression. Built around arpeggio and the pluck vocabulary of Electronic.",
+      "description": "A phrase-level rhythmic template that leaves",
       "tags": [
         "electronic",
         "pluck",
@@ -2845,7 +2845,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
           "name": "Pluck Phrase — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             5,
@@ -2881,7 +2881,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
           "name": "Pluck Phrase — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             2,
@@ -2936,11 +2936,11 @@ export const ELECTRONIC_WORLD: GenreWorld = {
     {
       "id": "electronic-call-14",
       "worldId": "electronic",
-      "traditionId": "electronic-house",
+      "styleIds": ["electronic-house"],
       "name": "Breakbeat Response",
       "family": "Breakbeat",
       "category": "interactionPattern",
-      "description": "A call-and-response shape that leaves the next phrase open for an answer. Built around sidechain pulse and the breakbeat vocabulary of Electronic.",
+      "description": "A call-and-response shape that leaves the",
       "tags": [
         "electronic",
         "breakbeat",
@@ -3035,7 +3035,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
           "name": "Breakbeat Response — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             3,
@@ -3071,7 +3071,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
           "name": "Breakbeat Response — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             1,
@@ -3115,7 +3115,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
           "name": "Breakbeat Response — transition variation",
           "variationType": "transition",
           "probability": 0.16,
-          "description": "Adds a final pickup/closure gesture for section transitions.",
+          "description": "Adds a final pickup/closure gesture for",
           "onsetGrid": [
             0,
             1,
@@ -3178,11 +3178,11 @@ export const ELECTRONIC_WORLD: GenreWorld = {
     {
       "id": "electronic-anchor-15",
       "worldId": "electronic",
-      "traditionId": "electronic-house",
+      "styleIds": ["electronic-house"],
       "name": "Build Anchor",
       "family": "Build",
       "category": "ostinato",
-      "description": "A repeating anchor that locks the low end to the groove. Built around four-on-floor and the build vocabulary of Electronic.",
+      "description": "A repeating anchor that locks the",
       "tags": [
         "electronic",
         "build",
@@ -3272,7 +3272,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
           "name": "Build Anchor — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             1,
             4,
@@ -3308,7 +3308,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
           "name": "Build Anchor — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             1,
             2,
@@ -3363,11 +3363,11 @@ export const ELECTRONIC_WORLD: GenreWorld = {
     {
       "id": "electronic-comp-16",
       "worldId": "electronic",
-      "traditionId": "electronic-house",
+      "styleIds": ["electronic-house"],
       "name": "Drop Comping",
       "family": "Drop",
       "category": "groove",
-      "description": "A genre-shaped accompaniment cell that supports the lead without occupying every subdivision. Built around build-up and the drop vocabulary of Electronic.",
+      "description": "A genre-shaped accompaniment cell that supports",
       "tags": [
         "electronic",
         "drop",
@@ -3456,7 +3456,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
           "name": "Drop Comping — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             4,
@@ -3492,7 +3492,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
           "name": "Drop Comping — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             3,
@@ -3547,11 +3547,11 @@ export const ELECTRONIC_WORLD: GenreWorld = {
     {
       "id": "electronic-intro-17",
       "worldId": "electronic",
-      "traditionId": "electronic-house",
+      "styleIds": ["electronic-house"],
       "name": "Arp Intro",
       "family": "Arp",
       "category": "sectionPattern",
-      "description": "A reduced entrance used to establish the genre before the full groove arrives. Built around drop and the arp vocabulary of Electronic.",
+      "description": "A reduced entrance used to establish",
       "tags": [
         "electronic",
         "arp",
@@ -3639,7 +3639,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
           "name": "Arp Intro — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             6,
@@ -3671,7 +3671,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
           "name": "Arp Intro — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             3,
@@ -3711,7 +3711,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
           "name": "Arp Intro — transition variation",
           "variationType": "transition",
           "probability": 0.16,
-          "description": "Adds a final pickup/closure gesture for section transitions.",
+          "description": "Adds a final pickup/closure gesture for",
           "onsetGrid": [
             0,
             3,

@@ -6,15 +6,15 @@ export const KIZOMBA_WORLD: GenreWorld = {
   "family": "African / Angolan",
   "color": "#c86d3b",
   "level": "world",
-  "description": "The sensual partner dance tradition of Angola and PALOP nations: deep batida kick pulse, dikanza bamboo scraper, tarraxinha sub-bass drops, Semba guitar lines, and modern Urban Kiz electronic textures.",
-  "traditions": [
+  "description": "The sensual partner dance style of",
+  "styleDefinitions": [
     {
       "id": "kizomba-tradicional",
       "worldId": "kizomba",
       "name": "Tradicional",
       "origin": "Luanda, Angola",
       "era": "1980s–1990s",
-      "description": "Grounded • 4/4 Zouk Beat • Melodic\nOriginal Angolan partner dance rhythm.\nEduardo Paim · Bonga",
+      "description": "Grounded • 4/4 Zouk Beat •",
       "characteristicInstruments": [
         "bass",
         "drums",
@@ -94,7 +94,7 @@ export const KIZOMBA_WORLD: GenreWorld = {
       "name": "Semba Playful",
       "origin": "Luanda, Angola",
       "era": "1950s–Present",
-      "description": "Upbeat • Bouncy • Roots\nJoyful fast-paced Angolan root of kizomba.\nPaulo Flores · Bonga",
+      "description": "Upbeat • Bouncy • Roots\nJoyful fast-paced",
       "characteristicInstruments": [
         "guitar",
         "bass",
@@ -175,7 +175,7 @@ export const KIZOMBA_WORLD: GenreWorld = {
       "name": "Urbankiz",
       "origin": "Paris, France / European Circuit",
       "era": "2010s–Present",
-      "description": "Linear • Electronic • Syncopated Breaks\nFrench electronic fusion with sharp stops.\nCurtis Seldon · Enah Lebon",
+      "description": "Linear • Electronic • Syncopated Breaks\nFrench",
       "characteristicInstruments": [
         "synth",
         "drums",
@@ -256,7 +256,7 @@ export const KIZOMBA_WORLD: GenreWorld = {
       "name": "Tarraxinha",
       "origin": "Luanda, Angola",
       "era": "Late 1990s–Present",
-      "description": "Sensual • Deep Bass • Micro-movement\nSlow, intense pelvic isolation groove.\nDJ Znobia · DJ Mad-R",
+      "description": "Sensual • Deep Bass • Micro-movement\nSlow,",
       "characteristicInstruments": [
         "sub-bass",
         "drums",
@@ -309,7 +309,7 @@ export const KIZOMBA_WORLD: GenreWorld = {
       "name": "Tarraxo",
       "origin": "Paris, France / Portugal",
       "era": "2018–Present",
-      "description": "Heavy Sub • Robotic • Chest Movements\nModern French electronic chest-led dance.\nGwany · Lil G",
+      "description": "Heavy Sub • Robotic • Chest",
       "characteristicInstruments": [
         "sub-bass",
         "drums",
@@ -366,7 +366,7 @@ export const KIZOMBA_WORLD: GenreWorld = {
       "name": "Passada",
       "origin": "Cape Verde / Angola",
       "era": "1980s–Present",
-      "description": "Smooth • Walking • Classic\nRefined, flowing social walking style.\nKassav' · Tabanka Djaz",
+      "description": "Smooth • Walking • Classic\nRefined, flowing",
       "characteristicInstruments": [
         "guitar",
         "bass",
@@ -446,7 +446,7 @@ export const KIZOMBA_WORLD: GenreWorld = {
       "name": "Ghetto Zouk",
       "origin": "Lisbon, Portugal / Rotterdam / Paris",
       "era": "2000s–Present",
-      "description": "R&B Chords • Electronic • Heavy Kick\nModern European electronic kizomba sound.\nNelson Freitas · C4 Pedro",
+      "description": "R&B Chords • Electronic • Heavy",
       "characteristicInstruments": [
         "synth",
         "drums",
@@ -526,7 +526,7 @@ export const KIZOMBA_WORLD: GenreWorld = {
       "name": "Semba Lento",
       "origin": "Angola",
       "era": "1970s–Present",
-      "description": "Slow • Nostalgic • Grounded\nDeep, soulful acoustic Angolan ballad.\nCarlos Burity · Waldemar Bastos",
+      "description": "Slow • Nostalgic • Grounded\nDeep, soulful",
       "characteristicInstruments": [
         "guitar",
         "acoustic-bass",
@@ -663,11 +663,11 @@ export const KIZOMBA_WORLD: GenreWorld = {
     {
       "id": "kizomba-batida-groove",
       "worldId": "kizomba",
-      "traditionId": "kizomba-semba",
+      "styleIds": ["kizomba-semba"],
       "name": "Kizomba Batida & Sub-Kick Beat",
       "family": "Kizomba Drumming",
       "category": "break",
-      "description": "The hypnotic heartbeat of Kizomba: low sub-kick and rimshot combo with dikanza scraper rustle.",
+      "description": "The hypnotic heartbeat of Kizomba: low",
       "tags": [
         "kizomba",
         "batida",
@@ -743,7 +743,7 @@ export const KIZOMBA_WORLD: GenreWorld = {
             0.92,
             0.86
           ],
-          "description": "Stripped-down heavy electronic sub-bass kick for intimate slow tarraxinha movements."
+          "description": "Stripped-down heavy electronic sub-bass kick for"
         },
         {
           "id": "kizomba-batida-groove-v-02",
@@ -751,7 +751,7 @@ export const KIZOMBA_WORLD: GenreWorld = {
           "name": "Kizomba Batida & Sub-Kick Beat — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             6,
@@ -814,11 +814,11 @@ export const KIZOMBA_WORLD: GenreWorld = {
     {
       "id": "kizomba-dikanza-scraper",
       "worldId": "kizomba",
-      "traditionId": "kizomba-semba",
+      "styleIds": ["kizomba-semba"],
       "name": "Dikanza Scraper",
       "family": "Percussion",
       "category": "cadence",
-      "description": "Authentic Angolan dikanza (reco-reco / bamboo scraper) syncopated rasping strokes.",
+      "description": "Authentic Angolan dikanza (reco-reco / bamboo",
       "tags": [
         "kizomba",
         "semba",
@@ -877,7 +877,7 @@ export const KIZOMBA_WORLD: GenreWorld = {
           "name": "Dikanza Scraper — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             2,
             7,
@@ -909,7 +909,7 @@ export const KIZOMBA_WORLD: GenreWorld = {
           "name": "Dikanza Scraper — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             2,
             4,
@@ -975,11 +975,11 @@ export const KIZOMBA_WORLD: GenreWorld = {
     {
       "id": "kizomba-semba-guitar",
       "worldId": "kizomba",
-      "traditionId": "kizomba-semba",
+      "styleIds": ["kizomba-semba"],
       "name": "Semba Guitar Arpeggio",
       "family": "Guitar",
       "category": "groove",
-      "description": "Fast intricate African guitar lines and syncopated arpeggios answering the vocal phrase.",
+      "description": "Fast intricate African guitar lines and",
       "tags": [
         "kizomba",
         "semba",
@@ -1040,7 +1040,7 @@ export const KIZOMBA_WORLD: GenreWorld = {
           "name": "Semba Guitar Arpeggio — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             6,
@@ -1072,7 +1072,7 @@ export const KIZOMBA_WORLD: GenreWorld = {
           "name": "Semba Guitar Arpeggio — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             3,
@@ -1137,7 +1137,7 @@ export const KIZOMBA_WORLD: GenreWorld = {
           "sourceRole": "drums",
           "targetRole": "bass",
           "relationship": "reinforce",
-          "description": "Low-end attacks reinforce the main pulse without doubling every subdivision.",
+          "description": "Low-end attacks reinforce the main pulse",
           "timingOffsetSteps": 0,
           "probability": 0.78
         }
@@ -1150,11 +1150,11 @@ export const KIZOMBA_WORLD: GenreWorld = {
     {
       "id": "kizomba-tarraxinha-sub",
       "worldId": "kizomba",
-      "traditionId": "kizomba-tarraxinha",
+      "styleIds": ["kizomba-tarraxinha"],
       "name": "Tarraxinha Sub-Bass",
       "family": "Bass",
       "category": "groove",
-      "description": "Heavy syncopated sub-bass pulse anchoring sensual slow movement and physical isolations.",
+      "description": "Heavy syncopated sub-bass pulse anchoring sensual",
       "tags": [
         "kizomba",
         "tarraxinha",
@@ -1205,7 +1205,7 @@ export const KIZOMBA_WORLD: GenreWorld = {
           "name": "Tarraxinha Sub-Bass — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             12
@@ -1229,7 +1229,7 @@ export const KIZOMBA_WORLD: GenreWorld = {
           "name": "Tarraxinha Sub-Bass — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             6,
@@ -1282,7 +1282,7 @@ export const KIZOMBA_WORLD: GenreWorld = {
           "sourceRole": "voice",
           "targetRole": "harmony",
           "relationship": "leaveSpace",
-          "description": "Harmony reduces density under vocal entries so the phrase remains foregrounded.",
+          "description": "Harmony reduces density under vocal entries",
           "timingOffsetSteps": 0,
           "probability": 0.72
         }
@@ -1295,11 +1295,11 @@ export const KIZOMBA_WORLD: GenreWorld = {
     {
       "id": "kizomba-kick-batida",
       "worldId": "kizomba",
-      "traditionId": "kizomba-semba",
+      "styleIds": ["kizomba-semba"],
       "name": "Kizomba Kick Batida",
       "family": "Beat",
       "category": "groove",
-      "description": "Classic syncopated kizomba batida kick pattern driving the dance floor.",
+      "description": "Classic syncopated kizomba batida kick pattern",
       "tags": [
         "kizomba",
         "kick",
@@ -1351,7 +1351,7 @@ export const KIZOMBA_WORLD: GenreWorld = {
           "name": "Kizomba Kick Batida — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             10,
@@ -1379,7 +1379,7 @@ export const KIZOMBA_WORLD: GenreWorld = {
           "name": "Kizomba Kick Batida — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             6,
@@ -1436,7 +1436,7 @@ export const KIZOMBA_WORLD: GenreWorld = {
           "sourceRole": "lead",
           "targetRole": "voice",
           "relationship": "answer",
-          "description": "Lead instrument answers a vocal phrase in the open space after the line.",
+          "description": "Lead instrument answers a vocal phrase",
           "timingOffsetSteps": 2,
           "probability": 0.58
         }
@@ -1449,11 +1449,11 @@ export const KIZOMBA_WORLD: GenreWorld = {
     {
       "id": "kizomba-hats",
       "worldId": "kizomba",
-      "traditionId": "kizomba-semba",
+      "styleIds": ["kizomba-semba"],
       "name": "Kizomba Hi-Hats",
       "family": "Beat",
       "category": "groove",
-      "description": "16th note hi-hats with subtle swing and offbeat articulation.",
+      "description": "16th note hi-hats with subtle swing",
       "tags": [
         "kizomba",
         "hihat",
@@ -1516,7 +1516,7 @@ export const KIZOMBA_WORLD: GenreWorld = {
           "name": "Kizomba Hi-Hats — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             4,
@@ -1552,7 +1552,7 @@ export const KIZOMBA_WORLD: GenreWorld = {
           "name": "Kizomba Hi-Hats — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             2,
@@ -1625,7 +1625,7 @@ export const KIZOMBA_WORLD: GenreWorld = {
           "sourceRole": "bass",
           "targetRole": "drums",
           "relationship": "accentWith",
-          "description": "Bass accents align with selected kick/backbeat events for a tighter pocket.",
+          "description": "Bass accents align with selected kick/backbeat",
           "timingOffsetSteps": 0,
           "probability": 0.65
         }
@@ -1638,11 +1638,11 @@ export const KIZOMBA_WORLD: GenreWorld = {
     {
       "id": "kizomba-urban-synth-pulse",
       "worldId": "kizomba",
-      "traditionId": "kizomba-urban-kiz",
+      "styleIds": ["kizomba-urban-kiz"],
       "name": "Urban Kiz Synth Pulse",
       "family": "Synth",
       "category": "groove",
-      "description": "Polished electronic synth pulse and atmospheric pad stabs in modern European Urban Kiz.",
+      "description": "Polished electronic synth pulse and atmospheric",
       "tags": [
         "kizomba",
         "urban-kiz",
@@ -1699,7 +1699,7 @@ export const KIZOMBA_WORLD: GenreWorld = {
           "name": "Urban Kiz Synth Pulse — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             2,
             8,
@@ -1727,7 +1727,7 @@ export const KIZOMBA_WORLD: GenreWorld = {
           "name": "Urban Kiz Synth Pulse — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             2,
             5,
@@ -1788,7 +1788,7 @@ export const KIZOMBA_WORLD: GenreWorld = {
           "sourceRole": "harmony",
           "targetRole": "lead",
           "relationship": "leaveSpace",
-          "description": "Accompaniment thins when the instrumental lead enters.",
+          "description": "Accompaniment thins when the instrumental lead",
           "timingOffsetSteps": 0,
           "probability": 0.62
         }
@@ -1801,11 +1801,11 @@ export const KIZOMBA_WORLD: GenreWorld = {
     {
       "id": "kizomba-vocal-comping",
       "worldId": "kizomba",
-      "traditionId": "kizomba-semba",
+      "styleIds": ["kizomba-semba"],
       "name": "Kizomba Vocal Phrase Response",
       "family": "Voice",
       "category": "groove",
-      "description": "Sensual vocal phrase answers and smooth Portuguese lyric pocketing.",
+      "description": "Sensual vocal phrase answers and smooth",
       "tags": [
         "kizomba",
         "voice",
@@ -1856,7 +1856,7 @@ export const KIZOMBA_WORLD: GenreWorld = {
           "name": "Kizomba Vocal Phrase Response — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             4,
             12,
@@ -1884,7 +1884,7 @@ export const KIZOMBA_WORLD: GenreWorld = {
           "name": "Kizomba Vocal Phrase Response — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             4,
             7,
@@ -1942,11 +1942,11 @@ export const KIZOMBA_WORLD: GenreWorld = {
     {
       "id": "kizomba-phrase-9",
       "worldId": "kizomba",
-      "traditionId": "kizomba-semba",
+      "styleIds": ["kizomba-semba"],
       "name": "Hook Phrase",
       "family": "Hook",
       "category": "phrasePattern",
-      "description": "A phrase-level rhythmic template that leaves deliberate space for melodic expression. Built around soft synth comping and the hook vocabulary of Kizomba.",
+      "description": "A phrase-level rhythmic template that leaves",
       "tags": [
         "kizomba",
         "hook",
@@ -2035,7 +2035,7 @@ export const KIZOMBA_WORLD: GenreWorld = {
           "name": "Hook Phrase — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             1,
             7,
@@ -2071,7 +2071,7 @@ export const KIZOMBA_WORLD: GenreWorld = {
           "name": "Hook Phrase — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             1,
             4,
@@ -2127,11 +2127,11 @@ export const KIZOMBA_WORLD: GenreWorld = {
     {
       "id": "kizomba-call-10",
       "worldId": "kizomba",
-      "traditionId": "kizomba-semba",
+      "styleIds": ["kizomba-semba"],
       "name": "Kizomba Bass Response",
       "family": "Kizomba Bass",
       "category": "interactionPattern",
-      "description": "A call-and-response shape that leaves the next phrase open for an answer. Built around semba and the kizomba bass vocabulary of Kizomba.",
+      "description": "A call-and-response shape that leaves the",
       "tags": [
         "kizomba",
         "kizomba-bass",
@@ -2221,7 +2221,7 @@ export const KIZOMBA_WORLD: GenreWorld = {
           "name": "Kizomba Bass Response — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             5,
@@ -2257,7 +2257,7 @@ export const KIZOMBA_WORLD: GenreWorld = {
           "name": "Kizomba Bass Response — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             2,
@@ -2301,7 +2301,7 @@ export const KIZOMBA_WORLD: GenreWorld = {
           "name": "Kizomba Bass Response — transition variation",
           "variationType": "transition",
           "probability": 0.16,
-          "description": "Adds a final pickup/closure gesture for section transitions.",
+          "description": "Adds a final pickup/closure gesture for",
           "onsetGrid": [
             0,
             2,
@@ -2361,11 +2361,11 @@ export const KIZOMBA_WORLD: GenreWorld = {
     {
       "id": "kizomba-anchor-11",
       "worldId": "kizomba",
-      "traditionId": "kizomba-semba",
+      "styleIds": ["kizomba-semba"],
       "name": "Semba Anchor",
       "family": "Semba",
       "category": "ostinato",
-      "description": "A repeating anchor that locks the low end to the groove. Built around tarraxinha and the semba vocabulary of Kizomba.",
+      "description": "A repeating anchor that locks the",
       "tags": [
         "kizomba",
         "semba",
@@ -2455,7 +2455,7 @@ export const KIZOMBA_WORLD: GenreWorld = {
           "name": "Semba Anchor — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             1,
             6,
@@ -2491,7 +2491,7 @@ export const KIZOMBA_WORLD: GenreWorld = {
           "name": "Semba Anchor — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             1,
             3,
@@ -2547,11 +2547,11 @@ export const KIZOMBA_WORLD: GenreWorld = {
     {
       "id": "kizomba-comp-12",
       "worldId": "kizomba",
-      "traditionId": "kizomba-semba",
+      "styleIds": ["kizomba-semba"],
       "name": "Call Comping",
       "family": "Call",
       "category": "groove",
-      "description": "A genre-shaped accompaniment cell that supports the lead without occupying every subdivision. Built around syncopated kick and the call vocabulary of Kizomba.",
+      "description": "A genre-shaped accompaniment cell that supports",
       "tags": [
         "kizomba",
         "call",
@@ -2642,7 +2642,7 @@ export const KIZOMBA_WORLD: GenreWorld = {
           "name": "Call Comping — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             1,
             5,
@@ -2678,7 +2678,7 @@ export const KIZOMBA_WORLD: GenreWorld = {
           "name": "Call Comping — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             1,
             3,
@@ -2734,11 +2734,11 @@ export const KIZOMBA_WORLD: GenreWorld = {
     {
       "id": "kizomba-intro-13",
       "worldId": "kizomba",
-      "traditionId": "kizomba-semba",
+      "styleIds": ["kizomba-semba"],
       "name": "Drop Intro",
       "family": "Drop",
       "category": "sectionPattern",
-      "description": "A reduced entrance used to establish the genre before the full groove arrives. Built around vocal space and the drop vocabulary of Kizomba.",
+      "description": "A reduced entrance used to establish",
       "tags": [
         "kizomba",
         "drop",
@@ -2834,7 +2834,7 @@ export const KIZOMBA_WORLD: GenreWorld = {
           "name": "Drop Intro — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             6,
@@ -2870,7 +2870,7 @@ export const KIZOMBA_WORLD: GenreWorld = {
           "name": "Drop Intro — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             2,
@@ -2918,7 +2918,7 @@ export const KIZOMBA_WORLD: GenreWorld = {
           "name": "Drop Intro — transition variation",
           "variationType": "transition",
           "probability": 0.16,
-          "description": "Adds a final pickup/closure gesture for section transitions.",
+          "description": "Adds a final pickup/closure gesture for",
           "onsetGrid": [
             0,
             2,
@@ -2978,11 +2978,11 @@ export const KIZOMBA_WORLD: GenreWorld = {
     {
       "id": "kizomba-verse-14",
       "worldId": "kizomba",
-      "traditionId": "kizomba-semba",
+      "styleIds": ["kizomba-semba"],
       "name": "Hook Verse Variation",
       "family": "Hook",
       "category": "groove",
-      "description": "A restrained verse variation with intentional headroom for melody. Built around soft synth comping and the hook vocabulary of Kizomba.",
+      "description": "A restrained verse variation with intentional",
       "tags": [
         "kizomba",
         "hook",
@@ -3082,7 +3082,7 @@ export const KIZOMBA_WORLD: GenreWorld = {
           "name": "Hook Verse Variation — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             3,
@@ -3118,7 +3118,7 @@ export const KIZOMBA_WORLD: GenreWorld = {
           "name": "Hook Verse Variation — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             1,
@@ -3178,11 +3178,11 @@ export const KIZOMBA_WORLD: GenreWorld = {
     {
       "id": "kizomba-chorus-15",
       "worldId": "kizomba",
-      "traditionId": "kizomba-semba",
+      "styleIds": ["kizomba-semba"],
       "name": "Kizomba Bass Chorus Lift",
       "family": "Kizomba Bass",
       "category": "sectionPattern",
-      "description": "A higher-energy chorus layer that increases density without changing the genre identity. Built around semba and the kizomba bass vocabulary of Kizomba.",
+      "description": "A higher-energy chorus layer that increases",
       "tags": [
         "kizomba",
         "kizomba-bass",
@@ -3283,7 +3283,7 @@ export const KIZOMBA_WORLD: GenreWorld = {
           "name": "Kizomba Bass Chorus Lift — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             2,
@@ -3319,7 +3319,7 @@ export const KIZOMBA_WORLD: GenreWorld = {
           "name": "Kizomba Bass Chorus Lift — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             1,
@@ -3367,7 +3367,7 @@ export const KIZOMBA_WORLD: GenreWorld = {
           "name": "Kizomba Bass Chorus Lift — transition variation",
           "variationType": "transition",
           "probability": 0.16,
-          "description": "Adds a final pickup/closure gesture for section transitions.",
+          "description": "Adds a final pickup/closure gesture for",
           "onsetGrid": [
             0,
             1,
@@ -3431,11 +3431,11 @@ export const KIZOMBA_WORLD: GenreWorld = {
     {
       "id": "kizomba-bridge-16",
       "worldId": "kizomba",
-      "traditionId": "kizomba-semba",
+      "styleIds": ["kizomba-semba"],
       "name": "Semba Bridge",
       "family": "Semba",
       "category": "sectionPattern",
-      "description": "A contrasting bridge texture designed to reset repetition before the final return. Built around tarraxinha and the semba vocabulary of Kizomba.",
+      "description": "A contrasting bridge texture designed to",
       "tags": [
         "kizomba",
         "semba",
@@ -3532,7 +3532,7 @@ export const KIZOMBA_WORLD: GenreWorld = {
           "name": "Semba Bridge — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             3,
@@ -3568,7 +3568,7 @@ export const KIZOMBA_WORLD: GenreWorld = {
           "name": "Semba Bridge — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             2,
@@ -3616,7 +3616,7 @@ export const KIZOMBA_WORLD: GenreWorld = {
           "name": "Semba Bridge — transition variation",
           "variationType": "transition",
           "probability": 0.16,
-          "description": "Adds a final pickup/closure gesture for section transitions.",
+          "description": "Adds a final pickup/closure gesture for",
           "onsetGrid": [
             0,
             2,
@@ -3680,11 +3680,11 @@ export const KIZOMBA_WORLD: GenreWorld = {
     {
       "id": "kizomba-fill-17",
       "worldId": "kizomba",
-      "traditionId": "kizomba-semba",
+      "styleIds": ["kizomba-semba"],
       "name": "Call Fill",
       "family": "Call",
       "category": "fill",
-      "description": "A short transition fill that signals the next section instead of looping the main groove unchanged. Built around syncopated kick and the call vocabulary of Kizomba.",
+      "description": "A short transition fill that signals",
       "tags": [
         "kizomba",
         "call",
@@ -3768,7 +3768,7 @@ export const KIZOMBA_WORLD: GenreWorld = {
           "name": "Call Fill — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             8,
@@ -3796,7 +3796,7 @@ export const KIZOMBA_WORLD: GenreWorld = {
           "name": "Call Fill — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             4,
@@ -3828,7 +3828,7 @@ export const KIZOMBA_WORLD: GenreWorld = {
           "name": "Call Fill — transition variation",
           "variationType": "transition",
           "probability": 0.16,
-          "description": "Adds a final pickup/closure gesture for section transitions.",
+          "description": "Adds a final pickup/closure gesture for",
           "onsetGrid": [
             0,
             4,

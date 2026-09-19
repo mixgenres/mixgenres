@@ -6,15 +6,15 @@ export const SWING_WORLD: GenreWorld = {
   "family": "Jazz / Big Band",
   "color": "#ECD5BB",
   "level": "world",
-  "description": "Big Band and Small Group Swing jazz featuring walking bass lines, spang-a-lang ride cymbal phrasing, and syncopated comping.",
-  "traditions": [
+  "description": "Big Band and Small Group Swing",
+  "styleDefinitions": [
     {
       "id": "swing-big-band-swing",
       "worldId": "swing",
       "name": "Big Band Swing",
       "origin": "New York / Kansas City / Chicago",
       "era": "1930s–1940s",
-      "description": "Four-on-the-Floor • Horn Riffs • Lindy Hop\nThe triumphant golden sound of the swing era.\nBenny Goodman · Count Basie",
+      "description": "Four-on-the-Floor • Horn Riffs • Lindy",
       "characteristicInstruments": [
         "brass",
         "clarinet",
@@ -89,7 +89,7 @@ export const SWING_WORLD: GenreWorld = {
       "name": "Gypsy Jazz (Manouche)",
       "origin": "Paris, France",
       "era": "1930s–1950s",
-      "description": "La Pompe • Selmer Guitars • Virtuosic Violin\nDjango Reinhardt's dazzling acoustic swing.\nDjango Reinhardt · Stéphane Grappelli",
+      "description": "La Pompe • Selmer Guitars •",
       "characteristicInstruments": [
         "acoustic-guitar",
         "violin",
@@ -172,7 +172,7 @@ export const SWING_WORLD: GenreWorld = {
       "name": "Jump Blues",
       "origin": "Los Angeles / Kansas City",
       "era": "Late 1940s–1950s",
-      "description": "Honking Tenor Sax • Boogying Bass • Shouted Vocals\nUp-tempo predecessor of rock and roll.\nLouis Jordan · Wynonie Harris",
+      "description": "Honking Tenor Sax • Boogying Bass",
       "characteristicInstruments": [
         "tenor-sax",
         "brass",
@@ -287,11 +287,11 @@ export const SWING_WORLD: GenreWorld = {
     {
       "id": "swing-spang",
       "worldId": "swing",
-      "traditionId": "swing-big-band",
+      "styleIds": ["swing-big-band"],
       "name": "Spang-a-lang",
       "family": "Ride",
       "category": "fill",
-      "description": "Classic swing ride cymbal pattern with backbeat accents.",
+      "description": "Classic swing ride cymbal pattern with",
       "tags": [
         "swing",
         "ride"
@@ -347,7 +347,7 @@ export const SWING_WORLD: GenreWorld = {
           "name": "Spang-a-lang — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             4,
@@ -379,7 +379,7 @@ export const SWING_WORLD: GenreWorld = {
           "name": "Spang-a-lang — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             3,
@@ -445,11 +445,11 @@ export const SWING_WORLD: GenreWorld = {
     {
       "id": "swing-walking-bass",
       "worldId": "swing",
-      "traditionId": "swing-big-band",
+      "styleIds": ["swing-big-band"],
       "name": "Walking Bass",
       "family": "Bass",
       "category": "break",
-      "description": "Quarter note acoustic walking bass line with dynamic drive.",
+      "description": "Quarter note acoustic walking bass line",
       "tags": [
         "swing",
         "bass"
@@ -499,7 +499,7 @@ export const SWING_WORLD: GenreWorld = {
           "name": "La Pompe",
           "variationType": "instrumentSpecific",
           "probability": 0.18,
-          "description": "Gypsy jazz rhythm guitar with bass downbeats and staccato chord slaps. Retained as a variation rather than a separate pattern entry.",
+          "description": "Gypsy jazz rhythm guitar with bass",
           "onsetGrid": [
             0,
             1,
@@ -529,7 +529,7 @@ export const SWING_WORLD: GenreWorld = {
           "name": "Walking Bass — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             1,
@@ -587,11 +587,11 @@ export const SWING_WORLD: GenreWorld = {
     {
       "id": "swing-2-feel",
       "worldId": "swing",
-      "traditionId": "swing-big-band",
+      "styleIds": ["swing-big-band"],
       "name": "2-Feel Bass",
       "family": "Bass",
       "category": "cadence",
-      "description": "Half note bass line for verses and head statements.",
+      "description": "Half note bass line for verses",
       "tags": [
         "swing",
         "bass"
@@ -637,7 +637,7 @@ export const SWING_WORLD: GenreWorld = {
           "name": "2-Feel Bass — played variation",
           "variationType": "accentShift",
           "probability": 0.18,
-          "description": "A light played variation for sparse patterns with only a few attacks.",
+          "description": "A light played variation for sparse",
           "onsetGrid": [
             0,
             2
@@ -661,7 +661,7 @@ export const SWING_WORLD: GenreWorld = {
           "name": "2-Feel Bass — played variation",
           "variationType": "accentShift",
           "probability": 0.18,
-          "description": "A light played variation for sparse patterns with only a few attacks.",
+          "description": "A light played variation for sparse",
           "onsetGrid": [
             0,
             2
@@ -711,11 +711,11 @@ export const SWING_WORLD: GenreWorld = {
     {
       "id": "swing-charleston",
       "worldId": "swing",
-      "traditionId": "swing-big-band",
+      "styleIds": ["swing-big-band"],
       "name": "Charleston Comping",
       "family": "Comping",
       "category": "groove",
-      "description": "Classic dotted quarter and eighth note piano syncopation.",
+      "description": "Classic dotted quarter and eighth note",
       "tags": [
         "swing",
         "piano"
@@ -761,7 +761,7 @@ export const SWING_WORLD: GenreWorld = {
           "name": "Charleston Comping — played variation",
           "variationType": "accentShift",
           "probability": 0.18,
-          "description": "A light played variation for sparse patterns with only a few attacks.",
+          "description": "A light played variation for sparse",
           "onsetGrid": [
             0,
             3
@@ -785,7 +785,7 @@ export const SWING_WORLD: GenreWorld = {
           "name": "Charleston Comping — played variation",
           "variationType": "accentShift",
           "probability": 0.18,
-          "description": "A light played variation for sparse patterns with only a few attacks.",
+          "description": "A light played variation for sparse",
           "onsetGrid": [
             0,
             3
@@ -834,7 +834,7 @@ export const SWING_WORLD: GenreWorld = {
           "sourceRole": "drums",
           "targetRole": "bass",
           "relationship": "reinforce",
-          "description": "Low-end attacks reinforce the main pulse without doubling every subdivision.",
+          "description": "Low-end attacks reinforce the main pulse",
           "timingOffsetSteps": 0,
           "probability": 0.78
         }
@@ -847,11 +847,11 @@ export const SWING_WORLD: GenreWorld = {
     {
       "id": "swing-shuffle",
       "worldId": "swing",
-      "traditionId": "swing-big-band",
+      "styleIds": ["swing-big-band"],
       "name": "Shuffle Swing",
       "family": "Beat",
       "category": "groove",
-      "description": "Heavy big band shuffle blues feel with swung triplets.",
+      "description": "Heavy big band shuffle blues feel",
       "tags": [
         "swing",
         "shuffle"
@@ -913,7 +913,7 @@ export const SWING_WORLD: GenreWorld = {
           "name": "Jump Blues Shuffle",
           "variationType": "instrumentSpecific",
           "probability": 0.18,
-          "description": "Aggressive Louis Jordan style triplet shuffle. Retained as a variation rather than a separate pattern entry.",
+          "description": "Aggressive Louis Jordan style triplet shuffle.",
           "onsetGrid": [
             0,
             2,
@@ -955,7 +955,7 @@ export const SWING_WORLD: GenreWorld = {
           "name": "Shuffle Swing — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             2,
@@ -1028,7 +1028,7 @@ export const SWING_WORLD: GenreWorld = {
           "sourceRole": "voice",
           "targetRole": "harmony",
           "relationship": "leaveSpace",
-          "description": "Harmony reduces density under vocal entries so the phrase remains foregrounded.",
+          "description": "Harmony reduces density under vocal entries",
           "timingOffsetSteps": 0,
           "probability": 0.72
         }
@@ -1041,11 +1041,11 @@ export const SWING_WORLD: GenreWorld = {
     {
       "id": "swing-bebop-ride",
       "worldId": "swing",
-      "traditionId": "swing-small-group",
+      "styleIds": ["swing-small-group"],
       "name": "Bebop Ride",
       "family": "Ride",
       "category": "groove",
-      "description": "Fast, light ride pattern with dropped bass drum bombs.",
+      "description": "Fast, light ride pattern with dropped",
       "tags": [
         "swing",
         "bebop"
@@ -1104,7 +1104,7 @@ export const SWING_WORLD: GenreWorld = {
           "name": "Bebop Ride — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             4,
@@ -1140,7 +1140,7 @@ export const SWING_WORLD: GenreWorld = {
           "name": "Bebop Ride — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             3,
@@ -1209,7 +1209,7 @@ export const SWING_WORLD: GenreWorld = {
           "sourceRole": "lead",
           "targetRole": "voice",
           "relationship": "answer",
-          "description": "Lead instrument answers a vocal phrase in the open space after the line.",
+          "description": "Lead instrument answers a vocal phrase",
           "timingOffsetSteps": 2,
           "probability": 0.58
         }
@@ -1222,11 +1222,11 @@ export const SWING_WORLD: GenreWorld = {
     {
       "id": "swing-brushes",
       "worldId": "swing",
-      "traditionId": "swing-small-group",
+      "styleIds": ["swing-small-group"],
       "name": "Brushes Ballad",
       "family": "Beat",
       "category": "groove",
-      "description": "Swished wire brushes on coated snare with accents on 2 and 4.",
+      "description": "Swished wire brushes on coated snare",
       "tags": [
         "swing",
         "brushes"
@@ -1276,7 +1276,7 @@ export const SWING_WORLD: GenreWorld = {
           "name": "Brushes Ballad — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             2,
@@ -1333,7 +1333,7 @@ export const SWING_WORLD: GenreWorld = {
           "sourceRole": "bass",
           "targetRole": "drums",
           "relationship": "accentWith",
-          "description": "Bass accents align with selected kick/backbeat events for a tighter pocket.",
+          "description": "Bass accents align with selected kick/backbeat",
           "timingOffsetSteps": 0,
           "probability": 0.65
         }
@@ -1346,11 +1346,11 @@ export const SWING_WORLD: GenreWorld = {
     {
       "id": "swing-ensemble",
       "worldId": "swing",
-      "traditionId": "swing-big-band",
+      "styleIds": ["swing-big-band"],
       "name": "Ensemble Hits",
       "family": "Comping",
       "category": "groove",
-      "description": "Syncopated brass and rhythm section punch chords.",
+      "description": "Syncopated brass and rhythm section punch",
       "tags": [
         "swing",
         "big-band"
@@ -1399,7 +1399,7 @@ export const SWING_WORLD: GenreWorld = {
           "name": "Ensemble Hits — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             1,
             6
@@ -1423,7 +1423,7 @@ export const SWING_WORLD: GenreWorld = {
           "name": "Ensemble Hits — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             1,
             4,
@@ -1476,7 +1476,7 @@ export const SWING_WORLD: GenreWorld = {
           "sourceRole": "harmony",
           "targetRole": "lead",
           "relationship": "leaveSpace",
-          "description": "Accompaniment thins when the instrumental lead enters.",
+          "description": "Accompaniment thins when the instrumental lead",
           "timingOffsetSteps": 0,
           "probability": 0.62
         }
@@ -1489,11 +1489,11 @@ export const SWING_WORLD: GenreWorld = {
     {
       "id": "swing-shout-chorus",
       "worldId": "swing",
-      "traditionId": "swing-big-band",
+      "styleIds": ["swing-big-band"],
       "name": "Shout Chorus Ensemble Hits",
       "family": "Ensemble",
       "category": "sectionPattern",
-      "description": "Full horn section and rhythm section unison punches building toward the big band's climactic shout chorus.",
+      "description": "Full horn section and rhythm section",
       "tags": [
         "swing",
         "big-band",
@@ -1555,7 +1555,7 @@ export const SWING_WORLD: GenreWorld = {
           "name": "Shout Chorus Ensemble Hits — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             4,
@@ -1587,7 +1587,7 @@ export const SWING_WORLD: GenreWorld = {
           "name": "Shout Chorus Ensemble Hits — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             3,
@@ -1627,7 +1627,7 @@ export const SWING_WORLD: GenreWorld = {
           "name": "Shout Chorus Ensemble Hits — transition variation",
           "variationType": "transition",
           "probability": 0.16,
-          "description": "Adds a final pickup/closure gesture for section transitions.",
+          "description": "Adds a final pickup/closure gesture for",
           "onsetGrid": [
             0,
             3,
@@ -1701,11 +1701,11 @@ export const SWING_WORLD: GenreWorld = {
     {
       "id": "swing-phrase-10",
       "worldId": "swing",
-      "traditionId": "swing-big-band",
+      "styleIds": ["swing-big-band"],
       "name": "Spang-a-Lang Phrase",
       "family": "Spang-a-Lang",
       "category": "phrasePattern",
-      "description": "A phrase-level rhythmic template that leaves deliberate space for melodic expression. Built around swung eighths and the spang-a-lang vocabulary of Swing.",
+      "description": "A phrase-level rhythmic template that leaves",
       "tags": [
         "swing",
         "spang-a-lang",
@@ -1794,7 +1794,7 @@ export const SWING_WORLD: GenreWorld = {
           "name": "Spang-a-Lang Phrase — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             4,
@@ -1830,7 +1830,7 @@ export const SWING_WORLD: GenreWorld = {
           "name": "Spang-a-Lang Phrase — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             3,
@@ -1885,11 +1885,11 @@ export const SWING_WORLD: GenreWorld = {
     {
       "id": "swing-call-11",
       "worldId": "swing",
-      "traditionId": "swing-big-band",
+      "styleIds": ["swing-big-band"],
       "name": "La Pompe Response",
       "family": "La Pompe",
       "category": "interactionPattern",
-      "description": "A call-and-response shape that leaves the next phrase open for an answer. Built around walking bass and the la pompe vocabulary of Swing.",
+      "description": "A call-and-response shape that leaves the",
       "tags": [
         "swing",
         "la-pompe",
@@ -1986,7 +1986,7 @@ export const SWING_WORLD: GenreWorld = {
           "name": "La Pompe Response — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             1,
             5,
@@ -2022,7 +2022,7 @@ export const SWING_WORLD: GenreWorld = {
           "name": "La Pompe Response — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             1,
             4,
@@ -2066,7 +2066,7 @@ export const SWING_WORLD: GenreWorld = {
           "name": "La Pompe Response — transition variation",
           "variationType": "transition",
           "probability": 0.16,
-          "description": "Adds a final pickup/closure gesture for section transitions.",
+          "description": "Adds a final pickup/closure gesture for",
           "onsetGrid": [
             1,
             4,
@@ -2129,11 +2129,11 @@ export const SWING_WORLD: GenreWorld = {
     {
       "id": "swing-anchor-12",
       "worldId": "swing",
-      "traditionId": "swing-big-band",
+      "styleIds": ["swing-big-band"],
       "name": "Shout Anchor",
       "family": "Shout",
       "category": "ostinato",
-      "description": "A repeating anchor that locks the low end to the groove. Built around comping and the shout vocabulary of Swing.",
+      "description": "A repeating anchor that locks the",
       "tags": [
         "swing",
         "shout",
@@ -2223,7 +2223,7 @@ export const SWING_WORLD: GenreWorld = {
           "name": "Shout Anchor — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             2,
             6,
@@ -2259,7 +2259,7 @@ export const SWING_WORLD: GenreWorld = {
           "name": "Shout Anchor — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             2,
             5,
@@ -2314,11 +2314,11 @@ export const SWING_WORLD: GenreWorld = {
     {
       "id": "swing-comp-13",
       "worldId": "swing",
-      "traditionId": "swing-big-band",
+      "styleIds": ["swing-big-band"],
       "name": "Comping Comping",
       "family": "Comping",
       "category": "groove",
-      "description": "A genre-shaped accompaniment cell that supports the lead without occupying every subdivision. Built around shout chorus and the comping vocabulary of Swing.",
+      "description": "A genre-shaped accompaniment cell that supports",
       "tags": [
         "swing",
         "comping",
@@ -2407,7 +2407,7 @@ export const SWING_WORLD: GenreWorld = {
           "name": "Comping Comping — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             4,
             8,
@@ -2443,7 +2443,7 @@ export const SWING_WORLD: GenreWorld = {
           "name": "Comping Comping — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             4,
             7,
@@ -2498,11 +2498,11 @@ export const SWING_WORLD: GenreWorld = {
     {
       "id": "swing-intro-14",
       "worldId": "swing",
-      "traditionId": "swing-big-band",
+      "styleIds": ["swing-big-band"],
       "name": "Turnaround Intro",
       "family": "Turnaround",
       "category": "sectionPattern",
-      "description": "A reduced entrance used to establish the genre before the full groove arrives. Built around trading fours and the turnaround vocabulary of Swing.",
+      "description": "A reduced entrance used to establish",
       "tags": [
         "swing",
         "turnaround",
@@ -2593,7 +2593,7 @@ export const SWING_WORLD: GenreWorld = {
           "name": "Turnaround Intro — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             3,
@@ -2629,7 +2629,7 @@ export const SWING_WORLD: GenreWorld = {
           "name": "Turnaround Intro — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             2,
@@ -2673,7 +2673,7 @@ export const SWING_WORLD: GenreWorld = {
           "name": "Turnaround Intro — transition variation",
           "variationType": "transition",
           "probability": 0.16,
-          "description": "Adds a final pickup/closure gesture for section transitions.",
+          "description": "Adds a final pickup/closure gesture for",
           "onsetGrid": [
             0,
             2,
@@ -2736,11 +2736,11 @@ export const SWING_WORLD: GenreWorld = {
     {
       "id": "swing-verse-15",
       "worldId": "swing",
-      "traditionId": "swing-big-band",
+      "styleIds": ["swing-big-band"],
       "name": "Spang-a-Lang Verse Variation",
       "family": "Spang-a-Lang",
       "category": "groove",
-      "description": "A restrained verse variation with intentional headroom for melody. Built around swung eighths and the spang-a-lang vocabulary of Swing.",
+      "description": "A restrained verse variation with intentional",
       "tags": [
         "swing",
         "spang-a-lang",
@@ -2834,7 +2834,7 @@ export const SWING_WORLD: GenreWorld = {
           "name": "Spang-a-Lang Verse Variation — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             1,
             3,
@@ -2866,7 +2866,7 @@ export const SWING_WORLD: GenreWorld = {
           "name": "Spang-a-Lang Verse Variation — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             1,
             2,
@@ -2917,11 +2917,11 @@ export const SWING_WORLD: GenreWorld = {
     {
       "id": "swing-chorus-16",
       "worldId": "swing",
-      "traditionId": "swing-big-band",
+      "styleIds": ["swing-big-band"],
       "name": "La Pompe Chorus Lift",
       "family": "La Pompe",
       "category": "sectionPattern",
-      "description": "A higher-energy chorus layer that increases density without changing the genre identity. Built around walking bass and the la pompe vocabulary of Swing.",
+      "description": "A higher-energy chorus layer that increases",
       "tags": [
         "swing",
         "la-pompe",
@@ -3019,7 +3019,7 @@ export const SWING_WORLD: GenreWorld = {
           "name": "La Pompe Chorus Lift — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             2,
             5,
@@ -3055,7 +3055,7 @@ export const SWING_WORLD: GenreWorld = {
           "name": "La Pompe Chorus Lift — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             2,
             4,
@@ -3099,7 +3099,7 @@ export const SWING_WORLD: GenreWorld = {
           "name": "La Pompe Chorus Lift — transition variation",
           "variationType": "transition",
           "probability": 0.16,
-          "description": "Adds a final pickup/closure gesture for section transitions.",
+          "description": "Adds a final pickup/closure gesture for",
           "onsetGrid": [
             2,
             4,
@@ -3162,11 +3162,11 @@ export const SWING_WORLD: GenreWorld = {
     {
       "id": "swing-voice-phrasing",
       "worldId": "swing",
-      "traditionId": "swing-big-band",
+      "styleIds": ["swing-big-band"],
       "name": "Swing Vocal Phrasing",
       "family": "Vocal Phrasing",
       "category": "phrasePattern",
-      "description": "Dedicated vocal phrasing space for Swing, with clear entries and rests so the voice behaves as an ensemble role rather than a constant loop.",
+      "description": "Dedicated vocal phrasing space for Swing,",
       "tags": [
         "swing",
         "voice",

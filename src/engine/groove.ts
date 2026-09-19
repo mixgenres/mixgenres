@@ -516,3 +516,16 @@ export function grooveSummary(worldId: string): { name: string; description: str
   const g = grooveFor(worldId);
   return { name: g.name, description: g.description };
 }
+
+// Canonical genres reuse the nearest authored groove mechanics.
+const CANONICAL_GROOVE_SOURCES: Record<string, string> = {
+  afrobeats:'afrobeats', bachata:'bachata', blues:'blues', brazilian:'samba-bossa', country:'country',
+  cumbia:'cumbia', disco:'funk', electronic:'electronic', folk:'folk', funk:'funk', gospel:'folk',
+  'hip-hop':'hip-hop', house:'house-techno', jazz:'jazz', kizomba:'kizomba', 'latin-pop':'reggaeton-dembow',
+  tango:'tango', flamenco:'flamenco', metal:'metal', 'r-and-b':'funk', reggae:'reggae-dub', reggaeton:'reggaeton-dembow',
+  rock:'rock', salsa:'salsa', ska:'ska', soul:'funk', swing:'swing', timba:'timba', zouk:'zouk',
+  'drum-and-bass':'electronic', industrial:'metal', 'punk-hardcore':'rock', 'uk-bass':'house-techno',
+};
+for (const [genreId, sourceId] of Object.entries(CANONICAL_GROOVE_SOURCES)) {
+  if (!GROOVE_PROFILES[genreId] && GROOVE_PROFILES[sourceId]) GROOVE_PROFILES[genreId] = { ...GROOVE_PROFILES[sourceId] };
+}

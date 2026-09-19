@@ -6,15 +6,15 @@ export const REGGAE_DUB_WORLD: GenreWorld = {
   "family": "Jamaican / sound-system",
   "color": "#4f8f6f",
   "level": "world",
-  "description": "Reggae and dub are represented as bass-and-space music: one-drop, offbeat skank and melodic bass define roots reggae; dub adds subtraction, echo-friendly fragments and studio-space behavior; steppers provides a more continuous kick foundation.",
-  "traditions": [
+  "description": "Reggae and dub are represented as",
+  "styleDefinitions": [
     {
       "id": "reggae-dub-roots-reggae",
       "worldId": "reggae-dub",
       "name": "Roots Reggae",
       "origin": "Kingston, Jamaica",
       "era": "1970s",
-      "description": "One Drop • Skank • Conscious\nSpiritual Rastafari roots and heavy bass.\nBob Marley & The Wailers · Burning Spear",
+      "description": "One Drop • Skank • Conscious\nSpiritual",
       "characteristicInstruments": [
         "drums",
         "bass",
@@ -95,7 +95,7 @@ export const REGGAE_DUB_WORLD: GenreWorld = {
       "name": "Dub",
       "origin": "Kingston, Jamaica",
       "era": "1970s",
-      "description": "Space Echo • Bass Drops • Spring Reverb\nStudio mixing board as a musical instrument.\nKing Tubby · Lee \"Scratch\" Perry",
+      "description": "Space Echo • Bass Drops •",
       "characteristicInstruments": [
         "bass",
         "drums",
@@ -165,7 +165,7 @@ export const REGGAE_DUB_WORLD: GenreWorld = {
       "name": "Dancehall",
       "origin": "Kingston, Jamaica",
       "era": "1980s–Present",
-      "description": "Digital Riddim • Deejay Toasting • High Energy\nHard-hitting sound system dance rhythms.\nYellowman · Sean Paul",
+      "description": "Digital Riddim • Deejay Toasting •",
       "characteristicInstruments": [
         "sampler",
         "drums",
@@ -235,7 +235,7 @@ export const REGGAE_DUB_WORLD: GenreWorld = {
       "name": "Lovers Rock",
       "origin": "London, UK / Jamaica",
       "era": "Late 1970s–1980s",
-      "description": "Romantic • Smooth • Soul Harmonies\nSoulful romantic UK reggae ballads.\nJanet Kay · Gregory Isaacs",
+      "description": "Romantic • Smooth • Soul Harmonies\nSoulful",
       "characteristicInstruments": [
         "electric-guitar",
         "bass",
@@ -315,7 +315,7 @@ export const REGGAE_DUB_WORLD: GenreWorld = {
       "name": "Rocksteady",
       "origin": "Kingston, Jamaica",
       "era": "1966–1968",
-      "description": "Soulful • Prominent Bass • Slow Ska\nShort-lived golden era of vocal harmonies.\nAlton Ellis · The Paragons",
+      "description": "Soulful • Prominent Bass • Slow",
       "characteristicInstruments": [
         "bass",
         "electric-guitar",
@@ -396,7 +396,7 @@ export const REGGAE_DUB_WORLD: GenreWorld = {
       "name": "Ragga",
       "origin": "Kingston, Jamaica",
       "era": "Late 1980s–1990s",
-      "description": "Digital • Hardcore • Machine Beats\nRaggamuffin digital dancehall intensity.\nShabba Ranks · Buju Banton",
+      "description": "Digital • Hardcore • Machine Beats\nRaggamuffin",
       "characteristicInstruments": [
         "sampler",
         "drums",
@@ -475,7 +475,7 @@ export const REGGAE_DUB_WORLD: GenreWorld = {
       "name": "Ska",
       "origin": "Kingston, Jamaica",
       "era": "Late 1950s–1960s",
-      "description": "Fast • Walking Bass • Big Horns\nEnergetic upbeat ancestor of reggae.\nThe Skatalites · Prince Buster",
+      "description": "Fast • Walking Bass • Big",
       "characteristicInstruments": [
         "brass",
         "electric-guitar",
@@ -556,7 +556,7 @@ export const REGGAE_DUB_WORLD: GenreWorld = {
       "name": "Calypso",
       "origin": "Trinidad and Tobago",
       "era": "Early 20th Century–Present",
-      "description": "Steelpan • Acoustic • Witty\nTrinidadian storytelling and steelband.\nMighty Sparrow · Lord Kitchener",
+      "description": "Steelpan • Acoustic • Witty\nTrinidadian storytelling",
       "characteristicInstruments": [
         "steel-pan",
         "acoustic-guitar",
@@ -691,11 +691,11 @@ export const REGGAE_DUB_WORLD: GenreWorld = {
     {
       "id": "rd-one-drop",
       "worldId": "reggae-dub",
-      "traditionId": "reggae-roots",
+      "styleIds": ["reggae-roots"],
       "name": "One-Drop Foundation",
       "family": "Reggae Drums",
       "category": "groove",
-      "description": "Kick and rimshot center the third beat while leaving beat one comparatively open.",
+      "description": "Kick and rimshot center the third",
       "tags": [
         "one-drop",
         "reggae",
@@ -772,7 +772,7 @@ export const REGGAE_DUB_WORLD: GenreWorld = {
           "name": "One-Drop Foundation — sparse",
           "variationType": "sparse",
           "probability": 0.35,
-          "description": "Leaves selected attacks open for a played repetition.",
+          "description": "Leaves selected attacks open for a",
           "onsetGrid": [
             0,
             8,
@@ -790,7 +790,7 @@ export const REGGAE_DUB_WORLD: GenreWorld = {
           "name": "One-Drop Foundation — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Retains the cell while moving emphasis between repeated attacks.",
+          "description": "Retains the cell while moving emphasis",
           "onsetGrid": [
             0,
             6,
@@ -824,11 +824,11 @@ export const REGGAE_DUB_WORLD: GenreWorld = {
     {
       "id": "rd-skank",
       "worldId": "reggae-dub",
-      "traditionId": "reggae-roots",
+      "styleIds": ["reggae-roots"],
       "name": "Offbeat Skank",
       "family": "Reggae Skank",
       "category": "ostinato",
-      "description": "Short guitar/organ chord attacks on the offbeats, deliberately leaving the downbeats to bass and drums.",
+      "description": "Short guitar/organ chord attacks on the",
       "tags": [
         "skank",
         "reggae",
@@ -901,7 +901,7 @@ export const REGGAE_DUB_WORLD: GenreWorld = {
           "name": "Offbeat Skank — sparse",
           "variationType": "sparse",
           "probability": 0.35,
-          "description": "Leaves selected attacks open for a played repetition.",
+          "description": "Leaves selected attacks open for a",
           "onsetGrid": [
             2,
             10
@@ -917,7 +917,7 @@ export const REGGAE_DUB_WORLD: GenreWorld = {
           "name": "Offbeat Skank — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Retains the cell while moving emphasis between repeated attacks.",
+          "description": "Retains the cell while moving emphasis",
           "onsetGrid": [
             2,
             6,
@@ -949,11 +949,11 @@ export const REGGAE_DUB_WORLD: GenreWorld = {
     {
       "id": "rd-reggae-bass",
       "worldId": "reggae-dub",
-      "traditionId": "reggae-roots",
+      "styleIds": ["reggae-roots"],
       "name": "Melodic Reggae Bass",
       "family": "Reggae Bass",
       "category": "ostinato",
-      "description": "Long, syncopated bass notes occupy the spaces between drums and often carry the melodic identity.",
+      "description": "Long, syncopated bass notes occupy the",
       "tags": [
         "reggae",
         "bass",
@@ -1032,7 +1032,7 @@ export const REGGAE_DUB_WORLD: GenreWorld = {
           "name": "Melodic Reggae Bass — sparse",
           "variationType": "sparse",
           "probability": 0.35,
-          "description": "Leaves selected attacks open for a played repetition.",
+          "description": "Leaves selected attacks open for a",
           "onsetGrid": [
             0,
             6,
@@ -1050,7 +1050,7 @@ export const REGGAE_DUB_WORLD: GenreWorld = {
           "name": "Melodic Reggae Bass — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Retains the cell while moving emphasis between repeated attacks.",
+          "description": "Retains the cell while moving emphasis",
           "onsetGrid": [
             0,
             3,
@@ -1086,11 +1086,11 @@ export const REGGAE_DUB_WORLD: GenreWorld = {
     {
       "id": "rd-dub-drop",
       "worldId": "reggae-dub",
-      "traditionId": "reggae-dub",
+      "styleIds": ["reggae-dub"],
       "name": "Dub Dropout & Echo Fragment",
       "family": "Dub Space",
       "category": "break",
-      "description": "Removes selected skank/drum attacks and leaves a sparse echo-friendly fragment at phrase boundaries.",
+      "description": "Removes selected skank/drum attacks and leaves",
       "tags": [
         "dub",
         "dropout",
@@ -1161,7 +1161,7 @@ export const REGGAE_DUB_WORLD: GenreWorld = {
           "name": "Dub Dropout & Echo Fragment — sparse",
           "variationType": "sparse",
           "probability": 0.35,
-          "description": "Leaves selected attacks open for a played repetition.",
+          "description": "Leaves selected attacks open for a",
           "onsetGrid": [
             2,
             14
@@ -1177,7 +1177,7 @@ export const REGGAE_DUB_WORLD: GenreWorld = {
           "name": "Dub Dropout & Echo Fragment — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Retains the cell while moving emphasis between repeated attacks.",
+          "description": "Retains the cell while moving emphasis",
           "onsetGrid": [
             2,
             8,
@@ -1207,11 +1207,11 @@ export const REGGAE_DUB_WORLD: GenreWorld = {
     {
       "id": "rd-steppers",
       "worldId": "reggae-dub",
-      "traditionId": "reggae-steppers",
+      "styleIds": ["reggae-steppers"],
       "name": "Steppers Foundation",
       "family": "Steppers Drums",
       "category": "groove",
-      "description": "Four-to-the-floor kick with a deep bass answer and restrained offbeat organ.",
+      "description": "Four-to-the-floor kick with a deep bass",
       "tags": [
         "steppers",
         "sound-system"
@@ -1282,7 +1282,7 @@ export const REGGAE_DUB_WORLD: GenreWorld = {
           "name": "Steppers Foundation — sparse",
           "variationType": "sparse",
           "probability": 0.35,
-          "description": "Leaves selected attacks open for a played repetition.",
+          "description": "Leaves selected attacks open for a",
           "onsetGrid": [
             0,
             8
@@ -1298,7 +1298,7 @@ export const REGGAE_DUB_WORLD: GenreWorld = {
           "name": "Steppers Foundation — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Retains the cell while moving emphasis between repeated attacks.",
+          "description": "Retains the cell while moving emphasis",
           "onsetGrid": [
             0,
             4,
@@ -1329,11 +1329,11 @@ export const REGGAE_DUB_WORLD: GenreWorld = {
     {
       "id": "rd-06-one-drop-core",
       "worldId": "reggae-dub",
-      "traditionId": "reggae-roots",
+      "styleIds": ["reggae-roots"],
       "name": "One Drop Core",
       "family": "Roots Reggae",
       "category": "groove",
-      "description": "Drum pattern leaves the first beat relatively open while the backbeat anchors the bar.",
+      "description": "Drum pattern leaves the first beat",
       "tags": [
         "one-drop"
       ],
@@ -1403,11 +1403,11 @@ export const REGGAE_DUB_WORLD: GenreWorld = {
     {
       "id": "rd-07-skank-guitar",
       "worldId": "reggae-dub",
-      "traditionId": "dub",
+      "styleIds": ["dub"],
       "name": "Skank Guitar",
       "family": "Roots Reggae",
       "category": "cell",
-      "description": "Short clipped guitar chord on the offbeat, leaving the bass dominant.",
+      "description": "Short clipped guitar chord on the",
       "tags": [
         "skank"
       ],
@@ -1478,11 +1478,11 @@ export const REGGAE_DUB_WORLD: GenreWorld = {
     {
       "id": "rd-08-reggae-bass-lead",
       "worldId": "reggae-dub",
-      "traditionId": "dub",
+      "styleIds": ["dub"],
       "name": "Reggae Bass Lead",
       "family": "Roots Reggae",
       "category": "bass",
-      "description": "Longer, melodic bass line with rests; bass is a primary melodic voice.",
+      "description": "Longer, melodic bass line with rests;",
       "tags": [
         "bass-led"
       ],
@@ -1561,11 +1561,11 @@ export const REGGAE_DUB_WORLD: GenreWorld = {
     {
       "id": "rd-09-bubble-organ",
       "worldId": "reggae-dub",
-      "traditionId": "dub",
+      "styleIds": ["dub"],
       "name": "Bubble Organ",
       "family": "Roots Reggae",
       "category": "cell",
-      "description": "Short organ bubble fills the offbeat gaps without competing with guitar on every hit.",
+      "description": "Short organ bubble fills the offbeat",
       "tags": [
         "organ bubble"
       ],
@@ -1635,11 +1635,11 @@ export const REGGAE_DUB_WORLD: GenreWorld = {
     {
       "id": "rd-10-dub-echo-fragment",
       "worldId": "reggae-dub",
-      "traditionId": "dub",
+      "styleIds": ["dub"],
       "name": "Dub Echo Fragment",
       "family": "Dub",
       "category": "texture",
-      "description": "Isolated snare/perc fragment sent into echo/reverb space; the silence afterward is part of the effect.",
+      "description": "Isolated snare/perc fragment sent into echo/reverb",
       "tags": [
         "dub",
         "echo",
@@ -1711,11 +1711,11 @@ export const REGGAE_DUB_WORLD: GenreWorld = {
     {
       "id": "rd-11-dub-dropout",
       "worldId": "reggae-dub",
-      "traditionId": "dub",
+      "styleIds": ["dub"],
       "name": "Dub subtraction / return",
       "family": "Dub",
       "category": "break",
-      "description": "Bass/drum dropout with a final pickup for re-entry; the musical idea is subtraction and return, central to dub versioning.",
+      "description": "Bass/drum dropout with a final pickup",
       "tags": [
         "dropout",
         "version"
@@ -1786,11 +1786,11 @@ export const REGGAE_DUB_WORLD: GenreWorld = {
     {
       "id": "rd-12-steppers-kick-grid",
       "worldId": "reggae-dub",
-      "traditionId": "dub",
+      "styleIds": ["dub"],
       "name": "Steppers four-kick pulse",
       "family": "Digital Reggae",
       "category": "groove",
-      "description": "Steppers kick architecture: four quarter-note kicks, distinguished from one-drop by the persistent kick rather than the one-drop omission.",
+      "description": "Steppers kick architecture: four quarter-note kicks,",
       "tags": [
         "steppers"
       ],
@@ -1861,11 +1861,11 @@ export const REGGAE_DUB_WORLD: GenreWorld = {
     {
       "id": "rd-13-reggae-percussion-skitter",
       "worldId": "reggae-dub",
-      "traditionId": "dub",
+      "styleIds": ["dub"],
       "name": "Reggae shaker cross-rhythm",
       "family": "Percussion",
       "category": "ostinato",
-      "description": "Sparse shaker placements that sit around the skank instead of filling every eighth note.",
+      "description": "Sparse shaker placements that sit around",
       "tags": [
         "shaker",
         "ghost"
@@ -1939,11 +1939,11 @@ export const REGGAE_DUB_WORLD: GenreWorld = {
     {
       "id": "rd-14-dub-horn-reply",
       "worldId": "reggae-dub",
-      "traditionId": "dub",
+      "styleIds": ["dub"],
       "name": "Dub Horn Reply",
       "family": "Dub / Roots",
       "category": "interactionPattern",
-      "description": "Short horn stab answers a vocal or bass phrase, then disappears.",
+      "description": "Short horn stab answers a vocal",
       "tags": [
         "horn reply"
       ],
@@ -2003,7 +2003,7 @@ export const REGGAE_DUB_WORLD: GenreWorld = {
           "timingOffsetSteps": 2,
           "probability": 0.75,
           "worldId": "reggae-dub",
-          "description": "Enter only after the source phrase leaves a response window."
+          "description": "Enter only after the source phrase"
         }
       ],
       "transformations": [
@@ -2027,11 +2027,11 @@ export const REGGAE_DUB_WORLD: GenreWorld = {
     {
       "id": "rd-15-dub-version-tag",
       "worldId": "reggae-dub",
-      "traditionId": "dub",
+      "styleIds": ["dub"],
       "name": "Dub Version Tag",
       "family": "Dub",
       "category": "cadence",
-      "description": "A short bass-and-drum tag announces a stripped version or final fade.",
+      "description": "A short bass-and-drum tag announces a",
       "tags": [
         "version",
         "tag"

@@ -6,15 +6,15 @@ export const HIP_HOP_WORLD: GenreWorld = {
   "family": "Urban / Beat-driven Continuum",
   "color": "#8c8c8c",
   "level": "world",
-  "description": "Unified global urban beat continuum spanning classic 90s Boom-Bap vinyl breaks, Atlanta Trap 808 slides and rolling hats, Caribbean Reggaeton / Dembow riddims, and Afro-Urban crossover pockets.",
-  "traditions": [
+  "description": "Unified global urban beat continuum spanning",
+  "styleDefinitions": [
     {
       "id": "hip-hop-boom-bap",
       "worldId": "hip-hop",
       "name": "Boom Bap",
       "origin": "New York City",
       "era": "1990s",
-      "description": "Punchy • 4/4 MPC • Head-nod\nGritty vinyl samples and hard drums.\nDJ Premier · Nas",
+      "description": "Punchy • 4/4 MPC • Head-nod\nGritty",
       "characteristicInstruments": [
         "sampler",
         "drums",
@@ -91,7 +91,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
       "name": "Trap",
       "origin": "Atlanta, Georgia",
       "era": "2000s–Present",
-      "description": "808 • Fast Hi-Hats • Dark\nRolling hi-hats and heavy sub bass.\nFuture · Metro Boomin",
+      "description": "808 • Fast Hi-Hats • Dark\nRolling",
       "characteristicInstruments": [
         "sub-bass",
         "drums",
@@ -170,7 +170,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
       "name": "Lo-Fi",
       "origin": "Tokyo / Internet / Global",
       "era": "2010s–Present",
-      "description": "Warm • Vinyl Noise • Relaxed\nJazzy, dusty beats to study to.\nJ Dilla · Nujabes",
+      "description": "Warm • Vinyl Noise • Relaxed\nJazzy,",
       "characteristicInstruments": [
         "sampler",
         "piano",
@@ -249,7 +249,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
       "name": "Drill",
       "origin": "Chicago / London / Brooklyn",
       "era": "2010s–Present",
-      "description": "Sliding 808s • Syncopated Snare • Aggressive\nDark, sliding bassline street sound.\nPop Smoke · Central Cee",
+      "description": "Sliding 808s • Syncopated Snare •",
       "characteristicInstruments": [
         "sub-bass",
         "drums",
@@ -329,7 +329,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
       "name": "G-Funk",
       "origin": "Los Angeles / Long Beach, California",
       "era": "1990s",
-      "description": "Laid-back • Whiny Synth • Funk Bass\nWest Coast P-Funk infused rap.\nDr. Dre · Snoop Dogg",
+      "description": "Laid-back • Whiny Synth • Funk",
       "characteristicInstruments": [
         "synth",
         "bass",
@@ -410,7 +410,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
       "name": "Experimental",
       "origin": "Sacramento / Los Angeles / Underground",
       "era": "2010s–Present",
-      "description": "Abrasive • Industrial • Glitchy\nDistorted avant-garde hip-hop soundscapes.\nDeath Grips · JPEGMAFIA",
+      "description": "Abrasive • Industrial • Glitchy\nDistorted avant-garde",
       "characteristicInstruments": [
         "sampler",
         "drums",
@@ -483,7 +483,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
       "name": "Cloud Rap",
       "origin": "Stockholm / Internet / Houston",
       "era": "2010s–Present",
-      "description": "Ethereal • Reverb • Dreamy\nSpacey, ambient-sampled rap vibe.\nYung Lean · Clams Casino",
+      "description": "Ethereal • Reverb • Dreamy\nSpacey, ambient-sampled",
       "characteristicInstruments": [
         "synth",
         "sampler",
@@ -563,7 +563,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
       "name": "Jazz Rap",
       "origin": "Queens / Brooklyn / Chicago",
       "era": "1990s–Present",
-      "description": "Upright Bass • Horns • Conscious\nLyrical flow with sophisticated jazz chords.\nA Tribe Called Quest · Noname",
+      "description": "Upright Bass • Horns • Conscious\nLyrical",
       "characteristicInstruments": [
         "upright-bass",
         "brass",
@@ -704,11 +704,11 @@ export const HIP_HOP_WORLD: GenreWorld = {
     {
       "id": "hiphop-boom-basic",
       "worldId": "hip-hop",
-      "traditionId": "hiphop-boombap",
+      "styleIds": ["hiphop-boombap"],
       "name": "Boom Bap Basic",
       "family": "Beat",
       "category": "sectionPattern",
-      "description": "Classic 90s boom bap beat with heavy 1 and crisp backbeat.",
+      "description": "Classic 90s boom bap beat with",
       "tags": [
         "hip-hop",
         "beat"
@@ -762,7 +762,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
           "name": "Boom Bap Basic — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             8,
@@ -790,7 +790,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
           "name": "Boom Bap Basic — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             4,
@@ -851,7 +851,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
           "sourceRole": "drums",
           "targetRole": "bass",
           "relationship": "reinforce",
-          "description": "Low-end attacks reinforce the main pulse without doubling every subdivision.",
+          "description": "Low-end attacks reinforce the main pulse",
           "timingOffsetSteps": 0,
           "probability": 0.78
         }
@@ -864,11 +864,11 @@ export const HIP_HOP_WORLD: GenreWorld = {
     {
       "id": "hiphop-boom-sync",
       "worldId": "hip-hop",
-      "traditionId": "hiphop-boombap",
+      "styleIds": ["hiphop-boombap"],
       "name": "Syncopated Kick",
       "family": "Beat",
       "category": "fill",
-      "description": "Boom Bap with syncopated 16th kick anticipations.",
+      "description": "Boom Bap with syncopated 16th kick",
       "tags": [
         "hip-hop",
         "beat"
@@ -924,7 +924,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
           "name": "Syncopated Kick — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             7,
@@ -956,7 +956,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
           "name": "Syncopated Kick — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             4,
@@ -1022,11 +1022,11 @@ export const HIP_HOP_WORLD: GenreWorld = {
     {
       "id": "hiphop-trap-basic",
       "worldId": "hip-hop",
-      "traditionId": "hiphop-trap",
+      "styleIds": ["hiphop-trap"],
       "name": "Trap Half-Time",
       "family": "Beat",
       "category": "break",
-      "description": "Basic half-time trap beat with booming 808 sub.",
+      "description": "Basic half-time trap beat with booming",
       "tags": [
         "hip-hop",
         "beat"
@@ -1075,7 +1075,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
           "name": "Trap Half-Time — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             14
@@ -1099,7 +1099,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
           "name": "Trap Half-Time — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             8,
@@ -1154,11 +1154,11 @@ export const HIP_HOP_WORLD: GenreWorld = {
     {
       "id": "hiphop-trap-hats",
       "worldId": "hip-hop",
-      "traditionId": "hiphop-trap",
+      "styleIds": ["hiphop-trap"],
       "name": "Trap Hi-Hats",
       "family": "Beat",
       "category": "cadence",
-      "description": "Continuous 16ths with 32nd note hi-hat rolls.",
+      "description": "Continuous 16ths with 32nd note hi-hat",
       "tags": [
         "hip-hop",
         "beat"
@@ -1249,7 +1249,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
           "name": "Trap Hi-Hats — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             4,
@@ -1309,7 +1309,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
           "name": "Trap Hi-Hats — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             2,
@@ -1419,11 +1419,11 @@ export const HIP_HOP_WORLD: GenreWorld = {
     {
       "id": "hip-hop-sampled-keys",
       "worldId": "hip-hop",
-      "traditionId": "hiphop-boombap",
+      "styleIds": ["hiphop-boombap"],
       "name": "Sampled Keys Loop",
       "family": "Sample Loop",
       "category": "groove",
-      "description": "Looped melodic/harmonic sample role underneath the boom-bap drums and bass.",
+      "description": "Looped melodic/harmonic sample role underneath the",
       "tags": [
         "hip-hop",
         "beat",
@@ -1477,7 +1477,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
           "name": "Lo-Fi Swing — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             12,
@@ -1505,7 +1505,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
           "name": "Lo-Fi Swing — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             6,
@@ -1566,7 +1566,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
           "sourceRole": "voice",
           "targetRole": "harmony",
           "relationship": "leaveSpace",
-          "description": "Harmony reduces density under vocal entries so the phrase remains foregrounded.",
+          "description": "Harmony reduces density under vocal entries",
           "timingOffsetSteps": 0,
           "probability": 0.72
         }
@@ -1585,11 +1585,11 @@ export const HIP_HOP_WORLD: GenreWorld = {
     {
       "id": "hiphop-gfunk",
       "worldId": "hip-hop",
-      "traditionId": "hiphop-boombap",
+      "styleIds": ["hiphop-boombap"],
       "name": "G-Funk",
       "family": "Beat",
       "category": "groove",
-      "description": "Heavy kick and snare with driving 8th note hats.",
+      "description": "Heavy kick and snare with driving",
       "tags": [
         "hip-hop",
         "beat"
@@ -1651,7 +1651,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
           "name": "G-Funk — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             4,
@@ -1687,7 +1687,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
           "name": "G-Funk — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             2,
@@ -1760,7 +1760,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
           "sourceRole": "bass",
           "targetRole": "drums",
           "relationship": "accentWith",
-          "description": "Bass accents align with selected kick/backbeat events for a tighter pocket.",
+          "description": "Bass accents align with selected kick/backbeat",
           "timingOffsetSteps": 0,
           "probability": 0.65
         }
@@ -1773,7 +1773,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
     {
       "id": "hiphop-drill",
       "worldId": "hip-hop",
-      "traditionId": "hiphop-trap",
+      "styleIds": ["hiphop-trap"],
       "name": "Drill Beat",
       "family": "Beat",
       "category": "groove",
@@ -1827,7 +1827,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
           "name": "Drill Beat — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             11,
@@ -1855,7 +1855,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
           "name": "Drill Beat — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             7,
@@ -1913,11 +1913,11 @@ export const HIP_HOP_WORLD: GenreWorld = {
     {
       "id": "hiphop-breakbeat",
       "worldId": "hip-hop",
-      "traditionId": "hiphop-boombap",
+      "styleIds": ["hiphop-boombap"],
       "name": "Old School Break",
       "family": "Beat",
       "category": "groove",
-      "description": "Syncopated funk breakbeat style drum groove with sampled punch.",
+      "description": "Syncopated funk breakbeat style drum groove",
       "tags": [
         "hip-hop",
         "beat"
@@ -1976,7 +1976,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
           "name": "Old School Break — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             4,
@@ -2012,7 +2012,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
           "name": "Old School Break — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             3,
@@ -2082,11 +2082,11 @@ export const HIP_HOP_WORLD: GenreWorld = {
     {
       "id": "hiphop-bounce",
       "worldId": "hip-hop",
-      "traditionId": "hiphop-trap",
+      "styleIds": ["hiphop-trap"],
       "name": "Bounce Beat",
       "family": "Beat",
       "category": "groove",
-      "description": "New Orleans style bounce rhythm and clap trigger.",
+      "description": "New Orleans style bounce rhythm and",
       "tags": [
         "hip-hop",
         "beat"
@@ -2142,7 +2142,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
           "name": "Bounce Beat — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             6,
@@ -2174,7 +2174,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
           "name": "Bounce Beat — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             3,
@@ -2240,11 +2240,11 @@ export const HIP_HOP_WORLD: GenreWorld = {
     {
       "id": "hiphop-westcoast",
       "worldId": "hip-hop",
-      "traditionId": "hiphop-boombap",
+      "styleIds": ["hiphop-boombap"],
       "name": "West Coast",
       "family": "Beat",
       "category": "groove",
-      "description": "Syncopated kicks with handclaps and crisp snaps.",
+      "description": "Syncopated kicks with handclaps and crisp",
       "tags": [
         "hip-hop",
         "beat"
@@ -2297,7 +2297,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
           "name": "West Coast — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             7,
@@ -2325,7 +2325,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
           "name": "West Coast — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             4,
@@ -2387,11 +2387,11 @@ export const HIP_HOP_WORLD: GenreWorld = {
     {
       "id": "hiphop-neosoul",
       "worldId": "hip-hop",
-      "traditionId": "hiphop-boombap",
+      "styleIds": ["hiphop-boombap"],
       "name": "Neo-Soul Hip Hop",
       "family": "Beat",
       "category": "groove",
-      "description": "Behind the beat snare with organic human touch.",
+      "description": "Behind the beat snare with organic",
       "tags": [
         "hip-hop",
         "beat"
@@ -2441,7 +2441,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
           "name": "Neo-Soul Hip Hop — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             8,
@@ -2469,7 +2469,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
           "name": "Neo-Soul Hip Hop — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             5,
@@ -2527,11 +2527,11 @@ export const HIP_HOP_WORLD: GenreWorld = {
     {
       "id": "hiphop-minimal808",
       "worldId": "hip-hop",
-      "traditionId": "hiphop-trap",
+      "styleIds": ["hiphop-trap"],
       "name": "Minimal 808",
       "family": "Beat",
       "category": "groove",
-      "description": "Sparse 808 sub kicks leaving open pocket for vocals.",
+      "description": "Sparse 808 sub kicks leaving open",
       "tags": [
         "hip-hop",
         "beat"
@@ -2580,7 +2580,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
           "name": "Minimal 808 — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             14
@@ -2604,7 +2604,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
           "name": "Minimal 808 — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             10,
@@ -2659,11 +2659,11 @@ export const HIP_HOP_WORLD: GenreWorld = {
     {
       "id": "hiphop-dembow-riddim",
       "worldId": "hip-hop",
-      "traditionId": "hiphop-dembow",
+      "styleIds": ["hiphop-dembow"],
       "name": "Classic Dembow Riddim",
       "family": "Dembow",
       "category": "groove",
-      "description": "The heartbeat of global urban Latin music: 4-on-the-floor kick with sharp syncopated offbeat snares.",
+      "description": "The heartbeat of global urban Latin",
       "tags": [
         "reggaeton",
         "dembow",
@@ -2734,7 +2734,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
           "name": "Classic Dembow Riddim — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             4,
@@ -2770,7 +2770,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
           "name": "Classic Dembow Riddim — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             3,
@@ -2844,11 +2844,11 @@ export const HIP_HOP_WORLD: GenreWorld = {
     {
       "id": "hiphop-808-glide-bass",
       "worldId": "hip-hop",
-      "traditionId": "hiphop-trap",
+      "styleIds": ["hiphop-trap"],
       "name": "808 Glide & Sub Slide Bass",
       "family": "808 Bass",
       "category": "ostinato",
-      "description": "Deep sliding 808 sub bass notes hitting on the 1 and executing pitch glides on syncopated upbeats.",
+      "description": "Deep sliding 808 sub bass notes",
       "tags": [
         "trap",
         "808",
@@ -2905,7 +2905,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
           "name": "808 Glide & Sub Slide Bass — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             12
@@ -2929,7 +2929,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
           "name": "808 Glide & Sub Slide Bass — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             6,
@@ -2983,11 +2983,11 @@ export const HIP_HOP_WORLD: GenreWorld = {
     {
       "id": "hip-hop-call-15",
       "worldId": "hip-hop",
-      "traditionId": "hiphop-boombap",
+      "styleIds": ["hiphop-boombap"],
       "name": "Boom Bap Response",
       "family": "Boom Bap",
       "category": "interactionPattern",
-      "description": "A call-and-response shape that leaves the next phrase open for an answer. Built around drum break and the boom bap vocabulary of Global Urban Beat.",
+      "description": "A call-and-response shape that leaves the",
       "tags": [
         "hip-hop",
         "boom-bap",
@@ -3074,7 +3074,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
           "name": "Boom Bap Response — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             1,
             7,
@@ -3106,7 +3106,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
           "name": "Boom Bap Response — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             1,
             4,
@@ -3146,7 +3146,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
           "name": "Boom Bap Response — transition variation",
           "variationType": "transition",
           "probability": 0.16,
-          "description": "Adds a final pickup/closure gesture for section transitions.",
+          "description": "Adds a final pickup/closure gesture for",
           "onsetGrid": [
             1,
             4,
@@ -3202,11 +3202,11 @@ export const HIP_HOP_WORLD: GenreWorld = {
     {
       "id": "hip-hop-anchor-16",
       "worldId": "hip-hop",
-      "traditionId": "hiphop-boombap",
+      "styleIds": ["hiphop-boombap"],
       "name": "Sample Chop Anchor",
       "family": "Sample Chop",
       "category": "ostinato",
-      "description": "A repeating anchor that locks the low end to the groove. Built around sample loop and the sample chop vocabulary of Global Urban Beat.",
+      "description": "A repeating anchor that locks the",
       "tags": [
         "hip-hop",
         "sample-chop",
@@ -3293,7 +3293,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
           "name": "Sample Chop Anchor — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             5,
@@ -3325,7 +3325,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
           "name": "Sample Chop Anchor — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             2,
@@ -3377,11 +3377,11 @@ export const HIP_HOP_WORLD: GenreWorld = {
     {
       "id": "hip-hop-voice-phrasing",
       "worldId": "hip-hop",
-      "traditionId": "hiphop-boombap",
+      "styleIds": ["hiphop-boombap"],
       "name": "Rap Cadence & Hook",
       "family": "Vocal Phrasing",
       "category": "phrasePattern",
-      "description": "Rap cadence and hook placement with staggered entries and deliberate rests around the boom-bap pocket.",
+      "description": "Rap cadence and hook placement with",
       "tags": [
         "hip-hop",
         "voice",

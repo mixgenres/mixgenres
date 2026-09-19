@@ -190,8 +190,8 @@ interface Attack {
   chordSymbol: string;
   anticipated: boolean;
   hitType?: string;
-  traditionId?: string;
   patternId?: string;
+  styleId?: string;
 }
 
 function authoredKitVoicing(hitType: string, accent: number): KitVoicing {
@@ -252,7 +252,7 @@ function culturalOrnaments(
   const pcs = culturalPitchSet(culture, tonicPc);
   const out: CulturalOrnamentNote[] = [];
 
-  if (culture.worldId === 'celtic-trad') {
+  if (culture.genreId === 'celtic-trad') {
     const upper = nearestCulturalNeighbor(target, pcs, 1);
     const lower = nearestCulturalNeighbor(target, pcs, -1);
     if (id === 'ct-ornament-roll' || /roll/.test(art)) {
@@ -371,7 +371,7 @@ export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
           chordSymbol: anticipated ? nextMeasure!.chord : m.chord,
           anticipated,
           hitType: hitTypes[i] || undefined,
-          traditionId: (d as any).traditionId,
+          styleId: (d as any).styleId,
           patternId: (d as any).patternId,
         });
       });
@@ -475,7 +475,7 @@ export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
       const nextSym = nextChangedChord[a.bar];
       const nextChord = nextSym ? parseChord(nextSym) : undefined;
       const pattern = a.patternId ? PATTERNS_BY_ID[a.patternId] : undefined;
-      const culture = culturalRules(worldId, a.traditionId, t.instrumentId);
+      const culture = culturalRules(worldId, (region as any)?.styleId ?? sheet.styleId, t.instrumentId);
       const culturalHarmonyPattern = !!culture && pattern?.roles.includes('harmony') && t.instrumentId !== 'shō';
       const celticWorld = worldId === 'celtic-trad';
 
@@ -582,7 +582,7 @@ export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
       let pitches: number[];
 
       if (isBass && culture?.avoidBassFoundation) {
-        // In traditions organized around drones and melody, a bass part is a
+        // In styles organized around drones and melody, a bass part is a
         // color/continuity layer rather than a mandatory Western root engine.
         const n = culturalDronePitch(culture, culturalTonicPc, prof, seedOf(t.id, a.bar, a.onsetIndex, 'bass-drone'));
         mem.lastNote = n;

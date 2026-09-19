@@ -6,15 +6,15 @@ export const METAL_WORLD: GenreWorld = {
   "family": "Heavy / Amplified",
   "color": "#8c7b83",
   "level": "world",
-  "description": "The sonic power of Metal: Iron Maiden galloping rhythm riffs, thrash down-picking, double-kick drum streams, Meshuggah polymetric djent chugs, and crushing half-time breakdowns.",
-  "traditions": [
+  "description": "The sonic power of Metal: Iron",
+  "styleDefinitions": [
     {
       "id": "metal-heavy-metal",
       "worldId": "metal",
       "name": "Heavy Metal",
       "origin": "Birmingham, UK",
       "era": "1970s–1980s",
-      "description": "Riff-driven • Distorted • Operatic\nThe foundational twin-guitar heavy sound.\nBlack Sabbath · Iron Maiden",
+      "description": "Riff-driven • Distorted • Operatic\nThe foundational",
       "characteristicInstruments": [
         "electric-guitar",
         "bass",
@@ -102,7 +102,7 @@ export const METAL_WORLD: GenreWorld = {
       "name": "Thrash",
       "origin": "Bay Area, California / Los Angeles",
       "era": "1980s",
-      "description": "Fast • Palm-muted • Aggressive\nHigh-speed palm-muted chugging riffs.\nMetallica · Slayer",
+      "description": "Fast • Palm-muted • Aggressive\nHigh-speed palm-muted",
       "characteristicInstruments": [
         "electric-guitar",
         "bass",
@@ -180,7 +180,7 @@ export const METAL_WORLD: GenreWorld = {
       "name": "Death Metal",
       "origin": "Tampa, Florida / Sweden",
       "era": "Late 1980s–Present",
-      "description": "Guttural • Blast Beats • Tremolo\nExtreme low-tuned technical aggression.\nDeath · Cannibal Corpse",
+      "description": "Guttural • Blast Beats • Tremolo\nExtreme",
       "characteristicInstruments": [
         "electric-guitar",
         "bass",
@@ -259,7 +259,7 @@ export const METAL_WORLD: GenreWorld = {
       "name": "Black Metal",
       "origin": "Norway / Sweden / UK",
       "era": "Early 1990s",
-      "description": "Atmospheric • High Shrieks • Tremolo\nIcy cold Nordic blast-beat soundscapes.\nMayhem · Darkthrone",
+      "description": "Atmospheric • High Shrieks • Tremolo\nIcy",
       "characteristicInstruments": [
         "electric-guitar",
         "drums",
@@ -338,7 +338,7 @@ export const METAL_WORLD: GenreWorld = {
       "name": "Power Metal",
       "origin": "Germany / Finland",
       "era": "1980s–Present",
-      "description": "Euphoric • Double-Bass • Fantasy\nHigh-speed soaring fantasy anthems.\nHelloween · Blind Guardian",
+      "description": "Euphoric • Double-Bass • Fantasy\nHigh-speed soaring",
       "characteristicInstruments": [
         "electric-guitar",
         "drums",
@@ -417,7 +417,7 @@ export const METAL_WORLD: GenreWorld = {
       "name": "Doom Metal",
       "origin": "Birmingham / Maryland / Sweden",
       "era": "1970s–Present",
-      "description": "Slow • Heavy • Crushing\nMassive low-tempo monolithic riffs.\nCandlemass · Electric Wizard",
+      "description": "Slow • Heavy • Crushing\nMassive low-tempo",
       "characteristicInstruments": [
         "electric-guitar",
         "bass",
@@ -495,7 +495,7 @@ export const METAL_WORLD: GenreWorld = {
       "name": "Sludge",
       "origin": "New Orleans, Louisiana (NOLA)",
       "era": "Late 1980s–1990s",
-      "description": "Grimy • Down-tuned • Hardcore Slowness\nBlack Sabbath meets Black Flag pain.\nEyehategod · Crowbar",
+      "description": "Grimy • Down-tuned • Hardcore Slowness\nBlack",
       "characteristicInstruments": [
         "electric-guitar",
         "bass",
@@ -564,7 +564,7 @@ export const METAL_WORLD: GenreWorld = {
       "name": "Progressive Metal",
       "origin": "Boston / Sweden / Global",
       "era": "Late 1980s–Present",
-      "description": "Technical • Complex Meter • Dynamic\nOdd-time signatures and virtuosic chops.\nDream Theater · Opeth",
+      "description": "Technical • Complex Meter • Dynamic\nOdd-time",
       "characteristicInstruments": [
         "electric-guitar",
         "bass",
@@ -715,11 +715,11 @@ export const METAL_WORLD: GenreWorld = {
     {
       "id": "metal-gallop-riff",
       "worldId": "metal",
-      "traditionId": "metal-heavy-thrash",
+      "styleIds": ["metal-heavy-thrash"],
       "name": "The Gallop Rhythm (Iron Maiden / Steve Harris)",
       "family": "Metal Gallop",
       "category": "ostinato",
-      "description": "Classic 16th-16th-8th galloping chug on palm-muted low E string synchronized between rhythm guitar, bass, and double-kick drum.",
+      "description": "Classic 16th-16th-8th galloping chug on palm-muted",
       "tags": [
         "metal",
         "gallop",
@@ -848,7 +848,7 @@ export const METAL_WORLD: GenreWorld = {
             0.9,
             0.8
           ],
-          "description": "Wall of 16th note double bass drum hits powering high-intensity sections."
+          "description": "Wall of 16th note double bass"
         },
         {
           "id": "metal-gallop-riff-v-02",
@@ -856,7 +856,7 @@ export const METAL_WORLD: GenreWorld = {
           "name": "The Gallop Rhythm (Iron Maiden / Steve Harris) — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             1,
@@ -947,7 +947,7 @@ export const METAL_WORLD: GenreWorld = {
           "sourceRole": "drums",
           "targetRole": "bass",
           "relationship": "reinforce",
-          "description": "Low-end attacks reinforce the main pulse without doubling every subdivision.",
+          "description": "Low-end attacks reinforce the main pulse",
           "timingOffsetSteps": 0,
           "probability": 0.78
         }
@@ -956,11 +956,11 @@ export const METAL_WORLD: GenreWorld = {
     {
       "id": "metal-djent-chug",
       "worldId": "metal",
-      "traditionId": "metal-prog-djent",
+      "styleIds": ["metal-prog-djent"],
       "name": "Djent Polymetric Low Chug",
       "family": "Djent Rhythms",
       "category": "ostinato",
-      "description": "Syncopated, unyielding low-tuned palm-muted chugs grouped in asymmetrical 3+3+2 or 5+5+6 patterns.",
+      "description": "Syncopated, unyielding low-tuned palm-muted chugs grouped",
       "tags": [
         "djent",
         "prog-metal",
@@ -1045,7 +1045,7 @@ export const METAL_WORLD: GenreWorld = {
             1,
             0.9
           ],
-          "description": "Tempo feel halved with devastating snare drop on beat 3 and sub-bass drops."
+          "description": "Tempo feel halved with devastating snare"
         },
         {
           "id": "metal-djent-chug-v-02",
@@ -1053,7 +1053,7 @@ export const METAL_WORLD: GenreWorld = {
           "name": "Djent Polymetric Low Chug — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             3,
@@ -1120,7 +1120,7 @@ export const METAL_WORLD: GenreWorld = {
           "sourceRole": "voice",
           "targetRole": "harmony",
           "relationship": "leaveSpace",
-          "description": "Harmony reduces density under vocal entries so the phrase remains foregrounded.",
+          "description": "Harmony reduces density under vocal entries",
           "timingOffsetSteps": 0,
           "probability": 0.72
         }
@@ -1129,11 +1129,11 @@ export const METAL_WORLD: GenreWorld = {
     {
       "id": "metal-blast-beat",
       "worldId": "metal",
-      "traditionId": "metal-heavy-thrash",
+      "styleIds": ["metal-heavy-thrash"],
       "name": "Blast Beat",
       "family": "Drums",
       "category": "fill",
-      "description": "Extremely fast alternating kick and snare with quarter-note accents.",
+      "description": "Extremely fast alternating kick and snare",
       "tags": [],
       "scopes": [
         "measure"
@@ -1216,7 +1216,7 @@ export const METAL_WORLD: GenreWorld = {
           "name": "Double Kick 16ths",
           "variationType": "instrumentSpecific",
           "probability": 0.18,
-          "description": "Continuous 16th note double bass stream with pulse accents. Retained as a variation rather than a separate pattern entry.",
+          "description": "Continuous 16th note double bass stream",
           "onsetGrid": [
             0,
             1,
@@ -1282,7 +1282,7 @@ export const METAL_WORLD: GenreWorld = {
           "name": "Tremolo Picking",
           "variationType": "instrumentSpecific",
           "probability": 0.18,
-          "description": "Fast continuous picking with dynamic shaping across the bar. Retained as a variation rather than a separate pattern entry.",
+          "description": "Fast continuous picking with dynamic shaping",
           "onsetGrid": [
             0,
             1,
@@ -1348,7 +1348,7 @@ export const METAL_WORLD: GenreWorld = {
           "name": "Sweep Picking Solo",
           "variationType": "instrumentSpecific",
           "probability": 0.18,
-          "description": "Fluid high-speed arpeggiated lead guitar run. Retained as a variation rather than a separate pattern entry.",
+          "description": "Fluid high-speed arpeggiated lead guitar run.",
           "onsetGrid": [
             0,
             1,
@@ -1440,7 +1440,7 @@ export const METAL_WORLD: GenreWorld = {
     {
       "id": "metal-breakdown",
       "worldId": "metal",
-      "traditionId": "metal-prog-djent",
+      "styleIds": ["metal-prog-djent"],
       "name": "Breakdown Chug",
       "family": "Guitar",
       "category": "break",
@@ -1502,7 +1502,7 @@ export const METAL_WORLD: GenreWorld = {
           "name": "Breakdown Chug — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             4,
@@ -1538,7 +1538,7 @@ export const METAL_WORLD: GenreWorld = {
           "name": "Breakdown Chug — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             3,
@@ -1608,7 +1608,7 @@ export const METAL_WORLD: GenreWorld = {
     {
       "id": "metal-djent-sync",
       "worldId": "metal",
-      "traditionId": "metal-prog-djent",
+      "styleIds": ["metal-prog-djent"],
       "name": "Djent Syncopation",
       "family": "Guitar",
       "category": "cadence",
@@ -1667,7 +1667,7 @@ export const METAL_WORLD: GenreWorld = {
           "name": "Djent Syncopation — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             5,
@@ -1699,7 +1699,7 @@ export const METAL_WORLD: GenreWorld = {
           "name": "Djent Syncopation — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             3,
@@ -1765,11 +1765,11 @@ export const METAL_WORLD: GenreWorld = {
     {
       "id": "metal-clean-arp",
       "worldId": "metal",
-      "traditionId": "metal-prog-djent",
+      "styleIds": ["metal-prog-djent"],
       "name": "Clean Arpeggio",
       "family": "Guitar",
       "category": "groove",
-      "description": "Atmospheric clean arpeggiated intro with dynamic swell.",
+      "description": "Atmospheric clean arpeggiated intro with dynamic",
       "tags": [],
       "scopes": [
         "measure"
@@ -1830,7 +1830,7 @@ export const METAL_WORLD: GenreWorld = {
           "name": "Clean Arpeggio — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             4,
@@ -1866,7 +1866,7 @@ export const METAL_WORLD: GenreWorld = {
           "name": "Clean Arpeggio — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             2,
@@ -1939,7 +1939,7 @@ export const METAL_WORLD: GenreWorld = {
           "sourceRole": "lead",
           "targetRole": "voice",
           "relationship": "answer",
-          "description": "Lead instrument answers a vocal phrase in the open space after the line.",
+          "description": "Lead instrument answers a vocal phrase",
           "timingOffsetSteps": 2,
           "probability": 0.58
         }
@@ -1952,11 +1952,11 @@ export const METAL_WORLD: GenreWorld = {
     {
       "id": "metal-bass-gallop",
       "worldId": "metal",
-      "traditionId": "metal-heavy-thrash",
+      "styleIds": ["metal-heavy-thrash"],
       "name": "Bass Gallop",
       "family": "Bass",
       "category": "groove",
-      "description": "Iron Maiden style triplet/gallop feel driving rhythm.",
+      "description": "Iron Maiden style triplet/gallop feel driving",
       "tags": [],
       "scopes": [
         "measure"
@@ -2027,7 +2027,7 @@ export const METAL_WORLD: GenreWorld = {
           "name": "Bass Gallop — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             3,
@@ -2075,7 +2075,7 @@ export const METAL_WORLD: GenreWorld = {
           "name": "Bass Gallop — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             2,
@@ -2164,7 +2164,7 @@ export const METAL_WORLD: GenreWorld = {
           "sourceRole": "bass",
           "targetRole": "drums",
           "relationship": "accentWith",
-          "description": "Bass accents align with selected kick/backbeat events for a tighter pocket.",
+          "description": "Bass accents align with selected kick/backbeat",
           "timingOffsetSteps": 0,
           "probability": 0.65
         }
@@ -2177,11 +2177,11 @@ export const METAL_WORLD: GenreWorld = {
     {
       "id": "metal-prog-odd-meter",
       "worldId": "metal",
-      "traditionId": "metal-prog-djent",
+      "styleIds": ["metal-prog-djent"],
       "name": "5/8 Riff",
       "family": "Guitar",
       "category": "groove",
-      "description": "Odd meter progressive riff in asymmetric 3+2 grouping.",
+      "description": "Odd meter progressive riff in asymmetric",
       "tags": [],
       "scopes": [
         "measure"
@@ -2231,7 +2231,7 @@ export const METAL_WORLD: GenreWorld = {
           "name": "5/8 Riff — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             4,
@@ -2259,7 +2259,7 @@ export const METAL_WORLD: GenreWorld = {
           "name": "5/8 Riff — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             2,
@@ -2320,7 +2320,7 @@ export const METAL_WORLD: GenreWorld = {
           "sourceRole": "harmony",
           "targetRole": "lead",
           "relationship": "leaveSpace",
-          "description": "Accompaniment thins when the instrumental lead enters.",
+          "description": "Accompaniment thins when the instrumental lead",
           "timingOffsetSteps": 0,
           "probability": 0.62
         }
@@ -2333,11 +2333,11 @@ export const METAL_WORLD: GenreWorld = {
     {
       "id": "metal-groove-metal",
       "worldId": "metal",
-      "traditionId": "metal-heavy-thrash",
+      "styleIds": ["metal-heavy-thrash"],
       "name": "Groove Metal Riff",
       "family": "Guitar",
       "category": "groove",
-      "description": "Mid-tempo swinging heavy riff with biting accents.",
+      "description": "Mid-tempo swinging heavy riff with biting",
       "tags": [],
       "scopes": [
         "measure"
@@ -2396,7 +2396,7 @@ export const METAL_WORLD: GenreWorld = {
           "name": "Groove Metal Riff — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             3,
@@ -2432,7 +2432,7 @@ export const METAL_WORLD: GenreWorld = {
           "name": "Groove Metal Riff — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             2,
@@ -2506,11 +2506,11 @@ export const METAL_WORLD: GenreWorld = {
     {
       "id": "metal-phrase-10",
       "worldId": "metal",
-      "traditionId": "metal-heavy-thrash",
+      "styleIds": ["metal-heavy-thrash"],
       "name": "Breakdown Phrase",
       "family": "Breakdown",
       "category": "phrasePattern",
-      "description": "A phrase-level rhythmic template that leaves deliberate space for melodic expression. Built around gallop and the breakdown vocabulary of Metal.",
+      "description": "A phrase-level rhythmic template that leaves",
       "tags": [
         "metal",
         "breakdown",
@@ -2595,7 +2595,7 @@ export const METAL_WORLD: GenreWorld = {
           "name": "Breakdown Phrase — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             6,
@@ -2627,7 +2627,7 @@ export const METAL_WORLD: GenreWorld = {
           "name": "Breakdown Phrase — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             4,
@@ -2679,11 +2679,11 @@ export const METAL_WORLD: GenreWorld = {
     {
       "id": "metal-call-11",
       "worldId": "metal",
-      "traditionId": "metal-heavy-thrash",
+      "styleIds": ["metal-heavy-thrash"],
       "name": "Gallop Response",
       "family": "Gallop",
       "category": "interactionPattern",
-      "description": "A call-and-response shape that leaves the next phrase open for an answer. Built around breakdown and the gallop vocabulary of Metal.",
+      "description": "A call-and-response shape that leaves the",
       "tags": [
         "metal",
         "gallop",
@@ -2769,7 +2769,7 @@ export const METAL_WORLD: GenreWorld = {
           "name": "Gallop Response — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             1,
             7,
@@ -2801,7 +2801,7 @@ export const METAL_WORLD: GenreWorld = {
           "name": "Gallop Response — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             1,
             5,
@@ -2841,7 +2841,7 @@ export const METAL_WORLD: GenreWorld = {
           "name": "Gallop Response — transition variation",
           "variationType": "transition",
           "probability": 0.16,
-          "description": "Adds a final pickup/closure gesture for section transitions.",
+          "description": "Adds a final pickup/closure gesture for",
           "onsetGrid": [
             1,
             5,
@@ -2897,11 +2897,11 @@ export const METAL_WORLD: GenreWorld = {
     {
       "id": "metal-anchor-12",
       "worldId": "metal",
-      "traditionId": "metal-heavy-thrash",
+      "styleIds": ["metal-heavy-thrash"],
       "name": "Tremolo Anchor",
       "family": "Tremolo",
       "category": "ostinato",
-      "description": "A repeating anchor that locks the low end to the groove. Built around tremolo in Metal.",
+      "description": "A repeating anchor that locks the",
       "tags": [
         "metal",
         "tremolo",
@@ -2987,7 +2987,7 @@ export const METAL_WORLD: GenreWorld = {
           "name": "Tremolo Anchor — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             6,
@@ -3019,7 +3019,7 @@ export const METAL_WORLD: GenreWorld = {
           "name": "Tremolo Anchor — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             2,
@@ -3071,11 +3071,11 @@ export const METAL_WORLD: GenreWorld = {
     {
       "id": "metal-comp-13",
       "worldId": "metal",
-      "traditionId": "metal-heavy-thrash",
+      "styleIds": ["metal-heavy-thrash"],
       "name": "Blast Comping",
       "family": "Blast",
       "category": "groove",
-      "description": "A genre-shaped accompaniment cell that supports the lead without occupying every subdivision. Built around blast beat and the blast vocabulary of Metal.",
+      "description": "A genre-shaped accompaniment cell that supports",
       "tags": [
         "metal",
         "blast",
@@ -3160,7 +3160,7 @@ export const METAL_WORLD: GenreWorld = {
           "name": "Blast Comping — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             4,
@@ -3192,7 +3192,7 @@ export const METAL_WORLD: GenreWorld = {
           "name": "Blast Comping — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             2,
@@ -3244,11 +3244,11 @@ export const METAL_WORLD: GenreWorld = {
     {
       "id": "metal-intro-14",
       "worldId": "metal",
-      "traditionId": "metal-heavy-thrash",
+      "styleIds": ["metal-heavy-thrash"],
       "name": "Lead Intro",
       "family": "Lead",
       "category": "sectionPattern",
-      "description": "A reduced entrance used to establish the genre before the full groove arrives. Built around odd meter riffing and the lead vocabulary of Metal.",
+      "description": "A reduced entrance used to establish",
       "tags": [
         "metal",
         "lead",
@@ -3341,7 +3341,7 @@ export const METAL_WORLD: GenreWorld = {
           "name": "Lead Intro — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             4,
@@ -3377,7 +3377,7 @@ export const METAL_WORLD: GenreWorld = {
           "name": "Lead Intro — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             1,
@@ -3425,7 +3425,7 @@ export const METAL_WORLD: GenreWorld = {
           "name": "Lead Intro — transition variation",
           "variationType": "transition",
           "probability": 0.16,
-          "description": "Adds a final pickup/closure gesture for section transitions.",
+          "description": "Adds a final pickup/closure gesture for",
           "onsetGrid": [
             0,
             1,
@@ -3493,11 +3493,11 @@ export const METAL_WORLD: GenreWorld = {
     {
       "id": "metal-verse-15",
       "worldId": "metal",
-      "traditionId": "metal-heavy-thrash",
+      "styleIds": ["metal-heavy-thrash"],
       "name": "Breakdown Verse Variation",
       "family": "Breakdown",
       "category": "groove",
-      "description": "A restrained verse variation with intentional headroom for melody. Built around gallop and the breakdown vocabulary of Metal.",
+      "description": "A restrained verse variation with intentional",
       "tags": [
         "metal",
         "breakdown",
@@ -3596,7 +3596,7 @@ export const METAL_WORLD: GenreWorld = {
           "name": "Breakdown Verse Variation — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             1,
             5,
@@ -3632,7 +3632,7 @@ export const METAL_WORLD: GenreWorld = {
           "name": "Breakdown Verse Variation — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             1,
             2,
@@ -3692,11 +3692,11 @@ export const METAL_WORLD: GenreWorld = {
     {
       "id": "metal-chorus-16",
       "worldId": "metal",
-      "traditionId": "metal-heavy-thrash",
+      "styleIds": ["metal-heavy-thrash"],
       "name": "Gallop Chorus Lift",
       "family": "Gallop",
       "category": "sectionPattern",
-      "description": "A higher-energy chorus layer that increases density without changing the genre identity. Built around breakdown and the gallop vocabulary of Metal.",
+      "description": "A higher-energy chorus layer that increases",
       "tags": [
         "metal",
         "gallop",
@@ -3796,7 +3796,7 @@ export const METAL_WORLD: GenreWorld = {
           "name": "Gallop Chorus Lift — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             2,
             6,
@@ -3832,7 +3832,7 @@ export const METAL_WORLD: GenreWorld = {
           "name": "Gallop Chorus Lift — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             2,
             3,
@@ -3880,7 +3880,7 @@ export const METAL_WORLD: GenreWorld = {
           "name": "Gallop Chorus Lift — transition variation",
           "variationType": "transition",
           "probability": 0.16,
-          "description": "Adds a final pickup/closure gesture for section transitions.",
+          "description": "Adds a final pickup/closure gesture for",
           "onsetGrid": [
             2,
             3,
@@ -3940,11 +3940,11 @@ export const METAL_WORLD: GenreWorld = {
     {
       "id": "metal-voice-phrasing",
       "worldId": "metal",
-      "traditionId": "metal-heavy-thrash",
+      "styleIds": ["metal-heavy-thrash"],
       "name": "Metal Vocal Phrasing",
       "family": "Vocal Phrasing",
       "category": "phrasePattern",
-      "description": "Screamed/clean vocal onset template with accented entrances and space around breakdown figures.",
+      "description": "Screamed/clean vocal onset template with accented",
       "tags": [
         "metal",
         "voice",
@@ -4030,7 +4030,7 @@ export const METAL_WORLD: GenreWorld = {
           "name": "Metal Vocal Phrasing — alternate phrasing",
           "variationType": "phraseStart",
           "probability": 0.2,
-          "description": "Alternate vocal entry placement for a second pass through the phrase.",
+          "description": "Alternate vocal entry placement for a",
           "onsetGrid": [
             0,
             3,
@@ -4070,7 +4070,7 @@ export const METAL_WORLD: GenreWorld = {
           "name": "Metal Vocal Phrasing — accent shift",
           "variationType": "accentShift",
           "probability": 0.18,
-          "description": "Same rhythmic shape with shifted emphasis on the repeat.",
+          "description": "Same rhythmic shape with shifted emphasis",
           "onsetGrid": [
             0,
             3,

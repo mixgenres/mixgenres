@@ -7,6 +7,7 @@ import { instrument } from '../data/instruments';
 import { roleForInstrument } from './arrange';
 import { Role, InstrumentKind } from '../types';
 import { roomFor } from './mixer';
+import { suggestedPaletteForGenre } from '../data/chordPalette';
 
 export interface PlanSection {
   id: string;
@@ -175,46 +176,13 @@ export function planSong(
     ];
   }
 
-  // 5. HARMONY PROGRESSIONS: Realize progression per section
-  const romanTemplates = resolved.harmony.progressionTemplates;
-  const sectionProgressions = resolved.harmony.sectionProgressions || {};
+  // 5. HARMONY: choose reusable four-chord cells from the catalog.
+  const chordCells = suggestedPaletteForGenre(genreId).map(cell => cell.chords as string[]);
+
 
   const sections: PlanSection[] = chosenTemplate.map((step, idx) => {
-    let rawChords: string[] = [];
-    
-    // Check if section has explicit chords
-    if (sectionProgressions[step.key]) {
-      rawChords = sectionProgressions[step.key];
-    } else if (sectionProgressions[step.kind]) {
-      rawChords = sectionProgressions[step.kind];
-    } else if (romanTemplates && romanTemplates.length > 0) {
-      // Draw from roman templates
-      const totalW = romanTemplates.reduce((acc, r) => acc + (r.w ?? 1), 0);
-      let rVal = rng(10 + idx) * totalW;
-      let pickedRoman = romanTemplates[0].value;
-      for (const item of romanTemplates) {
-        rVal -= (item.w ?? 1);
-        if (rVal <= 0) {
-          pickedRoman = item.value;
-          break;
-        }
-      }
-      // If template contains Roman numerals (I, IV, V, ii, vi, etc.), convert to chosen key
-      const isRoman = pickedRoman.some(c => /^[b#]?(I|II|III|IV|V|VI|VII|i|ii|iii|iv|v|vi|vii)/.test(c));
-      if (isRoman) {
-        rawChords = chordTemplateInKey(pickedRoman, baseKeyInfo);
-      } else {
-        // Transpose from original key to chosen key
-        const origKey = inferKey(pickedRoman);
-        rawChords = pickedRoman.map(ch => transposeChordSymbol(ch, baseKeyInfo.tonicPc - origKey.tonicPc));
-      }
-    } else {
-      rawChords = [chosenKeyName];
-    }
-
-    if (!rawChords || rawChords.length === 0) {
-      rawChords = [chosenKeyName];
-    }
+    const cell = chordCells[idx % Math.max(1, chordCells.length)] ?? ['C','G','Am','F'];
+    const rawChords = chordTemplateInKey(cell, baseKeyInfo);
 
     const energy = intensityToEnergy(step.intensity);
     const density: 'sparse' | 'normal' | 'busy' = 
@@ -255,19 +223,14 @@ export function planSong(
     chosenInstruments = defaultRosterMap[genreId] || ['drums', 'electric-bass', 'piano', 'electric-guitar', 'synth-lead'];
   }
 
-  // Ensure 5 distinct instruments
+  // A style owns its ensemble. Never pad it with generic instruments: doing
+  // so was a major source of culturally incorrect six-piece/genre-blended
+  // arrangements. Styles are capped at five voices, but may intentionally use
+  // fewer when the tradition calls for a sparse ensemble.
   const uniqueInstruments: string[] = [];
   for (const inst of chosenInstruments) {
     if (!uniqueInstruments.includes(inst) && uniqueInstruments.length < 5) {
       uniqueInstruments.push(inst);
-    }
-  }
-  while (uniqueInstruments.length < 5) {
-    const fallbacks = ['piano', 'acoustic-bass', 'drums', 'strings', 'flute'];
-    for (const fb of fallbacks) {
-      if (!uniqueInstruments.includes(fb) && uniqueInstruments.length < 5) {
-        uniqueInstruments.push(fb);
-      }
     }
   }
 

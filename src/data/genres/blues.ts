@@ -6,15 +6,15 @@ export const BLUES_WORLD: GenreWorld = {
   "family": "Roots / Blues",
   "color": "#6f7f9a",
   "level": "world",
-  "description": "A deep blues vocabulary built around repeating forms, shuffle and straight feels, call-and-response, expressive phrasing, bass movement, turnarounds, and ensemble interaction.",
-  "traditions": [
+  "description": "A deep blues vocabulary built around",
+  "styleDefinitions": [
     {
       "id": "blues-chicago",
       "worldId": "blues",
       "name": "Chicago Blues",
       "origin": "Chicago, Illinois",
       "era": "1940s–1960s",
-      "description": "Electric • 12-bar • Driving\nAmplified harmonica and guitar.\nMuddy Waters · Howlin' Wolf",
+      "description": "Electric • 12-bar • Driving\nAmplified harmonica",
       "characteristicInstruments": [
         "electric-guitar",
         "harmonica",
@@ -103,7 +103,7 @@ export const BLUES_WORLD: GenreWorld = {
       "name": "Delta Blues",
       "origin": "Mississippi Delta",
       "era": "1920s–1930s",
-      "description": "Raw • Acoustic • Bottleneck\nSlide guitar and stomping.\nRobert Johnson · Charley Patton",
+      "description": "Raw • Acoustic • Bottleneck\nSlide guitar",
       "characteristicInstruments": [
         "guitar",
         "voice",
@@ -175,7 +175,7 @@ export const BLUES_WORLD: GenreWorld = {
       "name": "Texas Blues",
       "origin": "Texas, USA",
       "era": "1950s–1980s",
-      "description": "Swinging • Sharp • Virtuosic\nSingle-note electric guitar solos.\nStevie Ray Vaughan · Freddie King",
+      "description": "Swinging • Sharp • Virtuosic\nSingle-note electric",
       "characteristicInstruments": [
         "electric-guitar",
         "bass",
@@ -264,7 +264,7 @@ export const BLUES_WORLD: GenreWorld = {
       "name": "Piedmont Blues",
       "origin": "East Coast USA (Piedmont region)",
       "era": "1920s–1940s",
-      "description": "Bouncy • Ragtime • Fingerpicked\nSyncopated acoustic fingerstyle guitar.\nBlind Willie McTell · Reverend Gary Davis",
+      "description": "Bouncy • Ragtime • Fingerpicked\nSyncopated acoustic",
       "characteristicInstruments": [
         "guitar",
         "harmonica",
@@ -343,7 +343,7 @@ export const BLUES_WORLD: GenreWorld = {
       "name": "Jump Blues",
       "origin": "Kansas City / Los Angeles",
       "era": "1940s–1950s",
-      "description": "Fast • Horns • Swinging\nUpbeat predecessor to rock.\nLouis Jordan · Big Joe Turner",
+      "description": "Fast • Horns • Swinging\nUpbeat predecessor",
       "characteristicInstruments": [
         "brass",
         "piano",
@@ -432,7 +432,7 @@ export const BLUES_WORLD: GenreWorld = {
       "name": "Hill Country Blues",
       "origin": "North Mississippi Hill Country",
       "era": "1960s–Present",
-      "description": "Hypnotic • One-chord • Droning\nRelentless groove-based blues.\nR.L. Burnside · Junior Kimbrough",
+      "description": "Hypnotic • One-chord • Droning\nRelentless groove-based",
       "characteristicInstruments": [
         "electric-guitar",
         "drums",
@@ -511,7 +511,7 @@ export const BLUES_WORLD: GenreWorld = {
       "name": "Swamp Blues",
       "origin": "Baton Rouge, Louisiana",
       "era": "1950s–1960s",
-      "description": "Laid-back • Reverb • Tremolo\nLethargic Louisiana atmosphere.\nSlim Harpo · Lightnin' Slim",
+      "description": "Laid-back • Reverb • Tremolo\nLethargic Louisiana",
       "characteristicInstruments": [
         "electric-guitar",
         "harmonica",
@@ -585,7 +585,7 @@ export const BLUES_WORLD: GenreWorld = {
       "name": "Soul Blues",
       "origin": "Memphis / Chicago / Jackson, MS",
       "era": "1960s–1970s",
-      "description": "Smooth • Horn-fed • Expressive\nGospel-influenced 60s blues.\nB.B. King · Bobby \"Blue\" Bland",
+      "description": "Smooth • Horn-fed • Expressive\nGospel-influenced 60s",
       "characteristicInstruments": [
         "electric-guitar",
         "brass",
@@ -729,11 +729,11 @@ export const BLUES_WORLD: GenreWorld = {
     {
       "id": "blues-shuffle",
       "worldId": "blues",
-      "traditionId": "blues-chicago",
+      "styleIds": ["blues-chicago"],
       "name": "Chicago Shuffle",
       "family": "Shuffle",
       "category": "fill",
-      "description": "A repeating triplet-derived blues pulse with a strong backbeat and room for guitar or vocal answers.",
+      "description": "A repeating triplet-derived blues pulse with",
       "tags": [
         "blues",
         "shuffle",
@@ -817,7 +817,7 @@ export const BLUES_WORLD: GenreWorld = {
             0.65,
             1
           ],
-          "description": "A short turnaround-oriented fill that leaves the vocal phrase intact."
+          "description": "A short turnaround-oriented fill that leaves"
         },
         {
           "id": "blues-shuffle-v-02",
@@ -825,7 +825,7 @@ export const BLUES_WORLD: GenreWorld = {
           "name": "Chicago Shuffle — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             3,
@@ -892,11 +892,11 @@ export const BLUES_WORLD: GenreWorld = {
     {
       "id": "blues-boogie-bass",
       "worldId": "blues",
-      "traditionId": "blues-texas",
+      "styleIds": ["blues-texas"],
       "name": "Boogie Root–Fifth Bass",
       "family": "Boogie Bass",
       "category": "ostinato",
-      "description": "Alternating root, fifth and sixth movement that establishes the blues cycle without overcrowding the upper voices.",
+      "description": "Alternating root, fifth and sixth movement",
       "tags": [
         "blues",
         "boogie",
@@ -991,7 +991,7 @@ export const BLUES_WORLD: GenreWorld = {
             0.8,
             1
           ],
-          "description": "A rising sixth/chromatic approach used to push into the next chord or phrase."
+          "description": "A rising sixth/chromatic approach used to"
         },
         {
           "id": "blues-boogie-bass-v-02",
@@ -999,7 +999,7 @@ export const BLUES_WORLD: GenreWorld = {
           "name": "Boogie Root–Fifth Bass — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             2,
@@ -1072,7 +1072,7 @@ export const BLUES_WORLD: GenreWorld = {
           "sourceRole": "drums",
           "targetRole": "bass",
           "relationship": "reinforce",
-          "description": "Low-end attacks reinforce the main pulse without doubling every subdivision.",
+          "description": "Low-end attacks reinforce the main pulse",
           "timingOffsetSteps": 0,
           "probability": 0.78
         }
@@ -1085,11 +1085,11 @@ export const BLUES_WORLD: GenreWorld = {
     {
       "id": "blues-turnaround",
       "worldId": "blues",
-      "traditionId": "blues-delta",
+      "styleIds": ["blues-delta"],
       "name": "12-Bar Turnaround",
       "family": "Turnaround",
       "category": "cadence",
-      "description": "A compact cadence in the final bars that clearly announces the return to the top of the blues cycle.",
+      "description": "A compact cadence in the final",
       "tags": [
         "blues",
         "12-bar",
@@ -1159,7 +1159,7 @@ export const BLUES_WORLD: GenreWorld = {
           "name": "12-Bar Turnaround — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             6,
@@ -1195,7 +1195,7 @@ export const BLUES_WORLD: GenreWorld = {
           "name": "12-Bar Turnaround — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             3,
@@ -1243,7 +1243,7 @@ export const BLUES_WORLD: GenreWorld = {
           "name": "12-Bar Turnaround — transition variation",
           "variationType": "transition",
           "probability": 0.16,
-          "description": "Adds a final pickup/closure gesture for section transitions.",
+          "description": "Adds a final pickup/closure gesture for",
           "onsetGrid": [
             0,
             3,
@@ -1318,11 +1318,11 @@ export const BLUES_WORLD: GenreWorld = {
     {
       "id": "blues-slow-12-8",
       "worldId": "blues",
-      "traditionId": "blues-chicago",
+      "styleIds": ["blues-chicago"],
       "name": "Slow 12/8 Groove",
       "family": "Drums",
       "category": "break",
-      "description": "Slow heavy triplet feel with snare on beats 2 and 4.",
+      "description": "Slow heavy triplet feel with snare",
       "tags": [],
       "scopes": [
         "measure"
@@ -1369,7 +1369,7 @@ export const BLUES_WORLD: GenreWorld = {
           "name": "Slow 12/8 Groove — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             6,
@@ -1397,7 +1397,7 @@ export const BLUES_WORLD: GenreWorld = {
           "name": "Slow 12/8 Groove — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             3,
@@ -1455,11 +1455,11 @@ export const BLUES_WORLD: GenreWorld = {
     {
       "id": "blues-texas-shuffle",
       "worldId": "blues",
-      "traditionId": "blues-texas",
+      "styleIds": ["blues-texas"],
       "name": "Texas Shuffle",
       "family": "Guitar",
       "category": "groove",
-      "description": "Driving guitar shuffle with muted rake and snappy upstrokes.",
+      "description": "Driving guitar shuffle with muted rake",
       "tags": [],
       "scopes": [
         "measure"
@@ -1520,7 +1520,7 @@ export const BLUES_WORLD: GenreWorld = {
           "name": "Texas Shuffle — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             3,
@@ -1556,7 +1556,7 @@ export const BLUES_WORLD: GenreWorld = {
           "name": "Texas Shuffle — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             2,
@@ -1629,7 +1629,7 @@ export const BLUES_WORLD: GenreWorld = {
           "sourceRole": "voice",
           "targetRole": "harmony",
           "relationship": "leaveSpace",
-          "description": "Harmony reduces density under vocal entries so the phrase remains foregrounded.",
+          "description": "Harmony reduces density under vocal entries",
           "timingOffsetSteps": 0,
           "probability": 0.72
         }
@@ -1642,11 +1642,11 @@ export const BLUES_WORLD: GenreWorld = {
     {
       "id": "blues-soul-groove",
       "worldId": "blues",
-      "traditionId": "blues-soul",
+      "styleIds": ["blues-soul"],
       "name": "Soul Blues Beat",
       "family": "Drums",
       "category": "groove",
-      "description": "Straight 8ths Memphis style beat with deep snare punch.",
+      "description": "Straight 8ths Memphis style beat with",
       "tags": [],
       "scopes": [
         "measure"
@@ -1693,7 +1693,7 @@ export const BLUES_WORLD: GenreWorld = {
           "name": "Soul Blues Beat — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             4,
@@ -1721,7 +1721,7 @@ export const BLUES_WORLD: GenreWorld = {
           "name": "Soul Blues Beat — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             2,
@@ -1778,7 +1778,7 @@ export const BLUES_WORLD: GenreWorld = {
           "sourceRole": "bass",
           "targetRole": "drums",
           "relationship": "accentWith",
-          "description": "Bass accents align with selected kick/backbeat events for a tighter pocket.",
+          "description": "Bass accents align with selected kick/backbeat",
           "timingOffsetSteps": 0,
           "probability": 0.65
         }
@@ -1791,11 +1791,11 @@ export const BLUES_WORLD: GenreWorld = {
     {
       "id": "blues-bass-walk",
       "worldId": "blues",
-      "traditionId": "blues-chicago",
+      "styleIds": ["blues-chicago"],
       "name": "Walking Blues Bass",
       "family": "Bass",
       "category": "groove",
-      "description": "Quarter note walking bass leading through the changes.",
+      "description": "Quarter note walking bass leading through",
       "tags": [],
       "scopes": [
         "measure"
@@ -1842,7 +1842,7 @@ export const BLUES_WORLD: GenreWorld = {
           "name": "Walking Blues Bass — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             2,
@@ -1870,7 +1870,7 @@ export const BLUES_WORLD: GenreWorld = {
           "name": "Walking Blues Bass — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             1,
@@ -1928,11 +1928,11 @@ export const BLUES_WORLD: GenreWorld = {
     {
       "id": "blues-piano-triplets",
       "worldId": "blues",
-      "traditionId": "blues-chicago",
+      "styleIds": ["blues-chicago"],
       "name": "Piano Triplets",
       "family": "Piano",
       "category": "groove",
-      "description": "Rolling right hand blues triplets over steady left-hand pulse.",
+      "description": "Rolling right hand blues triplets over",
       "tags": [],
       "scopes": [
         "measure"
@@ -2005,7 +2005,7 @@ export const BLUES_WORLD: GenreWorld = {
           "name": "Piano Triplets — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             2,
@@ -2053,7 +2053,7 @@ export const BLUES_WORLD: GenreWorld = {
           "name": "Piano Triplets — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             1,
@@ -2143,11 +2143,11 @@ export const BLUES_WORLD: GenreWorld = {
     {
       "id": "blues-horn-stabs",
       "worldId": "blues",
-      "traditionId": "blues-soul",
+      "styleIds": ["blues-soul"],
       "name": "Horn Stabs",
       "family": "Brass",
       "category": "groove",
-      "description": "Punchy brass punctuation answering the vocal line.",
+      "description": "Punchy brass punctuation answering the vocal",
       "tags": [],
       "scopes": [
         "measure"
@@ -2192,7 +2192,7 @@ export const BLUES_WORLD: GenreWorld = {
           "name": "Horn Stabs — played variation",
           "variationType": "accentShift",
           "probability": 0.18,
-          "description": "A light played variation for sparse patterns with only a few attacks.",
+          "description": "A light played variation for sparse",
           "onsetGrid": [
             2,
             6
@@ -2216,7 +2216,7 @@ export const BLUES_WORLD: GenreWorld = {
           "name": "Horn Stabs — played variation",
           "variationType": "accentShift",
           "probability": 0.18,
-          "description": "A light played variation for sparse patterns with only a few attacks.",
+          "description": "A light played variation for sparse",
           "onsetGrid": [
             2,
             6
@@ -2266,11 +2266,11 @@ export const BLUES_WORLD: GenreWorld = {
     {
       "id": "blues-delta-slide",
       "worldId": "blues",
-      "traditionId": "blues-delta",
+      "styleIds": ["blues-delta"],
       "name": "Slide Guitar Lick",
       "family": "Guitar",
       "category": "groove",
-      "description": "Acoustic slide guitar response with vocal glissando.",
+      "description": "Acoustic slide guitar response with vocal",
       "tags": [],
       "scopes": [
         "measure"
@@ -2322,7 +2322,7 @@ export const BLUES_WORLD: GenreWorld = {
           "name": "Slide Guitar Lick — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             8,
@@ -2350,7 +2350,7 @@ export const BLUES_WORLD: GenreWorld = {
           "name": "Slide Guitar Lick — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             4,
@@ -2412,11 +2412,11 @@ export const BLUES_WORLD: GenreWorld = {
     {
       "id": "blues-rhumba",
       "worldId": "blues",
-      "traditionId": "blues-chicago",
+      "styleIds": ["blues-chicago"],
       "name": "Blues Rhumba",
       "family": "Drums",
       "category": "groove",
-      "description": "Cross-stick and tom rhumba beat popularized in Chicago blues.",
+      "description": "Cross-stick and tom rhumba beat popularized",
       "tags": [],
       "scopes": [
         "measure"
@@ -2469,7 +2469,7 @@ export const BLUES_WORLD: GenreWorld = {
           "name": "Blues Rhumba — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             6,
@@ -2501,7 +2501,7 @@ export const BLUES_WORLD: GenreWorld = {
           "name": "Blues Rhumba — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             3,
@@ -2567,11 +2567,11 @@ export const BLUES_WORLD: GenreWorld = {
     {
       "id": "blues-organ-swell",
       "worldId": "blues",
-      "traditionId": "blues-soul",
+      "styleIds": ["blues-soul"],
       "name": "Organ Swell",
       "family": "Keys",
       "category": "groove",
-      "description": "Hammond B3 chord swell rising into the backbeat.",
+      "description": "Hammond B3 chord swell rising into",
       "tags": [],
       "scopes": [
         "measure"
@@ -2614,7 +2614,7 @@ export const BLUES_WORLD: GenreWorld = {
           "name": "Organ Swell — played variation",
           "variationType": "accentShift",
           "probability": 0.18,
-          "description": "A light played variation for sparse patterns with only a few attacks.",
+          "description": "A light played variation for sparse",
           "onsetGrid": [
             0,
             2
@@ -2638,7 +2638,7 @@ export const BLUES_WORLD: GenreWorld = {
           "name": "Organ Swell — played variation",
           "variationType": "accentShift",
           "probability": 0.18,
-          "description": "A light played variation for sparse patterns with only a few attacks.",
+          "description": "A light played variation for sparse",
           "onsetGrid": [
             0,
             2
@@ -2688,11 +2688,11 @@ export const BLUES_WORLD: GenreWorld = {
     {
       "id": "blues-phrase-13",
       "worldId": "blues",
-      "traditionId": "blues-delta",
+      "styleIds": ["blues-delta"],
       "name": "12-Bar Phrase",
       "family": "12-Bar",
       "category": "phrasePattern",
-      "description": "A phrase-level rhythmic template that leaves deliberate space for melodic expression. Built around turnaround and the 12-bar vocabulary of Blues.",
+      "description": "A phrase-level rhythmic template that leaves",
       "tags": [
         "blues",
         "12-bar",
@@ -2781,7 +2781,7 @@ export const BLUES_WORLD: GenreWorld = {
           "name": "12-Bar Phrase — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             3,
@@ -2817,7 +2817,7 @@ export const BLUES_WORLD: GenreWorld = {
           "name": "12-Bar Phrase — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             2,
@@ -2873,11 +2873,11 @@ export const BLUES_WORLD: GenreWorld = {
     {
       "id": "blues-call-14",
       "worldId": "blues",
-      "traditionId": "blues-delta",
+      "styleIds": ["blues-delta"],
       "name": "Rake Response",
       "family": "Rake",
       "category": "interactionPattern",
-      "description": "A call-and-response shape that leaves the next phrase open for an answer. Built around fills and the rake vocabulary of Blues.",
+      "description": "A call-and-response shape that leaves the",
       "tags": [
         "blues",
         "rake",
@@ -2967,7 +2967,7 @@ export const BLUES_WORLD: GenreWorld = {
           "name": "Rake Response — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             1,
             4,
@@ -3003,7 +3003,7 @@ export const BLUES_WORLD: GenreWorld = {
           "name": "Rake Response — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             1,
             3,
@@ -3047,7 +3047,7 @@ export const BLUES_WORLD: GenreWorld = {
           "name": "Rake Response — transition variation",
           "variationType": "transition",
           "probability": 0.16,
-          "description": "Adds a final pickup/closure gesture for section transitions.",
+          "description": "Adds a final pickup/closure gesture for",
           "onsetGrid": [
             1,
             3,
@@ -3111,11 +3111,11 @@ export const BLUES_WORLD: GenreWorld = {
     {
       "id": "blues-anchor-15",
       "worldId": "blues",
-      "traditionId": "blues-delta",
+      "styleIds": ["blues-delta"],
       "name": "Call & Response Anchor",
       "family": "Call & Response",
       "category": "ostinato",
-      "description": "A repeating anchor that locks the low end to the groove. Built around 12-bar and the call & response vocabulary of Blues.",
+      "description": "A repeating anchor that locks the",
       "tags": [
         "blues",
         "call-response",
@@ -3205,7 +3205,7 @@ export const BLUES_WORLD: GenreWorld = {
           "name": "Call & Response Anchor — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             2,
             5,
@@ -3241,7 +3241,7 @@ export const BLUES_WORLD: GenreWorld = {
           "name": "Call & Response Anchor — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             2,
             4,
@@ -3297,11 +3297,11 @@ export const BLUES_WORLD: GenreWorld = {
     {
       "id": "blues-comp-16",
       "worldId": "blues",
-      "traditionId": "blues-delta",
+      "styleIds": ["blues-delta"],
       "name": "Turnaround Comping",
       "family": "Turnaround",
       "category": "groove",
-      "description": "A genre-shaped accompaniment cell that supports the lead without occupying every subdivision. Built around shuffle and the turnaround vocabulary of Blues.",
+      "description": "A genre-shaped accompaniment cell that supports",
       "tags": [
         "blues",
         "turnaround",
@@ -3392,7 +3392,7 @@ export const BLUES_WORLD: GenreWorld = {
           "name": "Turnaround Comping — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             4,
             7,
@@ -3428,7 +3428,7 @@ export const BLUES_WORLD: GenreWorld = {
           "name": "Turnaround Comping — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             4,
             6,
@@ -3484,11 +3484,11 @@ export const BLUES_WORLD: GenreWorld = {
     {
       "id": "blues-voice-phrasing",
       "worldId": "blues",
-      "traditionId": "blues-delta",
+      "styleIds": ["blues-delta"],
       "name": "Blues Vocal Phrasing",
       "family": "Vocal Phrasing",
       "category": "phrasePattern",
-      "description": "12-bar vocal phrase placement with call-and-response space for guitar or piano answers.",
+      "description": "12-bar vocal phrase placement with call-and-response",
       "tags": [
         "blues",
         "voice",
@@ -3575,7 +3575,7 @@ export const BLUES_WORLD: GenreWorld = {
           "name": "Blues Vocal Phrasing — alternate phrasing",
           "variationType": "phraseStart",
           "probability": 0.2,
-          "description": "Alternate vocal entry placement for a second pass through the phrase.",
+          "description": "Alternate vocal entry placement for a",
           "onsetGrid": [
             0,
             3,
@@ -3615,7 +3615,7 @@ export const BLUES_WORLD: GenreWorld = {
           "name": "Blues Vocal Phrasing — accent shift",
           "variationType": "accentShift",
           "probability": 0.18,
-          "description": "Same rhythmic shape with shifted emphasis on the repeat.",
+          "description": "Same rhythmic shape with shifted emphasis",
           "onsetGrid": [
             0,
             3,

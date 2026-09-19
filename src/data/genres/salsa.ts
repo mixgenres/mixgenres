@@ -6,15 +6,15 @@ export const SALSA_WORLD: GenreWorld = {
   "family": "Caribbean / Cuban",
   "color": "#d3a23d",
   "level": "world",
-  "description": "The monumental Afro-Cuban & Salsa universe: Son Clave 2-3 & 3-2, syncopated bass tumbaos, interlocking piano montunos, cáscara, bongo martillo, conga marchas, and explosive horn mambos.",
-  "traditions": [
+  "description": "The monumental Afro-Cuban & Salsa universe:",
+  "styleDefinitions": [
     {
       "id": "salsa-mambo",
       "worldId": "salsa",
       "name": "Mambo",
       "origin": "Havana / New York",
       "era": "1940s–1950s",
-      "description": "Big Band • Clave 2-3 • On2 Dance\nElectrifying big band brass polyrhythms.\nPérez Prado · Tito Puente",
+      "description": "Big Band • Clave 2-3 •",
       "characteristicInstruments": [
         "brass",
         "timbales",
@@ -84,7 +84,7 @@ export const SALSA_WORLD: GenreWorld = {
       "name": "Salsa Dura",
       "origin": "New York City (Fania Records)",
       "era": "1970s",
-      "description": "Trombone Heavy • Clave Driven • Street Grit\nRaw, hard-hitting NYC barrio salsa.\nWillie Colón · Héctor Lavoe",
+      "description": "Trombone Heavy • Clave Driven •",
       "characteristicInstruments": [
         "brass",
         "congas",
@@ -162,7 +162,7 @@ export const SALSA_WORLD: GenreWorld = {
       "name": "Son Montuno",
       "origin": "Eastern Cuba / Havana",
       "era": "1920s–1940s",
-      "description": "Tres Cubano • Bongo • Root of Salsa\nThe foundational Cuban country groove.\nArsenio Rodríguez · Benny Moré",
+      "description": "Tres Cubano • Bongo • Root",
       "characteristicInstruments": [
         "tres",
         "bongo",
@@ -239,7 +239,7 @@ export const SALSA_WORLD: GenreWorld = {
       "name": "Cha-Cha-Chá",
       "origin": "Havana, Cuba",
       "era": "1950s",
-      "description": "Güiro • Flute & Violins • 4/4 Shuffle\nElegant, accessible mid-tempo Cuban dance.\nEnrique Jorrín · Orquesta Aragón",
+      "description": "Güiro • Flute & Violins •",
       "characteristicInstruments": [
         "flute",
         "violin",
@@ -320,7 +320,7 @@ export const SALSA_WORLD: GenreWorld = {
       "name": "Salsa Romántica",
       "origin": "Puerto Rico / Miami",
       "era": "1980s–1990s",
-      "description": "Lush Synths • Romantic • Polished\nSmooth radio-friendly sensual salsa.\nEddie Santiago · Frankie Ruiz",
+      "description": "Lush Synths • Romantic • Polished\nSmooth",
       "characteristicInstruments": [
         "brass",
         "piano",
@@ -463,11 +463,11 @@ export const SALSA_WORLD: GenreWorld = {
     {
       "id": "afro-clave-son-23",
       "worldId": "salsa",
-      "traditionId": "afro-son-montuno",
+      "styleIds": ["afro-son-montuno"],
       "name": "Son Clave 2–3 Structural Timeline",
       "family": "Clave Timelines",
       "category": "ostinato",
-      "description": "The structural rhythmic key: 2-side (beats 2 & 3 in bar 1) leading to 3-side (beats 1, 2-and, 4 in bar 2).",
+      "description": "The structural rhythmic key: 2-side (beats",
       "tags": [
         "clave",
         "son",
@@ -555,7 +555,7 @@ export const SALSA_WORLD: GenreWorld = {
             0.9,
             0.95
           ],
-          "description": "Son clave with 3-side in measure 1 and 2-side in measure 2."
+          "description": "Son clave with 3-side in measure"
         },
         {
           "id": "afro-clave-rumba-23",
@@ -577,7 +577,7 @@ export const SALSA_WORLD: GenreWorld = {
             0.85,
             0.95
           ],
-          "description": "Rumba clave where the 3rd stroke is displaced to the final 16th note for added swing."
+          "description": "Rumba clave where the 3rd stroke"
         }
       ],
       "harmonicContext": [
@@ -610,7 +610,7 @@ export const SALSA_WORLD: GenreWorld = {
           "sourceRole": "drums",
           "targetRole": "bass",
           "relationship": "reinforce",
-          "description": "Low-end attacks reinforce the main pulse without doubling every subdivision.",
+          "description": "Low-end attacks reinforce the main pulse",
           "timingOffsetSteps": 0,
           "probability": 0.78
         }
@@ -619,11 +619,11 @@ export const SALSA_WORLD: GenreWorld = {
     {
       "id": "afro-bass-tumbao",
       "worldId": "salsa",
-      "traditionId": "afro-son-montuno",
+      "styleIds": ["afro-son-montuno"],
       "name": "Bass Tumbao (Anticipated Harmony)",
       "family": "Tumbao Basslines",
       "category": "ostinato",
-      "description": "Classic bass tumbao hitting on the \"and\" of 2 (beat 2-and, step 6) and anticipation on 4 (step 12), floating over downbeat 1.",
+      "description": "Classic bass tumbao hitting on the",
       "tags": [
         "bass",
         "tumbao",
@@ -694,7 +694,7 @@ export const SALSA_WORLD: GenreWorld = {
             0.85,
             1
           ],
-          "description": "Tumbao incorporating a light downbeat on 1 before launching the syncopation."
+          "description": "Tumbao incorporating a light downbeat on"
         },
         {
           "id": "afro-bass-tumbao-salsa-walk",
@@ -714,7 +714,7 @@ export const SALSA_WORLD: GenreWorld = {
             0.95,
             0.8
           ],
-          "description": "Leading bass walk setting up the chord modulation on the next bar."
+          "description": "Leading bass walk setting up the"
         }
       ],
       "harmonicContext": [
@@ -747,7 +747,7 @@ export const SALSA_WORLD: GenreWorld = {
           "sourceRole": "voice",
           "targetRole": "harmony",
           "relationship": "leaveSpace",
-          "description": "Harmony reduces density under vocal entries so the phrase remains foregrounded.",
+          "description": "Harmony reduces density under vocal entries",
           "timingOffsetSteps": 0,
           "probability": 0.72
         }
@@ -756,11 +756,11 @@ export const SALSA_WORLD: GenreWorld = {
     {
       "id": "afro-piano-montuno",
       "worldId": "salsa",
-      "traditionId": "afro-son-montuno",
+      "styleIds": ["afro-son-montuno"],
       "name": "Piano Montuno / Guajeo (Interlocking Arpeggios)",
       "family": "Montuno Interlocking Figures",
       "category": "ostinato",
-      "description": "Two-bar syncopated piano ostinato that weaves octaves and triads around the clave timeline.",
+      "description": "Two-bar syncopated piano ostinato that weaves",
       "tags": [
         "piano",
         "montuno",
@@ -884,7 +884,7 @@ export const SALSA_WORLD: GenreWorld = {
             1,
             1
           ],
-          "description": "Aggressive two-handed dissonant block chords characteristic of Eddie Palmieri."
+          "description": "Aggressive two-handed dissonant block chords characteristic"
         },
         {
           "id": "afro-piano-montuno-v-02",
@@ -892,7 +892,7 @@ export const SALSA_WORLD: GenreWorld = {
           "name": "Piano Montuno / Guajeo (Interlocking Arpeggios) — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             3,
@@ -982,7 +982,7 @@ export const SALSA_WORLD: GenreWorld = {
           "sourceRole": "lead",
           "targetRole": "voice",
           "relationship": "answer",
-          "description": "Lead instrument answers a vocal phrase in the open space after the line.",
+          "description": "Lead instrument answers a vocal phrase",
           "timingOffsetSteps": 2,
           "probability": 0.58
         }
@@ -991,11 +991,11 @@ export const SALSA_WORLD: GenreWorld = {
     {
       "id": "afro-timbal-cascara",
       "worldId": "salsa",
-      "traditionId": "afro-salsa-dura",
+      "styleIds": ["afro-salsa-dura"],
       "name": "Timbal Cáscara Pattern (Side-Shell Stick)",
       "family": "Percussion Timelines",
       "category": "ostinato",
-      "description": "Crisp wooden/metal click on the side of the timbale pailas during verse and vocal sections.",
+      "description": "Crisp wooden/metal click on the side",
       "tags": [
         "timbales",
         "cascara",
@@ -1120,7 +1120,7 @@ export const SALSA_WORLD: GenreWorld = {
             0.95,
             0.85
           ],
-          "description": "Switch from cáscara to heavy hand-held cowbell driving the montuno/coro."
+          "description": "Switch from cáscara to heavy hand-held"
         },
         {
           "id": "afro-timbal-cascara-v-02",
@@ -1128,7 +1128,7 @@ export const SALSA_WORLD: GenreWorld = {
           "name": "Timbal Cáscara Pattern (Side-Shell Stick) — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             2,
@@ -1234,7 +1234,7 @@ export const SALSA_WORLD: GenreWorld = {
           "sourceRole": "bass",
           "targetRole": "drums",
           "relationship": "accentWith",
-          "description": "Bass accents align with selected kick/backbeat events for a tighter pocket.",
+          "description": "Bass accents align with selected kick/backbeat",
           "timingOffsetSteps": 0,
           "probability": 0.65
         }
@@ -1243,11 +1243,11 @@ export const SALSA_WORLD: GenreWorld = {
     {
       "id": "afro-conga-tumbao",
       "worldId": "salsa",
-      "traditionId": "afro-son-montuno",
+      "styleIds": ["afro-son-montuno"],
       "name": "Conga Marcha (Slap & Open Tones)",
       "family": "Conga Tumbaos",
       "category": "ostinato",
-      "description": "Heel-toe hand technique on beats 1 & 3, sharp slap on beat 2, and resonant open tones on beat 4 & 4-and.",
+      "description": "Heel-toe hand technique on beats 1",
       "tags": [
         "congas",
         "tumbao",
@@ -1362,7 +1362,7 @@ export const SALSA_WORLD: GenreWorld = {
           "name": "Bongo Martillo",
           "variationType": "instrumentSpecific",
           "probability": 0.18,
-          "description": "Steady martillo rhythm with slap on 4 and hembra open stroke on 12. Retained as a variation rather than a separate pattern entry.",
+          "description": "Steady martillo rhythm with slap on",
           "onsetGrid": [
             0,
             2,
@@ -1429,7 +1429,7 @@ export const SALSA_WORLD: GenreWorld = {
           "sourceRole": "harmony",
           "targetRole": "lead",
           "relationship": "leaveSpace",
-          "description": "Accompaniment thins when the instrumental lead enters.",
+          "description": "Accompaniment thins when the instrumental lead",
           "timingOffsetSteps": 0,
           "probability": 0.62
         }
@@ -1438,11 +1438,11 @@ export const SALSA_WORLD: GenreWorld = {
     {
       "id": "afro-mambo-horn-hits",
       "worldId": "salsa",
-      "traditionId": "afro-salsa-dura",
+      "styleIds": ["afro-salsa-dura"],
       "name": "Mambo Section Horn Stabs & Punctuation",
       "family": "Horn Mambos",
       "category": "phrasePattern",
-      "description": "Explosive syncopated horn riffs and stabs interjected over the continuous montuno section.",
+      "description": "Explosive syncopated horn riffs and stabs",
       "tags": [
         "horns",
         "mambo",
@@ -1541,7 +1541,7 @@ export const SALSA_WORLD: GenreWorld = {
           "name": "Mambo Section Horn Stabs & Punctuation — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             6,
             12,
@@ -1604,11 +1604,11 @@ export const SALSA_WORLD: GenreWorld = {
     {
       "id": "salsa-campana",
       "worldId": "salsa",
-      "traditionId": "afro-salsa-dura",
+      "styleIds": ["afro-salsa-dura"],
       "name": "Campana (Bongo Bell)",
       "family": "Bell",
       "category": "fill",
-      "description": "Driving hand-held bongo bell pattern with low mouth strikes and high body taps.",
+      "description": "Driving hand-held bongo bell pattern with",
       "tags": [],
       "scopes": [
         "measure"
@@ -1665,7 +1665,7 @@ export const SALSA_WORLD: GenreWorld = {
           "name": "Campana (Bongo Bell) — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             6,
@@ -1701,7 +1701,7 @@ export const SALSA_WORLD: GenreWorld = {
           "name": "Campana (Bongo Bell) — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             4,
@@ -1771,11 +1771,11 @@ export const SALSA_WORLD: GenreWorld = {
     {
       "id": "salsa-guiro",
       "worldId": "salsa",
-      "traditionId": "afro-salsa-dura",
+      "styleIds": ["afro-salsa-dura"],
       "name": "Guiro Pattern",
       "family": "Guiro",
       "category": "break",
-      "description": "Traditional long down-stroke and rapid up-up scrapes (ch-ch-ch).",
+      "description": "Traditional long down-stroke and rapid up-up",
       "tags": [],
       "scopes": [
         "measure"
@@ -1846,7 +1846,7 @@ export const SALSA_WORLD: GenreWorld = {
           "name": "Guiro Pattern — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             3,
@@ -1894,7 +1894,7 @@ export const SALSA_WORLD: GenreWorld = {
           "name": "Guiro Pattern — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             2,
@@ -1984,11 +1984,11 @@ export const SALSA_WORLD: GenreWorld = {
     {
       "id": "salsa-maracas",
       "worldId": "salsa",
-      "traditionId": "afro-salsa-dura",
+      "styleIds": ["afro-salsa-dura"],
       "name": "Maracas",
       "family": "Maracas",
       "category": "cadence",
-      "description": "Crisp forward-back maraca pulse with accented downbeats.",
+      "description": "Crisp forward-back maraca pulse with accented",
       "tags": [],
       "scopes": [
         "measure"
@@ -2049,7 +2049,7 @@ export const SALSA_WORLD: GenreWorld = {
           "name": "Maracas — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             2,
@@ -2085,7 +2085,7 @@ export const SALSA_WORLD: GenreWorld = {
           "name": "Maracas — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             1,
@@ -2159,7 +2159,7 @@ export const SALSA_WORLD: GenreWorld = {
     {
       "id": "salsa-clave-32",
       "worldId": "salsa",
-      "traditionId": "afro-salsa-dura",
+      "styleIds": ["afro-salsa-dura"],
       "name": "3-2 Son Clave",
       "family": "Clave",
       "category": "groove",
@@ -2213,7 +2213,7 @@ export const SALSA_WORLD: GenreWorld = {
           "name": "3-2 Son Clave — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             6,
@@ -2241,7 +2241,7 @@ export const SALSA_WORLD: GenreWorld = {
           "name": "3-2 Son Clave — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             3,
@@ -2303,11 +2303,11 @@ export const SALSA_WORLD: GenreWorld = {
     {
       "id": "salsa-timbal-bell",
       "worldId": "salsa",
-      "traditionId": "afro-salsa-dura",
+      "styleIds": ["afro-salsa-dura"],
       "name": "Timbal Mambo Bell",
       "family": "Bell",
       "category": "groove",
-      "description": "Timbalero mambo cowbell pattern riding the montuno.",
+      "description": "Timbalero mambo cowbell pattern riding the",
       "tags": [],
       "scopes": [
         "measure"
@@ -2366,7 +2366,7 @@ export const SALSA_WORLD: GenreWorld = {
           "name": "Timbal Mambo Bell — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             4,
@@ -2402,7 +2402,7 @@ export const SALSA_WORLD: GenreWorld = {
           "name": "Timbal Mambo Bell — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             3,
@@ -2476,11 +2476,11 @@ export const SALSA_WORLD: GenreWorld = {
     {
       "id": "salsa-phrase-12",
       "worldId": "salsa",
-      "traditionId": "afro-salsa-dura",
+      "styleIds": ["afro-salsa-dura"],
       "name": "Coro Phrase",
       "family": "Coro / backing vocals",
       "category": "phrasePattern",
-      "description": "A phrase-level rhythmic template that leaves deliberate space for melodic expression. Built around montuno and the coro vocabulary of Salsa.",
+      "description": "A phrase-level rhythmic template that leaves",
       "tags": [
         "salsa",
         "coro",
@@ -2566,7 +2566,7 @@ export const SALSA_WORLD: GenreWorld = {
           "name": "Coro Phrase — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             2,
             6,
@@ -2598,7 +2598,7 @@ export const SALSA_WORLD: GenreWorld = {
           "name": "Coro Phrase — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             2,
             5,
@@ -2650,11 +2650,11 @@ export const SALSA_WORLD: GenreWorld = {
     {
       "id": "salsa-call-13",
       "worldId": "salsa",
-      "traditionId": "afro-salsa-dura",
+      "styleIds": ["afro-salsa-dura"],
       "name": "Mambo Response",
       "family": "Mambo",
       "category": "interactionPattern",
-      "description": "A call-and-response shape that leaves the next phrase open for an answer. Built around mambo breaks and the mambo vocabulary of Salsa.",
+      "description": "A call-and-response shape that leaves the",
       "tags": [
         "salsa",
         "mambo",
@@ -2741,7 +2741,7 @@ export const SALSA_WORLD: GenreWorld = {
           "name": "Mambo Response — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             3,
             7,
@@ -2773,7 +2773,7 @@ export const SALSA_WORLD: GenreWorld = {
           "name": "Mambo Response — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             3,
             6,
@@ -2813,7 +2813,7 @@ export const SALSA_WORLD: GenreWorld = {
           "name": "Mambo Response — transition variation",
           "variationType": "transition",
           "probability": 0.16,
-          "description": "Adds a final pickup/closure gesture for section transitions.",
+          "description": "Adds a final pickup/closure gesture for",
           "onsetGrid": [
             3,
             6,
@@ -2869,11 +2869,11 @@ export const SALSA_WORLD: GenreWorld = {
     {
       "id": "salsa-anchor-14",
       "worldId": "salsa",
-      "traditionId": "afro-salsa-dura",
+      "styleIds": ["afro-salsa-dura"],
       "name": "Tumbao Anchor",
       "family": "Tumbao",
       "category": "ostinato",
-      "description": "A repeating anchor that locks the low end to the groove. Built around coro and the tumbao vocabulary of Salsa.",
+      "description": "A repeating anchor that locks the",
       "tags": [
         "salsa",
         "tumbao",
@@ -2960,7 +2960,7 @@ export const SALSA_WORLD: GenreWorld = {
           "name": "Tumbao Anchor — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             7,
@@ -2992,7 +2992,7 @@ export const SALSA_WORLD: GenreWorld = {
           "name": "Tumbao Anchor — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             4,
@@ -3044,11 +3044,11 @@ export const SALSA_WORLD: GenreWorld = {
     {
       "id": "salsa-comp-15",
       "worldId": "salsa",
-      "traditionId": "afro-salsa-dura",
+      "styleIds": ["afro-salsa-dura"],
       "name": "Son Clave Comping",
       "family": "Son Clave",
       "category": "groove",
-      "description": "A genre-shaped accompaniment cell that supports the lead without occupying every subdivision. Built around clave and the son clave vocabulary of Salsa.",
+      "description": "A genre-shaped accompaniment cell that supports",
       "tags": [
         "salsa",
         "son-clave",
@@ -3136,7 +3136,7 @@ export const SALSA_WORLD: GenreWorld = {
           "name": "Son Clave Comping — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             6,
@@ -3168,7 +3168,7 @@ export const SALSA_WORLD: GenreWorld = {
           "name": "Son Clave Comping — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             2,
@@ -3220,11 +3220,11 @@ export const SALSA_WORLD: GenreWorld = {
     {
       "id": "salsa-intro-16",
       "worldId": "salsa",
-      "traditionId": "afro-salsa-dura",
+      "styleIds": ["afro-salsa-dura"],
       "name": "Montuno Intro",
       "family": "Montuno",
       "category": "sectionPattern",
-      "description": "A reduced entrance used to establish the genre before the full groove arrives. Built around tumbao and the montuno vocabulary of Salsa.",
+      "description": "A reduced entrance used to establish",
       "tags": [
         "salsa",
         "montuno",
@@ -3320,7 +3320,7 @@ export const SALSA_WORLD: GenreWorld = {
           "name": "Montuno Intro — sparse variation",
           "variationType": "sparse",
           "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
+          "description": "Drops selected interior attacks so the",
           "onsetGrid": [
             0,
             4,
@@ -3356,7 +3356,7 @@ export const SALSA_WORLD: GenreWorld = {
           "name": "Montuno Intro — accent shift",
           "variationType": "accentShift",
           "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
+          "description": "Keeps the rhythm intact but moves",
           "onsetGrid": [
             0,
             3,
@@ -3404,7 +3404,7 @@ export const SALSA_WORLD: GenreWorld = {
           "name": "Montuno Intro — transition variation",
           "variationType": "transition",
           "probability": 0.16,
-          "description": "Adds a final pickup/closure gesture for section transitions.",
+          "description": "Adds a final pickup/closure gesture for",
           "onsetGrid": [
             0,
             3,
@@ -3468,11 +3468,11 @@ export const SALSA_WORLD: GenreWorld = {
     {
       "id": "salsa-voice-phrasing",
       "worldId": "salsa",
-      "traditionId": "afro-son-montuno",
+      "styleIds": ["afro-son-montuno"],
       "name": "Salsa Vocal Phrasing",
       "family": "Vocal Phrasing",
       "category": "phrasePattern",
-      "description": "Coro response phrasing sits between clave-driven instrumental phrases and leaves deliberate space for sonero delivery.",
+      "description": "Coro response phrasing sits between clave-driven",
       "tags": [
         "salsa",
         "voice",
@@ -3559,7 +3559,7 @@ export const SALSA_WORLD: GenreWorld = {
           "name": "Salsa Vocal Phrasing — alternate phrasing",
           "variationType": "phraseStart",
           "probability": 0.2,
-          "description": "Alternate vocal entry placement for a second pass through the phrase.",
+          "description": "Alternate vocal entry placement for a",
           "onsetGrid": [
             0,
             3,
@@ -3599,7 +3599,7 @@ export const SALSA_WORLD: GenreWorld = {
           "name": "Salsa Vocal Phrasing — accent shift",
           "variationType": "accentShift",
           "probability": 0.18,
-          "description": "Same rhythmic shape with shifted emphasis on the repeat.",
+          "description": "Same rhythmic shape with shifted emphasis",
           "onsetGrid": [
             0,
             3,

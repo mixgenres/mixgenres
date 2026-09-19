@@ -140,19 +140,53 @@ export function decide(
   return { plays, drive: Math.max(0.45, Math.min(1.45, drive)), register, brightness, wet, reason };
 }
 
+/**
+ * Keep authored/default harmony compact at the section level. The arranger
+ * repeats this loop across the section's bars, so storing 8/16/32 copies of
+ * the same progression only makes the song data noisy and makes chord changes
+ * look much more complicated than the music actually is.
+ *
+ * If the authored sequence is already a <=4-chord loop, preserve it exactly.
+ * If it is a longer exact repetition of a <=4-chord loop, collapse it to that
+ * loop. Otherwise use the first four authored chords as the default harmonic
+ * cell. User-entered/custom progressions are never passed through this helper.
+ *
+ * Tango and Flamenco remain intentionally untouched here.
+ */
+export function compactDefaultChordLoop(chords: string[], genreId?: string): string[] {
+  if (!chords.length || chords.length <= 4 || genreId === 'tango' || genreId === 'flamenco') {
+    return [...chords];
+  }
+
+  const limit = Math.min(4, chords.length);
+  for (let period = 1; period <= limit; period++) {
+    let repeats = true;
+    for (let i = 0; i < chords.length; i++) {
+      if (chords[i] !== chords[i % period]) {
+        repeats = false;
+        break;
+      }
+    }
+    if (repeats) return chords.slice(0, period);
+  }
+
+  return chords.slice(0, 4);
+}
+
 export function progressionForSection(
   sectionProgressions: Record<string, string[]> | undefined,
   formKey: string,
   kind: string,
   fallback: string[],
+  genreId?: string,
 ): string[] {
-  if (!sectionProgressions) return fallback;
+  if (!sectionProgressions) return compactDefaultChordLoop(fallback, genreId);
   const tryKeys = [formKey, kind, kind.replace(/-/g, ''), 'verse'];
   for (const k of tryKeys) {
     const found = sectionProgressions[k];
-    if (found && found.length) return found;
+    if (found && found.length) return compactDefaultChordLoop(found, genreId);
   }
-  return fallback;
+  return compactDefaultChordLoop(fallback, genreId);
 }
 
 export function cadenceFor(kind: string, chords: string[], isLast: boolean): string[] {
