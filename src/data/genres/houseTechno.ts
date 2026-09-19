@@ -53,10 +53,10 @@ export const HOUSE_TECHNO_WORLD : GenreWorld = {
       "tuningSystem": "12-tet",
       "signatureCell": "Four-on-floor kick with offbeat hat and syncopated bass/stab",
       "grooveMechanics": {
-        "swingPercentage": 50,
+        "swingPercentage": 54,
         "anticipationOffsetSteps": 0,
-        "microtimingFeel": "straight",
-        "humanizeJitterMs": 2
+        "microtimingFeel": "laid-back",
+        "humanizeJitterMs": 6
       },
       "sectionProgressions": {
         "intro": [
@@ -136,7 +136,7 @@ export const HOUSE_TECHNO_WORLD : GenreWorld = {
       "grooveMechanics": {
         "swingPercentage": 50,
         "anticipationOffsetSteps": 0,
-        "microtimingFeel": "straight",
+        "microtimingFeel": "pushed",
         "humanizeJitterMs": 1
       }
     },
@@ -342,7 +342,7 @@ export const HOUSE_TECHNO_WORLD : GenreWorld = {
         ]
       }
     ],
-    "provenance": "GenreDAW catalog extension: authored from documented rhythmic/ensemble conventions and expressed as engine-ready structural cells.",
+    "provenance": "Genre-pack structural pattern authored from documented rhythmic and ensemble conventions; generalized for engine recombination.",
     "authenticityTags": [
       "house",
       "four-on-floor",
@@ -466,7 +466,7 @@ export const HOUSE_TECHNO_WORLD : GenreWorld = {
         ]
       }
     ],
-    "provenance": "GenreDAW catalog extension: authored from documented rhythmic/ensemble conventions and expressed as engine-ready structural cells.",
+    "provenance": "Genre-pack structural pattern authored from documented rhythmic and ensemble conventions; generalized for engine recombination.",
     "authenticityTags": [
       "house",
       "hat",
@@ -602,7 +602,7 @@ export const HOUSE_TECHNO_WORLD : GenreWorld = {
         ]
       }
     ],
-    "provenance": "GenreDAW catalog extension: authored from documented rhythmic/ensemble conventions and expressed as engine-ready structural cells.",
+    "provenance": "Genre-pack structural pattern authored from documented rhythmic and ensemble conventions; generalized for engine recombination.",
     "authenticityTags": [
       "house",
       "bass",
@@ -751,7 +751,7 @@ export const HOUSE_TECHNO_WORLD : GenreWorld = {
         ]
       }
     ],
-    "provenance": "GenreDAW catalog extension: authored from documented rhythmic/ensemble conventions and expressed as engine-ready structural cells.",
+    "provenance": "Genre-pack structural pattern authored from documented rhythmic and ensemble conventions; generalized for engine recombination.",
     "authenticityTags": [
       "techno",
       "sequence",
@@ -901,7 +901,7 @@ export const HOUSE_TECHNO_WORLD : GenreWorld = {
         ]
       }
     ],
-    "provenance": "GenreDAW catalog extension: authored from documented rhythmic/ensemble conventions and expressed as engine-ready structural cells.",
+    "provenance": "Genre-pack structural pattern authored from documented rhythmic and ensemble conventions; generalized for engine recombination.",
     "authenticityTags": [
       "acid",
       "303",
@@ -918,7 +918,7 @@ export const HOUSE_TECHNO_WORLD : GenreWorld = {
   {
     "id": "ht-06-four-on-the-floor-kick",
     "worldId": "house-techno",
-    "traditionId": "house-chicago-deep",
+    "traditionId": "house-deep",
     "name": "Four-floor kick with bar accent",
     "family": "House",
     "category": "groove",
@@ -979,7 +979,7 @@ export const HOUSE_TECHNO_WORLD : GenreWorld = {
       "phrasePosition"
     ],
     "variants": [],
-    "provenance": "Authored genre-pack pattern based on House; designed for engine-level recombination rather than literal transcription.",
+    "provenance": "Genre-pack structural pattern based on House; generalized for engine recombination, not literal transcription.",
     "authenticityTags": [
       "four-on-floor"
     ],
@@ -994,7 +994,7 @@ export const HOUSE_TECHNO_WORLD : GenreWorld = {
   {
     "id": "ht-07-offbeat-hat",
     "worldId": "house-techno",
-    "traditionId": "techno-detroit",
+    "traditionId": "house-deep",
     "name": "Open-hat lift",
     "family": "House",
     "category": "ostinato",
@@ -1049,7 +1049,7 @@ export const HOUSE_TECHNO_WORLD : GenreWorld = {
       "phrasePosition"
     ],
     "variants": [],
-    "provenance": "Authored genre-pack pattern based on House; designed for engine-level recombination rather than literal transcription.",
+    "provenance": "Genre-pack structural pattern based on House; generalized for engine recombination, not literal transcription.",
     "authenticityTags": [
       "offbeat hat"
     ],
@@ -1057,14 +1057,14 @@ export const HOUSE_TECHNO_WORLD : GenreWorld = {
       "festival-fusion"
     ],
     "tuningSystem": "12-tet",
-    "difficulty": 2,
+    "difficulty": 1,
     "weight": 0.82,
     "enabled": true
   },
   {
     "id": "ht-08-house-bass-lock",
     "worldId": "house-techno",
-    "traditionId": "techno-detroit",
+    "traditionId": "house-deep",
     "name": "House Bass Lock",
     "family": "House",
     "category": "bass",
@@ -1124,7 +1124,7 @@ export const HOUSE_TECHNO_WORLD : GenreWorld = {
       "phrasePosition"
     ],
     "variants": [],
-    "provenance": "Authored genre-pack pattern based on House; designed for engine-level recombination rather than literal transcription.",
+    "provenance": "Genre-pack structural pattern based on House; generalized for engine recombination, not literal transcription.",
     "authenticityTags": [
       "bass lock"
     ],
@@ -1139,7 +1139,7 @@ export const HOUSE_TECHNO_WORLD : GenreWorld = {
   {
     "id": "ht-09-house-chord-stab",
     "worldId": "house-techno",
-    "traditionId": "techno-detroit",
+    "traditionId": "house-deep",
     "name": "House Chord Stab",
     "family": "House",
     "category": "cell",
@@ -1201,7 +1201,7 @@ export const HOUSE_TECHNO_WORLD : GenreWorld = {
       "phrasePosition"
     ],
     "variants": [],
-    "provenance": "Authored genre-pack pattern based on House; designed for engine-level recombination rather than literal transcription.",
+    "provenance": "Genre-pack structural pattern based on House; generalized for engine recombination, not literal transcription.",
     "authenticityTags": [
       "stab",
       "offbeat"
@@ -1217,7 +1217,7 @@ export const HOUSE_TECHNO_WORLD : GenreWorld = {
   {
     "id": "ht-10-detroit-sequence",
     "worldId": "house-techno",
-    "traditionId": "techno-detroit",
+    "traditionId": "house-techno-detroit",
     "name": "Detroit Sequence",
     "family": "Detroit Techno",
     "category": "ostinato",
@@ -1292,7 +1292,7 @@ export const HOUSE_TECHNO_WORLD : GenreWorld = {
       "phrasePosition"
     ],
     "variants": [],
-    "provenance": "Authored genre-pack pattern based on Detroit Techno; designed for engine-level recombination rather than literal transcription.",
+    "provenance": "Genre-pack structural pattern based on Detroit Techno; generalized for engine recombination, not literal transcription.",
     "authenticityTags": [
       "Detroit",
       "sequence"
@@ -1308,7 +1308,7 @@ export const HOUSE_TECHNO_WORLD : GenreWorld = {
   {
     "id": "ht-11-acid-303-accent",
     "worldId": "house-techno",
-    "traditionId": "techno-detroit",
+    "traditionId": "house-techno-acid",
     "name": "Acid 303 Accent",
     "family": "Acid",
     "category": "ostinato",
@@ -1388,7 +1388,7 @@ export const HOUSE_TECHNO_WORLD : GenreWorld = {
       "phrasePosition"
     ],
     "variants": [],
-    "provenance": "Authored genre-pack pattern based on Acid; designed for engine-level recombination rather than literal transcription.",
+    "provenance": "Genre-pack structural pattern based on Acid; generalized for engine recombination, not literal transcription.",
     "authenticityTags": [
       "acid",
       "slide",
@@ -1405,7 +1405,7 @@ export const HOUSE_TECHNO_WORLD : GenreWorld = {
   {
     "id": "ht-12-techno-clap-backbeat",
     "worldId": "house-techno",
-    "traditionId": "techno-detroit",
+    "traditionId": "house-techno-detroit",
     "name": "Techno Clap Backbeat",
     "family": "Techno",
     "category": "groove",
@@ -1463,7 +1463,7 @@ export const HOUSE_TECHNO_WORLD : GenreWorld = {
       "phrasePosition"
     ],
     "variants": [],
-    "provenance": "Authored genre-pack pattern based on Techno; designed for engine-level recombination rather than literal transcription.",
+    "provenance": "Genre-pack structural pattern based on Techno; generalized for engine recombination, not literal transcription.",
     "authenticityTags": [
       "clap",
       "backbeat"
@@ -1479,7 +1479,7 @@ export const HOUSE_TECHNO_WORLD : GenreWorld = {
   {
     "id": "ht-13-riser-build",
     "worldId": "house-techno",
-    "traditionId": "techno-detroit",
+    "traditionId": "house-techno-detroit",
     "name": "Riser Build",
     "family": "Arrangement",
     "category": "sectionPattern",
@@ -1550,7 +1550,7 @@ export const HOUSE_TECHNO_WORLD : GenreWorld = {
       "phrasePosition"
     ],
     "variants": [],
-    "provenance": "Authored genre-pack pattern based on Arrangement; designed for engine-level recombination rather than literal transcription.",
+    "provenance": "Genre-pack structural pattern based on Arrangement; generalized for engine recombination, not literal transcription.",
     "authenticityTags": [
       "build",
       "automation"
@@ -1566,7 +1566,7 @@ export const HOUSE_TECHNO_WORLD : GenreWorld = {
   {
     "id": "ht-14-club-breakdown",
     "worldId": "house-techno",
-    "traditionId": "techno-detroit",
+    "traditionId": "house-techno-acid",
     "name": "Club Breakdown",
     "family": "Arrangement",
     "category": "break",
@@ -1626,7 +1626,7 @@ export const HOUSE_TECHNO_WORLD : GenreWorld = {
       "phrasePosition"
     ],
     "variants": [],
-    "provenance": "Authored genre-pack pattern based on Arrangement; designed for engine-level recombination rather than literal transcription.",
+    "provenance": "Genre-pack structural pattern based on Arrangement; generalized for engine recombination, not literal transcription.",
     "authenticityTags": [
       "breakdown",
       "tension"
@@ -1642,7 +1642,7 @@ export const HOUSE_TECHNO_WORLD : GenreWorld = {
   {
     "id": "ht-15-drop-re-entry",
     "worldId": "house-techno",
-    "traditionId": "techno-detroit",
+    "traditionId": "house-techno-detroit",
     "name": "Post-break re-entry stack",
     "family": "Arrangement",
     "category": "sectionPattern",
@@ -1704,7 +1704,7 @@ export const HOUSE_TECHNO_WORLD : GenreWorld = {
       "phrasePosition"
     ],
     "variants": [],
-    "provenance": "Authored genre-pack pattern based on Arrangement; designed for engine-level recombination rather than literal transcription.",
+    "provenance": "Genre-pack structural pattern based on Arrangement; generalized for engine recombination, not literal transcription.",
     "authenticityTags": [
       "drop",
       "re-entry"
@@ -1715,6 +1715,130 @@ export const HOUSE_TECHNO_WORLD : GenreWorld = {
     "tuningSystem": "12-tet",
     "difficulty": 2,
     "weight": 0.82,
+    "enabled": true
+  },
+  {
+    "id": "ht-acid-303-squelch-slide",
+    "worldId": "house-techno",
+    "traditionId": "house-techno-acid",
+    "name": "TB-303 Squelch & Slide Sequence",
+    "family": "Acid Bass",
+    "category": "phrasePattern",
+    "description": "High-resonance TB-303 acid sequence with aggressive accent points and slide articulations.",
+    "tags": ["acid", "303", "bass", "squelch", "synth"],
+    "scopes": ["measure", "phrase", "region", "track"],
+    "roles": ["bass", "synth", "lead"],
+    "instruments": ["bass-lead", "sub-bass"],
+    "meter": "4/4",
+    "cycleLength": 1,
+    "subdivisions": 16,
+    "onsetGrid": [0, 2, 5, 7, 8, 10, 12, 14],
+    "accentProfile": [1.0, 0.7, 0.95, 0.7, 0.9, 0.75, 1.0, 0.7],
+    "velocityProfile": [0.95, 0.65, 0.9, 0.65, 0.85, 0.7, 0.95, 0.65],
+    "articulations": ["accent", "slide"],
+    "density": "dense",
+    "phrasePosition": ["start", "middle", "end"],
+    "sectionUsage": ["verse", "chorus", "solo", "drop"],
+    "variants": [],
+    "provenance": "Genre-pack support pattern for Acid House / Acid Techno; generalized from documented musical conventions.",
+    "authenticityTags": ["acid", "303"],
+    "danceTags": ["festival-fusion"],
+    "tuningSystem": "12-tet",
+    "difficulty": 2,
+    "weight": 1,
+    "enabled": true
+  },
+  {
+    "id": "ht-acid-tr707-drum-drive",
+    "worldId": "house-techno",
+    "traditionId": "house-techno-acid",
+    "name": "TR-707 / TR-909 Acid Percussion Drive",
+    "family": "Acid Drums",
+    "category": "groove",
+    "description": "Tight vintage Roland drum machine punch with accented rimshot, clap, and syncopated 16th hats.",
+    "tags": ["acid", "drums", "707", "909", "pulse"],
+    "scopes": ["measure", "phrase", "region", "track"],
+    "roles": ["drums", "percussion", "pulse"],
+    "instruments": ["drums", "percussion"],
+    "meter": "4/4",
+    "cycleLength": 1,
+    "subdivisions": 16,
+    "onsetGrid": [0, 2, 4, 6, 8, 10, 12, 14],
+    "accentProfile": [1.0, 0.6, 0.85, 0.6, 1.0, 0.6, 0.85, 0.65],
+    "velocityProfile": [0.95, 0.55, 0.8, 0.55, 0.95, 0.55, 0.8, 0.6],
+    "articulations": ["four-on-floor", "accented"],
+    "density": "dense",
+    "phrasePosition": ["start", "middle", "end"],
+    "sectionUsage": ["verse", "chorus", "drop"],
+    "variants": [],
+    "provenance": "Genre-pack support pattern for Acid House / Acid Techno; generalized from documented musical conventions.",
+    "authenticityTags": ["acid", "drums"],
+    "danceTags": ["festival-fusion"],
+    "tuningSystem": "12-tet",
+    "difficulty": 2,
+    "weight": 1,
+    "enabled": true
+  },
+  {
+    "id": "ht-detroit-909-interlock",
+    "worldId": "house-techno",
+    "traditionId": "house-techno-detroit",
+    "name": "Detroit TR-909 Syncopated Rhythm Engine",
+    "family": "Detroit Techno",
+    "category": "groove",
+    "description": "Driving machine-precise 909 kick locked with syncopated open ride cymbal and syncopated handclap.",
+    "tags": ["detroit", "techno", "drums", "909", "pulse"],
+    "scopes": ["measure", "phrase", "region", "track"],
+    "roles": ["drums", "percussion", "pulse"],
+    "instruments": ["drums", "percussion"],
+    "meter": "4/4",
+    "cycleLength": 1,
+    "subdivisions": 16,
+    "onsetGrid": [0, 4, 6, 8, 12, 14],
+    "accentProfile": [1.0, 0.9, 0.75, 1.0, 0.9, 0.8],
+    "velocityProfile": [0.95, 0.85, 0.7, 0.95, 0.85, 0.75],
+    "articulations": ["four-on-floor", "accented"],
+    "density": "medium",
+    "phrasePosition": ["start", "middle", "end"],
+    "sectionUsage": ["verse", "chorus", "peak"],
+    "variants": [],
+    "provenance": "Genre-pack support pattern for Detroit Techno; generalized from documented musical conventions.",
+    "authenticityTags": ["detroit", "909"],
+    "danceTags": ["festival-fusion"],
+    "tuningSystem": "12-tet",
+    "difficulty": 2,
+    "weight": 1,
+    "enabled": true
+  },
+  {
+    "id": "ht-detroit-analog-strings",
+    "worldId": "house-techno",
+    "traditionId": "house-techno-detroit",
+    "name": "Detroit Minor 9th Analog String Swell",
+    "family": "Detroit Techno",
+    "category": "harmony",
+    "description": "Emotional futuristic Roland Juno / Prophet analog string chords with sustained minor 9th voicings.",
+    "tags": ["detroit", "techno", "strings", "synth", "harmony"],
+    "scopes": ["measure", "phrase", "region", "track"],
+    "roles": ["harmony", "synth", "pad"],
+    "instruments": ["polysynth", "synth"],
+    "meter": "4/4",
+    "cycleLength": 2,
+    "subdivisions": 16,
+    "onsetGrid": [0, 8, 16, 24],
+    "accentProfile": [0.95, 0.8, 0.95, 0.8],
+    "velocityProfile": [0.9, 0.75, 0.9, 0.75],
+    "articulations": ["legato", "tenuto"],
+    "density": "sparse",
+    "phrasePosition": ["start", "middle"],
+    "sectionUsage": ["intro", "verse", "chorus", "breakdown"],
+    "variants": [],
+    "provenance": "Genre-pack support pattern for Detroit Techno; generalized from documented musical conventions.",
+    "authenticityTags": ["detroit", "strings"],
+    "danceTags": ["listening"],
+    "tuningSystem": "12-tet",
+    "difficulty": 2,
+    "weight": 1,
     "enabled": true
   }
 ],

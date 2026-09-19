@@ -202,12 +202,13 @@ export const CHORD_PALETTE: ChordOption[] = [
     heardIn: ['jazz', 'swing'],
   },
   {
-    id: 'sample-chop',
-    name: 'Sample Chop',
+    id: 'soul-jazz-loop',
+    name: 'Soul-Jazz Descending Loop',
     chords: ['Fm7', 'Bbm7', 'Ebmaj7', 'Abmaj7'],
     mood: 'smooth-jazzy',
-    blurb: 'Descending circle-of-fifths loop',
-    heardIn: ['hip-hop'],
+    origin: 'Soul / Jazz / Hip-Hop Sampling',
+    blurb: 'Descending minor-seventh loop suited to sampled soul-jazz harmony',
+    heardIn: ['hip-hop', 'jazz', 'funk'],
   },
   {
     id: 'uptown-turnaround',

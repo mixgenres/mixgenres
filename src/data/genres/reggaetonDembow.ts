@@ -310,7 +310,7 @@ export const REGGAETON_DEMBOW_WORLD : GenreWorld = {
         ]
       }
     ],
-    "provenance": "GenreDAW catalog extension: authored from documented rhythmic/ensemble conventions and expressed as engine-ready structural cells.",
+    "provenance": "Genre-pack structural pattern authored from documented rhythmic and ensemble conventions; generalized for engine recombination.",
     "authenticityTags": [
       "dembow",
       "reggaeton",
@@ -460,7 +460,7 @@ export const REGGAETON_DEMBOW_WORLD : GenreWorld = {
         ]
       }
     ],
-    "provenance": "GenreDAW catalog extension: authored from documented rhythmic/ensemble conventions and expressed as engine-ready structural cells.",
+    "provenance": "Genre-pack structural pattern authored from documented rhythmic and ensemble conventions; generalized for engine recombination.",
     "authenticityTags": [
       "dembow",
       "bass",
@@ -589,7 +589,7 @@ export const REGGAETON_DEMBOW_WORLD : GenreWorld = {
         ]
       }
     ],
-    "provenance": "GenreDAW catalog extension: authored from documented rhythmic/ensemble conventions and expressed as engine-ready structural cells.",
+    "provenance": "Genre-pack structural pattern authored from documented rhythmic and ensemble conventions; generalized for engine recombination.",
     "authenticityTags": [
       "negative-space",
       "shaker"
@@ -712,7 +712,7 @@ export const REGGAETON_DEMBOW_WORLD : GenreWorld = {
         ]
       }
     ],
-    "provenance": "GenreDAW catalog extension: authored from documented rhythmic/ensemble conventions and expressed as engine-ready structural cells.",
+    "provenance": "Genre-pack structural pattern authored from documented rhythmic and ensemble conventions; generalized for engine recombination.",
     "authenticityTags": [
       "stabs",
       "offbeat",
@@ -839,7 +839,7 @@ export const REGGAETON_DEMBOW_WORLD : GenreWorld = {
         ]
       }
     ],
-    "provenance": "GenreDAW catalog extension: authored from documented rhythmic/ensemble conventions and expressed as engine-ready structural cells.",
+    "provenance": "Genre-pack structural pattern authored from documented rhythmic and ensemble conventions; generalized for engine recombination.",
     "authenticityTags": [
       "break",
       "pickup",
@@ -933,7 +933,7 @@ export const REGGAETON_DEMBOW_WORLD : GenreWorld = {
       "phrasePosition"
     ],
     "variants": [],
-    "provenance": "Authored genre-pack pattern based on Dembow; designed for engine-level recombination rather than literal transcription.",
+    "provenance": "Genre-pack structural pattern based on Dembow; generalized for engine recombination, not literal transcription.",
     "authenticityTags": [
       "dembow",
       "timeline"
@@ -1007,7 +1007,7 @@ export const REGGAETON_DEMBOW_WORLD : GenreWorld = {
       "phrasePosition"
     ],
     "variants": [],
-    "provenance": "Authored genre-pack pattern based on Dembow; designed for engine-level recombination rather than literal transcription.",
+    "provenance": "Genre-pack structural pattern based on Dembow; generalized for engine recombination, not literal transcription.",
     "authenticityTags": [
       "dembow texture",
       "offbeat subdivision"
@@ -1092,7 +1092,7 @@ export const REGGAETON_DEMBOW_WORLD : GenreWorld = {
       "phrasePosition"
     ],
     "variants": [],
-    "provenance": "Authored genre-pack pattern based on Bass; designed for engine-level recombination rather than literal transcription.",
+    "provenance": "Genre-pack structural pattern based on Bass; generalized for engine recombination, not literal transcription.",
     "authenticityTags": [
       "sub-bass",
       "syncopation"
@@ -1170,7 +1170,7 @@ export const REGGAETON_DEMBOW_WORLD : GenreWorld = {
       "phrasePosition"
     ],
     "variants": [],
-    "provenance": "Authored genre-pack pattern based on Harmony; designed for engine-level recombination rather than literal transcription.",
+    "provenance": "Genre-pack structural pattern based on Harmony; generalized for engine recombination, not literal transcription.",
     "authenticityTags": [
       "stabs",
       "offbeat"
@@ -1248,7 +1248,7 @@ export const REGGAETON_DEMBOW_WORLD : GenreWorld = {
       "phrasePosition"
     ],
     "variants": [],
-    "provenance": "Authored genre-pack pattern based on Percussion; designed for engine-level recombination rather than literal transcription.",
+    "provenance": "Genre-pack structural pattern based on Percussion; generalized for engine recombination, not literal transcription.",
     "authenticityTags": [
       "shaker",
       "density control"
@@ -1323,7 +1323,7 @@ export const REGGAETON_DEMBOW_WORLD : GenreWorld = {
       "phrasePosition"
     ],
     "variants": [],
-    "provenance": "Authored genre-pack pattern based on Voice; designed for engine-level recombination rather than literal transcription.",
+    "provenance": "Genre-pack structural pattern based on Voice; generalized for engine recombination, not literal transcription.",
     "authenticityTags": [
       "pickup",
       "vocal pocket"
@@ -1480,7 +1480,7 @@ export const REGGAETON_DEMBOW_WORLD : GenreWorld = {
       "phrasePosition"
     ],
     "variants": [],
-    "provenance": "Authored genre-pack pattern based on Breaks; designed for engine-level recombination rather than literal transcription.",
+    "provenance": "Genre-pack structural pattern based on Breaks; generalized for engine recombination, not literal transcription.",
     "authenticityTags": [
       "dropout",
       "re-entry"
@@ -1549,7 +1549,7 @@ export const REGGAETON_DEMBOW_WORLD : GenreWorld = {
       "phrasePosition"
     ],
     "variants": [],
-    "provenance": "Authored genre-pack pattern based on Fill; designed for engine-level recombination rather than literal transcription.",
+    "provenance": "Genre-pack structural pattern based on Fill; generalized for engine recombination, not literal transcription.",
     "authenticityTags": [
       "phrase-end fill",
       "16th subdivision"
@@ -1623,7 +1623,7 @@ export const REGGAETON_DEMBOW_WORLD : GenreWorld = {
       "phrasePosition"
     ],
     "variants": [],
-    "provenance": "Authored genre-pack pattern based on Cadence; designed for engine-level recombination rather than literal transcription.",
+    "provenance": "Genre-pack structural pattern based on Cadence; generalized for engine recombination, not literal transcription.",
     "authenticityTags": [
       "tag",
       "transition"

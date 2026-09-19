@@ -45,7 +45,7 @@ export const JAPANESE_TRADITIONAL_WORLD : GenreWorld = {
       "danceTags": [
         "listening"
       ],
-      "tuningSystem": "Gagaku pitch practice; engine uses a 12-TET modal approximation",
+      "tuningSystem": "12-tet",
       "signatureCell": "Sustained shō sonority under a slow ryūteki/hichiriki heterophonic line",
       "grooveMechanics": {
         "swingPercentage": 50,
@@ -128,7 +128,7 @@ export const JAPANESE_TRADITIONAL_WORLD : GenreWorld = {
         "listening",
         "festival-fusion"
       ],
-      "tuningSystem": "Japanese traditional pitch practice; engine uses 12-TET modal approximation",
+      "tuningSystem": "12-tet",
       "signatureCell": "Dry bachi attack answered by a short descending shamisen ornament",
       "grooveMechanics": {
         "swingPercentage": 50,
@@ -178,7 +178,7 @@ export const JAPANESE_TRADITIONAL_WORLD : GenreWorld = {
       "danceTags": [
         "listening"
       ],
-      "tuningSystem": "Japanese traditional pitch practice; engine uses 12-TET modal approximation",
+      "tuningSystem": "12-tet",
       "signatureCell": "Koto broken-string figure with a terminal pitch bend and spacious response",
       "grooveMechanics": {
         "swingPercentage": 50,
@@ -325,7 +325,7 @@ export const JAPANESE_TRADITIONAL_WORLD : GenreWorld = {
         ]
       }
     ],
-    "provenance": "GenreDAW catalog extension: authored from documented rhythmic/ensemble conventions and expressed as engine-ready structural cells.",
+    "provenance": "Genre-pack structural pattern authored from documented rhythmic and ensemble conventions; generalized for engine recombination.",
     "authenticityTags": [
       "gagaku",
       "sho",
@@ -461,7 +461,7 @@ export const JAPANESE_TRADITIONAL_WORLD : GenreWorld = {
         ]
       }
     ],
-    "provenance": "GenreDAW catalog extension: authored from documented rhythmic/ensemble conventions and expressed as engine-ready structural cells.",
+    "provenance": "Genre-pack structural pattern authored from documented rhythmic and ensemble conventions; generalized for engine recombination.",
     "authenticityTags": [
       "shamisen",
       "bachi",
@@ -610,7 +610,7 @@ export const JAPANESE_TRADITIONAL_WORLD : GenreWorld = {
         ]
       }
     ],
-    "provenance": "GenreDAW catalog extension: authored from documented rhythmic/ensemble conventions and expressed as engine-ready structural cells.",
+    "provenance": "Genre-pack structural pattern authored from documented rhythmic and ensemble conventions; generalized for engine recombination.",
     "authenticityTags": [
       "koto",
       "arpeggio",
@@ -764,7 +764,7 @@ export const JAPANESE_TRADITIONAL_WORLD : GenreWorld = {
         ]
       }
     ],
-    "provenance": "GenreDAW catalog extension: authored from documented rhythmic/ensemble conventions and expressed as engine-ready structural cells.",
+    "provenance": "Genre-pack structural pattern authored from documented rhythmic and ensemble conventions; generalized for engine recombination.",
     "authenticityTags": [
       "kakeai",
       "response",
@@ -888,7 +888,7 @@ export const JAPANESE_TRADITIONAL_WORLD : GenreWorld = {
         ]
       }
     ],
-    "provenance": "GenreDAW catalog extension: authored from documented rhythmic/ensemble conventions and expressed as engine-ready structural cells.",
+    "provenance": "Genre-pack structural pattern authored from documented rhythmic and ensemble conventions; generalized for engine recombination.",
     "authenticityTags": [
       "cadence",
       "glissando",
@@ -964,7 +964,7 @@ export const JAPANESE_TRADITIONAL_WORLD : GenreWorld = {
       "phrasePosition"
     ],
     "variants": [],
-    "provenance": "Authored genre-pack pattern based on Gagaku; designed for engine-level recombination rather than literal transcription.",
+    "provenance": "Genre-pack structural pattern based on Gagaku; generalized for engine recombination, not literal transcription.",
     "authenticityTags": [
       "shō",
       "aitake",
@@ -1044,7 +1044,7 @@ export const JAPANESE_TRADITIONAL_WORLD : GenreWorld = {
       "phrasePosition"
     ],
     "variants": [],
-    "provenance": "Authored genre-pack pattern based on Gagaku; designed for engine-level recombination rather than literal transcription.",
+    "provenance": "Genre-pack structural pattern based on Gagaku; generalized for engine recombination, not literal transcription.",
     "authenticityTags": [
       "gagaku",
       "ornament"
@@ -1121,7 +1121,7 @@ export const JAPANESE_TRADITIONAL_WORLD : GenreWorld = {
       "phrasePosition"
     ],
     "variants": [],
-    "provenance": "Authored genre-pack pattern based on Shamisen / Min’yō; designed for engine-level recombination rather than literal transcription.",
+    "provenance": "Genre-pack structural pattern based on Shamisen / Min’yō; generalized for engine recombination, not literal transcription.",
     "authenticityTags": [
       "bachi",
       "sawari"
@@ -1203,7 +1203,7 @@ export const JAPANESE_TRADITIONAL_WORLD : GenreWorld = {
       "phrasePosition"
     ],
     "variants": [],
-    "provenance": "Authored genre-pack pattern based on Shamisen / Min’yō; designed for engine-level recombination rather than literal transcription.",
+    "provenance": "Genre-pack structural pattern based on Shamisen / Min’yō; generalized for engine recombination, not literal transcription.",
     "authenticityTags": [
       "bachi",
       "fill",
@@ -1286,7 +1286,7 @@ export const JAPANESE_TRADITIONAL_WORLD : GenreWorld = {
       "phrasePosition"
     ],
     "variants": [],
-    "provenance": "Authored genre-pack pattern based on Koto / Sankyoku; designed for engine-level recombination rather than literal transcription.",
+    "provenance": "Genre-pack structural pattern based on Koto / Sankyoku; generalized for engine recombination, not literal transcription.",
     "authenticityTags": [
       "koto",
       "arpeggio"
@@ -1363,7 +1363,7 @@ export const JAPANESE_TRADITIONAL_WORLD : GenreWorld = {
       "phrasePosition"
     ],
     "variants": [],
-    "provenance": "Authored genre-pack pattern based on Koto / Sankyoku; designed for engine-level recombination rather than literal transcription.",
+    "provenance": "Genre-pack structural pattern based on Koto / Sankyoku; generalized for engine recombination, not literal transcription.",
     "authenticityTags": [
       "oshide",
       "pitch bend"
@@ -1458,7 +1458,7 @@ export const JAPANESE_TRADITIONAL_WORLD : GenreWorld = {
       "phrasePosition"
     ],
     "variants": [],
-    "provenance": "Authored genre-pack pattern based on Cross-Tradition; designed for engine-level recombination rather than literal transcription.",
+    "provenance": "Genre-pack structural pattern based on Cross-Tradition; generalized for engine recombination, not literal transcription.",
     "authenticityTags": [
       "kakeai",
       "question-answer"
@@ -1534,7 +1534,7 @@ export const JAPANESE_TRADITIONAL_WORLD : GenreWorld = {
       "phrasePosition"
     ],
     "variants": [],
-    "provenance": "Authored genre-pack pattern based on Cross-Tradition; designed for engine-level recombination rather than literal transcription.",
+    "provenance": "Genre-pack structural pattern based on Cross-Tradition; generalized for engine recombination, not literal transcription.",
     "authenticityTags": [
       "ma",
       "silence"
@@ -1550,7 +1550,7 @@ export const JAPANESE_TRADITIONAL_WORLD : GenreWorld = {
   {
     "id": "jt-14-shakuhachi-breath-tone",
     "worldId": "japanese-traditional",
-    "traditionId": "japanese-traditional-shakuhachi",
+    "traditionId": "japanese-traditional-koto",
     "name": "Shakuhachi Breath Tone",
     "family": "Shakuhachi",
     "category": "phrasePattern",
@@ -1613,7 +1613,7 @@ export const JAPANESE_TRADITIONAL_WORLD : GenreWorld = {
       "phrasePosition"
     ],
     "variants": [],
-    "provenance": "Authored genre-pack pattern based on Shakuhachi; designed for engine-level recombination rather than literal transcription.",
+    "provenance": "Genre-pack structural pattern based on Shakuhachi; generalized for engine recombination, not literal transcription.",
     "authenticityTags": [
       "meri",
       "kari",
@@ -1691,7 +1691,7 @@ export const JAPANESE_TRADITIONAL_WORLD : GenreWorld = {
       "phrasePosition"
     ],
     "variants": [],
-    "provenance": "Authored genre-pack pattern based on Gagaku; designed for engine-level recombination rather than literal transcription.",
+    "provenance": "Genre-pack structural pattern based on Gagaku; generalized for engine recombination, not literal transcription.",
     "authenticityTags": [
       "hichiriki",
       "cadence"
@@ -1795,7 +1795,7 @@ export const JAPANESE_TRADITIONAL_WORLD : GenreWorld = {
     "listening",
     "festival-fusion"
   ],
-  "tuningSystem": "Japanese traditional pitch practice; engine uses 12-TET modal approximation",
+  "tuningSystem": "12-tet",
   "signatureCell": "Plucked pentatonic figure answered by breathy or bowed heterophony",
   "grooveMechanics": {
     "swingPercentage": 50,

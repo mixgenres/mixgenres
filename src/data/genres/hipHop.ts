@@ -6,7 +6,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
   "family": "Urban / Beat-driven Continuum",
   "color": "#8c8c8c",
   "level": "world",
-  "description": "Unified global urban beat continuum spanning classic 90s Boom-Bap vinyl breaks, Atlanta Trap 808 slides and rolling hats, Caribbean Reggaeton / Dembow riddims, and Afro-Urban crossover pockets.",
+  "description": "Unified global urban beat continuum spanning classic 90s Boom-Bap vinyl breaks, Atlanta Trap 808 slides and rolling hats, and unquantized Lo-Fi / Jazz Rap MPC pockets.",
   "traditions": [
     {
       "id": "hiphop-boombap",
@@ -153,75 +153,74 @@ export const HIP_HOP_WORLD: GenreWorld = {
       }
     },
     {
-      "id": "hiphop-dembow",
+      "id": "hiphop-lofi-jazzrap",
       "worldId": "hip-hop",
-      "name": "Reggaeton & Dembow",
-      "origin": "Puerto Rico / Dominican Republic / Jamaica",
+      "name": "Lo-Fi, Jazz Rap & Neo-Soul",
+      "origin": "US East Coast / Midwest (Detroit) / Tokyo",
       "era": "1990s–Present",
-      "description": "The ubiquitous global Latin urban riddim: syncopated dembow snare pattern locked with 4-on-the-floor kick, deep sub-bass, and driving vocal hooks.",
+      "description": "Unquantized MPC pocket drumming, warm Rhodes / Wurlitzer jazz extensions, sampled upright bass, and relaxed vinyl warmth.",
       "characteristicInstruments": [
         "drums",
         "bass",
-        "synth",
-        "percussion"
+        "keys",
+        "electric-guitar"
       ],
       "preferredMeters": [
         "4/4"
       ],
       "tempoRange": [
-        90,
-        105
+        74,
+        92
       ],
       "keySubstyles": [
-        "Reggaeton Clásico",
-        "Urbano Latino",
-        "Dembow Dominicano"
+        "Jazz Rap (A Tribe Called Quest)",
+        "Dilla / Neo-Soul Groove",
+        "Lo-Fi Hip Hop / Chillhop"
       ],
       "coreConcepts": [
-        "dembow riddim ([3, 3, 2] syncopation)",
-        "steady four-on-the-floor kick",
-        "heavy offbeat rim/snare hits",
-        "sub-bass pocket"
+        "unquantized MPC swing",
+        "Rhodes 7th and 9th chord voicings",
+        "laid-back snare lagging behind beat",
+        "upright bass loop"
       ],
       "rhythmicGrammar": [
-        "kick on [0, 4, 8, 12] with snare answering on [3, 6, 11, 14]"
+        "kick dragging slightly behind the grid, snare delayed by 15-25ms on beats 2 and 4"
       ],
       "danceTags": [
-        "social-partner",
-        "sensual-fusion",
-        "festival-fusion"
+        "listening",
+        "chill"
       ],
       "tuningSystem": "12-tet",
-      "signatureCell": "The classic Dembow riddim: steady kick with syncopated offbeat snares [3, 6, 11, 14]",
+      "signatureCell": "Unquantized swung MPC kick-snare pocket with lush major 9th chords",
       "grooveMechanics": {
-        "swingPercentage": 50,
-        "anticipationOffsetSteps": 0,
-        "microtimingFeel": "straight"
+        "swingPercentage": 62,
+        "anticipationOffsetSteps": 1,
+        "microtimingFeel": "drunk"
       },
       "sectionProgressions": {
         "intro": [
-          "Bm",
-          "G",
-          "D",
-          "A"
+          "Fmaj7",
+          "Em7",
+          "Dm7",
+          "Cmaj7"
         ],
         "verse": [
-          "Bm",
-          "G",
-          "D",
-          "A"
+          "Fmaj7",
+          "Em7",
+          "Dm7",
+          "Cmaj7"
         ],
         "chorus": [
-          "G",
-          "A",
-          "Bm",
-          "F#m"
+          "Dm7",
+          "G7",
+          "Cmaj7",
+          "Am7"
         ],
         "coda": [
-          "Bm",
-          "G",
-          "D",
-          "A"
+          "Fmaj7",
+          "Em7",
+          "Dm7",
+          "Cmaj7"
         ]
       }
     }
@@ -332,77 +331,14 @@ export const HIP_HOP_WORLD: GenreWorld = {
         "intro"
       ],
       "variants": [
-        {
-          "id": "hiphop-boom-basic-v-01",
-          "parentPatternId": "hiphop-boom-basic",
-          "name": "Boom Bap Basic — sparse variation",
-          "variationType": "sparse",
-          "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
-          "onsetGrid": [
-            0,
-            8,
-            12
-          ],
-          "accentProfile": [
-            0.95,
-            0.8999999999999999,
-            0.7999999999999999
-          ],
-          "velocityProfile": [
-            0.87,
-            0.8200000000000001,
-            0.7200000000000001
-          ],
-          "microtimingOffset": [
-            -3,
-            6,
-            -3
-          ]
-        },
-        {
-          "id": "hiphop-boom-basic-v-02",
-          "parentPatternId": "hiphop-boom-basic",
-          "name": "Boom Bap Basic — accent shift",
-          "variationType": "accentShift",
-          "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
-          "onsetGrid": [
-            0,
-            4,
-            8,
-            12,
-            10
-          ],
-          "accentProfile": [
-            0.96,
-            1,
-            0.8099999999999999,
-            1,
-            0.71
-          ],
-          "velocityProfile": [
-            1,
-            0.88,
-            0.78,
-            0.96,
-            0.6799999999999999
-          ],
-          "microtimingOffset": [
-            2,
-            -5,
-            2,
-            -5,
-            2
-          ]
-        }
-      ],
+        
+        ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 2,
       "weight": 1,
-      "provenance": "Global Urban Beat catalog rebuild: retained source material or generated structural support pattern.",
+      "provenance": "Global Urban Beat genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
       "authenticityTags": [
         "hip-hop"
       ],
@@ -494,85 +430,14 @@ export const HIP_HOP_WORLD: GenreWorld = {
         "chorus"
       ],
       "variants": [
-        {
-          "id": "hiphop-boom-sync-v-01",
-          "parentPatternId": "hiphop-boom-sync",
-          "name": "Syncopated Kick — sparse variation",
-          "variationType": "sparse",
-          "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
-          "onsetGrid": [
-            0,
-            7,
-            8,
-            12
-          ],
-          "accentProfile": [
-            0.95,
-            0.8999999999999999,
-            0.75,
-            0.85
-          ],
-          "velocityProfile": [
-            0.87,
-            0.8200000000000001,
-            0.67,
-            0.77
-          ],
-          "microtimingOffset": [
-            -3,
-            6,
-            -3,
-            6
-          ]
-        },
-        {
-          "id": "hiphop-boom-sync-v-02",
-          "parentPatternId": "hiphop-boom-sync",
-          "name": "Syncopated Kick — accent shift",
-          "variationType": "accentShift",
-          "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
-          "onsetGrid": [
-            0,
-            4,
-            7,
-            8,
-            11,
-            12
-          ],
-          "accentProfile": [
-            0.96,
-            1,
-            0.76,
-            0.98,
-            0.71,
-            1
-          ],
-          "velocityProfile": [
-            1,
-            0.88,
-            0.73,
-            0.9099999999999999,
-            0.6799999999999999,
-            0.9299999999999999
-          ],
-          "microtimingOffset": [
-            2,
-            -5,
-            2,
-            -5,
-            2,
-            -5
-          ]
-        }
-      ],
+        
+        ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 2,
       "weight": 1,
-      "provenance": "Global Urban Beat catalog rebuild: retained source material or generated structural support pattern.",
+      "provenance": "Global Urban Beat genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
       "authenticityTags": [
         "hip-hop"
       ],
@@ -645,30 +510,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
         "chorus"
       ],
       "variants": [
-        {
-          "id": "hiphop-trap-basic-v-01",
-          "parentPatternId": "hiphop-trap-basic",
-          "name": "Trap Half-Time — sparse variation",
-          "variationType": "sparse",
-          "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
-          "onsetGrid": [
-            0,
-            14
-          ],
-          "accentProfile": [
-            0.95,
-            0.8999999999999999
-          ],
-          "velocityProfile": [
-            0.87,
-            0.8200000000000001
-          ],
-          "microtimingOffset": [
-            -3,
-            6
-          ]
-        },
+        
         {
           "id": "hiphop-trap-basic-v-02",
           "parentPatternId": "hiphop-trap-basic",
@@ -703,7 +545,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
       ],
       "difficulty": 1,
       "weight": 1,
-      "provenance": "Global Urban Beat catalog rebuild: retained source material or generated structural support pattern.",
+      "provenance": "Global Urban Beat genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
       "authenticityTags": [
         "hip-hop"
       ],
@@ -819,157 +661,14 @@ export const HIP_HOP_WORLD: GenreWorld = {
         "turnaround"
       ],
       "variants": [
-        {
-          "id": "hiphop-trap-hats-v-01",
-          "parentPatternId": "hiphop-trap-hats",
-          "name": "Trap Hi-Hats — sparse variation",
-          "variationType": "sparse",
-          "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
-          "onsetGrid": [
-            0,
-            4,
-            6,
-            10,
-            12,
-            16,
-            18,
-            21,
-            22,
-            26,
-            28
-          ],
-          "accentProfile": [
-            0.85,
-            0.6,
-            0.75,
-            0.6,
-            0.7999999999999999,
-            0.6,
-            0.75,
-            0.6,
-            0.85,
-            0.6,
-            0.6499999999999999
-          ],
-          "velocityProfile": [
-            0.77,
-            0.47000000000000003,
-            0.67,
-            0.47000000000000003,
-            0.7200000000000001,
-            0.47000000000000003,
-            0.67,
-            0.47000000000000003,
-            0.77,
-            0.47000000000000003,
-            0.52
-          ],
-          "microtimingOffset": [
-            -3,
-            6,
-            -3,
-            6,
-            -3,
-            6,
-            -3,
-            6,
-            -3,
-            6,
-            -3
-          ]
-        },
-        {
-          "id": "hiphop-trap-hats-v-02",
-          "parentPatternId": "hiphop-trap-hats",
-          "name": "Trap Hi-Hats — accent shift",
-          "variationType": "accentShift",
-          "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
-          "onsetGrid": [
-            0,
-            2,
-            4,
-            6,
-            8,
-            10,
-            12,
-            14,
-            16,
-            18,
-            20,
-            21,
-            22,
-            24,
-            26,
-            28,
-            30
-          ],
-          "accentProfile": [
-            0.86,
-            0.73,
-            0.76,
-            0.73,
-            0.8099999999999999,
-            0.73,
-            0.76,
-            0.73,
-            0.86,
-            0.73,
-            0.6599999999999999,
-            0.88,
-            0.86,
-            0.9299999999999999,
-            0.61,
-            0.88,
-            0.61
-          ],
-          "velocityProfile": [
-            0.9099999999999999,
-            0.53,
-            0.73,
-            0.6100000000000001,
-            0.78,
-            0.53,
-            0.81,
-            0.53,
-            0.83,
-            0.6100000000000001,
-            0.58,
-            0.6799999999999999,
-            0.9099999999999999,
-            0.78,
-            0.53,
-            0.81,
-            0.53
-          ],
-          "microtimingOffset": [
-            2,
-            -5,
-            2,
-            -5,
-            2,
-            -5,
-            2,
-            -5,
-            2,
-            -5,
-            2,
-            -5,
-            2,
-            -5,
-            2,
-            -5,
-            2
-          ]
-        }
-      ],
+        
+        ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 5,
       "weight": 1,
-      "provenance": "Global Urban Beat catalog rebuild: retained source material or generated structural support pattern.",
+      "provenance": "Global Urban Beat genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
       "authenticityTags": [
         "hip-hop"
       ],
@@ -1047,77 +746,13 @@ export const HIP_HOP_WORLD: GenreWorld = {
         "chorus"
       ],
       "variants": [
-        {
-          "id": "hiphop-lofi-v-01",
-          "parentPatternId": "hiphop-lofi",
-          "name": "Lo-Fi Swing — sparse variation",
-          "variationType": "sparse",
-          "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
-          "onsetGrid": [
-            0,
-            12,
-            18
-          ],
-          "accentProfile": [
-            0.85,
-            0.7999999999999999,
-            0.75
-          ],
-          "velocityProfile": [
-            0.77,
-            0.7200000000000001,
-            0.67
-          ],
-          "microtimingOffset": [
-            -3,
-            6,
-            -3
-          ]
-        },
-        {
-          "id": "hiphop-lofi-v-02",
-          "parentPatternId": "hiphop-lofi",
-          "name": "Lo-Fi Swing — accent shift",
-          "variationType": "accentShift",
-          "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
-          "onsetGrid": [
-            0,
-            6,
-            12,
-            18,
-            10
-          ],
-          "accentProfile": [
-            0.86,
-            0.9299999999999999,
-            0.76,
-            0.98,
-            0.6599999999999999
-          ],
-          "velocityProfile": [
-            0.9099999999999999,
-            0.78,
-            0.73,
-            0.9099999999999999,
-            0.63
-          ],
-          "microtimingOffset": [
-            2,
-            -5,
-            2,
-            -5,
-            2
-          ]
-        }
       ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 2,
       "weight": 1,
-      "provenance": "Global Urban Beat catalog rebuild: retained source material or generated structural support pattern.",
+      "provenance": "Global Urban Beat genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
       "authenticityTags": [
         "hip-hop"
       ],
@@ -1221,97 +856,14 @@ export const HIP_HOP_WORLD: GenreWorld = {
         "chorus"
       ],
       "variants": [
-        {
-          "id": "hiphop-gfunk-v-01",
-          "parentPatternId": "hiphop-gfunk",
-          "name": "G-Funk — sparse variation",
-          "variationType": "sparse",
-          "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
-          "onsetGrid": [
-            0,
-            4,
-            6,
-            10,
-            12
-          ],
-          "accentProfile": [
-            0.95,
-            0.6,
-            0.8999999999999999,
-            0.6,
-            0.85
-          ],
-          "velocityProfile": [
-            0.87,
-            0.52,
-            0.8200000000000001,
-            0.52,
-            0.77
-          ],
-          "microtimingOffset": [
-            -3,
-            6,
-            -3,
-            6,
-            -3
-          ]
-        },
-        {
-          "id": "hiphop-gfunk-v-02",
-          "parentPatternId": "hiphop-gfunk",
-          "name": "G-Funk — accent shift",
-          "variationType": "accentShift",
-          "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
-          "onsetGrid": [
-            0,
-            2,
-            4,
-            6,
-            8,
-            10,
-            12,
-            14
-          ],
-          "accentProfile": [
-            0.96,
-            0.73,
-            0.9099999999999999,
-            0.73,
-            0.86,
-            0.73,
-            0.9099999999999999,
-            0.7799999999999999
-          ],
-          "velocityProfile": [
-            1,
-            0.58,
-            0.88,
-            0.6599999999999999,
-            0.83,
-            0.58,
-            0.96,
-            0.63
-          ],
-          "microtimingOffset": [
-            2,
-            -5,
-            2,
-            -5,
-            2,
-            -5,
-            2,
-            -5
-          ]
-        }
-      ],
+        
+        ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 3,
       "weight": 1,
-      "provenance": "Global Urban Beat catalog rebuild: retained source material or generated structural support pattern.",
+      "provenance": "Global Urban Beat genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
       "authenticityTags": [
         "hip-hop"
       ],
@@ -1397,73 +949,14 @@ export const HIP_HOP_WORLD: GenreWorld = {
         "chorus"
       ],
       "variants": [
-        {
-          "id": "hiphop-drill-v-01",
-          "parentPatternId": "hiphop-drill",
-          "name": "Drill Beat — sparse variation",
-          "variationType": "sparse",
-          "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
-          "onsetGrid": [
-            0,
-            11,
-            14
-          ],
-          "accentProfile": [
-            0.95,
-            0.7999999999999999,
-            0.8999999999999999
-          ],
-          "velocityProfile": [
-            0.87,
-            0.7200000000000001,
-            0.8200000000000001
-          ],
-          "microtimingOffset": [
-            -3,
-            6,
-            -3
-          ]
-        },
-        {
-          "id": "hiphop-drill-v-02",
-          "parentPatternId": "hiphop-drill",
-          "name": "Drill Beat — accent shift",
-          "variationType": "accentShift",
-          "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
-          "onsetGrid": [
-            0,
-            7,
-            11,
-            14
-          ],
-          "accentProfile": [
-            0.96,
-            0.9299999999999999,
-            0.9099999999999999,
-            0.88
-          ],
-          "velocityProfile": [
-            1,
-            0.78,
-            0.88,
-            0.81
-          ],
-          "microtimingOffset": [
-            2,
-            -5,
-            2,
-            -5
-          ]
-        }
-      ],
+        
+        ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 1,
       "weight": 1,
-      "provenance": "Global Urban Beat catalog rebuild: retained source material or generated structural support pattern.",
+      "provenance": "Global Urban Beat genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
       "authenticityTags": [
         "hip-hop"
       ],
@@ -1546,93 +1039,14 @@ export const HIP_HOP_WORLD: GenreWorld = {
         "chorus"
       ],
       "variants": [
-        {
-          "id": "hiphop-breakbeat-v-01",
-          "parentPatternId": "hiphop-breakbeat",
-          "name": "Old School Break — sparse variation",
-          "variationType": "sparse",
-          "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
-          "onsetGrid": [
-            0,
-            4,
-            7,
-            10,
-            12
-          ],
-          "accentProfile": [
-            0.95,
-            0.73,
-            0.9299999999999999,
-            0.6699999999999999,
-            0.83
-          ],
-          "velocityProfile": [
-            0.88,
-            0.64,
-            0.86,
-            0.6000000000000001,
-            0.76
-          ],
-          "microtimingOffset": [
-            -3,
-            6,
-            -3,
-            6,
-            -3
-          ]
-        },
-        {
-          "id": "hiphop-breakbeat-v-02",
-          "parentPatternId": "hiphop-breakbeat",
-          "name": "Old School Break — accent shift",
-          "variationType": "accentShift",
-          "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
-          "onsetGrid": [
-            0,
-            3,
-            4,
-            7,
-            8,
-            10,
-            12
-          ],
-          "accentProfile": [
-            0.96,
-            0.86,
-            0.94,
-            0.7999999999999999,
-            0.84,
-            0.8999999999999999,
-            0.9199999999999999
-          ],
-          "velocityProfile": [
-            1,
-            0.7,
-            0.9199999999999999,
-            0.74,
-            0.82,
-            0.76,
-            0.98
-          ],
-          "microtimingOffset": [
-            2,
-            -5,
-            2,
-            -5,
-            2,
-            -5,
-            2
-          ]
-        }
-      ],
+        
+        ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 2,
       "weight": 1,
-      "provenance": "Global Urban Beat catalog rebuild: retained source material or generated structural support pattern.",
+      "provenance": "Global Urban Beat genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
       "authenticityTags": [
         "hip-hop"
       ],
@@ -1712,85 +1126,14 @@ export const HIP_HOP_WORLD: GenreWorld = {
         "chorus"
       ],
       "variants": [
-        {
-          "id": "hiphop-bounce-v-01",
-          "parentPatternId": "hiphop-bounce",
-          "name": "Bounce Beat — sparse variation",
-          "variationType": "sparse",
-          "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
-          "onsetGrid": [
-            0,
-            6,
-            8,
-            14
-          ],
-          "accentProfile": [
-            0.95,
-            0.75,
-            0.7999999999999999,
-            0.8999999999999999
-          ],
-          "velocityProfile": [
-            0.87,
-            0.67,
-            0.7200000000000001,
-            0.8200000000000001
-          ],
-          "microtimingOffset": [
-            -3,
-            6,
-            -3,
-            6
-          ]
-        },
-        {
-          "id": "hiphop-bounce-v-02",
-          "parentPatternId": "hiphop-bounce",
-          "name": "Bounce Beat — accent shift",
-          "variationType": "accentShift",
-          "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
-          "onsetGrid": [
-            0,
-            3,
-            6,
-            8,
-            11,
-            14
-          ],
-          "accentProfile": [
-            0.96,
-            0.88,
-            0.8099999999999999,
-            1,
-            0.76,
-            0.9299999999999999
-          ],
-          "velocityProfile": [
-            1,
-            0.73,
-            0.78,
-            0.96,
-            0.73,
-            0.78
-          ],
-          "microtimingOffset": [
-            2,
-            -5,
-            2,
-            -5,
-            2,
-            -5
-          ]
-        }
-      ],
+        
+        ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 2,
       "weight": 1,
-      "provenance": "Global Urban Beat catalog rebuild: retained source material or generated structural support pattern.",
+      "provenance": "Global Urban Beat genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
       "authenticityTags": [
         "hip-hop"
       ],
@@ -1867,77 +1210,14 @@ export const HIP_HOP_WORLD: GenreWorld = {
         "chorus"
       ],
       "variants": [
-        {
-          "id": "hiphop-westcoast-v-01",
-          "parentPatternId": "hiphop-westcoast",
-          "name": "West Coast — sparse variation",
-          "variationType": "sparse",
-          "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
-          "onsetGrid": [
-            0,
-            7,
-            12
-          ],
-          "accentProfile": [
-            0.95,
-            0.8999999999999999,
-            0.75
-          ],
-          "velocityProfile": [
-            0.87,
-            0.8200000000000001,
-            0.67
-          ],
-          "microtimingOffset": [
-            -3,
-            6,
-            -3
-          ]
-        },
-        {
-          "id": "hiphop-westcoast-v-02",
-          "parentPatternId": "hiphop-westcoast",
-          "name": "West Coast — accent shift",
-          "variationType": "accentShift",
-          "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
-          "onsetGrid": [
-            0,
-            4,
-            7,
-            12,
-            15
-          ],
-          "accentProfile": [
-            0.96,
-            1,
-            0.76,
-            1,
-            0.71
-          ],
-          "velocityProfile": [
-            1,
-            0.88,
-            0.73,
-            0.96,
-            0.6799999999999999
-          ],
-          "microtimingOffset": [
-            2,
-            -5,
-            2,
-            -5,
-            2
-          ]
-        }
-      ],
+        
+        ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 2,
       "weight": 1,
-      "provenance": "Global Urban Beat catalog rebuild: retained source material or generated structural support pattern.",
+      "provenance": "Global Urban Beat genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
       "authenticityTags": [
         "hip-hop"
       ],
@@ -2011,73 +1291,14 @@ export const HIP_HOP_WORLD: GenreWorld = {
         "chorus"
       ],
       "variants": [
-        {
-          "id": "hiphop-neosoul-v-01",
-          "parentPatternId": "hiphop-neosoul",
-          "name": "Neo-Soul Hip Hop — sparse variation",
-          "variationType": "sparse",
-          "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
-          "onsetGrid": [
-            0,
-            8,
-            13
-          ],
-          "accentProfile": [
-            0.85,
-            0.7999999999999999,
-            0.75
-          ],
-          "velocityProfile": [
-            0.77,
-            0.7200000000000001,
-            0.67
-          ],
-          "microtimingOffset": [
-            -3,
-            6,
-            -3
-          ]
-        },
-        {
-          "id": "hiphop-neosoul-v-02",
-          "parentPatternId": "hiphop-neosoul",
-          "name": "Neo-Soul Hip Hop — accent shift",
-          "variationType": "accentShift",
-          "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
-          "onsetGrid": [
-            0,
-            5,
-            8,
-            13
-          ],
-          "accentProfile": [
-            0.86,
-            0.9299999999999999,
-            0.76,
-            0.9299999999999999
-          ],
-          "velocityProfile": [
-            0.9099999999999999,
-            0.78,
-            0.73,
-            0.8600000000000001
-          ],
-          "microtimingOffset": [
-            2,
-            -5,
-            2,
-            -5
-          ]
-        }
-      ],
+        
+        ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 1,
       "weight": 1,
-      "provenance": "Global Urban Beat catalog rebuild: retained source material or generated structural support pattern.",
+      "provenance": "Global Urban Beat genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
       "authenticityTags": [
         "hip-hop"
       ],
@@ -2150,65 +1371,14 @@ export const HIP_HOP_WORLD: GenreWorld = {
         "chorus"
       ],
       "variants": [
-        {
-          "id": "hiphop-minimal808-v-01",
-          "parentPatternId": "hiphop-minimal808",
-          "name": "Minimal 808 — sparse variation",
-          "variationType": "sparse",
-          "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
-          "onsetGrid": [
-            0,
-            14
-          ],
-          "accentProfile": [
-            0.95,
-            0.7999999999999999
-          ],
-          "velocityProfile": [
-            0.87,
-            0.7200000000000001
-          ],
-          "microtimingOffset": [
-            -3,
-            6
-          ]
-        },
-        {
-          "id": "hiphop-minimal808-v-02",
-          "parentPatternId": "hiphop-minimal808",
-          "name": "Minimal 808 — accent shift",
-          "variationType": "accentShift",
-          "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
-          "onsetGrid": [
-            0,
-            10,
-            14
-          ],
-          "accentProfile": [
-            0.96,
-            0.9299999999999999,
-            0.86
-          ],
-          "velocityProfile": [
-            1,
-            0.78,
-            0.83
-          ],
-          "microtimingOffset": [
-            2,
-            -5,
-            2
-          ]
-        }
-      ],
+        
+        ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 1,
       "weight": 1,
-      "provenance": "Global Urban Beat catalog rebuild: retained source material or generated structural support pattern.",
+      "provenance": "Global Urban Beat genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
       "authenticityTags": [
         "hip-hop"
       ],
@@ -2233,19 +1403,19 @@ export const HIP_HOP_WORLD: GenreWorld = {
       ]
     },
     {
-      "id": "hiphop-dembow-riddim",
+      "id": "hiphop-lofi-pocket-drums",
       "worldId": "hip-hop",
-      "traditionId": "hiphop-dembow",
-      "name": "Classic Dembow Riddim",
-      "family": "Dembow",
+      "traditionId": "hiphop-lofi-jazzrap",
+      "name": "Lo-Fi Dilla MPC Pocket Drums",
+      "family": "Lo-Fi Drums",
       "category": "groove",
-      "description": "The heartbeat of global urban Latin music: 4-on-the-floor kick with sharp syncopated offbeat snares.",
+      "description": "Laid-back unquantized drum machine groove with deep kick, lazy rimshot/snare, and swung hi-hats.",
       "tags": [
-        "reggaeton",
-        "dembow",
+        "lo-fi",
+        "jazz-rap",
         "drums",
-        "latin",
-        "beat"
+        "mpc",
+        "swing"
       ],
       "scopes": [
         "measure",
@@ -2304,97 +1474,13 @@ export const HIP_HOP_WORLD: GenreWorld = {
         "chorus"
       ],
       "variants": [
-        {
-          "id": "hiphop-dembow-riddim-v-01",
-          "parentPatternId": "hiphop-dembow-riddim",
-          "name": "Classic Dembow Riddim — sparse variation",
-          "variationType": "sparse",
-          "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
-          "onsetGrid": [
-            0,
-            4,
-            6,
-            11,
-            12
-          ],
-          "accentProfile": [
-            0.95,
-            0.83,
-            0.8999999999999999,
-            0.83,
-            0.95
-          ],
-          "velocityProfile": [
-            0.87,
-            0.74,
-            0.8400000000000001,
-            0.74,
-            0.87
-          ],
-          "microtimingOffset": [
-            -3,
-            6,
-            -3,
-            6,
-            -3
-          ]
-        },
-        {
-          "id": "hiphop-dembow-riddim-v-02",
-          "parentPatternId": "hiphop-dembow-riddim",
-          "name": "Classic Dembow Riddim — accent shift",
-          "variationType": "accentShift",
-          "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
-          "onsetGrid": [
-            0,
-            3,
-            4,
-            6,
-            8,
-            11,
-            12,
-            14
-          ],
-          "accentProfile": [
-            0.96,
-            0.96,
-            0.9099999999999999,
-            0.96,
-            0.96,
-            0.96,
-            0.9099999999999999,
-            0.96
-          ],
-          "velocityProfile": [
-            1,
-            0.7999999999999999,
-            0.9,
-            0.8799999999999999,
-            0.9299999999999999,
-            0.7999999999999999,
-            0.98,
-            0.7999999999999999
-          ],
-          "microtimingOffset": [
-            2,
-            -5,
-            2,
-            -5,
-            2,
-            -5,
-            2,
-            -5
-          ]
-        }
       ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 3,
       "weight": 1,
-      "provenance": "Global Urban Beat catalog rebuild: retained source material or generated structural support pattern.",
+      "provenance": "Global Urban Beat genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
       "authenticityTags": [
         "hip-hop"
       ],
@@ -2475,65 +1561,14 @@ export const HIP_HOP_WORLD: GenreWorld = {
         "solo"
       ],
       "variants": [
-        {
-          "id": "hiphop-808-glide-bass-v-01",
-          "parentPatternId": "hiphop-808-glide-bass",
-          "name": "808 Glide & Sub Slide Bass — sparse variation",
-          "variationType": "sparse",
-          "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
-          "onsetGrid": [
-            0,
-            12
-          ],
-          "accentProfile": [
-            0.95,
-            0.7999999999999999
-          ],
-          "velocityProfile": [
-            0.87,
-            0.7200000000000001
-          ],
-          "microtimingOffset": [
-            -3,
-            6
-          ]
-        },
-        {
-          "id": "hiphop-808-glide-bass-v-02",
-          "parentPatternId": "hiphop-808-glide-bass",
-          "name": "808 Glide & Sub Slide Bass — accent shift",
-          "variationType": "accentShift",
-          "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
-          "onsetGrid": [
-            0,
-            6,
-            12
-          ],
-          "accentProfile": [
-            0.96,
-            0.9299999999999999,
-            0.86
-          ],
-          "velocityProfile": [
-            1,
-            0.78,
-            0.83
-          ],
-          "microtimingOffset": [
-            2,
-            -5,
-            2
-          ]
-        }
-      ],
+        
+        ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 1,
       "weight": 0.7,
-      "provenance": "Global Urban Beat catalog rebuild: retained source material or generated structural support pattern.",
+      "provenance": "Global Urban Beat genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
       "authenticityTags": [
         "hip-hop"
       ],
@@ -2607,10 +1642,10 @@ export const HIP_HOP_WORLD: GenreWorld = {
         0.57,
         0.95,
         0.62,
-        0.8999999999999999,
+        0.9,
         0.62
       ],
-      "syncopationRating": 0.6666666666666666,
+      "syncopationRating": 0.67,
       "anticipationOffset": 0,
       "swingPercentage": 50,
       "articulations": [
@@ -2640,124 +1675,10 @@ export const HIP_HOP_WORLD: GenreWorld = {
         "phrasePosition"
       ],
       "variants": [
-        {
-          "id": "hip-hop-call-15-v-01",
-          "parentPatternId": "hip-hop-call-15",
-          "name": "Boom Bap Response — sparse variation",
-          "variationType": "sparse",
-          "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
-          "onsetGrid": [
-            1,
-            7,
-            9,
-            15
-          ],
-          "accentProfile": [
-            0.8999999999999999,
-            0.57,
-            0.8999999999999999,
-            0.57
-          ],
-          "velocityProfile": [
-            0.87,
-            0.48999999999999994,
-            0.87,
-            0.54
-          ],
-          "microtimingOffset": [
-            -3,
-            6,
-            -3,
-            6
-          ]
-        },
-        {
-          "id": "hip-hop-call-15-v-02",
-          "parentPatternId": "hip-hop-call-15",
-          "name": "Boom Bap Response — accent shift",
-          "variationType": "accentShift",
-          "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
-          "onsetGrid": [
-            1,
-            4,
-            7,
-            9,
-            12,
-            15
-          ],
-          "accentProfile": [
-            0.9099999999999999,
-            0.7,
-            0.9099999999999999,
-            0.7,
-            0.9099999999999999,
-            0.7
-          ],
-          "velocityProfile": [
-            1,
-            0.5499999999999999,
-            0.9299999999999999,
-            0.6799999999999999,
-            0.8799999999999999,
-            0.6
-          ],
-          "microtimingOffset": [
-            2,
-            -5,
-            2,
-            -5,
-            2,
-            -5
-          ]
-        },
-        {
-          "id": "hip-hop-call-15-v-03",
-          "parentPatternId": "hip-hop-call-15",
-          "name": "Boom Bap Response — transition variation",
-          "variationType": "transition",
-          "probability": 0.16,
-          "description": "Adds a final pickup/closure gesture for section transitions.",
-          "onsetGrid": [
-            1,
-            4,
-            7,
-            9,
-            12,
-            14,
-            15
-          ],
-          "accentProfile": [
-            0.9299999999999999,
-            0.6,
-            0.9299999999999999,
-            0.6,
-            0.9299999999999999,
-            1,
-            1
-          ],
-          "velocityProfile": [
-            0.95,
-            0.57,
-            0.95,
-            0.62,
-            0.8999999999999999,
-            0.98,
-            0.98
-          ],
-          "microtimingOffset": [
-            0,
-            0,
-            0,
-            0,
-            0,
-            -6,
-            -6
-          ]
-        }
-      ],
-      "provenance": "GenreDAW catalog rebuild from existing Global Urban Beat world data; generated to cover missing musical functions without runtime AI.",
+        
+        
+        ],
+      "provenance": "Global Urban Beat genre-pack structural pattern; generalized for engine coverage and recombination, not a transcription of a single recording.",
       "authenticityTags": [
         "hip-hop",
         "boom-bap"
@@ -2829,7 +1750,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
         0.95,
         0.74
       ],
-      "syncopationRating": 0.6666666666666666,
+      "syncopationRating": 0.67,
       "anticipationOffset": 0,
       "swingPercentage": 50,
       "articulations": [
@@ -2859,80 +1780,9 @@ export const HIP_HOP_WORLD: GenreWorld = {
         "phrasePosition"
       ],
       "variants": [
-        {
-          "id": "hip-hop-anchor-16-v-01",
-          "parentPatternId": "hip-hop-anchor-16",
-          "name": "Sample Chop Anchor — sparse variation",
-          "variationType": "sparse",
-          "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
-          "onsetGrid": [
-            0,
-            5,
-            8,
-            13
-          ],
-          "accentProfile": [
-            0.95,
-            0.69,
-            0.85,
-            0.63
-          ],
-          "velocityProfile": [
-            0.92,
-            0.61,
-            0.8200000000000001,
-            0.6000000000000001
-          ],
-          "microtimingOffset": [
-            -3,
-            6,
-            -3,
-            6
-          ]
-        },
-        {
-          "id": "hip-hop-anchor-16-v-02",
-          "parentPatternId": "hip-hop-anchor-16",
-          "name": "Sample Chop Anchor — accent shift",
-          "variationType": "accentShift",
-          "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
-          "onsetGrid": [
-            0,
-            2,
-            5,
-            8,
-            10,
-            13
-          ],
-          "accentProfile": [
-            0.96,
-            0.82,
-            0.86,
-            0.76,
-            0.96,
-            0.82
-          ],
-          "velocityProfile": [
-            1,
-            0.6699999999999999,
-            0.88,
-            0.74,
-            0.9299999999999999,
-            0.72
-          ],
-          "microtimingOffset": [
-            2,
-            -5,
-            2,
-            -5,
-            2,
-            -5
-          ]
-        }
-      ],
-      "provenance": "GenreDAW catalog rebuild from existing Global Urban Beat world data; generated to cover missing musical functions without runtime AI.",
+        
+        ],
+      "provenance": "Global Urban Beat genre-pack structural pattern; generalized for engine coverage and recombination, not a transcription of a single recording.",
       "authenticityTags": [
         "hip-hop",
         "sample-chop"
@@ -3000,7 +1850,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
         0.88,
         0.64
       ],
-      "syncopationRating": 0.6666666666666666,
+      "syncopationRating": 0.67,
       "anticipationOffset": 0,
       "swingPercentage": 50,
       "articulations": [
@@ -3088,7 +1938,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
           ]
         }
       ],
-      "provenance": "GenreDAW catalog rebuild: dedicated vocal phrasing coverage for Global Urban Beat.",
+      "provenance": "Genre-pack structural pattern for dedicated vocal phrasing coverage for Global Urban Beat; generalized for engine coverage, not a transcription.",
       "authenticityTags": [
         "hip-hop",
         "voice"
@@ -3099,6 +1949,68 @@ export const HIP_HOP_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "difficulty": 2,
       "weight": 0.9,
+      "enabled": true
+    },
+    {
+      "id": "hiphop-rhodes-jazz-chords",
+      "worldId": "hip-hop",
+      "traditionId": "hiphop-lofi-jazzrap",
+      "name": "Warm Rhodes Jazz Chords",
+      "family": "Keys",
+      "category": "harmony",
+      "description": "Rich 7th and 9th electric piano chords with tape vibrato and laid-back syncopated stabs.",
+      "tags": ["lo-fi", "jazz-rap", "rhodes", "keys", "harmony"],
+      "scopes": ["measure", "phrase", "region", "track"],
+      "roles": ["keys", "harmony", "piano"],
+      "instruments": ["keys", "piano"],
+      "meter": "4/4",
+      "cycleLength": 2,
+      "subdivisions": 16,
+      "onsetGrid": [2, 6, 11, 18, 22, 27],
+      "accentProfile": [0.9, 0.75, 0.95, 0.9, 0.75, 0.95],
+      "velocityProfile": [0.85, 0.7, 0.9, 0.85, 0.7, 0.9],
+      "articulations": ["tenuto", "accented"],
+      "density": "medium",
+      "phrasePosition": ["start", "middle", "end"],
+      "sectionUsage": ["verse", "chorus"],
+      "variants": [],
+      "provenance": "Genre-pack support pattern for Lo-Fi, Jazz Rap & Neo-Soul; generalized from documented musical conventions.",
+      "authenticityTags": ["jazz-rap", "lo-fi", "keys"],
+      "danceTags": ["listening"],
+      "tuningSystem": "12-tet",
+      "difficulty": 2,
+      "weight": 1,
+      "enabled": true
+    },
+    {
+      "id": "hiphop-upright-jazz-bass",
+      "worldId": "hip-hop",
+      "traditionId": "hiphop-lofi-jazzrap",
+      "name": "Sampled Upright Jazz Bass",
+      "family": "Bass",
+      "category": "bass",
+      "description": "Deep acoustic upright bass walking through chromatic passing tones and resting in the pocket.",
+      "tags": ["lo-fi", "jazz-rap", "bass", "upright", "pulse"],
+      "scopes": ["measure", "phrase", "region", "track"],
+      "roles": ["bass", "pulse"],
+      "instruments": ["bass"],
+      "meter": "4/4",
+      "cycleLength": 1,
+      "subdivisions": 16,
+      "onsetGrid": [0, 6, 10, 14],
+      "accentProfile": [1.0, 0.8, 0.9, 0.75],
+      "velocityProfile": [0.95, 0.75, 0.85, 0.7],
+      "articulations": ["legato", "slide"],
+      "density": "medium",
+      "phrasePosition": ["start", "middle", "end"],
+      "sectionUsage": ["verse", "chorus"],
+      "variants": [],
+      "provenance": "Genre-pack support pattern for Lo-Fi, Jazz Rap & Neo-Soul; generalized from documented musical conventions.",
+      "authenticityTags": ["jazz-rap", "bass"],
+      "danceTags": ["listening"],
+      "tuningSystem": "12-tet",
+      "difficulty": 2,
+      "weight": 1,
       "enabled": true
     }
   ],
@@ -3173,8 +2085,9 @@ export const HIP_HOP_WORLD: GenreWorld = {
     "microtimingFeel": "laid-back"
   },
   "crossLinks": [
+    "Hip-Hop ↔ Reggaeton & Dembow (see dedicated Reggaeton / Dembow world)",
     "Global Urban Beat ↔ Afrobeats",
-    "Global Urban Beat ↔ Bachata Sensual",
+    "Global Urban Beat ↔ Jazz (Jazz Rap / Boom Bap)",
     "Global Urban Beat ↔ Funk"
   ]
 };

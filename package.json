@@ -5,7 +5,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --host 0.0.0.0 --port 3000",
     "build": "vite build",
     "build:static": "vite build",
     "predeploy": "npm run build:static",
@@ -13,7 +13,9 @@
     "preview": "vite preview",
     "clean": "rm -rf dist",
     "lint": "tsc --noEmit",
-    "test": "tsx scripts/test-filter.ts"
+    "test": "tsx scripts/test-filter.ts",
+    "check:style-reads": "tsx scripts/check-style-reads.ts",
+    "style-check": "tsx scripts/style-check.ts"
   },
   "dependencies": {
     "@breezystack/lamejs": "^1.2.7",

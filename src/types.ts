@@ -176,6 +176,7 @@ export interface PatternVariant {
   id: string;
   parentPatternId: string;
   name: string;
+  shortName?: string;
   variationType: VariationType;
   probability: number;
   description?: string;
@@ -218,6 +219,7 @@ export interface MusicalPattern {
   traditionId?: string;
   substyleId?: string;
   name: string;
+  shortName?: string;
   family: string;
   category: PatternCategory;
   description: string;
@@ -351,6 +353,7 @@ export interface Measure {
   patternDetailsByTrack?: Record<string, {
     patternId: string;
     traditionId?: string;
+    styleId?: string;
     variantId?: string;
     onsetGrid: number[];
     accentProfile?: number[];
@@ -446,6 +449,9 @@ export interface Song {
   applied: AppliedLens[];
   preferences?: UserPatternPreference[];
   generationSeed?: number;
+  styleId?: string;
+  styleInfluences?: any[];
+  styleOverrides?: Record<string, unknown>;
 }
 
 export interface SelectionScoreDetails {

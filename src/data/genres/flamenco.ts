@@ -50,7 +50,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
         "social-partner",
         "listening"
       ],
-      "tuningSystem": "phrygian-mode",
+      "tuningSystem": "12-tet",
       "signatureCell": "12-beat compás accented on [12, 3, 6, 8, 10] with Andalusian cadence",
       "grooveMechanics": {
         "swingPercentage": 50,
@@ -131,7 +131,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
         "social-partner",
         "festival-fusion"
       ],
-      "tuningSystem": "phrygian-mode",
+      "tuningSystem": "12-tet",
       "signatureCell": "Blazing 12-beat compás with contratiempo palmas and alzapúa thumb engine",
       "grooveMechanics": {
         "swingPercentage": 50,
@@ -211,7 +211,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
         "festival-fusion",
         "listening"
       ],
-      "tuningSystem": "phrygian-mode",
+      "tuningSystem": "12-tet",
       "signatureCell": "Tangos 4/4 binary compás with silent beat 1 and heavy weight on 2, 3, 4",
       "grooveMechanics": {
         "swingPercentage": 50,
@@ -600,7 +600,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
       ],
       "difficulty": 3,
       "weight": 0.7,
-      "provenance": "Flamenco catalog rebuild: retained source material or generated structural support pattern.",
+      "provenance": "Flamenco genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
       "authenticityTags": [
         "flamenco"
       ],
@@ -724,45 +724,13 @@ export const FLAMENCO_WORLD: GenreWorld = {
           ],
           "description": "Ending cadence with rapid 16th note finger flourish."
         },
-        {
-          "id": "flam-tangos-compas-v-02",
-          "parentPatternId": "flam-tangos-compas",
-          "name": "Tangos de Triana (Binary Compás) — accent shift",
-          "variationType": "accentShift",
-          "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
-          "onsetGrid": [
-            4,
-            8,
-            12,
-            14
-          ],
-          "accentProfile": [
-            0.9099999999999999,
-            0.98,
-            0.96,
-            0.6799999999999999
-          ],
-          "velocityProfile": [
-            0.96,
-            0.83,
-            0.9299999999999999,
-            0.6599999999999999
-          ],
-          "microtimingOffset": [
-            2,
-            -5,
-            2,
-            -5
-          ]
-        }
-      ],
+        ],
       "harmonicContext": [
         "modal/tonal traditional context"
       ],
       "difficulty": 1,
       "weight": 0.7,
-      "provenance": "Flamenco catalog rebuild: retained source material or generated structural support pattern.",
+      "provenance": "Flamenco genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
       "authenticityTags": [
         "flamenco"
       ],
@@ -886,49 +854,13 @@ export const FLAMENCO_WORLD: GenreWorld = {
           ],
           "description": "Decisive closing golpe and silence on beat 10."
         },
-        {
-          "id": "flam-solea-12beat-v-02",
-          "parentPatternId": "flam-solea-12beat",
-          "name": "Soleá 12-Beat Compás Framework — accent shift",
-          "variationType": "accentShift",
-          "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
-          "onsetGrid": [
-            2,
-            5,
-            7,
-            9,
-            11
-          ],
-          "accentProfile": [
-            0.96,
-            0.98,
-            0.9099999999999999,
-            1,
-            0.76
-          ],
-          "velocityProfile": [
-            1,
-            0.83,
-            0.88,
-            1,
-            0.78
-          ],
-          "microtimingOffset": [
-            2,
-            -5,
-            2,
-            -5,
-            2
-          ]
-        }
-      ],
+        ],
       "harmonicContext": [
         "modal/tonal traditional context"
       ],
       "difficulty": 2,
       "weight": 0.7,
-      "provenance": "Flamenco catalog rebuild: retained source material or generated structural support pattern.",
+      "provenance": "Flamenco genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
       "authenticityTags": [
         "flamenco"
       ],
@@ -1078,77 +1010,13 @@ export const FLAMENCO_WORLD: GenreWorld = {
           ],
           "description": "Polyrhythmic thumb grouping cutting across the meter."
         },
-        {
-          "id": "flam-alzapua-bass-v-02",
-          "parentPatternId": "flam-alzapua-bass",
-          "name": "Alzapúa Thumb Technique (Bass Driver) — accent shift",
-          "variationType": "accentShift",
-          "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
-          "onsetGrid": [
-            0,
-            2,
-            3,
-            4,
-            6,
-            7,
-            8,
-            10,
-            11,
-            12,
-            14,
-            15
-          ],
-          "accentProfile": [
-            0.96,
-            0.58,
-            0.6599999999999999,
-            1,
-            0.46,
-            0.7799999999999999,
-            0.96,
-            0.58,
-            0.6599999999999999,
-            0.98,
-            0.46,
-            0.7799999999999999
-          ],
-          "velocityProfile": [
-            1,
-            0.48,
-            0.6799999999999999,
-            0.96,
-            0.48,
-            0.6799999999999999,
-            1,
-            0.48,
-            0.6799999999999999,
-            0.9099999999999999,
-            0.48,
-            0.6799999999999999
-          ],
-          "microtimingOffset": [
-            2,
-            -5,
-            2,
-            -5,
-            2,
-            -5,
-            2,
-            -5,
-            2,
-            -5,
-            2,
-            -5
-          ]
-        }
-      ],
+        ],
       "harmonicContext": [
         "modal/tonal traditional context"
       ],
       "difficulty": 4,
       "weight": 0.7,
-      "provenance": "Flamenco catalog rebuild: retained source material or generated structural support pattern.",
+      "provenance": "Flamenco genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
       "authenticityTags": [
         "flamenco"
       ],
@@ -1307,77 +1175,13 @@ export const FLAMENCO_WORLD: GenreWorld = {
           ],
           "description": "Thumb bass note followed by p-i-a-m-i 4-finger rapid sustained tremolo."
         },
-        {
-          "id": "flam-falseta-melodic-v-02",
-          "parentPatternId": "flam-falseta-melodic",
-          "name": "Falseta Melodic Development — accent shift",
-          "variationType": "accentShift",
-          "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
-          "onsetGrid": [
-            0,
-            3,
-            6,
-            8,
-            12,
-            14,
-            16,
-            19,
-            22,
-            24,
-            28,
-            30
-          ],
-          "accentProfile": [
-            0.86,
-            0.6799999999999999,
-            0.76,
-            1,
-            0.6599999999999999,
-            0.88,
-            0.86,
-            0.6799999999999999,
-            0.8099999999999999,
-            1,
-            0.6599999999999999,
-            0.98
-          ],
-          "velocityProfile": [
-            0.9099999999999999,
-            0.58,
-            0.73,
-            0.96,
-            0.6799999999999999,
-            0.73,
-            0.9099999999999999,
-            0.58,
-            0.78,
-            1,
-            0.6799999999999999,
-            0.83
-          ],
-          "microtimingOffset": [
-            2,
-            -5,
-            2,
-            -5,
-            2,
-            -5,
-            2,
-            -5,
-            2,
-            -5,
-            2,
-            -5
-          ]
-        }
-      ],
+        ],
       "harmonicContext": [
         "modal/tonal traditional context"
       ],
       "difficulty": 4,
       "weight": 0.7,
-      "provenance": "Flamenco catalog rebuild: retained source material or generated structural support pattern.",
+      "provenance": "Flamenco genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
       "authenticityTags": [
         "flamenco"
       ],
@@ -1459,73 +1263,14 @@ export const FLAMENCO_WORLD: GenreWorld = {
         "chorus"
       ],
       "variants": [
-        {
-          "id": "flamenco-golpe-v-01",
-          "parentPatternId": "flamenco-golpe",
-          "name": "Golpe (Tap) — sparse variation",
-          "variationType": "sparse",
-          "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
-          "onsetGrid": [
-            0,
-            8,
-            12
-          ],
-          "accentProfile": [
-            0.85,
-            0.95,
-            0.7999999999999999
-          ],
-          "velocityProfile": [
-            0.77,
-            0.87,
-            0.7200000000000001
-          ],
-          "microtimingOffset": [
-            -3,
-            6,
-            -3
-          ]
-        },
-        {
-          "id": "flamenco-golpe-v-02",
-          "parentPatternId": "flamenco-golpe",
-          "name": "Golpe (Tap) — accent shift",
-          "variationType": "accentShift",
-          "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
-          "onsetGrid": [
-            0,
-            4,
-            8,
-            12
-          ],
-          "accentProfile": [
-            0.86,
-            1,
-            0.8099999999999999,
-            1
-          ],
-          "velocityProfile": [
-            0.9099999999999999,
-            0.9299999999999999,
-            0.78,
-            1
-          ],
-          "microtimingOffset": [
-            2,
-            -5,
-            2,
-            -5
-          ]
-        }
-      ],
+        
+        ],
       "harmonicContext": [
         "modal/tonal traditional context"
       ],
       "difficulty": 1,
       "weight": 1,
-      "provenance": "Flamenco catalog rebuild: retained source material or generated structural support pattern.",
+      "provenance": "Flamenco genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
       "authenticityTags": [
         "flamenco"
       ],
@@ -1600,77 +1345,14 @@ export const FLAMENCO_WORLD: GenreWorld = {
         "chorus"
       ],
       "variants": [
-        {
-          "id": "flamenco-bulerias-palmas-v-01",
-          "parentPatternId": "flamenco-bulerias-palmas",
-          "name": "Bulerias Palmas — sparse variation",
-          "variationType": "sparse",
-          "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
-          "onsetGrid": [
-            0,
-            7,
-            8
-          ],
-          "accentProfile": [
-            0.95,
-            0.7999999999999999,
-            0.85
-          ],
-          "velocityProfile": [
-            0.87,
-            0.7200000000000001,
-            0.77
-          ],
-          "microtimingOffset": [
-            -3,
-            6,
-            -3
-          ]
-        },
-        {
-          "id": "flamenco-bulerias-palmas-v-02",
-          "parentPatternId": "flamenco-bulerias-palmas",
-          "name": "Bulerias Palmas — accent shift",
-          "variationType": "accentShift",
-          "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
-          "onsetGrid": [
-            0,
-            3,
-            7,
-            8,
-            10
-          ],
-          "accentProfile": [
-            0.96,
-            0.9299999999999999,
-            0.86,
-            1,
-            0.96
-          ],
-          "velocityProfile": [
-            1,
-            0.78,
-            0.83,
-            0.96,
-            0.9299999999999999
-          ],
-          "microtimingOffset": [
-            2,
-            -5,
-            2,
-            -5,
-            2
-          ]
-        }
-      ],
+        
+        ],
       "harmonicContext": [
         "modal/tonal traditional context"
       ],
       "difficulty": 2,
       "weight": 1,
-      "provenance": "Flamenco catalog rebuild: retained source material or generated structural support pattern.",
+      "provenance": "Flamenco genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
       "authenticityTags": [
         "flamenco"
       ],
@@ -1803,61 +1485,13 @@ export const FLAMENCO_WORLD: GenreWorld = {
             "use as an alternate voicing/technique"
           ]
         },
-        {
-          "id": "flamenco-picado-v-02",
-          "parentPatternId": "flamenco-picado",
-          "name": "Picado Scale — accent shift",
-          "variationType": "accentShift",
-          "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
-          "onsetGrid": [
-            0,
-            1,
-            2,
-            3,
-            4,
-            5,
-            6,
-            7
-          ],
-          "accentProfile": [
-            0.96,
-            0.7799999999999999,
-            0.8099999999999999,
-            0.7799999999999999,
-            0.9099999999999999,
-            0.7799999999999999,
-            0.8099999999999999,
-            0.83
-          ],
-          "velocityProfile": [
-            1,
-            0.63,
-            0.78,
-            0.71,
-            0.88,
-            0.63,
-            0.8600000000000001,
-            0.6799999999999999
-          ],
-          "microtimingOffset": [
-            2,
-            -5,
-            2,
-            -5,
-            2,
-            -5,
-            2,
-            -5
-          ]
-        }
-      ],
+        ],
       "harmonicContext": [
         "modal/tonal traditional context"
       ],
       "difficulty": 3,
       "weight": 1,
-      "provenance": "Flamenco catalog rebuild: retained source material or generated structural support pattern.",
+      "provenance": "Flamenco genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
       "authenticityTags": [
         "flamenco"
       ],
@@ -1936,85 +1570,14 @@ export const FLAMENCO_WORLD: GenreWorld = {
         "chorus"
       ],
       "variants": [
-        {
-          "id": "flamenco-cajon-rumba-v-01",
-          "parentPatternId": "flamenco-cajon-rumba",
-          "name": "Cajon Rumba — sparse variation",
-          "variationType": "sparse",
-          "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
-          "onsetGrid": [
-            0,
-            6,
-            8,
-            14
-          ],
-          "accentProfile": [
-            0.95,
-            0.6499999999999999,
-            0.8999999999999999,
-            0.75
-          ],
-          "velocityProfile": [
-            0.87,
-            0.5700000000000001,
-            0.8200000000000001,
-            0.67
-          ],
-          "microtimingOffset": [
-            -3,
-            6,
-            -3,
-            6
-          ]
-        },
-        {
-          "id": "flamenco-cajon-rumba-v-02",
-          "parentPatternId": "flamenco-cajon-rumba",
-          "name": "Cajon Rumba — accent shift",
-          "variationType": "accentShift",
-          "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
-          "onsetGrid": [
-            0,
-            3,
-            6,
-            8,
-            11,
-            14
-          ],
-          "accentProfile": [
-            0.96,
-            0.7799999999999999,
-            0.9099999999999999,
-            0.88,
-            0.6599999999999999,
-            0.98
-          ],
-          "velocityProfile": [
-            1,
-            0.63,
-            0.88,
-            0.81,
-            0.63,
-            0.83
-          ],
-          "microtimingOffset": [
-            2,
-            -5,
-            2,
-            -5,
-            2,
-            -5
-          ]
-        }
-      ],
+        
+        ],
       "harmonicContext": [
         "modal/tonal traditional context"
       ],
       "difficulty": 2,
       "weight": 1,
-      "provenance": "Flamenco catalog rebuild: retained source material or generated structural support pattern.",
+      "provenance": "Flamenco genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
       "authenticityTags": [
         "flamenco"
       ],
@@ -2107,7 +1670,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
         0.74,
         0.9
       ],
-      "syncopationRating": 0.7142857142857143,
+      "syncopationRating": 0.71,
       "anticipationOffset": 0,
       "swingPercentage": 53,
       "articulations": [
@@ -2135,88 +1698,9 @@ export const FLAMENCO_WORLD: GenreWorld = {
         "phrasePosition"
       ],
       "variants": [
-        {
-          "id": "flamenco-phrase-10-v-01",
-          "parentPatternId": "flamenco-phrase-10",
-          "name": "Llamada Phrase — sparse variation",
-          "variationType": "sparse",
-          "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
-          "onsetGrid": [
-            0,
-            6,
-            7,
-            12,
-            15
-          ],
-          "accentProfile": [
-            0.95,
-            0.69,
-            0.85,
-            0.63,
-            0.95
-          ],
-          "velocityProfile": [
-            0.92,
-            0.61,
-            0.8200000000000001,
-            0.6000000000000001,
-            0.87
-          ],
-          "microtimingOffset": [
-            -3,
-            6,
-            -3,
-            6,
-            -3
-          ]
-        },
-        {
-          "id": "flamenco-phrase-10-v-02",
-          "parentPatternId": "flamenco-phrase-10",
-          "name": "Llamada Phrase — accent shift",
-          "variationType": "accentShift",
-          "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
-          "onsetGrid": [
-            0,
-            2,
-            6,
-            7,
-            10,
-            12,
-            15
-          ],
-          "accentProfile": [
-            0.96,
-            0.82,
-            0.86,
-            0.76,
-            0.96,
-            0.82,
-            0.86
-          ],
-          "velocityProfile": [
-            1,
-            0.6699999999999999,
-            0.88,
-            0.74,
-            0.9299999999999999,
-            0.72,
-            0.96
-          ],
-          "microtimingOffset": [
-            2,
-            -5,
-            2,
-            -5,
-            2,
-            -5,
-            2
-          ]
-        }
-      ],
-      "provenance": "GenreDAW catalog rebuild from existing Flamenco world data; generated to cover missing musical functions without runtime AI.",
+        
+        ],
+      "provenance": "Flamenco genre-pack structural pattern; generalized for engine coverage and recombination, not a transcription of a single recording.",
       "authenticityTags": [
         "flamenco",
         "llamada"
@@ -2283,11 +1767,11 @@ export const FLAMENCO_WORLD: GenreWorld = {
         0.57,
         0.95,
         0.62,
-        0.8999999999999999,
+        0.9,
         0.62,
         0.95
       ],
-      "syncopationRating": 0.7142857142857143,
+      "syncopationRating": 0.71,
       "anticipationOffset": 0,
       "swingPercentage": 53,
       "articulations": [
@@ -2316,140 +1800,10 @@ export const FLAMENCO_WORLD: GenreWorld = {
         "phrasePosition"
       ],
       "variants": [
-        {
-          "id": "flamenco-call-11-v-01",
-          "parentPatternId": "flamenco-call-11",
-          "name": "Remate Response — sparse variation",
-          "variationType": "sparse",
-          "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
-          "onsetGrid": [
-            0,
-            3,
-            7,
-            11,
-            13
-          ],
-          "accentProfile": [
-            0.8999999999999999,
-            0.57,
-            0.8999999999999999,
-            0.57,
-            0.8999999999999999
-          ],
-          "velocityProfile": [
-            0.87,
-            0.48999999999999994,
-            0.87,
-            0.54,
-            0.82
-          ],
-          "microtimingOffset": [
-            -3,
-            6,
-            -3,
-            6,
-            -3
-          ]
-        },
-        {
-          "id": "flamenco-call-11-v-02",
-          "parentPatternId": "flamenco-call-11",
-          "name": "Remate Response — accent shift",
-          "variationType": "accentShift",
-          "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
-          "onsetGrid": [
-            0,
-            1,
-            3,
-            7,
-            8,
-            11,
-            13
-          ],
-          "accentProfile": [
-            0.9099999999999999,
-            0.7,
-            0.9099999999999999,
-            0.7,
-            0.9099999999999999,
-            0.7,
-            0.9099999999999999
-          ],
-          "velocityProfile": [
-            1,
-            0.5499999999999999,
-            0.9299999999999999,
-            0.6799999999999999,
-            0.8799999999999999,
-            0.6,
-            1
-          ],
-          "microtimingOffset": [
-            2,
-            -5,
-            2,
-            -5,
-            2,
-            -5,
-            2
-          ]
-        },
-        {
-          "id": "flamenco-call-11-v-03",
-          "parentPatternId": "flamenco-call-11",
-          "name": "Remate Response — transition variation",
-          "variationType": "transition",
-          "probability": 0.16,
-          "description": "Adds a final pickup/closure gesture for section transitions.",
-          "onsetGrid": [
-            0,
-            1,
-            3,
-            7,
-            8,
-            11,
-            13,
-            14,
-            15
-          ],
-          "accentProfile": [
-            0.9299999999999999,
-            0.6,
-            0.9299999999999999,
-            0.6,
-            0.9299999999999999,
-            0.6,
-            0.9299999999999999,
-            1,
-            1
-          ],
-          "velocityProfile": [
-            0.95,
-            0.57,
-            0.95,
-            0.62,
-            0.8999999999999999,
-            0.62,
-            0.95,
-            0.98,
-            0.98
-          ],
-          "microtimingOffset": [
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            -6,
-            -6
-          ]
-        }
-      ],
-      "provenance": "GenreDAW catalog rebuild from existing Flamenco world data; generated to cover missing musical functions without runtime AI.",
+        
+        
+        ],
+      "provenance": "Flamenco genre-pack structural pattern; generalized for engine coverage and recombination, not a transcription of a single recording.",
       "authenticityTags": [
         "flamenco",
         "remate"
@@ -2524,7 +1878,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
         0.74,
         0.9
       ],
-      "syncopationRating": 0.5714285714285714,
+      "syncopationRating": 0.57,
       "anticipationOffset": 0,
       "swingPercentage": 53,
       "articulations": [
@@ -2553,88 +1907,9 @@ export const FLAMENCO_WORLD: GenreWorld = {
         "phrasePosition"
       ],
       "variants": [
-        {
-          "id": "flamenco-anchor-12-v-01",
-          "parentPatternId": "flamenco-anchor-12",
-          "name": "Rasgueado Anchor — sparse variation",
-          "variationType": "sparse",
-          "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
-          "onsetGrid": [
-            1,
-            4,
-            8,
-            12,
-            14
-          ],
-          "accentProfile": [
-            0.95,
-            0.69,
-            0.85,
-            0.63,
-            0.95
-          ],
-          "velocityProfile": [
-            0.92,
-            0.61,
-            0.8200000000000001,
-            0.6000000000000001,
-            0.87
-          ],
-          "microtimingOffset": [
-            -3,
-            6,
-            -3,
-            6,
-            -3
-          ]
-        },
-        {
-          "id": "flamenco-anchor-12-v-02",
-          "parentPatternId": "flamenco-anchor-12",
-          "name": "Rasgueado Anchor — accent shift",
-          "variationType": "accentShift",
-          "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
-          "onsetGrid": [
-            1,
-            2,
-            4,
-            8,
-            9,
-            12,
-            14
-          ],
-          "accentProfile": [
-            0.96,
-            0.82,
-            0.86,
-            0.76,
-            0.96,
-            0.82,
-            0.86
-          ],
-          "velocityProfile": [
-            1,
-            0.6699999999999999,
-            0.88,
-            0.74,
-            0.9299999999999999,
-            0.72,
-            0.96
-          ],
-          "microtimingOffset": [
-            2,
-            -5,
-            2,
-            -5,
-            2,
-            -5,
-            2
-          ]
-        }
-      ],
-      "provenance": "GenreDAW catalog rebuild from existing Flamenco world data; generated to cover missing musical functions without runtime AI.",
+        
+        ],
+      "provenance": "Flamenco genre-pack structural pattern; generalized for engine coverage and recombination, not a transcription of a single recording.",
       "authenticityTags": [
         "flamenco",
         "rasgueado"
@@ -2731,72 +2006,9 @@ export const FLAMENCO_WORLD: GenreWorld = {
         "phrasePosition"
       ],
       "variants": [
-        {
-          "id": "flamenco-comp-13-v-01",
-          "parentPatternId": "flamenco-comp-13",
-          "name": "Falseta Comping — sparse variation",
-          "variationType": "sparse",
-          "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
-          "onsetGrid": [
-            0,
-            3,
-            5
-          ],
-          "accentProfile": [
-            0.95,
-            0.69,
-            0.85
-          ],
-          "velocityProfile": [
-            0.92,
-            0.61,
-            0.8200000000000001
-          ],
-          "microtimingOffset": [
-            -3,
-            6,
-            -3
-          ]
-        },
-        {
-          "id": "flamenco-comp-13-v-02",
-          "parentPatternId": "flamenco-comp-13",
-          "name": "Falseta Comping — accent shift",
-          "variationType": "accentShift",
-          "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
-          "onsetGrid": [
-            0,
-            2,
-            3,
-            5,
-            8
-          ],
-          "accentProfile": [
-            0.96,
-            0.82,
-            0.86,
-            0.76,
-            0.96
-          ],
-          "velocityProfile": [
-            1,
-            0.6699999999999999,
-            0.88,
-            0.74,
-            0.9299999999999999
-          ],
-          "microtimingOffset": [
-            2,
-            -5,
-            2,
-            -5,
-            2
-          ]
-        }
-      ],
-      "provenance": "GenreDAW catalog rebuild from existing Flamenco world data; generated to cover missing musical functions without runtime AI.",
+        
+        ],
+      "provenance": "Flamenco genre-pack structural pattern; generalized for engine coverage and recombination, not a transcription of a single recording.",
       "authenticityTags": [
         "flamenco",
         "falseta"
@@ -2870,7 +2082,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
         0.95,
         0.74
       ],
-      "syncopationRating": 0.8333333333333334,
+      "syncopationRating": 0.83,
       "anticipationOffset": 0,
       "swingPercentage": 53,
       "articulations": [
@@ -2898,78 +2110,8 @@ export const FLAMENCO_WORLD: GenreWorld = {
         "phrasePosition"
       ],
       "variants": [
-        {
-          "id": "flamenco-intro-14-v-01",
-          "parentPatternId": "flamenco-intro-14",
-          "name": "Compás Intro — sparse variation",
-          "variationType": "sparse",
-          "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
-          "onsetGrid": [
-            1,
-            6,
-            9,
-            14
-          ],
-          "accentProfile": [
-            0.95,
-            0.69,
-            0.85,
-            0.63
-          ],
-          "velocityProfile": [
-            0.92,
-            0.61,
-            0.8200000000000001,
-            0.6000000000000001
-          ],
-          "microtimingOffset": [
-            -3,
-            6,
-            -3,
-            6
-          ]
-        },
-        {
-          "id": "flamenco-intro-14-v-02",
-          "parentPatternId": "flamenco-intro-14",
-          "name": "Compás Intro — accent shift",
-          "variationType": "accentShift",
-          "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
-          "onsetGrid": [
-            1,
-            4,
-            6,
-            9,
-            11,
-            14
-          ],
-          "accentProfile": [
-            0.96,
-            0.82,
-            0.86,
-            0.76,
-            0.96,
-            0.82
-          ],
-          "velocityProfile": [
-            1,
-            0.6699999999999999,
-            0.88,
-            0.74,
-            0.9299999999999999,
-            0.72
-          ],
-          "microtimingOffset": [
-            2,
-            -5,
-            2,
-            -5,
-            2,
-            -5
-          ]
-        },
+        
+        
         {
           "id": "flamenco-intro-14-v-03",
           "parentPatternId": "flamenco-intro-14",
@@ -3015,7 +2157,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
           ]
         }
       ],
-      "provenance": "GenreDAW catalog rebuild from existing Flamenco world data; generated to cover missing musical functions without runtime AI.",
+      "provenance": "Flamenco genre-pack structural pattern; generalized for engine coverage and recombination, not a transcription of a single recording.",
       "authenticityTags": [
         "flamenco",
         "compas"
@@ -3095,7 +2237,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
         0.95,
         0.74
       ],
-      "syncopationRating": 0.8333333333333334,
+      "syncopationRating": 0.83,
       "anticipationOffset": 0,
       "swingPercentage": 53,
       "articulations": [
@@ -3123,80 +2265,9 @@ export const FLAMENCO_WORLD: GenreWorld = {
         "phrasePosition"
       ],
       "variants": [
-        {
-          "id": "flamenco-verse-15-v-01",
-          "parentPatternId": "flamenco-verse-15",
-          "name": "Llamada Verse Variation — sparse variation",
-          "variationType": "sparse",
-          "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
-          "onsetGrid": [
-            2,
-            7,
-            10,
-            15
-          ],
-          "accentProfile": [
-            0.95,
-            0.69,
-            0.85,
-            0.63
-          ],
-          "velocityProfile": [
-            0.92,
-            0.61,
-            0.8200000000000001,
-            0.6000000000000001
-          ],
-          "microtimingOffset": [
-            -3,
-            6,
-            -3,
-            6
-          ]
-        },
-        {
-          "id": "flamenco-verse-15-v-02",
-          "parentPatternId": "flamenco-verse-15",
-          "name": "Llamada Verse Variation — accent shift",
-          "variationType": "accentShift",
-          "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
-          "onsetGrid": [
-            2,
-            5,
-            7,
-            10,
-            12,
-            15
-          ],
-          "accentProfile": [
-            0.96,
-            0.82,
-            0.86,
-            0.76,
-            0.96,
-            0.82
-          ],
-          "velocityProfile": [
-            1,
-            0.6699999999999999,
-            0.88,
-            0.74,
-            0.9299999999999999,
-            0.72
-          ],
-          "microtimingOffset": [
-            2,
-            -5,
-            2,
-            -5,
-            2,
-            -5
-          ]
-        }
-      ],
-      "provenance": "GenreDAW catalog rebuild from existing Flamenco world data; generated to cover missing musical functions without runtime AI.",
+        
+        ],
+      "provenance": "Flamenco genre-pack structural pattern; generalized for engine coverage and recombination, not a transcription of a single recording.",
       "authenticityTags": [
         "flamenco",
         "llamada"
@@ -3276,7 +2347,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
         0.95,
         0.74
       ],
-      "syncopationRating": 0.6666666666666666,
+      "syncopationRating": 0.67,
       "anticipationOffset": 1,
       "swingPercentage": 53,
       "articulations": [
@@ -3305,78 +2376,8 @@ export const FLAMENCO_WORLD: GenreWorld = {
         "phrasePosition"
       ],
       "variants": [
-        {
-          "id": "flamenco-chorus-16-v-01",
-          "parentPatternId": "flamenco-chorus-16",
-          "name": "Remate Chorus Lift — sparse variation",
-          "variationType": "sparse",
-          "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
-          "onsetGrid": [
-            0,
-            6,
-            8,
-            13
-          ],
-          "accentProfile": [
-            0.95,
-            0.69,
-            0.85,
-            0.63
-          ],
-          "velocityProfile": [
-            0.92,
-            0.61,
-            0.8200000000000001,
-            0.6000000000000001
-          ],
-          "microtimingOffset": [
-            -3,
-            6,
-            -3,
-            6
-          ]
-        },
-        {
-          "id": "flamenco-chorus-16-v-02",
-          "parentPatternId": "flamenco-chorus-16",
-          "name": "Remate Chorus Lift — accent shift",
-          "variationType": "accentShift",
-          "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
-          "onsetGrid": [
-            0,
-            3,
-            6,
-            8,
-            11,
-            13
-          ],
-          "accentProfile": [
-            0.96,
-            0.82,
-            0.86,
-            0.76,
-            0.96,
-            0.82
-          ],
-          "velocityProfile": [
-            1,
-            0.6699999999999999,
-            0.88,
-            0.74,
-            0.9299999999999999,
-            0.72
-          ],
-          "microtimingOffset": [
-            2,
-            -5,
-            2,
-            -5,
-            2,
-            -5
-          ]
-        },
+        
+        
         {
           "id": "flamenco-chorus-16-v-03",
           "parentPatternId": "flamenco-chorus-16",
@@ -3426,7 +2427,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
           ]
         }
       ],
-      "provenance": "GenreDAW catalog rebuild from existing Flamenco world data; generated to cover missing musical functions without runtime AI.",
+      "provenance": "Flamenco genre-pack structural pattern; generalized for engine coverage and recombination, not a transcription of a single recording.",
       "authenticityTags": [
         "flamenco",
         "remate"
@@ -3526,66 +2527,8 @@ export const FLAMENCO_WORLD: GenreWorld = {
         "phrasePosition"
       ],
       "variants": [
-        {
-          "id": "flamenco-bridge-17-v-01",
-          "parentPatternId": "flamenco-bridge-17",
-          "name": "Rasgueado Bridge — sparse variation",
-          "variationType": "sparse",
-          "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
-          "onsetGrid": [
-            2,
-            6,
-            8
-          ],
-          "accentProfile": [
-            0.95,
-            0.69,
-            0.85
-          ],
-          "velocityProfile": [
-            0.92,
-            0.61,
-            0.8200000000000001
-          ],
-          "microtimingOffset": [
-            -3,
-            6,
-            -3
-          ]
-        },
-        {
-          "id": "flamenco-bridge-17-v-02",
-          "parentPatternId": "flamenco-bridge-17",
-          "name": "Rasgueado Bridge — accent shift",
-          "variationType": "accentShift",
-          "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
-          "onsetGrid": [
-            2,
-            4,
-            6,
-            8
-          ],
-          "accentProfile": [
-            0.96,
-            0.82,
-            0.86,
-            0.76
-          ],
-          "velocityProfile": [
-            1,
-            0.6699999999999999,
-            0.88,
-            0.74
-          ],
-          "microtimingOffset": [
-            2,
-            -5,
-            2,
-            -5
-          ]
-        },
+        
+        
         {
           "id": "flamenco-bridge-17-v-03",
           "parentPatternId": "flamenco-bridge-17",
@@ -3627,7 +2570,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
           ]
         }
       ],
-      "provenance": "GenreDAW catalog rebuild from existing Flamenco world data; generated to cover missing musical functions without runtime AI.",
+      "provenance": "Flamenco genre-pack structural pattern; generalized for engine coverage and recombination, not a transcription of a single recording.",
       "authenticityTags": [
         "flamenco",
         "rasgueado"
@@ -3639,6 +2582,96 @@ export const FLAMENCO_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "difficulty": 1,
       "weight": 0.7,
+      "enabled": true
+    },
+    {
+      "id": "flam-bulerias-cajon-remate",
+      "worldId": "flamenco",
+      "traditionId": "flamenco-bulerias",
+      "name": "Bulerías Cajón & Remate",
+      "family": "Percussion",
+      "category": "groove",
+      "description": "High-velocity 12-beat Bulerías cajón compás locking strictly onto 3, 6, 8, 10, 12 accents with explosive remate snaps.",
+      "tags": ["flamenco", "bulerias", "cajon", "remate", "percussion"],
+      "scopes": ["measure", "phrase", "region", "track"],
+      "roles": ["percussion", "pulse"],
+      "instruments": ["drums"],
+      "meter": "3/4",
+      "cycleLength": 2,
+      "subdivisions": 12,
+      "onsetGrid": [2, 5, 7, 9, 11],
+      "accentProfile": [1.0, 1.0, 1.0, 1.0, 1.0],
+      "velocityProfile": [0.95, 0.95, 0.95, 0.95, 0.95],
+      "density": "medium",
+      "phrasePosition": ["start", "middle", "end"],
+      "sectionUsage": ["verse", "chorus", "solo"],
+      "variants": [],
+      "provenance": "Genre-pack support pattern for Bulerías de Jerez; generalized from documented musical conventions.",
+      "authenticityTags": ["flamenco", "cajon"],
+      "danceTags": ["festival-fusion"],
+      "tuningSystem": "12-tet",
+      "difficulty": 3,
+      "weight": 0.9,
+      "enabled": true
+    },
+    {
+      "id": "flam-tangos-cajon-pulse",
+      "worldId": "flamenco",
+      "traditionId": "flamenco-tangos-tientos",
+      "name": "Tangos Flamencos Cajón Pulse",
+      "family": "Percussion",
+      "category": "groove",
+      "description": "Swinging, earthy binary 4/4 Tangos flamencos cajón groove with deep bass tones on beat 1 and crisp high slaps driving beats 2, 3, 4.",
+      "tags": ["flamenco", "tangos", "cajon", "pulse", "percussion"],
+      "scopes": ["measure", "phrase", "region", "track"],
+      "roles": ["percussion", "pulse"],
+      "instruments": ["drums"],
+      "meter": "4/4",
+      "cycleLength": 1,
+      "subdivisions": 16,
+      "onsetGrid": [0, 4, 7, 10, 12, 14],
+      "accentProfile": [1.0, 0.7, 0.9, 0.75, 1.0, 0.8],
+      "velocityProfile": [0.95, 0.7, 0.85, 0.75, 0.95, 0.8],
+      "density": "medium",
+      "phrasePosition": ["start", "middle", "end"],
+      "sectionUsage": ["verse", "chorus"],
+      "variants": [],
+      "provenance": "Genre-pack support pattern for Tangos & Tientos; generalized from documented musical conventions.",
+      "authenticityTags": ["flamenco", "tangos"],
+      "danceTags": ["social-partner"],
+      "tuningSystem": "12-tet",
+      "difficulty": 2,
+      "weight": 0.9,
+      "enabled": true
+    },
+    {
+      "id": "flam-rumba-guitar-rasgueo",
+      "worldId": "flamenco",
+      "traditionId": "flamenco-rumba-sevillanas",
+      "name": "Rumba Catalana Golpe-Strum",
+      "family": "Guitar",
+      "category": "groove",
+      "description": "Festive, infectious Rumba Flamenca guitar rhythm featuring rapid downward fan strokes combined with percussive wood-slap (golpe) accents.",
+      "tags": ["flamenco", "rumba", "guitar", "abanico", "golpe"],
+      "scopes": ["measure", "phrase", "region", "track"],
+      "roles": ["guitar", "harmony"],
+      "instruments": ["guitar"],
+      "meter": "4/4",
+      "cycleLength": 1,
+      "subdivisions": 16,
+      "onsetGrid": [0, 3, 6, 8, 10, 12, 14],
+      "accentProfile": [1.0, 0.7, 0.9, 0.7, 0.95, 0.7, 0.85],
+      "velocityProfile": [0.95, 0.65, 0.9, 0.7, 0.9, 0.65, 0.85],
+      "density": "dense",
+      "phrasePosition": ["start", "middle", "end"],
+      "sectionUsage": ["verse", "chorus"],
+      "variants": [],
+      "provenance": "Genre-pack support pattern for Rumba Flamenca; generalized from documented musical conventions.",
+      "authenticityTags": ["flamenco", "rumba"],
+      "danceTags": ["festival-fusion", "social-partner"],
+      "tuningSystem": "12-tet",
+      "difficulty": 2,
+      "weight": 0.9,
       "enabled": true
     }
   ],
@@ -3723,7 +2756,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
     "festival-fusion",
     "listening"
   ],
-  "tuningSystem": "phrygian-mode",
+  "tuningSystem": "12-tet",
   "signatureCell": "12-beat compás accented on [12, 3, 6, 8, 10] with Andalusian cadence",
   "grooveMechanics": {
     "swingPercentage": 50,

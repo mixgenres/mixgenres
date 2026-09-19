@@ -303,3 +303,73 @@ export function rootMotion(from: ParsedChord, to: ParsedChord): number {
   if (d > 6) d -= 12;
   return d;
 }
+
+export function transposeChordSymbol(symbol: string, delta: number): string {
+  const match = String(symbol ?? '').trim().match(/^([A-G](?:#|b)?)(.*?)(?:\/([A-G](?:#|b)?))?$/);
+  if (!match) return symbol;
+  const transposeName = (name: string) => {
+    const pc = PITCH_CLASS[name];
+    if (pc == null) return name;
+    return SHARP_NAMES[(pc + delta + 120) % 12];
+  };
+  return `${transposeName(match[1])}${match[2] ?? ''}${match[3] ? `/${transposeName(match[3])}` : ''}`;
+}
+
+export function realizeRomanNumeral(romanSymbol: string, targetKey: KeyInfo): string {
+  const match = romanSymbol.match(/^([b#]?)(I|II|III|IV|V|VI|VII|i|ii|iii|iv|v|vi|vii|°)(.*)$/);
+  if (!match) return romanSymbol;
+
+  const accidental = match[1];
+  const numeral = match[2];
+  let extension = match[3] || '';
+
+  const isLower = numeral === numeral.toLowerCase();
+  const numUpper = numeral.toUpperCase();
+
+  const MAJ_INTERVALS: Record<string, number> = {
+    'I': 0, 'II': 2, 'III': 4, 'IV': 5, 'V': 7, 'VI': 9, 'VII': 11,
+  };
+  const MIN_INTERVALS: Record<string, number> = {
+    'I': 0, 'II': 2, 'III': 3, 'IV': 5, 'V': 7, 'VI': 8, 'VII': 10,
+  };
+
+  const scaleMap = targetKey.minor ? MIN_INTERVALS : MAJ_INTERVALS;
+  let interval = scaleMap[numUpper] ?? 0;
+  if (accidental === 'b') interval -= 1;
+  if (accidental === '#') interval += 1;
+
+  const rootPc = (targetKey.tonicPc + interval + 120) % 12;
+  const rootName = SHARP_NAMES[rootPc];
+
+  if (extension.startsWith('°')) {
+    extension = 'dim' + extension.slice(1);
+  }
+
+  if (extension) {
+    if (isLower && !extension.startsWith('m') && !extension.startsWith('dim') && !extension.startsWith('ø')) {
+      if (/^\d/.test(extension)) {
+        return `${rootName}m${extension}`;
+      }
+    }
+    return `${rootName}${extension}`;
+  }
+
+  const defaultQuality = isLower ? 'm' : '';
+  return `${rootName}${defaultQuality}`;
+}
+
+export function chordTemplateInKey(template: string[], targetKey: KeyInfo): string[] {
+  if (!template.length) return template;
+
+  const isAllRoman = template.every(c =>
+    /^[b#]?(I|II|III|IV|V|VI|VII|i|ii|iii|iv|v|vi|vii)/i.test(c.trim())
+  );
+
+  if (isAllRoman) {
+    return template.map(roman => realizeRomanNumeral(roman.trim(), targetKey));
+  }
+
+  const source = inferKey(template);
+  return template.map(c => transposeChordSymbol(c, targetKey.tonicPc - source.tonicPc));
+}
+

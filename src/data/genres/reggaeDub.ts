@@ -52,7 +52,7 @@ export const REGGAE_DUB_WORLD : GenreWorld = {
       "tuningSystem": "12-tet",
       "signatureCell": "One-drop backbeat with offbeat skank and melodic bass",
       "grooveMechanics": {
-        "swingPercentage": 50,
+        "swingPercentage": 54,
         "anticipationOffsetSteps": 0,
         "microtimingFeel": "laid-back",
         "humanizeJitterMs": 8
@@ -134,7 +134,7 @@ export const REGGAE_DUB_WORLD : GenreWorld = {
       "tuningSystem": "12-tet",
       "signatureCell": "Deep bass and one-drop drum bed with sparse skank hits and echo space",
       "grooveMechanics": {
-        "swingPercentage": 50,
+        "swingPercentage": 52,
         "anticipationOffsetSteps": 0,
         "microtimingFeel": "laid-back",
         "humanizeJitterMs": 10
@@ -350,7 +350,7 @@ export const REGGAE_DUB_WORLD : GenreWorld = {
         ]
       }
     ],
-    "provenance": "GenreDAW catalog extension: authored from documented rhythmic/ensemble conventions and expressed as engine-ready structural cells.",
+    "provenance": "Genre-pack structural pattern authored from documented rhythmic and ensemble conventions; generalized for engine recombination.",
     "authenticityTags": [
       "one-drop",
       "reggae",
@@ -475,7 +475,7 @@ export const REGGAE_DUB_WORLD : GenreWorld = {
         ]
       }
     ],
-    "provenance": "GenreDAW catalog extension: authored from documented rhythmic/ensemble conventions and expressed as engine-ready structural cells.",
+    "provenance": "Genre-pack structural pattern authored from documented rhythmic and ensemble conventions; generalized for engine recombination.",
     "authenticityTags": [
       "skank",
       "reggae",
@@ -612,7 +612,7 @@ export const REGGAE_DUB_WORLD : GenreWorld = {
         ]
       }
     ],
-    "provenance": "GenreDAW catalog extension: authored from documented rhythmic/ensemble conventions and expressed as engine-ready structural cells.",
+    "provenance": "Genre-pack structural pattern authored from documented rhythmic and ensemble conventions; generalized for engine recombination.",
     "authenticityTags": [
       "reggae",
       "bass",
@@ -733,7 +733,7 @@ export const REGGAE_DUB_WORLD : GenreWorld = {
         ]
       }
     ],
-    "provenance": "GenreDAW catalog extension: authored from documented rhythmic/ensemble conventions and expressed as engine-ready structural cells.",
+    "provenance": "Genre-pack structural pattern authored from documented rhythmic and ensemble conventions; generalized for engine recombination.",
     "authenticityTags": [
       "dub",
       "dropout",
@@ -856,7 +856,7 @@ export const REGGAE_DUB_WORLD : GenreWorld = {
         ]
       }
     ],
-    "provenance": "GenreDAW catalog extension: authored from documented rhythmic/ensemble conventions and expressed as engine-ready structural cells.",
+    "provenance": "Genre-pack structural pattern authored from documented rhythmic and ensemble conventions; generalized for engine recombination.",
     "authenticityTags": [
       "steppers",
       "sound-system"
@@ -931,7 +931,7 @@ export const REGGAE_DUB_WORLD : GenreWorld = {
       "phrasePosition"
     ],
     "variants": [],
-    "provenance": "Authored genre-pack pattern based on Roots Reggae; designed for engine-level recombination rather than literal transcription.",
+    "provenance": "Genre-pack structural pattern based on Roots Reggae; generalized for engine recombination, not literal transcription.",
     "authenticityTags": [
       "one-drop"
     ],
@@ -946,7 +946,7 @@ export const REGGAE_DUB_WORLD : GenreWorld = {
   {
     "id": "rd-07-skank-guitar",
     "worldId": "reggae-dub",
-    "traditionId": "dub",
+    "traditionId": "reggae-roots",
     "name": "Skank Guitar",
     "family": "Roots Reggae",
     "category": "cell",
@@ -1006,7 +1006,7 @@ export const REGGAE_DUB_WORLD : GenreWorld = {
       "phrasePosition"
     ],
     "variants": [],
-    "provenance": "Authored genre-pack pattern based on Roots Reggae; designed for engine-level recombination rather than literal transcription.",
+    "provenance": "Genre-pack structural pattern based on Roots Reggae; generalized for engine recombination, not literal transcription.",
     "authenticityTags": [
       "skank"
     ],
@@ -1021,7 +1021,7 @@ export const REGGAE_DUB_WORLD : GenreWorld = {
   {
     "id": "rd-08-reggae-bass-lead",
     "worldId": "reggae-dub",
-    "traditionId": "dub",
+    "traditionId": "reggae-roots",
     "name": "Reggae Bass Lead",
     "family": "Roots Reggae",
     "category": "bass",
@@ -1089,7 +1089,7 @@ export const REGGAE_DUB_WORLD : GenreWorld = {
       "phrasePosition"
     ],
     "variants": [],
-    "provenance": "Authored genre-pack pattern based on Roots Reggae; designed for engine-level recombination rather than literal transcription.",
+    "provenance": "Genre-pack structural pattern based on Roots Reggae; generalized for engine recombination, not literal transcription.",
     "authenticityTags": [
       "bass-led"
     ],
@@ -1104,7 +1104,7 @@ export const REGGAE_DUB_WORLD : GenreWorld = {
   {
     "id": "rd-09-bubble-organ",
     "worldId": "reggae-dub",
-    "traditionId": "dub",
+    "traditionId": "reggae-roots",
     "name": "Bubble Organ",
     "family": "Roots Reggae",
     "category": "cell",
@@ -1163,7 +1163,7 @@ export const REGGAE_DUB_WORLD : GenreWorld = {
       "phrasePosition"
     ],
     "variants": [],
-    "provenance": "Authored genre-pack pattern based on Roots Reggae; designed for engine-level recombination rather than literal transcription.",
+    "provenance": "Genre-pack structural pattern based on Roots Reggae; generalized for engine recombination, not literal transcription.",
     "authenticityTags": [
       "organ bubble"
     ],
@@ -1178,7 +1178,7 @@ export const REGGAE_DUB_WORLD : GenreWorld = {
   {
     "id": "rd-10-dub-echo-fragment",
     "worldId": "reggae-dub",
-    "traditionId": "dub",
+    "traditionId": "reggae-dub",
     "name": "Dub Echo Fragment",
     "family": "Dub",
     "category": "texture",
@@ -1237,7 +1237,7 @@ export const REGGAE_DUB_WORLD : GenreWorld = {
       "phrasePosition"
     ],
     "variants": [],
-    "provenance": "Authored genre-pack pattern based on Dub; designed for engine-level recombination rather than literal transcription.",
+    "provenance": "Genre-pack structural pattern based on Dub; generalized for engine recombination, not literal transcription.",
     "authenticityTags": [
       "dub",
       "echo",
@@ -1254,7 +1254,7 @@ export const REGGAE_DUB_WORLD : GenreWorld = {
   {
     "id": "rd-11-dub-dropout",
     "worldId": "reggae-dub",
-    "traditionId": "dub",
+    "traditionId": "reggae-dub",
     "name": "Dub subtraction / return",
     "family": "Dub",
     "category": "break",
@@ -1313,7 +1313,7 @@ export const REGGAE_DUB_WORLD : GenreWorld = {
       "phrasePosition"
     ],
     "variants": [],
-    "provenance": "Authored genre-pack pattern based on Dub; designed for engine-level recombination rather than literal transcription.",
+    "provenance": "Genre-pack structural pattern based on Dub; generalized for engine recombination, not literal transcription.",
     "authenticityTags": [
       "dropout",
       "version"
@@ -1329,7 +1329,7 @@ export const REGGAE_DUB_WORLD : GenreWorld = {
   {
     "id": "rd-12-steppers-kick-grid",
     "worldId": "reggae-dub",
-    "traditionId": "dub",
+    "traditionId": "reggae-steppers",
     "name": "Steppers four-kick pulse",
     "family": "Digital Reggae",
     "category": "groove",
@@ -1389,7 +1389,7 @@ export const REGGAE_DUB_WORLD : GenreWorld = {
       "phrasePosition"
     ],
     "variants": [],
-    "provenance": "Authored genre-pack pattern based on Digital Reggae; designed for engine-level recombination rather than literal transcription.",
+    "provenance": "Genre-pack structural pattern based on Digital Reggae; generalized for engine recombination, not literal transcription.",
     "authenticityTags": [
       "steppers"
     ],
@@ -1404,7 +1404,7 @@ export const REGGAE_DUB_WORLD : GenreWorld = {
   {
     "id": "rd-13-reggae-percussion-skitter",
     "worldId": "reggae-dub",
-    "traditionId": "dub",
+    "traditionId": "reggae-steppers",
     "name": "Reggae shaker cross-rhythm",
     "family": "Percussion",
     "category": "ostinato",
@@ -1466,7 +1466,7 @@ export const REGGAE_DUB_WORLD : GenreWorld = {
       "phrasePosition"
     ],
     "variants": [],
-    "provenance": "Authored genre-pack pattern based on Percussion; designed for engine-level recombination rather than literal transcription.",
+    "provenance": "Genre-pack structural pattern based on Percussion; generalized for engine recombination, not literal transcription.",
     "authenticityTags": [
       "shaker",
       "ghost"
@@ -1482,7 +1482,7 @@ export const REGGAE_DUB_WORLD : GenreWorld = {
   {
     "id": "rd-14-dub-horn-reply",
     "worldId": "reggae-dub",
-    "traditionId": "dub",
+    "traditionId": "reggae-dub",
     "name": "Dub Horn Reply",
     "family": "Dub / Roots",
     "category": "interactionPattern",
@@ -1555,7 +1555,7 @@ export const REGGAE_DUB_WORLD : GenreWorld = {
       "phrasePosition"
     ],
     "variants": [],
-    "provenance": "Authored genre-pack pattern based on Dub / Roots; designed for engine-level recombination rather than literal transcription.",
+    "provenance": "Genre-pack structural pattern based on Dub / Roots; generalized for engine recombination, not literal transcription.",
     "authenticityTags": [
       "horn reply"
     ],
@@ -1570,7 +1570,7 @@ export const REGGAE_DUB_WORLD : GenreWorld = {
   {
     "id": "rd-15-dub-version-tag",
     "worldId": "reggae-dub",
-    "traditionId": "dub",
+    "traditionId": "reggae-dub",
     "name": "Dub Version Tag",
     "family": "Dub",
     "category": "cadence",
@@ -1630,7 +1630,7 @@ export const REGGAE_DUB_WORLD : GenreWorld = {
       "phrasePosition"
     ],
     "variants": [],
-    "provenance": "Authored genre-pack pattern based on Dub; designed for engine-level recombination rather than literal transcription.",
+    "provenance": "Genre-pack structural pattern based on Dub; generalized for engine recombination, not literal transcription.",
     "authenticityTags": [
       "version",
       "tag"
@@ -1641,6 +1641,68 @@ export const REGGAE_DUB_WORLD : GenreWorld = {
     "tuningSystem": "12-tet",
     "difficulty": 2,
     "weight": 0.82,
+    "enabled": true
+  },
+  {
+    "id": "rd-steppers-heavy-bass",
+    "worldId": "reggae-dub",
+    "traditionId": "reggae-steppers",
+    "name": "Heavy Steppers Sound System Bass",
+    "family": "Bass",
+    "category": "groove",
+    "description": "Massive deep sound-system sub-bass driving in syncopated 16ths locked with the four-on-the-floor steppers kick.",
+    "tags": ["steppers", "bass", "sub", "dub", "sound-system"],
+    "scopes": ["measure", "phrase", "region", "track"],
+    "roles": ["bass"],
+    "instruments": ["bass", "sub-bass"],
+    "meter": "4/4",
+    "cycleLength": 1,
+    "subdivisions": 16,
+    "onsetGrid": [0, 3, 6, 8, 11, 14],
+    "accentProfile": [1.0, 0.75, 0.85, 1.0, 0.75, 0.85],
+    "velocityProfile": [0.95, 0.7, 0.8, 0.95, 0.7, 0.8],
+    "articulations": ["tenuto", "accented"],
+    "density": "medium",
+    "phrasePosition": ["start", "middle", "end"],
+    "sectionUsage": ["verse", "chorus", "solo"],
+    "variants": [],
+    "provenance": "Genre-pack support pattern for Steppers / Digital Reggae; generalized from documented musical conventions.",
+    "authenticityTags": ["steppers", "bass"],
+    "danceTags": ["festival-fusion"],
+    "tuningSystem": "12-tet",
+    "difficulty": 2,
+    "weight": 1,
+    "enabled": true
+  },
+  {
+    "id": "rd-steppers-syn-siren",
+    "worldId": "reggae-dub",
+    "traditionId": "reggae-steppers",
+    "name": "Sound System Analog Dub Siren & Echo",
+    "family": "Texture",
+    "category": "rolePattern",
+    "description": "Classic Jamaican / UK sound-system analog dub siren frequency sweep thrown into high-feedback tape delay.",
+    "tags": ["steppers", "siren", "dub", "fx", "echo"],
+    "scopes": ["phrase", "region", "track"],
+    "roles": ["texture", "lead"],
+    "instruments": ["synth"],
+    "meter": "4/4",
+    "cycleLength": 2,
+    "subdivisions": 16,
+    "onsetGrid": [0, 6, 12, 18],
+    "accentProfile": [1.0, 0.85, 0.75, 0.65],
+    "velocityProfile": [0.95, 0.8, 0.7, 0.6],
+    "articulations": ["accented", "staccato"],
+    "density": "sparse",
+    "phrasePosition": ["start", "end"],
+    "sectionUsage": ["intro", "verse", "chorus", "coda"],
+    "variants": [],
+    "provenance": "Genre-pack support pattern for Steppers / Digital Reggae; generalized from documented musical conventions.",
+    "authenticityTags": ["steppers", "siren"],
+    "danceTags": ["festival-fusion"],
+    "tuningSystem": "12-tet",
+    "difficulty": 2,
+    "weight": 1,
     "enabled": true
   }
 ],

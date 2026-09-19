@@ -265,61 +265,14 @@ export const FUSION_AMBIENT_WORLD: GenreWorld = {
         "coda"
       ],
       "variants": [
-        {
-          "id": "fusion-sub-drone-bass-v-01-safe",
-          "parentPatternId": "fusion-sub-drone-bass",
-          "name": "Slow Breathing Sub-Bass Drone — played variation",
-          "variationType": "accentShift",
-          "probability": 0.18,
-          "description": "A light played variation for sparse patterns with only a few attacks.",
-          "onsetGrid": [
-            0,
-            8
-          ],
-          "accentProfile": [
-            0.95,
-            0.9299999999999999
-          ],
-          "velocityProfile": [
-            0.98,
-            0.76
-          ],
-          "microtimingOffset": [
-            -2,
-            4
-          ]
-        },
-        {
-          "id": "fusion-sub-drone-bass-v-02-safe",
-          "parentPatternId": "fusion-sub-drone-bass",
-          "name": "Slow Breathing Sub-Bass Drone — played variation",
-          "variationType": "accentShift",
-          "probability": 0.18,
-          "description": "A light played variation for sparse patterns with only a few attacks.",
-          "onsetGrid": [
-            0,
-            8
-          ],
-          "accentProfile": [
-            0.95,
-            0.9299999999999999
-          ],
-          "velocityProfile": [
-            0.98,
-            0.76
-          ],
-          "microtimingOffset": [
-            -2,
-            4
-          ]
-        }
-      ],
+        
+        ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 1,
       "weight": 0.7,
-      "provenance": "Fusion & Ambient Dance catalog rebuild: retained source material or generated structural support pattern.",
+      "provenance": "Fusion & Ambient Dance genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
       "authenticityTags": [
         "fusion-ambient"
       ],
@@ -418,85 +371,14 @@ export const FUSION_AMBIENT_WORLD: GenreWorld = {
         "solo"
       ],
       "variants": [
-        {
-          "id": "fusion-downtempo-glitch-kit-v-01",
-          "parentPatternId": "fusion-downtempo-glitch-kit",
-          "name": "Downtempo Pocket & Ghost Kit — sparse variation",
-          "variationType": "sparse",
-          "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
-          "onsetGrid": [
-            0,
-            7,
-            8,
-            14
-          ],
-          "accentProfile": [
-            0.95,
-            0.6499999999999999,
-            0.75,
-            0.8999999999999999
-          ],
-          "velocityProfile": [
-            0.87,
-            0.5700000000000001,
-            0.67,
-            0.8200000000000001
-          ],
-          "microtimingOffset": [
-            -3,
-            6,
-            -3,
-            6
-          ]
-        },
-        {
-          "id": "fusion-downtempo-glitch-kit-v-02",
-          "parentPatternId": "fusion-downtempo-glitch-kit",
-          "name": "Downtempo Pocket & Ghost Kit — accent shift",
-          "variationType": "accentShift",
-          "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
-          "onsetGrid": [
-            0,
-            4,
-            7,
-            8,
-            12,
-            14
-          ],
-          "accentProfile": [
-            0.96,
-            0.7799999999999999,
-            0.76,
-            1,
-            0.6599999999999999,
-            0.9299999999999999
-          ],
-          "velocityProfile": [
-            1,
-            0.63,
-            0.73,
-            0.96,
-            0.63,
-            0.78
-          ],
-          "microtimingOffset": [
-            2,
-            -5,
-            2,
-            -5,
-            2,
-            -5
-          ]
-        }
-      ],
+        
+        ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 2,
       "weight": 1,
-      "provenance": "Fusion & Ambient Dance catalog rebuild: retained source material or generated structural support pattern.",
+      "provenance": "Fusion & Ambient Dance genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
       "authenticityTags": [
         "fusion-ambient"
       ],
@@ -585,65 +467,14 @@ export const FUSION_AMBIENT_WORLD: GenreWorld = {
         "chorus"
       ],
       "variants": [
-        {
-          "id": "fusion-ambient-guitar-swells-v-01",
-          "parentPatternId": "fusion-ambient-guitar-swells",
-          "name": "Ambient Modal Guitar Swells — sparse variation",
-          "variationType": "sparse",
-          "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
-          "onsetGrid": [
-            0,
-            12
-          ],
-          "accentProfile": [
-            0.85,
-            0.7999999999999999
-          ],
-          "velocityProfile": [
-            0.77,
-            0.7200000000000001
-          ],
-          "microtimingOffset": [
-            -3,
-            6
-          ]
-        },
-        {
-          "id": "fusion-ambient-guitar-swells-v-02",
-          "parentPatternId": "fusion-ambient-guitar-swells",
-          "name": "Ambient Modal Guitar Swells — accent shift",
-          "variationType": "accentShift",
-          "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
-          "onsetGrid": [
-            0,
-            6,
-            12
-          ],
-          "accentProfile": [
-            0.86,
-            0.9299999999999999,
-            0.76
-          ],
-          "velocityProfile": [
-            0.9099999999999999,
-            0.78,
-            0.73
-          ],
-          "microtimingOffset": [
-            2,
-            -5,
-            2
-          ]
-        }
-      ],
+        
+        ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 1,
       "weight": 0.7,
-      "provenance": "Fusion & Ambient Dance catalog rebuild: retained source material or generated structural support pattern.",
+      "provenance": "Fusion & Ambient Dance genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
       "authenticityTags": [
         "fusion-ambient"
       ],
@@ -743,85 +574,14 @@ export const FUSION_AMBIENT_WORLD: GenreWorld = {
         "chorus"
       ],
       "variants": [
-        {
-          "id": "fusion-felt-piano-arpeggio-v-01",
-          "parentPatternId": "fusion-felt-piano-arpeggio",
-          "name": "Felt Piano Intimate Arpeggiation — sparse variation",
-          "variationType": "sparse",
-          "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
-          "onsetGrid": [
-            0,
-            6,
-            8,
-            14
-          ],
-          "accentProfile": [
-            0.8999999999999999,
-            0.6499999999999999,
-            0.7999999999999999,
-            0.85
-          ],
-          "velocityProfile": [
-            0.8200000000000001,
-            0.5700000000000001,
-            0.7200000000000001,
-            0.77
-          ],
-          "microtimingOffset": [
-            -3,
-            6,
-            -3,
-            6
-          ]
-        },
-        {
-          "id": "fusion-felt-piano-arpeggio-v-02",
-          "parentPatternId": "fusion-felt-piano-arpeggio",
-          "name": "Felt Piano Intimate Arpeggiation — accent shift",
-          "variationType": "accentShift",
-          "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
-          "onsetGrid": [
-            0,
-            3,
-            6,
-            8,
-            11,
-            14
-          ],
-          "accentProfile": [
-            0.9099999999999999,
-            0.7799999999999999,
-            0.8099999999999999,
-            0.98,
-            0.6599999999999999,
-            0.88
-          ],
-          "velocityProfile": [
-            0.96,
-            0.63,
-            0.78,
-            0.9099999999999999,
-            0.63,
-            0.73
-          ],
-          "microtimingOffset": [
-            2,
-            -5,
-            2,
-            -5,
-            2,
-            -5
-          ]
-        }
-      ],
+        
+        ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 2,
       "weight": 1,
-      "provenance": "Fusion & Ambient Dance catalog rebuild: retained source material or generated structural support pattern.",
+      "provenance": "Fusion & Ambient Dance genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
       "authenticityTags": [
         "fusion-ambient"
       ],
@@ -918,85 +678,14 @@ export const FUSION_AMBIENT_WORLD: GenreWorld = {
         "solo"
       ],
       "variants": [
-        {
-          "id": "fusion-organic-percussion-v-01",
-          "parentPatternId": "fusion-organic-percussion",
-          "name": "Organic Shaker & Clay Drum Interlock — sparse variation",
-          "variationType": "sparse",
-          "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
-          "onsetGrid": [
-            2,
-            6,
-            10,
-            14
-          ],
-          "accentProfile": [
-            0.7,
-            0.85,
-            0.6499999999999999,
-            0.75
-          ],
-          "velocityProfile": [
-            0.62,
-            0.77,
-            0.5700000000000001,
-            0.67
-          ],
-          "microtimingOffset": [
-            -3,
-            6,
-            -3,
-            6
-          ]
-        },
-        {
-          "id": "fusion-organic-percussion-v-02",
-          "parentPatternId": "fusion-organic-percussion",
-          "name": "Organic Shaker & Clay Drum Interlock — accent shift",
-          "variationType": "accentShift",
-          "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
-          "onsetGrid": [
-            2,
-            4,
-            6,
-            10,
-            12,
-            14
-          ],
-          "accentProfile": [
-            0.71,
-            0.98,
-            0.6599999999999999,
-            0.88,
-            0.9099999999999999,
-            0.83
-          ],
-          "velocityProfile": [
-            0.76,
-            0.83,
-            0.63,
-            0.81,
-            0.88,
-            0.6799999999999999
-          ],
-          "microtimingOffset": [
-            2,
-            -5,
-            2,
-            -5,
-            2,
-            -5
-          ]
-        }
-      ],
+        
+        ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 2,
       "weight": 1,
-      "provenance": "Fusion & Ambient Dance catalog rebuild: retained source material or generated structural support pattern.",
+      "provenance": "Fusion & Ambient Dance genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
       "authenticityTags": [
         "fusion-ambient"
       ],
@@ -1125,7 +814,7 @@ export const FUSION_AMBIENT_WORLD: GenreWorld = {
       ],
       "difficulty": 1,
       "weight": 0.7,
-      "provenance": "Fusion & Ambient Dance catalog rebuild: retained source material or generated structural support pattern.",
+      "provenance": "Fusion & Ambient Dance genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
       "authenticityTags": [
         "fusion-ambient"
       ],
@@ -1225,68 +914,9 @@ export const FUSION_AMBIENT_WORLD: GenreWorld = {
         "phrasePosition"
       ],
       "variants": [
-        {
-          "id": "fusion-ambient-phrase-7-v-01",
-          "parentPatternId": "fusion-ambient-phrase-7",
-          "name": "Texture Phrase — sparse variation",
-          "variationType": "sparse",
-          "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
-          "onsetGrid": [
-            1,
-            8,
-            13
-          ],
-          "accentProfile": [
-            0.95,
-            0.69,
-            0.85
-          ],
-          "velocityProfile": [
-            0.92,
-            0.61,
-            0.8200000000000001
-          ],
-          "microtimingOffset": [
-            -3,
-            6,
-            -3
-          ]
-        },
-        {
-          "id": "fusion-ambient-phrase-7-v-02",
-          "parentPatternId": "fusion-ambient-phrase-7",
-          "name": "Texture Phrase — accent shift",
-          "variationType": "accentShift",
-          "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
-          "onsetGrid": [
-            1,
-            6,
-            8,
-            13
-          ],
-          "accentProfile": [
-            0.96,
-            0.82,
-            0.86,
-            0.76
-          ],
-          "velocityProfile": [
-            1,
-            0.6699999999999999,
-            0.88,
-            0.74
-          ],
-          "microtimingOffset": [
-            2,
-            -5,
-            2,
-            -5
-          ]
-        }
-      ],
-      "provenance": "GenreDAW catalog rebuild from existing Fusion & Ambient Dance world data; generated to cover missing musical functions without runtime AI.",
+        
+        ],
+      "provenance": "Fusion & Ambient Dance genre-pack structural pattern; generalized for engine coverage and recombination, not a transcription of a single recording.",
       "authenticityTags": [
         "fusion-ambient",
         "texture"
@@ -1386,104 +1016,10 @@ export const FUSION_AMBIENT_WORLD: GenreWorld = {
         "phrasePosition"
       ],
       "variants": [
-        {
-          "id": "fusion-ambient-call-8-v-01",
-          "parentPatternId": "fusion-ambient-call-8",
-          "name": "Solo Response — sparse variation",
-          "variationType": "sparse",
-          "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
-          "onsetGrid": [
-            2,
-            9,
-            14
-          ],
-          "accentProfile": [
-            0.8999999999999999,
-            0.57,
-            0.8999999999999999
-          ],
-          "velocityProfile": [
-            0.87,
-            0.48999999999999994,
-            0.87
-          ],
-          "microtimingOffset": [
-            -3,
-            6,
-            -3
-          ]
-        },
-        {
-          "id": "fusion-ambient-call-8-v-02",
-          "parentPatternId": "fusion-ambient-call-8",
-          "name": "Solo Response — accent shift",
-          "variationType": "accentShift",
-          "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
-          "onsetGrid": [
-            2,
-            7,
-            9,
-            14
-          ],
-          "accentProfile": [
-            0.9099999999999999,
-            0.7,
-            0.9099999999999999,
-            0.7
-          ],
-          "velocityProfile": [
-            1,
-            0.5499999999999999,
-            0.9299999999999999,
-            0.6799999999999999
-          ],
-          "microtimingOffset": [
-            2,
-            -5,
-            2,
-            -5
-          ]
-        },
-        {
-          "id": "fusion-ambient-call-8-v-03",
-          "parentPatternId": "fusion-ambient-call-8",
-          "name": "Solo Response — transition variation",
-          "variationType": "transition",
-          "probability": 0.16,
-          "description": "Adds a final pickup/closure gesture for section transitions.",
-          "onsetGrid": [
-            2,
-            7,
-            9,
-            14,
-            15
-          ],
-          "accentProfile": [
-            0.9299999999999999,
-            0.6,
-            0.9299999999999999,
-            1,
-            1
-          ],
-          "velocityProfile": [
-            0.95,
-            0.57,
-            0.95,
-            0.98,
-            0.98
-          ],
-          "microtimingOffset": [
-            0,
-            0,
-            0,
-            -6,
-            -6
-          ]
-        }
-      ],
-      "provenance": "GenreDAW catalog rebuild from existing Fusion & Ambient Dance world data; generated to cover missing musical functions without runtime AI.",
+        
+        
+        ],
+      "provenance": "Fusion & Ambient Dance genre-pack structural pattern; generalized for engine coverage and recombination, not a transcription of a single recording.",
       "authenticityTags": [
         "fusion-ambient",
         "solo"
@@ -1578,68 +1114,9 @@ export const FUSION_AMBIENT_WORLD: GenreWorld = {
         "phrasePosition"
       ],
       "variants": [
-        {
-          "id": "fusion-ambient-anchor-9-v-01",
-          "parentPatternId": "fusion-ambient-anchor-9",
-          "name": "Lift Anchor — sparse variation",
-          "variationType": "sparse",
-          "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
-          "onsetGrid": [
-            3,
-            10,
-            15
-          ],
-          "accentProfile": [
-            0.95,
-            0.69,
-            0.85
-          ],
-          "velocityProfile": [
-            0.92,
-            0.61,
-            0.8200000000000001
-          ],
-          "microtimingOffset": [
-            -3,
-            6,
-            -3
-          ]
-        },
-        {
-          "id": "fusion-ambient-anchor-9-v-02",
-          "parentPatternId": "fusion-ambient-anchor-9",
-          "name": "Lift Anchor — accent shift",
-          "variationType": "accentShift",
-          "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
-          "onsetGrid": [
-            3,
-            8,
-            10,
-            15
-          ],
-          "accentProfile": [
-            0.96,
-            0.82,
-            0.86,
-            0.76
-          ],
-          "velocityProfile": [
-            1,
-            0.6699999999999999,
-            0.88,
-            0.74
-          ],
-          "microtimingOffset": [
-            2,
-            -5,
-            2,
-            -5
-          ]
-        }
-      ],
-      "provenance": "GenreDAW catalog rebuild from existing Fusion & Ambient Dance world data; generated to cover missing musical functions without runtime AI.",
+        
+        ],
+      "provenance": "Fusion & Ambient Dance genre-pack structural pattern; generalized for engine coverage and recombination, not a transcription of a single recording.",
       "authenticityTags": [
         "fusion-ambient",
         "lift"
@@ -1733,68 +1210,9 @@ export const FUSION_AMBIENT_WORLD: GenreWorld = {
         "phrasePosition"
       ],
       "variants": [
-        {
-          "id": "fusion-ambient-comp-10-v-01",
-          "parentPatternId": "fusion-ambient-comp-10",
-          "name": "Ambient Pulse Comping — sparse variation",
-          "variationType": "sparse",
-          "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
-          "onsetGrid": [
-            1,
-            10,
-            12
-          ],
-          "accentProfile": [
-            0.95,
-            0.69,
-            0.85
-          ],
-          "velocityProfile": [
-            0.92,
-            0.61,
-            0.8200000000000001
-          ],
-          "microtimingOffset": [
-            -3,
-            6,
-            -3
-          ]
-        },
-        {
-          "id": "fusion-ambient-comp-10-v-02",
-          "parentPatternId": "fusion-ambient-comp-10",
-          "name": "Ambient Pulse Comping — accent shift",
-          "variationType": "accentShift",
-          "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
-          "onsetGrid": [
-            1,
-            5,
-            10,
-            12
-          ],
-          "accentProfile": [
-            0.96,
-            0.82,
-            0.86,
-            0.76
-          ],
-          "velocityProfile": [
-            1,
-            0.6699999999999999,
-            0.88,
-            0.74
-          ],
-          "microtimingOffset": [
-            2,
-            -5,
-            2,
-            -5
-          ]
-        }
-      ],
-      "provenance": "GenreDAW catalog rebuild from existing Fusion & Ambient Dance world data; generated to cover missing musical functions without runtime AI.",
+        
+        ],
+      "provenance": "Fusion & Ambient Dance genre-pack structural pattern; generalized for engine coverage and recombination, not a transcription of a single recording.",
       "authenticityTags": [
         "fusion-ambient",
         "ambient-pulse"
@@ -1890,66 +1308,8 @@ export const FUSION_AMBIENT_WORLD: GenreWorld = {
         "phrasePosition"
       ],
       "variants": [
-        {
-          "id": "fusion-ambient-intro-11-v-01",
-          "parentPatternId": "fusion-ambient-intro-11",
-          "name": "Fusion Sync Intro — sparse variation",
-          "variationType": "sparse",
-          "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
-          "onsetGrid": [
-            0,
-            11,
-            15
-          ],
-          "accentProfile": [
-            0.95,
-            0.69,
-            0.85
-          ],
-          "velocityProfile": [
-            0.92,
-            0.61,
-            0.8200000000000001
-          ],
-          "microtimingOffset": [
-            -3,
-            6,
-            -3
-          ]
-        },
-        {
-          "id": "fusion-ambient-intro-11-v-02",
-          "parentPatternId": "fusion-ambient-intro-11",
-          "name": "Fusion Sync Intro — accent shift",
-          "variationType": "accentShift",
-          "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
-          "onsetGrid": [
-            0,
-            6,
-            11,
-            15
-          ],
-          "accentProfile": [
-            0.96,
-            0.82,
-            0.86,
-            0.76
-          ],
-          "velocityProfile": [
-            1,
-            0.6699999999999999,
-            0.88,
-            0.74
-          ],
-          "microtimingOffset": [
-            2,
-            -5,
-            2,
-            -5
-          ]
-        },
+        
+        
         {
           "id": "fusion-ambient-intro-11-v-03",
           "parentPatternId": "fusion-ambient-intro-11",
@@ -1987,7 +1347,7 @@ export const FUSION_AMBIENT_WORLD: GenreWorld = {
           ]
         }
       ],
-      "provenance": "GenreDAW catalog rebuild from existing Fusion & Ambient Dance world data; generated to cover missing musical functions without runtime AI.",
+      "provenance": "Fusion & Ambient Dance genre-pack structural pattern; generalized for engine coverage and recombination, not a transcription of a single recording.",
       "authenticityTags": [
         "fusion-ambient",
         "fusion-sync"
@@ -2089,68 +1449,9 @@ export const FUSION_AMBIENT_WORLD: GenreWorld = {
         "phrasePosition"
       ],
       "variants": [
-        {
-          "id": "fusion-ambient-verse-12-v-01",
-          "parentPatternId": "fusion-ambient-verse-12",
-          "name": "Texture Verse Variation — sparse variation",
-          "variationType": "sparse",
-          "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
-          "onsetGrid": [
-            0,
-            7,
-            12
-          ],
-          "accentProfile": [
-            0.95,
-            0.69,
-            0.85
-          ],
-          "velocityProfile": [
-            0.92,
-            0.61,
-            0.8200000000000001
-          ],
-          "microtimingOffset": [
-            -3,
-            6,
-            -3
-          ]
-        },
-        {
-          "id": "fusion-ambient-verse-12-v-02",
-          "parentPatternId": "fusion-ambient-verse-12",
-          "name": "Texture Verse Variation — accent shift",
-          "variationType": "accentShift",
-          "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
-          "onsetGrid": [
-            0,
-            1,
-            7,
-            12
-          ],
-          "accentProfile": [
-            0.96,
-            0.82,
-            0.86,
-            0.76
-          ],
-          "velocityProfile": [
-            1,
-            0.6699999999999999,
-            0.88,
-            0.74
-          ],
-          "microtimingOffset": [
-            2,
-            -5,
-            2,
-            -5
-          ]
-        }
-      ],
-      "provenance": "GenreDAW catalog rebuild from existing Fusion & Ambient Dance world data; generated to cover missing musical functions without runtime AI.",
+        
+        ],
+      "provenance": "Fusion & Ambient Dance genre-pack structural pattern; generalized for engine coverage and recombination, not a transcription of a single recording.",
       "authenticityTags": [
         "fusion-ambient",
         "texture"
@@ -2253,66 +1554,8 @@ export const FUSION_AMBIENT_WORLD: GenreWorld = {
         "phrasePosition"
       ],
       "variants": [
-        {
-          "id": "fusion-ambient-chorus-13-v-01",
-          "parentPatternId": "fusion-ambient-chorus-13",
-          "name": "Solo Chorus Lift — sparse variation",
-          "variationType": "sparse",
-          "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
-          "onsetGrid": [
-            1,
-            8,
-            13
-          ],
-          "accentProfile": [
-            0.95,
-            0.69,
-            0.85
-          ],
-          "velocityProfile": [
-            0.92,
-            0.61,
-            0.8200000000000001
-          ],
-          "microtimingOffset": [
-            -3,
-            6,
-            -3
-          ]
-        },
-        {
-          "id": "fusion-ambient-chorus-13-v-02",
-          "parentPatternId": "fusion-ambient-chorus-13",
-          "name": "Solo Chorus Lift — accent shift",
-          "variationType": "accentShift",
-          "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
-          "onsetGrid": [
-            1,
-            2,
-            8,
-            13
-          ],
-          "accentProfile": [
-            0.96,
-            0.82,
-            0.86,
-            0.76
-          ],
-          "velocityProfile": [
-            1,
-            0.6699999999999999,
-            0.88,
-            0.74
-          ],
-          "microtimingOffset": [
-            2,
-            -5,
-            2,
-            -5
-          ]
-        },
+        
+        
         {
           "id": "fusion-ambient-chorus-13-v-03",
           "parentPatternId": "fusion-ambient-chorus-13",
@@ -2354,7 +1597,7 @@ export const FUSION_AMBIENT_WORLD: GenreWorld = {
           ]
         }
       ],
-      "provenance": "GenreDAW catalog rebuild from existing Fusion & Ambient Dance world data; generated to cover missing musical functions without runtime AI.",
+      "provenance": "Fusion & Ambient Dance genre-pack structural pattern; generalized for engine coverage and recombination, not a transcription of a single recording.",
       "authenticityTags": [
         "fusion-ambient",
         "solo"
@@ -2451,66 +1694,8 @@ export const FUSION_AMBIENT_WORLD: GenreWorld = {
         "phrasePosition"
       ],
       "variants": [
-        {
-          "id": "fusion-ambient-bridge-14-v-01",
-          "parentPatternId": "fusion-ambient-bridge-14",
-          "name": "Lift Bridge — sparse variation",
-          "variationType": "sparse",
-          "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
-          "onsetGrid": [
-            3,
-            10,
-            15
-          ],
-          "accentProfile": [
-            0.95,
-            0.69,
-            0.85
-          ],
-          "velocityProfile": [
-            0.92,
-            0.61,
-            0.8200000000000001
-          ],
-          "microtimingOffset": [
-            -3,
-            6,
-            -3
-          ]
-        },
-        {
-          "id": "fusion-ambient-bridge-14-v-02",
-          "parentPatternId": "fusion-ambient-bridge-14",
-          "name": "Lift Bridge — accent shift",
-          "variationType": "accentShift",
-          "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
-          "onsetGrid": [
-            3,
-            4,
-            10,
-            15
-          ],
-          "accentProfile": [
-            0.96,
-            0.82,
-            0.86,
-            0.76
-          ],
-          "velocityProfile": [
-            1,
-            0.6699999999999999,
-            0.88,
-            0.74
-          ],
-          "microtimingOffset": [
-            2,
-            -5,
-            2,
-            -5
-          ]
-        },
+        
+        
         {
           "id": "fusion-ambient-bridge-14-v-03",
           "parentPatternId": "fusion-ambient-bridge-14",
@@ -2548,7 +1733,7 @@ export const FUSION_AMBIENT_WORLD: GenreWorld = {
           ]
         }
       ],
-      "provenance": "GenreDAW catalog rebuild from existing Fusion & Ambient Dance world data; generated to cover missing musical functions without runtime AI.",
+      "provenance": "Fusion & Ambient Dance genre-pack structural pattern; generalized for engine coverage and recombination, not a transcription of a single recording.",
       "authenticityTags": [
         "fusion-ambient",
         "lift"
@@ -2614,7 +1799,7 @@ export const FUSION_AMBIENT_WORLD: GenreWorld = {
         0.73,
         1
       ],
-      "syncopationRating": 0.3333333333333333,
+      "syncopationRating": 0.33,
       "anticipationOffset": 1,
       "swingPercentage": 50,
       "articulations": [
@@ -2643,58 +1828,8 @@ export const FUSION_AMBIENT_WORLD: GenreWorld = {
         "phrasePosition"
       ],
       "variants": [
-        {
-          "id": "fusion-ambient-fill-15-v-01",
-          "parentPatternId": "fusion-ambient-fill-15",
-          "name": "Ambient Pulse Fill — sparse variation",
-          "variationType": "sparse",
-          "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
-          "onsetGrid": [
-            3,
-            12
-          ],
-          "accentProfile": [
-            0.6699999999999999,
-            0.73
-          ],
-          "velocityProfile": [
-            0.64,
-            0.65
-          ],
-          "microtimingOffset": [
-            -3,
-            6
-          ]
-        },
-        {
-          "id": "fusion-ambient-fill-15-v-02",
-          "parentPatternId": "fusion-ambient-fill-15",
-          "name": "Ambient Pulse Fill — accent shift",
-          "variationType": "accentShift",
-          "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
-          "onsetGrid": [
-            3,
-            8,
-            12
-          ],
-          "accentProfile": [
-            0.6799999999999999,
-            0.86,
-            0.96
-          ],
-          "velocityProfile": [
-            0.78,
-            0.71,
-            0.98
-          ],
-          "microtimingOffset": [
-            2,
-            -5,
-            2
-          ]
-        },
+        
+        
         {
           "id": "fusion-ambient-fill-15-v-03",
           "parentPatternId": "fusion-ambient-fill-15",
@@ -2732,7 +1867,7 @@ export const FUSION_AMBIENT_WORLD: GenreWorld = {
           ]
         }
       ],
-      "provenance": "GenreDAW catalog rebuild from existing Fusion & Ambient Dance world data; generated to cover missing musical functions without runtime AI.",
+      "provenance": "Fusion & Ambient Dance genre-pack structural pattern; generalized for engine coverage and recombination, not a transcription of a single recording.",
       "authenticityTags": [
         "fusion-ambient",
         "ambient-pulse"
@@ -2800,7 +1935,7 @@ export const FUSION_AMBIENT_WORLD: GenreWorld = {
         0.5,
         1
       ],
-      "syncopationRating": 0.6666666666666666,
+      "syncopationRating": 0.67,
       "anticipationOffset": 0,
       "swingPercentage": 50,
       "articulations": [
@@ -2919,7 +2054,7 @@ export const FUSION_AMBIENT_WORLD: GenreWorld = {
           ]
         }
       ],
-      "provenance": "GenreDAW catalog rebuild from existing Fusion & Ambient Dance world data; generated to cover missing musical functions without runtime AI.",
+      "provenance": "Fusion & Ambient Dance genre-pack structural pattern; generalized for engine coverage and recombination, not a transcription of a single recording.",
       "authenticityTags": [
         "fusion-ambient",
         "fusion-sync"
@@ -3042,34 +2177,7 @@ export const FUSION_AMBIENT_WORLD: GenreWorld = {
             6
           ]
         },
-        {
-          "id": "fusion-ambient-cadence-17-v-02",
-          "parentPatternId": "fusion-ambient-cadence-17",
-          "name": "Texture Cadence — accent shift",
-          "variationType": "accentShift",
-          "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
-          "onsetGrid": [
-            5,
-            10,
-            14
-          ],
-          "accentProfile": [
-            0.96,
-            0.82,
-            0.86
-          ],
-          "velocityProfile": [
-            1,
-            0.6699999999999999,
-            0.88
-          ],
-          "microtimingOffset": [
-            2,
-            -5,
-            2
-          ]
-        },
+        
         {
           "id": "fusion-ambient-cadence-17-v-03",
           "parentPatternId": "fusion-ambient-cadence-17",
@@ -3103,7 +2211,7 @@ export const FUSION_AMBIENT_WORLD: GenreWorld = {
           ]
         }
       ],
-      "provenance": "GenreDAW catalog rebuild from existing Fusion & Ambient Dance world data; generated to cover missing musical functions without runtime AI.",
+      "provenance": "Fusion & Ambient Dance genre-pack structural pattern; generalized for engine coverage and recombination, not a transcription of a single recording.",
       "authenticityTags": [
         "fusion-ambient",
         "texture"
@@ -3114,6 +2222,99 @@ export const FUSION_AMBIENT_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "difficulty": 1,
       "weight": 0.7,
+      "enabled": true
+    },
+    {
+      "id": "fusion-cinematic-cello-melody",
+      "worldId": "fusion-ambient",
+      "traditionId": "fusion-cinematic-neoclassical",
+      "name": "Expressive Neoclassical Solo Cello",
+      "family": "Strings",
+      "category": "phrasePattern",
+      "description": "Lyrical, expressive solo cello melody with subtle vibrato and breath-like pacing for intimate partner dance connection.",
+      "tags": ["neoclassical", "strings", "cello", "melody", "cinematic"],
+      "scopes": ["phrase", "region", "track"],
+      "roles": ["melody", "lead"],
+      "instruments": ["strings", "violin"],
+      "meter": "4/4",
+      "cycleLength": 2,
+      "subdivisions": 16,
+      "onsetGrid": [0, 6, 12, 16, 22, 26],
+      "accentProfile": [1.0, 0.8, 0.85, 0.95, 0.8, 0.75],
+      "velocityProfile": [0.9, 0.75, 0.8, 0.9, 0.75, 0.7],
+      "articulations": ["legato"],
+      "density": "sparse",
+      "phrasePosition": ["start", "middle", "end"],
+      "sectionUsage": ["verse", "chorus", "solo"],
+      "variants": [],
+      "provenance": "Genre-pack support pattern for Neoclassical & Cinematic Fusion; generalized from documented musical conventions.",
+      "authenticityTags": ["neoclassical", "strings"],
+      "danceTags": ["social-partner"],
+      "tuningSystem": "12-tet",
+      "difficulty": 2,
+      "weight": 1,
+      "enabled": true
+    },
+    {
+      "id": "fusion-cinematic-sub-drone",
+      "worldId": "fusion-ambient",
+      "traditionId": "fusion-cinematic-neoclassical",
+      "name": "Cinematic Warm Sub-Bass Drone",
+      "family": "Bass",
+      "category": "drone",
+      "description": "Continuous warm analog sub-sine drone with slow breathing low-pass filter motion grounding the acoustic instruments.",
+      "tags": ["neoclassical", "sub-bass", "drone", "cinematic"],
+      "scopes": ["phrase", "region", "track"],
+      "roles": ["bass", "pulse"],
+      "instruments": ["bass", "synth"],
+      "meter": "4/4",
+      "cycleLength": 2,
+      "subdivisions": 16,
+      "onsetGrid": [0, 16],
+      "accentProfile": [1.0, 0.9],
+      "velocityProfile": [0.95, 0.85],
+      "articulations": ["tenuto"],
+      "density": "sparse",
+      "phrasePosition": ["start", "middle"],
+      "sectionUsage": ["intro", "verse", "chorus", "coda"],
+      "variants": [],
+      "provenance": "Genre-pack support pattern for Neoclassical & Cinematic Fusion; generalized from documented musical conventions.",
+      "authenticityTags": ["neoclassical", "bass"],
+      "danceTags": ["social-partner"],
+      "tuningSystem": "12-tet",
+      "difficulty": 1,
+      "weight": 1,
+      "enabled": true
+    },
+    {
+      "id": "fusion-cinematic-granular-shimmer",
+      "worldId": "fusion-ambient",
+      "traditionId": "fusion-cinematic-neoclassical",
+      "name": "Granular Shimmer Ambient Cloud",
+      "family": "Synth",
+      "category": "texture",
+      "description": "Granular pitch-shifted shimmer cloud hovering in the high frequencies, creating vast cinematic depth.",
+      "tags": ["neoclassical", "ambient", "shimmer", "pad", "texture"],
+      "scopes": ["phrase", "region", "track"],
+      "roles": ["texture", "pad", "harmony"],
+      "instruments": ["synth"],
+      "meter": "4/4",
+      "cycleLength": 2,
+      "subdivisions": 16,
+      "onsetGrid": [0, 8, 16, 24],
+      "accentProfile": [0.9, 0.7, 0.85, 0.7],
+      "velocityProfile": [0.85, 0.65, 0.8, 0.65],
+      "articulations": ["legato"],
+      "density": "sparse",
+      "phrasePosition": ["start", "middle", "end"],
+      "sectionUsage": ["intro", "verse", "chorus", "coda"],
+      "variants": [],
+      "provenance": "Genre-pack support pattern for Neoclassical & Cinematic Fusion; generalized from documented musical conventions.",
+      "authenticityTags": ["neoclassical", "ambient"],
+      "danceTags": ["social-partner"],
+      "tuningSystem": "12-tet",
+      "difficulty": 1,
+      "weight": 1,
       "enabled": true
     }
   ],

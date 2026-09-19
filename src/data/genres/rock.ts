@@ -474,57 +474,13 @@ export const ROCK_WORLD: GenreWorld = {
           ],
           "description": "The riff collapses into accented hits, creating a clear break before the groove returns."
         },
-        {
-          "id": "rock-riff-lock-v-02",
-          "parentPatternId": "rock-riff-lock",
-          "name": "Riff + Bass Lock — accent shift",
-          "variationType": "accentShift",
-          "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
-          "onsetGrid": [
-            0,
-            3,
-            6,
-            8,
-            10,
-            12,
-            14
-          ],
-          "accentProfile": [
-            0.96,
-            0.88,
-            0.86,
-            1,
-            0.6599999999999999,
-            0.98,
-            0.76
-          ],
-          "velocityProfile": [
-            1,
-            0.73,
-            0.83,
-            0.96,
-            0.63,
-            0.83,
-            0.81
-          ],
-          "microtimingOffset": [
-            2,
-            -5,
-            2,
-            -5,
-            2,
-            -5,
-            2
-          ]
-        }
-      ],
+        ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 2,
       "weight": 0.7,
-      "provenance": "Rock catalog rebuild: retained source material or generated structural support pattern.",
+      "provenance": "Rock genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
       "authenticityTags": [
         "rock"
       ],
@@ -636,97 +592,14 @@ export const ROCK_WORLD: GenreWorld = {
         "chorus"
       ],
       "variants": [
-        {
-          "id": "rock-straight-drive-v-01",
-          "parentPatternId": "rock-straight-drive",
-          "name": "Straight-Eighth Drive — sparse variation",
-          "variationType": "sparse",
-          "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
-          "onsetGrid": [
-            0,
-            4,
-            6,
-            10,
-            12
-          ],
-          "accentProfile": [
-            0.95,
-            0.6499999999999999,
-            0.85,
-            0.6499999999999999,
-            0.95
-          ],
-          "velocityProfile": [
-            0.87,
-            0.5700000000000001,
-            0.77,
-            0.5700000000000001,
-            0.87
-          ],
-          "microtimingOffset": [
-            -3,
-            6,
-            -3,
-            6,
-            -3
-          ]
-        },
-        {
-          "id": "rock-straight-drive-v-02",
-          "parentPatternId": "rock-straight-drive",
-          "name": "Straight-Eighth Drive — accent shift",
-          "variationType": "accentShift",
-          "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
-          "onsetGrid": [
-            0,
-            2,
-            4,
-            6,
-            8,
-            10,
-            12,
-            14
-          ],
-          "accentProfile": [
-            0.96,
-            0.7799999999999999,
-            0.86,
-            0.7799999999999999,
-            0.96,
-            0.7799999999999999,
-            0.86,
-            0.7799999999999999
-          ],
-          "velocityProfile": [
-            1,
-            0.63,
-            0.83,
-            0.71,
-            0.9299999999999999,
-            0.63,
-            0.9099999999999999,
-            0.63
-          ],
-          "microtimingOffset": [
-            2,
-            -5,
-            2,
-            -5,
-            2,
-            -5,
-            2,
-            -5
-          ]
-        }
-      ],
+        
+        ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 3,
       "weight": 1,
-      "provenance": "Rock catalog rebuild: retained source material or generated structural support pattern.",
+      "provenance": "Rock genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
       "authenticityTags": [
         "rock"
       ],
@@ -826,113 +699,15 @@ export const ROCK_WORLD: GenreWorld = {
         "chorus"
       ],
       "variants": [
-        {
-          "id": "rock-open-close-v-01",
-          "parentPatternId": "rock-open-close",
-          "name": "Open Verse → Full Chorus — sparse variation",
-          "variationType": "sparse",
-          "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
-          "onsetGrid": [
-            0,
-            8,
-            12
-          ],
-          "accentProfile": [
-            0.75,
-            0.6499999999999999,
-            0.85
-          ],
-          "velocityProfile": [
-            0.52,
-            0.47000000000000003,
-            0.62
-          ],
-          "microtimingOffset": [
-            -3,
-            6,
-            -3
-          ]
-        },
-        {
-          "id": "rock-open-close-v-02",
-          "parentPatternId": "rock-open-close",
-          "name": "Open Verse → Full Chorus — accent shift",
-          "variationType": "accentShift",
-          "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
-          "onsetGrid": [
-            0,
-            4,
-            8,
-            12
-          ],
-          "accentProfile": [
-            0.76,
-            0.7799999999999999,
-            0.86,
-            0.88
-          ],
-          "velocityProfile": [
-            0.6599999999999999,
-            0.53,
-            0.6799999999999999,
-            0.6599999999999999
-          ],
-          "microtimingOffset": [
-            2,
-            -5,
-            2,
-            -5
-          ]
-        },
-        {
-          "id": "rock-open-close-v-03",
-          "parentPatternId": "rock-open-close",
-          "name": "Open Verse → Full Chorus — transition variation",
-          "variationType": "transition",
-          "probability": 0.16,
-          "description": "Adds a final pickup/closure gesture for section transitions.",
-          "onsetGrid": [
-            0,
-            4,
-            8,
-            12,
-            14,
-            15
-          ],
-          "accentProfile": [
-            0.78,
-            0.6799999999999999,
-            0.88,
-            0.78,
-            1,
-            1
-          ],
-          "velocityProfile": [
-            0.6,
-            0.55,
-            0.7,
-            0.6,
-            0.98,
-            0.98
-          ],
-          "microtimingOffset": [
-            0,
-            0,
-            0,
-            0,
-            -6,
-            -6
-          ]
-        }
-      ],
+        
+        
+        ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 1,
       "weight": 0.7,
-      "provenance": "Rock catalog rebuild: retained source material or generated structural support pattern.",
+      "provenance": "Rock genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
       "authenticityTags": [
         "rock"
       ],
@@ -1030,73 +805,14 @@ export const ROCK_WORLD: GenreWorld = {
         "solo"
       ],
       "variants": [
-        {
-          "id": "rock-odd-meter-v-01",
-          "parentPatternId": "rock-odd-meter",
-          "name": "7/8 Accent Group — sparse variation",
-          "variationType": "sparse",
-          "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
-          "onsetGrid": [
-            0,
-            8,
-            10
-          ],
-          "accentProfile": [
-            0.95,
-            0.6499999999999999,
-            0.95
-          ],
-          "velocityProfile": [
-            0.87,
-            0.5700000000000001,
-            0.8200000000000001
-          ],
-          "microtimingOffset": [
-            -3,
-            6,
-            -3
-          ]
-        },
-        {
-          "id": "rock-odd-meter-v-02",
-          "parentPatternId": "rock-odd-meter",
-          "name": "7/8 Accent Group — accent shift",
-          "variationType": "accentShift",
-          "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
-          "onsetGrid": [
-            0,
-            4,
-            8,
-            10
-          ],
-          "accentProfile": [
-            0.96,
-            0.7799999999999999,
-            0.96,
-            0.9299999999999999
-          ],
-          "velocityProfile": [
-            1,
-            0.63,
-            0.88,
-            0.81
-          ],
-          "microtimingOffset": [
-            2,
-            -5,
-            2,
-            -5
-          ]
-        }
-      ],
+        
+        ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 1,
       "weight": 0.7,
-      "provenance": "Rock catalog rebuild: retained source material or generated structural support pattern.",
+      "provenance": "Rock genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
       "authenticityTags": [
         "rock"
       ],
@@ -1181,97 +897,14 @@ export const ROCK_WORLD: GenreWorld = {
         "chorus"
       ],
       "variants": [
-        {
-          "id": "rock-power-chords-v-01",
-          "parentPatternId": "rock-power-chords",
-          "name": "Power Chords — sparse variation",
-          "variationType": "sparse",
-          "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
-          "onsetGrid": [
-            0,
-            2,
-            3,
-            5,
-            6
-          ],
-          "accentProfile": [
-            0.95,
-            0.73,
-            0.83,
-            0.71,
-            0.8999999999999999
-          ],
-          "velocityProfile": [
-            0.87,
-            0.64,
-            0.74,
-            0.62,
-            0.8200000000000001
-          ],
-          "microtimingOffset": [
-            -3,
-            6,
-            -3,
-            6,
-            -3
-          ]
-        },
-        {
-          "id": "rock-power-chords-v-02",
-          "parentPatternId": "rock-power-chords",
-          "name": "Power Chords — accent shift",
-          "variationType": "accentShift",
-          "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
-          "onsetGrid": [
-            0,
-            1,
-            2,
-            3,
-            4,
-            5,
-            6,
-            7
-          ],
-          "accentProfile": [
-            0.96,
-            0.86,
-            0.84,
-            0.84,
-            0.9099999999999999,
-            0.86,
-            0.84,
-            0.8999999999999999
-          ],
-          "velocityProfile": [
-            1,
-            0.7,
-            0.7999999999999999,
-            0.76,
-            0.88,
-            0.7,
-            0.8799999999999999,
-            0.76
-          ],
-          "microtimingOffset": [
-            2,
-            -5,
-            2,
-            -5,
-            2,
-            -5,
-            2,
-            -5
-          ]
-        }
-      ],
+        
+        ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 3,
       "weight": 1,
-      "provenance": "Rock catalog rebuild: retained source material or generated structural support pattern.",
+      "provenance": "Rock genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
       "authenticityTags": [
         "rock"
       ],
@@ -1336,61 +969,14 @@ export const ROCK_WORLD: GenreWorld = {
         "chorus"
       ],
       "variants": [
-        {
-          "id": "rock-halftime-groove-v-01-safe",
-          "parentPatternId": "rock-halftime-groove",
-          "name": "Half-Time Groove — played variation",
-          "variationType": "accentShift",
-          "probability": 0.18,
-          "description": "A light played variation for sparse patterns with only a few attacks.",
-          "onsetGrid": [
-            0,
-            4
-          ],
-          "accentProfile": [
-            0.9099999999999999,
-            1
-          ],
-          "velocityProfile": [
-            0.9500000000000001,
-            0.94
-          ],
-          "microtimingOffset": [
-            -2,
-            4
-          ]
-        },
-        {
-          "id": "rock-halftime-groove-v-02-safe",
-          "parentPatternId": "rock-halftime-groove",
-          "name": "Half-Time Groove — played variation",
-          "variationType": "accentShift",
-          "probability": 0.18,
-          "description": "A light played variation for sparse patterns with only a few attacks.",
-          "onsetGrid": [
-            0,
-            4
-          ],
-          "accentProfile": [
-            0.9099999999999999,
-            1
-          ],
-          "velocityProfile": [
-            0.9500000000000001,
-            0.94
-          ],
-          "microtimingOffset": [
-            -2,
-            4
-          ]
-        }
-      ],
+        
+        ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 1,
       "weight": 1,
-      "provenance": "Rock catalog rebuild: retained source material or generated structural support pattern.",
+      "provenance": "Rock genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
       "authenticityTags": [
         "rock"
       ],
@@ -1475,97 +1061,14 @@ export const ROCK_WORLD: GenreWorld = {
         "turnaround"
       ],
       "variants": [
-        {
-          "id": "rock-tom-beat-v-01",
-          "parentPatternId": "rock-tom-beat",
-          "name": "Tom Groove — sparse variation",
-          "variationType": "sparse",
-          "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
-          "onsetGrid": [
-            0,
-            4,
-            7,
-            11,
-            12
-          ],
-          "accentProfile": [
-            0.95,
-            0.6499999999999999,
-            0.7999999999999999,
-            0.6,
-            0.8999999999999999
-          ],
-          "velocityProfile": [
-            0.87,
-            0.5700000000000001,
-            0.7200000000000001,
-            0.52,
-            0.8200000000000001
-          ],
-          "microtimingOffset": [
-            -3,
-            6,
-            -3,
-            6,
-            -3
-          ]
-        },
-        {
-          "id": "rock-tom-beat-v-02",
-          "parentPatternId": "rock-tom-beat",
-          "name": "Tom Groove — accent shift",
-          "variationType": "accentShift",
-          "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
-          "onsetGrid": [
-            0,
-            3,
-            4,
-            7,
-            8,
-            11,
-            12,
-            15
-          ],
-          "accentProfile": [
-            0.96,
-            0.7799999999999999,
-            0.8099999999999999,
-            0.73,
-            0.9099999999999999,
-            0.7799999999999999,
-            0.8099999999999999,
-            0.73
-          ],
-          "velocityProfile": [
-            1,
-            0.63,
-            0.78,
-            0.6599999999999999,
-            0.88,
-            0.63,
-            0.8600000000000001,
-            0.58
-          ],
-          "microtimingOffset": [
-            2,
-            -5,
-            2,
-            -5,
-            2,
-            -5,
-            2,
-            -5
-          ]
-        }
-      ],
+        
+        ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 3,
       "weight": 1,
-      "provenance": "Rock catalog rebuild: retained source material or generated structural support pattern.",
+      "provenance": "Rock genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
       "authenticityTags": [
         "rock"
       ],
@@ -1641,73 +1144,14 @@ export const ROCK_WORLD: GenreWorld = {
         "chorus"
       ],
       "variants": [
-        {
-          "id": "rock-organ-sustain-v-01",
-          "parentPatternId": "rock-organ-sustain",
-          "name": "Hammond Organ Sustain — sparse variation",
-          "variationType": "sparse",
-          "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
-          "onsetGrid": [
-            0,
-            8,
-            15
-          ],
-          "accentProfile": [
-            0.85,
-            0.5499999999999999,
-            0.7999999999999999
-          ],
-          "velocityProfile": [
-            0.77,
-            0.47000000000000003,
-            0.7200000000000001
-          ],
-          "microtimingOffset": [
-            -3,
-            6,
-            -3
-          ]
-        },
-        {
-          "id": "rock-organ-sustain-v-02",
-          "parentPatternId": "rock-organ-sustain",
-          "name": "Hammond Organ Sustain — accent shift",
-          "variationType": "accentShift",
-          "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
-          "onsetGrid": [
-            0,
-            7,
-            8,
-            15
-          ],
-          "accentProfile": [
-            0.86,
-            0.6799999999999999,
-            0.8099999999999999,
-            0.73
-          ],
-          "velocityProfile": [
-            0.9099999999999999,
-            0.53,
-            0.78,
-            0.6599999999999999
-          ],
-          "microtimingOffset": [
-            2,
-            -5,
-            2,
-            -5
-          ]
-        }
-      ],
+        
+        ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 1,
       "weight": 0.7,
-      "provenance": "Rock catalog rebuild: retained source material or generated structural support pattern.",
+      "provenance": "Rock genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
       "authenticityTags": [
         "rock"
       ],
@@ -1844,7 +1288,7 @@ export const ROCK_WORLD: GenreWorld = {
       ],
       "difficulty": 1,
       "weight": 1,
-      "provenance": "Rock catalog rebuild: retained source material or generated structural support pattern.",
+      "provenance": "Rock genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
       "authenticityTags": [
         "rock"
       ],
@@ -1953,153 +1397,14 @@ export const ROCK_WORLD: GenreWorld = {
         "chorus"
       ],
       "variants": [
-        {
-          "id": "rock-prog-synth-v-01",
-          "parentPatternId": "rock-prog-synth",
-          "name": "Prog Synth Arp — sparse variation",
-          "variationType": "sparse",
-          "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
-          "onsetGrid": [
-            0,
-            2,
-            3,
-            5,
-            6,
-            8,
-            9,
-            11,
-            12,
-            14,
-            15
-          ],
-          "accentProfile": [
-            0.95,
-            0.5499999999999999,
-            0.7,
-            0.5499999999999999,
-            0.85,
-            0.5499999999999999,
-            0.7,
-            0.5499999999999999,
-            0.8999999999999999,
-            0.5499999999999999,
-            0.7
-          ],
-          "velocityProfile": [
-            0.8200000000000001,
-            0.47000000000000003,
-            0.62,
-            0.47000000000000003,
-            0.77,
-            0.47000000000000003,
-            0.62,
-            0.47000000000000003,
-            0.8200000000000001,
-            0.47000000000000003,
-            0.62
-          ],
-          "microtimingOffset": [
-            -3,
-            6,
-            -3,
-            6,
-            -3,
-            6,
-            -3,
-            6,
-            -3,
-            6,
-            -3
-          ]
-        },
-        {
-          "id": "rock-prog-synth-v-02",
-          "parentPatternId": "rock-prog-synth",
-          "name": "Prog Synth Arp — accent shift",
-          "variationType": "accentShift",
-          "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
-          "onsetGrid": [
-            0,
-            1,
-            2,
-            3,
-            4,
-            5,
-            6,
-            7,
-            8,
-            9,
-            10,
-            11,
-            12,
-            13,
-            14,
-            15
-          ],
-          "accentProfile": [
-            0.96,
-            0.6799999999999999,
-            0.71,
-            0.6799999999999999,
-            0.86,
-            0.6799999999999999,
-            0.71,
-            0.6799999999999999,
-            0.9099999999999999,
-            0.6799999999999999,
-            0.71,
-            0.6799999999999999,
-            0.86,
-            0.6799999999999999,
-            0.71,
-            0.73
-          ],
-          "velocityProfile": [
-            0.96,
-            0.53,
-            0.6799999999999999,
-            0.6100000000000001,
-            0.83,
-            0.53,
-            0.76,
-            0.53,
-            0.88,
-            0.6100000000000001,
-            0.6799999999999999,
-            0.53,
-            0.9099999999999999,
-            0.53,
-            0.6799999999999999,
-            0.6599999999999999
-          ],
-          "microtimingOffset": [
-            2,
-            -5,
-            2,
-            -5,
-            2,
-            -5,
-            2,
-            -5,
-            2,
-            -5,
-            2,
-            -5,
-            2,
-            -5,
-            2,
-            -5
-          ]
-        }
-      ],
+        
+        ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 5,
       "weight": 1,
-      "provenance": "Rock catalog rebuild: retained source material or generated structural support pattern.",
+      "provenance": "Rock genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
       "authenticityTags": [
         "rock"
       ],
@@ -2176,85 +1481,14 @@ export const ROCK_WORLD: GenreWorld = {
         "chorus"
       ],
       "variants": [
-        {
-          "id": "rock-acoustic-strum-v-01",
-          "parentPatternId": "rock-acoustic-strum",
-          "name": "Acoustic Strum — sparse variation",
-          "variationType": "sparse",
-          "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
-          "onsetGrid": [
-            0,
-            4,
-            5,
-            7
-          ],
-          "accentProfile": [
-            0.95,
-            0.6499999999999999,
-            0.85,
-            0.6
-          ],
-          "velocityProfile": [
-            0.87,
-            0.5700000000000001,
-            0.77,
-            0.52
-          ],
-          "microtimingOffset": [
-            -3,
-            6,
-            -3,
-            6
-          ]
-        },
-        {
-          "id": "rock-acoustic-strum-v-02",
-          "parentPatternId": "rock-acoustic-strum",
-          "name": "Acoustic Strum — accent shift",
-          "variationType": "accentShift",
-          "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
-          "onsetGrid": [
-            0,
-            2,
-            4,
-            5,
-            6,
-            7
-          ],
-          "accentProfile": [
-            0.96,
-            0.7799999999999999,
-            0.86,
-            0.73,
-            0.8099999999999999,
-            0.83
-          ],
-          "velocityProfile": [
-            1,
-            0.63,
-            0.83,
-            0.6599999999999999,
-            0.78,
-            0.6799999999999999
-          ],
-          "microtimingOffset": [
-            2,
-            -5,
-            2,
-            -5,
-            2,
-            -5
-          ]
-        }
-      ],
+        
+        ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 2,
       "weight": 1,
-      "provenance": "Rock catalog rebuild: retained source material or generated structural support pattern.",
+      "provenance": "Rock genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
       "authenticityTags": [
         "rock"
       ],
@@ -2374,7 +1608,7 @@ export const ROCK_WORLD: GenreWorld = {
       ],
       "difficulty": 1,
       "weight": 1,
-      "provenance": "Rock catalog rebuild: retained source material or generated structural support pattern.",
+      "provenance": "Rock genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
       "authenticityTags": [
         "rock"
       ],
@@ -2479,68 +1713,8 @@ export const ROCK_WORLD: GenreWorld = {
         "phrasePosition"
       ],
       "variants": [
-        {
-          "id": "rock-roster-13-v-01",
-          "parentPatternId": "rock-roster-13",
-          "name": "Build Texture — sparse variation",
-          "variationType": "sparse",
-          "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
-          "onsetGrid": [
-            0,
-            8,
-            12
-          ],
-          "accentProfile": [
-            0.95,
-            0.69,
-            0.85
-          ],
-          "velocityProfile": [
-            0.92,
-            0.61,
-            0.8200000000000001
-          ],
-          "microtimingOffset": [
-            -3,
-            6,
-            -3
-          ]
-        },
-        {
-          "id": "rock-roster-13-v-02",
-          "parentPatternId": "rock-roster-13",
-          "name": "Build Texture — accent shift",
-          "variationType": "accentShift",
-          "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
-          "onsetGrid": [
-            0,
-            4,
-            8,
-            12
-          ],
-          "accentProfile": [
-            0.96,
-            0.82,
-            0.86,
-            0.76
-          ],
-          "velocityProfile": [
-            1,
-            0.6699999999999999,
-            0.88,
-            0.74
-          ],
-          "microtimingOffset": [
-            2,
-            -5,
-            2,
-            -5
-          ]
-        }
       ],
-      "provenance": "GenreDAW catalog rebuild from existing Rock world data; generated to cover missing musical functions without runtime AI.",
+      "provenance": "Rock genre-pack structural pattern; generalized for engine coverage and recombination, not a transcription of a single recording.",
       "authenticityTags": [
         "rock",
         "build"
@@ -2631,108 +1805,10 @@ export const ROCK_WORLD: GenreWorld = {
         "phrasePosition"
       ],
       "variants": [
-        {
-          "id": "rock-call-14-v-01",
-          "parentPatternId": "rock-call-14",
-          "name": "Break Response — sparse variation",
-          "variationType": "sparse",
-          "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
-          "onsetGrid": [
-            1,
-            9,
-            13
-          ],
-          "accentProfile": [
-            0.8999999999999999,
-            0.57,
-            0.8999999999999999
-          ],
-          "velocityProfile": [
-            0.87,
-            0.48999999999999994,
-            0.87
-          ],
-          "microtimingOffset": [
-            -3,
-            6,
-            -3
-          ]
-        },
-        {
-          "id": "rock-call-14-v-02",
-          "parentPatternId": "rock-call-14",
-          "name": "Break Response — accent shift",
-          "variationType": "accentShift",
-          "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
-          "onsetGrid": [
-            1,
-            5,
-            9,
-            13
-          ],
-          "accentProfile": [
-            0.9099999999999999,
-            0.7,
-            0.9099999999999999,
-            0.7
-          ],
-          "velocityProfile": [
-            1,
-            0.5499999999999999,
-            0.9299999999999999,
-            0.6799999999999999
-          ],
-          "microtimingOffset": [
-            2,
-            -5,
-            2,
-            -5
-          ]
-        },
-        {
-          "id": "rock-call-14-v-03",
-          "parentPatternId": "rock-call-14",
-          "name": "Break Response — transition variation",
-          "variationType": "transition",
-          "probability": 0.16,
-          "description": "Adds a final pickup/closure gesture for section transitions.",
-          "onsetGrid": [
-            1,
-            5,
-            9,
-            13,
-            14,
-            15
-          ],
-          "accentProfile": [
-            0.9299999999999999,
-            0.6,
-            0.9299999999999999,
-            0.6,
-            1,
-            1
-          ],
-          "velocityProfile": [
-            0.95,
-            0.57,
-            0.95,
-            0.62,
-            0.98,
-            0.98
-          ],
-          "microtimingOffset": [
-            0,
-            0,
-            0,
-            0,
-            -6,
-            -6
-          ]
-        }
-      ],
-      "provenance": "GenreDAW catalog rebuild from existing Rock world data; generated to cover missing musical functions without runtime AI.",
+        
+        
+        ],
+      "provenance": "Rock genre-pack structural pattern; generalized for engine coverage and recombination, not a transcription of a single recording.",
       "authenticityTags": [
         "rock",
         "break"
@@ -2827,68 +1903,9 @@ export const ROCK_WORLD: GenreWorld = {
         "phrasePosition"
       ],
       "variants": [
-        {
-          "id": "rock-anchor-15-v-01",
-          "parentPatternId": "rock-anchor-15",
-          "name": "Power Chord Anchor — sparse variation",
-          "variationType": "sparse",
-          "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
-          "onsetGrid": [
-            2,
-            10,
-            14
-          ],
-          "accentProfile": [
-            0.95,
-            0.69,
-            0.85
-          ],
-          "velocityProfile": [
-            0.92,
-            0.61,
-            0.8200000000000001
-          ],
-          "microtimingOffset": [
-            -3,
-            6,
-            -3
-          ]
-        },
-        {
-          "id": "rock-anchor-15-v-02",
-          "parentPatternId": "rock-anchor-15",
-          "name": "Power Chord Anchor — accent shift",
-          "variationType": "accentShift",
-          "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
-          "onsetGrid": [
-            2,
-            6,
-            10,
-            14
-          ],
-          "accentProfile": [
-            0.96,
-            0.82,
-            0.86,
-            0.76
-          ],
-          "velocityProfile": [
-            1,
-            0.6699999999999999,
-            0.88,
-            0.74
-          ],
-          "microtimingOffset": [
-            2,
-            -5,
-            2,
-            -5
-          ]
-        }
-      ],
-      "provenance": "GenreDAW catalog rebuild from existing Rock world data; generated to cover missing musical functions without runtime AI.",
+        
+        ],
+      "provenance": "Rock genre-pack structural pattern; generalized for engine coverage and recombination, not a transcription of a single recording.",
       "authenticityTags": [
         "rock",
         "power-chord"
@@ -2984,68 +2001,9 @@ export const ROCK_WORLD: GenreWorld = {
         "phrasePosition"
       ],
       "variants": [
-        {
-          "id": "rock-comp-16-v-01",
-          "parentPatternId": "rock-comp-16",
-          "name": "Backbeat Comping — sparse variation",
-          "variationType": "sparse",
-          "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
-          "onsetGrid": [
-            3,
-            11,
-            15
-          ],
-          "accentProfile": [
-            0.95,
-            0.69,
-            0.85
-          ],
-          "velocityProfile": [
-            0.92,
-            0.61,
-            0.8200000000000001
-          ],
-          "microtimingOffset": [
-            -3,
-            6,
-            -3
-          ]
-        },
-        {
-          "id": "rock-comp-16-v-02",
-          "parentPatternId": "rock-comp-16",
-          "name": "Backbeat Comping — accent shift",
-          "variationType": "accentShift",
-          "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
-          "onsetGrid": [
-            3,
-            7,
-            11,
-            15
-          ],
-          "accentProfile": [
-            0.96,
-            0.82,
-            0.86,
-            0.76
-          ],
-          "velocityProfile": [
-            1,
-            0.6699999999999999,
-            0.88,
-            0.74
-          ],
-          "microtimingOffset": [
-            2,
-            -5,
-            2,
-            -5
-          ]
-        }
-      ],
-      "provenance": "GenreDAW catalog rebuild from existing Rock world data; generated to cover missing musical functions without runtime AI.",
+        
+        ],
+      "provenance": "Rock genre-pack structural pattern; generalized for engine coverage and recombination, not a transcription of a single recording.",
       "authenticityTags": [
         "rock",
         "backbeat"
@@ -3159,92 +2117,9 @@ export const ROCK_WORLD: GenreWorld = {
         "phrasePosition"
       ],
       "variants": [
-        {
-          "id": "rock-verse-17-v-01",
-          "parentPatternId": "rock-verse-17",
-          "name": "Solo Verse Variation — sparse variation",
-          "variationType": "sparse",
-          "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
-          "onsetGrid": [
-            1,
-            5,
-            7,
-            11,
-            13
-          ],
-          "accentProfile": [
-            0.95,
-            0.69,
-            0.85,
-            0.63,
-            0.95
-          ],
-          "velocityProfile": [
-            0.92,
-            0.61,
-            0.8200000000000001,
-            0.6000000000000001,
-            0.87
-          ],
-          "microtimingOffset": [
-            -3,
-            6,
-            -3,
-            6,
-            -3
-          ]
-        },
-        {
-          "id": "rock-verse-17-v-02",
-          "parentPatternId": "rock-verse-17",
-          "name": "Solo Verse Variation — accent shift",
-          "variationType": "accentShift",
-          "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
-          "onsetGrid": [
-            1,
-            3,
-            5,
-            7,
-            9,
-            11,
-            13,
-            15
-          ],
-          "accentProfile": [
-            0.96,
-            0.82,
-            0.86,
-            0.76,
-            0.96,
-            0.82,
-            0.86,
-            0.76
-          ],
-          "velocityProfile": [
-            1,
-            0.6699999999999999,
-            0.88,
-            0.74,
-            0.9299999999999999,
-            0.72,
-            0.96,
-            0.61
-          ],
-          "microtimingOffset": [
-            2,
-            -5,
-            2,
-            -5,
-            2,
-            -5,
-            2,
-            -5
-          ]
-        }
-      ],
-      "provenance": "GenreDAW catalog rebuild from existing Rock world data; generated to cover missing musical functions without runtime AI.",
+        
+        ],
+      "provenance": "Rock genre-pack structural pattern; generalized for engine coverage and recombination, not a transcription of a single recording.",
       "authenticityTags": [
         "rock",
         "solo"
@@ -3256,6 +2131,36 @@ export const ROCK_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "difficulty": 3,
       "weight": 1,
+      "enabled": true
+    },
+    {
+      "id": "rock-punk-downpick-bass",
+      "worldId": "rock",
+      "traditionId": "rock-punk",
+      "name": "Punk Plectrum Downpicked Bass",
+      "family": "Bass",
+      "category": "bass",
+      "description": "Relentless, hard-hitting pick-played eighth-note bassline driving high-speed punk rock momentum locked with kick and snare.",
+      "tags": ["punk", "bass", "downpick", "garage"],
+      "scopes": ["measure", "phrase", "region", "track"],
+      "roles": ["bass"],
+      "instruments": ["bass"],
+      "meter": "4/4",
+      "cycleLength": 1,
+      "subdivisions": 16,
+      "onsetGrid": [0, 2, 4, 6, 8, 10, 12, 14],
+      "accentProfile": [1.0, 0.7, 0.9, 0.7, 1.0, 0.7, 0.9, 0.7],
+      "velocityProfile": [0.95, 0.75, 0.9, 0.75, 0.95, 0.75, 0.9, 0.75],
+      "density": "dense",
+      "phrasePosition": ["start", "middle", "end"],
+      "sectionUsage": ["verse", "chorus"],
+      "variants": [],
+      "provenance": "Genre-pack support pattern for Punk & Garage; generalized from documented musical conventions.",
+      "authenticityTags": ["punk", "bass"],
+      "danceTags": ["festival-fusion"],
+      "tuningSystem": "12-tet",
+      "difficulty": 2,
+      "weight": 0.9,
       "enabled": true
     }
   ],

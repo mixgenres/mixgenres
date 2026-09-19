@@ -35,7 +35,8 @@ import { SAMBA_BOSSA_WORLD } from './sambaBossa';
 import { CELTIC_TRAD_WORLD } from './celticTrad';
 
 
-export function cleanPatternName(name: string): string {
+export function cleanPatternName(name: string, shortName?: string): string {
+  if (shortName) return shortName;
   // Pattern labels are UI names, not identifiers: keep them short, musical,
   // and recognizable across every genre. Source data can remain descriptive.
   const labelMap: Record<string, string> = {
@@ -234,10 +235,10 @@ export const GENRE_WORLDS: GenreWorld[] = RAW_GENRE_WORLDS.map(w => ({
   })),
   patterns: w.patterns.map(p => ({
     ...p,
-    name: cleanPatternName(p.name),
+    name: cleanPatternName(p.name, p.shortName),
     variants: p.variants?.map(v => ({
       ...v,
-      name: cleanPatternName(v.name),
+      name: cleanPatternName(v.name, v.shortName),
     })),
   })),
 }));

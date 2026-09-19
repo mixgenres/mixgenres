@@ -309,49 +309,13 @@ export const CHINESE_ROCK_WORLD: GenreWorld = {
             -3
           ]
         },
-        {
-          "id": "crock-anthemic-bass-v-02",
-          "parentPatternId": "crock-anthemic-bass",
-          "name": "Arena Ballad Root-Fifth Bass — accent shift",
-          "variationType": "accentShift",
-          "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
-          "onsetGrid": [
-            0,
-            4,
-            8,
-            12,
-            14
-          ],
-          "accentProfile": [
-            0.96,
-            0.83,
-            0.86,
-            0.88,
-            0.8099999999999999
-          ],
-          "velocityProfile": [
-            1,
-            0.6799999999999999,
-            0.83,
-            0.81,
-            0.78
-          ],
-          "microtimingOffset": [
-            2,
-            -5,
-            2,
-            -5,
-            2
-          ]
-        }
-      ],
+        ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 2,
       "weight": 1,
-      "provenance": "Chinese Rock & Pop catalog rebuild: retained source material or generated structural support pattern.",
+      "provenance": "Chinese Rock & Pop genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
       "authenticityTags": [
         "chinese-rock"
       ],
@@ -447,85 +411,14 @@ export const CHINESE_ROCK_WORLD: GenreWorld = {
         "verse"
       ],
       "variants": [
-        {
-          "id": "crock-acoustic-verse-strum-v-01",
-          "parentPatternId": "crock-acoustic-verse-strum",
-          "name": "Mandopop Acoustic Verse Strum — sparse variation",
-          "variationType": "sparse",
-          "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
-          "onsetGrid": [
-            0,
-            6,
-            8,
-            14
-          ],
-          "accentProfile": [
-            0.85,
-            0.6499999999999999,
-            0.7999999999999999,
-            0.75
-          ],
-          "velocityProfile": [
-            0.77,
-            0.5700000000000001,
-            0.7200000000000001,
-            0.67
-          ],
-          "microtimingOffset": [
-            -3,
-            6,
-            -3,
-            6
-          ]
-        },
-        {
-          "id": "crock-acoustic-verse-strum-v-02",
-          "parentPatternId": "crock-acoustic-verse-strum",
-          "name": "Mandopop Acoustic Verse Strum — accent shift",
-          "variationType": "accentShift",
-          "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
-          "onsetGrid": [
-            0,
-            3,
-            6,
-            8,
-            11,
-            14
-          ],
-          "accentProfile": [
-            0.86,
-            0.7799999999999999,
-            0.8099999999999999,
-            0.88,
-            0.71,
-            0.98
-          ],
-          "velocityProfile": [
-            0.9099999999999999,
-            0.63,
-            0.78,
-            0.81,
-            0.6799999999999999,
-            0.83
-          ],
-          "microtimingOffset": [
-            2,
-            -5,
-            2,
-            -5,
-            2,
-            -5
-          ]
-        }
-      ],
+        
+        ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 2,
       "weight": 1,
-      "provenance": "Chinese Rock & Pop catalog rebuild: retained source material or generated structural support pattern.",
+      "provenance": "Chinese Rock & Pop genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
       "authenticityTags": [
         "chinese-rock"
       ],
@@ -616,73 +509,14 @@ export const CHINESE_ROCK_WORLD: GenreWorld = {
         "solo"
       ],
       "variants": [
-        {
-          "id": "crock-power-chorus-guitar-v-01",
-          "parentPatternId": "crock-power-chorus-guitar",
-          "name": "Arena Chorus Power Chords — sparse variation",
-          "variationType": "sparse",
-          "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
-          "onsetGrid": [
-            0,
-            8,
-            12
-          ],
-          "accentProfile": [
-            0.95,
-            0.7999999999999999,
-            0.8999999999999999
-          ],
-          "velocityProfile": [
-            0.87,
-            0.7200000000000001,
-            0.8200000000000001
-          ],
-          "microtimingOffset": [
-            -3,
-            6,
-            -3
-          ]
-        },
-        {
-          "id": "crock-power-chorus-guitar-v-02",
-          "parentPatternId": "crock-power-chorus-guitar",
-          "name": "Arena Chorus Power Chords — accent shift",
-          "variationType": "accentShift",
-          "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
-          "onsetGrid": [
-            0,
-            4,
-            8,
-            12
-          ],
-          "accentProfile": [
-            0.96,
-            0.9299999999999999,
-            0.9099999999999999,
-            0.98
-          ],
-          "velocityProfile": [
-            1,
-            0.78,
-            0.88,
-            0.9099999999999999
-          ],
-          "microtimingOffset": [
-            2,
-            -5,
-            2,
-            -5
-          ]
-        }
-      ],
+        
+        ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 1,
       "weight": 1,
-      "provenance": "Chinese Rock & Pop catalog rebuild: retained source material or generated structural support pattern.",
+      "provenance": "Chinese Rock & Pop genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
       "authenticityTags": [
         "chinese-rock"
       ],
@@ -784,93 +618,14 @@ export const CHINESE_ROCK_WORLD: GenreWorld = {
         "solo"
       ],
       "variants": [
-        {
-          "id": "crock-canto-lead-solo-v-01",
-          "parentPatternId": "crock-canto-lead-solo",
-          "name": "Beyond-Style Pentatonic Lead Hook — sparse variation",
-          "variationType": "sparse",
-          "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
-          "onsetGrid": [
-            0,
-            6,
-            8,
-            12,
-            15
-          ],
-          "accentProfile": [
-            0.95,
-            0.7,
-            0.85,
-            0.75,
-            0.6499999999999999
-          ],
-          "velocityProfile": [
-            0.87,
-            0.62,
-            0.77,
-            0.67,
-            0.5700000000000001
-          ],
-          "microtimingOffset": [
-            -3,
-            6,
-            -3,
-            6,
-            -3
-          ]
-        },
-        {
-          "id": "crock-canto-lead-solo-v-02",
-          "parentPatternId": "crock-canto-lead-solo",
-          "name": "Beyond-Style Pentatonic Lead Hook — accent shift",
-          "variationType": "accentShift",
-          "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
-          "onsetGrid": [
-            0,
-            3,
-            6,
-            8,
-            10,
-            12,
-            15
-          ],
-          "accentProfile": [
-            0.96,
-            0.83,
-            0.86,
-            0.88,
-            0.6599999999999999,
-            1,
-            0.76
-          ],
-          "velocityProfile": [
-            1,
-            0.6799999999999999,
-            0.83,
-            0.81,
-            0.63,
-            0.88,
-            0.81
-          ],
-          "microtimingOffset": [
-            2,
-            -5,
-            2,
-            -5,
-            2,
-            -5,
-            2
-          ]
-        }
-      ],
+        
+        ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 2,
       "weight": 0.7,
-      "provenance": "Chinese Rock & Pop catalog rebuild: retained source material or generated structural support pattern.",
+      "provenance": "Chinese Rock & Pop genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
       "authenticityTags": [
         "chinese-rock"
       ],
@@ -963,77 +718,14 @@ export const CHINESE_ROCK_WORLD: GenreWorld = {
         "solo"
       ],
       "variants": [
-        {
-          "id": "crock-dynamic-drums-v-01",
-          "parentPatternId": "crock-dynamic-drums",
-          "name": "Dynamic Arena Rock Drum Build — sparse variation",
-          "variationType": "sparse",
-          "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
-          "onsetGrid": [
-            0,
-            8,
-            12
-          ],
-          "accentProfile": [
-            0.95,
-            0.85,
-            0.7999999999999999
-          ],
-          "velocityProfile": [
-            0.87,
-            0.77,
-            0.7200000000000001
-          ],
-          "microtimingOffset": [
-            -3,
-            6,
-            -3
-          ]
-        },
-        {
-          "id": "crock-dynamic-drums-v-02",
-          "parentPatternId": "crock-dynamic-drums",
-          "name": "Dynamic Arena Rock Drum Build — accent shift",
-          "variationType": "accentShift",
-          "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
-          "onsetGrid": [
-            0,
-            4,
-            8,
-            12,
-            10
-          ],
-          "accentProfile": [
-            0.96,
-            0.98,
-            0.8099999999999999,
-            1,
-            0.71
-          ],
-          "velocityProfile": [
-            1,
-            0.83,
-            0.78,
-            0.96,
-            0.6799999999999999
-          ],
-          "microtimingOffset": [
-            2,
-            -5,
-            2,
-            -5,
-            2
-          ]
-        }
-      ],
+        
+        ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 2,
       "weight": 1,
-      "provenance": "Chinese Rock & Pop catalog rebuild: retained source material or generated structural support pattern.",
+      "provenance": "Chinese Rock & Pop genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
       "authenticityTags": [
         "chinese-rock"
       ],
@@ -1129,85 +821,14 @@ export const CHINESE_ROCK_WORLD: GenreWorld = {
         "chorus"
       ],
       "variants": [
-        {
-          "id": "crock-cantorock-driving-bass-v-01",
-          "parentPatternId": "crock-cantorock-driving-bass",
-          "name": "Canto-Rock Driving Bass — sparse variation",
-          "variationType": "sparse",
-          "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
-          "onsetGrid": [
-            0,
-            7,
-            8,
-            14
-          ],
-          "accentProfile": [
-            0.95,
-            0.7999999999999999,
-            0.6499999999999999,
-            0.8999999999999999
-          ],
-          "velocityProfile": [
-            0.87,
-            0.7200000000000001,
-            0.5700000000000001,
-            0.8200000000000001
-          ],
-          "microtimingOffset": [
-            -3,
-            6,
-            -3,
-            6
-          ]
-        },
-        {
-          "id": "crock-cantorock-driving-bass-v-02",
-          "parentPatternId": "crock-cantorock-driving-bass",
-          "name": "Canto-Rock Driving Bass — accent shift",
-          "variationType": "accentShift",
-          "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
-          "onsetGrid": [
-            0,
-            4,
-            7,
-            8,
-            12,
-            14
-          ],
-          "accentProfile": [
-            0.96,
-            0.9299999999999999,
-            0.6599999999999999,
-            1,
-            0.8099999999999999,
-            0.83
-          ],
-          "velocityProfile": [
-            1,
-            0.78,
-            0.63,
-            0.96,
-            0.78,
-            0.6799999999999999
-          ],
-          "microtimingOffset": [
-            2,
-            -5,
-            2,
-            -5,
-            2,
-            -5
-          ]
-        }
-      ],
+        
+        ],
       "harmonicContext": [
         "tonal or modal context"
       ],
       "difficulty": 2,
       "weight": 1,
-      "provenance": "Chinese Rock & Pop catalog rebuild: retained source material or generated structural support pattern.",
+      "provenance": "Chinese Rock & Pop genre-pack structural pattern; generalized for recombination, not a transcription of a single recording.",
       "authenticityTags": [
         "chinese-rock"
       ],
@@ -1290,7 +911,7 @@ export const CHINESE_ROCK_WORLD: GenreWorld = {
         0.68,
         0.68
       ],
-      "syncopationRating": 0.6666666666666666,
+      "syncopationRating": 0.67,
       "anticipationOffset": 0,
       "swingPercentage": 50,
       "articulations": [
@@ -1318,80 +939,8 @@ export const CHINESE_ROCK_WORLD: GenreWorld = {
         "phrasePosition"
       ],
       "variants": [
-        {
-          "id": "chinese-rock-roster-7-v-01",
-          "parentPatternId": "chinese-rock-roster-7",
-          "name": "Bridge Texture — sparse variation",
-          "variationType": "sparse",
-          "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
-          "onsetGrid": [
-            0,
-            6,
-            8,
-            14
-          ],
-          "accentProfile": [
-            0.95,
-            0.69,
-            0.85,
-            0.63
-          ],
-          "velocityProfile": [
-            0.92,
-            0.61,
-            0.8200000000000001,
-            0.6000000000000001
-          ],
-          "microtimingOffset": [
-            -3,
-            6,
-            -3,
-            6
-          ]
-        },
-        {
-          "id": "chinese-rock-roster-7-v-02",
-          "parentPatternId": "chinese-rock-roster-7",
-          "name": "Bridge Texture — accent shift",
-          "variationType": "accentShift",
-          "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
-          "onsetGrid": [
-            0,
-            3,
-            6,
-            8,
-            11,
-            14
-          ],
-          "accentProfile": [
-            0.96,
-            0.82,
-            0.86,
-            0.76,
-            0.96,
-            0.82
-          ],
-          "velocityProfile": [
-            1,
-            0.6699999999999999,
-            0.88,
-            0.74,
-            0.9299999999999999,
-            0.72
-          ],
-          "microtimingOffset": [
-            2,
-            -5,
-            2,
-            -5,
-            2,
-            -5
-          ]
-        }
       ],
-      "provenance": "GenreDAW catalog rebuild from existing Chinese Rock & Pop world data; generated to cover missing musical functions without runtime AI.",
+      "provenance": "Chinese Rock & Pop genre-pack structural pattern; generalized for engine coverage and recombination, not a transcription of a single recording.",
       "authenticityTags": [
         "chinese-rock",
         "bridge"
@@ -1456,10 +1005,10 @@ export const CHINESE_ROCK_WORLD: GenreWorld = {
         0.57,
         0.95,
         0.62,
-        0.8999999999999999,
+        0.9,
         0.62
       ],
-      "syncopationRating": 0.6666666666666666,
+      "syncopationRating": 0.67,
       "anticipationOffset": 0,
       "swingPercentage": 50,
       "articulations": [
@@ -1489,124 +1038,10 @@ export const CHINESE_ROCK_WORLD: GenreWorld = {
         "phrasePosition"
       ],
       "variants": [
-        {
-          "id": "chinese-rock-call-8-v-01",
-          "parentPatternId": "chinese-rock-call-8",
-          "name": "String Lift Response — sparse variation",
-          "variationType": "sparse",
-          "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
-          "onsetGrid": [
-            1,
-            7,
-            9,
-            15
-          ],
-          "accentProfile": [
-            0.8999999999999999,
-            0.57,
-            0.8999999999999999,
-            0.57
-          ],
-          "velocityProfile": [
-            0.87,
-            0.48999999999999994,
-            0.87,
-            0.54
-          ],
-          "microtimingOffset": [
-            -3,
-            6,
-            -3,
-            6
-          ]
-        },
-        {
-          "id": "chinese-rock-call-8-v-02",
-          "parentPatternId": "chinese-rock-call-8",
-          "name": "String Lift Response — accent shift",
-          "variationType": "accentShift",
-          "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
-          "onsetGrid": [
-            1,
-            4,
-            7,
-            9,
-            12,
-            15
-          ],
-          "accentProfile": [
-            0.9099999999999999,
-            0.7,
-            0.9099999999999999,
-            0.7,
-            0.9099999999999999,
-            0.7
-          ],
-          "velocityProfile": [
-            1,
-            0.5499999999999999,
-            0.9299999999999999,
-            0.6799999999999999,
-            0.8799999999999999,
-            0.6
-          ],
-          "microtimingOffset": [
-            2,
-            -5,
-            2,
-            -5,
-            2,
-            -5
-          ]
-        },
-        {
-          "id": "chinese-rock-call-8-v-03",
-          "parentPatternId": "chinese-rock-call-8",
-          "name": "String Lift Response — transition variation",
-          "variationType": "transition",
-          "probability": 0.16,
-          "description": "Adds a final pickup/closure gesture for section transitions.",
-          "onsetGrid": [
-            1,
-            4,
-            7,
-            9,
-            12,
-            14,
-            15
-          ],
-          "accentProfile": [
-            0.9299999999999999,
-            0.6,
-            0.9299999999999999,
-            0.6,
-            0.9299999999999999,
-            1,
-            1
-          ],
-          "velocityProfile": [
-            0.95,
-            0.57,
-            0.95,
-            0.62,
-            0.8999999999999999,
-            0.98,
-            0.98
-          ],
-          "microtimingOffset": [
-            0,
-            0,
-            0,
-            0,
-            0,
-            -6,
-            -6
-          ]
-        }
-      ],
-      "provenance": "GenreDAW catalog rebuild from existing Chinese Rock & Pop world data; generated to cover missing musical functions without runtime AI.",
+        
+        
+        ],
+      "provenance": "Chinese Rock & Pop genre-pack structural pattern; generalized for engine coverage and recombination, not a transcription of a single recording.",
       "authenticityTags": [
         "chinese-rock",
         "string-lift"
@@ -1678,7 +1113,7 @@ export const CHINESE_ROCK_WORLD: GenreWorld = {
         0.95,
         0.74
       ],
-      "syncopationRating": 0.6666666666666666,
+      "syncopationRating": 0.67,
       "anticipationOffset": 0,
       "swingPercentage": 50,
       "articulations": [
@@ -1708,80 +1143,9 @@ export const CHINESE_ROCK_WORLD: GenreWorld = {
         "phrasePosition"
       ],
       "variants": [
-        {
-          "id": "chinese-rock-anchor-9-v-01",
-          "parentPatternId": "chinese-rock-anchor-9",
-          "name": "Lead Anchor — sparse variation",
-          "variationType": "sparse",
-          "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
-          "onsetGrid": [
-            0,
-            5,
-            8,
-            13
-          ],
-          "accentProfile": [
-            0.95,
-            0.69,
-            0.85,
-            0.63
-          ],
-          "velocityProfile": [
-            0.92,
-            0.61,
-            0.8200000000000001,
-            0.6000000000000001
-          ],
-          "microtimingOffset": [
-            -3,
-            6,
-            -3,
-            6
-          ]
-        },
-        {
-          "id": "chinese-rock-anchor-9-v-02",
-          "parentPatternId": "chinese-rock-anchor-9",
-          "name": "Lead Anchor — accent shift",
-          "variationType": "accentShift",
-          "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
-          "onsetGrid": [
-            0,
-            2,
-            5,
-            8,
-            10,
-            13
-          ],
-          "accentProfile": [
-            0.96,
-            0.82,
-            0.86,
-            0.76,
-            0.96,
-            0.82
-          ],
-          "velocityProfile": [
-            1,
-            0.6699999999999999,
-            0.88,
-            0.74,
-            0.9299999999999999,
-            0.72
-          ],
-          "microtimingOffset": [
-            2,
-            -5,
-            2,
-            -5,
-            2,
-            -5
-          ]
-        }
-      ],
-      "provenance": "GenreDAW catalog rebuild from existing Chinese Rock & Pop world data; generated to cover missing musical functions without runtime AI.",
+        
+        ],
+      "provenance": "Chinese Rock & Pop genre-pack structural pattern; generalized for engine coverage and recombination, not a transcription of a single recording.",
       "authenticityTags": [
         "chinese-rock",
         "lead"
@@ -1855,7 +1219,7 @@ export const CHINESE_ROCK_WORLD: GenreWorld = {
         0.95,
         0.74
       ],
-      "syncopationRating": 0.6666666666666666,
+      "syncopationRating": 0.67,
       "anticipationOffset": 0,
       "swingPercentage": 50,
       "articulations": [
@@ -1884,80 +1248,9 @@ export const CHINESE_ROCK_WORLD: GenreWorld = {
         "phrasePosition"
       ],
       "variants": [
-        {
-          "id": "chinese-rock-comp-10-v-01",
-          "parentPatternId": "chinese-rock-comp-10",
-          "name": "Mandopop Hook Comping — sparse variation",
-          "variationType": "sparse",
-          "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
-          "onsetGrid": [
-            2,
-            7,
-            10,
-            15
-          ],
-          "accentProfile": [
-            0.95,
-            0.69,
-            0.85,
-            0.63
-          ],
-          "velocityProfile": [
-            0.92,
-            0.61,
-            0.8200000000000001,
-            0.6000000000000001
-          ],
-          "microtimingOffset": [
-            -3,
-            6,
-            -3,
-            6
-          ]
-        },
-        {
-          "id": "chinese-rock-comp-10-v-02",
-          "parentPatternId": "chinese-rock-comp-10",
-          "name": "Mandopop Hook Comping — accent shift",
-          "variationType": "accentShift",
-          "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
-          "onsetGrid": [
-            2,
-            4,
-            7,
-            10,
-            12,
-            15
-          ],
-          "accentProfile": [
-            0.96,
-            0.82,
-            0.86,
-            0.76,
-            0.96,
-            0.82
-          ],
-          "velocityProfile": [
-            1,
-            0.6699999999999999,
-            0.88,
-            0.74,
-            0.9299999999999999,
-            0.72
-          ],
-          "microtimingOffset": [
-            2,
-            -5,
-            2,
-            -5,
-            2,
-            -5
-          ]
-        }
-      ],
-      "provenance": "GenreDAW catalog rebuild from existing Chinese Rock & Pop world data; generated to cover missing musical functions without runtime AI.",
+        
+        ],
+      "provenance": "Chinese Rock & Pop genre-pack structural pattern; generalized for engine coverage and recombination, not a transcription of a single recording.",
       "authenticityTags": [
         "chinese-rock",
         "mandopop-hook"
@@ -2068,90 +1361,8 @@ export const CHINESE_ROCK_WORLD: GenreWorld = {
         "phrasePosition"
       ],
       "variants": [
-        {
-          "id": "chinese-rock-intro-11-v-01",
-          "parentPatternId": "chinese-rock-intro-11",
-          "name": "Power Ballad Intro — sparse variation",
-          "variationType": "sparse",
-          "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
-          "onsetGrid": [
-            1,
-            4,
-            6,
-            11,
-            12
-          ],
-          "accentProfile": [
-            0.95,
-            0.69,
-            0.85,
-            0.63,
-            0.95
-          ],
-          "velocityProfile": [
-            0.92,
-            0.61,
-            0.8200000000000001,
-            0.6000000000000001,
-            0.87
-          ],
-          "microtimingOffset": [
-            -3,
-            6,
-            -3,
-            6,
-            -3
-          ]
-        },
-        {
-          "id": "chinese-rock-intro-11-v-02",
-          "parentPatternId": "chinese-rock-intro-11",
-          "name": "Power Ballad Intro — accent shift",
-          "variationType": "accentShift",
-          "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
-          "onsetGrid": [
-            1,
-            3,
-            4,
-            6,
-            9,
-            11,
-            12,
-            14
-          ],
-          "accentProfile": [
-            0.96,
-            0.82,
-            0.86,
-            0.76,
-            0.96,
-            0.82,
-            0.86,
-            0.76
-          ],
-          "velocityProfile": [
-            1,
-            0.6699999999999999,
-            0.88,
-            0.74,
-            0.9299999999999999,
-            0.72,
-            0.96,
-            0.61
-          ],
-          "microtimingOffset": [
-            2,
-            -5,
-            2,
-            -5,
-            2,
-            -5,
-            2,
-            -5
-          ]
-        },
+        
+        
         {
           "id": "chinese-rock-intro-11-v-03",
           "parentPatternId": "chinese-rock-intro-11",
@@ -2205,7 +1416,7 @@ export const CHINESE_ROCK_WORLD: GenreWorld = {
           ]
         }
       ],
-      "provenance": "GenreDAW catalog rebuild from existing Chinese Rock & Pop world data; generated to cover missing musical functions without runtime AI.",
+      "provenance": "Chinese Rock & Pop genre-pack structural pattern; generalized for engine coverage and recombination, not a transcription of a single recording.",
       "authenticityTags": [
         "chinese-rock",
         "power-ballad"
@@ -2320,92 +1531,9 @@ export const CHINESE_ROCK_WORLD: GenreWorld = {
         "phrasePosition"
       ],
       "variants": [
-        {
-          "id": "chinese-rock-verse-12-v-01",
-          "parentPatternId": "chinese-rock-verse-12",
-          "name": "Bridge Verse Variation — sparse variation",
-          "variationType": "sparse",
-          "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
-          "onsetGrid": [
-            2,
-            5,
-            7,
-            12,
-            13
-          ],
-          "accentProfile": [
-            0.95,
-            0.69,
-            0.85,
-            0.63,
-            0.95
-          ],
-          "velocityProfile": [
-            0.92,
-            0.61,
-            0.8200000000000001,
-            0.6000000000000001,
-            0.87
-          ],
-          "microtimingOffset": [
-            -3,
-            6,
-            -3,
-            6,
-            -3
-          ]
-        },
-        {
-          "id": "chinese-rock-verse-12-v-02",
-          "parentPatternId": "chinese-rock-verse-12",
-          "name": "Bridge Verse Variation — accent shift",
-          "variationType": "accentShift",
-          "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
-          "onsetGrid": [
-            2,
-            4,
-            5,
-            7,
-            10,
-            12,
-            13,
-            15
-          ],
-          "accentProfile": [
-            0.96,
-            0.82,
-            0.86,
-            0.76,
-            0.96,
-            0.82,
-            0.86,
-            0.76
-          ],
-          "velocityProfile": [
-            1,
-            0.6699999999999999,
-            0.88,
-            0.74,
-            0.9299999999999999,
-            0.72,
-            0.96,
-            0.61
-          ],
-          "microtimingOffset": [
-            2,
-            -5,
-            2,
-            -5,
-            2,
-            -5,
-            2,
-            -5
-          ]
-        }
-      ],
-      "provenance": "GenreDAW catalog rebuild from existing Chinese Rock & Pop world data; generated to cover missing musical functions without runtime AI.",
+        
+        ],
+      "provenance": "Chinese Rock & Pop genre-pack structural pattern; generalized for engine coverage and recombination, not a transcription of a single recording.",
       "authenticityTags": [
         "chinese-rock",
         "bridge"
@@ -2521,90 +1649,8 @@ export const CHINESE_ROCK_WORLD: GenreWorld = {
         "phrasePosition"
       ],
       "variants": [
-        {
-          "id": "chinese-rock-chorus-13-v-01",
-          "parentPatternId": "chinese-rock-chorus-13",
-          "name": "String Lift Chorus Lift — sparse variation",
-          "variationType": "sparse",
-          "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
-          "onsetGrid": [
-            0,
-            5,
-            6,
-            11,
-            13
-          ],
-          "accentProfile": [
-            0.95,
-            0.69,
-            0.85,
-            0.63,
-            0.95
-          ],
-          "velocityProfile": [
-            0.92,
-            0.61,
-            0.8200000000000001,
-            0.6000000000000001,
-            0.87
-          ],
-          "microtimingOffset": [
-            -3,
-            6,
-            -3,
-            6,
-            -3
-          ]
-        },
-        {
-          "id": "chinese-rock-chorus-13-v-02",
-          "parentPatternId": "chinese-rock-chorus-13",
-          "name": "String Lift Chorus Lift — accent shift",
-          "variationType": "accentShift",
-          "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
-          "onsetGrid": [
-            0,
-            3,
-            5,
-            6,
-            8,
-            11,
-            13,
-            14
-          ],
-          "accentProfile": [
-            0.96,
-            0.82,
-            0.86,
-            0.76,
-            0.96,
-            0.82,
-            0.86,
-            0.76
-          ],
-          "velocityProfile": [
-            1,
-            0.6699999999999999,
-            0.88,
-            0.74,
-            0.9299999999999999,
-            0.72,
-            0.96,
-            0.61
-          ],
-          "microtimingOffset": [
-            2,
-            -5,
-            2,
-            -5,
-            2,
-            -5,
-            2,
-            -5
-          ]
-        },
+        
+        
         {
           "id": "chinese-rock-chorus-13-v-03",
           "parentPatternId": "chinese-rock-chorus-13",
@@ -2658,7 +1704,7 @@ export const CHINESE_ROCK_WORLD: GenreWorld = {
           ]
         }
       ],
-      "provenance": "GenreDAW catalog rebuild from existing Chinese Rock & Pop world data; generated to cover missing musical functions without runtime AI.",
+      "provenance": "Chinese Rock & Pop genre-pack structural pattern; generalized for engine coverage and recombination, not a transcription of a single recording.",
       "authenticityTags": [
         "chinese-rock",
         "string-lift"
@@ -2770,90 +1816,8 @@ export const CHINESE_ROCK_WORLD: GenreWorld = {
         "phrasePosition"
       ],
       "variants": [
-        {
-          "id": "chinese-rock-bridge-14-v-01",
-          "parentPatternId": "chinese-rock-bridge-14",
-          "name": "Lead Bridge — sparse variation",
-          "variationType": "sparse",
-          "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
-          "onsetGrid": [
-            0,
-            5,
-            7,
-            10,
-            13
-          ],
-          "accentProfile": [
-            0.95,
-            0.69,
-            0.85,
-            0.63,
-            0.95
-          ],
-          "velocityProfile": [
-            0.92,
-            0.61,
-            0.8200000000000001,
-            0.6000000000000001,
-            0.87
-          ],
-          "microtimingOffset": [
-            -3,
-            6,
-            -3,
-            6,
-            -3
-          ]
-        },
-        {
-          "id": "chinese-rock-bridge-14-v-02",
-          "parentPatternId": "chinese-rock-bridge-14",
-          "name": "Lead Bridge — accent shift",
-          "variationType": "accentShift",
-          "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
-          "onsetGrid": [
-            0,
-            2,
-            5,
-            7,
-            8,
-            10,
-            13,
-            15
-          ],
-          "accentProfile": [
-            0.96,
-            0.82,
-            0.86,
-            0.76,
-            0.96,
-            0.82,
-            0.86,
-            0.76
-          ],
-          "velocityProfile": [
-            1,
-            0.6699999999999999,
-            0.88,
-            0.74,
-            0.9299999999999999,
-            0.72,
-            0.96,
-            0.61
-          ],
-          "microtimingOffset": [
-            2,
-            -5,
-            2,
-            -5,
-            2,
-            -5,
-            2,
-            -5
-          ]
-        },
+        
+        
         {
           "id": "chinese-rock-bridge-14-v-03",
           "parentPatternId": "chinese-rock-bridge-14",
@@ -2907,7 +1871,7 @@ export const CHINESE_ROCK_WORLD: GenreWorld = {
           ]
         }
       ],
-      "provenance": "GenreDAW catalog rebuild from existing Chinese Rock & Pop world data; generated to cover missing musical functions without runtime AI.",
+      "provenance": "Chinese Rock & Pop genre-pack structural pattern; generalized for engine coverage and recombination, not a transcription of a single recording.",
       "authenticityTags": [
         "chinese-rock",
         "lead"
@@ -3012,78 +1976,8 @@ export const CHINESE_ROCK_WORLD: GenreWorld = {
         "phrasePosition"
       ],
       "variants": [
-        {
-          "id": "chinese-rock-fill-15-v-01",
-          "parentPatternId": "chinese-rock-fill-15",
-          "name": "Mandopop Hook Fill — sparse variation",
-          "variationType": "sparse",
-          "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
-          "onsetGrid": [
-            0,
-            6,
-            10,
-            14
-          ],
-          "accentProfile": [
-            0.6699999999999999,
-            0.73,
-            0.7899999999999999,
-            0.6699999999999999
-          ],
-          "velocityProfile": [
-            0.64,
-            0.65,
-            0.76,
-            0.64
-          ],
-          "microtimingOffset": [
-            -3,
-            6,
-            -3,
-            6
-          ]
-        },
-        {
-          "id": "chinese-rock-fill-15-v-02",
-          "parentPatternId": "chinese-rock-fill-15",
-          "name": "Mandopop Hook Fill — accent shift",
-          "variationType": "accentShift",
-          "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
-          "onsetGrid": [
-            0,
-            4,
-            6,
-            10,
-            12,
-            14
-          ],
-          "accentProfile": [
-            0.6799999999999999,
-            0.86,
-            0.7999999999999999,
-            0.7999999999999999,
-            0.96,
-            1
-          ],
-          "velocityProfile": [
-            0.78,
-            0.71,
-            0.82,
-            0.78,
-            0.9299999999999999,
-            0.98
-          ],
-          "microtimingOffset": [
-            2,
-            -5,
-            2,
-            -5,
-            2,
-            -5
-          ]
-        },
+        
+        
         {
           "id": "chinese-rock-fill-15-v-03",
           "parentPatternId": "chinese-rock-fill-15",
@@ -3129,7 +2023,7 @@ export const CHINESE_ROCK_WORLD: GenreWorld = {
           ]
         }
       ],
-      "provenance": "GenreDAW catalog rebuild from existing Chinese Rock & Pop world data; generated to cover missing musical functions without runtime AI.",
+      "provenance": "Chinese Rock & Pop genre-pack structural pattern; generalized for engine coverage and recombination, not a transcription of a single recording.",
       "authenticityTags": [
         "chinese-rock",
         "mandopop-hook"
@@ -3237,78 +2131,8 @@ export const CHINESE_ROCK_WORLD: GenreWorld = {
         "phrasePosition"
       ],
       "variants": [
-        {
-          "id": "chinese-rock-break-16-v-01",
-          "parentPatternId": "chinese-rock-break-16",
-          "name": "Power Ballad Break — sparse variation",
-          "variationType": "sparse",
-          "probability": 0.22,
-          "description": "Drops selected interior attacks so the phrase breathes on repeated passes.",
-          "onsetGrid": [
-            1,
-            7,
-            11,
-            15
-          ],
-          "accentProfile": [
-            0.95,
-            0.5,
-            0.5,
-            0.5
-          ],
-          "velocityProfile": [
-            0.92,
-            0.42,
-            0.47000000000000003,
-            0.47000000000000003
-          ],
-          "microtimingOffset": [
-            -3,
-            6,
-            -3,
-            6
-          ]
-        },
-        {
-          "id": "chinese-rock-break-16-v-02",
-          "parentPatternId": "chinese-rock-break-16",
-          "name": "Power Ballad Break — accent shift",
-          "variationType": "accentShift",
-          "probability": 0.2,
-          "description": "Keeps the rhythm intact but moves emphasis to different attacks for a played repetition.",
-          "onsetGrid": [
-            1,
-            5,
-            7,
-            11,
-            13,
-            15
-          ],
-          "accentProfile": [
-            0.96,
-            0.63,
-            0.51,
-            0.63,
-            0.96,
-            1
-          ],
-          "velocityProfile": [
-            1,
-            0.48,
-            0.53,
-            0.6100000000000001,
-            0.9299999999999999,
-            0.98
-          ],
-          "microtimingOffset": [
-            2,
-            -5,
-            2,
-            -5,
-            2,
-            -5
-          ]
-        },
+        
+        
         {
           "id": "chinese-rock-break-16-v-03",
           "parentPatternId": "chinese-rock-break-16",
@@ -3354,7 +2178,7 @@ export const CHINESE_ROCK_WORLD: GenreWorld = {
           ]
         }
       ],
-      "provenance": "GenreDAW catalog rebuild from existing Chinese Rock & Pop world data; generated to cover missing musical functions without runtime AI.",
+      "provenance": "Chinese Rock & Pop genre-pack structural pattern; generalized for engine coverage and recombination, not a transcription of a single recording.",
       "authenticityTags": [
         "chinese-rock",
         "power-ballad"
@@ -3422,7 +2246,7 @@ export const CHINESE_ROCK_WORLD: GenreWorld = {
         0.9,
         0.58
       ],
-      "syncopationRating": 0.6666666666666666,
+      "syncopationRating": 0.67,
       "anticipationOffset": 0,
       "swingPercentage": 50,
       "articulations": [
@@ -3491,48 +2315,8 @@ export const CHINESE_ROCK_WORLD: GenreWorld = {
             -4
           ]
         },
-        {
-          "id": "chinese-rock-voice-phrasing-v-final-accent",
-          "parentPatternId": "chinese-rock-voice-phrasing",
-          "name": "Chinese Rock Vocal Phrasing — accent shift",
-          "variationType": "accentShift",
-          "probability": 0.18,
-          "description": "Same rhythmic shape with shifted emphasis on the repeat.",
-          "onsetGrid": [
-            0,
-            3,
-            5,
-            8,
-            11,
-            14
-          ],
-          "accentProfile": [
-            0.8999999999999999,
-            0.7,
-            0.8999999999999999,
-            0.7,
-            0.8999999999999999,
-            0.7
-          ],
-          "velocityProfile": [
-            0.9,
-            0.58,
-            0.9,
-            0.58,
-            0.9,
-            0.58
-          ],
-          "microtimingOffset": [
-            2,
-            -4,
-            2,
-            -4,
-            2,
-            -4
-          ]
-        }
-      ],
-      "provenance": "GenreDAW catalog rebuild: dedicated vocal phrasing coverage for Chinese Rock & Pop.",
+        ],
+      "provenance": "Genre-pack structural pattern for dedicated vocal phrasing coverage for Chinese Rock & Pop; generalized for engine coverage, not a transcription.",
       "authenticityTags": [
         "chinese-rock",
         "voice"
@@ -3540,6 +2324,66 @@ export const CHINESE_ROCK_WORLD: GenreWorld = {
       "danceTags": [
         "listening"
       ],
+      "tuningSystem": "12-tet",
+      "difficulty": 2,
+      "weight": 0.9,
+      "enabled": true
+    },
+    {
+      "id": "crock-cantorock-anthemic-drums",
+      "worldId": "chinese-rock",
+      "traditionId": "chinese-rock-cantorock",
+      "name": "Beyond Stadium Arena Drums",
+      "family": "Drums",
+      "category": "groove",
+      "description": "Solid, punchy 80s/90s Hong Kong arena rock drumkit groove with powerful snare backbeat, steady driving 8th-note kick, and open hi-hat wash.",
+      "tags": ["cantorock", "beyond", "drums", "arena-rock"],
+      "scopes": ["measure", "phrase", "region", "track"],
+      "roles": ["drums", "pulse"],
+      "instruments": ["drums"],
+      "meter": "4/4",
+      "cycleLength": 1,
+      "subdivisions": 16,
+      "onsetGrid": [0, 2, 4, 6, 8, 10, 12, 14],
+      "accentProfile": [1.0, 0.6, 0.95, 0.65, 1.0, 0.6, 0.95, 0.7],
+      "velocityProfile": [0.95, 0.6, 0.95, 0.6, 0.95, 0.6, 0.95, 0.65],
+      "density": "dense",
+      "phrasePosition": ["start", "middle", "end"],
+      "sectionUsage": ["verse", "chorus", "solo"],
+      "variants": [],
+      "provenance": "Genre-pack support pattern for Canto-Rock; generalized from documented musical conventions.",
+      "authenticityTags": ["cantorock", "drums"],
+      "danceTags": ["festival-fusion"],
+      "tuningSystem": "12-tet",
+      "difficulty": 2,
+      "weight": 0.9,
+      "enabled": true
+    },
+    {
+      "id": "crock-cantorock-rhythm-chords",
+      "worldId": "chinese-rock",
+      "traditionId": "chinese-rock-cantorock",
+      "name": "Canto-Rock Rhythm Power Chords",
+      "family": "Guitar",
+      "category": "harmony",
+      "description": "Driving electric guitar power chords moving from tight palm-muted verse rhythms to ringing anthemic chorus sustain.",
+      "tags": ["cantorock", "guitar", "power-chords", "beyond"],
+      "scopes": ["measure", "phrase", "region", "track"],
+      "roles": ["guitar", "harmony"],
+      "instruments": ["electric-guitar"],
+      "meter": "4/4",
+      "cycleLength": 1,
+      "subdivisions": 16,
+      "onsetGrid": [0, 2, 4, 6, 8, 10, 12, 14],
+      "accentProfile": [1.0, 0.65, 0.85, 0.65, 0.95, 0.65, 0.85, 0.7],
+      "velocityProfile": [0.9, 0.65, 0.85, 0.65, 0.9, 0.65, 0.85, 0.7],
+      "density": "dense",
+      "phrasePosition": ["start", "middle", "end"],
+      "sectionUsage": ["verse", "chorus"],
+      "variants": [],
+      "provenance": "Genre-pack support pattern for Canto-Rock; generalized from documented musical conventions.",
+      "authenticityTags": ["cantorock", "guitar"],
+      "danceTags": ["festival-fusion"],
       "tuningSystem": "12-tet",
       "difficulty": 2,
       "weight": 0.9,

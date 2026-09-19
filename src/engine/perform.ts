@@ -7,13 +7,14 @@ import { grooveFor, applyFeel, seedOf, rand01, GrooveProfile, GrooveRole } from 
 import { parseChord, inferKey, KeyInfo } from './theory';
 import { voiceChord, styleFor } from './voicing';
 import { bassNote, bassStyleFor, BassStyle } from './bass';
-import { makeMotif, melodyGate, melodyNote, treatmentFor, Motif, MelodyTreatment } from './melody';
+import { makeMotif, melodyGate, melodyNote, treatmentFor, Motif, MelodyTreatment, generateStyleOrnaments } from './melody';
 import { GM, kitVoicing, handPercVoicing, flavourFor, usesRide, KitVoicing } from './drums';
 import { roomFor } from './mixer';
 import { decide, shapeOf, ArrangementDecision, SectionShape } from './arrangement';
 import { beatsPerBarOf, type NativeSlice } from './grid';
 import { getEffectiveBpm } from './arrange';
 import { culturalRules, culturalPitchSet, culturalDronePitch, isCulturalWorld, shoCluster, celticOpenHarmony } from './cultural';
+import { resolveStyle } from '../data/styles/resolve';
 
 /* --- event model ---------------------------------------------------------- */
 
@@ -388,7 +389,10 @@ export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
   const motif: Motif = makeMotif(
     seedOf(sheet.id, sheet.worldId, sheet.title, allChords.join(',')),
     bars[0]?.beatsPerBar ?? 4,
+    sheet.styleId,
+    sheet.worldId,
   );
+  const phraseBars = motif.phraseBars ?? 4;
 
   const nextChangedChord: (string | undefined)[] = sheet.measures.map((m, i) => {
     for (let j = i + 1; j < Math.min(sheet.measures.length, i + 5); j++) {
@@ -476,9 +480,10 @@ export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
       const celticWorld = worldId === 'celtic-trad';
 
       let treatment: MelodyTreatment = 'state';
+      const regionStyleId = (region as any)?.styleId ?? sheet.styleId;
       if (isMelodic && !culturalHarmonyPattern && !culture) {
-        treatment = treatmentFor(String(region?.kind ?? 'verse'), intensity);
-        const phraseBar = (a.bar - (region ? (region as any).start ?? 0 : 0) + 64) % 4;
+        treatment = treatmentFor(String(region?.kind ?? 'verse'), intensity, regionStyleId, worldId);
+        const phraseBar = (a.bar - (region ? (region as any).start ?? 0 : 0) + 64) % phraseBars;
         const gateOk = melodyGate({
           motif, key, chord, profile: prof, treatment,
           barInPhrase: phraseBar,
@@ -487,6 +492,9 @@ export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
           layer, intensity,
           previous: mem.lastNote,
           seed: seedOf(t.id, a.bar, a.onsetIndex, 'gate'),
+          styleId: regionStyleId,
+          genreId: worldId,
+          sectionKind: String(region?.kind ?? 'verse'),
         });
         if (!gateOk) continue;
       }
@@ -600,8 +608,9 @@ export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
         mem.last = pitches;
         mem.lastNote = pitches[pitches.length - 1] ?? mem.lastNote;
       } else if (isMelodic) {
-        const phraseBar = (a.bar - (region ? (region as any).start ?? 0 : 0) + 64) % 4;
-        const n = melodyNote({
+        const phraseBar = (a.bar - (region ? (region as any).start ?? 0 : 0) + 64) % phraseBars;
+        const resolved = resolveStyle({ genreId: worldId, styleId: regionStyleId });
+        const { note: n, isLeap } = melodyNote({
           motif, key, chord, profile: prof, treatment,
           barInPhrase: phraseBar,
           beatInBar: a.beatInBar,
@@ -609,10 +618,19 @@ export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
           layer, intensity,
           previous: mem.lastNote,
           seed: seedOf(t.id, a.bar, a.onsetIndex, 'mel'),
+          styleId: regionStyleId,
+          genreId: worldId,
+          sectionKind: String(region?.kind ?? 'verse'),
           pitchSet: culture ? culturalPitchSet(culture, culturalTonicPc) : undefined,
           tonicPc: culture ? culturalTonicPc : undefined,
-          snapToChord: culture?.snapToChord,
+          snapToChord: culture ? culture.snapToChord : resolved.melody?.snapToChord,
+          rangePerSection: resolved.melody?.rangePerSection,
+          chordToneTargeting: resolved.melody?.chordToneTargeting,
+          callAndResponse: resolved.melody?.callAndResponse,
+          heterophonic: resolved.melody?.heterophonic,
+          wasLeap: (mem as any).wasLeap,
         });
+        (mem as any).wasLeap = isLeap;
         mem.lastNote = n;
         pitches = [n];
       } else {
@@ -648,18 +666,39 @@ export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
       }
 
       pitches.forEach((midi, vi) => {
-        if (vi === 0 && culture) {
-          const ornaments = culturalOrnaments(
-            a.patternId, a.articulation, midi, culture, culturalTonicPc, prof,
-            seedOf(t.id, a.bar, a.onsetIndex, 'ornament'),
-          );
-          ornaments.forEach(o => notes.push({
-            time: time + o.timeOffsetBeats * secPerBeat,
-            dur: Math.max(0.02, o.durBeats * secPerBeat),
-            midi: o.midi,
-            vel: Math.max(4, Math.min(127, Math.round(vel * o.velocityMult))),
-            channel, trackId: t.id, bar: a.bar,
-          }));
+        if (vi === 0) {
+          if (culture) {
+            const ornaments = culturalOrnaments(
+              a.patternId, a.articulation, midi, culture, culturalTonicPc, prof,
+              seedOf(t.id, a.bar, a.onsetIndex, 'ornament'),
+            );
+            ornaments.forEach(o => notes.push({
+              time: time + o.timeOffsetBeats * secPerBeat,
+              dur: Math.max(0.02, o.durBeats * secPerBeat),
+              midi: o.midi,
+              vel: Math.max(4, Math.min(127, Math.round(vel * o.velocityMult))),
+              channel, trackId: t.id, bar: a.bar,
+            }));
+          } else {
+            const resolved = resolveStyle({ genreId: worldId, styleId: regionStyleId });
+            const ornaments = generateStyleOrnaments(
+              midi,
+              a.beatInBar,
+              a.patternId,
+              a.articulation,
+              resolved.melody?.ornamentVocabulary,
+              key.pcs,
+              prof,
+              seedOf(t.id, a.bar, a.onsetIndex, 'style-ornament'),
+            );
+            ornaments.forEach(o => notes.push({
+              time: time + o.timeOffsetBeats * secPerBeat,
+              dur: Math.max(0.02, o.durBeats * secPerBeat),
+              midi: o.midi,
+              vel: Math.max(4, Math.min(127, Math.round(vel * o.velocityMult))),
+              channel, trackId: t.id, bar: a.bar,
+            }));
+          }
         }
         const rollMs = prof.sustain === 'decaying' || prof.sustain === 'short'
           ? vi * (1.6 + rand01(seedOf(t.id, a.bar, a.onsetIndex, vi)) * 2.4)

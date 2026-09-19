@@ -6,6 +6,11 @@ import { defineConfig } from 'vite';
 export default defineConfig({
   // Relative asset URLs work for both github.io project pages and local previews.
   base: './',
+  server: {
+    host: '0.0.0.0',
+    port: 3000,
+    allowedHosts: true,
+  },
   plugins: [react(), tailwindcss()],
   resolve: {
     alias: {

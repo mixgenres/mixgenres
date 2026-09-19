@@ -6,7 +6,10 @@ import { Glyph, PlayIcon, PauseIcon } from './ui/Glyph';
 import { NoteCard, NoteMark } from './ui/Sheet';
 import { noteTags } from './ui/noteTags';
 import { WorldSheet, InstrumentSheet, PatternSheet, SectionSheet, SectionGenreSheet, TempoSheet, DownloadSheet, PerformanceSheet, StartOverModal, RandomizeSheet, ChordSheet } from './ui/sheets';
+import { StyleSheetModal } from './ui/StyleSheet';
+import { StyleInspector } from './ui/StyleInspector';
 import { plateFor, applyPlate } from './ui/worlds';
+import { resolveStyle, getCanonicalStyle } from './data/styles';
 import {
   Sheet as SongSheet, Voice, makeSheet, switchLensOnly, switchSectionWorld,
   setBars, setKind, setSectionTitle, moveSection, setSectionChords, getSectionGenre,
@@ -48,6 +51,14 @@ export default function App() {
   const [isEditingTitle, setIsEditingTitle] = useState(false);
   const [isEditingPartTitle, setIsEditingPartTitle] = useState(false);
   const [sectionGenreOpen, setSectionGenreOpen] = useState(false);
+  const [styleOpen, setStyleOpen] = useState(false);
+  const [showDevStyle, setShowDevStyle] = useState(() => {
+    try {
+      return typeof window !== 'undefined' && new URLSearchParams(window.location.search).get('dev') === 'style';
+    } catch {
+      return false;
+    }
+  });
   const [audioLoading, setAudioLoading] = useState(false);
 
   const [pickedRegion, setPickedRegion] = useState<string | null>(null);
@@ -69,8 +80,19 @@ export default function App() {
     toastTimerRef.current = window.setTimeout(() => setToast(null), 2500);
   };
 
-  const handleStartOver = (worldId: string) => {
-    const fresh = makeSheet(worldId);
+  const currentResolvedStyle = useMemo(() => {
+    return resolveStyle({
+      genreId: song.worldId,
+      styleId: song.styleId,
+      influences: (song as any).styleInfluences,
+      userOverrides: (song as any).styleOverrides,
+    });
+  }, [song.worldId, song.styleId, (song as any).styleInfluences, (song as any).styleOverrides]);
+
+  const handleStartOver = (worldId: string, styleId?: string) => {
+    const canonical = getCanonicalStyle(worldId);
+    const targetStyleId = styleId ?? canonical.id;
+    const fresh = makeSheet(worldId, targetStyleId);
     setSong(fresh);
     setPickedRegion(null);
     setBar(0);
@@ -79,7 +101,24 @@ export default function App() {
     stepRef.current = 0;
     seekSecondsRef.current = 0;
     transportRef.current?.locate(0);
-    showToast(`Started a new ${plateFor(worldId).short} song`);
+    showToast(`Started a new ${plateFor(worldId).short} song (${resolveStyle({ genreId: worldId, styleId: targetStyleId }).name})`);
+  };
+
+  const handleSelectStyle = (styleId: string) => {
+    const next = makeSheet(song.worldId, styleId);
+    if (song.title && song.title !== 'Untitled') {
+      next.title = song.title;
+    }
+    setSong(next);
+    setPickedRegion(null);
+    setBar(0);
+    setStep(0);
+    barRef.current = 0;
+    stepRef.current = 0;
+    seekSecondsRef.current = 0;
+    transportRef.current?.locate(0);
+    const targetName = resolveStyle({ genreId: song.worldId, styleId }).name;
+    showToast(`Style set to ${targetName}`);
   };
 
   // Set to true right before a render starts and checked once it resolves,
@@ -361,22 +400,30 @@ export default function App() {
       <div className="w-full max-w-[620px] mx-auto flex-1 flex flex-col px-5 sm:px-6 pb-12">
 
         {/* ---- 1. HEADER: Balanced 3-Zone Composition -------------------- */}
-        <header className="flex items-center justify-between pt-5 pb-4 gap-3">
+        <header className="flex flex-wrap items-center justify-between pt-5 pb-4 gap-x-3 gap-y-2.5">
           {/* LEFT: Title */}
           <div className="flex items-center gap-2.5 min-w-0">
             {isEditingTitle ? (
-              <input
-                autoFocus
-                className="slab truncate bg-transparent outline-none"
-                style={{ fontSize: 32, lineHeight: 1.1, borderBottom: '1px solid var(--ink)', width: '100%', minWidth: 50 }}
-                value={song.title}
-                onChange={e => edit(s => ({ ...s, title: e.target.value }))}
-                onFocus={() => {
-                  if (region) setPickedRegion(region.id);
-                }}
-                onBlur={() => setIsEditingTitle(false)}
-                onKeyDown={e => e.key === 'Enter' && setIsEditingTitle(false)}
-              />
+              /* An invisible copy of the title (same text + pencil) sizes this box, so
+                 renaming never changes the header's width or moves the genre/style pills. */
+              <div className="relative flex items-center gap-2 min-w-0" style={{ minWidth: 50 }}>
+                <span className="slab truncate invisible" aria-hidden="true" style={{ fontSize: 32, lineHeight: 1.1 }}>
+                  {song.title || ' '}
+                </span>
+                <Pencil size={16} strokeWidth={2} className="invisible shrink-0" aria-hidden="true" />
+                <input
+                  autoFocus
+                  className="slab bg-transparent outline-none absolute inset-y-0 left-0 w-full"
+                  style={{ fontSize: 32, lineHeight: 1.1, borderBottom: '1px solid var(--ink)' }}
+                  value={song.title}
+                  onChange={e => edit(s => ({ ...s, title: e.target.value }))}
+                  onFocus={() => {
+                    if (region) setPickedRegion(region.id);
+                  }}
+                  onBlur={() => setIsEditingTitle(false)}
+                  onKeyDown={e => e.key === 'Enter' && setIsEditingTitle(false)}
+                />
+              </div>
             ) : (
               <h1 
                 className="slab truncate cursor-pointer hover:opacity-70 transition-opacity flex items-center gap-2" 
@@ -393,8 +440,8 @@ export default function App() {
             )}
           </div>
 
-          {/* RIGHT: Song Genre cluster */}
-          <div className="flex items-center gap-3 shrink-0">
+          {/* RIGHT: Song Genre & Style cluster */}
+          <div className="flex items-center gap-2 min-w-0 max-w-full ml-auto">
             <button
               type="button"
               onClick={() => setWorldOpen(true)}
@@ -419,6 +466,34 @@ export default function App() {
                 <Pencil size={9} strokeWidth={2} style={{ opacity: 0.45, flexShrink: 0 }} />
               </div>
             </button>
+
+            <button
+              type="button"
+              onClick={() => setStyleOpen(true)}
+              className="btn-pill transition-opacity hover:opacity-85 cursor-pointer min-w-0"
+              style={{
+                background: 'var(--tone)',
+                color: 'var(--ink)',
+                boxShadow: 'inset 0 0 0 1px color-mix(in srgb, var(--ink) 25%, transparent)',
+              }}
+              title={`Song style: ${currentResolvedStyle.name} — click to change`}
+            >
+              <div className="flex items-center gap-1.5 leading-tight min-w-0">
+                <span className="truncate" style={{ fontWeight: 600 }}>{currentResolvedStyle.name}</span>
+                <Pencil size={9} strokeWidth={2} style={{ opacity: 0.45, flexShrink: 0 }} />
+              </div>
+            </button>
+
+            {showDevStyle && (
+              <button
+                type="button"
+                onClick={() => setShowDevStyle(false)}
+                className="btn-pill bg-amber-500/20 text-amber-900 dark:text-amber-100 text-[10px] font-mono uppercase font-bold cursor-pointer"
+                title="Hide Style Inspector"
+              >
+                Dev: Style
+              </button>
+            )}
           </div>
         </header>
 
@@ -1328,6 +1403,21 @@ export default function App() {
         regionKind={partName}
         onPick={handleSelectSectionGenre}
       />
+
+      <StyleSheetModal
+        open={styleOpen}
+        onClose={() => setStyleOpen(false)}
+        currentGenreId={song.worldId}
+        currentStyleId={song.styleId}
+        onPickStyle={handleSelectStyle}
+      />
+
+      {showDevStyle && (
+        <StyleInspector
+          song={song}
+          onClose={() => setShowDevStyle(false)}
+        />
+      )}
 
       <PerformanceSheet
         open={performanceOpen}

@@ -373,7 +373,7 @@ export const FOLCLORICO_WORLD : GenreWorld = {
         ]
       }
     ],
-    "provenance": "GenreDAW catalog extension: authored from documented rhythmic/ensemble conventions and expressed as engine-ready structural cells.",
+    "provenance": "Genre-pack structural pattern authored from documented rhythmic and ensemble conventions; generalized for engine recombination.",
     "authenticityTags": [
       "huayno",
       "charango",
@@ -505,7 +505,7 @@ export const FOLCLORICO_WORLD : GenreWorld = {
         ]
       }
     ],
-    "provenance": "GenreDAW catalog extension: authored from documented rhythmic/ensemble conventions and expressed as engine-ready structural cells.",
+    "provenance": "Genre-pack structural pattern authored from documented rhythmic and ensemble conventions; generalized for engine recombination.",
     "authenticityTags": [
       "sesquialtera",
       "son",
@@ -636,7 +636,7 @@ export const FOLCLORICO_WORLD : GenreWorld = {
         ]
       }
     ],
-    "provenance": "GenreDAW catalog extension: authored from documented rhythmic/ensemble conventions and expressed as engine-ready structural cells.",
+    "provenance": "Genre-pack structural pattern authored from documented rhythmic and ensemble conventions; generalized for engine recombination.",
     "authenticityTags": [
       "bombo",
       "chacarera",
@@ -773,7 +773,7 @@ export const FOLCLORICO_WORLD : GenreWorld = {
         ]
       }
     ],
-    "provenance": "GenreDAW catalog extension: authored from documented rhythmic/ensemble conventions and expressed as engine-ready structural cells.",
+    "provenance": "Genre-pack structural pattern authored from documented rhythmic and ensemble conventions; generalized for engine recombination.",
     "authenticityTags": [
       "quena",
       "pentatonic",
@@ -909,7 +909,7 @@ export const FOLCLORICO_WORLD : GenreWorld = {
         ]
       }
     ],
-    "provenance": "GenreDAW catalog extension: authored from documented rhythmic/ensemble conventions and expressed as engine-ready structural cells.",
+    "provenance": "Genre-pack structural pattern authored from documented rhythmic and ensemble conventions; generalized for engine recombination.",
     "authenticityTags": [
       "zamba",
       "hemiola",
@@ -988,7 +988,7 @@ export const FOLCLORICO_WORLD : GenreWorld = {
       "phrasePosition"
     ],
     "variants": [],
-    "provenance": "Authored genre-pack pattern based on Andean; designed for engine-level recombination rather than literal transcription.",
+    "provenance": "Genre-pack structural pattern based on Andean; generalized for engine recombination, not literal transcription.",
     "authenticityTags": [
       "huayno",
       "strum"
@@ -1004,7 +1004,7 @@ export const FOLCLORICO_WORLD : GenreWorld = {
   {
     "id": "ff-07-andean-bombo-foundation",
     "worldId": "folclorico",
-    "traditionId": "folclorico-mexican",
+    "traditionId": "folclorico-andean",
     "name": "Andean Bombo Foundation",
     "family": "Andean",
     "category": "groove",
@@ -1061,7 +1061,7 @@ export const FOLCLORICO_WORLD : GenreWorld = {
       "phrasePosition"
     ],
     "variants": [],
-    "provenance": "Authored genre-pack pattern based on Andean; designed for engine-level recombination rather than literal transcription.",
+    "provenance": "Genre-pack structural pattern based on Andean; generalized for engine recombination, not literal transcription.",
     "authenticityTags": [
       "bombo",
       "downbeat"
@@ -1077,7 +1077,7 @@ export const FOLCLORICO_WORLD : GenreWorld = {
   {
     "id": "ff-08-quena-answer",
     "worldId": "folclorico",
-    "traditionId": "folclorico-southern-cone",
+    "traditionId": "folclorico-andean",
     "name": "Quena Answer",
     "family": "Andean",
     "category": "interactionPattern",
@@ -1152,7 +1152,7 @@ export const FOLCLORICO_WORLD : GenreWorld = {
       "phrasePosition"
     ],
     "variants": [],
-    "provenance": "Authored genre-pack pattern based on Andean; designed for engine-level recombination rather than literal transcription.",
+    "provenance": "Genre-pack structural pattern based on Andean; generalized for engine recombination, not literal transcription.",
     "authenticityTags": [
       "quena",
       "answer"
@@ -1168,7 +1168,7 @@ export const FOLCLORICO_WORLD : GenreWorld = {
   {
     "id": "ff-09-charango-tremolo",
     "worldId": "folclorico",
-    "traditionId": "folclorico-southern-cone",
+    "traditionId": "folclorico-andean",
     "name": "Charango Tremolo",
     "family": "Andean",
     "category": "ostinato",
@@ -1237,7 +1237,7 @@ export const FOLCLORICO_WORLD : GenreWorld = {
       "phrasePosition"
     ],
     "variants": [],
-    "provenance": "Authored genre-pack pattern based on Andean; designed for engine-level recombination rather than literal transcription.",
+    "provenance": "Genre-pack structural pattern based on Andean; generalized for engine recombination, not literal transcription.",
     "authenticityTags": [
       "charango",
       "tremolo"
@@ -1253,7 +1253,7 @@ export const FOLCLORICO_WORLD : GenreWorld = {
   {
     "id": "ff-10-son-huapango-sesquialtera",
     "worldId": "folclorico",
-    "traditionId": "folclorico-southern-cone",
+    "traditionId": "folclorico-mexican",
     "name": "Son Huapango Sesquialtera",
     "family": "Mexican",
     "category": "groove",
@@ -1323,7 +1323,7 @@ export const FOLCLORICO_WORLD : GenreWorld = {
       "phrasePosition"
     ],
     "variants": [],
-    "provenance": "Authored genre-pack pattern based on Mexican; designed for engine-level recombination rather than literal transcription.",
+    "provenance": "Genre-pack structural pattern based on Mexican; generalized for engine recombination, not literal transcription.",
     "authenticityTags": [
       "sesquialtera",
       "6/8-3/4"
@@ -1339,7 +1339,7 @@ export const FOLCLORICO_WORLD : GenreWorld = {
   {
     "id": "ff-11-jarana-strum",
     "worldId": "folclorico",
-    "traditionId": "folclorico-southern-cone",
+    "traditionId": "folclorico-mexican",
     "name": "Jarana Strum",
     "family": "Mexican",
     "category": "cell",
@@ -1404,7 +1404,7 @@ export const FOLCLORICO_WORLD : GenreWorld = {
       "phrasePosition"
     ],
     "variants": [],
-    "provenance": "Authored genre-pack pattern based on Mexican; designed for engine-level recombination rather than literal transcription.",
+    "provenance": "Genre-pack structural pattern based on Mexican; generalized for engine recombination, not literal transcription.",
     "authenticityTags": [
       "jarana",
       "son"
@@ -1449,17 +1449,13 @@ export const FOLCLORICO_WORLD : GenreWorld = {
       0,
       4,
       6,
-      9,
-      12,
-      16
+      9
     ],
     "accentProfile": [
       0.9,
       0.5,
       0.78,
-      0.58,
-      0.9,
-      0.5
+      0.58
     ],
     "syncopationRating": 0.75,
     "anticipationOffset": -1,
@@ -1485,7 +1481,7 @@ export const FOLCLORICO_WORLD : GenreWorld = {
       "phrasePosition"
     ],
     "variants": [],
-    "provenance": "Authored genre-pack pattern based on Southern Cone; designed for engine-level recombination rather than literal transcription.",
+    "provenance": "Genre-pack structural pattern based on Southern Cone; generalized for engine recombination, not literal transcription.",
     "authenticityTags": [
       "zamba",
       "6/8"
@@ -1564,7 +1560,7 @@ export const FOLCLORICO_WORLD : GenreWorld = {
       "phrasePosition"
     ],
     "variants": [],
-    "provenance": "Authored genre-pack pattern based on Southern Cone; designed for engine-level recombination rather than literal transcription.",
+    "provenance": "Genre-pack structural pattern based on Southern Cone; generalized for engine recombination, not literal transcription.",
     "authenticityTags": [
       "bombo legüero"
     ],
@@ -1661,7 +1657,7 @@ export const FOLCLORICO_WORLD : GenreWorld = {
       "phrasePosition"
     ],
     "variants": [],
-    "provenance": "Authored genre-pack pattern based on Regional; designed for engine-level recombination rather than literal transcription.",
+    "provenance": "Genre-pack structural pattern based on Regional; generalized for engine recombination, not literal transcription.",
     "authenticityTags": [
       "copla",
       "response"
@@ -1749,7 +1745,7 @@ export const FOLCLORICO_WORLD : GenreWorld = {
       "phrasePosition"
     ],
     "variants": [],
-    "provenance": "Authored genre-pack pattern based on Regional; designed for engine-level recombination rather than literal transcription.",
+    "provenance": "Genre-pack structural pattern based on Regional; generalized for engine recombination, not literal transcription.",
     "authenticityTags": [
       "estribillo",
       "ensemble lift"
@@ -1760,6 +1756,68 @@ export const FOLCLORICO_WORLD : GenreWorld = {
     "tuningSystem": "12-tet",
     "difficulty": 2,
     "weight": 0.82,
+    "enabled": true
+  },
+  {
+    "id": "ff-mexican-guitarron-bass",
+    "worldId": "folclorico",
+    "traditionId": "folclorico-mexican",
+    "name": "Mexican Guitarrón Octave Bass",
+    "family": "Mexican",
+    "category": "bass",
+    "description": "Powerful acoustic Guitarrón playing simultaneous octaves on root-fifth basslines defining Mexican Son and Mariachi rhythms.",
+    "tags": ["mexican", "guitarron", "bass", "son"],
+    "scopes": ["measure", "phrase", "region", "track"],
+    "roles": ["bass"],
+    "instruments": ["bass"],
+    "meter": "3/4",
+    "cycleLength": 2,
+    "subdivisions": 12,
+    "onsetGrid": [0, 3, 6, 9],
+    "accentProfile": [1.0, 0.75, 0.9, 0.75],
+    "velocityProfile": [0.95, 0.7, 0.85, 0.7],
+    "articulations": ["staccato", "accented"],
+    "density": "medium",
+    "phrasePosition": ["start", "middle", "end"],
+    "sectionUsage": ["verse", "chorus", "solo"],
+    "variants": [],
+    "provenance": "Genre-pack support pattern for Mexican Son & Huapango; generalized from documented musical conventions.",
+    "authenticityTags": ["mexican", "guitarron"],
+    "danceTags": ["social-partner"],
+    "tuningSystem": "12-tet",
+    "difficulty": 2,
+    "weight": 1,
+    "enabled": true
+  },
+  {
+    "id": "ff-mexican-zapateado-tacon",
+    "worldId": "folclorico",
+    "traditionId": "folclorico-mexican",
+    "name": "Tarima Zapateado Footwork Percussion",
+    "family": "Mexican",
+    "category": "groove",
+    "description": "Crisp percussive footwork of dancers striking the wooden tarima platform in syncopated 6/8–3/4 hemiola bursts.",
+    "tags": ["mexican", "zapateado", "percussion", "tarima"],
+    "scopes": ["measure", "phrase", "region", "track"],
+    "roles": ["percussion", "pulse"],
+    "instruments": ["percussion"],
+    "meter": "6/8",
+    "cycleLength": 2,
+    "subdivisions": 24,
+    "onsetGrid": [0, 2, 4, 6, 8, 10, 12, 15, 18, 21],
+    "accentProfile": [1.0, 0.7, 0.85, 0.7, 0.85, 0.7, 1.0, 0.75, 0.9, 0.75],
+    "velocityProfile": [0.95, 0.65, 0.8, 0.65, 0.8, 0.65, 0.95, 0.7, 0.85, 0.7],
+    "articulations": ["staccato"],
+    "density": "dense",
+    "phrasePosition": ["start", "middle", "end"],
+    "sectionUsage": ["verse", "chorus", "solo"],
+    "variants": [],
+    "provenance": "Genre-pack support pattern for Mexican Son & Huapango; generalized from documented musical conventions.",
+    "authenticityTags": ["mexican", "zapateado"],
+    "danceTags": ["festival-fusion"],
+    "tuningSystem": "12-tet",
+    "difficulty": 2,
+    "weight": 1,
     "enabled": true
   }
 ],
