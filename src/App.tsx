@@ -357,8 +357,13 @@ export default function App() {
 
   const handleSelectSectionGenre = (genreId: string) => {
     if (!region) return;
-    edit(s => switchSectionWorld(s, region.id, genreId));
-    showToast(`Switched ${partName} to ${plateFor(genreId).short}`);
+    try {
+      edit(s => switchSectionWorld(s, region.id, genreId));
+      showToast(`Switched ${partName} to ${plateFor(genreId).short}`);
+    } catch (error) {
+      console.error('Unable to switch part genre', { regionId: region.id, genreId, error });
+      showToast(`Could not switch ${partName} to ${plateFor(genreId).short}`);
+    }
   };
 
   const arrangementHere = song.arrangement[region?.id ?? ''] ?? {};

@@ -3,7 +3,7 @@ import { GENRE_WORLDS_BY_ID, ALL_PATTERNS, PATTERNS_BY_ID, PATTERNS_BY_WORLD } f
 import { INSTRUMENTS_BY_ID, INSTRUMENT_CATALOG, instrument, instrumentPatternKinds } from '../data/instruments';
 import { sliceBarNative } from './grid';
 import { progressionForSection } from './arrangement';
-import { inferKey, parseChord, SHARP_NAMES } from './theory';
+import { inferKey, parseChord, assertValidChordProgression, SHARP_NAMES } from './theory';
 import { resolveStyle, StyleRuntime, StyleInfluence, SongStyle, getCanonicalStyle, getStyle } from '../data/styles';
 import { roomFor } from './mixer';
 import { suggestedPaletteForGenre } from '../data/chordPalette';
@@ -16,6 +16,21 @@ export interface Voice extends Track {
 export type Arrangement = Record<string, Record<string, string>>;
 
 export type PartDensity = 'sparse' | 'normal' | 'busy';
+
+/**
+ * Single source of truth for section musical identity. A section that has its
+ * own genre must resolve its own style; only sections in the song's base genre
+ * may inherit sheet.styleId.
+ */
+export function getResolvedSectionStyle(sheet: Sheet, region: Region): ReturnType<typeof resolveStyle> {
+  const genreId = region.genre ?? sheet.worldId;
+  const styleId = region.styleId ?? (genreId === sheet.worldId ? sheet.styleId : undefined) ?? getCanonicalStyle(genreId).id;
+  return resolveStyle({ genreId, styleId });
+}
+
+export function getSectionStyleId(sheet: Sheet, region: Region): string {
+  return getResolvedSectionStyle(sheet, region).id;
+}
 
 export interface CustomProgression {
   id: string;
@@ -134,6 +149,16 @@ function hash(s: string, n: number) {
   let h = 2166136261 ^ n;
   for (let i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619); }
   return ((h >>> 0) % 100000) / 100000;
+}
+
+function stableSeed(s: string): number {
+  let h = 2166136261;
+  for (let i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619); }
+  return h >>> 0;
+}
+
+function pickIndex(key: string, length: number): number {
+  return length > 0 ? Math.floor(hash(key, stableSeed(key)) * length) : 0;
 }
 
 
@@ -318,7 +343,7 @@ function synthesizeBoundaryVariant(
   const roll = hash(`synthBoundaryShape:${seed}`, 5);
 
   // Dembow fill gesture
-  if (phraseRole === 'cadence' && (styleId?.includes('reggaeton') || gestures['dembow-fill']?.probability)) {
+  if (phraseRole === 'cadence' && gestures['dembow-fill']?.probability) {
     const isDrums = p.roles.includes('drums' as any) || p.roles.includes('percussion' as any);
     if (isDrums) {
       return {
@@ -333,7 +358,7 @@ function synthesizeBoundaryVariant(
   }
 
   // Tango arrastre gesture (pickup anticipation on step 14 or 15)
-  if (phraseRole === 'cadence' && (styleId?.includes('tango') || gestures['arrastre']?.probability) && gestures['arrastre']?.probability !== 0) {
+  if (phraseRole === 'cadence' && gestures['arrastre']?.probability && gestures['arrastre']?.probability !== 0) {
     const isBassOrPiano = p.roles.includes('bass' as any) || p.roles.includes('piano' as any) || p.roles.includes('bandoneon' as any);
     if (isBassOrPiano) {
       return {
@@ -450,13 +475,24 @@ export function suggestPattern(
   styleId?: string,
 ): string | undefined {
   const want = partDensity ?? (sectionKind ? SECTION_DENSITY[sectionKind] : undefined);
-  const scored = (PATTERNS_BY_WORLD[worldId] || [])
-    .filter(p => p.enabled !== false)
+  const resolved = styleId ? resolveStyle({ genreId: worldId, styleId }) : undefined;
+  const candidateIds = resolved?.patterns?.allowed?.length
+    ? resolved.patterns.allowed
+    : (PATTERNS_BY_WORLD[worldId] || []).map(p => p.id);
+  const scored = candidateIds
+    .map(id => PATTERNS_BY_ID[id])
+    .filter((p): p is MusicalPattern => !!p && p.enabled !== false)
     .map(p => {
       let n = affinity(p.id, voice, worldId, styleId);
       if (!Number.isFinite(n)) return { id: p.id, n: Number.NEGATIVE_INFINITY };
       if (p.id === DEFAULT_PATTERN_PREFERENCES[worldId]?.[voice.instrumentId]) n += 8;
       if (styleId && p.styleIds?.includes(styleId)) n += 30;
+      if (resolved?.contract.timelineRequired && resolved.contract.timelineGrid.length) {
+        const authored = new Set(p.onsetGrid ?? []);
+        const overlap = resolved.contract.timelineGrid.filter(x => authored.has(x)).length / resolved.contract.timelineGrid.length;
+        n += overlap * 18;
+        if (overlap < 0.2 && p.category !== 'melody' && p.category !== 'texture') n -= 20;
+      }
       if (sectionKind && p.sectionUsage?.includes(sectionKind as any)) n += 8;
       if (partDensity) {
         if (p.density === partDensity) n += 18;
@@ -476,10 +512,15 @@ export function suggestPattern(
 
 /* --- measures are derived, never hand-maintained -------------------------- */
 export function rebuild(sheet: Sheet): Sheet {
+  // Chords are a hard engine invariant. Validate before creating measures so
+  // malformed symbols cannot be carried into voicing/audio generation.
+  for (const region of sheet.regions) {
+    if (region.chords?.length) assertValidChordProgression(region.chords, `section ${region.id}`);
+  }
   const regions: Region[] = [];
   let cursor = 0;
   for (const r of sheet.regions) {
-    const bars = Math.max(1, (r as any).bars ?? (r.end - r.start));
+    const bars = Math.max(1, r.bars ?? (r.end - r.start));
     regions.push({ ...r, start: cursor, end: cursor + bars, bars } as Region);
     cursor += bars;
   }
@@ -515,7 +556,7 @@ export function rebuild(sheet: Sheet): Sheet {
   const phrasePatternCache = new Map<string, string>();
   const measures: Measure[] = [];
   for (const r of regions) {
-    const chords = (r as any).chords?.length ? (r as any).chords : ['Am'];
+    const chords = r.chords?.length ? r.chords : ['Am'];
     const bars = r.end - r.start;
     for (let i = 0; i < bars; i++) {
       const index = r.start + i;
@@ -542,18 +583,21 @@ export function rebuild(sheet: Sheet): Sheet {
             patternId = cached;
           } else {
             const base = PATTERNS_BY_ID[basePatternId];
+            const resolvedForPatterns = getResolvedSectionStyle(sheet, r);
+            const styleId = resolvedForPatterns.id;
+            const allowedIds = resolvedForPatterns?.patterns?.allowed?.length ? new Set(resolvedForPatterns.patterns.allowed) : undefined;
             const candidates = (PATTERNS_BY_WORLD[r.genre ?? sheet.worldId] || [])
+              .filter(p => !allowedIds || allowedIds.has(p.id))
               .filter(p => p.enabled !== false)
               .filter(p => !base || p.family === base.family || p.category === base.category)
               .filter(p => {
-                const styleId = (r as any).styleId ?? sheet.styleId;
                 if (!styleId) return true;
                 const ids = p.styleIds ?? [];
                 const baseIds = base?.styleIds ?? [];
                 return ids.length === 0 || ids.includes(styleId) || (baseIds.includes(styleId) && ids.some(id => baseIds.includes(id)));
               })
               .map(p => {
-                let score = affinity(p.id, track as Voice, r.genre ?? sheet.worldId, (r as any).styleId ?? sheet.styleId);
+                let score = affinity(p.id, track as Voice, r.genre ?? sheet.worldId, getSectionStyleId(sheet, r));
                 if (p.id === basePatternId) score += 18;
                 if (base && p.family === base.family) score += 12;
                 if (base && p.category === base.category) score += 4;
@@ -596,7 +640,7 @@ export function rebuild(sheet: Sheet): Sheet {
         // "the dice said keep it canonical this time") — synthesize a light
         // one so the phrase gets some lead-in/lead-out rather than a flat
         // repeat. Authored variants always take priority when present.
-        const styleIdForRegion = (r as any).styleId ?? sheet.styleId;
+        const styleIdForRegion = getSectionStyleId(sheet, r);
         if (!v && phraseRole === 'cadence' && !hasCadenceVariant) {
           v = synthesizeBoundaryVariant(p, 'cadence', `${patternId}:${r.id}:${index}`, styleIdForRegion);
         } else if (!v && phraseRole === 'transition' && !hasTransitionVariant) {
@@ -626,7 +670,7 @@ export function rebuild(sheet: Sheet): Sheet {
 
         details[track.id] = {
           patternId: p.id,
-          styleId: (r as any).styleId ?? sheet.styleId,
+          styleId: getSectionStyleId(sheet, r),
           variantId: v?.id,
           onsetGrid: bar.onsets,
           accentProfile: bar.accents,
@@ -661,9 +705,9 @@ export function setBars(sheet: Sheet, regionId: string, bars: number): Sheet {
 
 export function setKind(sheet: Sheet, regionId: string, formKey: string): Sheet {
   const region = sheet.regions.find(r => r.id === regionId);
-  const worldId = (region as any)?.genre ?? sheet.worldId;
-  const styleId = (region as any)?.styleId ?? sheet.styleId;
-  const resolved = resolveStyle({ genreId: worldId, styleId: styleId ?? getCanonicalStyle(worldId).id });
+  const worldId = region?.genre ?? sheet.worldId;
+  const styleId = region ? getSectionStyleId(sheet, region) : getCanonicalStyle(worldId).id;
+  const resolved = resolveStyle({ genreId: worldId, styleId });
   const templates = resolved.form?.templates;
   const styleSteps = templates?.[0]?.value ?? [];
   const foundStep = styleSteps.find(s => s.key === formKey || s.kind === formKey);
@@ -709,8 +753,9 @@ export function duplicateSection(sheet: Sheet, regionId: string): { sheet: Sheet
   const i = sheet.regions.findIndex(r => r.id === regionId);
   if (i < 0) return { sheet, newRegionId: regionId };
   const src = sheet.regions[i];
-  const id = `r${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 6)}`;
-  const bars = Math.max(1, (src as any).bars ?? (src.end - src.start));
+  let id = `r${sheet.regions.length}`;
+  while (sheet.regions.some(r => r.id === id)) id = `r${sheet.regions.length + 1}`;
+  const bars = Math.max(1, src.bars ?? (src.end - src.start));
   const fresh: Region = {
     ...src,
     id,
@@ -722,9 +767,9 @@ export function duplicateSection(sheet: Sheet, regionId: string): { sheet: Sheet
     bars,
     density: src.density,
     tempoShift: src.tempoShift,
-    chords: Array.isArray((src as any).chords) ? [...(src as any).chords] : ['Am'],
-    genre: (src as any)?.genre ?? sheet.worldId,
-    styleId: (src as any)?.styleId ?? sheet.styleId,
+    chords: src.chords?.length ? [...src.chords] : ['Am'],
+    genre: src?.genre ?? sheet.worldId,
+    styleId: src ? getSectionStyleId(sheet, src) : sheet.styleId,
   } as Region;
   const regions = [...sheet.regions];
   regions.splice(i + 1, 0, fresh);
@@ -746,9 +791,9 @@ export function duplicateSection(sheet: Sheet, regionId: string): { sheet: Sheet
 export function addSensibleSectionAfter(sheet: Sheet, regionId: string): { sheet: Sheet; newRegionId: string } {
   const i = sheet.regions.findIndex(r => r.id === regionId);
   const src = i >= 0 ? sheet.regions[i] : sheet.regions[sheet.regions.length - 1];
-  const worldId = (src as any)?.genre ?? sheet.worldId ?? 'rock';
-  const styleId = (src as any)?.styleId ?? sheet.styleId;
-  const resolved = resolveStyle({ genreId: worldId, styleId: styleId ?? getCanonicalStyle(worldId).id });
+  const worldId = src?.genre ?? sheet.worldId ?? 'rock';
+  const styleId = src ? getSectionStyleId(sheet, src) : getCanonicalStyle(worldId).id;
+  const resolved = resolveStyle({ genreId: worldId, styleId });
   const templates = resolved.form?.templates;
   const steps = (templates && templates.length > 0 && templates[0].value)
     ? templates[0].value
@@ -773,7 +818,8 @@ export function addSensibleSectionAfter(sheet: Sheet, regionId: string): { sheet
   }
 
   const kind = (nextStep?.kind ?? 'verse') as SectionType;
-  const key = nextStep?.key ?? `${kind}-${Date.now().toString(36).slice(-4)}`;
+  let key = nextStep?.key ?? `${kind}-${sheet.regions.length + 1}`;
+  while (sheet.regions.some(r => (r.formKey ?? r.kind) === key)) key = `${kind}-${sheet.regions.length + 1}-${sheet.regions.filter(r => r.kind === kind).length + 1}`;
 
   // Disambiguate label if a part with this label already exists
   let label = nextStep?.label ?? (kind.charAt(0).toUpperCase() + kind.slice(1));
@@ -783,15 +829,16 @@ export function addSensibleSectionAfter(sheet: Sheet, regionId: string): { sheet
   }
 
   const intensity = nextStep?.intensity ?? 'medium';
-  const bars = nextStep?.bars ?? Math.max(2, (src as any)?.bars ?? (src ? src.end - src.start : 8));
+  const bars = nextStep?.bars ?? Math.max(2, src?.bars ?? (src ? src.end - src.start : 8));
   const density: PartDensity = intensity === 'low' ? 'sparse' : (intensity === 'peak' ? 'busy' : 'normal');
 
   // Sensible chords for this section
   const sectionChords = (resolved.harmony?.sectionProgressions as Record<string, string[]>) ?? {};
   const chordsFallback = (suggestedPaletteForGenre(worldId)[0]?.chords as string[] | undefined) ?? PROGRESSIONS[worldId] ?? PROGRESSIONS.tango;
-  const pickedChords = progressionForSection(sectionChords, key, kind, chordsFallback, worldId);
+  const pickedChords = progressionForSection(sectionChords, key, kind, chordsFallback, resolved.contract);
 
-  const id = `r${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 6)}`;
+  let id = `r${sheet.regions.length}`;
+  while (sheet.regions.some(r => r.id === id)) id = `r${sheet.regions.length + 1}`;
   const fresh: Region = {
     id,
     name: label,
@@ -886,7 +933,7 @@ export function setInstrument(sheet: Sheet, trackId: string, instrumentId: strin
       const used = new Set(Object.values(arrangement[region.id] ?? {}));
       used.delete(current);
       const density = sheet.densities?.[region.id]?.[trackId];
-      const p = suggestPattern(newVoice, sheet.worldId, ri * 31 + 17, String(region.kind), used, density, (region as any).styleId ?? sheet.styleId);
+      const p = suggestPattern(newVoice, region.genre ?? sheet.worldId, ri * 31 + 17, String(region.kind), used, density, getSectionStyleId(sheet, region));
       if (p) {
         arrangement[region.id] = { ...(arrangement[region.id] ?? {}), [trackId]: p };
       }
@@ -965,7 +1012,10 @@ function patternCandidatesForVoice(
 ) {
   const want = partDensity ?? SECTION_DENSITY[sectionKind];
   const previous = previousPatternId ? PATTERNS_BY_ID[previousPatternId] : undefined;
+  const resolvedForPatterns = styleId ? resolveStyle({ genreId: worldId, styleId }) : undefined;
+  const allowedIds = resolvedForPatterns?.patterns?.allowed?.length ? new Set(resolvedForPatterns.patterns.allowed) : undefined;
   return (PATTERNS_BY_WORLD[worldId] || [])
+    .filter(p => !allowedIds || allowedIds.has(p.id))
     .filter(p => p.enabled !== false)
     .map(p => {
       let n = affinity(p.id, voice, worldId, styleId);
@@ -1005,7 +1055,7 @@ export function randomizeInstruments(sheet: Sheet, repickPatterns = true): Sheet
     const candidates = (pool.length ? pool : fallback).slice(0, Math.min(10, (pool.length ? pool : fallback).length));
     const nonCurrent = candidates.filter(id => id !== current[i]);
     const choices = nonCurrent.length ? nonCurrent : candidates;
-    const roll = choices.length ? Math.floor(Math.random() * choices.length) : 0;
+    const roll = choices.length ? pickIndex(`instrument:${sheet.id}:${i}:${choices.join(',')}`, choices.length) : 0;
     selected.push(choices[roll] ?? current[i]);
   }
 
@@ -1047,14 +1097,14 @@ export function randomizePatternsForSection(sheet: Sheet, regionId: string): She
     const current = next[track.id];
     if (current === 'silent') continue;
     const partDensity = sheet.densities?.[regionId]?.[track.id];
-    const styleId = (region as any).styleId ?? sheet.styleId;
+    const styleId = getSectionStyleId(sheet, region);
     const candidates = patternCandidatesForVoice(track as Voice, worldId, String(region.kind), used, current, partDensity, styleId);
     if (!candidates.length) continue;
     const top = candidates.slice(0, Math.min(8, candidates.length));
     // Prefer a different realization from the current one so every click takes effect immediately
     const nonCurrent = top.filter(x => x.p.id !== current);
     const pool = nonCurrent.length ? nonCurrent : top;
-    const pick = pool[Math.floor(Math.random() * pool.length)];
+    const pick = pool[pickIndex(`pattern-section:${sheet.id}:${regionId}:${track.id}:${pool.map(x => x.p.id).join(',')}`, pool.length)];
     const picked = pick?.p.id ?? current;
     next[track.id] = picked;
     used.add(picked);
@@ -1077,7 +1127,7 @@ export function randomizePatternsForSong(sheet: Sheet): Sheet {
     const arrangement = { ...out.arrangement };
     const next = { ...(arrangement[region.id] ?? {}) };
     const worldId = region.genre ?? out.worldId;
-    const styleId = (region as any).styleId ?? out.styleId;
+    const styleId = getSectionStyleId(out, region);
     const used = new Set<string>();
     for (const track of out.tracks) {
       const current = next[track.id];
@@ -1090,7 +1140,7 @@ export function randomizePatternsForSong(sheet: Sheet): Sheet {
       const top = candidates.slice(0, Math.min(7, candidates.length));
       const nonCurrent = top.filter(x => x.p.id !== current);
       const pool = nonCurrent.length ? nonCurrent : top;
-      const picked = pool[Math.floor(Math.random() * pool.length)]?.p.id;
+      const picked = pool[pickIndex(`pattern:${sheet.id}:${region.id}:${track.id}:${[...pool.map(x => x.p.id)].join(',')}`, pool.length)]?.p.id;
       if (!picked) continue;
       next[track.id] = picked;
       chosenByTrack[track.id] = picked;
@@ -1110,7 +1160,12 @@ export function randomizePatternsForSong(sheet: Sheet): Sheet {
  * Collect authored harmonic templates for a style and genre. Templates come from the
  * style's own harmonic grammars first, with genre fallbacks as a last resort.
  */
-function chordTemplatesForRegion(worldId: string, _region: Region, _styleId?: string): string[][] {
+function chordTemplatesForRegion(worldId: string, _region: Region, styleId?: string): string[][] {
+  if (styleId) {
+    const resolved = resolveStyle({ genreId: worldId, styleId });
+    const styleTemplates = (resolved.harmony?.progressionTemplates ?? []).map(x => x.value as string[]);
+    if (styleTemplates.length) return styleTemplates;
+  }
   return suggestedPaletteForGenre(worldId).map(cell => cell.chords as string[]);
 }
 
@@ -1171,7 +1226,7 @@ export function randomizeChordsForSection(sheet: Sheet, regionId: string): Sheet
   const targetKey = key.name;
   const current = region.chords ?? ((suggestedPaletteForGenre(worldId)[0]?.chords as string[]) ?? PROGRESSIONS[worldId] ?? PROGRESSIONS.tango);
   const currentStr = current.join(',');
-  const templates = chordTemplatesForRegion(worldId, region, (region as any).styleId ?? sheet.styleId)
+  const templates = chordTemplatesForRegion(worldId, region, getSectionStyleId(sheet, region))
     .map(t => chordTemplateInKey(t, targetKey))
         .filter(t => t.length);
   if (!templates.length) return sheet;
@@ -1182,7 +1237,7 @@ export function randomizeChordsForSection(sheet: Sheet, regionId: string): Sheet
   const pool = scored.slice(0, Math.min(8, scored.length));
   const nonCurrent = pool.filter(x => x.t.join(',') !== currentStr);
   const choices = nonCurrent.length ? nonCurrent : pool;
-  const index = Math.floor(Math.random() * choices.length);
+  const index = pickIndex(`chords-section:${sheet.id}:${regionId}:${choices.map(x => x.t.join(',')).join('|')}`, choices.length);
   const picked = choices[index]?.t ?? current;
   return setSectionChords(sheet, regionId, picked);
 }
@@ -1210,7 +1265,7 @@ export function randomizeChordsForSong(sheet: Sheet): Sheet {
     const current = region.chords ?? PROGRESSIONS[region.genre ?? sheet.worldId] ?? PROGRESSIONS.tango;
     const currentStr = current.join(',');
     const worldId = region.genre ?? sheet.worldId;
-    const candidates = chordTemplatesForRegion(worldId, region, (region as any).styleId ?? sheet.styleId)
+    const candidates = chordTemplatesForRegion(worldId, region, getSectionStyleId(sheet, region))
       .map(t => chordTemplateInKey(t, targetKey))
             .filter(t => t.length);
     if (!candidates.length) {
@@ -1226,7 +1281,7 @@ export function randomizeChordsForSong(sheet: Sheet): Sheet {
     const pool = scored.slice(0, Math.min(8, scored.length));
     const nonCurrent = pool.filter(x => x.t.join(',') !== currentStr);
     const choices = nonCurrent.length ? nonCurrent : pool;
-    const pick = choices[Math.floor(Math.random() * choices.length)]?.t ?? current;
+    const pick = choices[pickIndex(`chords-song:${sheet.id}:${i}:${choices.map(x => x.t.join(',')).join('|')}`, choices.length)]?.t ?? current;
     chosen.push({ ...region, chords: pick });
     if (group) repeated[group] = pick.slice();
     previousLast = pick[pick.length - 1];
@@ -1245,7 +1300,7 @@ export function randomizeEverythingForSection(sheet: Sheet, regionId: string): S
   const options: PartDensity[] = ['sparse', 'normal', 'busy'];
   const sectionDensities: Record<string, PartDensity> = {};
   for (const t of out.tracks) {
-    const roll = Math.floor(Math.random() * options.length);
+    const roll = pickIndex(`density:${sheet.id}:${regionId}:${t.id}`, options.length);
     sectionDensities[t.id] = options[roll];
   }
   densities[regionId] = sectionDensities;
@@ -1267,7 +1322,7 @@ export function randomizeEverythingForSong(sheet: Sheet): Sheet {
   for (const r of out.regions) {
     densities[r.id] = {};
     for (const t of out.tracks) {
-      const roll = Math.floor(Math.random() * options.length);
+      const roll = pickIndex(`density-song:${sheet.id}:${r.id}:${t.id}`, options.length);
       densities[r.id][t.id] = options[roll];
     }
   }
@@ -1342,7 +1397,7 @@ export function unsilenceVoiceInSection(sheet: Sheet, trackId: string, regionId:
   if (!pId) {
     const region = sheet.regions.find(r => r.id === regionId);
     const taken = new Set(Object.values(sheet.arrangement[regionId] ?? {}));
-    pId = suggestPattern(voice, sheet.worldId, sheet.tracks.length * 17 + 5, String(region?.kind ?? 'verse'), taken, sheet.densities?.[regionId]?.[voice.id], (region as any)?.styleId ?? sheet.styleId)
+    pId = suggestPattern(voice, region?.genre ?? sheet.worldId, sheet.tracks.length * 17 + 5, String(region?.kind ?? 'verse'), taken, sheet.densities?.[regionId]?.[voice.id], region ? getSectionStyleId(sheet, region) : undefined)
       ?? ALL_PATTERNS.find(p => p.roles.includes(voice.role as any))?.id
       ?? ALL_PATTERNS[0]?.id;
   }
@@ -1363,7 +1418,7 @@ export function unsilenceVoiceInAll(sheet: Sheet, trackId: string): Sheet {
     let pId = remembered && remembered !== 'silent' ? remembered : undefined;
     if (!pId) {
       const taken = new Set(Object.values(arrangement[r.id] ?? {}));
-      pId = suggestPattern(voice, sheet.worldId, ri * 31 + sheet.tracks.length * 13 + 7, String(r.kind), taken, sheet.densities?.[r.id]?.[voice.id], (r as any).styleId ?? sheet.styleId)
+      pId = suggestPattern(voice, r.genre ?? sheet.worldId, ri * 31 + sheet.tracks.length * 13 + 7, String(r.kind), taken, sheet.densities?.[r.id]?.[voice.id], getSectionStyleId(sheet, r))
         ?? ALL_PATTERNS.find(p => p.roles.includes(voice.role as any))?.id
         ?? ALL_PATTERNS[0]?.id;
     }
@@ -1408,12 +1463,12 @@ export function setSectionDensity(sheet: Sheet, regionId: string, density: PartD
       if (current && current !== 'silent') {
         const p = suggestPattern(
           track as Voice,
-          sheet.worldId,
+          region.genre ?? sheet.worldId,
           i * 31 + 17,
           String(region.kind),
           taken,
           density,
-          (region as any).styleId ?? sheet.styleId
+          getSectionStyleId(sheet, region)
         );
         if (p) {
           arrangement[regionId] = { ...(arrangement[regionId] ?? {}), [track.id]: p };
@@ -1446,11 +1501,11 @@ export function setPartDensity(sheet: Sheet, regionId: string, trackId: string, 
       const p = suggestPattern(
         track as Voice,
         region.genre ?? sheet.worldId,
-        Date.now() % 1000,
+        stableSeed(`${sheet.id}:${regionId}:${trackId}:${density}`),
         String(region.kind),
         used,
         density,
-        (region as any).styleId ?? sheet.styleId,
+        getSectionStyleId(sheet, region),
       );
       if (p) {
         arrangement[regionId] = { ...(arrangement[regionId] ?? {}), [trackId]: p };
@@ -1484,7 +1539,8 @@ export function addVoice(
   scope: 'section' | 'song' = 'section'
 ): Sheet {
   const def = instrument(instrumentId);
-  const id = `v${Date.now().toString(36)}`;
+  let id = `v${sheet.tracks.length}`;
+  while (sheet.tracks.some(t => t.id === id)) id = `v${sheet.tracks.length + 1}`;
   const voice: Voice = {
     id, instrumentId, name: def.name, instrument: def.name,
     role: roleForInstrument(instrumentId), kind: instrumentId as any,
@@ -1499,7 +1555,7 @@ export function addVoice(
   if (scope === 'section' && regionId) {
     const targetRegion = sheet.regions.find(r => r.id === regionId) ?? sheet.regions[0];
     const taken = new Set(Object.values(arrangement[targetRegion.id] ?? {}));
-    const p = suggestPattern(voice, sheet.worldId, sheet.tracks.length * 19 + 7, String(targetRegion.kind), taken, 'normal', (targetRegion as any).styleId ?? sheet.styleId);
+    const p = suggestPattern(voice, targetRegion.genre ?? sheet.worldId, sheet.tracks.length * 19 + 7, String(targetRegion.kind), taken, 'normal', getSectionStyleId(sheet, targetRegion));
 
     for (const r of sheet.regions) {
       if (r.id === targetRegion.id) {
@@ -1511,7 +1567,7 @@ export function addVoice(
   } else {
     for (const [ri, r] of sheet.regions.entries()) {
       const taken = new Set(Object.values(arrangement[r.id] ?? {}));
-      const p = suggestPattern(voice, sheet.worldId, ri * 31 + sheet.tracks.length * 13 + 7, String(r.kind), taken, 'normal', (r as any).styleId ?? sheet.styleId);
+      const p = suggestPattern(voice, r.genre ?? sheet.worldId, ri * 31 + sheet.tracks.length * 13 + 7, String(r.kind), taken, 'normal', getSectionStyleId(sheet, r));
       if (p) arrangement[r.id] = { ...(arrangement[r.id] ?? {}), [id]: p };
     }
   }
@@ -1533,7 +1589,7 @@ export function addRandomInstrument(
   const pool = fresh.length ? fresh : ranked;
   if (!pool.length) return sheet;
   const candidates = pool.slice(0, Math.min(10, pool.length));
-  const roll = Math.floor(Math.random() * candidates.length);
+  const roll = pickIndex(`add-random:${sheet.id}:${regionId ?? 'song'}:${candidates.join(',')}`, candidates.length);
   const chosen = candidates[roll] ?? candidates[0];
   return addVoice(sheet, chosen, regionId, scope);
 }
@@ -1605,7 +1661,9 @@ export function makeSheet(
   const form = formTemplates && formTemplates.length > 0
     ? formTemplates
     : [{ key: 'verse', label: 'Verse', kind: 'verse', bars: 8, intensity: 'medium' as const }];
-  const chordCells = suggestedPaletteForGenre(genreId).map(cell => cell.chords as string[]);
+  const styleChordCells = (resolved.harmony?.progressionTemplates ?? []).map(x => x.value as string[]);
+  const paletteChordCells = suggestedPaletteForGenre(genreId).map(cell => cell.chords as string[]);
+  const chordCells = styleChordCells.length ? styleChordCells : paletteChordCells;
   const chords = chordCells[0] ?? ['C','G','Am','F'];
 
   const regions: Region[] = form.map((f, i) => {
@@ -1685,7 +1743,7 @@ export function makeSheet(
 
   const effectiveBpm = runtime.getTempo(0.5);
   const effectiveMeter = runtime.getMeter() || dominantMeter(genreId);
-  const roomId = resolved.sound?.masterProfile?.roomId ?? roomFor(genreId).id;
+  const roomId = resolved.sound?.masterProfile?.roomId ?? resolved.contract.timbreSpace.room;
   const pocket = resolved.sound?.masterProfile?.pocket ?? 0.5;
   const lift = resolved.sound?.masterProfile?.lift ?? 0.5;
 
@@ -1755,13 +1813,23 @@ export function switchSectionWorld(sheet: Sheet, regionId: string, worldId: stri
   const targetStyleId = styleId ?? canonical.id;
   const resolved = resolveStyle({ genreId: worldId, styleId: targetStyleId });
 
-  const newChords = (suggestedPaletteForGenre(worldId)[0]?.chords as string[]) ?? PROGRESSIONS[worldId] ?? PROGRESSIONS.tango;
+  // A section has its own musical identity. Prefer the resolved style's
+  // progression templates so changing a part genre also changes its harmonic
+  // language, rather than merely swapping a generic genre palette.
+  const styleChordCells = (resolved.harmony?.progressionTemplates ?? [])
+    .map(x => x.value as string[])
+    .filter(x => Array.isArray(x) && x.length);
+  const newChords = styleChordCells[0]
+    ?? (suggestedPaletteForGenre(worldId)[0]?.chords as string[])
+    ?? PROGRESSIONS[worldId]
+    ?? PROGRESSIONS.tango;
   const regions = sheet.regions.map(reg => {
     if (reg.id !== regionId) return reg;
     const formStep = getFormStep(String(reg.formKey ?? reg.kind), worldId);
     return {
       ...reg,
       genre: worldId,
+      styleId: targetStyleId,
       formKey: formStep?.key ?? reg.formKey ?? reg.kind,
       formLabel: formStep?.label ?? reg.formLabel ?? reg.name,
       intensity: formStep?.intensity ?? reg.intensity,
@@ -1811,12 +1879,11 @@ export function switchSongWorld(sheet: Sheet, worldId: string = sheet.worldId): 
  * Manually set the chord progression for a specific section.
  */
 export function setSectionChords(sheet: Sheet, regionId: string, chords: string[]): Sheet {
+  const nextChords = chords.length ? chords : ['Am'];
+  assertValidChordProgression(nextChords, `section ${regionId}`);
   const regions = sheet.regions.map(r => {
     if (r.id !== regionId) return r;
-    return {
-      ...r,
-      chords: chords.length ? chords : ['Am'],
-    };
+    return { ...r, chords: nextChords.slice() };
   });
   return rebuild({ ...sheet, regions });
 }

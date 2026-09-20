@@ -1,6 +1,7 @@
 import { ParsedChord, nearestPc, pcOf, midiOf, KeyInfo } from './theory';
 import { VoiceProfile, foldToRange } from './instrumentProfile';
 import { rand01 } from './groove';
+import type { ResolvedStyle } from '../data/styles/schema';
 
 export type BassStyle =
   | 'root'
@@ -15,43 +16,6 @@ export type BassStyle =
   | 'reggae'
   | 'samba'
   | 'house';
-
-export const BASS_STYLE_BY_WORLD: Record<string, BassStyle> = {
-  tango: 'riff',
-  salsa: 'tumbao',
-  timba: 'tumbao',
-  bachata: 'tumbao',
-  zouk: 'tumbao',
-  kizomba: 'sub',
-  flamenco: 'root',
-  jazz: 'walking',
-  swing: 'walking',
-  blues: 'walking',
-  rock: 'riff',
-  'rock-en-espanol': 'riff',
-  metal: 'riff',
-  'math-rock': 'riff',
-  funk: 'riff',
-  'hip-hop': 'sub',
-  electronic: 'octave',
-  country: 'rootFifth',
-  folk: 'rootFifth',
-  afrobeats: 'riff',
-  'j-pop': 'octave',
-  jpop: 'octave',
-  'chinese-rock': 'riff',
-  'fusion-ambient': 'sub',
-  'chinese-traditional': 'root',
-  'japanese-traditional': 'root',
-  'reggaeton-dembow': 'dembow',
-  cumbia: 'cumbia',
-  trova: 'root',
-  folclorico: 'rootFifth',
-  'house-techno': 'house',
-  'reggae-dub': 'reggae',
-  ska: 'walking',
-  'samba-bossa': 'samba',
-};
 
 export interface BassContext {
   chord: ParsedChord;
@@ -221,7 +185,8 @@ function approach(c: BassContext, last: number): number {
   return foldToRange(cand, c.profile);
 }
 
-export function bassStyleFor(worldId: string, instrumentId: string): BassStyle {
+export function bassStyleForStyle(style: ResolvedStyle, instrumentId: string): BassStyle {
   if (/sub-bass/.test(instrumentId)) return 'sub';
-  return BASS_STYLE_BY_WORLD[worldId] ?? 'riff';
+  return style.contract.bass.style;
 }
+

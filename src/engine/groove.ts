@@ -1,3 +1,5 @@
+import { ResolvedStyle } from '../data/styles/schema';
+import { contractForGenre } from '../data/styles/contracts';
 export type SwingUnit = 8 | 16;
 
 /** Coarse instrument job, used to decide who leans which way. */
@@ -22,12 +24,16 @@ export interface GrooveProfile {
   humanizeVel: number;
   /** how strongly the metric hierarchy is expressed. 0 = flat, 1 = very shaped */
   accentDepth: number;
+  accentMap?: number[];
   /** 16-slot template of extra ms offsets, indexed by position in the bar.
    *  This is where a genre's signature limp lives (the dembow lurch, the
    *  hip-hop drag on 2 and 4, the tango drag into beat 4). */
   pocket?: number[];
   /** ms offset applied to notes flagged as anticipations */
   anticipationMs: number;
+  /** Meter-aware authored subdivision count. */
+  subdivision?: number;
+  cycleLength?: number;
   /** how much a soft hit gets softened relative to a loud one. > 1 widens the
    *  dynamic range, which is most of what "played, not programmed" means. */
   dynamicRange: number;
@@ -43,336 +49,26 @@ function pocket(map: Record<number, number>): number[] {
   return out;
 }
 
-const DEFAULT: GrooveProfile = {
-  id: 'straight',
-  name: 'Straight',
-  swing: 0.5,
-  swingUnit: 16,
-  lean: 0,
-  roleLean: { kick: -2, bass: -1, snare: 1, hat: 0, comp: 2, pad: 4, lead: 3 },
-  humanizeMs: 6,
-  humanizeVel: 0.09,
-  accentDepth: 0.6,
-  anticipationMs: -18,
-  dynamicRange: 1.0,
-  description: 'Even subdivisions, light human spread.',
-};
-
-export const GROOVE_PROFILES: Record<string, Partial<GrooveProfile>> = {
-  tango: {
-    name: 'Yumba',
-    swing: 0.5, swingUnit: 16,
-    lean: 6,
-    roleLean: { bass: -6, comp: 8, lead: 14, pad: 10, perc: 0, kick: -4 },
-    humanizeMs: 11, humanizeVel: 0.14,
-    accentDepth: 0.95, dynamicRange: 1.35,
-    // the marcato drags into 4 and snaps back onto 1
-    pocket: pocket({ 0: -4, 4: 2, 8: -2, 12: 9, 14: 5 }),
-    anticipationMs: -24,
-    description: 'Heavy marcato, violin and bandoneón hanging behind the bass.',
-  },
-  salsa: {
-    name: 'Clave pocket',
-    swing: 0.52, swingUnit: 16,
-    lean: -2,
-    roleLean: { bass: -14, comp: -8, perc: -3, hat: 0, snare: 0, lead: 4, stab: -6 },
-    humanizeMs: 6, humanizeVel: 0.1,
-    accentDepth: 0.8, dynamicRange: 1.2,
-    // tumbao anticipation: the "and of 2" and "4" push forward
-    pocket: pocket({ 6: -9, 12: -6, 14: -4 }),
-    anticipationMs: -30,
-    description: 'Bass and piano anticipate; percussion sits right on top of the clave.',
-  },
-  timba: {
-    name: 'Gear pocket',
-    swing: 0.52, swingUnit: 16,
-    lean: -3,
-    roleLean: { bass: -16, comp: -10, perc: -2, stab: -8, lead: 3 },
-    humanizeMs: 6, humanizeVel: 0.12,
-    accentDepth: 0.85, dynamicRange: 1.25,
-    pocket: pocket({ 6: -10, 12: -7, 14: -5 }),
-    anticipationMs: -32,
-    description: 'Harder and further forward than salsa — everything leans into the next bar.',
-  },
-  flamenco: {
-    name: 'Compás',
-    swing: 0.5, swingUnit: 16,
-    lean: 2,
-    roleLean: { perc: -4, comp: 0, lead: 8, bass: -2 },
-    humanizeMs: 13, humanizeVel: 0.17,
-    accentDepth: 1.0, dynamicRange: 1.4,
-    pocket: pocket({ 0: 0, 3: -3, 6: -3, 8: 4, 10: -3 }),
-    anticipationMs: -20,
-    description: 'Rubato-leaning, palmas tight, huge dynamic swing between soft and remate.',
-  },
-  jazz: {
-    name: 'Swing',
-    swing: 0.64, swingUnit: 8,
-    lean: 3,
-    roleLean: { ride: 6, bass: -5, comp: 9, snare: 4, lead: 11, hat: 5 },
-    humanizeMs: 10, humanizeVel: 0.15,
-    accentDepth: 0.75, dynamicRange: 1.3,
-    anticipationMs: -26,
-    description: 'Triplet ride, bass walking slightly ahead, comping behind the beat.',
-  },
-  swing: {
-    name: 'Big band',
-    swing: 0.66, swingUnit: 8,
-    lean: 1,
-    roleLean: { ride: 4, bass: -6, comp: 6, snare: 2, stab: -3, lead: 7 },
-    humanizeMs: 8, humanizeVel: 0.13,
-    accentDepth: 0.8, dynamicRange: 1.3,
-    anticipationMs: -28,
-    description: 'Section players lock tight; the rhythm section swings hard underneath.',
-  },
-  blues: {
-    name: 'Shuffle',
-    swing: 0.63, swingUnit: 8,
-    lean: 5,
-    roleLean: { bass: -3, comp: 8, lead: 14, snare: 5, hat: 3 },
-    humanizeMs: 12, humanizeVel: 0.16,
-    accentDepth: 0.85, dynamicRange: 1.35,
-    anticipationMs: -20,
-    description: 'Dragging shuffle, guitar and harp answering well behind the beat.',
-  },
-  funk: {
-    name: 'On the one',
-    swing: 0.55, swingUnit: 16,
-    lean: -1,
-    roleLean: { kick: -4, bass: -5, hat: 1, snare: 3, comp: -2, stab: -4 },
-    humanizeMs: 5, humanizeVel: 0.16,
-    accentDepth: 0.95, dynamicRange: 1.5,
-    pocket: pocket({ 0: -5, 4: 3, 8: 0, 12: 3 }),
-    anticipationMs: -16,
-    description: 'Hard on the downbeat, snare a hair late, enormous ghost-to-accent range.',
-  },
-  'hip-hop': {
-    name: 'Drag',
-    swing: 0.57, swingUnit: 16,
-    lean: 4,
-    roleLean: { kick: -2, snare: 12, hat: 2, bass: 0, comp: 8, lead: 10, pad: 8 },
-    humanizeMs: 7, humanizeVel: 0.14,
-    accentDepth: 0.8, dynamicRange: 1.4,
-    pocket: pocket({ 4: 11, 12: 13 }),
-    anticipationMs: -14,
-    description: 'Snare pulled well behind the grid; everything else leans back with it.',
-  },
-  rock: {
-    name: 'Drive',
-    swing: 0.5, swingUnit: 16,
-    lean: -2,
-    roleLean: { kick: -3, snare: 1, hat: -1, bass: -2, comp: 0, lead: 4 },
-    humanizeMs: 6, humanizeVel: 0.11,
-    accentDepth: 0.85, dynamicRange: 1.25,
-    anticipationMs: -20,
-    description: 'Tight and slightly ahead — the band pushing the tempo.',
-  },
-  'rock-en-espanol': {
-    name: 'Drive',
-    swing: 0.5, swingUnit: 16, lean: -1,
-    roleLean: { kick: -3, snare: 2, bass: -2, comp: 2, lead: 5 },
-    humanizeMs: 7, humanizeVel: 0.12, accentDepth: 0.85, dynamicRange: 1.25,
-    anticipationMs: -20,
-    description: 'Rock drive with a touch more give in the comping.',
-  },
-  metal: {
-    name: 'Machine',
-    swing: 0.5, swingUnit: 16,
-    lean: -3,
-    roleLean: { kick: -2, snare: 0, hat: -1, bass: -2, comp: -2, lead: 1 },
-    humanizeMs: 3, humanizeVel: 0.07,
-    accentDepth: 0.7, dynamicRange: 1.15,
-    anticipationMs: -12,
-    description: 'Deliberately tight. Precision is the aesthetic.',
-  },
-  'math-rock': {
-    name: 'Clockwork',
-    swing: 0.5, swingUnit: 16, lean: -1,
-    roleLean: { kick: -2, snare: 0, bass: -2, comp: 1, lead: 2 },
-    humanizeMs: 4, humanizeVel: 0.1, accentDepth: 0.9, dynamicRange: 1.25,
-    anticipationMs: -14,
-    description: 'Tight but breathing — accents carry the odd groupings.',
-  },
-  bachata: {
-    name: 'Derecho',
-    swing: 0.52, swingUnit: 16,
-    lean: 1,
-    roleLean: { bass: -7, comp: 2, perc: -2, lead: 7, snare: 2 },
-    humanizeMs: 8, humanizeVel: 0.13,
-    accentDepth: 0.85, dynamicRange: 1.3,
-    pocket: pocket({ 6: -6, 12: 4, 14: -5 }),
-    anticipationMs: -22,
-    description: 'Bass anticipating into the bar, requinto hanging back behind it.',
-  },
-  zouk: {
-    name: 'Kompa lean',
-    swing: 0.54, swingUnit: 16,
-    lean: 3,
-    roleLean: { bass: -6, comp: 5, perc: 0, pad: 6, lead: 8 },
-    humanizeMs: 8, humanizeVel: 0.12,
-    accentDepth: 0.75, dynamicRange: 1.25,
-    pocket: pocket({ 2: 4, 6: -5, 10: 4, 14: -5 }),
-    anticipationMs: -20,
-    description: 'Rolling lean — the offbeats breathe out, the bass pulls back in.',
-  },
-  kizomba: {
-    name: 'Semba lean',
-    swing: 0.55, swingUnit: 16,
-    lean: 6,
-    roleLean: { bass: -8, comp: 6, perc: -1, pad: 9, lead: 10 },
-    humanizeMs: 9, humanizeVel: 0.12,
-    accentDepth: 0.75, dynamicRange: 1.3,
-    pocket: pocket({ 3: -6, 6: 5, 11: -6, 14: 5 }),
-    anticipationMs: -24,
-    description: 'Slow and deep, sub-bass ahead of a band that sits well back.',
-  },
-  afrobeats: {
-    name: 'Log drum lean',
-    swing: 0.56, swingUnit: 16,
-    lean: 2,
-    roleLean: { kick: -3, bass: -6, perc: -1, comp: 4, lead: 7, pad: 6 },
-    humanizeMs: 7, humanizeVel: 0.13,
-    accentDepth: 0.8, dynamicRange: 1.3,
-    pocket: pocket({ 3: -4, 6: 5, 10: -4, 14: 5 }),
-    anticipationMs: -18,
-    description: 'Shuffled 16ths with the percussion weaving around a forward bass.',
-  },
-  country: {
-    name: 'Train',
-    swing: 0.56, swingUnit: 8,
-    lean: 0,
-    roleLean: { bass: -3, snare: 2, hat: 1, comp: 2, lead: 6 },
-    humanizeMs: 8, humanizeVel: 0.12,
-    accentDepth: 0.8, dynamicRange: 1.25,
-    anticipationMs: -18,
-    description: 'Light shuffle, boom-chick bass dead center, fiddle leaning late.',
-  },
-  folk: {
-    name: 'Porch',
-    swing: 0.54, swingUnit: 8,
-    lean: 2,
-    roleLean: { bass: -2, comp: 3, lead: 8 },
-    humanizeMs: 12, humanizeVel: 0.15,
-    accentDepth: 0.75, dynamicRange: 1.3,
-    anticipationMs: -16,
-    description: 'Loose and unquantised, the way people actually play in a room.',
-  },
-  electronic: {
-    name: 'Grid',
-    swing: 0.52, swingUnit: 16,
-    lean: 0,
-    roleLean: { kick: 0, bass: 0, hat: 0, pad: 2, lead: 1 },
-    humanizeMs: 2, humanizeVel: 0.05,
-    accentDepth: 0.6, dynamicRange: 1.1,
-    anticipationMs: -10,
-    description: 'Near-perfect grid with a whisper of 16th swing.',
-  },
-  jpop: {
-    name: 'Bright pop',
-    swing: 0.5, swingUnit: 16, lean: -1,
-    roleLean: { kick: -2, snare: 1, bass: -2, comp: 2, lead: 4, pad: 4 },
-    humanizeMs: 5, humanizeVel: 0.1, accentDepth: 0.8, dynamicRange: 1.25,
-    anticipationMs: -18,
-    description: 'Clean and forward, with a polished pop dynamic shape.',
-  },
-  'j-pop': {
-    name: 'Bright pop',
-    swing: 0.5, swingUnit: 16, lean: -1,
-    roleLean: { kick: -2, snare: 1, bass: -2, comp: 2, lead: 4, pad: 4 },
-    humanizeMs: 5, humanizeVel: 0.1, accentDepth: 0.8, dynamicRange: 1.25,
-    anticipationMs: -18,
-    description: 'Clean and forward, with a polished pop dynamic shape.',
-  },
-  'chinese-rock': {
-    name: 'Anthem',
-    swing: 0.5, swingUnit: 16, lean: 0,
-    roleLean: { kick: -3, snare: 2, bass: -2, comp: 2, lead: 6, pad: 5 },
-    humanizeMs: 7, humanizeVel: 0.12, accentDepth: 0.85, dynamicRange: 1.3,
-    anticipationMs: -20,
-    description: 'Wide and anthemic, strings floating behind a tight rhythm section.',
-  },
-  'fusion-ambient': {
-    name: 'Drift',
-    swing: 0.53, swingUnit: 16,
-    lean: 8,
-    roleLean: { bass: -4, comp: 10, pad: 16, lead: 14, perc: 2 },
-    humanizeMs: 16, humanizeVel: 0.18,
-    accentDepth: 0.55, dynamicRange: 1.45,
-    anticipationMs: -30,
-    description: 'Everything late and soft-edged; nothing snaps to anything.',
-  },
-  'chinese-traditional': {
-    name: 'Silk & Space', swing: 0.5, swingUnit: 16, lean: 2,
-    roleLean: { bass: 0, comp: 4, lead: 10, pad: 8, perc: -2 },
-    humanizeMs: 14, humanizeVel: 0.16, accentDepth: 0.78, dynamicRange: 1.35,
-    anticipationMs: -16, description: 'Flexible, ornament-led timing with deliberate space between gestures.',
-  },
-  'japanese-traditional': {
-    name: 'Ma', swing: 0.5, swingUnit: 16, lean: 4,
-    roleLean: { bass: 0, comp: 6, lead: 12, pad: 10, perc: -1 },
-    humanizeMs: 15, humanizeVel: 0.17, accentDepth: 0.72, dynamicRange: 1.38,
-    anticipationMs: -14, description: 'Breathing phrase timing with strong use of ma and delayed ornamental attacks.',
-  },
-  'reggaeton-dembow': {
-    name: 'Dembow Push', swing: 0.5, swingUnit: 16, lean: -1,
-    roleLean: { bass: -8, comp: -2, lead: 1, perc: -1, kick: -2, snare: 0 },
-    humanizeMs: 3, humanizeVel: 0.06, accentDepth: 0.84, dynamicRange: 1.12,
-    pocket: pocket({0:0,3:0,6:-1,8:0,11:0,14:-1}), anticipationMs: -18,
-    description: 'Straight dembow grid; the groove comes from the authored kick/snare displacement, not shuffle.',
-  },
-  cumbia: {
-    name: 'Cumbia Sway', swing: 0.5, swingUnit: 16, lean: 1,
-    roleLean: { bass: -3, comp: 2, lead: 4, perc: -1 },
-    humanizeMs: 8, humanizeVel: 0.12, accentDepth: 0.78, dynamicRange: 1.22,
-    pocket: pocket({3:2,6:-2,11:2,14:-1}), anticipationMs: -18,
-    description: 'Steady binary dance pocket with small push-pull between scraper, drums and bass.',
-  },
-  trova: {
-    name: 'Trova Breath', swing: 0.5, swingUnit: 16, lean: 3,
-    roleLean: { bass: -2, comp: 5, lead: 10, pad: 7 },
-    humanizeMs: 12, humanizeVel: 0.15, accentDepth: 0.68, dynamicRange: 1.32,
-    anticipationMs: -18, description: 'Lyric-first timing; guitar settles behind the vocal and releases at phrase ends.',
-  },
-  folclorico: {
-    name: 'Folk Lift', swing: 0.5, swingUnit: 8, lean: 1,
-    roleLean: { bass: -2, comp: 3, lead: 5, perc: -1 },
-    humanizeMs: 10, humanizeVel: 0.13, accentDepth: 0.82, dynamicRange: 1.28,
-    anticipationMs: -16, description: 'Clear dance accents with enough looseness for regional ensemble interplay.',
-  },
-  'house-techno': {
-    name: 'Club Grid', swing: 0.5, swingUnit: 16, lean: -1,
-    roleLean: { kick: -3, bass: -2, comp: 0, hat: 1, lead: 1, pad: 2 },
-    humanizeMs: 2, humanizeVel: 0.05, accentDepth: 0.66, dynamicRange: 1.08,
-    anticipationMs: -12, description: 'Tight club grid; house gets a tiny human push while techno stays machine-clean.',
-  },
-  'reggae-dub': {
-    name: 'One Drop', swing: 0.5, swingUnit: 16, lean: 4,
-    roleLean: { bass: -7, comp: 8, lead: 9, perc: 1, kick: 2, snare: 4 },
-    humanizeMs: 9, humanizeVel: 0.14, accentDepth: 0.82, dynamicRange: 1.38,
-    anticipationMs: -16, description: 'Bass-forward and laid back, with offbeat skank sitting behind the drum pocket.',
-  },
-  ska: {
-    name: 'Upbeat', swing: 0.5, swingUnit: 16, lean: -2,
-    roleLean: { bass: -5, comp: -3, lead: 2, perc: -1, kick: -2, snare: 0 },
-    humanizeMs: 7, humanizeVel: 0.12, accentDepth: 0.84, dynamicRange: 1.22,
-    anticipationMs: -20, description: 'Crisp, forward offbeats with a springy bass-and-horn pocket.',
-  },
-  'samba-bossa': {
-    name: 'Brazilian Pocket', swing: 0.5, swingUnit: 8, lean: 2,
-    roleLean: { bass: -5, comp: 5, lead: 4, perc: -1 },
-    humanizeMs: 8, humanizeVel: 0.13, accentDepth: 0.82, dynamicRange: 1.25,
-    anticipationMs: -18, description: 'Syncopated Brazilian pocket; bossa stays quiet while samba layers interlock.',
-  },
-};
-
-export function grooveFor(worldId: string): GrooveProfile {
-  const patch = GROOVE_PROFILES[worldId];
-  if (!patch) return { ...DEFAULT, id: worldId || 'straight' };
+export function grooveForStyle(style: ResolvedStyle): GrooveProfile {
+  const c = style.contract;
+  const g = c.groove;
   return {
-    ...DEFAULT,
-    ...patch,
-    id: worldId,
-    roleLean: { ...DEFAULT.roleLean, ...(patch.roleLean ?? {}) },
+    id: style.id,
+    name: g.name,
+    swing: g.swing,
+    swingUnit: g.swingUnit,
+    lean: g.lean,
+    roleLean: { ...g.roleLean },
+    humanizeMs: g.humanizeMs,
+    humanizeVel: g.humanizeVel,
+    accentDepth: g.accentDepth,
+    accentMap: [...c.accentMap],
+    pocket: [...g.pocket],
+    anticipationMs: g.anticipationMs,
+    dynamicRange: g.dynamicRange,
+    description: `${style.name}: ${c.pulseModel}, ${c.timeline}`,
+    subdivision: c.subdivision,
+    cycleLength: c.cycleLength,
   };
 }
 
@@ -480,7 +176,8 @@ export function applyFeel(g: GrooveProfile, input: FeelInput): FeelOutput {
 
   // 2. leans and pocket template, in ms. Authored phrase timing remains authoritative
   // in traditional contexts.
-  const slot = Math.round((input.beatInBar / input.beatsPerBar) * 16) % 16;
+  const slots = Math.max(1, g.subdivision ?? 16);
+  const slot = Math.round((input.beatInBar / Math.max(1e-6, input.beatsPerBar)) * slots) % slots;
   let ms = input.authoredTimingOnly
     ? 0
     : (g.lean + (g.roleLean[input.role] ?? 0) + (g.pocket?.[slot] ?? 0)) * scale;
@@ -500,7 +197,8 @@ export function applyFeel(g: GrooveProfile, input: FeelInput): FeelOutput {
   // 4. dynamics: metric hierarchy is disabled for authored traditional phrasing;
   // the pattern's own accent profile should carry the musical hierarchy.
   const metric = input.authoredTimingOnly ? 1 : metricWeight(input.beatInBar, input.beatsPerBar);
-  const shaped = 1 - g.accentDepth * (1 - metric);
+  const contractAccent = g.accentMap?.[slot] ?? 1;
+  const shaped = (1 - g.accentDepth * (1 - metric)) * (0.72 + contractAccent * 0.28);
   const authored = Math.pow(Math.max(0.05, input.accent), g.dynamicRange);
   const velWobble = 1 + randNorm(input.seed ^ 0x5bf03635) * g.humanizeVel;
 
@@ -513,19 +211,9 @@ export function applyFeel(g: GrooveProfile, input: FeelInput): FeelOutput {
 
 /** Human-readable list for a feel picker. */
 export function grooveSummary(worldId: string): { name: string; description: string } {
-  const g = grooveFor(worldId);
-  return { name: g.name, description: g.description };
-}
-
-// Canonical genres reuse the nearest authored groove mechanics.
-const CANONICAL_GROOVE_SOURCES: Record<string, string> = {
-  afrobeats:'afrobeats', bachata:'bachata', blues:'blues', brazilian:'samba-bossa', country:'country',
-  cumbia:'cumbia', disco:'funk', electronic:'electronic', folk:'folk', funk:'funk', gospel:'folk',
-  'hip-hop':'hip-hop', house:'house-techno', jazz:'jazz', kizomba:'kizomba', 'latin-pop':'reggaeton-dembow',
-  tango:'tango', flamenco:'flamenco', metal:'metal', 'r-and-b':'funk', reggae:'reggae-dub', reggaeton:'reggaeton-dembow',
-  rock:'rock', salsa:'salsa', ska:'ska', soul:'funk', swing:'swing', timba:'timba', zouk:'zouk',
-  'drum-and-bass':'electronic', industrial:'metal', 'punk-hardcore':'rock', 'uk-bass':'house-techno',
-};
-for (const [genreId, sourceId] of Object.entries(CANONICAL_GROOVE_SOURCES)) {
-  if (!GROOVE_PROFILES[genreId] && GROOVE_PROFILES[sourceId]) GROOVE_PROFILES[genreId] = { ...GROOVE_PROFILES[sourceId] };
+  const contract = contractForGenre(worldId);
+  return {
+    name: contract.groove.name,
+    description: `${contract.pulseModel}; ${contract.timeline}`,
+  };
 }

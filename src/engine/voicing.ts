@@ -1,3 +1,5 @@
+import type { ResolvedStyle } from '../data/styles/schema';
+
 import { ParsedChord, nearestPc, pcOf } from './theory';
 import { VoiceProfile, foldToRange } from './instrumentProfile';
 import { rand01 } from './groove';
@@ -70,8 +72,14 @@ export function voiceChord(req: VoicingRequest): number[] {
   }
 
   const wanted = priorityIntervals(chord, req.bassCovered, intensity);
-  const size = Math.max(2, Math.min(req.size, wanted.length));
-  const chosen = wanted.slice(0, size);
+  const requestedSize = Math.max(2, Math.min(12, req.size));
+  const chosen = wanted.slice(0, requestedSize);
+  // Extended jazz chords may legitimately be rendered as large stacked voicings.
+  // Once every distinct chord tone is present, repeat colour/guide tones in
+  // higher octaves rather than silently truncating the request at 5 notes.
+  while (chosen.length < requestedSize && wanted.length) {
+    chosen.push(wanted[chosen.length % wanted.length] + 12 * Math.floor(chosen.length / wanted.length));
+  }
 
   const anchors = previous.length ? previous : defaultAnchors(profile, chosen.length, req.style);
   const pcs = chosen.map(iv => pcOf(chord.rootPc + iv));
@@ -163,7 +171,7 @@ export function styleFor(
   instrumentId: string,
   chord: ParsedChord,
   intensity: number,
-  worldId: string,
+  resolved: ResolvedStyle,
 ): { style: VoicingStyle; size: number } {
   if (chord.isPower) return { style: 'power', size: 3 };
 
@@ -181,9 +189,10 @@ export function styleFor(
     return { style: intensity > 0.55 ? 'close' : 'shell', size: intensity > 0.55 ? 4 : 3 };
   }
   if (/piano|rhodes|fm-ep|clav|vibraphone|harpsichord|celeste/.test(id)) {
-    const jazzy = ['jazz', 'swing', 'blues', 'fusion-ambient', 'funk'].includes(worldId);
-    if (jazzy && intensity < 0.8) return { style: 'shell', size: 3 };
-    return { style: 'drop2', size: intensity > 0.7 ? 4 : 3 };
+    const jazzy = resolved.contract.harmonyModel === 'functional' && /jazz|blues|swing|funk|fusion/i.test(resolved.name + ' ' + resolved.contract.harmonyVocabulary.join(' '));
+    if (jazzy && intensity < 0.55) return { style: 'shell', size: 3 };
+    if (jazzy && intensity > 0.82) return { style: 'spread', size: 8 };
+    return { style: 'drop2', size: jazzy ? 5 : (intensity > 0.7 ? 4 : 3) };
   }
   if (/horn|brass|choir|backing/.test(id)) {
     return { style: 'close', size: intensity > 0.6 ? 4 : 3 };

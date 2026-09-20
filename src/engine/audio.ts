@@ -2,7 +2,7 @@ import { WorkletSynthesizer } from "spessasynth_lib";
 import { INSTRUMENTS_BY_ID, SOUNDFONT_MANIFEST, effectiveSoundfontPreset } from '../data/instruments';
 import { Mp3Encoder } from '@breezystack/lamejs';
 import { createMasterChain, MasterChain, RoomPreset, roomFor, ROOMS } from './mixer';
-import { culturalRules, culturalPitchSet, shoCluster, celticOpenHarmony } from './cultural';
+import { previewCulturalRules, culturalPitchSet, shoCluster, celticOpenHarmony } from './cultural';
 import type { Performance } from './perform';
 
 let ctx: AudioContext | null = null;
@@ -645,17 +645,10 @@ export function getVoiceFeedSummary(instrumentId: string, chord: string) {
   const parsed = parseChord(chord);
   const prof = voiceProfile(instrumentId);
   const preset = effectiveSoundfontPreset(instrumentId);
-  const culturalWorld = instrumentId === 'guqin' || instrumentId === 'guzheng' || instrumentId === 'pipa' || instrumentId === 'erhu' || instrumentId === 'dizi' || instrumentId === 'xiao' || instrumentId === 'jinghu'
-    ? 'chinese-traditional'
-    : instrumentId === 'koto' || instrumentId === 'shamisen' || instrumentId === 'shakuhachi' || instrumentId === 'shō' || instrumentId === 'ryuteki' || instrumentId === 'hichiriki'
-      ? 'japanese-traditional'
-      : ['bagpipes', 'uilleann-pipes', 'tin-whistle', 'low-whistle', 'celtic-harp', 'fiddle', 'concertina', 'bodhran', 'bones'].includes(instrumentId)
-        ? 'celtic-trad'
-        : undefined;
-  const culture = culturalWorld ? culturalRules(culturalWorld, undefined, instrumentId) : undefined;
+  const culture = previewCulturalRules(instrumentId);
   if (culture) {
     const pcs = culturalPitchSet(culture, parsed.rootPc);
-    const midis = culturalWorld === 'celtic-trad' && def.voicing === 'chord'
+    const midis = culture.sourceModel === 'modal-drone' && def.voicing === 'chord'
       ? celticOpenHarmony(parsed.rootPc, prof, 0.84, 17)
       : instrumentId === 'shō'
         ? shoCluster(parsed.rootPc, prof, 0.84)
@@ -663,7 +656,7 @@ export function getVoiceFeedSummary(instrumentId: string, chord: string) {
     return {
       instrumentName: def.name,
       source: preset ? `SoundFont ${preset.soundfontId} · bank ${preset.bankMSB}:${preset.bankLSB} · patch #${preset.program}` : `Cultural ${culture.harmonyModel} model; GM patch #${def.program ?? 0} is a timbral approximation`,
-      voicing: culturalWorld === 'celtic-trad' && def.voicing === 'chord' ? 'modal open-fifth harmony' : culture.harmonyModel,
+      voicing: culture.sourceModel === 'modal-drone' && def.voicing === 'chord' ? 'modal open-fifth harmony' : culture.harmonyModel,
       notes: midis.map(m => theoryNoteName(m)),
     };
   }

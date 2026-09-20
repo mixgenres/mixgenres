@@ -11,6 +11,15 @@ export type ChordQuality =
   | 'major' | 'minor' | 'dominant' | 'diminished' | 'halfDiminished'
   | 'augmented' | 'suspended' | 'power';
 
+export interface CanonicalChordHarmony {
+  /** canonical pitch-class identity, independent of enharmonic spelling */
+  root: number;
+  quality: ChordQuality;
+  extensions: number[];
+  alterations: string[];
+  bass: number;
+}
+
 export interface ParsedChord {
   /** the original symbol */
   symbol: string;
@@ -32,6 +41,8 @@ export interface ParsedChord {
   scale: number[];
   /** how much tension this chord carries, 0..1 — drives voicing spread and dynamics */
   tension: number;
+  /** canonical internal harmony identity; UI should render the original/normalized symbol separately */
+  harmony: CanonicalChordHarmony;
 }
 
 const QUALITY_TENSION: Record<ChordQuality, number> = {
@@ -61,15 +72,65 @@ const cache = new Map<string, ParsedChord>();
  * chords and slash bass notes.
  */
 export function parseChord(symbol: string): ParsedChord {
-  const hit = cache.get(symbol);
+  const normalizedInput = String(symbol ?? '').trim();
+  const hit = cache.get(normalizedInput);
   if (hit) return hit;
-  const parsed = doParse(symbol);
-  cache.set(symbol, parsed);
+  const parsed = doParse(normalizedInput);
+  cache.set(normalizedInput, parsed);
   return parsed;
+}
+
+/** Strict syntax gate used by the engine before a chord reaches playback. */
+export function validateChordSymbol(symbol: string): { valid: boolean; error?: string } {
+  const raw = String(symbol ?? '').trim();
+  if (!raw) return { valid: false, error: 'empty chord symbol' };
+  const slash = raw.match(/^(.*?)\/([A-G](?:#|b)?)$/);
+  const body = slash ? slash[1] : raw;
+  const bass = slash ? slash[2] : undefined;
+  if (!/^[A-G](?:#|b)?/.test(body)) return { valid: false, error: `invalid root in ${raw}` };
+  if (bass && PITCH_CLASS[bass] === undefined) return { valid: false, error: `invalid slash bass in ${raw}` };
+  const root = body.match(/^([A-G](?:#|b)?)/)?.[1] ?? '';
+  let rest = body.slice(root.length).replace(/^-/, 'm').replace(/Δ/g, 'maj').replace(/ø/g, 'm7b5').replace(/°/g, 'dim');
+  rest = rest.replace(/[()\s]/g, '');
+  // The engine intentionally supports a bounded, musician-facing chord vocabulary.
+  // Reject unknown suffixes instead of silently interpreting them as a major triad.
+  const tokenPattern = /(?:6\/9|maj|M|m|dim|o7|aug|sus2|sus4|sus|add9|add11|alt|no3|no5|\+|[b#](?:5|9|11|13)|[0-9]+)/gy;
+  let pos = 0;
+  while (pos < rest.length) {
+    tokenPattern.lastIndex = pos;
+    const m = tokenPattern.exec(rest);
+    if (!m || m.index !== pos) return { valid: false, error: `unsupported chord suffix '${rest.slice(pos)}' in ${raw}` };
+    pos += m[0].length;
+  }
+  try {
+    doParse(raw);
+    return { valid: true };
+  } catch (error) {
+    return { valid: false, error: error instanceof Error ? error.message : String(error) };
+  }
+}
+
+export function assertValidChordProgression(chords: string[], context = 'progression'): void {
+  if (!Array.isArray(chords) || !chords.length) throw new Error(`Invalid ${context}: progression is empty`);
+  for (const chord of chords) {
+    const result = validateChordSymbol(chord);
+    if (!result.valid) throw new Error(`${context}: ${result.error}`);
+  }
+}
+
+export function assertValidChordSymbol(symbol: string): void {
+  const result = validateChordSymbol(symbol);
+  if (!result.valid) throw new Error(`Invalid chord symbol '${symbol}': ${result.error}`);
+}
+
+export function canonicalChordKey(chord: ParsedChord): string {
+  const h = chord.harmony;
+  return JSON.stringify([h.root, h.quality, h.extensions, h.alterations, h.bass]);
 }
 
 function doParse(symbolRaw: string): ParsedChord {
   const symbol = (symbolRaw ?? '').trim();
+  if (!symbol) throw new Error('Chord symbol is empty');
 
   // slash bass
   let body = symbol;
@@ -81,8 +142,9 @@ function doParse(symbolRaw: string): ParsedChord {
   }
 
   const rootMatch = body.match(/^([A-G](?:#|b)?)/);
-  const rootName = rootMatch ? rootMatch[1] : 'A';
-  const rootPc = PITCH_CLASS[rootName] ?? 9;
+  if (!rootMatch) throw new Error(`Invalid chord root in '${symbol}'`);
+  const rootName = rootMatch[1];
+  const rootPc = PITCH_CLASS[rootName];
   let rest = body.slice(rootMatch ? rootMatch[1].length : 0);
 
   // normalise a few common spellings
@@ -99,18 +161,25 @@ function doParse(symbolRaw: string): ParsedChord {
   const maj7 = has(/maj7|maj9|maj11|maj13|M7|M9|ma7/);
   const minor = !dim && !halfDim && /^m(?!aj|a7)/.test(rest);
 
-  const six = has(/(^|[^b#0-9])6/);
+  const six = has(/(^|[^b#0-9])6(?![0-9])/);
   const thirteen = has(/13/);
-  const eleven = has(/11/) && !has(/#11/) === false ? has(/11/) : has(/11/);
+  const eleven = has(/11/);
   const nine = has(/9/);
   const add9 = has(/add9/);
   const add11 = has(/add11/);
-  const seven = has(/7/) || thirteen || (nine && !add9) || (eleven && !add11);
+  const sixNine = has(/6\s*\/\s*9/);
+  const alt = has(/alt(?:ered)?/i);
+  const seven = has(/7/) || thirteen || (nine && !add9 && !sixNine) || (eleven && !add11 && !sixNine);
 
-  const b5 = has(/b5/) || halfDim;
-  const s5 = has(/#5/) || aug;
-  const b9 = has(/b9/);
-  const s9 = has(/#9/);
+  if (sus2 && sus4) throw new Error(`Chord '${symbol}' cannot contain both sus2 and sus4`);
+  if (dim && aug) throw new Error(`Chord '${symbol}' cannot be both diminished and augmented`);
+  if (maj7 && /(^|[^a-z])7(?![0-9])/.test(rest)) throw new Error(`Conflicting seventh quality in '${symbol}'`);
+  if (six && seven && !thirteen && !nine && !eleven) throw new Error(`Ambiguous 6+7 chord '${symbol}'`);
+
+  const b5 = has(/b5/) || halfDim || dim || alt;
+  const s5 = has(/#5/) || aug || alt;
+  const b9 = has(/b9/) || alt;
+  const s9 = has(/#9/) || alt;
   const s11 = has(/#11/);
   const b13 = has(/b13/);
 
@@ -161,12 +230,15 @@ function doParse(symbolRaw: string): ParsedChord {
   if (b9) { set.add(13); tensions.push(13); }
   else if (s9) { set.add(15); tensions.push(15); }
   else if (nine || add9) { set.add(14); tensions.push(14); }
+  if ((thirteen || eleven) && !b9 && !s9 && !add9 && !sixNine && !nine) { set.add(14); tensions.push(14); }
 
   if (s11) { set.add(18); tensions.push(18); }
   else if (eleven || add11) { set.add(17); tensions.push(17); }
 
   if (b13) { set.add(20); tensions.push(20); }
   else if (thirteen) { set.add(21); tensions.push(21); }
+  if (alt) { set.add(6); set.add(8); set.add(13); set.add(15); tensions.push(6,8,13,15); }
+  if (sixNine) { set.add(14); tensions.push(14); }
 
   const intervals = [...set].sort((a, b) => a - b);
 
@@ -195,6 +267,26 @@ function doParse(symbolRaw: string): ParsedChord {
   if (b9 || s9 || s11 || b13 || s5 || b5) tension += 0.12;
   tension = Math.max(0, Math.min(1, tension));
 
+  const extensions = Array.from(new Set([
+    ...(six ? [6] : []),
+    ...(seven ? [7] : []),
+    ...((nine || add9 || sixNine) ? [9] : []),
+    ...((eleven || add11 || s11) ? [11] : []),
+    ...(thirteen || b13 ? [13] : []),
+  ])).sort((a, b) => a - b);
+  const alterations = Array.from(new Set([
+    ...(b5 ? ['b5'] : []), ...(s5 ? ['#5'] : []),
+    ...(b9 ? ['b9'] : []), ...(s9 ? ['#9'] : []),
+    ...(s11 ? ['#11'] : []), ...(b13 ? ['b13'] : []),
+  ]));
+  const harmony: CanonicalChordHarmony = {
+    root: rootPc,
+    quality,
+    extensions,
+    alterations,
+    bass: bassPc >= 0 ? bassPc : rootPc,
+  };
+
   return {
     symbol, rootPc, rootName, quality, intervals,
     guideTones: guideTones.length ? guideTones : [7],
@@ -203,6 +295,7 @@ function doParse(symbolRaw: string): ParsedChord {
     isPower,
     scale,
     tension,
+    harmony,
   };
 }
 

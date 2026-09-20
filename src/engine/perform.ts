@@ -3,18 +3,20 @@ import { Measure, Region } from '../types';
 import { INSTRUMENTS_BY_ID, effectiveSoundfontPreset } from '../data/instruments';
 import { PATTERNS_BY_ID } from '../data/genreData';
 import { voiceProfile, noteLengthBeats, foldToRange, VoiceProfile } from './instrumentProfile';
-import { grooveFor, applyFeel, seedOf, rand01, GrooveProfile, GrooveRole } from './groove';
+import { grooveForStyle, applyFeel, seedOf, rand01, GrooveProfile, GrooveRole } from './groove';
 import { parseChord, inferKey, KeyInfo } from './theory';
+import { getResolvedSectionStyle } from './arrange';
 import { voiceChord, styleFor } from './voicing';
-import { bassNote, bassStyleFor, BassStyle } from './bass';
+import { bassNote, bassStyleForStyle, BassStyle } from './bass';
 import { makeMotif, melodyGate, melodyNote, treatmentFor, Motif, MelodyTreatment, generateStyleOrnaments } from './melody';
-import { GM, kitVoicing, handPercVoicing, flavourFor, usesRide, KitVoicing } from './drums';
-import { roomFor } from './mixer';
+import { GM, kitVoicing, handPercVoicing, flavourForStyle, usesRideStyle, KitVoicing } from './drums';
+import { roomForStyle } from './mixer';
 import { decide, shapeOf, ArrangementDecision, SectionShape } from './arrangement';
 import { beatsPerBarOf, type NativeSlice } from './grid';
 import { getEffectiveBpm } from './arrange';
 import { culturalRules, culturalPitchSet, culturalDronePitch, isCulturalWorld, shoCluster, celticOpenHarmony } from './cultural';
 import { resolveStyle } from '../data/styles/resolve';
+import { getCanonicalStyle } from '../data/styles/registry';
 
 /* --- event model ---------------------------------------------------------- */
 
@@ -238,7 +240,7 @@ interface CulturalOrnamentNote {
 }
 
 function culturalOrnaments(
-  patternId: string | undefined,
+  _patternId: string | undefined,
   articulation: string | undefined,
   target: number,
   culture: ReturnType<typeof culturalRules>,
@@ -248,40 +250,27 @@ function culturalOrnaments(
 ): CulturalOrnamentNote[] {
   if (!culture) return [];
   const art = (articulation ?? '').toLowerCase();
-  const id = patternId ?? '';
   const pcs = culturalPitchSet(culture, tonicPc);
   const out: CulturalOrnamentNote[] = [];
+  const upper = nearestCulturalNeighbor(target, pcs, 1);
+  const lower = nearestCulturalNeighbor(target, pcs, -1);
 
-  if (culture.genreId === 'celtic-trad') {
-    const upper = nearestCulturalNeighbor(target, pcs, 1);
-    const lower = nearestCulturalNeighbor(target, pcs, -1);
-    if (id === 'ct-ornament-roll' || /roll/.test(art)) {
-      out.push({ midi: upper, timeOffsetBeats: -0.16, durBeats: 0.045, velocityMult: 0.32 });
-      out.push({ midi: target, timeOffsetBeats: -0.10, durBeats: 0.05, velocityMult: 0.42 });
-      out.push({ midi: lower, timeOffsetBeats: -0.045, durBeats: 0.04, velocityMult: 0.28 });
-    } else if (id === 'ct-cut-grace' || /cut|grace/.test(art)) {
-      out.push({ midi: upper, timeOffsetBeats: -0.09, durBeats: 0.045, velocityMult: 0.34 });
-    } else if (id === 'ct-strain-turn') {
-      out.push({ midi: lower, timeOffsetBeats: -0.16, durBeats: 0.05, velocityMult: 0.28 });
-      out.push({ midi: upper, timeOffsetBeats: -0.08, durBeats: 0.045, velocityMult: 0.34 });
-    }
-  }
-
-  // These are deliberate approximations: the project currently has no pitch-bend event
-  // in its transport, so the engine realizes named slides/bends as brief scale-neighbor attacks.
-  if (id === 'jt-cadential-gliss' || /glissando/.test(art)) {
-    const upper = nearestCulturalNeighbor(target, pcs, 1);
-    const lower = nearestCulturalNeighbor(target, pcs, -1);
-    const first = id === 'jt-cadential-gliss' ? lower : (seed % 2 ? lower : upper);
-    const second = id === 'jt-cadential-gliss' ? upper : target;
-    out.push({ midi: first, timeOffsetBeats: -0.20, durBeats: 0.07, velocityMult: 0.30 });
-    if (second !== target) out.push({ midi: second, timeOffsetBeats: -0.09, durBeats: 0.06, velocityMult: 0.38 });
-  } else if (id === 'jt-11-koto-oshide-bend' || /oshide/.test(art) || /pitch bend/.test(art)) {
-    out.push({ midi: nearestCulturalNeighbor(target, pcs, -1), timeOffsetBeats: -0.12, durBeats: 0.05, velocityMult: 0.28 });
-  } else if (/hua yin|slide/.test(art) || id === 'ct-08-guqin-slide-answer' || id === 'ct-12-erhu-sliding-counterline') {
-    const dir: -1 | 1 = (seed & 1) ? 1 : -1;
-    out.push({ midi: nearestCulturalNeighbor(target, pcs, dir), timeOffsetBeats: -0.11, durBeats: 0.055, velocityMult: 0.30 });
-  } else if (/fan yin|harmonic point/.test(art) || id === 'ct-07-guqin-harmonic-point') {
+  if (/roll/.test(art)) {
+    out.push({ midi: upper, timeOffsetBeats: -0.16, durBeats: 0.045, velocityMult: 0.32 });
+    out.push({ midi: target, timeOffsetBeats: -0.10, durBeats: 0.05, velocityMult: 0.42 });
+    out.push({ midi: lower, timeOffsetBeats: -0.045, durBeats: 0.04, velocityMult: 0.28 });
+  } else if (/cut|grace/.test(art)) {
+    out.push({ midi: upper, timeOffsetBeats: -0.09, durBeats: 0.045, velocityMult: 0.34 });
+  } else if (/turn/.test(art)) {
+    out.push({ midi: lower, timeOffsetBeats: -0.16, durBeats: 0.05, velocityMult: 0.28 });
+    out.push({ midi: upper, timeOffsetBeats: -0.08, durBeats: 0.045, velocityMult: 0.34 });
+  } else if (/glissando|portamento/.test(art)) {
+    out.push({ midi: seed & 1 ? lower : upper, timeOffsetBeats: -0.20, durBeats: 0.07, velocityMult: 0.30 });
+  } else if (/oshide|pitch bend|bend/.test(art)) {
+    out.push({ midi: lower, timeOffsetBeats: -0.12, durBeats: 0.05, velocityMult: 0.28 });
+  } else if (/hua yin|slide|gliss/.test(art)) {
+    out.push({ midi: seed & 1 ? upper : lower, timeOffsetBeats: -0.11, durBeats: 0.055, velocityMult: 0.30 });
+  } else if (/fan yin|harmonic point|harmonic/.test(art)) {
     out.push({ midi: foldToRange(target + 12, profile), timeOffsetBeats: -0.02, durBeats: 0.04, velocityMult: 0.20 });
   }
   return out;
@@ -381,9 +370,10 @@ export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
   /* ---- 2. song harmonic context and motifs ---- */
   const allChords = sheet.measures.map(m => m.chord);
   const key: KeyInfo = inferKey(allChords.length ? allChords : ['Am']);
-  // Traditional worlds use one modal center for the song; section changes do not trigger
-  // Western functional chord-root modulation. The center remains transposable by changing the first chord.
-  const culturalTonicPc = isCulturalWorld(sheet.worldId)
+  const songStyle = resolveStyle({ genreId: sheet.worldId, styleId: sheet.styleId ?? getCanonicalStyle(sheet.worldId).id });
+  // Non-functional contracts use one modal/ensemble center; functional styles retain
+  // ordinary harmonic key inference.
+  const culturalTonicPc = isCulturalWorld(songStyle)
     ? parseChord(sheet.measures[0]?.chord ?? 'D5').rootPc
     : key.tonicPc;
   const motif: Motif = makeMotif(
@@ -454,15 +444,21 @@ export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
     const isBass = prof.role === 'bass';
     const isMelodic = melodyLayer.has(t.id);
     const layer = melodyLayer.get(t.id) ?? 0;
-    const bassStyle: BassStyle = bassStyleFor(sheet.worldId, t.instrumentId);
+    const baseResolvedStyle = resolveStyle({ genreId: sheet.worldId, styleId: sheet.styleId ?? getCanonicalStyle(sheet.worldId).id });
 
     for (let i = 0; i < list.length; i++) {
       const a = list[i];
       const bt = bars[a.bar];
       if (!bt) continue;
       const region = regionById.get(bt.regionId);
-      const worldId = (region as any)?.genre ?? sheet.worldId;
-      const g: GrooveProfile = grooveFor(worldId);
+      const regionGenreId = region?.genre ?? sheet.worldId;
+      const resolvedStyle = region
+        ? getResolvedSectionStyle(sheet, region)
+        : resolveStyle({ genreId: regionGenreId, styleId: getCanonicalStyle(regionGenreId).id });
+      const regionStyleId = resolvedStyle.id;
+      const g: GrooveProfile = grooveForStyle(resolvedStyle);
+      const bassStyle: BassStyle = bassStyleForStyle(resolvedStyle, t.instrumentId);
+      const effectiveArticulation = a.articulation ?? resolvedStyle.contract.articulationGrammar[prof.role]?.[0] ?? resolvedStyle.contract.articulationGrammar.ensemble?.[0];
       const intensityRaw = intensityOf(region);
       // lift 0 flattens every section to the same weight, 1 exaggerates
       const intensity = 0.55 + (intensityRaw - 0.55) * (0.3 + liftAmount * 1.4);
@@ -475,15 +471,14 @@ export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
       const nextSym = nextChangedChord[a.bar];
       const nextChord = nextSym ? parseChord(nextSym) : undefined;
       const pattern = a.patternId ? PATTERNS_BY_ID[a.patternId] : undefined;
-      const culture = culturalRules(worldId, (region as any)?.styleId ?? sheet.styleId, t.instrumentId);
-      const culturalHarmonyPattern = !!culture && pattern?.roles.includes('harmony') && t.instrumentId !== 'shō';
-      const celticWorld = worldId === 'celtic-trad';
+      const culture = culturalRules(resolvedStyle, t.instrumentId);
+      const culturalHarmonyPattern = !!culture && pattern?.roles.includes('harmony') && !culture.heterophonic;
+      const celticWorld = culture?.sourceModel === 'modal-drone' && /open fifth|drone/i.test(resolvedStyle.contract.harmonyVocabulary.join(' '));
 
       let treatment: MelodyTreatment = 'state';
-      const regionStyleId = (region as any)?.styleId ?? sheet.styleId;
       if (isMelodic && !culturalHarmonyPattern && !culture) {
-        treatment = treatmentFor(String(region?.kind ?? 'verse'), intensity, regionStyleId, worldId);
-        const phraseBar = (a.bar - (region ? (region as any).start ?? 0 : 0) + 64) % phraseBars;
+        treatment = treatmentFor(String(region?.kind ?? 'verse'), intensity, regionStyleId, resolvedStyle.primaryGenre);
+        const phraseBar = (a.bar - (region ? region.start : 0) + 64) % phraseBars;
         const gateOk = melodyGate({
           motif, key, chord, profile: prof, treatment,
           barInPhrase: phraseBar,
@@ -493,7 +488,7 @@ export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
           previous: mem.lastNote,
           seed: seedOf(t.id, a.bar, a.onsetIndex, 'gate'),
           styleId: regionStyleId,
-          genreId: worldId,
+          genreId: resolvedStyle.primaryGenre,
           sectionKind: String(region?.kind ?? 'verse'),
         });
         if (!gateOk) continue;
@@ -522,7 +517,7 @@ export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
         if (gapBeats <= 0) gapBeats = 0.25;
       }
       const authoredBeats = (a.durationSteps / a.stepsPerBar) * bt.beatsPerBar;
-      const lenBeats = noteLengthBeats(prof, Math.max(0.05, authoredBeats), gapBeats, a.articulation);
+      const lenBeats = noteLengthBeats(prof, Math.max(0.05, authoredBeats), gapBeats, effectiveArticulation);
       const dur = Math.max(0.03, lenBeats * secPerBeat);
 
       const base = 84 + (intensity - 0.55) * 46;
@@ -531,13 +526,16 @@ export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
       )));
 
       if (def.kit || def.drum) {
-        const regionStart = (region as any)?.start ?? 0;
-        const regionEnd = (region as any)?.end ?? regionStart + 1;
+        const regionStart = region?.start ?? 0;
+        const regionEnd = region?.end ?? regionStart + 1;
         const barInPhrase = (a.bar - regionStart + 64) % 4;
         const sameBar = attacksByBar.get(a.bar) ?? [];
 
         let kv: KitVoicing;
+        if (def.kit && resolvedStyle.contract.percussion.kitMode === 'none') continue;
         if (a.hitType && def.kit) {
+          if (resolvedStyle.contract.percussion.allowedHitTypes.length && !resolvedStyle.contract.percussion.allowedHitTypes.includes(a.hitType)) continue;
+          if (resolvedStyle.contract.percussion.forbidSectionCrash && a.hitType === 'crash' && a.bar === regionStart) continue;
           kv = authoredKitVoicing(a.hitType, a.accent);
         } else if (def.kit) {
           kv = kitVoicing({
@@ -547,17 +545,19 @@ export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
             barOnsets: sameBar.map(x => x.beatInBar),
             index: sameBar.indexOf(a),
             intensity,
-            worldId,
+            allowTomFills: resolvedStyle.contract.percussion.allowTomFills,
+            allowSectionCrash: !resolvedStyle.contract.percussion.forbidSectionCrash,
+            forbidBackbeat: resolvedStyle.contract.percussion.forbidWesternBackbeat,
             barInPhrase,
             sectionStart: a.bar === regionStart,
             sectionEnd: a.bar === regionEnd - 1,
             phraseEnd: barInPhrase === 3,
-            flavour: flavourFor(t.instrumentId, worldId),
-            rideFeel: usesRide(worldId, String(region?.kind ?? 'verse'), intensity),
+            flavour: flavourForStyle(resolvedStyle, t.instrumentId),
+            rideFeel: usesRideStyle(resolvedStyle, String(region?.kind ?? 'verse'), intensity),
             seed: seedOf(t.id, a.bar, a.onsetIndex, 'kit'),
           });
         } else {
-          kv = handPercVoicing(def.drum!, a.accent, intensity, seedOf(t.id, a.bar, a.onsetIndex, 'perc'));
+          kv = handPercVoicing(def.drum!, a.accent, intensity, seedOf(t.id, a.bar, a.onsetIndex, 'perc'), a.hitType);
         }
 
         const drumBase = 100 + (intensity - 0.55) * 40;
@@ -608,8 +608,8 @@ export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
         mem.last = pitches;
         mem.lastNote = pitches[pitches.length - 1] ?? mem.lastNote;
       } else if (isMelodic) {
-        const phraseBar = (a.bar - (region ? (region as any).start ?? 0 : 0) + 64) % phraseBars;
-        const resolved = resolveStyle({ genreId: worldId, styleId: regionStyleId });
+        const phraseBar = (a.bar - (region ? region.start : 0) + 64) % phraseBars;
+        const resolved = resolvedStyle;
         const { note: n, isLeap } = melodyNote({
           motif, key, chord, profile: prof, treatment,
           barInPhrase: phraseBar,
@@ -619,7 +619,7 @@ export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
           previous: mem.lastNote,
           seed: seedOf(t.id, a.bar, a.onsetIndex, 'mel'),
           styleId: regionStyleId,
-          genreId: worldId,
+          genreId: resolvedStyle.primaryGenre,
           sectionKind: String(region?.kind ?? 'verse'),
           pitchSet: culture ? culturalPitchSet(culture, culturalTonicPc) : undefined,
           tonicPc: culture ? culturalTonicPc : undefined,
@@ -639,7 +639,7 @@ export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
           mem.last = pitches;
           mem.lastNote = pitches[pitches.length - 1] ?? mem.lastNote;
         } else {
-          const { style, size } = styleFor(prof, t.instrumentId, chord, intensity, worldId);
+          const { style, size } = styleFor(prof, t.instrumentId, chord, intensity, resolvedStyle);
           const avoid = occupied.get(a.bar);
           pitches = voiceChord({
             chord, profile: prof, style, size,
@@ -669,7 +669,7 @@ export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
         if (vi === 0) {
           if (culture) {
             const ornaments = culturalOrnaments(
-              a.patternId, a.articulation, midi, culture, culturalTonicPc, prof,
+              a.patternId, effectiveArticulation, midi, culture, culturalTonicPc, prof,
               seedOf(t.id, a.bar, a.onsetIndex, 'ornament'),
             );
             ornaments.forEach(o => notes.push({
@@ -680,12 +680,12 @@ export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
               channel, trackId: t.id, bar: a.bar,
             }));
           } else {
-            const resolved = resolveStyle({ genreId: worldId, styleId: regionStyleId });
+            const resolved = resolvedStyle;
             const ornaments = generateStyleOrnaments(
               midi,
               a.beatInBar,
               a.patternId,
-              a.articulation,
+              effectiveArticulation,
               resolved.melody?.ornamentVocabulary,
               key.pcs,
               prof,
@@ -715,7 +715,8 @@ export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
   }
 
   /* ---- 4. channel setup: program, level, position, space ---- */
-  const room = roomFor(sheet.worldId);
+  const finalStyle = resolveStyle({ genreId: sheet.worldId, styleId: sheet.styleId ?? getCanonicalStyle(sheet.worldId).id });
+  const room = roomForStyle(finalStyle);
   for (const t of tracks) {
     const channel = channelOf[t.id];
     if (channel === undefined) continue;
@@ -746,7 +747,7 @@ export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
     for (const r of sheet.regions) {
       const d = decisions.get(`${t.id}|${r.id}`);
       if (!d) continue;
-      const firstBar = bars[(r as any).start ?? 0];
+      const firstBar = bars[r.start];
       if (!firstBar) continue;
       const at = Math.max(0, firstBar.start - 0.03);
       ccs.push({ time: at, channel, cc: 74, value: Math.round(d.brightness) });

@@ -71,9 +71,58 @@ function cloneStyle(base: SongStyle, genreId: string, name: string, id: string):
   style.extends = undefined;
   style.influences = undefined;
   style.aliases = [];
-  style.summary = shortText(`${name} ${GENRE_NAMES[genreId]}`);
-  style.signatureTraits = [name, GENRE_NAMES[genreId]];
-  style.authoringNotes = 'Shared reusable genre grammar.';
+  style.summary = base.summary || shortText(`${name} ${GENRE_NAMES[genreId]}`);
+  style.signatureTraits = Array.from(new Set([...(base.signatureTraits ?? []), name, GENRE_NAMES[genreId]])).slice(0, 8);
+  style.authoringNotes = 'Genre contract plus style-specific dialect; not a cloned runtime world.';
+
+  // Style names are musical sub-worlds, not UI labels. Apply a small, explicit
+  // semantic dialect layer so sibling styles do not collapse to identical
+  // runtime values even when their source seed is shared.
+  const n = name.toLowerCase();
+  const r = style.rhythm ?? {};
+  const h = style.harmony ?? {};
+  const m = style.melody ?? {};
+  const sfx = style.sound ?? {};
+  const slow = /rom[aá]nt|sensual|lyrical|ballad|quiet storm|deep soul|liquid|ambient|downtempo|soft/.test(n);
+  const hard = /hard|thrash|death|black|doom|sludge|hardcore|crust|neuro|jump-up/.test(n);
+  const complex = /nuevo|progressive|fusion|free|acid|experimental|idm|choro|bebop|bebop|spiritual|psychedelic|math|jungle|breakbeat/.test(n);
+  const machine = /house|tech|electro|disco|dnb|drum|industrial|dubstep|2-step|garage|synth|italo/.test(n);
+  const traditional = /traditional|tradicional|classic|roots|old-time|old time|neotraditional|honky|delta|chicago/.test(n);
+
+  if (slow) {
+    r.defaultBpm = Math.max(55, (r.defaultBpm ?? 100) - 8);
+    r.microtimingFeel = 'laid-back';
+    r.humanizeJitterMs = Math.min(16, (r.humanizeJitterMs ?? 8) + 2);
+    sfx.masterProfile = { ...(sfx.masterProfile ?? { roomId:'room' }), pocket:0.62, lift:0.42 };
+  }
+  if (hard) {
+    r.defaultBpm = Math.min(220, (r.defaultBpm ?? 120) + 18);
+    r.humanizeJitterMs = Math.max(2, (r.humanizeJitterMs ?? 8) - 3);
+    r.swingPercentage = 50;
+    h.chordVocabulary = Array.from(new Set([...(h.chordVocabulary ?? []), 'power-chord','tritone']));
+    m.contourArchetypes = ['repeated riff','descending attack','register burst'];
+    sfx.masterProfile = { ...(sfx.masterProfile ?? { roomId:'studio' }), pocket:0.35, lift:0.75 };
+  }
+  if (complex) {
+    r.anticipationOffsetSteps = (r.anticipationOffsetSteps ?? 0) - 1;
+    r.signatureCell = `${r.signatureCell ?? ''} | style-development`;
+    m.phraseLengthsBars = [3,4,5,8];
+    h.chordVocabulary = Array.from(new Set([...(h.chordVocabulary ?? []), 'extended','chromatic-passing']));
+  }
+  if (machine) {
+    r.humanizeJitterMs = Math.min(r.humanizeJitterMs ?? 8, 4);
+    r.swingPercentage = 50;
+    sfx.masterProfile = { ...(sfx.masterProfile ?? { roomId:'club' }), pocket:0.35, lift:0.68 };
+  }
+  if (traditional) {
+    r.humanizeJitterMs = Math.max(r.humanizeJitterMs ?? 8, 6);
+    m.phraseLengthsBars = [4,8];
+  }
+
+  style.rhythm = r;
+  style.harmony = h;
+  style.melody = m;
+  style.sound = sfx;
   return style;
 }
 
@@ -138,7 +187,16 @@ export function buildCuratedStyles(baseStyles: SongStyle[], _patterns: MusicalPa
         ?? candidates[index % candidates.length];
       const style = cloneStyle(base, genreId, name, `${genreId}-${slug(name)}`);
       style.canonical = index === 0;
-      style.summary = shortText(`${name} ${GENRE_NAMES[genreId]}`);
+      style.summary = base.summary || shortText(`${name} ${GENRE_NAMES[genreId]}`);
+      if (genreId === 'latin-pop') {
+        style.kind = 'fusion';
+        style.influences = [
+          { source: { styleId: 'bachata-tradicional' }, weight: 0.35, aspects: ['rhythm','arrangement'] },
+          { source: { styleId: 'reggaeton-perreo' }, weight: 0.35, aspects: ['rhythm','sound'] },
+          { source: { genreId: 'salsa' }, weight: 0.20, aspects: ['rhythm','harmony'] },
+        ];
+        style.authoringNotes = 'Fusion recipe: source-world aspects are weighted; source forbid rules remain authoritative for borrowed aspects.';
+      }
       result.push(style);
     });
   }
@@ -153,22 +211,16 @@ export function assembleStylePatterns(styles: SongStyle[], patterns: MusicalPatt
   }
   for (const p of patterns) p.styleIds = [];
 
-  // One compact pattern set per source family. All styles sharing that source
-  // reuse the same definitions rather than generating style-owned clones.
-  const chosenBySource = new Map<string, MusicalPattern[]>();
-  for (const genreId of Object.keys(CURATED_STYLE_NAMES)) {
-    const sourceId = GENRE_SOURCE_MAP[genreId];
-    if (chosenBySource.has(sourceId)) continue;
-    const seedStyle = styles.find(s => s.primaryGenre === genreId);
-    const chosen = selectSharedPatterns(seedStyle ?? ({ id:genreId, name:GENRE_NAMES[genreId], summary:GENRE_NAMES[genreId], signatureTraits:[], primaryGenre:genreId, genres:[genreId], kind:'canonical' } as SongStyle), bySource.get(sourceId) ?? [], 6);
-    chosenBySource.set(sourceId, chosen);
-  }
-
+  // Styles share authored pattern definitions, but do not share one identical
+  // six-pattern shortlist. Selection is semantic: each style gets the patterns
+  // whose names/tags/description actually match its musical vocabulary.
   for (const style of styles) {
-    const chosen = chosenBySource.get(GENRE_SOURCE_MAP[style.primaryGenre]) ?? [];
+    const sourceId = GENRE_SOURCE_MAP[style.primaryGenre];
+    const candidates = bySource.get(sourceId) ?? [];
+    const chosen = selectSharedPatterns(style, candidates, Math.min(8, Math.max(4, candidates.length)));
     for (const p of chosen) p.styleIds = Array.from(new Set([...(p.styleIds ?? []), style.id]));
     style.patterns = {
-      require: chosen.slice(0,3).map(p => p.id),
+      require: chosen.slice(0, Math.min(3, chosen.length)).map(p => p.id),
       preferred: chosen.slice(3).map(p => p.id),
       allowed: chosen.map(p => p.id),
       avoid: [],

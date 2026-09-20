@@ -45,33 +45,21 @@ export const ROOMS: RoomPreset[] = [
   },
 ];
 
-export const ROOM_BY_WORLD: Record<string, string> = {
-  tango: 'hall', flamenco: 'room', jazz: 'room', swing: 'hall', blues: 'room',
-  salsa: 'club', timba: 'club', bachata: 'club', zouk: 'club', kizomba: 'club',
-  rock: 'room', 'rock-en-espanol': 'room', metal: 'studio', 'math-rock': 'studio',
-  funk: 'tape', 'hip-hop': 'club', electronic: 'club',
-  country: 'room', folk: 'room', afrobeats: 'club',
-  'j-pop': 'studio', jpop: 'studio', 'chinese-rock': 'studio', 'fusion-ambient': 'hall',
-  'reggaeton-dembow': 'club', cumbia: 'club', trova: 'room', folclorico: 'room',
-  'house-techno': 'club', 'reggae-dub': 'tape', ska: 'room', 'samba-bossa': 'room',
-};
+import type { ResolvedStyle } from '../data/styles/schema';
+import { contractForGenre } from '../data/styles/contracts';
 
-
-const CANONICAL_ROOM_SOURCES: Record<string, string> = {
-  afrobeats:'afrobeats', bachata:'bachata', blues:'blues', brazilian:'samba-bossa', country:'country',
-  cumbia:'cumbia', disco:'funk', electronic:'electronic', folk:'folk', funk:'funk', gospel:'folk',
-  'hip-hop':'hip-hop', house:'house-techno', jazz:'jazz', kizomba:'kizomba', 'latin-pop':'reggaeton-dembow',
-  tango:'tango', flamenco:'flamenco', metal:'metal', 'r-and-b':'funk', reggae:'reggae-dub', reggaeton:'reggaeton-dembow',
-  rock:'rock', salsa:'salsa', ska:'ska', soul:'funk', swing:'swing', timba:'timba', zouk:'zouk',
-  'drum-and-bass':'electronic', industrial:'metal', 'punk-hardcore':'rock', 'uk-bass':'house-techno',
-};
-for (const [genreId, sourceId] of Object.entries(CANONICAL_ROOM_SOURCES)) {
-  if (!ROOM_BY_WORLD[genreId] && ROOM_BY_WORLD[sourceId]) ROOM_BY_WORLD[genreId] = ROOM_BY_WORLD[sourceId];
+export function roomForStyle(style: ResolvedStyle): RoomPreset {
+  const id = style.sound.masterProfile?.roomId ?? style.contract.timbreSpace.room;
+  const room = ROOMS.find(r => r.id === id);
+  if (!room) throw new Error(`Unknown room preset "${id}" for style ${style.id}`);
+  return room;
 }
 
 export function roomFor(worldId: string): RoomPreset {
-  const id = ROOM_BY_WORLD[worldId] ?? 'studio';
-  return ROOMS.find(r => r.id === id) ?? ROOMS[1];
+  const contract = contractForGenre(worldId);
+  const room = ROOMS.find(r => r.id === contract.timbreSpace.room);
+  if (!room) throw new Error(`No room preset for genre contract ${worldId}`);
+  return room;
 }
 
 /* --- Master chain --- */

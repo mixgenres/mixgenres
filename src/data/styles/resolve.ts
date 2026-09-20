@@ -17,6 +17,7 @@ import {
   RuleRef,
 } from './schema';
 import { getCanonicalStyle, getStyle } from './registry';
+import { contractForGenre } from './contracts';
 
 export interface ResolveStyleOptions {
   genreId?: string;
@@ -412,8 +413,12 @@ export function resolveStyle(opts: ResolveStyleOptions): ResolvedStyle {
     recordDecision('userOverrides', opts.userOverrides, 'user');
   }
 
+  const effectiveGenreId = opts.genreId ?? merged.primaryGenre;
+  const contract = contractForGenre(effectiveGenreId, merged);
+
   const result: ResolvedStyle = Object.freeze({
     ...merged,
+    contract,
     form: (merged.form ?? {}) as FormGrammar,
     harmony: (merged.harmony ?? {}) as HarmonyGrammar,
     rhythm: (merged.rhythm ?? {}) as RhythmGrammar,

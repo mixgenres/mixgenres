@@ -1,3 +1,5 @@
+import type { WorldContract } from '../data/styles/contracts';
+
 import { Region } from '../types';
 import { Voice } from './arrange';
 import { VoiceProfile } from './instrumentProfile';
@@ -153,8 +155,9 @@ export function decide(
  *
  * Tango and Flamenco remain intentionally untouched here.
  */
-export function compactDefaultChordLoop(chords: string[], genreId?: string): string[] {
-  if (!chords.length || chords.length <= 4 || genreId === 'tango' || genreId === 'flamenco') {
+export function compactDefaultChordLoop(chords: string[], contract?: WorldContract): string[] {
+  const preserveLong = !!contract && (contract.meter !== '4/4' || contract.pulseModel === 'long-cycle' || contract.form.some(x => /^[ABC]$/.test(x) || /letra|falseta|variación|remate|cierre/i.test(x)));
+  if (!chords.length || chords.length <= 4 || preserveLong) {
     return [...chords];
   }
 
@@ -178,15 +181,15 @@ export function progressionForSection(
   formKey: string,
   kind: string,
   fallback: string[],
-  genreId?: string,
+  contract?: WorldContract,
 ): string[] {
-  if (!sectionProgressions) return compactDefaultChordLoop(fallback, genreId);
+  if (!sectionProgressions) return compactDefaultChordLoop(fallback, contract);
   const tryKeys = [formKey, kind, kind.replace(/-/g, ''), 'verse'];
   for (const k of tryKeys) {
     const found = sectionProgressions[k];
-    if (found && found.length) return compactDefaultChordLoop(found, genreId);
+    if (found && found.length) return compactDefaultChordLoop(found, contract);
   }
-  return compactDefaultChordLoop(fallback, genreId);
+  return compactDefaultChordLoop(fallback, contract);
 }
 
 export function cadenceFor(kind: string, chords: string[], isLast: boolean): string[] {

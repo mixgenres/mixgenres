@@ -310,6 +310,11 @@ export interface GenreEngineProfile {
 export interface GenreWorld {
   id: LensId;
   name: string;
+  /** Public catalog kind: a strict musical world, an umbrella family, or a fusion recipe. */
+  kind?: 'world' | 'family' | 'fusion';
+  promotedFrom?: string;
+  strictness?: 'strict' | 'flexible' | 'open';
+  homeStyleId?: string;
   family: string;
   color: string;
   description: string;
@@ -404,6 +409,8 @@ export interface Region {
   repetitionGroup?: string;
   tempoShift?: string;
   genre?: string;
+  /** Resolved style for this section; when genre differs from the song, this is authoritative. */
+  styleId?: string;
   worldId?: string;
 }
 

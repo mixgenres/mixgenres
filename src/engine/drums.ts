@@ -1,3 +1,5 @@
+import type { ResolvedStyle } from '../data/styles/schema';
+
 import { rand01 } from './groove';
 import type { DrumVoice } from '../data/instruments';
 
@@ -43,8 +45,10 @@ export interface KitContext {
   phraseEnd: boolean;
   /** brushes, electronic kit, etc */
   flavour: KitFlavour;
-  /** genre id for exceptions where generic rock/funk drum logic would be misleading */
-  worldId: string;
+  /** World-contract gates; never inferred from a genre label. */
+  allowTomFills: boolean;
+  allowSectionCrash: boolean;
+  forbidBackbeat: boolean;
   /** prefers the ride over the hats — jazz, swing, ballads, solos */
   rideFeel: boolean;
   seed: number;
@@ -78,13 +82,13 @@ export function kitVoicing(c: KitContext): KitVoicing {
   const strong = c.accent;
 
   /* ---- fills take over the bar entirely -------------------------------- */
-  const fillZone = c.worldId === 'reggaeton-dembow' ? null : fillStartBeat(c);
+  const fillZone = c.allowTomFills ? fillStartBeat(c) : null;
   if (fillZone !== null && b >= fillZone) {
     return fillHit(c, b, fillZone);
   }
 
   /* ---- a crash announces a new section --------------------------------- */
-  if (c.worldId !== 'reggaeton-dembow' && c.sectionStart && isDownbeat(b)) {
+  if (c.allowSectionCrash && c.sectionStart && isDownbeat(b)) {
     return { key: c.flavour === 'electronic' ? GM.crash2 : GM.crash, limb: 'crash', gain: 1.15 };
   }
 
@@ -94,7 +98,7 @@ export function kitVoicing(c: KitContext): KitVoicing {
   }
 
   /* ---- the snare: backbeats, with everything near them ghosted --------- */
-  if (isBackbeat(b, c.beatsPerBar)) {
+  if (!c.forbidBackbeat && isBackbeat(b, c.beatsPerBar)) {
     if (c.flavour === 'brush') return { key: GM.snareRim, limb: 'snare', gain: 0.92 };
     const flam = c.intensity > 0.8 && rand01(c.seed ^ 0x3a) > 0.88 ? 22 : undefined;
     return {
@@ -176,7 +180,17 @@ export function handPercVoicing(
   accent: number,
   intensity: number,
   seed: number,
+  hitType?: string,
 ): KitVoicing {
+  // Authored stroke names are preserved for hand percussion. SoundFonts expose
+  // different keys per instrument, so the dialect chooses the closest available
+  // low/mid/high articulation rather than pretending every instrument is a kit.
+  if (hitType) {
+    const h = hitType.toLowerCase();
+    if (/open|slap|rim|campana|paila|shell/.test(h)) return { key: drum.high, limb: 'snare', gain: Math.min(1.05, 0.84 + accent * 0.2) };
+    if (/muff|mute|bass|low|ghost|soft/.test(h)) return { key: drum.low, limb: 'ghost', gain: Math.max(0.28, 0.48 + accent * 0.25) };
+    if (/mid|tone|stroke|martillo|casca/.test(h)) return { key: drum.mid, limb: 'hat', gain: 0.68 + accent * 0.2 };
+  }
   if (accent >= 0.88) return { key: drum.high, limb: 'snare', gain: 1.0 };
   if (accent <= 0.48) {
     return { key: drum.low, limb: 'ghost', gain: 0.34 + rand01(seed) * 0.14 };
@@ -189,18 +203,17 @@ export function handPercVoicing(
 
 /* --- kit flavour ---------------------------------------------------------- */
 
-export function flavourFor(instrumentId: string, worldId: string): KitFlavour {
+export function flavourForStyle(style: ResolvedStyle, instrumentId: string): KitFlavour {
   if (instrumentId === 'brush-kit') return 'brush';
-  if (['electronic', 'hip-hop', 'house-techno', 'reggaeton-dembow'].includes(worldId)) return 'electronic';
-  if (['jazz', 'swing', 'fusion-ambient'].includes(worldId)) return 'brush';
-  if (['folk', 'blues', 'country'].includes(worldId)) return 'roomy';
+  const mode = style.contract.percussion.kitMode;
+  if (mode === 'none') return 'acoustic';
+  if (style.contract.timbreSpace.production.toLowerCase().includes('machine')) return 'electronic';
+  if (style.contract.form.some(x => /solo|head/i.test(x)) && style.contract.percussion.ride) return 'brush';
   return 'acoustic';
 }
 
-/** Worlds and sections where the drummer moves to the ride. */
-export function usesRide(worldId: string, sectionKind: string, intensity: number): boolean {
-  if (['jazz', 'swing'].includes(worldId)) return true;
-  if (['blues', 'fusion-ambient'].includes(worldId) && intensity < 0.8) return true;
-  if (sectionKind === 'solo' && intensity > 0.6) return true;
-  return false;
+export function usesRideStyle(style: ResolvedStyle, sectionKind: string, intensity: number): boolean {
+  if (!style.contract.percussion.ride) return false;
+  return /solo|head|instrumental/i.test(sectionKind) || intensity > 0.78;
 }
+

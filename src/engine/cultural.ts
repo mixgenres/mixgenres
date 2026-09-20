@@ -1,10 +1,11 @@
 import { VoiceProfile, foldToRange } from './instrumentProfile';
+import type { ResolvedStyle } from '../data/styles/schema';
 
 export type CulturalHarmonyModel = 'functional' | 'modal-drone' | 'heterophonic' | 'fixed-cluster';
 
 export interface CulturalRules {
-  genreId: string;
   styleId: string;
+  sourceModel: string;
   harmonyModel: CulturalHarmonyModel;
   /** Pitch intervals above the style's tonal center, in 12-TET approximation. */
   pitchIntervals: number[];
@@ -18,126 +19,42 @@ export interface CulturalRules {
   avoidBassFoundation: boolean;
 }
 
-const CHINESE_GUQIN: CulturalRules = {
-  genreId: 'chinese-traditional',
-  styleId: 'chinese-traditional-guqin',
-  harmonyModel: 'modal-drone',
-  // Common zheng-diao reference set: 1 2 4 5 6. Rendered here as a relative pitch set.
-  pitchIntervals: [0, 2, 5, 7, 9],
-  snapToChord: false,
-  authoredTimingOnly: true,
-  heterophonic: false,
-  avoidBassFoundation: true,
-};
+export function culturalRules(style: ResolvedStyle, instrumentId?: string): CulturalRules | undefined {
+  const model = style.contract.harmonyModel;
+  if (!['modal-drone', 'heterophonic', 'fixed-cluster'].includes(model)) return undefined;
+  const styleName = style.name.toLowerCase();
+  const heterophonic = model === 'heterophonic' || /heterophonic|ensemble|silk|bamboo/i.test(style.contract.ensemble.interaction ?? '');
+  const authoredTimingOnly = style.contract.pulseModel === 'free-rubato' || /rubato|ma|free/i.test(style.contract.form.join(' '));
+  return {
+    styleId: style.id,
+    sourceModel: model,
+    harmonyModel: model as CulturalHarmonyModel,
+    pitchIntervals: style.contract.pitchIntervals,
+    snapToChord: false,
+    authoredTimingOnly,
+    heterophonic,
+    avoidBassFoundation: true,
+  };
+}
 
-const CHINESE_SIZHU: CulturalRules = {
-  genreId: 'chinese-traditional',
-  styleId: 'chinese-traditional-silk-bamboo',
-  harmonyModel: 'heterophonic',
-  // Anhemitonic pentatonic starting from the shared ensemble center.
-  pitchIntervals: [0, 2, 4, 7, 9],
-  snapToChord: false,
-  authoredTimingOnly: false,
-  heterophonic: true,
-  avoidBassFoundation: true,
-};
-
-const CHINESE_XIQU: CulturalRules = {
-  genreId: 'chinese-traditional',
-  styleId: 'chinese-traditional-opera',
-  harmonyModel: 'heterophonic',
-  pitchIntervals: [0, 2, 4, 7, 9],
-  snapToChord: false,
-  authoredTimingOnly: false,
-  heterophonic: true,
-  avoidBassFoundation: true,
-};
-
-const JAPANESE_GAGAKU: CulturalRules = {
-  genreId: 'japanese-traditional',
-  styleId: 'japanese-traditional-gagaku',
-  harmonyModel: 'fixed-cluster',
-  // Ryo-class approximation: D Mixolydian-like interval set used for the engine's modal scaffold.
-  pitchIntervals: [0, 2, 4, 5, 7, 9, 10],
-  snapToChord: false,
-  authoredTimingOnly: true,
-  heterophonic: true,
-  avoidBassFoundation: true,
-};
-
-const JAPANESE_SHAMISEN: CulturalRules = {
-  genreId: 'japanese-traditional',
-  styleId: 'japanese-traditional-shamisen',
-  harmonyModel: 'heterophonic',
-  // Yo/min'yō-family pentatonic scaffold; ornamentation supplies much of the expressive identity.
-  pitchIntervals: [0, 2, 5, 7, 9],
-  snapToChord: false,
-  authoredTimingOnly: false,
-  heterophonic: true,
-  avoidBassFoundation: true,
-};
-
-const JAPANESE_SHAKUHACHI: CulturalRules = {
-  genreId: 'japanese-traditional',
-  styleId: 'japanese-traditional-shakuhachi',
-  harmonyModel: 'modal-drone',
-  // Traditional honkyoku is lineage-specific and often unmetered; this is a 12-TET pentatonic scaffold, not a claim of exact school tuning.
-  pitchIntervals: [0, 2, 4, 7, 9],
-  snapToChord: false,
-  authoredTimingOnly: true,
-  heterophonic: false,
-  avoidBassFoundation: true,
-};
-
-const JAPANESE_KOTO: CulturalRules = {
-  genreId: 'japanese-traditional',
-  styleId: 'japanese-traditional-koto',
-  harmonyModel: 'heterophonic',
-  // Hira-jōshi-like scaffold for the default koto engine; real repertoire uses multiple chōshi.
-  pitchIntervals: [0, 2, 3, 7, 8],
-  snapToChord: false,
-  authoredTimingOnly: false,
-  heterophonic: true,
-  avoidBassFoundation: true,
-};
-
-
-const CELTIC_STYLE_RULES: CulturalRules = {
-  genreId: 'celtic-trad',
-  styleId: 'celtic-trad-standard',
-  harmonyModel: 'modal-drone',
-  // Common Irish/Scottish modal practice is better represented as a modal pitch
-  // collection plus drones/open fifths than as a functional major/minor grammar.
-  pitchIntervals: [0, 2, 4, 5, 7, 9, 10],
-  snapToChord: false,
-  authoredTimingOnly: true,
-  heterophonic: true,
-  avoidBassFoundation: true,
-};
-
-const FALLBACK_CHINESE = CHINESE_SIZHU;
-const FALLBACK_JAPANESE = JAPANESE_SHAMISEN;
-
-export function culturalRules(genreId: string, styleId: string | undefined, instrumentId?: string): CulturalRules | undefined {
-  if (genreId === 'chinese-traditional') {
-    if (styleId === CHINESE_GUQIN.styleId || instrumentId === 'guqin') return CHINESE_GUQIN;
-    if (styleId === CHINESE_XIQU.styleId || instrumentId === 'jinghu') return CHINESE_XIQU;
-    return { ...FALLBACK_CHINESE, styleId: styleId ?? FALLBACK_CHINESE.styleId };
-  }
-  if (genreId === 'celtic-trad') return { ...CELTIC_STYLE_RULES, styleId: styleId ?? CELTIC_STYLE_RULES.styleId };
-  if (genreId === 'japanese-traditional') {
-    if (styleId === JAPANESE_GAGAKU.styleId || ['shō', 'ryuteki', 'hichiriki'].includes(instrumentId ?? '')) return JAPANESE_GAGAKU;
-    if (styleId === JAPANESE_SHAKUHACHI.styleId || instrumentId === 'shakuhachi') return JAPANESE_SHAKUHACHI;
-    if (styleId === JAPANESE_KOTO.styleId || instrumentId === 'koto') return JAPANESE_KOTO;
-    return { ...FALLBACK_JAPANESE, styleId: styleId ?? FALLBACK_JAPANESE.styleId };
-  }
-  return undefined;
+export function previewCulturalRules(instrumentId: string): CulturalRules | undefined {
+  const modal = ['guqin','guzheng','pipa','erhu','dizi','xiao','jinghu','bagpipes','uilleann-pipes','tin-whistle','low-whistle','celtic-harp','fiddle','concertina','bodhran','bones'].includes(instrumentId);
+  const fixed = ['shō','ryuteki','hichiriki'].includes(instrumentId);
+  if (!modal && !fixed) return undefined;
+  return {
+    styleId: `preview-${instrumentId}`,
+    sourceModel: fixed ? 'fixed-cluster' : 'modal-drone',
+    harmonyModel: fixed ? 'fixed-cluster' : 'modal-drone',
+    pitchIntervals: fixed ? [0,2,4,7,9] : [0,2,4,5,7,9,10],
+    snapToChord: false,
+    authoredTimingOnly: modal,
+    heterophonic: modal,
+    avoidBassFoundation: true,
+  };
 }
 
 export function culturalDronePitch(rules: CulturalRules, tonicPc: number, profile: VoiceProfile, seed: number): number {
-  const pc = rules.styleId === 'chinese-traditional-guqin'
-    ? tonicPc
-    : (seed & 1 ? (tonicPc + 7) % 12 : tonicPc);
+  const pc = /drone|gagaku|guqin/i.test(rules.styleId) ? tonicPc : (seed & 1 ? (tonicPc + 7) % 12 : tonicPc);
   const centre = Math.round(profile.centre);
   const midi = pc + 12 * Math.round((centre - pc) / 12);
   return foldToRange(midi, profile);
@@ -166,8 +83,8 @@ export function celticOpenHarmony(
   return [...new Set(out)].sort((a,b) => a-b);
 }
 
-export function isCulturalWorld(worldId: string): boolean {
-  return worldId === 'chinese-traditional' || worldId === 'japanese-traditional' || worldId === 'celtic-trad';
+export function isCulturalWorld(style: ResolvedStyle): boolean {
+  return ['modal-drone', 'heterophonic', 'fixed-cluster'].includes(style.contract.harmonyModel);
 }
 
 export function culturalPitchSet(rules: CulturalRules, tonicPc: number): number[] {

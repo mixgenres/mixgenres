@@ -2,7 +2,7 @@ import { ResolvedStyle, FormStepTemplate, RuleRef, GestureRule } from '../data/s
 import { resolveStyle } from '../data/styles/resolve';
 import { getCanonicalStyle } from '../data/styles/registry';
 import { KeyInfo, inferKey, transposeChordSymbol, chordTemplateInKey } from './theory';
-import { GrooveProfile, rand01 } from './groove';
+import { GrooveProfile, rand01, grooveForStyle } from './groove';
 import { instrument } from '../data/instruments';
 import { roleForInstrument } from './arrange';
 import { Role, InstrumentKind } from '../types';
@@ -246,24 +246,11 @@ export function planSong(
     };
   });
 
-  // 7. GROOVE PROFILE
-  const groove: GrooveProfile = {
-    id: resolved.id,
-    name: resolved.name,
-    swing: 0.5 + (resolved.rhythm.swingPercentage ?? 0) * 0.167,
-    swingUnit: 16,
-    lean: 0,
-    roleLean: {},
-    humanizeMs: resolved.rhythm.humanizeJitterMs ?? 8,
-    humanizeVel: 0.08,
-    accentDepth: 0.5,
-    anticipationMs: 0,
-    dynamicRange: 1.1,
-    description: resolved.summary ?? resolved.name,
-  };
+  // 7. GROOVE PROFILE — entirely resolved from the style contract.
+  const groove: GrooveProfile = grooveForStyle(resolved);
 
   // 8. SOUND & MIX PROFILE
-  const roomId = resolved.sound.masterProfile?.roomId || roomFor(genreId).id;
+  const roomId = resolved.sound.masterProfile?.roomId || resolved.contract.timbreSpace.room;
   const pocket = resolved.sound.masterProfile?.pocket ?? 0.5;
   const lift = resolved.sound.masterProfile?.lift ?? 0.5;
 

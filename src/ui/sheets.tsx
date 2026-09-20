@@ -6,7 +6,8 @@ import { INSTRUMENT_CATALOG, FAMILY_LABELS, FAMILY_ORDER, instrument } from '../
 import { ALL_PATTERNS, GENRE_WORLDS_BY_ID, cleanPatternName, FEEL_ORDER, FEEL_LABELS, feelsForPattern, PatternFeel } from '../data/genres';
 import { Voice, toBar, BAR_CHOICES, FEELS, getGenreForm, PartDensity } from '../engine/arrange';
 import { Region } from '../types';
-import { CHORD_PALETTE, CHORD_MOODS, CHORD_MOOD_ORDER, ChordMood, suggestedPaletteForStyle } from '../data/chordPalette';
+import { CHORD_PALETTE, CHORD_MOODS, CHORD_MOOD_ORDER, ChordMood, JAZZ_CHORD_LIBRARY, suggestedPaletteForStyle } from '../data/chordPalette';
+import { parseChord } from '../engine/theory';
 import { formSummary } from '../data/genreForms';
 import { grooveSummary } from '../engine/groove';
 import { ROOMS, roomFor } from '../engine/mixer';
@@ -547,16 +548,25 @@ export function ChordsControl({
           />
           <input
             className="w-full bg-transparent border-b border-black/20 focus:border-black/50 outline-none pb-1.5 mb-3.5 text-sm font-mono"
-            placeholder="Chords (e.g. Cmaj7 Am7 Dm7 G7)"
+            placeholder="Chord symbols (e.g. Cmaj9 G13 Cmaj13#11)"
             value={customChordInput}
             onChange={e => setCustomChordInput(e.target.value)}
           />
+          <div style={{display:'flex', flexWrap:'wrap', gap:6, marginBottom:12}}>
+            <span style={{fontSize:11, opacity:.65, width:'100%'}}>Jazz chord symbols</span>
+            {JAZZ_CHORD_LIBRARY.slice(0, 12).map(symbol => (
+              <button key={symbol} type="button" className="chip" onClick={() => setCustomChordInput(v => `${v}${v.trim() ? ' ' : ''}${symbol}`)}>
+                {symbol}
+              </button>
+            ))}
+          </div>
           <div className="flex gap-2">
             <button
               onClick={() => {
                 const chords = customChordInput.trim().split(/\s+/).filter(Boolean);
+                const invalid = chords.filter(ch => { try { const p = parseChord(ch); return !/^[A-G](?:#|b)?/.test(p.symbol) || p.intervals.length < 2; } catch { return true; } });
                 const name = customNameInput.trim() || 'Custom';
-                if (chords.length > 0) {
+                if (chords.length > 0 && invalid.length === 0) {
                   if (editingProgressionId) {
                     onUpdateCustomChords?.(editingProgressionId, name, chords);
                     onChords(chords);
@@ -673,7 +683,7 @@ export function ChordsControl({
                       <span className="font-mono text-[11px] opacity-75 shrink-0">{progStr}</span>
                     </div>
                     <div className="text-[11px] opacity-65 truncate mt-1" style={{ color: isActive ? 'var(--ground)' : 'inherit' }}>
-                      {opt.blurb}
+                      {opt.aliases?.length ? `${opt.blurb} · Also called: ${opt.aliases.join(', ')}` : opt.blurb}
                     </div>
                   </button>
                 );
@@ -722,7 +732,7 @@ export function ChordsControl({
                     <span className="font-mono text-[11px] opacity-75 shrink-0">{progStr}</span>
                   </div>
                   <div className="text-[11px] opacity-65 truncate mt-1" style={{ color: isActive ? 'var(--ground)' : 'inherit' }}>
-                    {opt.origin ? `${opt.origin} · ` : ''}{opt.blurb}
+                    {opt.origin ? `${opt.origin} · ` : ''}{opt.blurb}{opt.aliases?.length ? ` · Also called: ${opt.aliases.join(', ')}` : ''}
                   </div>
                 </button>
               );

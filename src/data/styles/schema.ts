@@ -1,4 +1,5 @@
 import { Role, SectionType, TuningSystemTag, GrooveMechanics } from '../../types';
+import type { WorldContract } from './contracts';
 
 export type Aspect = 'form' | 'harmony' | 'rhythm' | 'melody' | 'arrangement' | 'sound' | 'gestures';
 
@@ -174,6 +175,7 @@ export interface DecisionTraceItem {
 export type DecisionTrace = DecisionTraceItem[];
 
 export interface ResolvedStyle extends SongStyle {
+  contract: WorldContract;
   form: FormGrammar;
   harmony: HarmonyGrammar;
   rhythm: RhythmGrammar;

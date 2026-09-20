@@ -51,6 +51,20 @@ export const GENRE_NAMES: Record<string, string> = {
   'uk-bass': 'UK Bass',
 };
 
+const GENRE_KINDS: Record<string, 'world'|'family'|'fusion'> = {
+  brazilian:'family', electronic:'family', folk:'family', gospel:'family', reggae:'family', 'uk-bass':'family',
+  'latin-pop':'fusion',
+};
+const GENRE_STRICTNESS: Record<string, 'strict'|'flexible'|'open'> = {
+  tango:'strict', flamenco:'strict', salsa:'strict', timba:'strict', cumbia:'strict', bachata:'strict',
+  brazilian:'flexible', electronic:'open', folk:'flexible', gospel:'flexible', reggae:'strict', reggaeton:'strict',
+  'latin-pop':'open', jazz:'flexible', blues:'flexible', funk:'strict', house:'strict', disco:'strict',
+  metal:'strict', 'punk-hardcore':'strict', rock:'flexible', 'drum-and-bass':'strict', industrial:'strict', 'uk-bass':'strict',
+};
+const PROMOTED_FROM: Record<string,string> = {
+  disco:'funk', gospel:'folk', timba:'salsa', ska:'reggae', 'drum-and-bass':'electronic',
+};
+
 const SOURCE_WORLDS: Record<string, GenreWorld> = Object.fromEntries([
   TANGO_WORLD, FLAMENCO_WORLD, SALSA_WORLD, TIMBA_WORLD, BACHATA_WORLD, CUMBIA_WORLD,
   REGGAETON_DEMBOW_WORLD, ZOUK_WORLD, KIZOMBA_WORLD, BLUES_WORLD, JAZZ_WORLD, SWING_WORLD,
@@ -73,6 +87,10 @@ function makeGenreWorld(genreId: string): GenreWorld {
     ...source,
     id: genreId,
     name: GENRE_NAMES[genreId],
+    kind: GENRE_KINDS[genreId] ?? 'world',
+    promotedFrom: PROMOTED_FROM[genreId],
+    strictness: GENRE_STRICTNESS[genreId] ?? 'flexible',
+    homeStyleId: genreId === 'latin-pop' ? 'latin-pop-latin-pop' : undefined,
     family: source.family,
     level: 'world',
     parentId: undefined,

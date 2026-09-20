@@ -231,7 +231,7 @@ export function makeMotif(
 
   if (styleId || genreId) {
     try {
-      const resolved = resolveStyle({ genreId: genreId || 'rock', styleId: styleId ?? getCanonicalStyle(genreId || 'rock').id });
+      const resolved = resolveStyle({ styleId: styleId! });
       const targetArchetypes = new Set(resolved.melody?.contourArchetypes || []);
       const styleBars = resolved.melody?.phraseLengthsBars;
       if (styleBars && styleBars.length > 0) {
@@ -293,7 +293,7 @@ export function treatmentFor(
 
   if (styleId || genreId) {
     try {
-      const resolved = resolveStyle({ genreId: genreId || 'rock', styleId: styleId ?? getCanonicalStyle(genreId || 'rock').id });
+      const resolved = resolveStyle({ styleId: styleId! });
       if (resolved.melody?.callAndResponse && (kind === 'verse' || kind === 'montuno' || kind === 'a')) {
         return 'call-response';
       }
@@ -469,7 +469,7 @@ export function melodyNote(c: MelodyContext): { note: number; isLeap: boolean } 
   let scale = c.pitchSet?.length ? c.pitchSet : c.key.pcs;
   if (!c.pitchSet?.length && c.styleId) {
     try {
-      const resolved = resolveStyle({ genreId: c.genreId || 'rock', styleId: c.styleId ?? getCanonicalStyle(c.genreId || 'rock').id });
+      const resolved = resolveStyle({ styleId: c.styleId! });
       if (resolved.melody?.pitchIntervals?.length) {
         scale = resolved.melody.pitchIntervals.map(iv => (c.key.tonicPc + iv) % 12);
       } else if (resolved.melody?.scaleMode && SCALE_MODE_INTERVALS[resolved.melody.scaleMode]) {
