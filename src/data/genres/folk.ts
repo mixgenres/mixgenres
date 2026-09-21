@@ -841,9 +841,7 @@ export const FOLK_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 2,
       "weight": 1,
       "provenance": "Folk catalog rebuild: retained source material or generated structural support pattern.",
@@ -856,26 +854,8 @@ export const FOLK_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 52,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "rhythm-guitar"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
-      "interactionRules": [
-        {
-          "id": "folk-interaction-1",
-          "worldId": "folk",
-          "sourceRole": "drums",
-          "targetRole": "bass",
-          "relationship": "reinforce",
-          "description": "Low-end attacks reinforce the main pulse",
-          "timingOffsetSteps": 0,
-          "probability": 0.78
-        }
-      ],
+
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -1011,9 +991,7 @@ export const FOLK_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 2,
       "weight": 1,
       "provenance": "Folk catalog rebuild: retained source material or generated structural support pattern.",
@@ -1026,14 +1004,7 @@ export const FOLK_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 52,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "rhythm-guitar"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -1153,9 +1124,7 @@ export const FOLK_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 1,
       "weight": 1,
       "provenance": "Folk catalog rebuild: retained source material or generated structural support pattern.",
@@ -1168,14 +1137,7 @@ export const FOLK_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 52,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "rhythm-guitar"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -1302,9 +1264,7 @@ export const FOLK_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 2,
       "weight": 1,
       "provenance": "Folk catalog rebuild: retained source material or generated structural support pattern.",
@@ -1317,14 +1277,7 @@ export const FOLK_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 52,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "rhythm-guitar"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -1431,9 +1384,7 @@ export const FOLK_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 1,
       "weight": 1,
       "provenance": "Folk catalog rebuild: retained source material or generated structural support pattern.",
@@ -1446,26 +1397,8 @@ export const FOLK_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 52,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "rhythm-guitar"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
-      "interactionRules": [
-        {
-          "id": "folk-interaction-2",
-          "worldId": "folk",
-          "sourceRole": "voice",
-          "targetRole": "harmony",
-          "relationship": "leaveSpace",
-          "description": "Harmony reduces density under vocal entries",
-          "timingOffsetSteps": 0,
-          "probability": 0.72
-        }
-      ],
+
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -1601,9 +1534,7 @@ export const FOLK_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 2,
       "weight": 1,
       "provenance": "Folk catalog rebuild: retained source material or generated structural support pattern.",
@@ -1616,26 +1547,8 @@ export const FOLK_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 52,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "rhythm-guitar"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
-      "interactionRules": [
-        {
-          "id": "folk-interaction-3",
-          "worldId": "folk",
-          "sourceRole": "bass",
-          "targetRole": "drums",
-          "relationship": "accentWith",
-          "description": "Bass accents align with selected kick/backbeat",
-          "timingOffsetSteps": 0,
-          "probability": 0.65
-        }
-      ],
+
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -1771,9 +1684,7 @@ export const FOLK_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 2,
       "weight": 1,
       "provenance": "Folk catalog rebuild: retained source material or generated structural support pattern.",
@@ -1786,14 +1697,7 @@ export const FOLK_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 52,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "rhythm-guitar"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -1930,9 +1834,7 @@ export const FOLK_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 2,
       "weight": 0.7,
       "provenance": "Folk catalog rebuild: retained source material or generated structural support pattern.",
@@ -1945,14 +1847,7 @@ export const FOLK_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 52,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "violin"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -2070,9 +1965,7 @@ export const FOLK_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 1,
       "weight": 1,
       "provenance": "Folk catalog rebuild: retained source material or generated structural support pattern.",
@@ -2085,14 +1978,7 @@ export const FOLK_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 52,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "rhythm-guitar"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -2246,9 +2132,7 @@ export const FOLK_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 3,
       "weight": 1,
       "provenance": "Folk catalog rebuild: retained source material or generated structural support pattern.",
@@ -2261,14 +2145,7 @@ export const FOLK_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 52,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "rhythm-guitar"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -2344,19 +2221,8 @@ export const FOLK_WORLD: GenreWorld = {
         "verse",
         "chorus"
       ],
-      "harmonicContext": [
-        "tonal",
-        "section-dependent",
-        "tonal or modal context"
-      ],
-      "roleDependencies": [
-        "bass"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "folk-roster-11-v-01",
@@ -2507,19 +2373,8 @@ export const FOLK_WORLD: GenreWorld = {
         "verse",
         "chorus"
       ],
-      "harmonicContext": [
-        "tonal",
-        "section-dependent",
-        "tonal or modal context"
-      ],
-      "roleDependencies": [
-        "voice"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "folk-roster-12-v-01",
@@ -2671,19 +2526,8 @@ export const FOLK_WORLD: GenreWorld = {
         "chorus",
         "bridge"
       ],
-      "harmonicContext": [
-        "tonal",
-        "section-dependent",
-        "tonal or modal context"
-      ],
-      "roleDependencies": [
-        "voice"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "folk-call-13-v-01",
@@ -2879,19 +2723,8 @@ export const FOLK_WORLD: GenreWorld = {
         "verse",
         "chorus"
       ],
-      "harmonicContext": [
-        "tonal",
-        "section-dependent",
-        "tonal or modal context"
-      ],
-      "roleDependencies": [
-        "bass"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "folk-anchor-14-v-01",
@@ -3036,19 +2869,8 @@ export const FOLK_WORLD: GenreWorld = {
         "verse",
         "chorus"
       ],
-      "harmonicContext": [
-        "tonal",
-        "section-dependent",
-        "tonal or modal context"
-      ],
-      "roleDependencies": [
-        "harmony"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "folk-comp-15-v-01",
@@ -3197,20 +3019,8 @@ export const FOLK_WORLD: GenreWorld = {
       "sectionUsage": [
         "intro"
       ],
-      "harmonicContext": [
-        "tonal",
-        "section-dependent",
-        "tonal or modal context"
-      ],
-      "roleDependencies": [
-        "harmony",
-        "texture"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "folk-intro-16-v-01",
@@ -3449,20 +3259,8 @@ export const FOLK_WORLD: GenreWorld = {
       "sectionUsage": [
         "verse"
       ],
-      "harmonicContext": [
-        "tonal",
-        "section-dependent",
-        "tonal or modal context"
-      ],
-      "roleDependencies": [
-        "drums",
-        "rhythm-guitar"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "folk-verse-17-v-01",
@@ -3563,59 +3361,6 @@ export const FOLK_WORLD: GenreWorld = {
       "weight": 1,
       "enabled": true
     }
-  ],
-  "techniques": [
-    "Travis fingerstyle",
-    "flatpicking",
-    "Carter scratch thumb-brush",
-    "clawhammer rhythm"
-  ],
-  "forms": [
-    "strophic verse ballad",
-    "verse-chorus",
-    "AABB fiddle tune",
-    "instrumental breakdown"
-  ],
-  "relationships": [
-    "thumb bass ↔ treble melody (Travis counterpoint)",
-    "guitar flatpicking ↔ bass boom-chuck (rhythmic lock)"
-  ],
-  "transformations": [
-    "trans-density-sparse",
-    "trans-density-dense",
-    "trans-phrase-cadence",
-    "catalog-v2-density-variation",
-    "catalog-v2-transition-coverage",
-    "catalog-v2-ensemble-interactions"
-  ],
-  "songBehaviors": [
-    "story-driven vocal phrasing with instrumental fills between stanzas",
-    "dynamic builds through strumming density",
-    "avoid identical loop repetition by alternating pattern variants",
-    "use fills, breaks, cadences, and bridge textures as structural events",
-    "let lead/voice parts create space and response relationships"
-  ],
-  "instrumentIdeas": {
-    "guitar": [
-      "acoustic dreadnought with bronze strings and alternating thumb bass"
-    ],
-    "bass": [
-      "upright acoustic bass with warm woody thud"
-    ],
-    "voice": [
-      "narrative vocal phrasing and harmony"
-    ]
-  },
-  "combinations": [
-    "Folk + Country",
-    "Folk + Blues",
-    "Folk + Rock"
-  ],
-  "danceTags": [
-    "listening",
-    "social-partner",
-    "wcs-compatible",
-    "solo-vernacular"
   ],
   "tuningSystem": "12-tet",
   "signatureCell": "Alternating thumb Travis picking with syncopated treble melody and open chords",

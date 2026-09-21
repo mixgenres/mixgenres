@@ -860,9 +860,7 @@ export const BLUES_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 2,
       "weight": 1,
       "provenance": "Blues catalog rebuild: retained source material or generated structural support pattern.",
@@ -875,15 +873,7 @@ export const BLUES_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 66,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "drums",
-        "percussion"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -1042,9 +1032,7 @@ export const BLUES_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 3,
       "weight": 0.7,
       "provenance": "Blues catalog rebuild: retained source material or generated structural support pattern.",
@@ -1057,26 +1045,8 @@ export const BLUES_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 66,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "bass"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
-      "interactionRules": [
-        {
-          "id": "blues-interaction-1",
-          "worldId": "blues",
-          "sourceRole": "drums",
-          "targetRole": "bass",
-          "relationship": "reinforce",
-          "description": "Low-end attacks reinforce the main pulse",
-          "timingOffsetSteps": 0,
-          "probability": 0.78
-        }
-      ],
+
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -1286,9 +1256,7 @@ export const BLUES_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 3,
       "weight": 0.7,
       "provenance": "Blues catalog rebuild: retained source material or generated structural support pattern.",
@@ -1301,15 +1269,7 @@ export const BLUES_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 66,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "harmony",
-        "rhythm-guitar"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -1424,9 +1384,7 @@ export const BLUES_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 1,
       "weight": 1,
       "provenance": "Blues catalog rebuild: retained source material or generated structural support pattern.",
@@ -1439,14 +1397,7 @@ export const BLUES_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 66,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "drums"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -1599,9 +1550,7 @@ export const BLUES_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 3,
       "weight": 1,
       "provenance": "Blues catalog rebuild: retained source material or generated structural support pattern.",
@@ -1614,26 +1563,8 @@ export const BLUES_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 66,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "guitar"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
-      "interactionRules": [
-        {
-          "id": "blues-interaction-2",
-          "worldId": "blues",
-          "sourceRole": "voice",
-          "targetRole": "harmony",
-          "relationship": "leaveSpace",
-          "description": "Harmony reduces density under vocal entries",
-          "timingOffsetSteps": 0,
-          "probability": 0.72
-        }
-      ],
+
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -1748,9 +1679,7 @@ export const BLUES_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 1,
       "weight": 1,
       "provenance": "Blues catalog rebuild: retained source material or generated structural support pattern.",
@@ -1763,26 +1692,8 @@ export const BLUES_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 66,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "drums"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
-      "interactionRules": [
-        {
-          "id": "blues-interaction-3",
-          "worldId": "blues",
-          "sourceRole": "bass",
-          "targetRole": "drums",
-          "relationship": "accentWith",
-          "description": "Bass accents align with selected kick/backbeat",
-          "timingOffsetSteps": 0,
-          "probability": 0.65
-        }
-      ],
+
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -1897,9 +1808,7 @@ export const BLUES_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 1,
       "weight": 1,
       "provenance": "Blues catalog rebuild: retained source material or generated structural support pattern.",
@@ -1912,14 +1821,7 @@ export const BLUES_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 66,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "bass"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -2112,9 +2014,7 @@ export const BLUES_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 4,
       "weight": 1,
       "provenance": "Blues catalog rebuild: retained source material or generated structural support pattern.",
@@ -2127,14 +2027,7 @@ export const BLUES_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 66,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "piano"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -2235,9 +2128,7 @@ export const BLUES_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 1,
       "weight": 1,
       "provenance": "Blues catalog rebuild: retained source material or generated structural support pattern.",
@@ -2250,14 +2141,7 @@ export const BLUES_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 66,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "brass"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -2381,9 +2265,7 @@ export const BLUES_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 2,
       "weight": 1,
       "provenance": "Blues catalog rebuild: retained source material or generated structural support pattern.",
@@ -2396,14 +2278,7 @@ export const BLUES_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 66,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "guitar"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -2536,9 +2411,7 @@ export const BLUES_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 2,
       "weight": 1,
       "provenance": "Blues catalog rebuild: retained source material or generated structural support pattern.",
@@ -2551,14 +2424,7 @@ export const BLUES_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 66,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "drums"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -2657,9 +2523,7 @@ export const BLUES_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 1,
       "weight": 1,
       "provenance": "Blues catalog rebuild: retained source material or generated structural support pattern.",
@@ -2672,14 +2536,7 @@ export const BLUES_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 66,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "keys"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -2761,19 +2618,8 @@ export const BLUES_WORLD: GenreWorld = {
         "verse",
         "chorus"
       ],
-      "harmonicContext": [
-        "dominant 7",
-        "12-bar turnaround",
-        "tonal or modal context"
-      ],
-      "roleDependencies": [
-        "voice"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "blues-phrase-13-v-01",
@@ -2947,19 +2793,8 @@ export const BLUES_WORLD: GenreWorld = {
         "chorus",
         "bridge"
       ],
-      "harmonicContext": [
-        "dominant 7",
-        "12-bar turnaround",
-        "tonal or modal context"
-      ],
-      "roleDependencies": [
-        "voice"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "blues-call-14-v-01",
@@ -3185,19 +3020,8 @@ export const BLUES_WORLD: GenreWorld = {
         "verse",
         "chorus"
       ],
-      "harmonicContext": [
-        "dominant 7",
-        "12-bar turnaround",
-        "tonal or modal context"
-      ],
-      "roleDependencies": [
-        "bass"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "blues-anchor-15-v-01",
@@ -3372,19 +3196,8 @@ export const BLUES_WORLD: GenreWorld = {
         "verse",
         "chorus"
       ],
-      "harmonicContext": [
-        "dominant 7",
-        "12-bar turnaround",
-        "tonal or modal context"
-      ],
-      "roleDependencies": [
-        "harmony"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "blues-comp-16-v-01",
@@ -3557,17 +3370,8 @@ export const BLUES_WORLD: GenreWorld = {
         "bridge",
         "intro"
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
-      "roleDependencies": [
-        "voice"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "blues-voice-phrasing-v-voice-alt",
@@ -3663,76 +3467,6 @@ export const BLUES_WORLD: GenreWorld = {
       "weight": 0.9,
       "enabled": true
     }
-  ],
-  "techniques": [
-    "shuffle articulation",
-    "string bends",
-    "vibrato",
-    "double-stops",
-    "slide phrasing",
-    "call-and-response timing"
-  ],
-  "forms": [
-    "12-bar blues",
-    "8-bar blues",
-    "16-bar blues",
-    "slow blues",
-    "head → solos → turnaround",
-    "vamp and turnaround"
-  ],
-  "relationships": [
-    "voice ↔ guitar call and response",
-    "bass ↔ kick foundation",
-    "snare ↔ backbeat",
-    "lead ↔ rhythm fills"
-  ],
-  "transformations": [
-    "trans-density-sparse",
-    "trans-density-dense",
-    "trans-swing",
-    "trans-phrase-cadence",
-    "catalog-v2-density-variation",
-    "catalog-v2-transition-coverage",
-    "catalog-v2-ensemble-interactions"
-  ],
-  "songBehaviors": [
-    "repeated blues cycles create space for variation",
-    "fills answer phrases rather than continuously occupying the vocal space",
-    "turnarounds announce the return to the form",
-    "avoid identical loop repetition by alternating pattern variants",
-    "use fills, breaks, cadences, and bridge textures as structural events",
-    "let lead/voice parts create space and response relationships"
-  ],
-  "instrumentIdeas": {
-    "guitar": [
-      "bent-note fills",
-      "double-stop responses",
-      "shuffle comping"
-    ],
-    "bass": [
-      "boogie root–fifth motion",
-      "walking approaches"
-    ],
-    "drums": [
-      "shuffle ride",
-      "backbeat with phrase-ending fills"
-    ],
-    "piano": [
-      "boogie ostinatos",
-      "dominant chord stabs"
-    ]
-  },
-  "combinations": [
-    "Blues + Jazz",
-    "Blues + Soul",
-    "Blues + Rock",
-    "Blues + Country"
-  ],
-  "danceTags": [
-    "social-partner",
-    "blues-fusion-compatible",
-    "wcs-compatible",
-    "listening"
   ],
   "tuningSystem": "12-tet",
   "signatureCell": "Chicago triplet shuffle ride with heavy 2 & 4 snare backbeat and turnaround",

@@ -141,30 +141,42 @@ export interface ChordValidationIssue {
  */
 export function validateChordCatalog(): ChordValidationIssue[] {
   const issues: ChordValidationIssue[] = [];
-  const seenByPitchIdentity = new Map<string, { source: string; chord: string }>();
-  const inspect = (source: string, chord: string) => {
-    try {
-      assertValidChordSymbol(chord);
-      const parsed = parseChord(chord);
-      const pitchIdentity = JSON.stringify([parsed.harmony.root, parsed.quality, parsed.harmony.extensions, parsed.harmony.alterations, parsed.harmony.bass]);
-      const previous = seenByPitchIdentity.get(pitchIdentity);
-      if (previous && previous.chord !== chord) {
-        issues.push({ source, chord, issue: `ENHARMONIC_DUPLICATE_OF:${previous.chord}@${previous.source}` });
-      } else {
-        seenByPitchIdentity.set(pitchIdentity, { source, chord });
+
+  // Enharmonic spellings are only suspicious when they collide inside the
+  // same musical progression. A C#5 in a metal riff and a Db5 in a rock
+  // progression are not duplicates: the spelling reflects the surrounding
+  // key/voice-leading. The old global map incorrectly compared unrelated
+  // styles and produced 18 false positives.
+  const inspectProgression = (source: string, chords: string[]) => {
+    const seenByPitchIdentity = new Map<string, { source: string; chord: string }>();
+    for (const chord of chords) {
+      try {
+        assertValidChordSymbol(chord);
+        const parsed = parseChord(chord);
+        const pitchIdentity = JSON.stringify([parsed.harmony.root, parsed.quality, parsed.harmony.extensions, parsed.harmony.alterations, parsed.harmony.bass]);
+        const previous = seenByPitchIdentity.get(pitchIdentity);
+        if (previous && previous.chord !== chord) {
+          issues.push({ source, chord, issue: `ENHARMONIC_DUPLICATE_IN_PROGRESSION_OF:${previous.chord}@${previous.source}` });
+        } else {
+          seenByPitchIdentity.set(pitchIdentity, { source, chord });
+        }
+      } catch (error) {
+        issues.push({ source, chord, issue: error instanceof Error ? error.message : String(error) });
       }
-    } catch (error) {
-      issues.push({ source, chord, issue: error instanceof Error ? error.message : String(error) });
     }
   };
 
+  const inspectSingle = (source: string, chord: string) => {
+    inspectProgression(source, [chord]);
+  };
+
   for (const [genreId, progression] of Object.entries(PROGRESSIONS)) {
-    if (Array.isArray(progression)) progression.forEach(chord => inspect(`PROGRESSIONS.${genreId}`, chord));
+    if (Array.isArray(progression)) inspectProgression(`PROGRESSIONS.${genreId}`, progression);
   }
   for (const [genreId, form] of Object.entries(GENRE_FORMS)) {
     for (const [i, step] of form.steps.entries()) {
       const candidate = (step as any).chords;
-      if (Array.isArray(candidate)) candidate.forEach((chord: string) => inspect(`GENRE_FORMS.${genreId}.steps[${i}]`, chord));
+      if (Array.isArray(candidate)) inspectProgression(`GENRE_FORMS.${genreId}.steps[${i}]`, candidate as string[]);
     }
   }
   for (const genreId of Object.keys(GENRE_NAMES)) {
@@ -173,16 +185,14 @@ export function validateChordCatalog(): ChordValidationIssue[] {
         const resolved = resolveStyle({ genreId, styleId: style.id });
         for (const [i, template] of (resolved.harmony?.progressionTemplates ?? []).entries()) {
           const chords = template.value as string[];
-          if (Array.isArray(chords)) chords.forEach(chord => inspect(`STYLE.${style.id}.progressionTemplates[${i}]`, chord));
+          if (Array.isArray(chords)) inspectProgression(`STYLE.${style.id}.progressionTemplates[${i}]`, chords);
         }
         for (const [key, chords] of Object.entries(resolved.harmony?.sectionProgressions ?? {})) {
-          if (Array.isArray(chords)) chords.forEach(chord => inspect(`STYLE.${style.id}.sectionProgressions.${key}`, chord));
+          if (Array.isArray(chords)) inspectProgression(`STYLE.${style.id}.sectionProgressions.${key}`, chords);
         }
-        // chordVocabulary also contains conceptual labels such as 'ii-V-I',
-        // 'turnaround', and 'shared chord library'. Only root-led entries are
-        // actual symbols; progressionTemplates/sectionProgressions are strict.
+        // Only root-led chordVocabulary entries are symbols; the progression fields are strict.
         for (const chord of resolved.harmony?.chordVocabulary ?? []) {
-          if (/^[A-G](?:#|b)?/.test(chord)) inspect(`STYLE.${style.id}.chordVocabulary`, chord);
+          if (/^[A-G](?:#|b)?/.test(chord)) inspectSingle(`STYLE.${style.id}.chordVocabulary`, chord);
         }
       } catch (error) {
         issues.push({ source: `STYLE.${style.id}`, chord: '', issue: `RESOLUTION_ERROR:${error instanceof Error ? error.message : String(error)}` });
@@ -193,6 +203,6 @@ export function validateChordCatalog(): ChordValidationIssue[] {
 }
 
 export function assertChordCatalog(): void {
-  const issues = validateChordCatalog().filter(i => !i.issue.startsWith('ENHARMONIC_DUPLICATE_OF:'));
+  const issues = validateChordCatalog().filter(i => !i.issue.startsWith('ENHARMONIC_DUPLICATE_IN_PROGRESSION_OF:'));
   if (issues.length) throw new Error(`Chord catalog validation failed with ${issues.length} issue(s):\n${issues.map(i => `${i.source}: ${i.chord}: ${i.issue}`).join('\n')}`);
 }

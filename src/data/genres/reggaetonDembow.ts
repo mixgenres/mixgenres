@@ -808,14 +808,9 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
         "chorus",
         "breakdown"
       ],
-      "patternFunction": null,
-      "roleDependencies": [],
-      "interactionRules": [],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
+
       "variants": [
         {
           "id": "rg-dembow-core-v-sparse",
@@ -998,14 +993,9 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
         "chorus",
         "solo"
       ],
-      "patternFunction": null,
-      "roleDependencies": [],
-      "interactionRules": [],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
+
       "variants": [
         {
           "id": "rg-dembow-bass-v-sparse",
@@ -1133,14 +1123,9 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
         "verse",
         "chorus"
       ],
-      "patternFunction": null,
-      "roleDependencies": [],
-      "interactionRules": [],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
+
       "variants": [
         {
           "id": "rg-perc-ghost-v-sparse",
@@ -1262,14 +1247,9 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
         "chorus",
         "verse"
       ],
-      "patternFunction": null,
-      "roleDependencies": [],
-      "interactionRules": [],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
+
       "variants": [
         {
           "id": "rg-synth-stab-v-sparse",
@@ -1397,14 +1377,9 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
         "ending",
         "bridge"
       ],
-      "patternFunction": null,
-      "roleDependencies": [],
-      "interactionRules": [],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
+
       "variants": [
         {
           "id": "rg-dembow-break-v-sparse",
@@ -1560,14 +1535,9 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
         "verse",
         "chorus"
       ],
-      "patternFunction": "Classic Dembow Skeleton",
-      "roleDependencies": [],
-      "interactionRules": [],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
+
       "variants": [],
       "provenance": "Authored genre-pack pattern based on Dembow; designed for engine-level recombination rather than literal transcription.",
       "authenticityTags": [
@@ -1646,14 +1616,9 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
         "verse",
         "chorus"
       ],
-      "patternFunction": "Dembow Offbeat Texture",
-      "roleDependencies": [],
-      "interactionRules": [],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
+
       "variants": [],
       "provenance": "Authored genre-pack pattern based on Dembow; designed for engine-level recombination rather than literal transcription.",
       "authenticityTags": [
@@ -1731,14 +1696,9 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
         "verse",
         "chorus"
       ],
-      "patternFunction": "Reggaeton Sub Answer",
-      "roleDependencies": [],
-      "interactionRules": [],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
+
       "variants": [],
       "provenance": "Authored genre-pack pattern based on Bass; designed for engine-level recombination rather than literal transcription.",
       "authenticityTags": [
@@ -1809,14 +1769,9 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
         "verse",
         "chorus"
       ],
-      "patternFunction": "Reggaeton Piano Stab",
-      "roleDependencies": [],
-      "interactionRules": [],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
+
       "variants": [],
       "provenance": "Authored genre-pack pattern based on Harmony; designed for engine-level recombination rather than literal transcription.",
       "authenticityTags": [
@@ -1894,14 +1849,9 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
         "chorus",
         "solo"
       ],
-      "patternFunction": "Perreo Shaker Layer",
-      "roleDependencies": [],
-      "interactionRules": [],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
+
       "variants": [],
       "provenance": "Authored genre-pack pattern based on Percussion; designed for engine-level recombination rather than literal transcription.",
       "authenticityTags": [
@@ -1969,14 +1919,9 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
         "verse",
         "chorus"
       ],
-      "patternFunction": "Dembow Vocal Pickup",
-      "roleDependencies": [],
-      "interactionRules": [],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
+
       "variants": [],
       "provenance": "Authored genre-pack pattern based on Voice; designed for engine-level recombination rather than literal transcription.",
       "authenticityTags": [
@@ -2090,14 +2035,9 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
       "sectionUsage": [
         "chorus"
       ],
-      "patternFunction": "Reggaeton Hook Dembow Lift",
-      "roleDependencies": [],
-      "interactionRules": [],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
+
       "variants": [],
       "provenance": "Authored genre-pack pattern rebuilt as a single-track dembow performance cell; no mixed-layer recipe.",
       "authenticityTags": [
@@ -2180,14 +2120,9 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
         "breakdown",
         "bridge"
       ],
-      "patternFunction": "Dembow Break / Re-entry",
-      "roleDependencies": [],
-      "interactionRules": [],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
+
       "variants": [],
       "provenance": "Authored genre-pack pattern based on Breaks; designed for engine-level recombination rather than literal transcription.",
       "authenticityTags": [
@@ -2261,14 +2196,9 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
         "chorus",
         "bridge"
       ],
-      "patternFunction": "Modern Dembow Phrase-End Turn",
-      "roleDependencies": [],
-      "interactionRules": [],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
+
       "variants": [],
       "provenance": "Authored genre-pack pattern based on Fill; designed for engine-level recombination rather than literal transcription.",
       "authenticityTags": [
@@ -2345,14 +2275,9 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
         "chorus",
         "ending"
       ],
-      "patternFunction": "Reggaeton Tag Turn",
-      "roleDependencies": [],
-      "interactionRules": [],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
+
       "variants": [],
       "provenance": "Authored genre-pack pattern based on Cadence; designed for engine-level recombination rather than literal transcription.",
       "authenticityTags": [
@@ -2368,96 +2293,6 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
       "enabled": true
     }
   ],
-  "engineProfile": {
-    "phraseLengthsBars": [
-      1,
-      2
-    ],
-    "primaryPulse": [
-      "dembow timeline",
-      "negative space",
-      "kick/bass interlock"
-    ],
-    "rhythmicPriorities": [
-      "dembow timeline",
-      "negative space",
-      "kick/bass interlock"
-    ],
-    "harmonicStrategy": [
-      "short cyclic loops",
-      "modal/pop vamp",
-      "harmonic simplicity in groove-heavy sections"
-    ],
-    "melodicStrategy": [
-      "syncopated vocal cells",
-      "pickup phrases",
-      "short repeated hooks"
-    ],
-    "arrangementStrategy": "Intro can reveal percussion gradually; verses leave air; hooks layer the same core groove rather than replacing it; breaks remove elements before re-entry.",
-    "engineConstraints": [
-      "Do not overfill 16ths; do not make bass a constant kick double; do not erase the two-bar identity.",
-      "Prefer authored genre patterns over generic fallback patterns when an instrument/role match exists.",
-      "Use phrase-end variants and section transitions before introducing unrelated cells."
-    ],
-    "variationStrategy": "Develop density, accent, register, orchestration and phrase position before replacing the core identity."
-  },
-  "techniques": [
-    "dembow timeline preservation",
-    "negative-space density",
-    "sub-bass answer placement",
-    "drop/re-entry"
-  ],
-  "forms": [
-    "intro",
-    "verse",
-    "pre-chorus",
-    "chorus",
-    "breakdown",
-    "bridge",
-    "outro"
-  ],
-  "relationships": [
-    "dembow drums ↔ bass",
-    "kick ↔ synth stab",
-    "drums ↔ vocal space"
-  ],
-  "songBehaviors": [
-    "keep the dembow skeleton audible",
-    "do not fill every sixteenth with percussion",
-    "let bass answer rather than double",
-    "use sparse breaks before peak sections",
-    "Phrase in 1–2 bar units before making a major pattern change.",
-    "Prioritize dembow timeline and negative space as the identity layer.",
-    "Use syncopated vocal cells and pickup phrases for development rather than generic fills."
-  ],
-  "instrumentIdeas": {
-    "sub-bass": [
-      "short mono low-end answers to kick",
-      "sustained modern sub notes"
-    ],
-    "drums": [
-      "dry dembow kit"
-    ],
-    "shaker": [
-      "fine sixteenth ghost layer"
-    ],
-    "polysynth": [
-      "short offbeat chord stabs"
-    ],
-    "voice": [
-      "syncopated lead phrase"
-    ]
-  },
-  "combinations": [
-    "Reggaetón + Dancehall",
-    "Dembow + Latin Pop",
-    "Reggaetón + Afrobeats"
-  ],
-  "danceTags": [
-    "social-partner",
-    "festival-fusion",
-    "sensual-fusion"
-  ],
   "tuningSystem": "12-tet",
   "signatureCell": "Dembow kick/snare conversation with a syncopated sub-bass answer",
   "grooveMechanics": {
@@ -2470,11 +2305,4 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
     "Reggaetón ↔ Dancehall / Afrobeats",
     "Reggaetón ↔ Salsa / Bachata"
   ],
-  "transformations": [
-    "trans-density",
-    "trans-anticipation",
-    "trans-accent",
-    "trans-phrase-position",
-    "trans-ensemble-interaction"
-  ]
 };

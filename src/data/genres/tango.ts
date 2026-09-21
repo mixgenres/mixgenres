@@ -582,9 +582,7 @@ export const TANGO_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "modal/tonal traditional context"
-      ],
+
       "difficulty": 1,
       "weight": 0.7,
       "provenance": "Tango catalog rebuild: retained source material or generated structural support pattern.",
@@ -597,28 +595,8 @@ export const TANGO_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 53,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "harmony",
-        "bass"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
-      "interactionRules": [
-        {
-          "id": "tango-interaction-1",
-          "worldId": "tango",
-          "sourceRole": "drums",
-          "targetRole": "bass",
-          "relationship": "reinforce",
-          "description": "Low-end attacks reinforce the main pulse",
-          "timingOffsetSteps": 0,
-          "probability": 0.78
-        }
-      ]
-    },
+
+},
     {
       "id": "tango-marcato-2",
       "worldId": "tango",
@@ -726,9 +704,7 @@ export const TANGO_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "modal/tonal traditional context"
-      ],
+
       "difficulty": 1,
       "weight": 0.7,
       "provenance": "Tango catalog rebuild: retained source material or generated structural support pattern.",
@@ -741,28 +717,8 @@ export const TANGO_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 53,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "harmony",
-        "bass"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
-      "interactionRules": [
-        {
-          "id": "tango-interaction-2",
-          "worldId": "tango",
-          "sourceRole": "voice",
-          "targetRole": "harmony",
-          "relationship": "leaveSpace",
-          "description": "Harmony reduces density under vocal entries",
-          "timingOffsetSteps": 0,
-          "probability": 0.72
-        }
-      ]
-    },
+
+},
     {
       "id": "tango-sincopa",
       "worldId": "tango",
@@ -885,9 +841,7 @@ export const TANGO_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "modal/tonal traditional context"
-      ],
+
       "difficulty": 1,
       "weight": 0.7,
       "provenance": "Tango catalog rebuild: retained source material or generated structural support pattern.",
@@ -900,15 +854,7 @@ export const TANGO_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 53,
       "anticipationOffset": 1,
-      "roleDependencies": [
-        "harmony",
-        "bass"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ]
+
     },
     {
       "id": "tango-arrastre",
@@ -1033,9 +979,7 @@ export const TANGO_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "modal/tonal traditional context"
-      ],
+
       "difficulty": 1,
       "weight": 0.7,
       "provenance": "Tango catalog rebuild: retained source material or generated structural support pattern.",
@@ -1048,27 +992,8 @@ export const TANGO_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 53,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "bass"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
-      "interactionRules": [
-        {
-          "id": "tango-interaction-3",
-          "worldId": "tango",
-          "sourceRole": "lead",
-          "targetRole": "voice",
-          "relationship": "answer",
-          "description": "Lead instrument answers a vocal phrase",
-          "timingOffsetSteps": 2,
-          "probability": 0.58
-        }
-      ]
-    },
+
+},
     {
       "id": "tango-bordoneo",
       "worldId": "tango",
@@ -1211,9 +1136,7 @@ export const TANGO_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "modal/tonal traditional context"
-      ],
+
       "difficulty": 2,
       "weight": 0.7,
       "provenance": "Tango catalog rebuild: retained source material or generated structural support pattern.",
@@ -1226,15 +1149,7 @@ export const TANGO_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 53,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "harmony",
-        "bass"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ]
+
     },
     {
       "id": "tango-332-piazzolla",
@@ -1358,9 +1273,7 @@ export const TANGO_WORLD: GenreWorld = {
           "description": "Accents on 0, 6, 12 layered"
         }
       ],
-      "harmonicContext": [
-        "modal/tonal traditional context"
-      ],
+
       "difficulty": 1,
       "weight": 0.7,
       "provenance": "Tango catalog rebuild: retained source material or generated structural support pattern.",
@@ -1373,28 +1286,8 @@ export const TANGO_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 53,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "harmony",
-        "bass"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
-      "interactionRules": [
-        {
-          "id": "tango-interaction-4",
-          "worldId": "tango",
-          "sourceRole": "bass",
-          "targetRole": "drums",
-          "relationship": "accentWith",
-          "description": "Bass accents align with selected kick/backbeat",
-          "timingOffsetSteps": 0,
-          "probability": 0.65
-        }
-      ]
-    },
+
+},
     {
       "id": "tango-fraseo-bandoneon",
       "worldId": "tango",
@@ -1560,9 +1453,7 @@ export const TANGO_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "modal/tonal traditional context"
-      ],
+
       "difficulty": 3,
       "weight": 0.7,
       "provenance": "Tango catalog rebuild: retained source material or generated structural support pattern.",
@@ -1575,28 +1466,8 @@ export const TANGO_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 53,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "lead",
-        "counterline"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
-      "interactionRules": [
-        {
-          "id": "tango-interaction-5",
-          "worldId": "tango",
-          "sourceRole": "harmony",
-          "targetRole": "lead",
-          "relationship": "leaveSpace",
-          "description": "Accompaniment thins when the instrumental lead",
-          "timingOffsetSteps": 0,
-          "probability": 0.62
-        }
-      ]
-    },
+
+},
     {
       "id": "tango-bandoneon-chords",
       "worldId": "tango",
@@ -1708,9 +1579,7 @@ export const TANGO_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "modal/tonal traditional context"
-      ],
+
       "difficulty": 1,
       "weight": 1,
       "provenance": "Tango catalog rebuild: retained source material or generated structural support pattern.",
@@ -1723,14 +1592,7 @@ export const TANGO_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 53,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "bandoneon"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -1829,9 +1691,7 @@ export const TANGO_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "modal/tonal traditional context"
-      ],
+
       "difficulty": 1,
       "weight": 1,
       "provenance": "Tango catalog rebuild: retained source material or generated structural support pattern.",
@@ -1844,14 +1704,7 @@ export const TANGO_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 53,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "violin"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -1970,9 +1823,7 @@ export const TANGO_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "modal/tonal traditional context"
-      ],
+
       "difficulty": 1,
       "weight": 1,
       "provenance": "Tango catalog rebuild: retained source material or generated structural support pattern.",
@@ -1985,14 +1836,7 @@ export const TANGO_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 53,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "piano"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -2096,9 +1940,7 @@ export const TANGO_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "modal/tonal traditional context"
-      ],
+
       "difficulty": 1,
       "weight": 1,
       "provenance": "Tango catalog rebuild: retained source material or generated structural support pattern.",
@@ -2111,14 +1953,7 @@ export const TANGO_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 53,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "bass"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -2199,19 +2034,8 @@ export const TANGO_WORLD: GenreWorld = {
         "verse",
         "chorus"
       ],
-      "harmonicContext": [
-        "tonal",
-        "modal traditional context",
-        "modal/tonal traditional context"
-      ],
-      "roleDependencies": [
-        "voice"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "tango-phrase-12-v-01",
@@ -2389,20 +2213,8 @@ export const TANGO_WORLD: GenreWorld = {
         "chorus",
         "bridge"
       ],
-      "harmonicContext": [
-        "tonal",
-        "modal traditional context",
-        "modal/tonal traditional context"
-      ],
-      "roleDependencies": [
-        "voice",
-        "lead"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "tango-call-13-v-01",
@@ -2626,19 +2438,8 @@ export const TANGO_WORLD: GenreWorld = {
         "verse",
         "chorus"
       ],
-      "harmonicContext": [
-        "tonal",
-        "modal traditional context",
-        "modal/tonal traditional context"
-      ],
-      "roleDependencies": [
-        "bass"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "tango-anchor-14-v-01",
@@ -2811,19 +2612,8 @@ export const TANGO_WORLD: GenreWorld = {
         "verse",
         "chorus"
       ],
-      "harmonicContext": [
-        "tonal",
-        "modal traditional context",
-        "modal/tonal traditional context"
-      ],
-      "roleDependencies": [
-        "harmony"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "tango-comp-15-v-01",
@@ -2994,20 +2784,8 @@ export const TANGO_WORLD: GenreWorld = {
       "sectionUsage": [
         "intro"
       ],
-      "harmonicContext": [
-        "tonal",
-        "modal traditional context",
-        "modal/tonal traditional context"
-      ],
-      "roleDependencies": [
-        "harmony",
-        "texture"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "tango-intro-16-v-01",
@@ -3218,20 +2996,8 @@ export const TANGO_WORLD: GenreWorld = {
       "sectionUsage": [
         "verse"
       ],
-      "harmonicContext": [
-        "tonal",
-        "modal traditional context",
-        "modal/tonal traditional context"
-      ],
-      "roleDependencies": [
-        "drums",
-        "rhythm-guitar"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "tango-verse-17-v-01",
@@ -3319,90 +3085,6 @@ export const TANGO_WORLD: GenreWorld = {
       "weight": 1,
       "enabled": true
     }
-  ],
-  "techniques": [
-    "staccato martellato",
-    "arrastre glissando",
-    "pizzicato a la bartók / slap",
-    "chiche (behind the bridge scrape)",
-    "tambor (string knocking)",
-    "rubato phrase elastic",
-    "pesado / accentuated downbeat"
-  ],
-  "forms": [
-    "statement",
-    "variation",
-    "instrumental contrast",
-    "corte (cut)",
-    "recapitulation",
-    "coda"
-  ],
-  "relationships": [
-    "piano ↔ bass (marcato unison / division)",
-    "bandoneón ↔ violin (call and response fraseo)",
-    "lead ↔ accompaniment (rubato over strict pulse)",
-    "arrastre ↔ downbeat (anticipatory propulsion)"
-  ],
-  "transformations": [
-    "trans-accent-marcato",
-    "trans-accent-yumba",
-    "trans-anticipation",
-    "trans-phrase-cadence",
-    "trans-syncopation-tresillo",
-    "catalog-v2-density-variation",
-    "catalog-v2-transition-coverage",
-    "catalog-v2-ensemble-interactions"
-  ],
-  "songBehaviors": [
-    "strict rhythmic cadence alternating with fluid lyrical fraseo",
-    "abrupt dynamic cortes and silences",
-    "dense multi-instrumental yumba arrivals",
-    "expressive countermelody weaving between bandoneón and strings",
-    "avoid identical loop repetition by alternating pattern variants",
-    "use fills, breaks, cadences, and bridge textures as structural events",
-    "let lead/voice parts create space and response relationships"
-  ],
-  "instrumentIdeas": {
-    "guitar": [
-      "criollo bordoneo",
-      "marcato rasguido",
-      "octave melody",
-      "slap accents"
-    ],
-    "bass": [
-      "pesado downbeats",
-      "chromatic arrastre",
-      "contratiempo syncopations"
-    ],
-    "sax": [
-      "expressive tango fraseo",
-      "counter-line to piano",
-      "staccato horn stabs"
-    ],
-    "piano": [
-      "yumba accents",
-      "rapid upper register campanitas",
-      "heavy marcato"
-    ],
-    "drums": [
-      "snare rim clicks on 4",
-      "kick accents matching piano yumba",
-      "candombe-derived hi-hat"
-    ],
-    "bandoneon": [
-      "staccato bandoneon marcato and arrastre accents"
-    ]
-  },
-  "combinations": [
-    "Tango + Jazz",
-    "Tango + Flamenco",
-    "Tango + Funk",
-    "Tango + Afro-Cuban"
-  ],
-  "danceTags": [
-    "social-partner",
-    "blues-fusion-compatible",
-    "listening"
   ],
   "tuningSystem": "12-tet",
   "signatureCell": "Marcato en 4 with heavy Pesado on beats 1 & 3 and chromatic arrastre",

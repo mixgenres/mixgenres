@@ -132,7 +132,18 @@ const uniquePatterns = new Map<string, MusicalPattern>();
 for (const source of Object.values(SOURCE_WORLDS)) {
   for (const raw of source.patterns) {
     const p = normalizePattern(raw);
-    const signature = [p.meter, p.cycleLength, p.subdivisions, p.category, (p.onsetGrid ?? []).join(','), (p.roles ?? []).slice().sort().join(',')].join('|');
+    // Rhythmic onset similarity is not sufficient to call two authored patterns
+    // duplicates. A ska break, a final shout, and a samba break can share a grid
+    // while serving completely different musical functions. Deduplicate only when
+    // the musical identity is effectively identical.
+    const signature = [
+      p.meter, p.cycleLength, p.subdivisions, p.category, p.family,
+      cleanPatternName(p.name).toLowerCase(),
+      (p.onsetGrid ?? []).join(','),
+      (p.roles ?? []).slice().sort().join(','),
+      (p.instruments ?? []).slice().sort().join(','),
+      (p.tags ?? []).slice().sort().join(',')
+    ].join('|');
     if (!uniquePatterns.has(signature)) uniquePatterns.set(signature, p);
   }
 }
@@ -163,4 +174,3 @@ const PATTERN_FEELS: Record<string, PatternFeel[]> = {
   'jazz-walking-bass': ['hypnotic'], 'elec-offbeat-hats': ['hypnotic'], 'hiphop-trap-hats': ['rolling'],
 };
 export function feelsForPattern(id: string): PatternFeel[] { return PATTERN_FEELS[id] ?? []; }
-export function patternsForFeel(feel: PatternFeel): MusicalPattern[] { return ALL_PATTERNS.filter(p => (PATTERN_FEELS[p.id] ?? []).includes(feel)); }

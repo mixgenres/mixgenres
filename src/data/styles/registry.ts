@@ -1,6 +1,5 @@
 import { SongStyle } from './schema';
-import { GENRE_FORMS, TEMPOS } from '../genreForms';
-import { GENRE_WORLDS, GENRE_WORLDS_BY_ID, GENRE_NAMES } from '../genres';
+import { GENRE_WORLDS, GENRE_NAMES } from '../genres';
 import { buildCuratedStyles, assembleStylePatterns } from './catalog';
 import { applyStyleDialect, dialectPatternsForStyle } from './styleDialect';
 import { ALL_PATTERNS, PATTERNS_BY_WORLD, PATTERNS_BY_ID, GENRE_SOURCE_MAP } from '../genres';
@@ -67,7 +66,6 @@ function shortText(value: string): string {
   return String(value ?? '').replace(/\s+/g, ' ').trim().split(' ').slice(0, 6).join(' ');
 }
 
-function sourceTempo(id: string): number { return GENRE_RHYTHM[id]?.bpm ?? TEMPOS[id] ?? 120; }
 
 function styleFromSeed(worldId: string, seed: any, index: number): SongStyle {
   const contract = contractForGenre(worldId);
@@ -164,9 +162,7 @@ styles = styles.map((style, index) => applyStyleDialect(style, index));
 const dialectPatterns = styles.flatMap((style, index) => dialectPatternsForStyle(style, index));
 const curatedPatterns = [...assembleStylePatterns(styles, ALL_PATTERNS), ...dialectPatterns];
 
-// The compact runtime pattern registry exposes only definitions reachable by
-// the supported genre hierarchy. Shared patterns appear in multiple genre
-// views without being cloned.
+// The runtime registry exposes shared pattern definitions through genre views.
 ALL_PATTERNS.splice(0, ALL_PATTERNS.length, ...curatedPatterns);
 for (const key of Object.keys(PATTERNS_BY_WORLD)) delete PATTERNS_BY_WORLD[key];
 for (const key of Object.keys(PATTERNS_BY_ID)) delete PATTERNS_BY_ID[key];
@@ -178,9 +174,7 @@ for (const pattern of curatedPatterns) {
   }
 }
 
-// Every style has a bounded reusable pattern contract; no song owns a pattern.
-// The curated catalog is the musical source of truth. Dialect cells supplement
-// authored material; they must never replace it.
+// Styles select from shared authored patterns; starter cells supplement them.
 for (const style of styles) {
   const dialect = dialectPatterns.filter(p => p.id.startsWith(`style-${style.id}-`));
   const curated = Array.from(new Set(style.patterns?.allowed ?? []));
@@ -203,4 +197,4 @@ export function getCanonicalStyle(genreId: string): SongStyle {
   return getStylesForGenre(genreId).find(s => s.canonical) ?? getStylesForGenre(genreId)[0] ?? ALL_STYLES[0];
 }
 
-export { STARTER_INSTRUMENTS, GENRE_RHYTHM };
+

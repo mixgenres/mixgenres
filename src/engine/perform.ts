@@ -444,7 +444,6 @@ export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
     const isBass = prof.role === 'bass';
     const isMelodic = melodyLayer.has(t.id);
     const layer = melodyLayer.get(t.id) ?? 0;
-    const baseResolvedStyle = resolveStyle({ genreId: sheet.worldId, styleId: sheet.styleId ?? getCanonicalStyle(sheet.worldId).id });
 
     for (let i = 0; i < list.length; i++) {
       const a = list[i];
@@ -725,7 +724,7 @@ export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
     const prof = voiceProfile(t.instrumentId);
     const drum = !!(def.kit || def.drum);
 
-    const preset = !drum ? effectiveSoundfontPreset(t.instrumentId) : null;
+    const preset = effectiveSoundfontPreset(t.instrumentId, finalStyle.primaryGenre);
     programs.push({ time: 0, channel, program: preset?.program ?? (drum ? 0 : def.program ?? 0), bankMSB: preset?.bankMSB, bankLSB: preset?.bankLSB, soundfontId: preset?.soundfontId, drum });
 
     const trim = Math.pow(10, prof.trim / 20);

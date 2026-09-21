@@ -414,9 +414,7 @@ export const SWING_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 2,
       "weight": 1,
       "provenance": "Swing catalog rebuild: retained source material or generated structural support pattern.",
@@ -429,14 +427,7 @@ export const SWING_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 66,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "drums"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -556,9 +547,7 @@ export const SWING_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 1,
       "weight": 1,
       "provenance": "Swing catalog rebuild: retained source material or generated structural support pattern.",
@@ -571,14 +560,7 @@ export const SWING_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 66,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "bass"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -680,9 +662,7 @@ export const SWING_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 1,
       "weight": 1,
       "provenance": "Swing catalog rebuild: retained source material or generated structural support pattern.",
@@ -695,14 +675,7 @@ export const SWING_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 66,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "bass"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -804,9 +777,7 @@ export const SWING_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 1,
       "weight": 1,
       "provenance": "Swing catalog rebuild: retained source material or generated structural support pattern.",
@@ -819,26 +790,8 @@ export const SWING_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 66,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "keys"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
-      "interactionRules": [
-        {
-          "id": "swing-interaction-1",
-          "worldId": "swing",
-          "sourceRole": "drums",
-          "targetRole": "bass",
-          "relationship": "reinforce",
-          "description": "Low-end attacks reinforce the main pulse",
-          "timingOffsetSteps": 0,
-          "probability": 0.78
-        }
-      ],
+
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -998,9 +951,7 @@ export const SWING_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 3,
       "weight": 1,
       "provenance": "Swing catalog rebuild: retained source material or generated structural support pattern.",
@@ -1013,26 +964,8 @@ export const SWING_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 66,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "drums"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
-      "interactionRules": [
-        {
-          "id": "swing-interaction-2",
-          "worldId": "swing",
-          "sourceRole": "voice",
-          "targetRole": "harmony",
-          "relationship": "leaveSpace",
-          "description": "Harmony reduces density under vocal entries",
-          "timingOffsetSteps": 0,
-          "probability": 0.72
-        }
-      ],
+
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -1179,9 +1112,7 @@ export const SWING_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 2,
       "weight": 1,
       "provenance": "Swing catalog rebuild: retained source material or generated structural support pattern.",
@@ -1194,26 +1125,8 @@ export const SWING_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 66,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "drums"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
-      "interactionRules": [
-        {
-          "id": "swing-interaction-3",
-          "worldId": "swing",
-          "sourceRole": "lead",
-          "targetRole": "voice",
-          "relationship": "answer",
-          "description": "Lead instrument answers a vocal phrase",
-          "timingOffsetSteps": 2,
-          "probability": 0.58
-        }
-      ],
+
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -1303,9 +1216,7 @@ export const SWING_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 1,
       "weight": 1,
       "provenance": "Swing catalog rebuild: retained source material or generated structural support pattern.",
@@ -1318,26 +1229,8 @@ export const SWING_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 66,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "drums"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
-      "interactionRules": [
-        {
-          "id": "swing-interaction-4",
-          "worldId": "swing",
-          "sourceRole": "bass",
-          "targetRole": "drums",
-          "relationship": "accentWith",
-          "description": "Bass accents align with selected kick/backbeat",
-          "timingOffsetSteps": 0,
-          "probability": 0.65
-        }
-      ],
+
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -1446,9 +1339,7 @@ export const SWING_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 1,
       "weight": 1,
       "provenance": "Swing catalog rebuild: retained source material or generated structural support pattern.",
@@ -1461,26 +1352,8 @@ export const SWING_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 66,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "keys"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
-      "interactionRules": [
-        {
-          "id": "swing-interaction-5",
-          "worldId": "swing",
-          "sourceRole": "harmony",
-          "targetRole": "lead",
-          "relationship": "leaveSpace",
-          "description": "Accompaniment thins when the instrumental lead",
-          "timingOffsetSteps": 0,
-          "probability": 0.62
-        }
-      ],
+
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -1670,9 +1543,7 @@ export const SWING_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 2,
       "weight": 0.7,
       "provenance": "Swing catalog rebuild: retained source material or generated structural support pattern.",
@@ -1685,14 +1556,7 @@ export const SWING_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 66,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "drums"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -1774,19 +1638,8 @@ export const SWING_WORLD: GenreWorld = {
         "verse",
         "chorus"
       ],
-      "harmonicContext": [
-        "jazz dominant",
-        "ii-V-I",
-        "tonal or modal context"
-      ],
-      "roleDependencies": [
-        "voice"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "swing-phrase-10-v-01",
@@ -1965,20 +1818,8 @@ export const SWING_WORLD: GenreWorld = {
         "chorus",
         "bridge"
       ],
-      "harmonicContext": [
-        "jazz dominant",
-        "ii-V-I",
-        "tonal or modal context"
-      ],
-      "roleDependencies": [
-        "voice",
-        "lead"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "swing-call-11-v-01",
@@ -2203,19 +2044,8 @@ export const SWING_WORLD: GenreWorld = {
         "verse",
         "chorus"
       ],
-      "harmonicContext": [
-        "jazz dominant",
-        "ii-V-I",
-        "tonal or modal context"
-      ],
-      "roleDependencies": [
-        "bass"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "swing-anchor-12-v-01",
@@ -2387,19 +2217,8 @@ export const SWING_WORLD: GenreWorld = {
         "verse",
         "chorus"
       ],
-      "harmonicContext": [
-        "jazz dominant",
-        "ii-V-I",
-        "tonal or modal context"
-      ],
-      "roleDependencies": [
-        "harmony"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "swing-comp-13-v-01",
@@ -2572,20 +2391,8 @@ export const SWING_WORLD: GenreWorld = {
       "sectionUsage": [
         "intro"
       ],
-      "harmonicContext": [
-        "jazz dominant",
-        "ii-V-I",
-        "tonal or modal context"
-      ],
-      "roleDependencies": [
-        "harmony",
-        "texture"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "swing-intro-14-v-01",
@@ -2813,20 +2620,8 @@ export const SWING_WORLD: GenreWorld = {
       "sectionUsage": [
         "verse"
       ],
-      "harmonicContext": [
-        "jazz dominant",
-        "ii-V-I",
-        "tonal or modal context"
-      ],
-      "roleDependencies": [
-        "drums",
-        "rhythm-guitar"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "swing-verse-15-v-01",
@@ -2998,20 +2793,8 @@ export const SWING_WORLD: GenreWorld = {
       "sectionUsage": [
         "chorus"
       ],
-      "harmonicContext": [
-        "jazz dominant",
-        "ii-V-I",
-        "tonal or modal context"
-      ],
-      "roleDependencies": [
-        "harmony",
-        "drums"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "swing-chorus-16-v-01",
@@ -3234,17 +3017,8 @@ export const SWING_WORLD: GenreWorld = {
         "chorus",
         "bridge"
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
-      "roleDependencies": [
-        "voice"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "swing-voice-phrasing-v1",
@@ -3318,65 +3092,6 @@ export const SWING_WORLD: GenreWorld = {
       "weight": 0.8,
       "enabled": true
     }
-  ],
-  "techniques": [
-    "spang-a-lang ride technique",
-    "feathering the bass drum",
-    "walking bass passing tones",
-    "Freddie Green acoustic strumming"
-  ],
-  "forms": [
-    "32-bar AABA standard",
-    "12-bar blues",
-    "head-solo-head",
-    "shout chorus"
-  ],
-  "relationships": [
-    "ride cymbal ↔ walking bass (unshakable pulse lock)",
-    "hi-hat pedal ↔ piano left hand (2 and 4 backbeat snap)"
-  ],
-  "transformations": [
-    "trans-density-dense",
-    "trans-anticipation",
-    "trans-phrase-cadence",
-    "catalog-v2-density-variation",
-    "catalog-v2-transition-coverage",
-    "catalog-v2-ensemble-interactions"
-  ],
-  "songBehaviors": [
-    "buoyant rhythmic swing with elastic dynamic swells between conversational solos and thunderous shout choruses",
-    "avoid identical loop repetition by alternating pattern variants",
-    "use fills, breaks, cadences, and bridge textures as structural events",
-    "let lead/voice parts create space and response relationships"
-  ],
-  "instrumentIdeas": {
-    "drums": [
-      "22-inch vintage K ride with sizzle and light feathered bass drum"
-    ],
-    "bass": [
-      "upright acoustic bass with gut strings and deep percussive attack"
-    ],
-    "piano": [
-      "grand piano with crisp percussive chord bites and lyrical single-note runs"
-    ],
-    "trumpet": [
-      "horn-head and shout chorus"
-    ],
-    "voice": [
-      "vocal swing phrasing where appropriate"
-    ]
-  },
-  "combinations": [
-    "Swing + Blues",
-    "Swing + Funk",
-    "Swing + WCS",
-    "Swing + Pop"
-  ],
-  "danceTags": [
-    "social-partner",
-    "wcs-compatible",
-    "solo-vernacular",
-    "listening"
   ],
   "tuningSystem": "12-tet",
   "signatureCell": "Spang-a-lang ride cymbal phrasing with four-to-the-bar acoustic walking bass and brass ensemble punch hits",

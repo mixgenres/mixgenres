@@ -1,12 +1,11 @@
 import { ResolvedStyle, FormStepTemplate, RuleRef, GestureRule } from '../data/styles/schema';
 import { resolveStyle } from '../data/styles/resolve';
 import { getCanonicalStyle } from '../data/styles/registry';
-import { KeyInfo, inferKey, transposeChordSymbol, chordTemplateInKey } from './theory';
+import { KeyInfo, inferKey, chordTemplateInKey } from './theory';
 import { GrooveProfile, rand01, grooveForStyle } from './groove';
 import { instrument } from '../data/instruments';
 import { roleForInstrument } from './arrange';
 import { Role, InstrumentKind } from '../types';
-import { roomFor } from './mixer';
 import { suggestedPaletteForGenre } from '../data/chordPalette';
 
 export interface PlanSection {
@@ -176,12 +175,18 @@ export function planSong(
     ];
   }
 
-  // 5. HARMONY: choose reusable four-chord cells from the catalog.
-  const chordCells = suggestedPaletteForGenre(genreId).map(cell => cell.chords as string[]);
-
+  // 5. HARMONY: use section-specific style progressions before the shared palette.
+  const sectionProgressions = (resolved.harmony?.sectionProgressions ?? {}) as Record<string, string[]>;
+  const chordCells = (resolved.harmony?.progressionTemplates ?? []).map(t => t.value as string[]);
+  const paletteCells = suggestedPaletteForGenre(genreId).map(cell => cell.chords as string[]);
 
   const sections: PlanSection[] = chosenTemplate.map((step, idx) => {
-    const cell = chordCells[idx % Math.max(1, chordCells.length)] ?? ['C','G','Am','F'];
+    const sectionCell = sectionProgressions[step.key] ?? sectionProgressions[step.kind];
+    const cell = sectionCell?.length
+      ? sectionCell
+      : chordCells[idx % Math.max(1, chordCells.length)]
+        ?? paletteCells[idx % Math.max(1, paletteCells.length)]
+        ?? ['C','G','Am','F'];
     const rawChords = chordTemplateInKey(cell, baseKeyInfo);
 
     const energy = intensityToEnergy(step.intensity);
@@ -223,10 +228,7 @@ export function planSong(
     chosenInstruments = defaultRosterMap[genreId] || ['drums', 'electric-bass', 'piano', 'electric-guitar', 'synth-lead'];
   }
 
-  // A style owns its ensemble. Never pad it with generic instruments: doing
-  // so was a major source of culturally incorrect six-piece/genre-blended
-  // arrangements. Styles are capped at five voices, but may intentionally use
-  // fewer when the tradition calls for a sparse ensemble.
+  // Use the style's ensemble; do not pad it with generic instruments.
   const uniqueInstruments: string[] = [];
   for (const inst of chosenInstruments) {
     if (!uniqueInstruments.includes(inst) && uniqueInstruments.length < 5) {

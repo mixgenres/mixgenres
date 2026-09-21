@@ -757,14 +757,9 @@ export const REGGAE_DUB_WORLD: GenreWorld = {
         "verse",
         "chorus"
       ],
-      "patternFunction": null,
-      "roleDependencies": [],
-      "interactionRules": [],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
+
       "variants": [
         {
           "id": "rd-one-drop-v-sparse",
@@ -886,14 +881,9 @@ export const REGGAE_DUB_WORLD: GenreWorld = {
         "chorus",
         "solo"
       ],
-      "patternFunction": null,
-      "roleDependencies": [],
-      "interactionRules": [],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
+
       "variants": [
         {
           "id": "rd-skank-v-sparse",
@@ -1017,14 +1007,9 @@ export const REGGAE_DUB_WORLD: GenreWorld = {
         "chorus",
         "solo"
       ],
-      "patternFunction": null,
-      "roleDependencies": [],
-      "interactionRules": [],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
+
       "variants": [
         {
           "id": "rd-reggae-bass-v-sparse",
@@ -1146,14 +1131,9 @@ export const REGGAE_DUB_WORLD: GenreWorld = {
         "bridge",
         "solo"
       ],
-      "patternFunction": null,
-      "roleDependencies": [],
-      "interactionRules": [],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
+
       "variants": [
         {
           "id": "rd-dub-drop-v-sparse",
@@ -1267,14 +1247,9 @@ export const REGGAE_DUB_WORLD: GenreWorld = {
         "verse",
         "chorus"
       ],
-      "patternFunction": null,
-      "roleDependencies": [],
-      "interactionRules": [],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
+
       "variants": [
         {
           "id": "rd-steppers-v-sparse",
@@ -1379,14 +1354,9 @@ export const REGGAE_DUB_WORLD: GenreWorld = {
         "verse",
         "chorus"
       ],
-      "patternFunction": "One Drop Core",
-      "roleDependencies": [],
-      "interactionRules": [],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
+
       "variants": [],
       "provenance": "Authored genre-pack pattern based on Roots Reggae; designed for engine-level recombination rather than literal transcription.",
       "authenticityTags": [
@@ -1454,14 +1424,9 @@ export const REGGAE_DUB_WORLD: GenreWorld = {
         "verse",
         "chorus"
       ],
-      "patternFunction": "Skank Guitar",
-      "roleDependencies": [],
-      "interactionRules": [],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
+
       "variants": [],
       "provenance": "Authored genre-pack pattern based on Roots Reggae; designed for engine-level recombination rather than literal transcription.",
       "authenticityTags": [
@@ -1537,14 +1502,9 @@ export const REGGAE_DUB_WORLD: GenreWorld = {
         "chorus",
         "solo"
       ],
-      "patternFunction": "Reggae Bass Lead",
-      "roleDependencies": [],
-      "interactionRules": [],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
+
       "variants": [],
       "provenance": "Authored genre-pack pattern based on Roots Reggae; designed for engine-level recombination rather than literal transcription.",
       "authenticityTags": [
@@ -1611,14 +1571,9 @@ export const REGGAE_DUB_WORLD: GenreWorld = {
         "verse",
         "chorus"
       ],
-      "patternFunction": "Bubble Organ",
-      "roleDependencies": [],
-      "interactionRules": [],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
+
       "variants": [],
       "provenance": "Authored genre-pack pattern based on Roots Reggae; designed for engine-level recombination rather than literal transcription.",
       "authenticityTags": [
@@ -1685,14 +1640,9 @@ export const REGGAE_DUB_WORLD: GenreWorld = {
         "breakdown",
         "bridge"
       ],
-      "patternFunction": "Dub Echo Fragment",
-      "roleDependencies": [],
-      "interactionRules": [],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
+
       "variants": [],
       "provenance": "Authored genre-pack pattern based on Dub; designed for engine-level recombination rather than literal transcription.",
       "authenticityTags": [
@@ -1761,14 +1711,9 @@ export const REGGAE_DUB_WORLD: GenreWorld = {
       "sectionUsage": [
         "breakdown"
       ],
-      "patternFunction": "Dub Dropout",
-      "roleDependencies": [],
-      "interactionRules": [],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
+
       "variants": [],
       "provenance": "Authored genre-pack pattern based on Dub; designed for engine-level recombination rather than literal transcription.",
       "authenticityTags": [
@@ -1837,14 +1782,9 @@ export const REGGAE_DUB_WORLD: GenreWorld = {
         "chorus",
         "solo"
       ],
-      "patternFunction": "Steppers Kick Grid",
-      "roleDependencies": [],
-      "interactionRules": [],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
+
       "variants": [],
       "provenance": "Authored genre-pack pattern based on Digital Reggae; designed for engine-level recombination rather than literal transcription.",
       "authenticityTags": [
@@ -1914,14 +1854,9 @@ export const REGGAE_DUB_WORLD: GenreWorld = {
         "verse",
         "chorus"
       ],
-      "patternFunction": "Reggae Percussion Skitter",
-      "roleDependencies": [],
-      "interactionRules": [],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
+
       "variants": [],
       "provenance": "Authored genre-pack pattern based on Percussion; designed for engine-level recombination rather than literal transcription.",
       "authenticityTags": [
@@ -1990,27 +1925,9 @@ export const REGGAE_DUB_WORLD: GenreWorld = {
         "chorus",
         "bridge"
       ],
-      "patternFunction": "Dub Horn Reply",
-      "roleDependencies": [
-        "melody"
-      ],
-      "interactionRules": [
-        {
-          "id": "rd-14-dub-horn-reply-answer",
-          "sourceRole": "lead",
-          "targetRole": "melody",
-          "relationship": "answer",
-          "timingOffsetSteps": 2,
-          "probability": 0.75,
-          "worldId": "reggae-dub",
-          "description": "Enter only after the source phrase"
-        }
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
+
       "variants": [],
       "provenance": "Authored genre-pack pattern based on Dub / Roots; designed for engine-level recombination rather than literal transcription.",
       "authenticityTags": [
@@ -2078,14 +1995,9 @@ export const REGGAE_DUB_WORLD: GenreWorld = {
         "bridge",
         "ending"
       ],
-      "patternFunction": "Dub Version Tag",
-      "roleDependencies": [],
-      "interactionRules": [],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
+
       "variants": [],
       "provenance": "Authored genre-pack pattern based on Dub; designed for engine-level recombination rather than literal transcription.",
       "authenticityTags": [
@@ -2101,97 +2013,6 @@ export const REGGAE_DUB_WORLD: GenreWorld = {
       "enabled": true
     }
   ],
-  "engineProfile": {
-    "phraseLengthsBars": [
-      1,
-      2,
-      4
-    ],
-    "primaryPulse": [
-      "bass foreground",
-      "offbeat skank",
-      "space / echo"
-    ],
-    "rhythmicPriorities": [
-      "bass foreground",
-      "offbeat skank",
-      "space / echo"
-    ],
-    "harmonicStrategy": [
-      "vamp and repeated progression",
-      "bass-driven harmonic definition",
-      "minimal chord movement"
-    ],
-    "melodicStrategy": [
-      "bass melody",
-      "vocal/horn call-response",
-      "dub fragments"
-    ],
-    "arrangementStrategy": "Establish riddim, introduce vocal/hook, create a version, strip to bass/drums/echo, then return or fade.",
-    "engineConstraints": [
-      "Do not bury bass; do not use a constant kick pattern for roots; do not turn dub into continuous ambient wash.",
-      "Prefer authored genre patterns over generic fallback patterns when an instrument/role match exists.",
-      "Use phrase-end variants and section transitions before introducing unrelated cells."
-    ],
-    "variationStrategy": "Develop density, accent, register, orchestration and phrase position before replacing the core identity."
-  },
-  "techniques": [
-    "one-drop placement",
-    "bass foregrounding",
-    "skank subtraction",
-    "dub dropout/echo cues",
-    "steppers conversion"
-  ],
-  "forms": [
-    "intro",
-    "verse",
-    "chorus",
-    "dub break",
-    "instrumental",
-    "version",
-    "outro"
-  ],
-  "relationships": [
-    "bass ↔ drums",
-    "skank ↔ bass",
-    "dub fragment ↔ lead/voice"
-  ],
-  "songBehaviors": [
-    "keep bass legible",
-    "leave space for dub effects",
-    "do not overfill percussion",
-    "make drops structural rather than merely quiet",
-    "Phrase in 1–4 bar units before making a major pattern change.",
-    "Prioritize bass foreground and offbeat skank as the identity layer.",
-    "Use bass melody and vocal/horn call-response for development rather than generic fills."
-  ],
-  "instrumentIdeas": {
-    "bass": [
-      "deep melodic line"
-    ],
-    "electric-guitar": [
-      "muted offbeat skank"
-    ],
-    "organ": [
-      "bubble/skank"
-    ],
-    "drums": [
-      "one-drop / steppers"
-    ],
-    "sub-bass": [
-      "dub extension"
-    ]
-  },
-  "combinations": [
-    "Reggae + Dub Techno",
-    "Reggae + Ska",
-    "Dub + Ambient"
-  ],
-  "danceTags": [
-    "social-partner",
-    "listening",
-    "festival-fusion"
-  ],
   "tuningSystem": "12-tet",
   "signatureCell": "One-drop/steppers drum skeleton with offbeat skank and bass-led space",
   "grooveMechanics": {
@@ -2204,11 +2025,4 @@ export const REGGAE_DUB_WORLD: GenreWorld = {
     "Reggae ↔ Ska",
     "Dub ↔ House/Techno"
   ],
-  "transformations": [
-    "trans-density",
-    "trans-anticipation",
-    "trans-accent",
-    "trans-phrase-position",
-    "trans-ensemble-interaction"
-  ]
 };

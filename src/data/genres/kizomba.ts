@@ -782,9 +782,7 @@ export const KIZOMBA_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 2,
       "weight": 1,
       "provenance": "Kizomba catalog rebuild: retained source material or generated structural support pattern.",
@@ -797,15 +795,7 @@ export const KIZOMBA_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 50,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "drums",
-        "percussion"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -944,9 +934,7 @@ export const KIZOMBA_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 2,
       "weight": 1,
       "provenance": "Kizomba catalog rebuild: retained source material or generated structural support pattern.",
@@ -959,14 +947,7 @@ export const KIZOMBA_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 50,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "percussion"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -1107,9 +1088,7 @@ export const KIZOMBA_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 2,
       "weight": 1,
       "provenance": "Kizomba catalog rebuild: retained source material or generated structural support pattern.",
@@ -1122,26 +1101,8 @@ export const KIZOMBA_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 50,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "guitar"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
-      "interactionRules": [
-        {
-          "id": "kizomba-interaction-1",
-          "worldId": "kizomba",
-          "sourceRole": "drums",
-          "targetRole": "bass",
-          "relationship": "reinforce",
-          "description": "Low-end attacks reinforce the main pulse",
-          "timingOffsetSteps": 0,
-          "probability": 0.78
-        }
-      ],
+
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -1252,9 +1213,7 @@ export const KIZOMBA_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 1,
       "weight": 1,
       "provenance": "Kizomba catalog rebuild: retained source material or generated structural support pattern.",
@@ -1267,26 +1226,8 @@ export const KIZOMBA_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 50,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "bass"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
-      "interactionRules": [
-        {
-          "id": "kizomba-interaction-2",
-          "worldId": "kizomba",
-          "sourceRole": "voice",
-          "targetRole": "harmony",
-          "relationship": "leaveSpace",
-          "description": "Harmony reduces density under vocal entries",
-          "timingOffsetSteps": 0,
-          "probability": 0.72
-        }
-      ],
+
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -1406,9 +1347,7 @@ export const KIZOMBA_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 1,
       "weight": 1,
       "provenance": "Kizomba catalog rebuild: retained source material or generated structural support pattern.",
@@ -1421,26 +1360,8 @@ export const KIZOMBA_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 50,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "drums"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
-      "interactionRules": [
-        {
-          "id": "kizomba-interaction-3",
-          "worldId": "kizomba",
-          "sourceRole": "lead",
-          "targetRole": "voice",
-          "relationship": "answer",
-          "description": "Lead instrument answers a vocal phrase",
-          "timingOffsetSteps": 2,
-          "probability": 0.58
-        }
-      ],
+
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -1595,9 +1516,7 @@ export const KIZOMBA_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 3,
       "weight": 1,
       "provenance": "Kizomba catalog rebuild: retained source material or generated structural support pattern.",
@@ -1610,26 +1529,8 @@ export const KIZOMBA_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 50,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "drums"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
-      "interactionRules": [
-        {
-          "id": "kizomba-interaction-4",
-          "worldId": "kizomba",
-          "sourceRole": "bass",
-          "targetRole": "drums",
-          "relationship": "accentWith",
-          "description": "Bass accents align with selected kick/backbeat",
-          "timingOffsetSteps": 0,
-          "probability": 0.65
-        }
-      ],
+
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -1758,9 +1659,7 @@ export const KIZOMBA_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 2,
       "weight": 1,
       "provenance": "Kizomba catalog rebuild: retained source material or generated structural support pattern.",
@@ -1773,26 +1672,8 @@ export const KIZOMBA_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 50,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "keys"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
-      "interactionRules": [
-        {
-          "id": "kizomba-interaction-5",
-          "worldId": "kizomba",
-          "sourceRole": "harmony",
-          "targetRole": "lead",
-          "relationship": "leaveSpace",
-          "description": "Accompaniment thins when the instrumental lead",
-          "timingOffsetSteps": 0,
-          "probability": 0.62
-        }
-      ],
+
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -1911,9 +1792,7 @@ export const KIZOMBA_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 1,
       "weight": 1,
       "provenance": "Kizomba catalog rebuild: retained source material or generated structural support pattern.",
@@ -1926,14 +1805,7 @@ export const KIZOMBA_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 50,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "voice"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
       "articulations": [
         "breath",
         "phrase-end"
@@ -2015,19 +1887,8 @@ export const KIZOMBA_WORLD: GenreWorld = {
         "verse",
         "chorus"
       ],
-      "harmonicContext": [
-        "tonal",
-        "section-dependent",
-        "tonal or modal context"
-      ],
-      "roleDependencies": [
-        "voice"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "kizomba-phrase-9-v-01",
@@ -2201,19 +2062,8 @@ export const KIZOMBA_WORLD: GenreWorld = {
         "chorus",
         "bridge"
       ],
-      "harmonicContext": [
-        "tonal",
-        "section-dependent",
-        "tonal or modal context"
-      ],
-      "roleDependencies": [
-        "voice"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "kizomba-call-10-v-01",
@@ -2435,19 +2285,8 @@ export const KIZOMBA_WORLD: GenreWorld = {
         "verse",
         "chorus"
       ],
-      "harmonicContext": [
-        "tonal",
-        "section-dependent",
-        "tonal or modal context"
-      ],
-      "roleDependencies": [
-        "bass"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "kizomba-anchor-11-v-01",
@@ -2622,19 +2461,8 @@ export const KIZOMBA_WORLD: GenreWorld = {
         "verse",
         "chorus"
       ],
-      "harmonicContext": [
-        "tonal",
-        "section-dependent",
-        "tonal or modal context"
-      ],
-      "roleDependencies": [
-        "harmony"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "kizomba-comp-12-v-01",
@@ -2813,20 +2641,8 @@ export const KIZOMBA_WORLD: GenreWorld = {
       "sectionUsage": [
         "intro"
       ],
-      "harmonicContext": [
-        "tonal",
-        "section-dependent",
-        "tonal or modal context"
-      ],
-      "roleDependencies": [
-        "harmony",
-        "texture"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "kizomba-intro-13-v-01",
@@ -3061,20 +2877,8 @@ export const KIZOMBA_WORLD: GenreWorld = {
       "sectionUsage": [
         "verse"
       ],
-      "harmonicContext": [
-        "tonal",
-        "section-dependent",
-        "tonal or modal context"
-      ],
-      "roleDependencies": [
-        "drums",
-        "rhythm-guitar"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "kizomba-verse-14-v-01",
@@ -3262,20 +3066,8 @@ export const KIZOMBA_WORLD: GenreWorld = {
       "sectionUsage": [
         "chorus"
       ],
-      "harmonicContext": [
-        "tonal",
-        "section-dependent",
-        "tonal or modal context"
-      ],
-      "roleDependencies": [
-        "harmony",
-        "drums"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "kizomba-chorus-15-v-01",
@@ -3511,20 +3303,8 @@ export const KIZOMBA_WORLD: GenreWorld = {
         "interlude",
         "development"
       ],
-      "harmonicContext": [
-        "tonal",
-        "section-dependent",
-        "tonal or modal context"
-      ],
-      "roleDependencies": [
-        "harmony",
-        "lead"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "kizomba-bridge-16-v-01",
@@ -3748,19 +3528,8 @@ export const KIZOMBA_WORLD: GenreWorld = {
         "turnaround",
         "ending"
       ],
-      "harmonicContext": [
-        "tonal",
-        "section-dependent",
-        "tonal or modal context"
-      ],
-      "roleDependencies": [
-        "drums"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "kizomba-fill-17-v-01",
@@ -3877,69 +3646,6 @@ export const KIZOMBA_WORLD: GenreWorld = {
       "weight": 0.7,
       "enabled": true
     }
-  ],
-  "techniques": [
-    "dikanza scraping",
-    "sub-bass pitch drops",
-    "guitar fingerstyle syncopation",
-    "linear stop-time cadences"
-  ],
-  "forms": [
-    "intro",
-    "verse",
-    "chorus",
-    "tarraxinha drop",
-    "verse",
-    "chorus",
-    "coda"
-  ],
-  "relationships": [
-    "kick ↔ sub-bass (tight batida lock)",
-    "dikanza ↔ hi-hat (continuous 16th shimmer)",
-    "voice ↔ guitar arpeggio response"
-  ],
-  "transformations": [
-    "trans-density-sparse",
-    "trans-anticipation",
-    "trans-density-dense",
-    "trans-phrase-cadence",
-    "catalog-v2-density-variation",
-    "catalog-v2-transition-coverage",
-    "catalog-v2-ensemble-interactions"
-  ],
-  "songBehaviors": [
-    "hypnotic, uninterrupted groove flow designed for close partner dance",
-    "subtle dynamic builds where guitar and synth layers enter gradually",
-    "avoid identical loop repetition by alternating pattern variants",
-    "use fills, breaks, cadences, and bridge textures as structural events",
-    "let lead/voice parts create space and response relationships"
-  ],
-  "instrumentIdeas": {
-    "bass": [
-      "deep 808/sub-bass with punchy transient",
-      "melodic syncopated bass runs"
-    ],
-    "guitar": [
-      "clean chorus guitar arpeggios",
-      "nylon-string fingerstyle"
-    ],
-    "keys": [
-      "warm FM electric piano with sustained lush ambient pads"
-    ],
-    "voice": [
-      "lead vocal and response space"
-    ]
-  },
-  "combinations": [
-    "Kizomba + Soul",
-    "Kizomba + Afrobeats",
-    "Kizomba + R&B"
-  ],
-  "danceTags": [
-    "social-partner",
-    "blues-fusion-compatible",
-    "wcs-compatible",
-    "listening"
   ],
   "tuningSystem": "12-tet",
   "signatureCell": "Syncopated batida kick [0,6,8,12,14] with continuous 16th dikanza scraper and warm sub-bass",

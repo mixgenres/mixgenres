@@ -40,14 +40,7 @@ export interface GrooveProfile {
   description: string;
 }
 
-const NONE: number[] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
-
 /** Build a 16-slot pocket template from a sparse map of position -> ms. */
-function pocket(map: Record<number, number>): number[] {
-  const out = NONE.slice();
-  for (const [k, v] of Object.entries(map)) out[Number(k) % 16] = v;
-  return out;
-}
 
 export function grooveForStyle(style: ResolvedStyle): GrooveProfile {
   const c = style.contract;
@@ -174,8 +167,7 @@ export function applyFeel(g: GrooveProfile, input: FeelInput): FeelOutput {
   // a Western swing template merely because their pattern happens to use a grid.
   const swingBeats = input.authoredTimingOnly ? 0 : swingOffsetBeats(input.beatInBar, g) * scale;
 
-  // 2. leans and pocket template, in ms. Authored phrase timing remains authoritative
-  // in traditional contexts.
+  // 2. Apply the style's pocket and timing offsets. Authored timing takes priority.
   const slots = Math.max(1, g.subdivision ?? 16);
   const slot = Math.round((input.beatInBar / Math.max(1e-6, input.beatsPerBar)) * slots) % slots;
   let ms = input.authoredTimingOnly
@@ -184,8 +176,7 @@ export function applyFeel(g: GrooveProfile, input: FeelInput): FeelOutput {
   ms += input.authoredMs ?? 0;
   if (input.anticipated && !input.authoredTimingOnly) ms += g.anticipationMs * scale;
 
-  // 3. The wobble. Traditional timing gets much less random drift so breath/space
-  // remains intentional rather than becoming computer-random "humanization".
+  // 3. Limit timing drift for styles whose phrasing depends on fixed placement.
   const tightness =
     input.role === 'kick' || input.role === 'snare' ? 0.55 :
     input.role === 'hat' || input.role === 'perc' || input.role === 'ride' ? 0.7 :

@@ -961,9 +961,7 @@ export const BACHATA_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 3,
       "weight": 0.7,
       "provenance": "Bachata catalog rebuild: retained source material or generated structural support pattern.",
@@ -976,28 +974,8 @@ export const BACHATA_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 53,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "lead",
-        "harmony"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
-      "interactionRules": [
-        {
-          "id": "bachata-interaction-1",
-          "worldId": "bachata",
-          "sourceRole": "drums",
-          "targetRole": "bass",
-          "relationship": "reinforce",
-          "description": "Low-end attacks reinforce the main pulse",
-          "timingOffsetSteps": 0,
-          "probability": 0.78
-        }
-      ]
-    },
+
+},
     {
       "id": "cumbia-bass-groove",
       "worldId": "bachata",
@@ -1117,9 +1095,7 @@ export const BACHATA_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 1,
       "weight": 0.7,
       "provenance": "Bachata catalog rebuild: retained source material or generated structural support pattern.",
@@ -1132,26 +1108,8 @@ export const BACHATA_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 53,
       "anticipationOffset": 1,
-      "roleDependencies": [
-        "bass"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
-      "interactionRules": [
-        {
-          "id": "bachata-interaction-2",
-          "worldId": "bachata",
-          "sourceRole": "voice",
-          "targetRole": "harmony",
-          "relationship": "leaveSpace",
-          "description": "Harmony reduces density under vocal entries",
-          "timingOffsetSteps": 0,
-          "probability": 0.72
-        }
-      ],
+
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -1310,9 +1268,7 @@ export const BACHATA_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 1,
       "weight": 1,
       "provenance": "Bachata catalog rebuild: retained source material or generated structural support pattern.",
@@ -1325,14 +1281,7 @@ export const BACHATA_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 53,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "bass"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -1477,9 +1426,7 @@ export const BACHATA_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 1,
       "weight": 1,
       "provenance": "Bachata catalog rebuild: retained source material or generated structural support pattern.",
@@ -1492,14 +1439,7 @@ export const BACHATA_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 53,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "bass"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -1708,9 +1648,7 @@ export const BACHATA_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 3,
       "weight": 1,
       "provenance": "Bachata catalog rebuild: retained source material or generated structural support pattern.",
@@ -1723,14 +1661,7 @@ export const BACHATA_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 53,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "percussion"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -1852,9 +1783,7 @@ export const BACHATA_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 1,
       "weight": 1,
       "provenance": "Bachata catalog rebuild: retained source material or generated structural support pattern.",
@@ -1867,26 +1796,8 @@ export const BACHATA_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 53,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "percussion"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
-      "interactionRules": [
-        {
-          "id": "bachata-interaction-3",
-          "worldId": "bachata",
-          "sourceRole": "lead",
-          "targetRole": "voice",
-          "relationship": "answer",
-          "description": "Lead instrument answers a vocal phrase",
-          "timingOffsetSteps": 2,
-          "probability": 0.58
-        }
-      ],
+
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -2122,9 +2033,7 @@ export const BACHATA_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 5,
       "weight": 1,
       "provenance": "Bachata catalog rebuild: retained source material or generated structural support pattern.",
@@ -2137,26 +2046,8 @@ export const BACHATA_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 53,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "percussion"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
-      "interactionRules": [
-        {
-          "id": "bachata-interaction-4",
-          "worldId": "bachata",
-          "sourceRole": "bass",
-          "targetRole": "drums",
-          "relationship": "accentWith",
-          "description": "Bass accents align with selected kick/backbeat",
-          "timingOffsetSteps": 0,
-          "probability": 0.65
-        }
-      ],
+
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -2277,9 +2168,7 @@ export const BACHATA_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 1,
       "weight": 1,
       "provenance": "Bachata catalog rebuild: retained source material or generated structural support pattern.",
@@ -2292,26 +2181,8 @@ export const BACHATA_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 53,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "guitar"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
-      "interactionRules": [
-        {
-          "id": "bachata-interaction-5",
-          "worldId": "bachata",
-          "sourceRole": "harmony",
-          "targetRole": "lead",
-          "relationship": "leaveSpace",
-          "description": "Accompaniment thins when the instrumental lead",
-          "timingOffsetSteps": 0,
-          "probability": 0.62
-        }
-      ],
+
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -2448,9 +2319,7 @@ export const BACHATA_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 2,
       "weight": 1,
       "provenance": "Bachata catalog rebuild: retained source material or generated structural support pattern.",
@@ -2463,14 +2332,7 @@ export const BACHATA_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 53,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "percussion"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -2554,19 +2416,8 @@ export const BACHATA_WORLD: GenreWorld = {
         "verse",
         "chorus"
       ],
-      "harmonicContext": [
-        "tonal",
-        "modal traditional context",
-        "tonal or modal context"
-      ],
-      "roleDependencies": [
-        "drums"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "bachata-roster-10-v-01",
@@ -2740,19 +2591,8 @@ export const BACHATA_WORLD: GenreWorld = {
         "chorus",
         "bridge"
       ],
-      "harmonicContext": [
-        "tonal",
-        "modal traditional context",
-        "tonal or modal context"
-      ],
-      "roleDependencies": [
-        "voice"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "bachata-call-11-v-01",
@@ -2974,19 +2814,8 @@ export const BACHATA_WORLD: GenreWorld = {
         "verse",
         "chorus"
       ],
-      "harmonicContext": [
-        "tonal",
-        "modal traditional context",
-        "tonal or modal context"
-      ],
-      "roleDependencies": [
-        "bass"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "bachata-anchor-12-v-01",
@@ -3159,19 +2988,8 @@ export const BACHATA_WORLD: GenreWorld = {
         "verse",
         "chorus"
       ],
-      "harmonicContext": [
-        "tonal",
-        "modal traditional context",
-        "tonal or modal context"
-      ],
-      "roleDependencies": [
-        "harmony"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "bachata-comp-13-v-01",
@@ -3345,20 +3163,8 @@ export const BACHATA_WORLD: GenreWorld = {
       "sectionUsage": [
         "intro"
       ],
-      "harmonicContext": [
-        "tonal",
-        "modal traditional context",
-        "tonal or modal context"
-      ],
-      "roleDependencies": [
-        "harmony",
-        "texture"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "bachata-intro-14-v-01",
@@ -3586,20 +3392,8 @@ export const BACHATA_WORLD: GenreWorld = {
       "sectionUsage": [
         "verse"
       ],
-      "harmonicContext": [
-        "tonal",
-        "modal traditional context",
-        "tonal or modal context"
-      ],
-      "roleDependencies": [
-        "drums",
-        "rhythm-guitar"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "bachata-verse-15-v-01",
@@ -3780,20 +3574,8 @@ export const BACHATA_WORLD: GenreWorld = {
       "sectionUsage": [
         "chorus"
       ],
-      "harmonicContext": [
-        "tonal",
-        "modal traditional context",
-        "tonal or modal context"
-      ],
-      "roleDependencies": [
-        "harmony",
-        "drums"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "bachata-chorus-16-v-01",
@@ -4013,17 +3795,8 @@ export const BACHATA_WORLD: GenreWorld = {
         "chorus",
         "bridge"
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
-      "roleDependencies": [
-        "voice"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "bachata-voice-phrasing-v-voice-alt",
@@ -4119,68 +3892,6 @@ export const BACHATA_WORLD: GenreWorld = {
       "weight": 0.9,
       "enabled": true
     }
-  ],
-  "techniques": [
-    "requinto muted picking and bright plucks",
-    "güira fast 16th scraping",
-    "tambora rim/slap combination",
-    "bongo high rim accent on 4"
-  ],
-  "forms": [
-    "intro",
-    "derecho",
-    "majao",
-    "derecho",
-    "majao",
-    "mambo",
-    "majao",
-    "coda"
-  ],
-  "relationships": [
-    "requinto ↔ bongo (matching accent dynamics)",
-    "güira ↔ bass (continuous time anchor)",
-    "lead vocals ↔ requinto responses"
-  ],
-  "transformations": [
-    "trans-density-dense",
-    "trans-anticipation",
-    "trans-syncopation-tresillo",
-    "trans-phrase-cadence",
-    "catalog-v2-density-variation",
-    "catalog-v2-transition-coverage",
-    "catalog-v2-ensemble-interactions"
-  ],
-  "songBehaviors": [
-    "seamless gear shifting from romantic derecho into energetic majao and blazing mambo",
-    "constant call-and-response between vocals and lead guitar/accordion",
-    "avoid identical loop repetition by alternating pattern variants",
-    "use fills, breaks, cadences, and bridge textures as structural events",
-    "let lead/voice parts create space and response relationships"
-  ],
-  "instrumentIdeas": {
-    "guitar": [
-      "bachata requinto treble picking",
-      "acoustic segunda rhythm chops"
-    ],
-    "bass": [
-      "melodic anticipated bass with chromatic turns"
-    ],
-    "drums": [
-      "bongo/güira emulation on drum kit with crisp hi-hat and rimshots"
-    ],
-    "voice": [
-      "lead vocal and coro phrasing"
-    ]
-  },
-  "combinations": [
-    "Bachata + R&B",
-    "Cumbia + Dub / Reggae",
-    "Merengue + Funk",
-    "Latin Dance + Jazz"
-  ],
-  "danceTags": [
-    "social-partner",
-    "sensual-fusion"
   ],
   "tuningSystem": "12-tet",
   "signatureCell": "3 gears: Derecho (verse), Majao (chorus), Mambo (instrumental breakdown)",

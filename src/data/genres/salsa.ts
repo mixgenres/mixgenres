@@ -580,9 +580,7 @@ export const SALSA_WORLD: GenreWorld = {
           "description": "Rumba clave where the 3rd stroke"
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 2,
       "weight": 0.7,
       "provenance": "Salsa catalog rebuild: retained source material or generated structural support pattern.",
@@ -595,27 +593,8 @@ export const SALSA_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 53,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "percussion"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
-      "interactionRules": [
-        {
-          "id": "salsa-interaction-1",
-          "worldId": "salsa",
-          "sourceRole": "drums",
-          "targetRole": "bass",
-          "relationship": "reinforce",
-          "description": "Low-end attacks reinforce the main pulse",
-          "timingOffsetSteps": 0,
-          "probability": 0.78
-        }
-      ]
-    },
+
+},
     {
       "id": "afro-bass-tumbao",
       "worldId": "salsa",
@@ -717,9 +696,7 @@ export const SALSA_WORLD: GenreWorld = {
           "description": "Leading bass walk setting up the"
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 1,
       "weight": 0.7,
       "provenance": "Salsa catalog rebuild: retained source material or generated structural support pattern.",
@@ -732,27 +709,8 @@ export const SALSA_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 53,
       "anticipationOffset": 1,
-      "roleDependencies": [
-        "bass"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
-      "interactionRules": [
-        {
-          "id": "salsa-interaction-2",
-          "worldId": "salsa",
-          "sourceRole": "voice",
-          "targetRole": "harmony",
-          "relationship": "leaveSpace",
-          "description": "Harmony reduces density under vocal entries",
-          "timingOffsetSteps": 0,
-          "probability": 0.72
-        }
-      ]
-    },
+
+},
     {
       "id": "afro-piano-montuno",
       "worldId": "salsa",
@@ -951,9 +909,7 @@ export const SALSA_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 4,
       "weight": 0.7,
       "provenance": "Salsa catalog rebuild: retained source material or generated structural support pattern.",
@@ -966,28 +922,8 @@ export const SALSA_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 53,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "harmony",
-        "counterline"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
-      "interactionRules": [
-        {
-          "id": "salsa-interaction-3",
-          "worldId": "salsa",
-          "sourceRole": "lead",
-          "targetRole": "voice",
-          "relationship": "answer",
-          "description": "Lead instrument answers a vocal phrase",
-          "timingOffsetSteps": 2,
-          "probability": 0.58
-        }
-      ]
-    },
+
+},
     {
       "id": "afro-timbal-cascara",
       "worldId": "salsa",
@@ -1203,9 +1139,7 @@ export const SALSA_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 5,
       "weight": 0.7,
       "provenance": "Salsa catalog rebuild: retained source material or generated structural support pattern.",
@@ -1218,28 +1152,8 @@ export const SALSA_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 53,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "drums",
-        "percussion"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
-      "interactionRules": [
-        {
-          "id": "salsa-interaction-4",
-          "worldId": "salsa",
-          "sourceRole": "bass",
-          "targetRole": "drums",
-          "relationship": "accentWith",
-          "description": "Bass accents align with selected kick/backbeat",
-          "timingOffsetSteps": 0,
-          "probability": 0.65
-        }
-      ]
-    },
+
+},
     {
       "id": "afro-conga-tumbao",
       "worldId": "salsa",
@@ -1399,9 +1313,7 @@ export const SALSA_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 3,
       "weight": 0.7,
       "provenance": "Salsa catalog rebuild: retained source material or generated structural support pattern.",
@@ -1414,27 +1326,8 @@ export const SALSA_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 53,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "percussion"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
-      "interactionRules": [
-        {
-          "id": "salsa-interaction-5",
-          "worldId": "salsa",
-          "sourceRole": "harmony",
-          "targetRole": "lead",
-          "relationship": "leaveSpace",
-          "description": "Accompaniment thins when the instrumental lead",
-          "timingOffsetSteps": 0,
-          "probability": 0.62
-        }
-      ]
-    },
+
+},
     {
       "id": "afro-mambo-horn-hits",
       "worldId": "salsa",
@@ -1576,9 +1469,7 @@ export const SALSA_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 2,
       "weight": 0.7,
       "provenance": "Salsa catalog rebuild: retained source material or generated structural support pattern.",
@@ -1591,15 +1482,7 @@ export const SALSA_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 53,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "lead",
-        "counterline"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ]
+
     },
     {
       "id": "salsa-campana",
@@ -1740,9 +1623,7 @@ export const SALSA_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 2,
       "weight": 1,
       "provenance": "Salsa catalog rebuild: retained source material or generated structural support pattern.",
@@ -1755,14 +1636,7 @@ export const SALSA_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 53,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "percussion"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -1953,9 +1827,7 @@ export const SALSA_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 4,
       "weight": 1,
       "provenance": "Salsa catalog rebuild: retained source material or generated structural support pattern.",
@@ -1968,14 +1840,7 @@ export const SALSA_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 53,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "percussion"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -2128,9 +1993,7 @@ export const SALSA_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 3,
       "weight": 1,
       "provenance": "Salsa catalog rebuild: retained source material or generated structural support pattern.",
@@ -2143,14 +2006,7 @@ export const SALSA_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 53,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "percussion"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -2272,9 +2128,7 @@ export const SALSA_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 2,
       "weight": 1,
       "provenance": "Salsa catalog rebuild: retained source material or generated structural support pattern.",
@@ -2287,14 +2141,7 @@ export const SALSA_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 53,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "percussion"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -2445,9 +2292,7 @@ export const SALSA_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 3,
       "weight": 1,
       "provenance": "Salsa catalog rebuild: retained source material or generated structural support pattern.",
@@ -2460,14 +2305,7 @@ export const SALSA_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 53,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "percussion"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -2546,19 +2384,8 @@ export const SALSA_WORLD: GenreWorld = {
         "verse",
         "chorus"
       ],
-      "harmonicContext": [
-        "tonal",
-        "modal traditional context",
-        "tonal or modal context"
-      ],
-      "roleDependencies": [
-        "voice"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "salsa-phrase-12-v-01",
@@ -2721,19 +2548,8 @@ export const SALSA_WORLD: GenreWorld = {
         "chorus",
         "bridge"
       ],
-      "harmonicContext": [
-        "tonal",
-        "modal traditional context",
-        "tonal or modal context"
-      ],
-      "roleDependencies": [
-        "voice"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "salsa-call-13-v-01",
@@ -2940,19 +2756,8 @@ export const SALSA_WORLD: GenreWorld = {
         "verse",
         "chorus"
       ],
-      "harmonicContext": [
-        "tonal",
-        "modal traditional context",
-        "tonal or modal context"
-      ],
-      "roleDependencies": [
-        "bass"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "salsa-anchor-14-v-01",
@@ -3116,19 +2921,8 @@ export const SALSA_WORLD: GenreWorld = {
         "verse",
         "chorus"
       ],
-      "harmonicContext": [
-        "tonal",
-        "modal traditional context",
-        "tonal or modal context"
-      ],
-      "roleDependencies": [
-        "harmony"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "salsa-comp-15-v-01",
@@ -3299,20 +3093,8 @@ export const SALSA_WORLD: GenreWorld = {
       "sectionUsage": [
         "intro"
       ],
-      "harmonicContext": [
-        "tonal",
-        "modal traditional context",
-        "tonal or modal context"
-      ],
-      "roleDependencies": [
-        "harmony",
-        "texture"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "salsa-intro-16-v-01",
@@ -3541,17 +3323,8 @@ export const SALSA_WORLD: GenreWorld = {
         "bridge",
         "coro"
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
-      "roleDependencies": [
-        "voice"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "salsa-voice-phrasing-v-voice-alt",
@@ -3647,85 +3420,6 @@ export const SALSA_WORLD: GenreWorld = {
       "weight": 0.9,
       "enabled": true
     }
-  ],
-  "techniques": [
-    "clave alignment (never crossing the clave)",
-    "anticipated harmonic arrival on beat 4",
-    "interlocking rhythm layers between piano, bass, congas, and timbales",
-    "open vs slap drum stroke contrasts",
-    "syncopated horn stabs"
-  ],
-  "forms": [
-    "intro / tema",
-    "verse / cuerpo",
-    "montuno / vamp",
-    "mambo / brass section",
-    "moña / solo",
-    "coro-pregón",
-    "coda"
-  ],
-  "relationships": [
-    "bass ↔ congas (tumbao slap and open tone lock)",
-    "piano ↔ clave (montuno accents mirror the 3-side and 2-side)",
-    "timbales ↔ bells (cáscara in verse, campana in montuno)",
-    "horns ↔ coro (call-and-response during mambo)"
-  ],
-  "transformations": [
-    "trans-anticipation",
-    "trans-density-dense",
-    "trans-syncopation-tresillo",
-    "trans-phrase-cadence",
-    "catalog-v2-density-variation",
-    "catalog-v2-transition-coverage",
-    "catalog-v2-ensemble-interactions"
-  ],
-  "songBehaviors": [
-    "smooth escalation from sparse verse (cáscara) to roaring montuno (bongo bell & mambo horns)",
-    "cyclic groove continuous stability with interlocking micro-variations",
-    "sudden unison breaks (bloques) with immediate return to groove",
-    "vocal pregón answering chorus",
-    "avoid identical loop repetition by alternating pattern variants",
-    "use fills, breaks, cadences, and bridge textures as structural events",
-    "let lead/voice parts create space and response relationships"
-  ],
-  "instrumentIdeas": {
-    "guitar": [
-      "tres-like guajeos with octave unisons",
-      "syncopated chord chops"
-    ],
-    "bass": [
-      "classic tumbao anticipating on 4",
-      "descending walking turnarounds"
-    ],
-    "sax": [
-      "mambo brass section stabs",
-      "fluid bebop/cuban soloing over montuno"
-    ],
-    "piano": [
-      "two-handed octave montunos",
-      "dense salsa dura chord clusters"
-    ],
-    "drums": [
-      "timbales cáscara pattern on hi-hat/ride",
-      "kick accents matching bass tumbao"
-    ],
-    "voice": [
-      "lead sonero phrasing and coro responses"
-    ],
-    "trumpet": [
-      "mambo brass punctuation"
-    ]
-  },
-  "combinations": [
-    "Salsa + Timba",
-    "Salsa + Jazz",
-    "Salsa + Funk",
-    "Salsa + Flamenco"
-  ],
-  "danceTags": [
-    "social-partner",
-    "festival-fusion",
-    "listening"
   ],
   "tuningSystem": "12-tet",
   "signatureCell": "Son Clave [3-2 / 2-3] with anticipatory bass tumbao on 4-and",

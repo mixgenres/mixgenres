@@ -1,0 +1,204 @@
+{
+  "format": "SoundFont3",
+  "deviceProfiles": {
+    "desktop": {
+      "maxSampleRate": "source",
+      "vorbisCompressionLevel": 0.6
+    },
+    "tablet": {
+      "maxSampleRate": 32000,
+      "vorbisCompressionLevel": 0.6
+    },
+    "mobile": {
+      "maxSampleRate": 22050,
+      "vorbisCompressionLevel": 0.6
+    }
+  },
+  "collections": [
+    {
+      "id": "generaluser_gs",
+      "desktopBytes": 3817510,
+      "tabletBytes": 3629178,
+      "mobileBytes": 2648224,
+      "desktopPath": "desktop/generaluser_gs_core.sf3",
+      "tabletPath": "tablet/generaluser_gs_core.sf3",
+      "mobilePath": "mobile/generaluser_gs_core.sf3"
+    },
+    {
+      "id": "bachata_guitar",
+      "desktopBytes": 3727142,
+      "tabletBytes": 3354356,
+      "mobileBytes": 2212762,
+      "desktopPath": "desktop/bachata_guitar.sf3",
+      "tabletPath": "tablet/bachata_guitar.sf3",
+      "mobilePath": "mobile/bachata_guitar.sf3"
+    },
+    {
+      "id": "bagpipes",
+      "desktopBytes": 488706,
+      "tabletBytes": 420548,
+      "mobileBytes": 276600,
+      "desktopPath": "desktop/bagpipes.sf3",
+      "tabletPath": "tablet/bagpipes.sf3",
+      "mobilePath": "mobile/bagpipes.sf3"
+    },
+    {
+      "id": "bandoneon",
+      "desktopBytes": 726148,
+      "tabletBytes": 647286,
+      "mobileBytes": 482114,
+      "desktopPath": "desktop/bandoneon.sf3",
+      "tabletPath": "tablet/bandoneon.sf3",
+      "mobilePath": "mobile/bandoneon.sf3"
+    },
+    {
+      "id": "celtix",
+      "desktopBytes": 631236,
+      "tabletBytes": 595900,
+      "mobileBytes": 504618,
+      "desktopPath": "desktop/celtix.sf3",
+      "tabletPath": "tablet/celtix.sf3",
+      "mobilePath": "mobile/celtix.sf3"
+    },
+    {
+      "id": "erhu",
+      "desktopBytes": 363452,
+      "tabletBytes": 341580,
+      "mobileBytes": 217750,
+      "desktopPath": "desktop/erhu.sf3",
+      "tabletPath": "tablet/erhu.sf3",
+      "mobilePath": "mobile/erhu.sf3"
+    },
+    {
+      "id": "guzheng",
+      "desktopBytes": 30280,
+      "tabletBytes": 28314,
+      "mobileBytes": 19406,
+      "desktopPath": "desktop/guzheng.sf3",
+      "tabletPath": "tablet/guzheng.sf3",
+      "mobilePath": "mobile/guzheng.sf3"
+    },
+    {
+      "id": "percussion",
+      "desktopBytes": 374170,
+      "tabletBytes": 349108,
+      "mobileBytes": 254510,
+      "desktopPath": "desktop/percussion.sf3",
+      "tabletPath": "tablet/percussion.sf3",
+      "mobilePath": "mobile/percussion.sf3"
+    },
+    {
+      "id": "pipa",
+      "desktopBytes": 33438,
+      "tabletBytes": 30926,
+      "mobileBytes": 20634,
+      "desktopPath": "desktop/pipa.sf3",
+      "tabletPath": "tablet/pipa.sf3",
+      "mobilePath": "mobile/pipa.sf3"
+    },
+    {
+      "id": "salsa_brass",
+      "desktopBytes": 7499980,
+      "tabletBytes": 7014132,
+      "mobileBytes": 4907120,
+      "desktopPath": "desktop/salsa_brass.sf3",
+      "tabletPath": "tablet/salsa_brass.sf3",
+      "mobilePath": "mobile/salsa_brass.sf3"
+    },
+    {
+      "id": "salsa_trumpet",
+      "desktopBytes": 722730,
+      "tabletBytes": 1403276,
+      "mobileBytes": 708768,
+      "desktopPath": "desktop/salsa_trumpet.sf3",
+      "tabletPath": "tablet/salsa_trumpet.sf3",
+      "mobilePath": "mobile/salsa_trumpet.sf3"
+    },
+    {
+      "id": "shakuhachi",
+      "desktopBytes": 108404,
+      "tabletBytes": 103762,
+      "mobileBytes": 75252,
+      "desktopPath": "desktop/shakuhachi.sf3",
+      "tabletPath": "tablet/shakuhachi.sf3",
+      "mobilePath": "mobile/shakuhachi.sf3"
+    },
+    {
+      "id": "spanish_guitar",
+      "desktopBytes": 1139964,
+      "tabletBytes": 1062876,
+      "mobileBytes": 727448,
+      "desktopPath": "desktop/spanish_guitar.sf3",
+      "tabletPath": "tablet/spanish_guitar.sf3",
+      "mobilePath": "mobile/spanish_guitar.sf3"
+    },
+    {
+      "id": "generaluser_gs_misc",
+      "desktopBytes": 7641270,
+      "tabletBytes": 7484174,
+      "mobileBytes": 6293164,
+      "desktopPath": "desktop/generaluser_gs_misc.sf3",
+      "tabletPath": "tablet/generaluser_gs_misc.sf3",
+      "mobilePath": "mobile/generaluser_gs_misc.sf3"
+    },
+    {
+      "id": "bachata_guitar_misc",
+      "desktopBytes": 3727142,
+      "tabletBytes": 3354356,
+      "mobileBytes": 2212762,
+      "desktopPath": "desktop/bachata_guitar_misc.sf3",
+      "tabletPath": "tablet/bachata_guitar_misc.sf3",
+      "mobilePath": "mobile/bachata_guitar_misc.sf3"
+    },
+    {
+      "id": "salsa_brass_misc",
+      "desktopBytes": 7499980,
+      "tabletBytes": 7014132,
+      "mobileBytes": 4907120,
+      "desktopPath": "desktop/salsa_brass_misc.sf3",
+      "tabletPath": "tablet/salsa_brass_misc.sf3",
+      "mobilePath": "mobile/salsa_brass_misc.sf3"
+    }
+  ],
+  "splits": {
+    "generaluser_gs": [
+      "generaluser_gs",
+      "generaluser_gs_misc"
+    ],
+    "bachata_guitar": [
+      "bachata_guitar",
+      "bachata_guitar_misc"
+    ],
+    "salsa_brass": [
+      "salsa_brass",
+      "salsa_brass_misc"
+    ]
+  },
+  "genreOverrides": {
+    "tango": {
+      "bandoneon": "bandoneon",
+      "guitar": "spanish-guitar",
+      "nylon-guitar": "spanish-guitar"
+    },
+    "flamenco": {
+      "guitar": "spanish-guitar",
+      "nylon-guitar": "spanish-guitar",
+      "requinto": "spanish-guitar"
+    },
+    "bachata": {
+      "guitar": "bachata-guitar",
+      "nylon-guitar": "bachata-guitar",
+      "requinto": "bachata-guitar"
+    },
+    "salsa": {
+      "trumpet": "salsa-trumpet",
+      "horn-section": "salsa-brass",
+      "brass": "salsa-brass",
+      "trombone": "salsa-brass"
+    },
+    "zouk": {
+      "horn-section": "salsa-brass",
+      "brass": "salsa-brass"
+    }
+  }
+}

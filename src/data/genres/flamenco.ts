@@ -778,9 +778,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "modal/tonal traditional context"
-      ],
+
       "difficulty": 3,
       "weight": 0.7,
       "provenance": "Flamenco catalog rebuild: retained source material or generated structural support pattern.",
@@ -793,28 +791,8 @@ export const FLAMENCO_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 53,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "harmony",
-        "rhythm-guitar"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
-      "interactionRules": [
-        {
-          "id": "flamenco-interaction-1",
-          "worldId": "flamenco",
-          "sourceRole": "drums",
-          "targetRole": "bass",
-          "relationship": "reinforce",
-          "description": "Low-end attacks reinforce the main pulse",
-          "timingOffsetSteps": 0,
-          "probability": 0.78
-        }
-      ]
-    },
+
+},
     {
       "id": "flam-tangos-compas",
       "worldId": "flamenco",
@@ -940,9 +918,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "modal/tonal traditional context"
-      ],
+
       "difficulty": 1,
       "weight": 0.7,
       "provenance": "Flamenco catalog rebuild: retained source material or generated structural support pattern.",
@@ -955,27 +931,8 @@ export const FLAMENCO_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 53,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "percussion"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
-      "interactionRules": [
-        {
-          "id": "flamenco-interaction-2",
-          "worldId": "flamenco",
-          "sourceRole": "voice",
-          "targetRole": "harmony",
-          "relationship": "leaveSpace",
-          "description": "Harmony reduces density under vocal entries",
-          "timingOffsetSteps": 0,
-          "probability": 0.72
-        }
-      ]
-    },
+
+},
     {
       "id": "flam-solea-12beat",
       "worldId": "flamenco",
@@ -1106,9 +1063,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "modal/tonal traditional context"
-      ],
+
       "difficulty": 2,
       "weight": 0.7,
       "provenance": "Flamenco catalog rebuild: retained source material or generated structural support pattern.",
@@ -1121,28 +1076,8 @@ export const FLAMENCO_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 53,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "lead",
-        "voice"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
-      "interactionRules": [
-        {
-          "id": "flamenco-interaction-3",
-          "worldId": "flamenco",
-          "sourceRole": "lead",
-          "targetRole": "voice",
-          "relationship": "answer",
-          "description": "Lead instrument answers a vocal phrase",
-          "timingOffsetSteps": 2,
-          "probability": 0.58
-        }
-      ]
-    },
+
+},
     {
       "id": "flam-alzapua-bass",
       "worldId": "flamenco",
@@ -1326,9 +1261,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "modal/tonal traditional context"
-      ],
+
       "difficulty": 4,
       "weight": 0.7,
       "provenance": "Flamenco catalog rebuild: retained source material or generated structural support pattern.",
@@ -1341,15 +1274,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 53,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "bass",
-        "harmony"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ]
+
     },
     {
       "id": "flam-falseta-melodic",
@@ -1555,9 +1480,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "modal/tonal traditional context"
-      ],
+
       "difficulty": 4,
       "weight": 0.7,
       "provenance": "Flamenco catalog rebuild: retained source material or generated structural support pattern.",
@@ -1570,28 +1493,8 @@ export const FLAMENCO_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 53,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "lead",
-        "counterline"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
-      "interactionRules": [
-        {
-          "id": "flamenco-interaction-4",
-          "worldId": "flamenco",
-          "sourceRole": "bass",
-          "targetRole": "drums",
-          "relationship": "accentWith",
-          "description": "Bass accents align with selected kick/backbeat",
-          "timingOffsetSteps": 0,
-          "probability": 0.65
-        }
-      ]
-    },
+
+},
     {
       "id": "flamenco-golpe",
       "worldId": "flamenco",
@@ -1703,9 +1606,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "modal/tonal traditional context"
-      ],
+
       "difficulty": 1,
       "weight": 1,
       "provenance": "Flamenco catalog rebuild: retained source material or generated structural support pattern.",
@@ -1718,15 +1619,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 53,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "percussion",
-        "guitar"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -1848,9 +1741,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "modal/tonal traditional context"
-      ],
+
       "difficulty": 2,
       "weight": 1,
       "provenance": "Flamenco catalog rebuild: retained source material or generated structural support pattern.",
@@ -1863,14 +1754,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 53,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "percussion"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -2035,9 +1919,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "modal/tonal traditional context"
-      ],
+
       "difficulty": 3,
       "weight": 1,
       "provenance": "Flamenco catalog rebuild: retained source material or generated structural support pattern.",
@@ -2050,14 +1932,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 53,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "guitar"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -2192,9 +2067,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "modal/tonal traditional context"
-      ],
+
       "difficulty": 2,
       "weight": 1,
       "provenance": "Flamenco catalog rebuild: retained source material or generated structural support pattern.",
@@ -2207,27 +2080,8 @@ export const FLAMENCO_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 53,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "drums",
-        "percussion"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
-      "interactionRules": [
-        {
-          "id": "flamenco-interaction-5",
-          "worldId": "flamenco",
-          "sourceRole": "harmony",
-          "targetRole": "lead",
-          "relationship": "leaveSpace",
-          "description": "Accompaniment thins when the instrumental lead",
-          "timingOffsetSteps": 0,
-          "probability": 0.62
-        }
-      ],
+
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -2308,19 +2162,8 @@ export const FLAMENCO_WORLD: GenreWorld = {
         "verse",
         "chorus"
       ],
-      "harmonicContext": [
-        "tonal",
-        "modal traditional context",
-        "modal/tonal traditional context"
-      ],
-      "roleDependencies": [
-        "voice"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "flamenco-phrase-10-v-01",
@@ -2493,19 +2336,8 @@ export const FLAMENCO_WORLD: GenreWorld = {
         "chorus",
         "bridge"
       ],
-      "harmonicContext": [
-        "tonal",
-        "modal traditional context",
-        "modal/tonal traditional context"
-      ],
-      "roleDependencies": [
-        "voice"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "flamenco-call-11-v-01",
@@ -2730,19 +2562,8 @@ export const FLAMENCO_WORLD: GenreWorld = {
         "verse",
         "chorus"
       ],
-      "harmonicContext": [
-        "tonal",
-        "modal traditional context",
-        "modal/tonal traditional context"
-      ],
-      "roleDependencies": [
-        "bass"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "flamenco-anchor-12-v-01",
@@ -2908,19 +2729,8 @@ export const FLAMENCO_WORLD: GenreWorld = {
         "verse",
         "chorus"
       ],
-      "harmonicContext": [
-        "tonal",
-        "modal traditional context",
-        "modal/tonal traditional context"
-      ],
-      "roleDependencies": [
-        "harmony"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "flamenco-comp-13-v-01",
@@ -3074,20 +2884,8 @@ export const FLAMENCO_WORLD: GenreWorld = {
       "sectionUsage": [
         "intro"
       ],
-      "harmonicContext": [
-        "tonal",
-        "modal traditional context",
-        "modal/tonal traditional context"
-      ],
-      "roleDependencies": [
-        "harmony",
-        "texture"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "flamenco-intro-14-v-01",
@@ -3299,20 +3097,8 @@ export const FLAMENCO_WORLD: GenreWorld = {
       "sectionUsage": [
         "verse"
       ],
-      "harmonicContext": [
-        "tonal",
-        "modal traditional context",
-        "modal/tonal traditional context"
-      ],
-      "roleDependencies": [
-        "drums",
-        "rhythm-guitar"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "flamenco-verse-15-v-01",
@@ -3481,20 +3267,8 @@ export const FLAMENCO_WORLD: GenreWorld = {
       "sectionUsage": [
         "chorus"
       ],
-      "harmonicContext": [
-        "tonal",
-        "modal traditional context",
-        "modal/tonal traditional context"
-      ],
-      "roleDependencies": [
-        "harmony",
-        "drums"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "flamenco-chorus-16-v-01",
@@ -3702,20 +3476,8 @@ export const FLAMENCO_WORLD: GenreWorld = {
         "interlude",
         "development"
       ],
-      "harmonicContext": [
-        "tonal",
-        "modal traditional context",
-        "modal/tonal traditional context"
-      ],
-      "roleDependencies": [
-        "harmony",
-        "lead"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "flamenco-bridge-17-v-01",
@@ -3900,19 +3662,8 @@ export const FLAMENCO_WORLD: GenreWorld = {
         "verse",
         "solo"
       ],
-      "harmonicContext": [
-        "flamenco-modal",
-        "Andalusian-cadence"
-      ],
-      "roleDependencies": [
-        "harmony",
-        "rhythm-guitar"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "flam-solea-guitar-cierre",
@@ -4034,19 +3785,8 @@ export const FLAMENCO_WORLD: GenreWorld = {
         "verse",
         "solo"
       ],
-      "harmonicContext": [
-        "flamenco-modal",
-        "Andalusian-cadence"
-      ],
-      "roleDependencies": [
-        "percussion",
-        "hand-percussion"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [],
       "provenance": "Flamenco genre patch: authored from palo-specific compás and accompaniment grammar.",
       "authenticityTags": [
@@ -4128,19 +3868,8 @@ export const FLAMENCO_WORLD: GenreWorld = {
         "verse",
         "bridge"
       ],
-      "harmonicContext": [
-        "flamenco-modal",
-        "Andalusian-cadence"
-      ],
-      "roleDependencies": [
-        "harmony",
-        "lead"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "flam-llamada-12-v2",
@@ -4255,19 +3984,8 @@ export const FLAMENCO_WORLD: GenreWorld = {
         "chorus",
         "ending"
       ],
-      "harmonicContext": [
-        "flamenco-modal",
-        "Andalusian-cadence"
-      ],
-      "roleDependencies": [
-        "harmony",
-        "percussion"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [],
       "provenance": "Flamenco genre patch: authored from palo-specific compás and accompaniment grammar.",
       "authenticityTags": [
@@ -4358,19 +4076,8 @@ export const FLAMENCO_WORLD: GenreWorld = {
         "chorus",
         "solo"
       ],
-      "harmonicContext": [
-        "flamenco-modal",
-        "Andalusian-cadence"
-      ],
-      "roleDependencies": [
-        "pulse",
-        "percussion"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "flam-buleria-compas-corte",
@@ -4491,19 +4198,8 @@ export const FLAMENCO_WORLD: GenreWorld = {
         "chorus",
         "ending"
       ],
-      "harmonicContext": [
-        "flamenco-modal",
-        "Andalusian-cadence"
-      ],
-      "roleDependencies": [
-        "percussion",
-        "hand-percussion"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [],
       "provenance": "Flamenco genre patch: authored from palo-specific compás and accompaniment grammar.",
       "authenticityTags": [
@@ -4597,19 +4293,8 @@ export const FLAMENCO_WORLD: GenreWorld = {
         "solo",
         "chorus"
       ],
-      "harmonicContext": [
-        "flamenco-modal",
-        "Andalusian-cadence"
-      ],
-      "roleDependencies": [
-        "bass",
-        "harmony"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [],
       "provenance": "Flamenco genre patch: authored from palo-specific compás and accompaniment grammar.",
       "authenticityTags": [
@@ -4691,19 +4376,8 @@ export const FLAMENCO_WORLD: GenreWorld = {
         "chorus",
         "solo"
       ],
-      "harmonicContext": [
-        "flamenco-modal",
-        "Andalusian-cadence"
-      ],
-      "roleDependencies": [
-        "harmony",
-        "pulse"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [],
       "provenance": "Flamenco genre patch: authored from palo-specific compás and accompaniment grammar.",
       "authenticityTags": [
@@ -4789,19 +4463,8 @@ export const FLAMENCO_WORLD: GenreWorld = {
         "verse",
         "chorus"
       ],
-      "harmonicContext": [
-        "flamenco-modal",
-        "Andalusian-cadence"
-      ],
-      "roleDependencies": [
-        "percussion",
-        "hand-percussion"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [],
       "provenance": "Flamenco genre patch: authored from palo-specific compás and accompaniment grammar.",
       "authenticityTags": [
@@ -4892,19 +4555,8 @@ export const FLAMENCO_WORLD: GenreWorld = {
         "solo",
         "chorus"
       ],
-      "harmonicContext": [
-        "flamenco-modal",
-        "Andalusian-cadence"
-      ],
-      "roleDependencies": [
-        "percussion",
-        "pulse"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [],
       "provenance": "Flamenco genre patch: authored from palo-specific compás and accompaniment grammar.",
       "authenticityTags": [
@@ -4989,19 +4641,8 @@ export const FLAMENCO_WORLD: GenreWorld = {
         "solo",
         "ending"
       ],
-      "harmonicContext": [
-        "flamenco-modal",
-        "Andalusian-cadence"
-      ],
-      "roleDependencies": [
-        "pulse",
-        "percussion"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "flam-seguiriya-compas-corte",
@@ -5112,19 +4753,8 @@ export const FLAMENCO_WORLD: GenreWorld = {
         "verse",
         "solo"
       ],
-      "harmonicContext": [
-        "flamenco-modal",
-        "Andalusian-cadence"
-      ],
-      "roleDependencies": [
-        "percussion",
-        "hand-percussion"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [],
       "provenance": "Flamenco genre patch: authored from palo-specific compás and accompaniment grammar.",
       "authenticityTags": [
@@ -5214,19 +4844,8 @@ export const FLAMENCO_WORLD: GenreWorld = {
         "chorus",
         "solo"
       ],
-      "harmonicContext": [
-        "flamenco-modal",
-        "Andalusian-cadence"
-      ],
-      "roleDependencies": [
-        "harmony",
-        "rhythm-guitar"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [],
       "provenance": "Flamenco genre patch: authored from palo-specific compás and accompaniment grammar.",
       "authenticityTags": [
@@ -5310,19 +4929,8 @@ export const FLAMENCO_WORLD: GenreWorld = {
         "verse",
         "solo"
       ],
-      "harmonicContext": [
-        "flamenco-modal",
-        "Andalusian-cadence"
-      ],
-      "roleDependencies": [
-        "harmony",
-        "pulse"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [],
       "provenance": "Flamenco genre patch: authored from palo-specific compás and accompaniment grammar.",
       "authenticityTags": [
@@ -5399,19 +5007,8 @@ export const FLAMENCO_WORLD: GenreWorld = {
         "verse",
         "solo"
       ],
-      "harmonicContext": [
-        "flamenco-modal",
-        "Andalusian-cadence"
-      ],
-      "roleDependencies": [
-        "percussion",
-        "hand-percussion"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [],
       "provenance": "Flamenco genre patch: authored from palo-specific compás and accompaniment grammar.",
       "authenticityTags": [
@@ -5500,18 +5097,8 @@ export const FLAMENCO_WORLD: GenreWorld = {
         "chorus",
         "solo"
       ],
-      "harmonicContext": [
-        "flamenco-modal",
-        "Andalusian-cadence"
-      ],
-      "roleDependencies": [
-        "bass"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [],
       "provenance": "Flamenco genre patch: authored from palo-specific compás and accompaniment grammar.",
       "authenticityTags": [
@@ -5586,19 +5173,8 @@ export const FLAMENCO_WORLD: GenreWorld = {
         "verse",
         "solo"
       ],
-      "harmonicContext": [
-        "flamenco-modal",
-        "Andalusian-cadence"
-      ],
-      "roleDependencies": [
-        "harmony",
-        "pulse"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [],
       "provenance": "Flamenco genre patch: authored from palo-specific compás and accompaniment grammar.",
       "authenticityTags": [
@@ -5613,108 +5189,6 @@ export const FLAMENCO_WORLD: GenreWorld = {
       "weight": 0.9,
       "enabled": true
     }
-  ],
-  "techniques": [
-    "rasgueado (four/five-finger fan strum)",
-    "abanico (thumb-finger-golpe fan)",
-    "alzapúa (thumb bass/brush engine)",
-    "picado (alternating rest-stroke scale run)",
-    "arpeggio (p-i-m-a / p-a-m-i patterns)",
-    "flamenco tremolo (p-i-a-m-i five-note figure)",
-    "golpe (soundboard tap)",
-    "ligado (hammer-on/pull-off)",
-    "pulgar (thumb apoyando/free stroke)",
-    "trémolo de tres (compact tremolo)",
-    "palmas sordas (cupped) and palmas claras (bright)",
-    "jaleo / vocal interjections",
-    "zapateado / taconeo",
-    "silencio / space as an authored event",
-    "llamada → respuesta → remate → cierre"
-  ],
-  "forms": [
-    "llamada",
-    "letra",
-    "falseta",
-    "remate",
-    "cierre",
-    "silencio",
-    "escobilla"
-  ],
-  "relationships": [
-    "guitar ↔ palmas (strict compás lock)",
-    "cajón ↔ guitar golpe (synchronized punctuation)",
-    "voice/lead ↔ guitar (falseta responses between vocal letras)",
-    "cierre ↔ transition (cadential resolution on beat 10 or 4)"
-  ],
-  "transformations": [
-    "trans-density-dense",
-    "trans-density-sparse",
-    "trans-syncopation-tresillo",
-    "trans-phrase-cadence",
-    "catalog-v2-density-variation",
-    "catalog-v2-transition-coverage",
-    "catalog-v2-ensemble-interactions"
-  ],
-  "songBehaviors": [
-    "cyclical compás that locks harmonic and dynamic tension",
-    "interlocking palmas base and contratiempo creating a perpetual rhythmic weave",
-    "sudden llamadas calling the ensemble into remates and closures",
-    "falsetas functioning as narrative melodic journeys between vocal sections",
-    "avoid identical loop repetition by alternating pattern variants",
-    "use fills, breaks, cadences, and bridge textures as structural events",
-    "let lead/voice parts create space and response relationships"
-  ],
-  "engineProfile": {
-    "phraseLengthsBars": [2,4,8,12],
-    "primaryPulse": ["12-beat compás","4/4 binary compás","3/4 ternary compás","free/rubato cante"],
-    "rhythmicPriorities": ["palo-specific compás before generic meter","accent architecture before subdivision density","llamada/remate/cierre at phrase boundaries","palmas and guitar interlock","space under cante"],
-    "harmonicStrategy": ["Phrygian/Andalusian cadence for jondo palos","major-key cantiñas/Alegrías","do not force functional pop cadences"],
-    "melodicStrategy": ["cante-like ornament and melisma","falseta between letras","chord-tone targeting inside modal color","expressive slides and vibrato","space before response"],
-    "arrangementStrategy": "Treat guitar compás as the clock; add palmas/cajón according to palo; use voice/cante as the foreground; make llamadas, cortes, remates and cierres structural events.",
-    "engineConstraints": ["Never substitute a 4/4 groove for a 12-beat palo","Seguiriya uses 2+2+3+3+2 accents, not the Soleá map","Alegrías should not inherit Soleá's dark harmonic profile","Bulería density comes from interaction and cuts, not constant subdivision spam","Use bass sparingly outside Rumba/New Flamenco contexts"],
-    "variationStrategy": "Prefer authored palo variants at phrase boundaries; alternate rasgueado density, palmas response, falseta and remate rather than generic fills.",
-    "harmonicModel": "functional-harmony",
-    "pitchModel": "flamenco-phrygian-plus-major-cantiñas",
-    "timingModel": "authored-phrase"
-  },
-  "instrumentIdeas": {
-    "guitar": [
-      "abanico strums",
-      "alzapúa thumb ostinatos",
-      "lyric picado falsetas",
-      "crisp golpes"
-    ],
-    "bass": [
-      "follow compás accent milestones (12, 3, 6, 8, 10)",
-      "alzapúa-inspired low ostinato"
-    ],
-    "sax": [
-      "cante-inspired vocal phrasing with quarter-tone inflections",
-      "flamenco jazz modal counterlines"
-    ],
-    "flute": [
-      "rapid picado-like staccato runs",
-      "lyric falseta accompaniment"
-    ],
-    "percussion": [
-      "cajón low/high split",
-      "interlocking handclaps",
-      "finger snaps and jaleos"
-    ],
-    "voice": [
-      "cante phrasing and remate calls"
-    ]
-  },
-  "combinations": [
-    "Flamenco + Jazz",
-    "Flamenco + Tango",
-    "Flamenco + Afro-Cuban",
-    "Flamenco + Arabic"
-  ],
-  "danceTags": [
-    "social-partner",
-    "festival-fusion",
-    "listening"
   ],
   "tuningSystem": "phrygian-mode",
   "signatureCell": "12-beat compás accented on [12, 3, 6, 8, 10] with Andalusian cadence",

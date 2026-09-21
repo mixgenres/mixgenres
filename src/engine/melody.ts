@@ -1,7 +1,7 @@
 import { KeyInfo, ParsedChord, pcOf, nearestPc } from './theory';
 import { VoiceProfile, foldToRange } from './instrumentProfile';
 import { rand01 } from './groove';
-import { resolveStyle, getCanonicalStyle } from '../data/styles';
+import { resolveStyle } from '../data/styles';
 
 export interface MotifNote {
   /** Position in beats from the start of the phrase */

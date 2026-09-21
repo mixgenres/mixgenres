@@ -350,14 +350,9 @@ export const SKA_WORLD: GenreWorld = {
         "verse",
         "chorus"
       ],
-      "patternFunction": null,
-      "roleDependencies": [],
-      "interactionRules": [],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
+
       "variants": [
         {
           "id": "sk-offbeat-chop-v-sparse",
@@ -487,14 +482,9 @@ export const SKA_WORLD: GenreWorld = {
         "chorus",
         "solo"
       ],
-      "patternFunction": null,
-      "roleDependencies": [],
-      "interactionRules": [],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
+
       "variants": [
         {
           "id": "sk-walking-bass-v-sparse",
@@ -629,25 +619,9 @@ export const SKA_WORLD: GenreWorld = {
         "chorus",
         "solo"
       ],
-      "patternFunction": null,
-      "roleDependencies": [],
-      "interactionRules": [
-        {
-          "id": "sk-horn-answer-i",
-          "sourceRole": "harmony",
-          "targetRole": "lead",
-          "relationship": "answer",
-          "description": "Horn section fills the gap left",
-          "timingOffsetSteps": 0,
-          "probability": 0.75,
-          "worldId": "ska"
-        }
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
+
       "variants": [
         {
           "id": "sk-horn-answer-v-sparse",
@@ -770,14 +744,9 @@ export const SKA_WORLD: GenreWorld = {
         "verse",
         "chorus"
       ],
-      "patternFunction": null,
-      "roleDependencies": [],
-      "interactionRules": [],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
+
       "variants": [
         {
           "id": "sk-two-tone-drive-v-sparse",
@@ -895,14 +864,9 @@ export const SKA_WORLD: GenreWorld = {
         "bridge",
         "chorus"
       ],
-      "patternFunction": null,
-      "roleDependencies": [],
-      "interactionRules": [],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
+
       "variants": [
         {
           "id": "sk-rocksteady-bass-v-sparse",
@@ -1009,14 +973,9 @@ export const SKA_WORLD: GenreWorld = {
         "verse",
         "chorus"
       ],
-      "patternFunction": "First-Wave Offbeat Chop",
-      "roleDependencies": [],
-      "interactionRules": [],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
+
       "variants": [],
       "provenance": "Authored genre-pack pattern based on First-Wave Ska; designed for engine-level recombination rather than literal transcription.",
       "authenticityTags": [
@@ -1092,14 +1051,9 @@ export const SKA_WORLD: GenreWorld = {
         "chorus",
         "solo"
       ],
-      "patternFunction": "Walking Ska Bass",
-      "roleDependencies": [],
-      "interactionRules": [],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
+
       "variants": [],
       "provenance": "Authored genre-pack pattern based on First-Wave Ska; designed for engine-level recombination rather than literal transcription.",
       "authenticityTags": [
@@ -1172,27 +1126,9 @@ export const SKA_WORLD: GenreWorld = {
         "chorus",
         "bridge"
       ],
-      "patternFunction": "Horn Section Answer",
-      "roleDependencies": [
-        "melody"
-      ],
-      "interactionRules": [
-        {
-          "id": "sk-08-horn-section-answer-answer",
-          "sourceRole": "horn-section",
-          "targetRole": "melody",
-          "relationship": "answer",
-          "timingOffsetSteps": 2,
-          "probability": 0.75,
-          "worldId": "ska",
-          "description": "Enter only after the source phrase"
-        }
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
+
       "variants": [],
       "provenance": "Authored genre-pack pattern based on First-Wave Ska; designed for engine-level recombination rather than literal transcription.",
       "authenticityTags": [
@@ -1263,14 +1199,9 @@ export const SKA_WORLD: GenreWorld = {
         "verse",
         "chorus"
       ],
-      "patternFunction": "Ska Drum Drive",
-      "roleDependencies": [],
-      "interactionRules": [],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
+
       "variants": [],
       "provenance": "Authored genre-pack pattern based on First-Wave Ska; designed for engine-level recombination rather than literal transcription.",
       "authenticityTags": [
@@ -1338,14 +1269,9 @@ export const SKA_WORLD: GenreWorld = {
         "bridge",
         "breakdown"
       ],
-      "patternFunction": "Rocksteady Transition",
-      "roleDependencies": [],
-      "interactionRules": [],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
+
       "variants": [],
       "provenance": "Authored genre-pack pattern based on Ska → Rocksteady; designed for engine-level recombination rather than literal transcription.",
       "authenticityTags": [
@@ -1415,14 +1341,9 @@ export const SKA_WORLD: GenreWorld = {
       "sectionUsage": [
         "chorus"
       ],
-      "patternFunction": "Two-Tone Guitar Pulse",
-      "roleDependencies": [],
-      "interactionRules": [],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
+
       "variants": [],
       "provenance": "Authored genre-pack pattern based on Two-Tone; designed for engine-level recombination rather than literal transcription.",
       "authenticityTags": [
@@ -1489,14 +1410,9 @@ export const SKA_WORLD: GenreWorld = {
         "verse",
         "chorus"
       ],
-      "patternFunction": "Ska Piano Bubble",
-      "roleDependencies": [],
-      "interactionRules": [],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
+
       "variants": [],
       "provenance": "Authored genre-pack pattern based on First-Wave Ska; designed for engine-level recombination rather than literal transcription.",
       "authenticityTags": [
@@ -1564,14 +1480,9 @@ export const SKA_WORLD: GenreWorld = {
         "chorus",
         "bridge"
       ],
-      "patternFunction": "Ska Horn Stab",
-      "roleDependencies": [],
-      "interactionRules": [],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
+
       "variants": [],
       "provenance": "Authored genre-pack pattern based on Horn Section; designed for engine-level recombination rather than literal transcription.",
       "authenticityTags": [
@@ -1639,14 +1550,9 @@ export const SKA_WORLD: GenreWorld = {
         "bridge",
         "chorus"
       ],
-      "patternFunction": "Ska Break Call",
-      "roleDependencies": [],
-      "interactionRules": [],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
+
       "variants": [],
       "provenance": "Authored genre-pack pattern based on Break; designed for engine-level recombination rather than literal transcription.",
       "authenticityTags": [
@@ -1717,14 +1623,9 @@ export const SKA_WORLD: GenreWorld = {
       "sectionUsage": [
         "ending"
       ],
-      "patternFunction": "Ska Final Shout",
-      "roleDependencies": [],
-      "interactionRules": [],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
+
       "variants": [],
       "provenance": "Authored genre-pack pattern based on Cadence; designed for engine-level recombination rather than literal transcription.",
       "authenticityTags": [
@@ -1739,93 +1640,6 @@ export const SKA_WORLD: GenreWorld = {
       "enabled": true
     }
   ],
-  "engineProfile": {
-    "phraseLengthsBars": [
-      1,
-      2
-    ],
-    "primaryPulse": [
-      "offbeat chop",
-      "walking bass",
-      "horn punctuation"
-    ],
-    "rhythmicPriorities": [
-      "offbeat chop",
-      "walking bass",
-      "horn punctuation"
-    ],
-    "harmonicStrategy": [
-      "bright cyclic harmony",
-      "simple functional turns",
-      "repeated progressions supporting horn/vocal hooks"
-    ],
-    "melodicStrategy": [
-      "short horn riffs",
-      "walking/chromatic bass",
-      "offbeat guitar/piano"
-    ],
-    "arrangementStrategy": "Intro/verse/chorus repetition, horn breaks, instrumental passages and stop-time cues are common; later two-tone variants can add rock/punk density.",
-    "engineConstraints": [
-      "Do not use reggae one-drop as the default; do not make horns continuous pads; retain crisp offbeats.",
-      "Prefer authored genre patterns over generic fallback patterns when an instrument/role match exists.",
-      "Use phrase-end variants and section transitions before introducing unrelated cells."
-    ],
-    "variationStrategy": "Develop density, accent, register, orchestration and phrase position before replacing the core identity."
-  },
-  "techniques": [
-    "offbeat articulation",
-    "walking bass generation",
-    "horn answer probability",
-    "rocksteady density reduction"
-  ],
-  "forms": [
-    "intro",
-    "verse",
-    "chorus",
-    "instrumental",
-    "break",
-    "outro"
-  ],
-  "relationships": [
-    "guitar ↔ bass",
-    "guitar ↔ horns",
-    "bass ↔ drums"
-  ],
-  "songBehaviors": [
-    "keep upbeats crisp",
-    "do not turn ska into four-on-floor EDM",
-    "use horns as responses",
-    "reduce density as the style approaches rocksteady",
-    "Phrase in 1–2 bar units before making a major pattern change.",
-    "Prioritize offbeat chop and walking bass as the identity layer.",
-    "Use short horn riffs and walking/chromatic bass for development rather than generic fills."
-  ],
-  "instrumentIdeas": {
-    "electric-guitar": [
-      "tight upstroke chop"
-    ],
-    "piano": [
-      "offbeat piano"
-    ],
-    "bass": [
-      "walking melodic bass"
-    ],
-    "trumpet": [
-      "short horn answers"
-    ],
-    "trombone": [
-      "low horn responses"
-    ]
-  },
-  "combinations": [
-    "Ska + Reggae",
-    "Ska + Rock",
-    "2 Tone + New Wave"
-  ],
-  "danceTags": [
-    "festival-fusion",
-    "social-partner"
-  ],
   "tuningSystem": "12-tet",
   "signatureCell": "Offbeat chop + walking bass + horn response",
   "grooveMechanics": {
@@ -1838,11 +1652,4 @@ export const SKA_WORLD: GenreWorld = {
     "Ska ↔ Reggae / Dub",
     "Ska ↔ Rock / Funk"
   ],
-  "transformations": [
-    "trans-density",
-    "trans-anticipation",
-    "trans-accent",
-    "trans-phrase-position",
-    "trans-ensemble-interaction"
-  ]
 };

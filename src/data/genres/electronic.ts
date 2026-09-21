@@ -795,9 +795,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 1,
       "weight": 1,
       "provenance": "Electronic catalog rebuild: retained source material or generated structural support pattern.",
@@ -810,14 +808,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 50,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "drums"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -935,9 +926,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 1,
       "weight": 1,
       "provenance": "Electronic catalog rebuild: retained source material or generated structural support pattern.",
@@ -950,14 +939,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 50,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "drums"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -1155,9 +1137,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 4,
       "weight": 1,
       "provenance": "Electronic catalog rebuild: retained source material or generated structural support pattern.",
@@ -1170,15 +1150,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 50,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "drums",
-        "bass"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -1414,9 +1386,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 5,
       "weight": 1,
       "provenance": "Electronic catalog rebuild: retained source material or generated structural support pattern.",
@@ -1429,26 +1399,8 @@ export const ELECTRONIC_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 50,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "bass"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
-      "interactionRules": [
-        {
-          "id": "electronic-interaction-1",
-          "worldId": "electronic",
-          "sourceRole": "drums",
-          "targetRole": "bass",
-          "relationship": "reinforce",
-          "description": "Low-end attacks reinforce the main pulse",
-          "timingOffsetSteps": 0,
-          "probability": 0.78
-        }
-      ],
+
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -1548,9 +1500,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 1,
       "weight": 1,
       "provenance": "Electronic catalog rebuild: retained source material or generated structural support pattern.",
@@ -1563,26 +1513,8 @@ export const ELECTRONIC_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 50,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "drums"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
-      "interactionRules": [
-        {
-          "id": "electronic-interaction-2",
-          "worldId": "electronic",
-          "sourceRole": "voice",
-          "targetRole": "harmony",
-          "relationship": "leaveSpace",
-          "description": "Harmony reduces density under vocal entries",
-          "timingOffsetSteps": 0,
-          "probability": 0.72
-        }
-      ],
+
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -1718,9 +1650,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 2,
       "weight": 1,
       "provenance": "Electronic catalog rebuild: retained source material or generated structural support pattern.",
@@ -1733,26 +1663,8 @@ export const ELECTRONIC_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 50,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "drums"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
-      "interactionRules": [
-        {
-          "id": "electronic-interaction-3",
-          "worldId": "electronic",
-          "sourceRole": "lead",
-          "targetRole": "voice",
-          "relationship": "answer",
-          "description": "Lead instrument answers a vocal phrase",
-          "timingOffsetSteps": 2,
-          "probability": 0.58
-        }
-      ],
+
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -1907,9 +1819,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 3,
       "weight": 1,
       "provenance": "Electronic catalog rebuild: retained source material or generated structural support pattern.",
@@ -1922,26 +1832,8 @@ export const ELECTRONIC_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 50,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "drums"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
-      "interactionRules": [
-        {
-          "id": "electronic-interaction-4",
-          "worldId": "electronic",
-          "sourceRole": "bass",
-          "targetRole": "drums",
-          "relationship": "accentWith",
-          "description": "Bass accents align with selected kick/backbeat",
-          "timingOffsetSteps": 0,
-          "probability": 0.65
-        }
-      ],
+
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -2077,9 +1969,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 2,
       "weight": 1,
       "provenance": "Electronic catalog rebuild: retained source material or generated structural support pattern.",
@@ -2092,26 +1982,8 @@ export const ELECTRONIC_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 50,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "drums"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
-      "interactionRules": [
-        {
-          "id": "electronic-interaction-5",
-          "worldId": "electronic",
-          "sourceRole": "harmony",
-          "targetRole": "lead",
-          "relationship": "leaveSpace",
-          "description": "Accompaniment thins when the instrumental lead",
-          "timingOffsetSteps": 0,
-          "probability": 0.62
-        }
-      ],
+
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -2247,9 +2119,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 2,
       "weight": 1,
       "provenance": "Electronic catalog rebuild: retained source material or generated structural support pattern.",
@@ -2262,14 +2132,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 50,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "drums"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -2371,9 +2234,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 1,
       "weight": 1,
       "provenance": "Electronic catalog rebuild: retained source material or generated structural support pattern.",
@@ -2386,14 +2247,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 50,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "keys"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -2549,9 +2403,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 3,
       "weight": 1,
       "provenance": "Electronic catalog rebuild: retained source material or generated structural support pattern.",
@@ -2564,14 +2416,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 50,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "bass"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -2721,9 +2566,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 2,
       "weight": 0.7,
       "provenance": "Electronic catalog rebuild: retained source material or generated structural support pattern.",
@@ -2736,14 +2579,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 50,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "bass"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -2825,19 +2661,8 @@ export const ELECTRONIC_WORLD: GenreWorld = {
         "verse",
         "chorus"
       ],
-      "harmonicContext": [
-        "tonal",
-        "section-dependent",
-        "tonal or modal context"
-      ],
-      "roleDependencies": [
-        "voice"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "electronic-phrase-13-v-01",
@@ -3014,20 +2839,8 @@ export const ELECTRONIC_WORLD: GenreWorld = {
         "chorus",
         "bridge"
       ],
-      "harmonicContext": [
-        "tonal",
-        "section-dependent",
-        "tonal or modal context"
-      ],
-      "roleDependencies": [
-        "voice",
-        "lead"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "electronic-call-14-v-01",
@@ -3252,19 +3065,8 @@ export const ELECTRONIC_WORLD: GenreWorld = {
         "verse",
         "chorus"
       ],
-      "harmonicContext": [
-        "tonal",
-        "section-dependent",
-        "tonal or modal context"
-      ],
-      "roleDependencies": [
-        "bass"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "electronic-anchor-15-v-01",
@@ -3436,19 +3238,8 @@ export const ELECTRONIC_WORLD: GenreWorld = {
         "verse",
         "chorus"
       ],
-      "harmonicContext": [
-        "tonal",
-        "section-dependent",
-        "tonal or modal context"
-      ],
-      "roleDependencies": [
-        "harmony"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "electronic-comp-16-v-01",
@@ -3618,20 +3409,8 @@ export const ELECTRONIC_WORLD: GenreWorld = {
       "sectionUsage": [
         "intro"
       ],
-      "harmonicContext": [
-        "tonal",
-        "section-dependent",
-        "tonal or modal context"
-      ],
-      "roleDependencies": [
-        "harmony",
-        "texture"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "electronic-intro-17-v-01",
@@ -3763,59 +3542,6 @@ export const ELECTRONIC_WORLD: GenreWorld = {
       "weight": 0.7,
       "enabled": true
     }
-  ],
-  "techniques": [
-    "filter sweep automation",
-    "sidechain pumping",
-    "breakbeat time-stretching",
-    "arpeggiated gating"
-  ],
-  "forms": [
-    "intro build",
-    "drop / groove",
-    "breakdown",
-    "build-up",
-    "second drop",
-    "outro"
-  ],
-  "relationships": [
-    "kick ↔ bass (sidechain ducking interaction)",
-    "open hat ↔ kick (unwavering upbeat pulse)"
-  ],
-  "transformations": [
-    "trans-density-dense",
-    "trans-anticipation",
-    "trans-phrase-cadence",
-    "catalog-v2-density-variation",
-    "catalog-v2-transition-coverage",
-    "catalog-v2-ensemble-interactions"
-  ],
-  "songBehaviors": [
-    "gradual timbral filtering building tension toward explosive rhythmic drops and sustained hypnotic loops",
-    "avoid identical loop repetition by alternating pattern variants",
-    "use fills, breaks, cadences, and bridge textures as structural events",
-    "let lead/voice parts create space and response relationships"
-  ],
-  "instrumentIdeas": {
-    "synth": [
-      "analog-modeled saw lead with resonant lowpass filter cutoff sweep"
-    ],
-    "bass": [
-      "saturated sub-bass square wave with sidechain compression from kick"
-    ],
-    "drums": [
-      "crisp 909 kick and open 909 hi-hat on upbeats"
-    ]
-  },
-  "combinations": [
-    "Electronic + Hip-Hop",
-    "Electronic + Rock",
-    "Electronic + Funk"
-  ],
-  "danceTags": [
-    "festival-fusion",
-    "social-partner",
-    "listening"
   ],
   "tuningSystem": "12-tet",
   "signatureCell": "Driving four-on-the-floor kick with open offbeat hi-hat and pumping sidechain bass",

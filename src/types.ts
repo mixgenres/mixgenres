@@ -190,28 +190,6 @@ export interface PatternVariant {
   constraints?: string[];
 }
 
-export interface InteractionRule {
-  id: string;
-  sourceRole: Role;
-  targetRole: Role;
-  relationship: InteractionRelationship;
-  description: string;
-  timingOffsetSteps?: number; // e.g. -1 for anticipation, +2 for response
-  probability: number;
-  worldId?: string; // legacy catalog field; not used for musical decisions
-  styleIds?: string[];
-  constraints?: string[];
-}
-
-export interface PatternTransformation {
-  id: string;
-  name: string;
-  type: 'density' | 'anticipation' | 'accent' | 'ornament' | 'phrasePosition' | 'swing' | 'syncopation';
-  parameter: number | string;
-  description: string;
-  allowedGenres?: string[];
-}
-
 export interface MusicalPattern {
   id: string;
   worldId: string; // genre/catalog key; musical identity is styleIds
@@ -251,15 +229,6 @@ export interface MusicalPattern {
   
   phrasePosition?: ('start' | 'middle' | 'end' | 'any')[];
   sectionUsage?: SectionType[];
-  /** Optional pattern-level technique/function; distinct from song section/form. */
-  technique?: string;
-  /** Optional plain-language pattern job shown in UI; distinct from section form. */
-  patternFunction?: string;
-  harmonicContext?: string[]; // e.g. ['minor', 'dominant', 'turnaround']
-  
-  roleDependencies?: Role[];
-  interactionRules?: InteractionRule[];
-  transformations?: string[];
   
   variants: PatternVariant[];
   
@@ -292,21 +261,6 @@ export interface GenreStyleDefinition {
   sectionProgressions?: Partial<Record<SectionType | string, string[]>>;
 }
 
-export interface GenreEngineProfile {
-  phraseLengthsBars: number[];
-  primaryPulse: string[];
-  rhythmicPriorities: string[];
-  harmonicStrategy: string[];
-  melodicStrategy: string[];
-  arrangementStrategy: string;
-  engineConstraints: string[];
-  variationStrategy: string;
-  /** Optional machine-readable cultural runtime model; absent means the standard functional-harmony engine. */
-  harmonicModel?: 'functional-harmony' | 'modal-center' | 'heterophonic' | 'drone-cluster';
-  pitchModel?: string;
-  timingModel?: 'grid-groove' | 'authored-phrase' | 'breath-and-ma';
-}
-
 export interface GenreWorld {
   id: LensId;
   name: string;
@@ -326,15 +280,6 @@ export interface GenreWorld {
   concepts: string[];
   roles: Partial<Record<Role, string[]>>;
   patterns: MusicalPattern[];
-  techniques: string[];
-  forms: string[];
-  relationships: string[];
-  transformations: string[];
-  songBehaviors: string[];
-  engineProfile?: GenreEngineProfile;
-  instrumentIdeas: Partial<Record<InstrumentKind, string[]>>;
-  combinations?: string[];
-  danceTags?: DanceTag[];
   tuningSystem?: TuningSystemTag;
   signatureCell?: string;
   grooveMechanics?: GrooveMechanics;
@@ -458,49 +403,4 @@ export interface Song {
   styleOverrides?: Record<string, unknown>;
 }
 
-export interface SelectionScoreDetails {
-  patternId: string;
-  patternName: string;
-  totalScore: number;
-  factors: {
-    genreMatch: number;
-    styleMatch: number;
-    sectionMatch: number;
-    roleMatch: number;
-    instrumentMatch: number;
-    meterMatch: number;
-    phrasePositionMatch: number;
-    densityMatch: number;
-    interactionBonus: number;
-    userPreferenceBonus: number;
-    repetitionPenalty: number;
-    cooldownPenalty: number;
-  };
-  chosenVariant?: PatternVariant;
-  appliedTransformation?: PatternTransformation;
-}
 
-export interface GenreCoverageReportItem {
-  worldId: string;
-  worldName: string;
-  stylesCount: number;
-  rhythmicFamiliesCount: number;
-  corePatternsCount: number;
-  variantsCount: number;
-  interactionRulesCount: number;
-  transformationsCount: number;
-  roleCoverage: Record<string, number>;
-  fallbackRatePct: number;
-  deadPatternsCount: number;
-  reachablePatternsCount: number;
-}
-
-export interface CollisionReportItem {
-  genreA: string;
-  genreB: string;
-  similarityScore: number; // 0..1
-  rhythmicOverlapPct: number;
-  differentiationFactors: string[];
-  distinctiveFeaturesA: string[];
-  distinctiveFeaturesB: string[];
-}

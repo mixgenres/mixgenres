@@ -513,9 +513,7 @@ export const ZOUK_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 2,
       "weight": 0.7,
       "provenance": "Zouk catalog rebuild: retained source material or generated structural support pattern.",
@@ -528,27 +526,8 @@ export const ZOUK_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 50,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "bass"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
-      "interactionRules": [
-        {
-          "id": "zouk-interaction-1",
-          "worldId": "zouk",
-          "sourceRole": "drums",
-          "targetRole": "bass",
-          "relationship": "reinforce",
-          "description": "Low-end attacks reinforce the main pulse",
-          "timingOffsetSteps": 0,
-          "probability": 0.78
-        }
-      ]
-    },
+
+},
     {
       "id": "zouk-guitar-skank-chawa",
       "worldId": "zouk",
@@ -677,9 +656,7 @@ export const ZOUK_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 1,
       "weight": 0.7,
       "provenance": "Zouk catalog rebuild: retained source material or generated structural support pattern.",
@@ -692,28 +669,8 @@ export const ZOUK_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 50,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "harmony",
-        "rhythm-guitar"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
-      "interactionRules": [
-        {
-          "id": "zouk-interaction-2",
-          "worldId": "zouk",
-          "sourceRole": "voice",
-          "targetRole": "harmony",
-          "relationship": "leaveSpace",
-          "description": "Harmony reduces density under vocal entries",
-          "timingOffsetSteps": 0,
-          "probability": 0.72
-        }
-      ]
-    },
+
+},
     {
       "id": "zouk-french-bass",
       "worldId": "zouk",
@@ -834,9 +791,7 @@ export const ZOUK_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 2,
       "weight": 1,
       "provenance": "Zouk catalog rebuild: retained source material or generated structural support pattern.",
@@ -849,14 +804,7 @@ export const ZOUK_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 50,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "bass"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -1093,9 +1041,7 @@ export const ZOUK_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 5,
       "weight": 1,
       "provenance": "Zouk catalog rebuild: retained source material or generated structural support pattern.",
@@ -1108,14 +1054,7 @@ export const ZOUK_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 50,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "percussion"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -1266,9 +1205,7 @@ export const ZOUK_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 2,
       "weight": 1,
       "provenance": "Zouk catalog rebuild: retained source material or generated structural support pattern.",
@@ -1281,26 +1218,8 @@ export const ZOUK_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 50,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "percussion"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
-      "interactionRules": [
-        {
-          "id": "zouk-interaction-3",
-          "worldId": "zouk",
-          "sourceRole": "lead",
-          "targetRole": "voice",
-          "relationship": "answer",
-          "description": "Lead instrument answers a vocal phrase",
-          "timingOffsetSteps": 2,
-          "probability": 0.58
-        }
-      ],
+
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -1422,9 +1341,7 @@ export const ZOUK_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 1,
       "weight": 1,
       "provenance": "Zouk catalog rebuild: retained source material or generated structural support pattern.",
@@ -1437,26 +1354,8 @@ export const ZOUK_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 50,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "keys"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
-      "interactionRules": [
-        {
-          "id": "zouk-interaction-4",
-          "worldId": "zouk",
-          "sourceRole": "bass",
-          "targetRole": "drums",
-          "relationship": "accentWith",
-          "description": "Bass accents align with selected kick/backbeat",
-          "timingOffsetSteps": 0,
-          "probability": 0.65
-        }
-      ],
+
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -1557,9 +1456,7 @@ export const ZOUK_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 1,
       "weight": 1,
       "provenance": "Zouk catalog rebuild: retained source material or generated structural support pattern.",
@@ -1572,26 +1469,8 @@ export const ZOUK_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 50,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "drums"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
-      "interactionRules": [
-        {
-          "id": "zouk-interaction-5",
-          "worldId": "zouk",
-          "sourceRole": "harmony",
-          "targetRole": "lead",
-          "relationship": "leaveSpace",
-          "description": "Accompaniment thins when the instrumental lead",
-          "timingOffsetSteps": 0,
-          "probability": 0.62
-        }
-      ],
+
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -1715,9 +1594,7 @@ export const ZOUK_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 1,
       "weight": 1,
       "provenance": "Zouk catalog rebuild: retained source material or generated structural support pattern.",
@@ -1730,14 +1607,7 @@ export const ZOUK_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 50,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "lead"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
       "articulations": [
         "legato"
       ]
@@ -1815,19 +1685,8 @@ export const ZOUK_WORLD: GenreWorld = {
         "verse",
         "chorus"
       ],
-      "harmonicContext": [
-        "tonal",
-        "section-dependent",
-        "tonal or modal context"
-      ],
-      "roleDependencies": [
-        "voice"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "zouk-phrase-9-v-01",
@@ -1990,19 +1849,8 @@ export const ZOUK_WORLD: GenreWorld = {
         "chorus",
         "bridge"
       ],
-      "harmonicContext": [
-        "tonal",
-        "section-dependent",
-        "tonal or modal context"
-      ],
-      "roleDependencies": [
-        "voice"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "zouk-call-10-v-01",
@@ -2209,19 +2057,8 @@ export const ZOUK_WORLD: GenreWorld = {
         "verse",
         "chorus"
       ],
-      "harmonicContext": [
-        "tonal",
-        "section-dependent",
-        "tonal or modal context"
-      ],
-      "roleDependencies": [
-        "bass"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "zouk-anchor-11-v-01",
@@ -2385,19 +2222,8 @@ export const ZOUK_WORLD: GenreWorld = {
         "verse",
         "chorus"
       ],
-      "harmonicContext": [
-        "tonal",
-        "section-dependent",
-        "tonal or modal context"
-      ],
-      "roleDependencies": [
-        "harmony"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "zouk-comp-12-v-01",
@@ -2565,20 +2391,8 @@ export const ZOUK_WORLD: GenreWorld = {
       "sectionUsage": [
         "intro"
       ],
-      "harmonicContext": [
-        "tonal",
-        "section-dependent",
-        "tonal or modal context"
-      ],
-      "roleDependencies": [
-        "harmony",
-        "texture"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "zouk-intro-13-v-01",
@@ -2806,20 +2620,8 @@ export const ZOUK_WORLD: GenreWorld = {
       "sectionUsage": [
         "verse"
       ],
-      "harmonicContext": [
-        "tonal",
-        "section-dependent",
-        "tonal or modal context"
-      ],
-      "roleDependencies": [
-        "drums",
-        "rhythm-guitar"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "zouk-verse-14-v-01",
@@ -3000,20 +2802,8 @@ export const ZOUK_WORLD: GenreWorld = {
       "sectionUsage": [
         "chorus"
       ],
-      "harmonicContext": [
-        "tonal",
-        "section-dependent",
-        "tonal or modal context"
-      ],
-      "roleDependencies": [
-        "harmony",
-        "drums"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "zouk-chorus-15-v-01",
@@ -3238,20 +3028,8 @@ export const ZOUK_WORLD: GenreWorld = {
         "interlude",
         "development"
       ],
-      "harmonicContext": [
-        "tonal",
-        "section-dependent",
-        "tonal or modal context"
-      ],
-      "roleDependencies": [
-        "harmony",
-        "lead"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "zouk-bridge-16-v-01",
@@ -3471,17 +3249,8 @@ export const ZOUK_WORLD: GenreWorld = {
         "chorus",
         "bridge"
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
-      "roleDependencies": [
-        "voice"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "zouk-voice-phrasing-v-voice-alt",
@@ -3577,73 +3346,6 @@ export const ZOUK_WORLD: GenreWorld = {
       "weight": 0.9,
       "enabled": true
     }
-  ],
-  "techniques": [
-    "clean single-coil guitar muting",
-    "ti-bwa woodblock stick technique",
-    "sub-bass slides",
-    "lush DX7 synthesizer layering",
-    "brass unison punch"
-  ],
-  "forms": [
-    "intro",
-    "verse",
-    "chorus",
-    "instrumental horn break",
-    "verse",
-    "chorus",
-    "coda"
-  ],
-  "relationships": [
-    "kick ↔ bass (tight syncopated lock)",
-    "guitar chawa ↔ ti-bwa (perpetual Caribbean shimmer)",
-    "horn stabs ↔ vocal chorus response"
-  ],
-  "transformations": [
-    "trans-density-sparse",
-    "trans-anticipation",
-    "trans-density-dense",
-    "trans-phrase-cadence",
-    "catalog-v2-density-variation",
-    "catalog-v2-transition-coverage",
-    "catalog-v2-ensemble-interactions"
-  ],
-  "songBehaviors": [
-    "high-energy carnival drive alternating with smooth romantic pocket",
-    "dynamic chorus lifts driven by horn stabs and double-time guitar chawa",
-    "avoid identical loop repetition by alternating pattern variants",
-    "use fills, breaks, cadences, and bridge textures as structural events",
-    "let lead/voice parts create space and response relationships"
-  ],
-  "instrumentIdeas": {
-    "bass": [
-      "warm round electric bass with punchy mid-range",
-      "deep 16th syncopated slides"
-    ],
-    "guitar": [
-      "chorus-drenched rhythmic clean chops on Fender Stratocaster"
-    ],
-    "keys": [
-      "warm FM electric piano (DX7 Rhodes) with lush strings and synth bells"
-    ],
-    "percussion": [
-      "ti-bwa wooden sticks on drum rim or bamboo block"
-    ],
-    "voice": [
-      "lead vocal with deliberate space"
-    ]
-  },
-  "combinations": [
-    "Zouk + Compas",
-    "Zouk + Soukous",
-    "Zouk + R&B / Pop",
-    "Zouk + Salsa"
-  ],
-  "danceTags": [
-    "social-partner",
-    "festival-fusion",
-    "blues-fusion-compatible",
-    "listening"
   ],
   "tuningSystem": "12-tet",
   "signatureCell": "Driving ti-bwa stick ostinato over syncopated 16th sub-bass and chawa guitar chops",

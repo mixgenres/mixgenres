@@ -430,14 +430,9 @@ export const SAMBA_BOSSA_WORLD: GenreWorld = {
         "verse",
         "chorus"
       ],
-      "patternFunction": null,
-      "roleDependencies": [],
-      "interactionRules": [],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
+
       "variants": [
         {
           "id": "sb-surdo-foundation-v-sparse",
@@ -559,14 +554,9 @@ export const SAMBA_BOSSA_WORLD: GenreWorld = {
         "chorus",
         "solo"
       ],
-      "patternFunction": null,
-      "roleDependencies": [],
-      "interactionRules": [],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
+
       "variants": [
         {
           "id": "sb-pandeiro-v-sparse",
@@ -689,14 +679,9 @@ export const SAMBA_BOSSA_WORLD: GenreWorld = {
         "verse",
         "chorus"
       ],
-      "patternFunction": null,
-      "roleDependencies": [],
-      "interactionRules": [],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
+
       "variants": [
         {
           "id": "sb-cavaquinho-v-sparse",
@@ -826,14 +811,9 @@ export const SAMBA_BOSSA_WORLD: GenreWorld = {
         "chorus",
         "solo"
       ],
-      "patternFunction": null,
-      "roleDependencies": [],
-      "interactionRules": [],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
+
       "variants": [
         {
           "id": "sb-bossa-guitar-v-sparse",
@@ -969,14 +949,9 @@ export const SAMBA_BOSSA_WORLD: GenreWorld = {
         "chorus",
         "solo"
       ],
-      "patternFunction": null,
-      "roleDependencies": [],
-      "interactionRules": [],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
+
       "variants": [
         {
           "id": "sb-bossa-bass-v-sparse",
@@ -1086,14 +1061,9 @@ export const SAMBA_BOSSA_WORLD: GenreWorld = {
         "verse",
         "chorus"
       ],
-      "patternFunction": "Samba Surdo Foundation",
-      "roleDependencies": [],
-      "interactionRules": [],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
+
       "variants": [],
       "provenance": "Authored genre-pack pattern based on Samba; designed for engine-level recombination rather than literal transcription.",
       "authenticityTags": [
@@ -1167,14 +1137,9 @@ export const SAMBA_BOSSA_WORLD: GenreWorld = {
         "verse",
         "chorus"
       ],
-      "patternFunction": "Samba Pandeiro Interlock",
-      "roleDependencies": [],
-      "interactionRules": [],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
+
       "variants": [],
       "provenance": "Authored genre-pack pattern based on Samba; designed for engine-level recombination rather than literal transcription.",
       "authenticityTags": [
@@ -1246,14 +1211,9 @@ export const SAMBA_BOSSA_WORLD: GenreWorld = {
         "chorus",
         "solo"
       ],
-      "patternFunction": "Tamborim Cross Accent",
-      "roleDependencies": [],
-      "interactionRules": [],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
+
       "variants": [],
       "provenance": "Authored genre-pack pattern based on Samba; designed for engine-level recombination rather than literal transcription.",
       "authenticityTags": [
@@ -1323,14 +1283,9 @@ export const SAMBA_BOSSA_WORLD: GenreWorld = {
         "verse",
         "chorus"
       ],
-      "patternFunction": "Cavaquinho Partido",
-      "roleDependencies": [],
-      "interactionRules": [],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
+
       "variants": [],
       "provenance": "Authored genre-pack pattern based on Samba; designed for engine-level recombination rather than literal transcription.",
       "authenticityTags": [
@@ -1405,14 +1360,9 @@ export const SAMBA_BOSSA_WORLD: GenreWorld = {
         "verse",
         "chorus"
       ],
-      "patternFunction": "Bossa Guitar Clave",
-      "roleDependencies": [],
-      "interactionRules": [],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
+
       "variants": [],
       "provenance": "Authored genre-pack pattern based on Bossa Nova; designed for engine-level recombination rather than literal transcription.",
       "authenticityTags": [
@@ -1482,14 +1432,9 @@ export const SAMBA_BOSSA_WORLD: GenreWorld = {
         "verse",
         "chorus"
       ],
-      "patternFunction": "Bossa Bass Anticipation",
-      "roleDependencies": [],
-      "interactionRules": [],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
+
       "variants": [],
       "provenance": "Authored genre-pack pattern based on Bossa Nova; designed for engine-level recombination rather than literal transcription.",
       "authenticityTags": [
@@ -1559,14 +1504,9 @@ export const SAMBA_BOSSA_WORLD: GenreWorld = {
         "verse",
         "chorus"
       ],
-      "patternFunction": "Bossa Piano Voicing",
-      "roleDependencies": [],
-      "interactionRules": [],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
+
       "variants": [],
       "provenance": "Authored genre-pack pattern based on Bossa Nova; designed for engine-level recombination rather than literal transcription.",
       "authenticityTags": [
@@ -1635,27 +1575,9 @@ export const SAMBA_BOSSA_WORLD: GenreWorld = {
         "verse",
         "chorus"
       ],
-      "patternFunction": "Samba Call Response",
-      "roleDependencies": [
-        "melody"
-      ],
-      "interactionRules": [
-        {
-          "id": "sb-13-samba-call-response-answer",
-          "sourceRole": "counterline",
-          "targetRole": "melody",
-          "relationship": "answer",
-          "timingOffsetSteps": 2,
-          "probability": 0.75,
-          "worldId": "samba-bossa",
-          "description": "Enter only after the source phrase"
-        }
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
+
       "variants": [],
       "provenance": "Authored genre-pack pattern based on Samba; designed for engine-level recombination rather than literal transcription.",
       "authenticityTags": [
@@ -1722,14 +1644,9 @@ export const SAMBA_BOSSA_WORLD: GenreWorld = {
         "breakdown",
         "bridge"
       ],
-      "patternFunction": "Batucada Break",
-      "roleDependencies": [],
-      "interactionRules": [],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
+
       "variants": [],
       "provenance": "Authored genre-pack pattern based on Samba; designed for engine-level recombination rather than literal transcription.",
       "authenticityTags": [
@@ -1800,14 +1717,9 @@ export const SAMBA_BOSSA_WORLD: GenreWorld = {
         "coda",
         "ending"
       ],
-      "patternFunction": "Bossa Ending Turn",
-      "roleDependencies": [],
-      "interactionRules": [],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
+
       "variants": [],
       "provenance": "Authored genre-pack pattern based on Bossa Nova; designed for engine-level recombination rather than literal transcription.",
       "authenticityTags": [
@@ -1823,96 +1735,6 @@ export const SAMBA_BOSSA_WORLD: GenreWorld = {
       "enabled": true
     }
   ],
-  "engineProfile": {
-    "phraseLengthsBars": [
-      1,
-      2,
-      4
-    ],
-    "primaryPulse": [
-      "interlocking percussion",
-      "syncopated accompaniment",
-      "independent bass"
-    ],
-    "rhythmicPriorities": [
-      "interlocking percussion",
-      "syncopated accompaniment",
-      "independent bass"
-    ],
-    "harmonicStrategy": [
-      "functional/extended Brazilian harmony",
-      "turnarounds",
-      "chromatic approach chords"
-    ],
-    "melodicStrategy": [
-      "syncopated guitar/cavaquinho",
-      "lyric melody",
-      "percussion-response cells"
-    ],
-    "arrangementStrategy": "Samba can build from surdo into layered percussion and refrain; bossa often uses intro, verses/refrains, instrumental bridge/solo and return with subtle dynamic change.",
-    "engineConstraints": [
-      "Do not flatten samba into a drum-kit loop; do not make bossa a generic jazz ballad; preserve independent rhythmic roles.",
-      "Prefer authored genre patterns over generic fallback patterns when an instrument/role match exists.",
-      "Use phrase-end variants and section transitions before introducing unrelated cells."
-    ],
-    "variationStrategy": "Develop density, accent, register, orchestration and phrase position before replacing the core identity."
-  },
-  "techniques": [
-    "2/4 normalization",
-    "pandeiro interlock",
-    "cavaquinho comp",
-    "bossa guitar/bass independence",
-    "quiet-dynamic shaping"
-  ],
-  "forms": [
-    "intro",
-    "verse",
-    "chorus",
-    "instrumental",
-    "break",
-    "coda"
-  ],
-  "relationships": [
-    "bass ↔ guitar",
-    "pandeiro ↔ cavaquinho",
-    "surdo ↔ percussion"
-  ],
-  "songBehaviors": [
-    "keep samba layers interlocking",
-    "do not make bossa into generic swing",
-    "allow quiet dynamics in bossa",
-    "use 2/4-native patterns for samba styles",
-    "Phrase in 1–4 bar units before making a major pattern change.",
-    "Prioritize interlocking percussion and syncopated accompaniment as the identity layer.",
-    "Use syncopated guitar/cavaquinho and lyric melody for development rather than generic fills."
-  ],
-  "instrumentIdeas": {
-    "pandeiro": [
-      "finger/thumb-like syncopation"
-    ],
-    "surdo": [
-      "low two-beat foundation"
-    ],
-    "cavaquinho": [
-      "bright short chord comp"
-    ],
-    "guitar": [
-      "bossa fingerstyle cell"
-    ],
-    "bass": [
-      "syncopated melodic foundation"
-    ]
-  },
-  "combinations": [
-    "Samba + Funk",
-    "Bossa + Jazz",
-    "Samba + Cumbia"
-  ],
-  "danceTags": [
-    "social-partner",
-    "festival-fusion",
-    "listening"
-  ],
   "tuningSystem": "12-tet",
   "signatureCell": "Brazilian 2/4 samba interlock or quiet bossa guitar/bass independence",
   "grooveMechanics": {
@@ -1925,11 +1747,4 @@ export const SAMBA_BOSSA_WORLD: GenreWorld = {
     "Samba ↔ Funk / Latin",
     "Bossa ↔ Jazz"
   ],
-  "transformations": [
-    "trans-density",
-    "trans-anticipation",
-    "trans-accent",
-    "trans-phrase-position",
-    "trans-ensemble-interaction"
-  ]
 };

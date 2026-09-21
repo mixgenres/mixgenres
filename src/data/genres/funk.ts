@@ -875,9 +875,7 @@ export const FUNK_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 3,
       "weight": 0.7,
       "provenance": "Funk catalog rebuild: retained source material or generated structural support pattern.",
@@ -890,27 +888,8 @@ export const FUNK_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 50,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "bass"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
-      "interactionRules": [
-        {
-          "id": "funk-interaction-1",
-          "worldId": "funk",
-          "sourceRole": "drums",
-          "targetRole": "bass",
-          "relationship": "reinforce",
-          "description": "Low-end attacks reinforce the main pulse",
-          "timingOffsetSteps": 0,
-          "probability": 0.78
-        }
-      ]
-    },
+
+},
     {
       "id": "funk-chicken-scratch-guitar",
       "worldId": "funk",
@@ -1114,9 +1093,7 @@ export const FUNK_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 5,
       "weight": 0.7,
       "provenance": "Funk catalog rebuild: retained source material or generated structural support pattern.",
@@ -1129,28 +1106,8 @@ export const FUNK_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 50,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "harmony",
-        "rhythm-guitar"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
-      "interactionRules": [
-        {
-          "id": "funk-interaction-2",
-          "worldId": "funk",
-          "sourceRole": "voice",
-          "targetRole": "harmony",
-          "relationship": "leaveSpace",
-          "description": "Harmony reduces density under vocal entries",
-          "timingOffsetSteps": 0,
-          "probability": 0.72
-        }
-      ]
-    },
+
+},
     {
       "id": "funk-drum-breakbeat",
       "worldId": "funk",
@@ -1315,9 +1272,7 @@ export const FUNK_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 3,
       "weight": 1,
       "provenance": "Funk catalog rebuild: retained source material or generated structural support pattern.",
@@ -1330,15 +1285,7 @@ export const FUNK_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 50,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "drums",
-        "percussion"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -1500,9 +1447,7 @@ export const FUNK_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 3,
       "weight": 1,
       "provenance": "Funk catalog rebuild: retained source material or generated structural support pattern.",
@@ -1515,14 +1460,7 @@ export const FUNK_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 50,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "electric-guitar"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -1675,9 +1613,7 @@ export const FUNK_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 3,
       "weight": 1,
       "provenance": "Funk catalog rebuild: retained source material or generated structural support pattern.",
@@ -1690,14 +1626,7 @@ export const FUNK_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 50,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "bass"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -1848,9 +1777,7 @@ export const FUNK_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 3,
       "weight": 1,
       "provenance": "Funk catalog rebuild: retained source material or generated structural support pattern.",
@@ -1863,26 +1790,8 @@ export const FUNK_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 50,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "drums"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
-      "interactionRules": [
-        {
-          "id": "funk-interaction-3",
-          "worldId": "funk",
-          "sourceRole": "bass",
-          "targetRole": "drums",
-          "relationship": "accentWith",
-          "description": "Bass accents align with selected kick/backbeat",
-          "timingOffsetSteps": 0,
-          "probability": 0.65
-        }
-      ],
+
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -2006,9 +1915,7 @@ export const FUNK_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 2,
       "weight": 1,
       "provenance": "Funk catalog rebuild: retained source material or generated structural support pattern.",
@@ -2021,14 +1928,7 @@ export const FUNK_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 50,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "keys"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -2136,9 +2036,7 @@ export const FUNK_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 1,
       "weight": 1,
       "provenance": "Funk catalog rebuild: retained source material or generated structural support pattern.",
@@ -2151,14 +2049,7 @@ export const FUNK_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 50,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "brass"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -2291,9 +2182,7 @@ export const FUNK_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 2,
       "weight": 1,
       "provenance": "Funk catalog rebuild: retained source material or generated structural support pattern.",
@@ -2306,14 +2195,7 @@ export const FUNK_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 50,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "bass"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -2428,9 +2310,7 @@ export const FUNK_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 1,
       "weight": 1,
       "provenance": "Funk catalog rebuild: retained source material or generated structural support pattern.",
@@ -2443,14 +2323,7 @@ export const FUNK_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 50,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "drums"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -2565,9 +2438,7 @@ export const FUNK_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 1,
       "weight": 1,
       "provenance": "Funk catalog rebuild: retained source material or generated structural support pattern.",
@@ -2580,14 +2451,7 @@ export const FUNK_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 50,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "drums"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -2738,9 +2602,7 @@ export const FUNK_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 3,
       "weight": 1,
       "provenance": "Funk catalog rebuild: retained source material or generated structural support pattern.",
@@ -2753,14 +2615,7 @@ export const FUNK_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 50,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "electric-guitar"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -2845,19 +2700,8 @@ export const FUNK_WORLD: GenreWorld = {
         "verse",
         "chorus"
       ],
-      "harmonicContext": [
-        "tonal",
-        "section-dependent",
-        "tonal or modal context"
-      ],
-      "roleDependencies": [
-        "voice"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "funk-phrase-13-v-01",
@@ -3038,19 +2882,8 @@ export const FUNK_WORLD: GenreWorld = {
         "chorus",
         "bridge"
       ],
-      "harmonicContext": [
-        "tonal",
-        "section-dependent",
-        "tonal or modal context"
-      ],
-      "roleDependencies": [
-        "voice"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "funk-call-14-v-01",
@@ -3287,19 +3120,8 @@ export const FUNK_WORLD: GenreWorld = {
         "verse",
         "chorus"
       ],
-      "harmonicContext": [
-        "tonal",
-        "section-dependent",
-        "tonal or modal context"
-      ],
-      "roleDependencies": [
-        "bass"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "funk-anchor-15-v-01",
@@ -3473,19 +3295,8 @@ export const FUNK_WORLD: GenreWorld = {
         "verse",
         "chorus"
       ],
-      "harmonicContext": [
-        "tonal",
-        "section-dependent",
-        "tonal or modal context"
-      ],
-      "roleDependencies": [
-        "harmony"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "funk-comp-16-v-01",
@@ -3649,17 +3460,8 @@ export const FUNK_WORLD: GenreWorld = {
         "chorus",
         "bridge"
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
-      "roleDependencies": [
-        "voice"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "funk-voice-phrasing-v-voice-alt",
@@ -3755,68 +3557,6 @@ export const FUNK_WORLD: GenreWorld = {
       "weight": 0.9,
       "enabled": true
     }
-  ],
-  "techniques": [
-    "slap and pop bass mechanics",
-    "percussive guitar scratching",
-    "ghost-note snare chatter",
-    "horn staccato unison stabs"
-  ],
-  "forms": [
-    "intro",
-    "verse groove",
-    "chorus / hook",
-    "bridge / breakdown",
-    "vamp / open solo",
-    "coda"
-  ],
-  "relationships": [
-    "kick ↔ bass (tight lock on The One)",
-    "snare ↔ guitar chops (backbeat synchronization)",
-    "horns ↔ rhythm section (answering stabs)"
-  ],
-  "transformations": [
-    "trans-density-dense",
-    "trans-anticipation",
-    "trans-density-sparse",
-    "trans-phrase-cadence",
-    "catalog-v2-density-variation",
-    "catalog-v2-transition-coverage",
-    "catalog-v2-ensemble-interactions"
-  ],
-  "songBehaviors": [
-    "irresistible hypnotic repetition anchored on The One",
-    "explosive ensemble unison hits leading into dance breaks",
-    "avoid identical loop repetition by alternating pattern variants",
-    "use fills, breaks, cadences, and bridge textures as structural events",
-    "let lead/voice parts create space and response relationships"
-  ],
-  "instrumentIdeas": {
-    "bass": [
-      "percussive slap thumb on beat 1 with syncopated index pops"
-    ],
-    "guitar": [
-      "single-coil Stratocaster muted 16th scratches with 9th chord bites"
-    ],
-    "drums": [
-      "snare dead-center on 2 & 4 surrounded by light ghost-note chatter"
-    ],
-    "voice": [
-      "rhythmic vocal hooks and ad-libs"
-    ]
-  },
-  "combinations": [
-    "Funk + Salsa",
-    "Funk + Jazz",
-    "Funk + Tango",
-    "Funk + Rock"
-  ],
-  "danceTags": [
-    "social-partner",
-    "wcs-compatible",
-    "festival-fusion",
-    "solo-vernacular",
-    "listening"
   ],
   "tuningSystem": "12-tet",
   "signatureCell": "Explosive root slap on The One with syncopated 16th ghost notes and chicken-scratch 9th guitar",

@@ -26,6 +26,31 @@ export interface ResolveStyleOptions {
   userOverrides?: Partial<SongStyle>;
 }
 
+type CompleteStyle = SongStyle & {
+  form: FormGrammar;
+  harmony: HarmonyGrammar;
+  rhythm: RhythmGrammar;
+  melody: MelodyGrammar;
+  arrangement: ArrangementGrammar;
+  sound: SoundProfile;
+  gestures: Record<string, GestureRule>;
+  rules: { require: RuleRef[]; forbid: RuleRef[] };
+};
+
+function completeStyle(style: SongStyle): CompleteStyle {
+  return {
+    ...style,
+    form: { ...style.form, sectionVocab: style.form?.sectionVocab ?? [], templates: style.form?.templates ?? [], preferredMeters: style.form?.preferredMeters ?? [] },
+    harmony: { ...style.harmony, model: style.harmony?.model ?? 'functional', modePolicy: style.harmony?.modePolicy ?? 'major', progressionTemplates: style.harmony?.progressionTemplates ?? [], chordVocabulary: style.harmony?.chordVocabulary ?? [] },
+    rhythm: { ...style.rhythm, meter: style.rhythm?.meter ?? '4/4', tempoRange: style.rhythm?.tempoRange ?? [80, 140], defaultBpm: style.rhythm?.defaultBpm ?? 110, feel: style.rhythm?.feel ?? 'style-native', swingPercentage: style.rhythm?.swingPercentage ?? 50, anticipationOffsetSteps: style.rhythm?.anticipationOffsetSteps ?? 0, microtimingFeel: style.rhythm?.microtimingFeel ?? 'straight', humanizeJitterMs: style.rhythm?.humanizeJitterMs ?? 8 },
+    melody: { ...style.melody, scaleMode: style.melody?.scaleMode ?? 'major' },
+    arrangement: { ...style.arrangement, ensemble: style.arrangement?.ensemble ?? [] },
+    sound: { ...style.sound, instrumentPalette: style.sound?.instrumentPalette ?? [], masterProfile: { roomId: style.sound?.masterProfile?.roomId ?? 'room', ...(style.sound?.masterProfile ?? {}) } },
+    gestures: { ...(style.gestures ?? {}) },
+    rules: { require: [], forbid: [], ...(style.rules ?? {}) },
+  };
+}
+
 // Deterministic memoization cache
 const resolveCache = new Map<string, ResolvedStyle>();
 
@@ -143,7 +168,7 @@ export function resolveStyle(opts: ResolveStyleOptions): ResolvedStyle {
   };
 
   // 2. Merge hierarchy (base parent -> child style)
-  let merged: SongStyle = JSON.parse(JSON.stringify(hierarchy[0]));
+  let merged: CompleteStyle = completeStyle(JSON.parse(JSON.stringify(hierarchy[0])));
   recordDecision('id', merged.id, 'style', merged.id);
 
   for (let i = 1; i < hierarchy.length; i++) {
@@ -277,13 +302,13 @@ export function resolveStyle(opts: ResolveStyleOptions): ResolvedStyle {
       switch (aspect) {
         case 'rhythm':
           if (infStyle.rhythm) {
-            merged.rhythm.tempoRange = lerpRange(merged.rhythm.tempoRange, infStyle.rhythm.tempoRange, w);
-            merged.rhythm.defaultBpm = Math.round(lerp(merged.rhythm.defaultBpm, infStyle.rhythm.defaultBpm, w));
-            merged.rhythm.swingPercentage = Math.round(lerp(merged.rhythm.swingPercentage, infStyle.rhythm.swingPercentage, w));
-            merged.rhythm.humanizeJitterMs = Math.round(lerp(merged.rhythm.humanizeJitterMs, infStyle.rhythm.humanizeJitterMs, w));
+            merged.rhythm.tempoRange = lerpRange(merged.rhythm.tempoRange, infStyle.rhythm.tempoRange ?? merged.rhythm.tempoRange, w);
+            merged.rhythm.defaultBpm = Math.round(lerp(merged.rhythm.defaultBpm, infStyle.rhythm.defaultBpm ?? merged.rhythm.defaultBpm, w));
+            merged.rhythm.swingPercentage = Math.round(lerp(merged.rhythm.swingPercentage, infStyle.rhythm.swingPercentage ?? merged.rhythm.swingPercentage, w));
+            merged.rhythm.humanizeJitterMs = Math.round(lerp(merged.rhythm.humanizeJitterMs, infStyle.rhythm.humanizeJitterMs ?? merged.rhythm.humanizeJitterMs, w));
             if (w >= 0.5) {
-              merged.rhythm.microtimingFeel = infStyle.rhythm.microtimingFeel;
-              merged.rhythm.feel = infStyle.rhythm.feel;
+              merged.rhythm.microtimingFeel = infStyle.rhythm.microtimingFeel ?? merged.rhythm.microtimingFeel;
+              merged.rhythm.feel = infStyle.rhythm.feel ?? merged.rhythm.feel;
             }
             if (infStyle.rhythm.grooveFamilies) {
               merged.rhythm.grooveFamilies = {
@@ -307,7 +332,7 @@ export function resolveStyle(opts: ResolveStyleOptions): ResolvedStyle {
               ...(infStyle.harmony.chordVocabulary ?? [])
             ]));
             if (w >= 0.5) {
-              merged.harmony.modePolicy = infStyle.harmony.modePolicy;
+              merged.harmony.modePolicy = infStyle.harmony.modePolicy ?? merged.harmony.modePolicy;
               merged.harmony.voicingStyle = infStyle.harmony.voicingStyle ?? merged.harmony.voicingStyle;
               merged.harmony.bassMotion = infStyle.harmony.bassMotion ?? merged.harmony.bassMotion;
             }
@@ -318,7 +343,7 @@ export function resolveStyle(opts: ResolveStyleOptions): ResolvedStyle {
         case 'melody':
           if (infStyle.melody) {
             if (w >= 0.5) {
-              merged.melody.scaleMode = infStyle.melody.scaleMode;
+              merged.melody.scaleMode = infStyle.melody.scaleMode ?? merged.melody.scaleMode;
               if (infStyle.melody.pitchIntervals) merged.melody.pitchIntervals = infStyle.melody.pitchIntervals;
               if (infStyle.melody.contourArchetypes) merged.melody.contourArchetypes = infStyle.melody.contourArchetypes;
             }
@@ -389,7 +414,7 @@ export function resolveStyle(opts: ResolveStyleOptions): ResolvedStyle {
 
         case 'form':
           if (infStyle.form && w >= 0.5) {
-            merged.form.templates = blendWeighted(merged.form.templates, infStyle.form.templates, w);
+            merged.form.templates = blendWeighted(merged.form.templates, infStyle.form.templates ?? merged.form.templates, w);
             recordDecision('form', merged.form, 'influence', srcId, w);
           }
           break;
@@ -399,7 +424,7 @@ export function resolveStyle(opts: ResolveStyleOptions): ResolvedStyle {
 
   // 4. User Overrides
   if (opts.userOverrides) {
-    merged = {
+    merged = completeStyle({
       ...merged,
       ...opts.userOverrides,
       form: { ...merged.form, ...(opts.userOverrides.form ?? {}) },
@@ -409,7 +434,7 @@ export function resolveStyle(opts: ResolveStyleOptions): ResolvedStyle {
       arrangement: { ...merged.arrangement, ...(opts.userOverrides.arrangement ?? {}) },
       sound: { ...merged.sound, ...(opts.userOverrides.sound ?? {}) },
       gestures: { ...merged.gestures, ...(opts.userOverrides.gestures ?? {}) },
-    };
+    });
     recordDecision('userOverrides', opts.userOverrides, 'user');
   }
 

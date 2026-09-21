@@ -92,8 +92,7 @@ export function validateChordSymbol(symbol: string): { valid: boolean; error?: s
   const root = body.match(/^([A-G](?:#|b)?)/)?.[1] ?? '';
   let rest = body.slice(root.length).replace(/^-/, 'm').replace(/Δ/g, 'maj').replace(/ø/g, 'm7b5').replace(/°/g, 'dim');
   rest = rest.replace(/[()\s]/g, '');
-  // The engine intentionally supports a bounded, musician-facing chord vocabulary.
-  // Reject unknown suffixes instead of silently interpreting them as a major triad.
+  // Reject unknown suffixes instead of treating them as a major triad.
   const tokenPattern = /(?:6\/9|maj|M|m|dim|o7|aug|sus2|sus4|sus|add9|add11|alt|no3|no5|\+|[b#](?:5|9|11|13)|[0-9]+)/gy;
   let pos = 0;
   while (pos < rest.length) {
@@ -350,11 +349,7 @@ export interface KeyInfo {
   name: string;
 }
 
-/**
- * Work out the key of a progression by scoring every candidate tonic against
- * how well the chords' roots and thirds fit. Cheap, and right often enough to
- * make melodies and approach notes behave.
- */
+/** Infer a practical major/minor key from chord roots and chord tones. */
 export function inferKey(chords: string[]): KeyInfo {
   const MAJ = [0, 2, 4, 5, 7, 9, 11];
   const MIN = [0, 2, 3, 5, 7, 8, 10];

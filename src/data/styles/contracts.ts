@@ -1,4 +1,3 @@
-import { Role } from '../../types';
 import { SongStyle } from './schema';
 
 export type PulseModel =
@@ -164,7 +163,7 @@ G.swing = { ...G.jazz, form:['head','ensemble riff','shout chorus','solo','head'
 G.blues = { ...G.jazz, harmonyModel:'blues-form', pitchModel:'blue-note vocabulary', form:['12-bar head','vocal/guitar answer','solo','turnaround'], bass:{...G.jazz.bass,style:'walking',rhythmJob:'shuffle / walking hybrid with turnaround'}, groove:{...G.jazz.groove,name:'Shuffle',swing:.63,lean:4,roleLean:{...G.jazz.groove.roleLean,lead:13,comp:8},humanizeMs:10} };
 
 function simple(
-  id:string, meter:string, pulse:PulseModel, feel:string, swing:number, bass:BassDialect,
+  _id:string, meter:string, pulse:PulseModel, feel:string, swing:number, bass:BassDialect,
   form:string[], ensemble:Record<string,string>, room:string, palette:string[], forbidden:string[],
   timeline='none', harmony='functional', pitch='tonal', production='genre-specific',
   kit:PercussionDialect={kitMode:'full',allowedHitTypes:['kick','snare','hat'],forbidWesternBackbeat:false,forbidSectionCrash:true,allowTomFills:false,ride:false},

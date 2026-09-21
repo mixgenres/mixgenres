@@ -782,14 +782,9 @@ export const CUMBIA_WORLD: GenreWorld = {
         "chorus",
         "solo"
       ],
-      "patternFunction": null,
-      "roleDependencies": [],
-      "interactionRules": [],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
+
       "variants": [
         {
           "id": "cu-cumbia-bass-v-sparse",
@@ -911,14 +906,9 @@ export const CUMBIA_WORLD: GenreWorld = {
         "verse",
         "chorus"
       ],
-      "patternFunction": null,
-      "roleDependencies": [],
-      "interactionRules": [],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
+
       "variants": [
         {
           "id": "cu-cumbia-drum-v-sparse",
@@ -1062,14 +1052,9 @@ export const CUMBIA_WORLD: GenreWorld = {
         "chorus",
         "solo"
       ],
-      "patternFunction": null,
-      "roleDependencies": [],
-      "interactionRules": [],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
+
       "variants": [
         {
           "id": "cu-guacharaca-v-sparse",
@@ -1210,14 +1195,9 @@ export const CUMBIA_WORLD: GenreWorld = {
         "chorus",
         "solo"
       ],
-      "patternFunction": null,
-      "roleDependencies": [],
-      "interactionRules": [],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
+
       "variants": [
         {
           "id": "cu-chicha-guitar-v-sparse",
@@ -1349,14 +1329,9 @@ export const CUMBIA_WORLD: GenreWorld = {
         "chorus",
         "verse"
       ],
-      "patternFunction": null,
-      "roleDependencies": [],
-      "interactionRules": [],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
+
       "variants": [
         {
           "id": "cu-keyboard-hook-v-sparse",
@@ -1472,14 +1447,9 @@ export const CUMBIA_WORLD: GenreWorld = {
         "verse",
         "chorus"
       ],
-      "patternFunction": "Cumbia Bass Tumbao",
-      "roleDependencies": [],
-      "interactionRules": [],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
+
       "variants": [],
       "provenance": "Authored genre-pack pattern based on Colombian Cumbia; designed for engine-level recombination rather than literal transcription.",
       "authenticityTags": [
@@ -1557,14 +1527,9 @@ export const CUMBIA_WORLD: GenreWorld = {
         "verse",
         "chorus"
       ],
-      "patternFunction": "Tambor Alegre Reply",
-      "roleDependencies": [],
-      "interactionRules": [],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
+
       "variants": [],
       "provenance": "Authored genre-pack pattern based on Colombian Cumbia; designed for engine-level recombination rather than literal transcription.",
       "authenticityTags": [
@@ -1646,14 +1611,9 @@ export const CUMBIA_WORLD: GenreWorld = {
         "verse",
         "chorus"
       ],
-      "patternFunction": "Guacharaca Scrape",
-      "roleDependencies": [],
-      "interactionRules": [],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
+
       "variants": [],
       "provenance": "Authored genre-pack pattern based on Colombian Cumbia; designed for engine-level recombination rather than literal transcription.",
       "authenticityTags": [
@@ -1724,14 +1684,9 @@ export const CUMBIA_WORLD: GenreWorld = {
         "verse",
         "chorus"
       ],
-      "patternFunction": "Cumbia Guitar Offbeat",
-      "roleDependencies": [],
-      "interactionRules": [],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
+
       "variants": [],
       "provenance": "Authored genre-pack pattern based on Cumbia Guitar; designed for engine-level recombination rather than literal transcription.",
       "authenticityTags": [
@@ -1818,14 +1773,9 @@ export const CUMBIA_WORLD: GenreWorld = {
         "chorus",
         "solo"
       ],
-      "patternFunction": "Chicha Tremolo Figure",
-      "roleDependencies": [],
-      "interactionRules": [],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
+
       "variants": [],
       "provenance": "Authored genre-pack pattern based on Peruvian Cumbia / Chicha; designed for engine-level recombination rather than literal transcription.",
       "authenticityTags": [
@@ -1898,14 +1848,9 @@ export const CUMBIA_WORLD: GenreWorld = {
       "sectionUsage": [
         "chorus"
       ],
-      "patternFunction": "Cumbia Organ Hook",
-      "roleDependencies": [],
-      "interactionRules": [],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
+
       "variants": [],
       "provenance": "Authored genre-pack pattern based on Electric Cumbia; designed for engine-level recombination rather than literal transcription.",
       "authenticityTags": [
@@ -1983,14 +1928,9 @@ export const CUMBIA_WORLD: GenreWorld = {
         "verse",
         "chorus"
       ],
-      "patternFunction": "Cumbia Maraca Layer",
-      "roleDependencies": [],
-      "interactionRules": [],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
+
       "variants": [],
       "provenance": "Authored genre-pack pattern based on Percussion; designed for engine-level recombination rather than literal transcription.",
       "authenticityTags": [
@@ -2068,27 +2008,9 @@ export const CUMBIA_WORLD: GenreWorld = {
         "verse",
         "chorus"
       ],
-      "patternFunction": "Cumbia Call-and-Response",
-      "roleDependencies": [
-        "melody"
-      ],
-      "interactionRules": [
-        {
-          "id": "cu-13-cumbia-call-and-response-answer",
-          "sourceRole": "counterline",
-          "targetRole": "melody",
-          "relationship": "answer",
-          "timingOffsetSteps": 2,
-          "probability": 0.75,
-          "worldId": "cumbia",
-          "description": "Enter only after the source phrase"
-        }
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
+
       "variants": [],
       "provenance": "Authored genre-pack pattern based on Melody; designed for engine-level recombination rather than literal transcription.",
       "authenticityTags": [
@@ -2154,14 +2076,9 @@ export const CUMBIA_WORLD: GenreWorld = {
         "breakdown",
         "bridge"
       ],
-      "patternFunction": "Cumbia Stop Break",
-      "roleDependencies": [],
-      "interactionRules": [],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
+
       "variants": [],
       "provenance": "Authored genre-pack pattern based on Break; designed for engine-level recombination rather than literal transcription.",
       "authenticityTags": [
@@ -2230,14 +2147,9 @@ export const CUMBIA_WORLD: GenreWorld = {
         "chorus",
         "ending"
       ],
-      "patternFunction": "Cumbia Final Tag",
-      "roleDependencies": [],
-      "interactionRules": [],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
+
       "variants": [],
       "provenance": "Authored genre-pack pattern based on Cadence; designed for engine-level recombination rather than literal transcription.",
       "authenticityTags": [
@@ -2253,93 +2165,6 @@ export const CUMBIA_WORLD: GenreWorld = {
       "enabled": true
     }
   ],
-  "engineProfile": {
-    "phraseLengthsBars": [
-      1,
-      2
-    ],
-    "primaryPulse": [
-      "guacharaca continuity",
-      "bass/tambor interlock",
-      "cyclic repetition"
-    ],
-    "rhythmicPriorities": [
-      "guacharaca continuity",
-      "bass/tambor interlock",
-      "cyclic repetition"
-    ],
-    "harmonicStrategy": [
-      "cyclic tonal vamps",
-      "minor/major modal mixture",
-      "simple harmony serving dance"
-    ],
-    "melodicStrategy": [
-      "short melodic hooks",
-      "call-response",
-      "tremolo/electric-guitar ornament"
-    ],
-    "arrangementStrategy": "Establish the cycle, add refrain hook, alternate vocal/instrumental responses, use a brief stop or instrumental lift, then return.",
-    "engineConstraints": [
-      "Do not substitute generic four-on-floor drums; do not flatten chicha tremolo or guacharaca into straight pads.",
-      "Prefer authored genre patterns over generic fallback patterns when an instrument/role match exists.",
-      "Use phrase-end variants and section transitions before introducing unrelated cells."
-    ],
-    "variationStrategy": "Develop density, accent, register, orchestration and phrase position before replacing the core identity."
-  },
-  "techniques": [
-    "cumbia pulse preservation",
-    "scraper texture",
-    "regional guitar/gaita substitution",
-    "hook density control"
-  ],
-  "forms": [
-    "intro",
-    "verse",
-    "chorus",
-    "instrumental",
-    "bridge",
-    "outro"
-  ],
-  "relationships": [
-    "bass ↔ hand drums",
-    "scraper ↔ drum pulse",
-    "guitar ↔ keyboard hook"
-  ],
-  "songBehaviors": [
-    "keep the pulse cyclical",
-    "let scraper remain lighter than drums",
-    "use regional lead colors by style",
-    "avoid turning all cumbia into four-on-the-floor pop",
-    "Phrase in 1–2 bar units before making a major pattern change.",
-    "Prioritize guacharaca continuity and bass/tambor interlock as the identity layer.",
-    "Use short melodic hooks and call-response for development rather than generic fills."
-  ],
-  "instrumentIdeas": {
-    "bass": [
-      "electric/acoustic cumbia pulse"
-    ],
-    "cajon": [
-      "fallback hand-drum carrier"
-    ],
-    "guiro": [
-      "guacharaca scraper"
-    ],
-    "electric-guitar": [
-      "chicha tremolo"
-    ],
-    "organ": [
-      "vintage cumbia/chicha bed"
-    ]
-  },
-  "combinations": [
-    "Cumbia + Reggaetón",
-    "Cumbia + Chicha",
-    "Cumbia + Ska"
-  ],
-  "danceTags": [
-    "social-partner",
-    "festival-fusion"
-  ],
   "tuningSystem": "12-tet",
   "signatureCell": "Cyclical cumbia pulse with scraper/drum interlock and regional lead figures",
   "grooveMechanics": {
@@ -2352,11 +2177,4 @@ export const CUMBIA_WORLD: GenreWorld = {
     "Cumbia ↔ Reggaetón",
     "Cumbia ↔ Latin Folk"
   ],
-  "transformations": [
-    "trans-density",
-    "trans-anticipation",
-    "trans-accent",
-    "trans-phrase-position",
-    "trans-ensemble-interaction"
-  ]
 };

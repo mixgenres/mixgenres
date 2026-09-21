@@ -809,9 +809,7 @@ export const AFROBEATS_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 2,
       "weight": 1,
       "provenance": "Afrobeats catalog rebuild: retained source material or generated structural support pattern.",
@@ -824,26 +822,8 @@ export const AFROBEATS_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 50,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "bass"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
-      "interactionRules": [
-        {
-          "id": "afrobeats-interaction-1",
-          "worldId": "afrobeats",
-          "sourceRole": "drums",
-          "targetRole": "bass",
-          "relationship": "reinforce",
-          "description": "Low-end attacks reinforce the main pulse",
-          "timingOffsetSteps": 0,
-          "probability": 0.78
-        }
-      ],
+
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -977,9 +957,7 @@ export const AFROBEATS_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 2,
       "weight": 1,
       "provenance": "Afrobeats catalog rebuild: retained source material or generated structural support pattern.",
@@ -992,26 +970,8 @@ export const AFROBEATS_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 50,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "drums"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
-      "interactionRules": [
-        {
-          "id": "afrobeats-interaction-2",
-          "worldId": "afrobeats",
-          "sourceRole": "voice",
-          "targetRole": "harmony",
-          "relationship": "leaveSpace",
-          "description": "Harmony reduces density under vocal entries",
-          "timingOffsetSteps": 0,
-          "probability": 0.72
-        }
-      ],
+
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -1164,9 +1124,7 @@ export const AFROBEATS_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 2,
       "weight": 0.7,
       "provenance": "Afrobeats catalog rebuild: retained source material or generated structural support pattern.",
@@ -1179,27 +1137,8 @@ export const AFROBEATS_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 50,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "harmony",
-        "guitar"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
-      "interactionRules": [
-        {
-          "id": "afrobeats-interaction-3",
-          "worldId": "afrobeats",
-          "sourceRole": "lead",
-          "targetRole": "voice",
-          "relationship": "answer",
-          "description": "Lead instrument answers a vocal phrase",
-          "timingOffsetSteps": 2,
-          "probability": 0.58
-        }
-      ],
+
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -1439,9 +1378,7 @@ export const AFROBEATS_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 5,
       "weight": 1,
       "provenance": "Afrobeats catalog rebuild: retained source material or generated structural support pattern.",
@@ -1454,26 +1391,8 @@ export const AFROBEATS_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 50,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "percussion"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
-      "interactionRules": [
-        {
-          "id": "afrobeats-interaction-4",
-          "worldId": "afrobeats",
-          "sourceRole": "bass",
-          "targetRole": "drums",
-          "relationship": "accentWith",
-          "description": "Bass accents align with selected kick/backbeat",
-          "timingOffsetSteps": 0,
-          "probability": 0.65
-        }
-      ],
+
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -1635,9 +1554,7 @@ export const AFROBEATS_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 1,
       "weight": 0.7,
       "provenance": "Afrobeats catalog rebuild: retained source material or generated structural support pattern.",
@@ -1650,14 +1567,7 @@ export const AFROBEATS_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 50,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "lead"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
       "articulations": [
         "legato"
       ]
@@ -1769,9 +1679,7 @@ export const AFROBEATS_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 1,
       "weight": 1,
       "provenance": "Afrobeats catalog rebuild: retained source material or generated structural support pattern.",
@@ -1784,27 +1692,8 @@ export const AFROBEATS_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 50,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "harmony",
-        "texture"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
-      "interactionRules": [
-        {
-          "id": "afrobeats-interaction-5",
-          "worldId": "afrobeats",
-          "sourceRole": "harmony",
-          "targetRole": "lead",
-          "relationship": "leaveSpace",
-          "description": "Accompaniment thins when the instrumental lead",
-          "timingOffsetSteps": 0,
-          "probability": 0.62
-        }
-      ],
+
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -1884,19 +1773,8 @@ export const AFROBEATS_WORLD: GenreWorld = {
         "chorus",
         "bridge"
       ],
-      "harmonicContext": [
-        "tonal",
-        "section-dependent",
-        "tonal or modal context"
-      ],
-      "roleDependencies": [
-        "voice"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "afrobeats-call-7-v-01",
@@ -2103,19 +1981,8 @@ export const AFROBEATS_WORLD: GenreWorld = {
         "verse",
         "chorus"
       ],
-      "harmonicContext": [
-        "tonal",
-        "section-dependent",
-        "tonal or modal context"
-      ],
-      "roleDependencies": [
-        "bass"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "afrobeats-anchor-8-v-01",
@@ -2277,19 +2144,8 @@ export const AFROBEATS_WORLD: GenreWorld = {
         "verse",
         "chorus"
       ],
-      "harmonicContext": [
-        "tonal",
-        "section-dependent",
-        "tonal or modal context"
-      ],
-      "roleDependencies": [
-        "harmony"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "afrobeats-comp-9-v-01",
@@ -2458,20 +2314,8 @@ export const AFROBEATS_WORLD: GenreWorld = {
       "sectionUsage": [
         "intro"
       ],
-      "harmonicContext": [
-        "tonal",
-        "section-dependent",
-        "tonal or modal context"
-      ],
-      "roleDependencies": [
-        "harmony",
-        "texture"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "afrobeats-intro-10-v-01",
@@ -2710,20 +2554,8 @@ export const AFROBEATS_WORLD: GenreWorld = {
       "sectionUsage": [
         "verse"
       ],
-      "harmonicContext": [
-        "tonal",
-        "section-dependent",
-        "tonal or modal context"
-      ],
-      "roleDependencies": [
-        "drums",
-        "rhythm-guitar"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "afrobeats-verse-11-v-01",
@@ -2911,20 +2743,8 @@ export const AFROBEATS_WORLD: GenreWorld = {
       "sectionUsage": [
         "chorus"
       ],
-      "harmonicContext": [
-        "tonal",
-        "section-dependent",
-        "tonal or modal context"
-      ],
-      "roleDependencies": [
-        "harmony",
-        "drums"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "afrobeats-chorus-12-v-01",
@@ -3158,20 +2978,8 @@ export const AFROBEATS_WORLD: GenreWorld = {
         "interlude",
         "development"
       ],
-      "harmonicContext": [
-        "tonal",
-        "section-dependent",
-        "tonal or modal context"
-      ],
-      "roleDependencies": [
-        "harmony",
-        "lead"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "afrobeats-bridge-13-v-01",
@@ -3401,19 +3209,8 @@ export const AFROBEATS_WORLD: GenreWorld = {
         "turnaround",
         "ending"
       ],
-      "harmonicContext": [
-        "tonal",
-        "section-dependent",
-        "tonal or modal context"
-      ],
-      "roleDependencies": [
-        "drums"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "afrobeats-fill-14-v-01",
@@ -3625,20 +3422,8 @@ export const AFROBEATS_WORLD: GenreWorld = {
         "breakdown",
         "stop-time"
       ],
-      "harmonicContext": [
-        "tonal",
-        "section-dependent",
-        "tonal or modal context"
-      ],
-      "roleDependencies": [
-        "drums",
-        "bass"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "afrobeats-break-15-v-01",
@@ -3851,20 +3636,8 @@ export const AFROBEATS_WORLD: GenreWorld = {
         "remate",
         "cierre"
       ],
-      "harmonicContext": [
-        "dominant",
-        "turnaround",
-        "tonal or modal context"
-      ],
-      "roleDependencies": [
-        "harmony",
-        "bass"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "afrobeats-cadence-16-v-01",
@@ -4072,17 +3845,8 @@ export const AFROBEATS_WORLD: GenreWorld = {
         "chorus",
         "bridge"
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
-      "roleDependencies": [
-        "voice"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "afrobeats-voice-phrasing-v-voice-alt",
@@ -4178,63 +3942,6 @@ export const AFROBEATS_WORLD: GenreWorld = {
       "weight": 0.9,
       "enabled": true
     }
-  ],
-  "techniques": [
-    "log-drum pitch bending",
-    "clean single-coil guitar muting",
-    "hand-held shekere rolling",
-    "horn section unisons"
-  ],
-  "forms": [
-    "intro",
-    "verse",
-    "chorus",
-    "verse",
-    "chorus",
-    "solo",
-    "coda"
-  ],
-  "relationships": [
-    "shekere ↔ log drum (perpetual anchor interlock)",
-    "guitar ↔ bass (counterpoint conversation)",
-    "horns ↔ drums (accent punctuation)"
-  ],
-  "transformations": [
-    "trans-density-dense",
-    "trans-anticipation",
-    "trans-phrase-cadence",
-    "catalog-v2-density-variation",
-    "catalog-v2-transition-coverage",
-    "catalog-v2-ensemble-interactions"
-  ],
-  "songBehaviors": [
-    "irresistible dance groove build with infectious sing-along melodic hooks and hypnotic log-drum drops",
-    "avoid identical loop repetition by alternating pattern variants",
-    "use fills, breaks, cadences, and bridge textures as structural events",
-    "let lead/voice parts create space and response relationships"
-  ],
-  "instrumentIdeas": {
-    "drums": [
-      "snappy snare clap, dry punchy kick, and crisp tambourine/shekere shaker"
-    ],
-    "bass": [
-      "round wooden log drum with FM synth bass low sub resonance"
-    ],
-    "guitar": [
-      "ultra-clean Stratocaster in bridge/middle position through light chorus"
-    ],
-    "voice": [
-      "hook-led vocal phrasing"
-    ]
-  },
-  "combinations": [
-    "Afrobeats + Kizomba",
-    "Afrobeats + Hip-Hop",
-    "Afrobeat + Jazz Fusion"
-  ],
-  "danceTags": [
-    "social-partner",
-    "festival-fusion"
   ],
   "tuningSystem": "12-tet",
   "signatureCell": "Syncopated Afrobeats pocket kick [0, 6, 10] with offbeat snare clap",

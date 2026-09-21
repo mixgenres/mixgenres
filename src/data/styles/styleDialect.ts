@@ -2,106 +2,105 @@ import { MusicalPattern, Role } from '../../types';
 import { SongStyle } from './schema';
 import { profileForStyle } from './styleProfiles';
 
-function grid(kind: string, subdivision = 16): number[] {
-  if (subdivision === 8) {
-    if (kind === 'offbeat') return [1,3,5,7];
-    if (kind === 'shuffle') return [0,3,4,7];
-    return [0,2,4,6];
-  }
-  switch (kind) {
-    case 'clave': return [0,2,5,8,10,12,14];
-    case 'clave3': return [0,3,6,8,10,12,14];
-    case 'tresillo': return [0,3,6,8,11,14];
-    case 'offbeat': return [2,6,10,14];
-    case 'four': return [0,4,8,12];
-    case 'backbeat': return [0,4,8,12,4,12];
-    case 'shuffle': return [0,3,6,8,11,14];
-    case 'boom': return [0,4,8,12,7,15];
-    case 'dnb': return [0,3,6,8,10,13,15];
-    case '12count': return [0,3,5,6,8,10,12,14];
-    case 'three-two': return [0,3,6,8];
-    default: return [0,4,8,12];
-  }
+
+
+
+
+const SPECIAL_STARTER_CELLS: Record<string, number[][]> = {
+  // Starter cells are indexed by the resolved five-part ensemble order.
+  'tango:guardia vieja': [[0,4,7,12],[0,3,6,8,11,14],[0,4,8,12],[2,6,10,14],[0,3,8,11]],
+  'tango:troilo': [[0,3,6,8,11,14],[0,4,8,12],[1,5,9,13],[0,6,8,14],[3,7,11,15]],
+  'tango:pugliese': [[0,5,8,11,14],[0,4,8,12],[2,6,10,14],[0,3,8,11],[0,6,9,14]],
+  'tango:milonga': [[0,3,6,8,11,14],[0,2,4,6],[1,3,5,7],[0,4,7,11,14],[2,5,8,11,15]],
+  'tango:tango vals': [[0,4,8],[3,7,11],[0,6,12],[0,4,8,10],[2,6,10]],
+  'tango:tango nuevo': [[0,3,6,8,11,14],[0,4,8,12],[0,2,6,9,12,14],[1,5,8,11,15],[0,6,9,14]],
+  'tango:piazzolla': [[0,3,6,8,11,14],[0,4,7,10,12,15],[1,4,6,9,12,14],[0,3,7,8,11,15],[2,5,9,13]],
+  'tango:chacarera': [[0,3,6,9],[0,4,8],[1,5,7,11],[0,3,6,8,10],[2,6,9,11]],
+  'salsa:pachanga': [[0,3,5,7,10,12,14],[0,4,8,12],[1,5,9,13],[0,2,4,6,8,10,12,14],[0,3,6,9,12,15]],
+  'salsa:cha-cha-chá': [[0,4,8,12],[0,4,7,8,12,15],[1,5,9,13],[0,2,4,6,8,10,12,14],[4,6,8,12,14]],
+  'salsa:salsa dura': [[0,3,6,8,11,14],[0,4,8,12],[2,5,10,13],[0,3,7,8,11,15],[1,6,9,14]],
+  'salsa:charanga': [[0,3,6,8,11,14],[0,4,8,12],[0,2,4,6,8,10,12,14],[1,5,9,13],[3,7,11,15]],
+  'salsa:son montuno': [[0,3,6,8,11,14],[0,4,7,12],[1,5,9,13],[0,2,6,8,11,14],[3,6,10,15]],
+  'salsa:descarga': [[0,3,6,8,11,14],[0,4,8,12],[2,5,9,12,14],[0,3,7,8,11,15],[1,6,10,13]],
+  'timba:timba clásica': [[0,3,6,8,11,14],[0,4,8,12],[1,5,9,13],[0,2,6,8,11,14],[3,7,10,15]],
+  'timba:timba funk': [[0,2,5,8,10,13,15],[0,4,7,8,12,15],[2,6,10,14],[1,4,7,9,12,15],[0,3,6,11,14]],
+  'timba:timba despelote': [[0,3,6,8,11,14],[0,4,8,12],[1,3,6,9,12,14],[0,3,7,8,11,15],[2,6,8,10,14]],
+  'timba:timba rumbeada': [[0,3,6,8,11,14],[0,4,8,12],[1,5,7,10,13],[0,3,6,9,11,14],[2,6,9,12,15]],
+  'timba:afro-cuban timba': [[0,3,6,8,11,14],[0,4,8,12],[1,5,9,13],[0,2,6,8,11,14],[3,7,10,15]],
+  'timba:cimafunk groove': [[0,2,5,8,10,13,15],[0,4,7,8,12,15],[2,6,10,14],[1,4,7,9,12,15],[0,3,6,11,14]],
+  'cumbia:cumbia colombiana': [[0,4,6],[0,2,5,7],[1,4,6],[0,3,5,7],[0,2,4,6]],
+  'cumbia:gaita cumbia': [[0,3,6],[0,2,5,7],[1,4,6],[0,3,5],[0,2,6,7]],
+  'cumbia:cumbia sabanera': [[0,4,6],[0,2,5,7],[1,4,6],[0,3,5,7],[0,2,4,6]],
+  'cumbia:villera': [[0,4,6],[0,2,4,7],[1,5,7],[0,3,6],[0,2,5,7]],
+  'cumbia:chicha': [[0,4,6,7],[0,2,5,7],[1,4,6],[0,3,5],[0,2,4,6]],
+  'cumbia:sonidera': [[0,4,6],[0,2,5,7],[1,4,6],[0,3,5,7],[0,2,4,6]],
+  'cumbia:rebajada': [[0,4],[0,3,6],[1,5],[0,4,7],[2,6]],
+  'cumbia:porro': [[0,3,6],[0,2,5,7],[1,4,6],[0,3,5,7],[0,2,4,6]],
+  'bachata:tradicional': [[0,3,6,8,11,14],[0,4,8,12],[1,5,9,13],[0,3,7,11,14],[2,6,10,14]],
+  'bachata:dominicana': [[0,2,5,8,10,13,15],[0,4,8,12],[1,4,6,9,12,14],[0,3,6,8,11,14],[2,5,9,13]],
+  'bachata:sensual': [[0,3,8,11],[0,4,8,12],[2,6,10,14],[0,3,7,11],[4,8,12]],
+  'kizomba:tradicional': [[0,3,6,8,11,14],[0,4,8,12],[1,5,9,13],[0,2,6,10,14],[3,7,11,15]],
+  'kizomba:passada': [[0,3,6,8,11,14],[0,4,7,12],[1,5,9,13],[0,3,8,11],[2,6,10,14]],
+  'kizomba:tarraxinha': [[0,4,12],[0,7,12],[3,11],[0,8],[4,12]],
+  'kizomba:urbankiz': [[0,3,6,8,11,14],[0,4,8,12],[2,5,9,13],[0,3,7,11],[1,6,10,15]],
+  'zouk:zouk love': [[0,3,8,11],[0,4,8,12],[2,6,10,14],[0,3,7,11],[4,8,12]],
+  'zouk:kassav carnival zouk': [[0,3,6,8,11,14],[0,4,7,12],[1,5,9,13],[0,3,7,11,14],[2,6,10,15]],
+  'zouk:brazilian zouk': [[0,3,6,10,13],[0,4,8,12],[1,5,9,13],[0,3,7,11],[2,6,10,14]],
+};
+
+function instrumentRole(instrumentId: string): Role | string {
+  const n = instrumentId.toLowerCase();
+  if (/bass|guitarron/.test(n)) return 'bass';
+  if (/drum|guiro|güiro|bongo|conga|timbale|shaker|guacharaca|palma|bombo|dikanza|percussion|tambor/.test(n)) return 'percussion';
+  if (/voice|choir/.test(n)) return 'voice';
+  if (/flute|violin|bandoneon|trumpet|horn|sax|guitar|accordion|tres|requinto|mandolin|fiddle/.test(n)) return 'melody';
+  return 'harmony';
 }
 
-function familyFor(style: SongStyle): string {
-  const n = style.name.toLowerCase();
-  if (/bossa|choro|samba|pagode|forró/.test(n)) return 'brazilian-interlock';
-  if (/clave|salsa|son|timba|mambo|charanga/.test(n)) return 'clave-cycle';
-  if (/flamenco|soleá|buler/.test(n)) return 'compás-cycle';
-  if (/house|disco|techno|electro/.test(n)) return 'machine-grid';
-  if (/jazz|swing|blues/.test(n)) return 'swing-or-triplet';
-  if (/reggae|rocksteady|dancehall/.test(n)) return 'offbeat-skank';
-  if (/metal|punk|hardcore|rock/.test(n)) return 'riff-grid';
-  if (/drum|jungle|breakbeat|garage|dubstep|grime/.test(n)) return 'broken-grid';
-  if (/country|bluegrass|honky/.test(n)) return 'boom-chick';
-  return 'style-native-groove';
+function starterCellsFor(style: SongStyle): number[][] {
+  const key = `${style.primaryGenre}:${style.name.toLowerCase()}`;
+  if (SPECIAL_STARTER_CELLS[key]) return SPECIAL_STARTER_CELLS[key];
+  const base = /2\/4/.test(style.rhythm?.meter ?? '') ? [[0,2,4,6],[1,3,5,7],[0,3,5,7],[0,2,5],[2,4,6]]
+    : /3\/4/.test(style.rhythm?.meter ?? '') ? [[0,4,8],[2,6,10],[0,6,12],[3,7,11],[1,5,9]]
+    : /6\/8|12\/8/.test(style.rhythm?.meter ?? '') ? [[0,3,6,9],[0,4,8],[2,6,10],[0,3,7,10],[1,5,9,11]]
+    : [[0,4,8,12],[2,6,10,14],[0,3,7,11],[1,5,9,13],[0,3,6,11,14]];
+  const shift = Math.abs(style.name.split('').reduce((a,c)=>a+c.charCodeAt(0),0)) % 5;
+  return base.map((_, i) => base[(i + shift) % base.length]);
 }
 
-function onsetKind(style: SongStyle): string {
-  const n = style.name.toLowerCase();
-  if (/salsa|son|timba|mambo|clave/.test(n)) return /on-2|2-step/.test(n) ? 'clave3' : 'clave';
-  if (/soleá|buler|seguiriya|flamenco/.test(n)) return '12count';
-  if (/bossa|samba|pagode|choro|forró/.test(n)) return /bossa|choro/.test(n) ? 'tresillo' : 'three-two';
-  if (/house|disco|techno|electro/.test(n)) return 'four';
-  if (/reggae|rocksteady/.test(n)) return 'offbeat';
-  if (/jazz|swing|blues|boogie/.test(n)) return 'shuffle';
-  if (/dnb|jungle|garage|dubstep|grime|break/.test(n)) return 'dnb';
-  if (/country|bluegrass|honky/.test(n)) return 'boom';
-  if (/metal|punk|hardcore|rock/.test(n)) return 'backbeat';
-  return 'tresillo';
-}
-
-function roleForCategory(category: string): Role[] {
-  if (category === 'bass') return ['bass'];
-  if (category === 'comping') return ['harmony'];
-  if (category === 'lead') return ['melody'];
-  if (category === 'percussion') return ['percussion'];
-  return ['harmony','bass'];
-}
-
-function makePattern(style: SongStyle, suffix: string, category: MusicalPattern['category'], kind: string, index: number): MusicalPattern {
-  const subdivision = /2\/4/.test(style.rhythm?.meter ?? '') ? 8 : /12\/8|6\/8|3\/4/.test(style.rhythm?.meter ?? '') ? 12 : 16;
-  const onsets = grid(kind, subdivision);
-  const accents = onsets.map((_, i) => i % 3 === 0 ? 1 : i % 2 ? .55 : .75);
+function makeStarterPattern(style: SongStyle, instrumentId: string, _index: number, onsets: number[]): MusicalPattern {
+  const role = instrumentRole(instrumentId);
+  const category: MusicalPattern['category'] = role === 'bass' ? 'bass' : role === 'percussion' ? 'groove' : role === 'voice' || role === 'melody' ? 'phrasePattern' : 'rolePattern';
+  const subdivisions = /2\/4/.test(style.rhythm?.meter ?? '') ? 8 : /3\/4/.test(style.rhythm?.meter ?? '') ? 12 : /6\/8|12\/8/.test(style.rhythm?.meter ?? '') ? 12 : 16;
+  // Starter cells are authored on a normalized 16-step reference grid. Map
+  // them into the style meter instead of clamping, which would collapse the
+  // upper half of a 2/4 or compound-meter pattern onto one final subdivision.
+  const safe = onsets.map(x => Math.round(x * subdivisions / 16))
+    .map(x => Math.max(0, Math.min(subdivisions - 1, x)))
+    .filter((x,i,a)=>a.indexOf(x)===i);
+  const accents = safe.map((_, i) => i % 3 === 0 ? 1 : i % 2 ? .55 : .78);
   return {
-    id: `style-${style.id}-${suffix}`,
-    worldId: style.primaryGenre,
-    styleIds: [style.id],
-    name: `${category === 'bass' ? 'Bass ostinato' : category === 'rolePattern' ? 'Comping cell' : category === 'phrasePattern' ? 'Lead motif' : 'Rhythm cell'} — ${familyFor(style)}`,
-    shortName: `${familyFor(style)} ${suffix}`,
-    family: familyFor(style),
+    id:`style-${style.id}-starter-${instrumentId}`,
+    worldId:style.primaryGenre,
+    styleIds:[style.id],
+    name:`${style.name} starter — ${instrumentId}`,
+    shortName:`${style.name} ${instrumentId}`,
+    family:`${style.primaryGenre}-starter`,
     category,
-    description: `Universal ${category} pattern dialect for ${style.name}; local terminology: ${style.rhythm?.signatureCell ?? style.name}`,
-    tags: ['universal-pattern', category, familyFor(style), style.name.toLowerCase()],
-    scopes: ['region','track'],
-    roles: category === 'groove' ? ['bass','harmony','melody','percussion'] : roleForCategory(category),
-    compatibleRoles: category === 'groove' ? ['bass','harmony','melody','percussion'] : roleForCategory(category),
-    meter: style.rhythm?.meter ?? '4/4',
-    cycleLength: /clave|12count|compás/.test(familyFor(style)) ? 2 : 1,
-    subdivisions: subdivision,
-    onsetGrid: onsets,
-    durationGrid: onsets.map(() => category === 'bass' ? 2 : 1),
-    accentProfile: accents,
-    velocityProfile: accents,
-    syncopationRating: kind === 'four' ? .15 : .72,
-    anticipationOffset: kind === 'clave' || kind === 'tresillo' ? -1 : 0,
-    swingPercentage: style.rhythm?.swingPercentage,
-    articulations: category === 'bass' ? ['short','accent'] : ['accent','ghost'],
-    density: index === 0 ? 'medium' : index === 1 ? 'dense' : 'dynamic',
-    phrasePosition: ['any'],
-    sectionUsage: ['intro','verse','chorus','bridge','solo','breakdown','groove','montuno','coro','outro'] as any,
-    patternFunction: `${familyFor(style)} ${category}`,
-    roleDependencies: [],
-    interactionRules: [],
-    transformations: ['accent-variation','phrase-ending-variation'],
-    variants: [],
-    provenance: `style dialect authored from ${style.name}`,
-    authenticityTags: ['general-theory-name-first','genre-dialect'],
-    enabled: true,
-    weight: 30,
+    description:`Fixed representative starter cell for ${style.name}, assigned to ${instrumentId}.`,
+    tags:[style.primaryGenre,style.name.toLowerCase(),'starter','role-specific'],
+    scopes:['region','track'], roles:[role as any], compatibleRoles:[role as any],
+    instruments:[instrumentId], compatibleInstruments:[instrumentId],
+    meter:style.rhythm?.meter ?? '4/4', cycleLength:/clave|tango|cumbia/.test(style.name.toLowerCase()) ? 2 : 1,
+    subdivisions, onsetGrid:safe, durationGrid:safe.map(()=>role==='bass'?2:1), accentProfile:accents, velocityProfile:accents,
+    syncopationRating:safe.length > 5 ? .72 : .45, anticipationOffset:/bass|tumbao|milonga/.test(style.rhythm?.feel ?? '') ? -1 : 0,
+    swingPercentage:style.rhythm?.swingPercentage, articulations:role==='bass'?['short','accent']:['accent','ghost'],
+    density:'medium', phrasePosition:['any'], sectionUsage:['intro','verse','chorus','bridge','groove','montuno','coro','outro'] as any,
+    variants:[],
+    provenance:`curated starter grammar for ${style.name}`, authenticityTags:[style.primaryGenre,style.name.toLowerCase(),'starter'], enabled:true, weight:60,
   };
 }
+
 
 
 const GENRE_PROGRESSION_FALLBACKS: Record<string, string[][][]> = {
@@ -141,17 +140,6 @@ const GENRE_RHYTHM_FALLBACKS: Record<string,{bpm:number;range:[number,number];me
   'latin-pop':{bpm:100,range:[88,116],meter:'4/4',feel:'Latin pop pulse',swing:50},
 };
 
-const GENRE_INSTRUMENT_FALLBACKS: Record<string,string[]> = {
-  disco:['strings','slap-bass','clavinet','drums','synth'],
-  gospel:['organ','choir','piano','bass','drums'],
-  'drum-and-bass':['sub-bass','drums','synth','noise-sweep','soprano-sax'],
-  industrial:['distortion-guitar','synth','drums','sub-bass','noise-sweep'],
-  'punk-hardcore':['distortion-guitar','bass','drums','voice','electric-guitar'],
-  'uk-bass':['sub-bass','synth','drums','cowbell','soprano-sax'],
-  'r-and-b':['rhodes','fretless-bass','clavinet','drums','voice'],
-  soul:['rhodes','strings','organ','bass','voice'],
-  'latin-pop':['requinto','synth','bass','congas','voice'],
-};
 
 function fallbackProgressions(genreId: string, index: number, styleName: string): string[][] {
   const groups = GENRE_PROGRESSION_FALLBACKS[genreId];
@@ -163,7 +151,7 @@ function fallbackProgressions(genreId: string, index: number, styleName: string)
   return group;
 }
 
-/** Add three genuinely different audible cells to every shipped style. */
+/** Apply the authored style dialect without introducing generic replacement patterns. */
 export function applyStyleDialect(style: SongStyle, index: number): SongStyle {
   const profile = profileForStyle(style.primaryGenre, style.name, index);
   const fallback = fallbackProgressions(style.primaryGenre, index, style.name);
@@ -228,22 +216,13 @@ export function applyStyleDialect(style: SongStyle, index: number): SongStyle {
   return style;
 }
 
-export function dialectPatternsForStyle(style: SongStyle, index: number): MusicalPattern[] {
-  const kind = onsetKind(style);
-  const kinds = [
-    kind,
-    kind === 'four' ? 'offbeat' : 'four',
-    kind === 'clave' ? 'clave3' : 'tresillo',
-    kind === 'offbeat' ? 'tresillo' : 'offbeat',
-    kind === 'dnb' ? 'boom' : 'shuffle',
-  ];
-  // Safety-net cells are role-separated. Authored genre/style patterns remain
-  // the primary vocabulary whenever they exist.
-  return [
-    makePattern(style,'groove','groove',kinds[0],0),
-    makePattern(style,'bass','bass',kinds[1],1),
-    makePattern(style,'comp','rolePattern',kinds[2],2),
-    makePattern(style,'lead','phrasePattern',kinds[3],3),
-    makePattern(style,'texture','texture',kinds[4],4),
-  ];
+export function dialectPatternsForStyle(style: SongStyle, _index: number): MusicalPattern[] {
+  const instruments = (style.sound?.instrumentPalette ?? []).map(x => x.value).filter(Boolean).slice(0,5);
+  const cells = starterCellsFor(style);
+  // Create one fixed starter cell per representative instrument. Other material
+  // comes from the authored pattern catalog.
+  return instruments.map((instrumentId, i) =>
+    makeStarterPattern(style, instrumentId, i, cells[i % Math.max(1, cells.length)])
+  );
 }
+

@@ -5,7 +5,6 @@ import { sliceBarNative } from './grid';
 import { progressionForSection } from './arrangement';
 import { inferKey, parseChord, assertValidChordProgression, SHARP_NAMES } from './theory';
 import { resolveStyle, StyleRuntime, StyleInfluence, SongStyle, getCanonicalStyle, getStyle } from '../data/styles';
-import { roomFor } from './mixer';
 import { suggestedPaletteForGenre } from '../data/chordPalette';
 
 export interface Voice extends Track {
@@ -244,8 +243,7 @@ export function patternStyleFit(
   if (stylePatternIds.require?.includes(pattern.id)) return 90;
   if (stylePatternIds.preferred?.includes(pattern.id)) return 70;
 
-  // Unscoped catalog patterns are reusable building blocks, but are deliberately
-  // weaker than anything authored for the concrete style.
+  // Unscoped patterns are fallback material; authored style patterns rank higher.
   return ids.size === 0 ? 0 : Number.NEGATIVE_INFINITY;
 }
 
@@ -286,9 +284,7 @@ export function affinity(patternId: string, voice: Voice, worldId: string, style
     score += patternStyleFit(p, styleId, worldId);
   }
 
-  // Pattern weights are the catalog's confidence/centrality signal. Use them
-  // as a small tie-breaker so high-confidence identity cells beat generic
-  // extension patterns without making the chooser deterministic.
+  // Pattern weight is a tie-breaker among otherwise compatible cells.
   if (typeof p.weight === 'number') score += (p.weight - 0.5) * 10;
   if (kinds.has('coro') && p.roles.includes('voice')) score += 8;
   if (kinds.has('drums') && p.roles.includes('drums')) score += 8;
@@ -330,7 +326,7 @@ function synthesizeBoundaryVariant(
 
   // Check if style forbids cadence or has explicit gesture rates
   if (gestures['arrastre'] && gestures['arrastre'].probability === 0 && phraseRole === 'cadence') {
-    // If rate is 0, style refrains from arrastre
+    // A zero rate disables arrastre.
   }
 
   // Apply probabilistically
@@ -359,7 +355,9 @@ function synthesizeBoundaryVariant(
 
   // Tango arrastre gesture (pickup anticipation on step 14 or 15)
   if (phraseRole === 'cadence' && gestures['arrastre']?.probability && gestures['arrastre']?.probability !== 0) {
-    const isBassOrPiano = p.roles.includes('bass' as any) || p.roles.includes('piano' as any) || p.roles.includes('bandoneon' as any);
+    const isBassOrPiano = p.roles.includes('bass' as any)
+      || (p.instruments ?? []).some(id => /piano|bandoneon/i.test(String(id)))
+      || (p.compatibleInstruments ?? []).some(id => /piano|bandoneon/i.test(String(id)));
     if (isBassOrPiano) {
       return {
         id: `${p.id}-arrastre-cadence`, parentPatternId: p.id,
@@ -487,6 +485,10 @@ export function suggestPattern(
       if (!Number.isFinite(n)) return { id: p.id, n: Number.NEGATIVE_INFINITY };
       if (p.id === DEFAULT_PATTERN_PREFERENCES[worldId]?.[voice.instrumentId]) n += 8;
       if (styleId && p.styleIds?.includes(styleId)) n += 30;
+      // Representative starter cells are fixed role/instrument assignments,
+      // not random alternatives. They must win the initial arrangement for
+      // the instrument they were authored for.
+      if (p.id === `style-${styleId}-starter-${voice.instrumentId}`) n += 80;
       if (resolved?.contract.timelineRequired && resolved.contract.timelineGrid.length) {
         const authored = new Set(p.onsetGrid ?? []);
         const overlap = resolved.contract.timelineGrid.filter(x => authored.has(x)).length / resolved.contract.timelineGrid.length;
@@ -501,7 +503,7 @@ export function suggestPattern(
         else if (partDensity === 'busy' && p.density === 'sparse') n -= 15;
         else if (p.density) n -= 6;
       } else if (want && p.density === want) n += 2;
-      // Do not let a fill/cadence pattern outrank the main groove in a normal verse.
+      // Keep fills and cadences below the main groove in ordinary sections.
       if (sectionKind && ['verse', 'pre-chorus', 'bridge'].includes(sectionKind) && ['fill', 'cadence', 'sectionPattern'].includes(p.category)) n -= 12;
       if (taken?.has(p.id)) n -= 6;
       return { id: p.id, n: n + hash(p.id, salt) * 1.5 };
@@ -625,10 +627,7 @@ export function rebuild(sheet: Sheet): Sheet {
         const atPhraseEnd = (i + 1) % 4 === 0;
         const hasCadenceVariant = (p.variants ?? []).some(v => ['cadence', 'fill', 'phraseEnd'].includes(v.variationType));
         const hasTransitionVariant = (p.variants ?? []).some(v => ['transition', 'phraseStart'].includes(v.variationType));
-        // Every phrase boundary WANTS a cadence/transition gesture; whether
-        // one is available (authored or synthesized) is decided below. This
-        // is what lets a genre with zero authored boundary variants still
-        // get a turnaround instead of silently falling through to 'normal'.
+        // Add a boundary gesture when the style provides one.
         const phraseRole = atPhraseEnd ? 'cadence' as const
           : atPhraseStart ? 'transition' as const
           : 'normal' as const;
@@ -636,10 +635,7 @@ export function rebuild(sheet: Sheet): Sheet {
         let v = choosePatternVariant(
           p.variants, phraseRole, `${patternId}:${r.id}:${index}`, partDensity,
         );
-        // No authored gesture exists for this boundary at all (not merely
-        // "the dice said keep it canonical this time") — synthesize a light
-        // one so the phrase gets some lead-in/lead-out rather than a flat
-        // repeat. Authored variants always take priority when present.
+        // Use a light synthesized transition only when no authored variant exists.
         const styleIdForRegion = getSectionStyleId(sheet, r);
         if (!v && phraseRole === 'cadence' && !hasCadenceVariant) {
           v = synthesizeBoundaryVariant(p, 'cadence', `${patternId}:${r.id}:${index}`, styleIdForRegion);
@@ -799,7 +795,7 @@ export function addSensibleSectionAfter(sheet: Sheet, regionId: string): { sheet
     ? templates[0].value
     : [{ key: 'verse', label: 'Verse', kind: 'verse', bars: 8, intensity: 'medium' as const }];
 
-  // Determine what step comes next sensibly for this section of the song
+  // Choose the next unused form step.
   let nextStep: FormStep | undefined;
   if (src && steps.length > 0) {
     const currIdx = steps.findIndex(s => s.key === src.formKey || s.key === src.kind || s.kind === src.kind);
@@ -832,9 +828,11 @@ export function addSensibleSectionAfter(sheet: Sheet, regionId: string): { sheet
   const bars = nextStep?.bars ?? Math.max(2, src?.bars ?? (src ? src.end - src.start : 8));
   const density: PartDensity = intensity === 'low' ? 'sparse' : (intensity === 'peak' ? 'busy' : 'normal');
 
-  // Sensible chords for this section
   const sectionChords = (resolved.harmony?.sectionProgressions as Record<string, string[]>) ?? {};
-  const chordsFallback = (suggestedPaletteForGenre(worldId)[0]?.chords as string[] | undefined) ?? PROGRESSIONS[worldId] ?? PROGRESSIONS.tango;
+  const chordsFallback = (resolved.harmony?.progressionTemplates?.[0]?.value as string[] | undefined)
+    ?? (suggestedPaletteForGenre(worldId)[0]?.chords as string[] | undefined)
+    ?? PROGRESSIONS[worldId]
+    ?? PROGRESSIONS.tango;
   const pickedChords = progressionForSection(sectionChords, key, kind, chordsFallback, resolved.contract);
 
   let id = `r${sheet.regions.length}`;
@@ -859,18 +857,16 @@ export function addSensibleSectionAfter(sheet: Sheet, regionId: string): { sheet
   const regions = [...sheet.regions];
   regions.splice(insertIndex, 0, fresh);
 
-  // Sensible arrangement & densities for tracks
+  // Assign section densities and initial patterns.
   const styleDensityCurve = resolved.arrangement?.densityCurve ?? {};
   const formDensities: Record<string, PartDensity> = Object.fromEntries(Object.entries(styleDensityCurve).map(([k, v]) => [k, v as PartDensity]));
-  const sectionDensities = formDensities[key] ?? formDensities[kind] ?? {};
+  const sectionDensity: PartDensity = formDensities[key] ?? formDensities[kind] ?? density;
   const arrangement = { ...sheet.arrangement, [id]: {} as Record<string, string> };
   const densities = { ...sheet.densities, [id]: {} as Record<string, PartDensity> };
 
   const taken = new Set<string>();
   for (const [ti, v] of (sheet.tracks as Voice[]).entries()) {
-    const d: PartDensity = sectionDensities[v.instrumentId]
-      ?? sectionDensities[v.role]
-      ?? density;
+    const d: PartDensity = sectionDensity;
     densities[id][v.id] = d;
 
     const p = suggestPattern(v, worldId, insertIndex * 31 + ti * 13 + 7, String(kind), taken, d, styleId);
@@ -1656,7 +1652,6 @@ export function makeSheet(
   });
   const runtime = new StyleRuntime(resolved);
 
-  const world = GENRE_WORLDS_BY_ID[genreId];
   const formTemplates = runtime.getFormTemplate(42);
   const form = formTemplates && formTemplates.length > 0
     ? formTemplates
@@ -1666,8 +1661,10 @@ export function makeSheet(
   const chordCells = styleChordCells.length ? styleChordCells : paletteChordCells;
   const chords = chordCells[0] ?? ['C','G','Am','F'];
 
+  const sectionProgressions = (resolved.harmony?.sectionProgressions as Record<string, string[]>) ?? {};
   const regions: Region[] = form.map((f, i) => {
-    const picked = chordCells.length ? chordCells[i % chordCells.length] : chords;
+    const fallback = chordCells[i % Math.max(1, chordCells.length)] ?? chords;
+    const picked = progressionForSection(sectionProgressions, f.key, f.kind, fallback, resolved.contract);
     return {
       id: `r${i}`, name: f.label, kind: f.kind, formKey: f.key, formLabel: f.label,
       intensity: f.intensity, start: 0, end: f.bars,
@@ -1813,9 +1810,7 @@ export function switchSectionWorld(sheet: Sheet, regionId: string, worldId: stri
   const targetStyleId = styleId ?? canonical.id;
   const resolved = resolveStyle({ genreId: worldId, styleId: targetStyleId });
 
-  // A section has its own musical identity. Prefer the resolved style's
-  // progression templates so changing a part genre also changes its harmonic
-  // language, rather than merely swapping a generic genre palette.
+  // Resolve harmonic material from the section style before using genre defaults.
   const styleChordCells = (resolved.harmony?.progressionTemplates ?? [])
     .map(x => x.value as string[])
     .filter(x => Array.isArray(x) && x.length);

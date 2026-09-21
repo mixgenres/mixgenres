@@ -869,9 +869,7 @@ export const COUNTRY_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 1,
       "weight": 1,
       "provenance": "Country catalog rebuild: retained source material or generated structural support pattern.",
@@ -884,15 +882,7 @@ export const COUNTRY_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 52,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "bass",
-        "rhythm-guitar"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -1126,9 +1116,7 @@ export const COUNTRY_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 5,
       "weight": 1,
       "provenance": "Country catalog rebuild: retained source material or generated structural support pattern.",
@@ -1141,14 +1129,7 @@ export const COUNTRY_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 52,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "drums"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -1305,9 +1286,7 @@ export const COUNTRY_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 3,
       "weight": 1,
       "provenance": "Country catalog rebuild: retained source material or generated structural support pattern.",
@@ -1320,14 +1299,7 @@ export const COUNTRY_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 52,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "drums"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -1481,9 +1453,7 @@ export const COUNTRY_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 3,
       "weight": 1,
       "provenance": "Country catalog rebuild: retained source material or generated structural support pattern.",
@@ -1496,26 +1466,8 @@ export const COUNTRY_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 52,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "bass"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
-      "interactionRules": [
-        {
-          "id": "country-interaction-1",
-          "worldId": "country",
-          "sourceRole": "drums",
-          "targetRole": "bass",
-          "relationship": "reinforce",
-          "description": "Low-end attacks reinforce the main pulse",
-          "timingOffsetSteps": 0,
-          "probability": 0.78
-        }
-      ],
+
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -1624,9 +1576,7 @@ export const COUNTRY_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 1,
       "weight": 1,
       "provenance": "Country catalog rebuild: retained source material or generated structural support pattern.",
@@ -1639,27 +1589,8 @@ export const COUNTRY_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 52,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "drums",
-        "bass"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
-      "interactionRules": [
-        {
-          "id": "country-interaction-2",
-          "worldId": "country",
-          "sourceRole": "voice",
-          "targetRole": "harmony",
-          "relationship": "leaveSpace",
-          "description": "Harmony reduces density under vocal entries",
-          "timingOffsetSteps": 0,
-          "probability": 0.72
-        }
-      ],
+
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -1779,9 +1710,7 @@ export const COUNTRY_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 1,
       "weight": 1,
       "provenance": "Country catalog rebuild: retained source material or generated structural support pattern.",
@@ -1794,27 +1723,8 @@ export const COUNTRY_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 52,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "drums",
-        "bass"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
-      "interactionRules": [
-        {
-          "id": "country-interaction-3",
-          "worldId": "country",
-          "sourceRole": "bass",
-          "targetRole": "drums",
-          "relationship": "accentWith",
-          "description": "Bass accents align with selected kick/backbeat",
-          "timingOffsetSteps": 0,
-          "probability": 0.65
-        }
-      ],
+
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -1939,9 +1849,7 @@ export const COUNTRY_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 2,
       "weight": 1,
       "provenance": "Country catalog rebuild: retained source material or generated structural support pattern.",
@@ -1954,14 +1862,7 @@ export const COUNTRY_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 52,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "drums"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -2063,9 +1964,7 @@ export const COUNTRY_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 1,
       "weight": 0.7,
       "provenance": "Country catalog rebuild: retained source material or generated structural support pattern.",
@@ -2078,14 +1977,7 @@ export const COUNTRY_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 52,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "texture"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -2239,9 +2131,7 @@ export const COUNTRY_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 3,
       "weight": 1,
       "provenance": "Country catalog rebuild: retained source material or generated structural support pattern.",
@@ -2254,14 +2144,7 @@ export const COUNTRY_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 52,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "electric-guitar"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -2363,9 +2246,7 @@ export const COUNTRY_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 1,
       "weight": 1,
       "provenance": "Country catalog rebuild: retained source material or generated structural support pattern.",
@@ -2378,15 +2259,7 @@ export const COUNTRY_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 52,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "drums",
-        "bass"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -2471,19 +2344,8 @@ export const COUNTRY_WORLD: GenreWorld = {
         "verse",
         "chorus"
       ],
-      "harmonicContext": [
-        "tonal",
-        "section-dependent",
-        "tonal or modal context"
-      ],
-      "roleDependencies": [
-        "voice"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "country-phrase-11-v-01",
@@ -2664,19 +2526,8 @@ export const COUNTRY_WORLD: GenreWorld = {
         "chorus",
         "bridge"
       ],
-      "harmonicContext": [
-        "tonal",
-        "section-dependent",
-        "tonal or modal context"
-      ],
-      "roleDependencies": [
-        "voice"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "country-call-12-v-01",
@@ -2913,19 +2764,8 @@ export const COUNTRY_WORLD: GenreWorld = {
         "verse",
         "chorus"
       ],
-      "harmonicContext": [
-        "tonal",
-        "section-dependent",
-        "tonal or modal context"
-      ],
-      "roleDependencies": [
-        "bass"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "country-anchor-13-v-01",
@@ -3105,19 +2945,8 @@ export const COUNTRY_WORLD: GenreWorld = {
         "verse",
         "chorus"
       ],
-      "harmonicContext": [
-        "tonal",
-        "section-dependent",
-        "tonal or modal context"
-      ],
-      "roleDependencies": [
-        "harmony"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "country-comp-14-v-01",
@@ -3289,20 +3118,8 @@ export const COUNTRY_WORLD: GenreWorld = {
       "sectionUsage": [
         "intro"
       ],
-      "harmonicContext": [
-        "tonal",
-        "section-dependent",
-        "tonal or modal context"
-      ],
-      "roleDependencies": [
-        "harmony",
-        "texture"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "country-intro-15-v-01",
@@ -3510,20 +3327,8 @@ export const COUNTRY_WORLD: GenreWorld = {
       "sectionUsage": [
         "verse"
       ],
-      "harmonicContext": [
-        "tonal",
-        "section-dependent",
-        "tonal or modal context"
-      ],
-      "roleDependencies": [
-        "drums",
-        "rhythm-guitar"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "country-verse-16-v-01",
@@ -3695,17 +3500,8 @@ export const COUNTRY_WORLD: GenreWorld = {
         "chorus",
         "bridge"
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
-      "roleDependencies": [
-        "voice"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "country-voice-phrasing-v-voice-alt",
@@ -3801,66 +3597,6 @@ export const COUNTRY_WORLD: GenreWorld = {
       "weight": 0.9,
       "enabled": true
     }
-  ],
-  "techniques": [
-    "chicken pickin hybrid picking",
-    "pedal steel volume swells",
-    "train beat brush sweeps",
-    "walking bass passing tones"
-  ],
-  "forms": [
-    "intro",
-    "verse",
-    "chorus",
-    "verse",
-    "chorus",
-    "solo",
-    "chorus",
-    "tag coda"
-  ],
-  "relationships": [
-    "bass ↔ snare (two-step rhythmic lock)",
-    "pedal steel ↔ vocal (mournful call-and-response)"
-  ],
-  "transformations": [
-    "trans-density-dense",
-    "trans-anticipation",
-    "trans-phrase-cadence",
-    "catalog-v2-density-variation",
-    "catalog-v2-transition-coverage",
-    "catalog-v2-ensemble-interactions"
-  ],
-  "songBehaviors": [
-    "lyric-centered storytelling with supportive acoustic guitar bedrock and soaring vocal choruses",
-    "avoid identical loop repetition by alternating pattern variants",
-    "use fills, breaks, cadences, and bridge textures as structural events",
-    "let lead/voice parts create space and response relationships"
-  ],
-  "instrumentIdeas": {
-    "guitar": [
-      "Fender Telecaster bridge pickup with snap compression for chicken pickin"
-    ],
-    "bass": [
-      "warm P-bass with flatwound strings for punchy boom-chuck"
-    ],
-    "drums": [
-      "vintage snare with brushes or loose snare tone for driving train beat"
-    ],
-    "voice": [
-      "storytelling lead vocal phrasing"
-    ]
-  },
-  "combinations": [
-    "Country + Rock",
-    "Country + Folk",
-    "Country + Blues",
-    "Country + WCS"
-  ],
-  "danceTags": [
-    "social-partner",
-    "wcs-compatible",
-    "solo-vernacular",
-    "listening"
   ],
   "tuningSystem": "12-tet",
   "signatureCell": "Alternating root-fifth boom-chuck bass and telecaster chicken pickin over snare train beat",

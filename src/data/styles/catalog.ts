@@ -5,11 +5,11 @@ import { GENRE_NAMES, GENRE_SOURCE_MAP } from '../genres';
 /** Exactly the supported public genre leaves. */
 export const CURATED_STYLE_NAMES: Record<string, string[]> = {
   afrobeats: ['Afro-Pop','Afrobeat','Amapiano','Highlife','Alté','Afro-House'],
-  bachata: ['Tradicional','Urbana','Sensual','Bachata Moderna','Bolero Bachata','Bachatango'],
+  bachata: ['Tradicional','Dominicana','Bachata Moderna','Sensual','Bolero Bachata','Bachatango','Bachata Urbana'],
   blues: ['Chicago Blues','Delta Blues','Texas Blues','Piedmont Blues','Jump Blues','Soul Blues'],
   brazilian: ['Samba','Bossa Nova','Pagode','Choro','Samba-Rock','Forró'],
   country: ['Neotraditional','Outlaw','Bluegrass','Honky-Tonk','Bakersfield','Americana','Nashville Sound','Western Swing'],
-  cumbia: ['Cumbia Colombiana','Villera','Chicha','Sonora','Rebajada','Porro'],
+  cumbia: ['Cumbia Colombiana','Cumbia Sabanera','Gaita Cumbia','Villera','Chicha','Sonidera','Rebajada','Porro'],
   disco: ['Studio Disco','Eurodisco','Hi-NRG','Disco-Funk','Italo Disco','Nu-Disco'],
   electronic: ['Techno','Ambient','Downtempo','IDM','Synthwave','Breakbeat','Electro'],
   folk: ['Indie Folk','Old-Time','Protest Folk','Psychedelic Folk','Neo-Traditional','Chamber Folk'],
@@ -18,21 +18,21 @@ export const CURATED_STYLE_NAMES: Record<string, string[]> = {
   'hip-hop': ['Boom Bap','Trap','Drill','Lo-Fi','G-Funk','Cloud Rap','Jazz Rap','Conscious Rap'],
   house: ['Deep House','Classic House','Soulful House','Tech House','Garage House','Acid House','French House'],
   jazz: ['Bebop','Cool Jazz','Hard Bop','Free Jazz','Gypsy Jazz','Fusion','Spiritual Jazz','Ragtime'],
-  kizomba: ['Tradicional','Semba Playful','Urbankiz','Tarraxinha','Passada','Ghetto Zouk'],
+  kizomba: ['Tradicional','Semba Playful','Passada','Tarraxinha','Urbankiz','Ghetto Zouk','Kizomba Afro'],
   'latin-pop': ['Latin Pop','Pop Ballad','Tropical Pop','Urban Latin Pop','Rock Latino','Dance Latin Pop'],
-  tango: ['Tango Tradicional','Tango Nuevo','Milonga','Tango Vals','Tango Electrónico','Yumba'],
+  tango: ['Tango Tradicional','Guardia Vieja','Troilo','Pugliese','Milonga','Tango Vals','Tango Nuevo','Piazzolla','Chacarera'],
   flamenco: ['Soleá','Bulerías','Alegrías','Tangos','Seguiriya','Rumba'],
   metal: ['Heavy Metal','Thrash','Death Metal','Black Metal','Power Metal','Doom Metal','Sludge','Progressive Metal'],
   'r-and-b': ['Contemporary R&B','Neo-Soul','Quiet Storm','New Jack Swing','Alternative R&B','Funk R&B'],
   reggae: ['Roots Reggae','Dub','Dancehall','Lovers Rock','Rocksteady','Ragga'],
   reggaeton: ['Perreo','Melodic Reggaeton','Neoperreo','Pop Reggaeton','Playero','Trap Reggaeton'],
   rock: ['Hard Rock','Grunge','Progressive Rock','Garage Rock','Psychedelic Rock','Post-Rock','Shoegaze','Alternative Rock'],
-  salsa: ['Salsa Dura','Salsa Romántica','Mambo / On-2','Salsa Caleña','Charanga','Son Montuno','Salsa Choke','Latin Jazz Salsa'],
+  salsa: ['Salsa Dura','Salsa Romántica','Mambo / On-2','Pachanga','Cha-Cha-Chá','Charanga','Son Montuno','Salsa Caleña','Salsa Choke','Descarga'],
   ska: ['Traditional','Two-Tone','Rocksteady','Ska-Punk','Ska-Core','Latin Ska','Ska-Jazz'],
   soul: ['Classic Soul','Motown Soul','Deep Soul','Southern Soul','Neo-Soul','Psychedelic Soul'],
   swing: ['Big Band Lindy','Balboa Speed','Gypsy Swing','Charleston','West Coast Swing','Boogie-Woogie','Neo-Swing','Electro Swing'],
-  timba: ['Timba Funk','Timba Despelote','Son Timbeado','Timba Rumbeada','Son Cubano','Descarga'],
-  zouk: ['Zouk Béton','Brazilian Zouk','Lyrical Zouk','Zouk Bass','Kompa Zouk','Acoustic Zouk'],
+  timba: ['Timba Clásica','Timba Funk','Timba Despelote','Timba Rumbeada','Afro-Cuban Timba','Cimafunk Groove','Songo / Timba'],
+  zouk: ['Zouk Béton','Zouk Love','Kassav Carnival Zouk','Brazilian Zouk','Lyrical Zouk','Zouk Bass','Kompa Zouk','Acoustic Zouk'],
   'drum-and-bass': ['Jungle','Liquid DnB','Jump-Up','Neurofunk','Dancefloor DnB','Minimal DnB'],
   industrial: ['EBM','Industrial Rock','Industrial Metal','Industrial Techno','Noise Industrial','Dark Industrial'],
   'punk-hardcore': ['Punk Rock','Hardcore Punk','Post-Hardcore','Skate Punk','Crust Punk','Melodic Hardcore','Pop Punk'],
@@ -43,6 +43,31 @@ export const CURATED_STYLE_NAMES: Record<string, string[]> = {
 export const PROTECTED_GENRES = new Set<string>();
 
 const SOURCE_STYLE_OVERRIDES: Record<string, Record<string, string>> = {
+  tango: {
+    'Tango Tradicional':'Tango Tradicional', 'Guardia Vieja':'Tango Tradicional', 'Troilo':'Tango Tradicional', 'Pugliese':'Tango Tradicional',
+    'Milonga':'Milonga', 'Tango Vals':'Tango Vals', 'Tango Nuevo':'Tango Nuevo', 'Piazzolla':'Tango Nuevo', 'Chacarera':'Tango Tradicional',
+  },
+  salsa: {
+    'Salsa Dura':'Salsa Dura', 'Salsa Romántica':'Salsa Romántica', 'Mambo / On-2':'Mambo', 'Pachanga':'Charanga', 'Cha-Cha-Chá':'Charanga',
+    'Charanga':'Charanga', 'Son Montuno':'Son Montuno', 'Salsa Caleña':'Salsa Caleña', 'Salsa Choke':'Salsa Choke', 'Descarga':'Son Montuno',
+  },
+  timba: {
+    'Timba Clásica':'Timba Funk', 'Timba Funk':'Timba Funk', 'Timba Despelote':'Timba Despelote', 'Timba Rumbeada':'Timba Rumbeada',
+    'Afro-Cuban Timba':'Son Timbeado', 'Cimafunk Groove':'Timba Funk', 'Songo / Timba':'Timba Funk',
+  },
+  cumbia: {
+    'Cumbia Colombiana':'Cumbia Colombiana', 'Cumbia Sabanera':'Cumbia Colombiana', 'Gaita Cumbia':'Cumbia Colombiana', 'Villera':'Villera',
+    'Chicha':'Chicha', 'Sonidera':'Sonora', 'Rebajada':'Rebajada', 'Porro':'Porro',
+  },
+  bachata: {
+    'Tradicional':'Tradicional', 'Dominicana':'Tradicional', 'Bachata Moderna':'Bachata Moderna', 'Sensual':'Sensual', 'Bolero Bachata':'Bolero Bachata', 'Bachatango':'Bachatango', 'Bachata Urbana':'Urbana',
+  },
+  kizomba: {
+    'Tradicional':'Tradicional', 'Semba Playful':'Semba Playful', 'Passada':'Passada', 'Tarraxinha':'Tarraxinha', 'Urbankiz':'Urbankiz', 'Ghetto Zouk':'Ghetto Zouk', 'Kizomba Afro':'Tradicional',
+  },
+  zouk: {
+    'Zouk Béton':'Zouk Béton', 'Zouk Love':'Zouk Love', 'Kassav Carnival Zouk':'Zouk Béton', 'Brazilian Zouk':'Brazilian Zouk', 'Lyrical Zouk':'Lyrical Zouk', 'Zouk Bass':'Zouk Bass', 'Kompa Zouk':'Kompa Zouk', 'Acoustic Zouk':'Acoustic Zouk',
+  },
   brazilian: { 'Samba': 'Samba de Enredo', 'Bossa Nova': 'Bossa Nova', 'Pagode': 'Pagode', 'Choro': 'Choro', 'Samba-Rock': 'Samba Reggae', 'Forró': 'Samba de Roda' },
   disco: { 'Studio Disco': 'Disco', 'Eurodisco': 'Disco', 'Hi-NRG': 'Disco', 'Disco-Funk': 'Boogie', 'Italo Disco': 'Synth Funk', 'Nu-Disco': 'Boogie' },
   gospel: { 'Traditional Gospel': 'Old-Time', 'Contemporary Gospel': 'Indie Folk', 'Southern Gospel': 'Neo-Traditional', 'Choir Gospel': 'Chamber Folk', 'Gospel Soul': 'Indie Folk', 'Gospel Funk': 'Boogie' },
@@ -152,13 +177,23 @@ function selectSharedPatterns(style: SongStyle, candidates: MusicalPattern[], ta
   const terms = `${style.name} ${style.summary} ${style.signatureTraits.join(' ')}`.toLowerCase();
   const ranked = candidates
     .filter(p => p.enabled !== false)
-    .map(p => ({ p, score: (p.styleIds?.includes(style.id) ? 100 : 0) + (p.name + ' ' + p.tags.join(' ')).toLowerCase().split(/[^a-z0-9]+/).filter(Boolean).reduce((n, t) => n + (t.length > 3 && terms.includes(t) ? 2 : 0), 0) + (p.weight ?? 0) }))
+    .map(p => ({ p, score: (p.styleIds?.includes(style.id) ? 1000 : 0) + (p.name + ' ' + p.tags.join(' ') + ' ' + p.description + ' ' + (p.authenticityTags ?? []).join(' ')).toLowerCase().split(/[^a-z0-9]+/).filter(Boolean).reduce((n, t) => n + (t.length > 3 && terms.includes(t) ? 2 : 0), 0) + (p.weight ?? 0) }))
     .sort((a,b) => b.score - a.score || a.p.id.localeCompare(b.p.id));
   const selected: MusicalPattern[] = [];
   const categories = new Set<string>();
+
+  // Explicit style ownership outranks semantic matching. Apply duplicate filtering
+  // only to patterns selected by semantic fallback.
   for (const { p } of ranked) {
+    if (!p.styleIds?.includes(style.id)) continue;
+    selected.push(p);
+    categories.add(patternCategory(p));
+  }
+
+  for (const { p } of ranked) {
+    if (selected.includes(p) || selected.some(x => nearDuplicate(x, p))) continue;
     const cat = patternCategory(p);
-    if (categories.has(cat) || selected.some(x => nearDuplicate(x, p))) continue;
+    if (categories.has(cat) && selected.length >= target) continue;
     selected.push(p); categories.add(cat);
     if (selected.length >= target) return selected;
   }
@@ -167,7 +202,7 @@ function selectSharedPatterns(style: SongStyle, candidates: MusicalPattern[], ta
     selected.push(p);
     if (selected.length >= target) break;
   }
-  return selected.slice(0, target);
+  return selected;
 }
 
 export function buildCuratedStyles(baseStyles: SongStyle[], _patterns: MusicalPattern[]): SongStyle[] {
@@ -209,7 +244,23 @@ export function assembleStylePatterns(styles: SongStyle[], patterns: MusicalPatt
     const list = bySource.get(p.worldId) ?? [];
     list.push(p); bySource.set(p.worldId, list);
   }
-  for (const p of patterns) p.styleIds = [];
+  // Preserve authored style ownership from the source catalog. Older generated
+  // revisions erased these IDs and forced every style through semantic guessing,
+  // Preserve authored patterns before applying the fallback cap.
+  const styleIdBySlug = new Map<string, string>();
+  for (const style of styles) {
+    const add = (value: string) => styleIdBySlug.set(
+      value.toLowerCase().normalize('NFKD').replace(/[^a-z0-9]+/gi, '-').replace(/^-|-$/g, ''),
+      style.id
+    );
+    add(style.id);
+    add(style.name);
+  }
+  for (const p of patterns) {
+    p.styleIds = Array.from(new Set((p.styleIds ?? [])
+      .map(id => styleIdBySlug.get(String(id).toLowerCase().normalize('NFKD').replace(/[^a-z0-9]+/gi, '-').replace(/^-|-$/g, '')) ?? id)
+      .filter(id => styles.some(style => style.id === id))));
+  }
 
   // Styles share authored pattern definitions, but do not share one identical
   // six-pattern shortlist. Selection is semantic: each style gets the patterns

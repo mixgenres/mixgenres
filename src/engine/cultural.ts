@@ -19,10 +19,9 @@ export interface CulturalRules {
   avoidBassFoundation: boolean;
 }
 
-export function culturalRules(style: ResolvedStyle, instrumentId?: string): CulturalRules | undefined {
+export function culturalRules(style: ResolvedStyle, _instrumentId?: string): CulturalRules | undefined {
   const model = style.contract.harmonyModel;
   if (!['modal-drone', 'heterophonic', 'fixed-cluster'].includes(model)) return undefined;
-  const styleName = style.name.toLowerCase();
   const heterophonic = model === 'heterophonic' || /heterophonic|ensemble|silk|bamboo/i.test(style.contract.ensemble.interaction ?? '');
   const authoredTimingOnly = style.contract.pulseModel === 'free-rubato' || /rubato|ma|free/i.test(style.contract.form.join(' '));
   return {

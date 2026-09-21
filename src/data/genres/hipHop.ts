@@ -821,9 +821,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 2,
       "weight": 1,
       "provenance": "Global Urban Beat catalog rebuild: retained source material or generated structural support pattern.",
@@ -836,26 +834,8 @@ export const HIP_HOP_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 50,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "drums"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
-      "interactionRules": [
-        {
-          "id": "hip-hop-interaction-1",
-          "worldId": "hip-hop",
-          "sourceRole": "drums",
-          "targetRole": "bass",
-          "relationship": "reinforce",
-          "description": "Low-end attacks reinforce the main pulse",
-          "timingOffsetSteps": 0,
-          "probability": 0.78
-        }
-      ],
+
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -991,9 +971,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 2,
       "weight": 1,
       "provenance": "Global Urban Beat catalog rebuild: retained source material or generated structural support pattern.",
@@ -1006,14 +984,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 50,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "drums"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -1122,9 +1093,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 1,
       "weight": 1,
       "provenance": "Global Urban Beat catalog rebuild: retained source material or generated structural support pattern.",
@@ -1137,15 +1106,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 50,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "drums",
-        "bass"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -1388,9 +1349,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 5,
       "weight": 1,
       "provenance": "Global Urban Beat catalog rebuild: retained source material or generated structural support pattern.",
@@ -1403,14 +1362,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 50,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "drums"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -1536,9 +1488,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 2,
       "weight": 1,
       "provenance": "Global Urban Beat catalog rebuild: retained source material or generated structural support pattern.",
@@ -1551,26 +1501,8 @@ export const HIP_HOP_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 50,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "drums"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
-      "interactionRules": [
-        {
-          "id": "hip-hop-interaction-2",
-          "worldId": "hip-hop",
-          "sourceRole": "voice",
-          "targetRole": "harmony",
-          "relationship": "leaveSpace",
-          "description": "Harmony reduces density under vocal entries",
-          "timingOffsetSteps": 0,
-          "probability": 0.72
-        }
-      ],
+
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -1730,9 +1662,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 3,
       "weight": 1,
       "provenance": "Global Urban Beat catalog rebuild: retained source material or generated structural support pattern.",
@@ -1745,26 +1675,8 @@ export const HIP_HOP_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 50,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "drums"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
-      "interactionRules": [
-        {
-          "id": "hip-hop-interaction-3",
-          "worldId": "hip-hop",
-          "sourceRole": "bass",
-          "targetRole": "drums",
-          "relationship": "accentWith",
-          "description": "Bass accents align with selected kick/backbeat",
-          "timingOffsetSteps": 0,
-          "probability": 0.65
-        }
-      ],
+
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -1882,9 +1794,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 1,
       "weight": 1,
       "provenance": "Global Urban Beat catalog rebuild: retained source material or generated structural support pattern.",
@@ -1897,14 +1807,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 50,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "drums"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -2051,9 +1954,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 2,
       "weight": 1,
       "provenance": "Global Urban Beat catalog rebuild: retained source material or generated structural support pattern.",
@@ -2066,14 +1967,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 50,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "drums"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -2209,9 +2103,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 2,
       "weight": 1,
       "provenance": "Global Urban Beat catalog rebuild: retained source material or generated structural support pattern.",
@@ -2224,14 +2116,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 50,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "drums"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -2356,9 +2241,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 2,
       "weight": 1,
       "provenance": "Global Urban Beat catalog rebuild: retained source material or generated structural support pattern.",
@@ -2371,14 +2254,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 50,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "drums"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -2496,9 +2372,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 1,
       "weight": 1,
       "provenance": "Global Urban Beat catalog rebuild: retained source material or generated structural support pattern.",
@@ -2511,14 +2385,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 50,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "drums"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -2627,9 +2494,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 1,
       "weight": 1,
       "provenance": "Global Urban Beat catalog rebuild: retained source material or generated structural support pattern.",
@@ -2642,15 +2507,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 50,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "drums",
-        "bass"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -2813,9 +2670,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 3,
       "weight": 1,
       "provenance": "Global Urban Beat catalog rebuild: retained source material or generated structural support pattern.",
@@ -2828,14 +2683,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 50,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "drums"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -2952,9 +2800,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 1,
       "weight": 0.7,
       "provenance": "Global Urban Beat catalog rebuild: retained source material or generated structural support pattern.",
@@ -2967,14 +2813,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 50,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "bass"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -3054,19 +2893,8 @@ export const HIP_HOP_WORLD: GenreWorld = {
         "chorus",
         "bridge"
       ],
-      "harmonicContext": [
-        "tonal",
-        "section-dependent",
-        "tonal or modal context"
-      ],
-      "roleDependencies": [
-        "voice"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "hip-hop-call-15-v-01",
@@ -3273,19 +3101,8 @@ export const HIP_HOP_WORLD: GenreWorld = {
         "verse",
         "chorus"
       ],
-      "harmonicContext": [
-        "tonal",
-        "section-dependent",
-        "tonal or modal context"
-      ],
-      "roleDependencies": [
-        "bass"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "hip-hop-anchor-16-v-01",
@@ -3449,17 +3266,8 @@ export const HIP_HOP_WORLD: GenreWorld = {
         "chorus",
         "bridge"
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
-      "roleDependencies": [
-        "voice"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "hip-hop-voice-phrasing-v1",
@@ -3533,69 +3341,6 @@ export const HIP_HOP_WORLD: GenreWorld = {
       "weight": 0.9,
       "enabled": true
     }
-  ],
-  "techniques": [
-    "808 pitch gliding",
-    "32nd-note hi-hat rolls",
-    "vinyl crackle and sample pitching",
-    "dembow offbeat rim accentuation"
-  ],
-  "forms": [
-    "intro",
-    "verse",
-    "chorus",
-    "verse",
-    "chorus",
-    "bridge",
-    "chorus",
-    "coda"
-  ],
-  "relationships": [
-    "808 sub ↔ kick (tight low-end lock)",
-    "snare ↔ hats (swung timekeeping)",
-    "vocal ↔ sample loop (call and space)"
-  ],
-  "transformations": [
-    "trans-density-dense",
-    "trans-anticipation",
-    "trans-phrase-cadence",
-    "catalog-v2-density-variation",
-    "catalog-v2-transition-coverage",
-    "catalog-v2-ensemble-interactions"
-  ],
-  "songBehaviors": [
-    "low-end focused groove leaving maximum dynamic space for rhythmic vocal delivery and chest-hitting bass drops",
-    "avoid identical loop repetition by alternating pattern variants",
-    "use fills, breaks, cadences, and bridge textures as structural events",
-    "let lead/voice parts create space and response relationships"
-  ],
-  "instrumentIdeas": {
-    "drums": [
-      "vintage SP-1200 / MPC60 punchy sampled drums and Roland TR-808 percussion"
-    ],
-    "bass": [
-      "pure sine-wave 808 sub with tube saturation and glide pitch envelopes"
-    ],
-    "voice": [
-      "rap cadence and hook phrasing"
-    ],
-    "keys": [
-      "sampled piano/keys loop"
-    ],
-    "synth": [
-      "sample/synth support loop"
-    ]
-  },
-  "combinations": [
-    "Urban Beat + Afrobeats",
-    "Urban Beat + Bachata Sensual",
-    "Boom Bap + Jazz"
-  ],
-  "danceTags": [
-    "social-partner",
-    "festival-fusion",
-    "listening",
-    "sensual-fusion"
   ],
   "tuningSystem": "12-tet",
   "signatureCell": "Dembow riddim [0, 6, 8, 12, 14] & 808 sliding sub-bass",

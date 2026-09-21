@@ -429,9 +429,7 @@ export const TIMBA_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 4,
       "weight": 0.7,
       "provenance": "Timba catalog rebuild: retained source material or generated structural support pattern.",
@@ -444,26 +442,8 @@ export const TIMBA_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 53,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "harmony"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
-      "interactionRules": [
-        {
-          "id": "timba-interaction-1",
-          "worldId": "timba",
-          "sourceRole": "drums",
-          "targetRole": "bass",
-          "relationship": "reinforce",
-          "description": "Low-end attacks reinforce the main pulse",
-          "timingOffsetSteps": 0,
-          "probability": 0.78
-        }
-      ],
+
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -620,9 +600,7 @@ export const TIMBA_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 3,
       "weight": 1,
       "provenance": "Timba catalog rebuild: retained source material or generated structural support pattern.",
@@ -635,15 +613,7 @@ export const TIMBA_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 53,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "drums",
-        "percussion"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -775,9 +745,7 @@ export const TIMBA_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 2,
       "weight": 0.7,
       "provenance": "Timba catalog rebuild: retained source material or generated structural support pattern.",
@@ -790,26 +758,8 @@ export const TIMBA_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 53,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "bass"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
-      "interactionRules": [
-        {
-          "id": "timba-interaction-2",
-          "worldId": "timba",
-          "sourceRole": "voice",
-          "targetRole": "harmony",
-          "relationship": "leaveSpace",
-          "description": "Harmony reduces density under vocal entries",
-          "timingOffsetSteps": 0,
-          "probability": 0.72
-        }
-      ],
+
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -960,9 +910,7 @@ export const TIMBA_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 3,
       "weight": 1,
       "provenance": "Timba catalog rebuild: retained source material or generated structural support pattern.",
@@ -975,14 +923,7 @@ export const TIMBA_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 53,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "percussion"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -1106,9 +1047,7 @@ export const TIMBA_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 2,
       "weight": 1,
       "provenance": "Timba catalog rebuild: retained source material or generated structural support pattern.",
@@ -1121,14 +1060,7 @@ export const TIMBA_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 53,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "percussion"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -1245,9 +1177,7 @@ export const TIMBA_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 1,
       "weight": 1,
       "provenance": "Timba catalog rebuild: retained source material or generated structural support pattern.",
@@ -1260,26 +1190,8 @@ export const TIMBA_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 53,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "bass"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
-      "interactionRules": [
-        {
-          "id": "timba-interaction-3",
-          "worldId": "timba",
-          "sourceRole": "bass",
-          "targetRole": "drums",
-          "relationship": "accentWith",
-          "description": "Bass accents align with selected kick/backbeat",
-          "timingOffsetSteps": 0,
-          "probability": 0.65
-        }
-      ],
+
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -1414,9 +1326,7 @@ export const TIMBA_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 2,
       "weight": 1,
       "provenance": "Timba catalog rebuild: retained source material or generated structural support pattern.",
@@ -1429,14 +1339,7 @@ export const TIMBA_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 53,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "piano"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -1533,9 +1436,7 @@ export const TIMBA_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 1,
       "weight": 1,
       "provenance": "Timba catalog rebuild: retained source material or generated structural support pattern.",
@@ -1548,14 +1449,7 @@ export const TIMBA_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 53,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "drums"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -1679,9 +1573,7 @@ export const TIMBA_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 2,
       "weight": 1,
       "provenance": "Timba catalog rebuild: retained source material or generated structural support pattern.",
@@ -1694,14 +1586,7 @@ export const TIMBA_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 53,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "brass"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -1823,9 +1708,7 @@ export const TIMBA_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 2,
       "weight": 1,
       "provenance": "Timba catalog rebuild: retained source material or generated structural support pattern.",
@@ -1838,14 +1721,7 @@ export const TIMBA_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 53,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "percussion"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -1965,9 +1841,7 @@ export const TIMBA_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 1,
       "weight": 1,
       "provenance": "Timba catalog rebuild: retained source material or generated structural support pattern.",
@@ -1980,14 +1854,7 @@ export const TIMBA_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 53,
       "anticipationOffset": 1,
-      "roleDependencies": [
-        "bass"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -2069,19 +1936,8 @@ export const TIMBA_WORLD: GenreWorld = {
         "verse",
         "chorus"
       ],
-      "harmonicContext": [
-        "tonal",
-        "modal traditional context",
-        "tonal or modal context"
-      ],
-      "roleDependencies": [
-        "voice"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "timba-phrase-12-v-01",
@@ -2255,19 +2111,8 @@ export const TIMBA_WORLD: GenreWorld = {
         "chorus",
         "bridge"
       ],
-      "harmonicContext": [
-        "tonal",
-        "modal traditional context",
-        "tonal or modal context"
-      ],
-      "roleDependencies": [
-        "voice"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "timba-call-13-v-01",
@@ -2493,19 +2338,8 @@ export const TIMBA_WORLD: GenreWorld = {
         "verse",
         "chorus"
       ],
-      "harmonicContext": [
-        "tonal",
-        "modal traditional context",
-        "tonal or modal context"
-      ],
-      "roleDependencies": [
-        "bass"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "timba-anchor-14-v-01",
@@ -2678,19 +2512,8 @@ export const TIMBA_WORLD: GenreWorld = {
         "verse",
         "chorus"
       ],
-      "harmonicContext": [
-        "tonal",
-        "modal traditional context",
-        "tonal or modal context"
-      ],
-      "roleDependencies": [
-        "harmony"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "timba-comp-15-v-01",
@@ -2861,20 +2684,8 @@ export const TIMBA_WORLD: GenreWorld = {
       "sectionUsage": [
         "intro"
       ],
-      "harmonicContext": [
-        "tonal",
-        "modal traditional context",
-        "tonal or modal context"
-      ],
-      "roleDependencies": [
-        "harmony",
-        "texture"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "timba-intro-16-v-01",
@@ -3083,17 +2894,8 @@ export const TIMBA_WORLD: GenreWorld = {
         "bridge",
         "coro"
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
-      "roleDependencies": [
-        "voice"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "timba-voice-phrasing-v-voice-alt",
@@ -3189,71 +2991,6 @@ export const TIMBA_WORLD: GenreWorld = {
       "weight": 0.9,
       "enabled": true
     }
-  ],
-  "techniques": [
-    "gear changes",
-    "metric displacement",
-    "slap bass thumb pops",
-    "linear drum fills",
-    "stop-time bloques"
-  ],
-  "forms": [
-    "intro",
-    "verse (marcha)",
-    "coro (presión)",
-    "mambo",
-    "bomba breakdown",
-    "pedal tension",
-    "coda"
-  ],
-  "relationships": [
-    "bass ↔ drum kick (slap and punch lock)",
-    "piano ↔ horns (bloque coordination)",
-    "coro ↔ lead (explosive call and response)"
-  ],
-  "transformations": [
-    "trans-density-dense",
-    "trans-anticipation",
-    "trans-phrase-cadence",
-    "catalog-v2-density-variation",
-    "catalog-v2-transition-coverage",
-    "catalog-v2-ensemble-interactions"
-  ],
-  "songBehaviors": [
-    "rapid gear shifts altering groove texture without stopping tempo",
-    "unison ensemble hits exploding out of dense rhythms",
-    "avoid identical loop repetition by alternating pattern variants",
-    "use fills, breaks, cadences, and bridge textures as structural events",
-    "let lead/voice parts create space and response relationships"
-  ],
-  "instrumentIdeas": {
-    "bass": [
-      "slap and pop passages in bomba section",
-      "displaced syncopations"
-    ],
-    "piano": [
-      "two-handed energetic montuno variations",
-      "percussive chord chops"
-    ],
-    "drums": [
-      "songo pattern with foot cowbell and open hi-hat accents"
-    ],
-    "voice": [
-      "sonero/coro phrasing"
-    ],
-    "trumpet": [
-      "gear-change horn moñas"
-    ]
-  },
-  "combinations": [
-    "Timba + Funk",
-    "Timba + Jazz",
-    "Timba + Hip-Hop"
-  ],
-  "danceTags": [
-    "social-partner",
-    "festival-fusion",
-    "listening"
   ],
   "tuningSystem": "12-tet",
   "signatureCell": "Timba 4-gear system (Marcha → Presión → Bomba → Pedal) with songo drums",

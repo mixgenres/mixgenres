@@ -850,9 +850,7 @@ export const ROCK_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 2,
       "weight": 0.7,
       "provenance": "Rock catalog rebuild: retained source material or generated structural support pattern.",
@@ -865,28 +863,8 @@ export const ROCK_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 50,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "bass",
-        "drums",
-        "rhythm-guitar"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
-      "interactionRules": [
-        {
-          "id": "rock-interaction-1",
-          "worldId": "rock",
-          "sourceRole": "drums",
-          "targetRole": "bass",
-          "relationship": "reinforce",
-          "description": "Low-end attacks reinforce the main pulse",
-          "timingOffsetSteps": 0,
-          "probability": 0.78
-        }
-      ],
+
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -1052,9 +1030,7 @@ export const ROCK_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 3,
       "weight": 1,
       "provenance": "Rock catalog rebuild: retained source material or generated structural support pattern.",
@@ -1067,28 +1043,8 @@ export const ROCK_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 50,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "bass",
-        "drums",
-        "rhythm-guitar"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
-      "interactionRules": [
-        {
-          "id": "rock-interaction-2",
-          "worldId": "rock",
-          "sourceRole": "voice",
-          "targetRole": "harmony",
-          "relationship": "leaveSpace",
-          "description": "Harmony reduces density under vocal entries",
-          "timingOffsetSteps": 0,
-          "probability": 0.72
-        }
-      ],
+
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -1258,9 +1214,7 @@ export const ROCK_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 1,
       "weight": 0.7,
       "provenance": "Rock catalog rebuild: retained source material or generated structural support pattern.",
@@ -1273,28 +1227,8 @@ export const ROCK_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 50,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "bass",
-        "drums",
-        "rhythm-guitar"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
-      "interactionRules": [
-        {
-          "id": "rock-interaction-3",
-          "worldId": "rock",
-          "sourceRole": "bass",
-          "targetRole": "drums",
-          "relationship": "accentWith",
-          "description": "Bass accents align with selected kick/backbeat",
-          "timingOffsetSteps": 0,
-          "probability": 0.65
-        }
-      ],
+
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -1422,9 +1356,7 @@ export const ROCK_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 1,
       "weight": 0.7,
       "provenance": "Rock catalog rebuild: retained source material or generated structural support pattern.",
@@ -1437,16 +1369,7 @@ export const ROCK_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 50,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "bass",
-        "drums",
-        "rhythm-guitar"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -1597,9 +1520,7 @@ export const ROCK_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 3,
       "weight": 1,
       "provenance": "Rock catalog rebuild: retained source material or generated structural support pattern.",
@@ -1612,14 +1533,7 @@ export const ROCK_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 50,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "electric-guitar"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -1716,9 +1630,7 @@ export const ROCK_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 1,
       "weight": 1,
       "provenance": "Rock catalog rebuild: retained source material or generated structural support pattern.",
@@ -1731,14 +1643,7 @@ export const ROCK_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 50,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "drums"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -1891,9 +1796,7 @@ export const ROCK_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 3,
       "weight": 1,
       "provenance": "Rock catalog rebuild: retained source material or generated structural support pattern.",
@@ -1906,14 +1809,7 @@ export const ROCK_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 50,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "drums"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -2033,9 +1929,7 @@ export const ROCK_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 1,
       "weight": 0.7,
       "provenance": "Rock catalog rebuild: retained source material or generated structural support pattern.",
@@ -2048,14 +1942,7 @@ export const ROCK_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 50,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "keys"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -2170,9 +2057,7 @@ export const ROCK_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 1,
       "weight": 1,
       "provenance": "Rock catalog rebuild: retained source material or generated structural support pattern.",
@@ -2185,14 +2070,7 @@ export const ROCK_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 50,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "electric-guitar"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -2425,9 +2303,7 @@ export const ROCK_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 5,
       "weight": 1,
       "provenance": "Rock catalog rebuild: retained source material or generated structural support pattern.",
@@ -2440,14 +2316,7 @@ export const ROCK_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 50,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "synth"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -2580,9 +2449,7 @@ export const ROCK_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 2,
       "weight": 1,
       "provenance": "Rock catalog rebuild: retained source material or generated structural support pattern.",
@@ -2595,14 +2462,7 @@ export const ROCK_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 50,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "guitar"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -2700,9 +2560,7 @@ export const ROCK_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 1,
       "weight": 1,
       "provenance": "Rock catalog rebuild: retained source material or generated structural support pattern.",
@@ -2715,14 +2573,7 @@ export const ROCK_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 50,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "electric-guitar"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -2800,19 +2651,8 @@ export const ROCK_WORLD: GenreWorld = {
         "verse",
         "chorus"
       ],
-      "harmonicContext": [
-        "tonal",
-        "section-dependent",
-        "tonal or modal context"
-      ],
-      "roleDependencies": [
-        "voice"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "rock-roster-13-v-01",
@@ -2956,19 +2796,8 @@ export const ROCK_WORLD: GenreWorld = {
         "chorus",
         "bridge"
       ],
-      "harmonicContext": [
-        "tonal",
-        "section-dependent",
-        "tonal or modal context"
-      ],
-      "roleDependencies": [
-        "voice"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "rock-call-14-v-01",
@@ -3152,19 +2981,8 @@ export const ROCK_WORLD: GenreWorld = {
         "verse",
         "chorus"
       ],
-      "harmonicContext": [
-        "tonal",
-        "section-dependent",
-        "tonal or modal context"
-      ],
-      "roleDependencies": [
-        "bass"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "rock-anchor-15-v-01",
@@ -3309,19 +3127,8 @@ export const ROCK_WORLD: GenreWorld = {
         "verse",
         "chorus"
       ],
-      "harmonicContext": [
-        "tonal",
-        "section-dependent",
-        "tonal or modal context"
-      ],
-      "roleDependencies": [
-        "harmony"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "rock-comp-16-v-01",
@@ -3483,20 +3290,8 @@ export const ROCK_WORLD: GenreWorld = {
       "sectionUsage": [
         "verse"
       ],
-      "harmonicContext": [
-        "tonal",
-        "section-dependent",
-        "tonal or modal context"
-      ],
-      "roleDependencies": [
-        "drums",
-        "rhythm-guitar"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "rock-verse-17-v-01",
@@ -3597,81 +3392,6 @@ export const ROCK_WORLD: GenreWorld = {
       "weight": 1,
       "enabled": true
     }
-  ],
-  "techniques": [
-    "downstroke articulation",
-    "palm muting",
-    "power-chord movement",
-    "riff repetition",
-    "dynamic muting",
-    "feedback and sustained texture"
-  ],
-  "forms": [
-    "riff intro → verse → chorus → verse → chorus → solo → final chorus",
-    "verse / chorus / bridge",
-    "A/B instrumental form",
-    "long-form progressive suite"
-  ],
-  "relationships": [
-    "guitar ↔ bass riff lock",
-    "kick ↔ riff accents",
-    "snare ↔ backbeat",
-    "lead guitar ↔ vocal space"
-  ],
-  "transformations": [
-    "trans-density-sparse",
-    "trans-density-dense",
-    "trans-accent",
-    "trans-phrase-cadence",
-    "catalog-v2-density-variation",
-    "catalog-v2-transition-coverage",
-    "catalog-v2-ensemble-interactions"
-  ],
-  "songBehaviors": [
-    "riffs establish identity before vocals enter",
-    "choruses often widen the arrangement rather than merely repeat the verse",
-    "instrumental sections create space for development and soloing",
-    "avoid identical loop repetition by alternating pattern variants",
-    "use fills, breaks, cadences, and bridge textures as structural events",
-    "let lead/voice parts create space and response relationships"
-  ],
-  "instrumentIdeas": {
-    "guitar": [
-      "power chords",
-      "single-note riffs",
-      "layered octave lines"
-    ],
-    "bass": [
-      "riff doubling",
-      "root drive",
-      "counter-riffs"
-    ],
-    "drums": [
-      "backbeat",
-      "kick syncopation",
-      "tom fills"
-    ],
-    "keys": [
-      "organ sustain",
-      "piano reinforcement",
-      "textural synth"
-    ],
-    "voice": [
-      "verse storytelling",
-      "chorus hook"
-    ]
-  },
-  "combinations": [
-    "Rock + Blues",
-    "Rock + Funk",
-    "Rock + Folk",
-    "Rock + Electronic"
-  ],
-  "danceTags": [
-    "social-partner",
-    "wcs-compatible",
-    "festival-fusion",
-    "listening"
   ],
   "tuningSystem": "12-tet",
   "signatureCell": "Driving straight-8th power riff locked with kick drum and snare on 2 & 4",

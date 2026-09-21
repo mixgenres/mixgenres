@@ -684,14 +684,9 @@ export const HOUSE_TECHNO_WORLD: GenreWorld = {
         "chorus",
         "solo"
       ],
-      "patternFunction": null,
-      "roleDependencies": [],
-      "interactionRules": [],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
+
       "variants": [
         {
           "id": "ht-four-floor-v-sparse",
@@ -808,14 +803,9 @@ export const HOUSE_TECHNO_WORLD: GenreWorld = {
         "verse",
         "chorus"
       ],
-      "patternFunction": null,
-      "roleDependencies": [],
-      "interactionRules": [],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
+
       "variants": [
         {
           "id": "ht-offbeat-hat-v-sparse",
@@ -938,14 +928,9 @@ export const HOUSE_TECHNO_WORLD: GenreWorld = {
         "verse",
         "chorus"
       ],
-      "patternFunction": null,
-      "roleDependencies": [],
-      "interactionRules": [],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
+
       "variants": [
         {
           "id": "ht-house-bass-v-sparse",
@@ -1081,14 +1066,9 @@ export const HOUSE_TECHNO_WORLD: GenreWorld = {
         "chorus",
         "solo"
       ],
-      "patternFunction": null,
-      "roleDependencies": [],
-      "interactionRules": [],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
+
       "variants": [
         {
           "id": "ht-techno-sequence-v-sparse",
@@ -1231,14 +1211,9 @@ export const HOUSE_TECHNO_WORLD: GenreWorld = {
         "chorus",
         "solo"
       ],
-      "patternFunction": null,
-      "roleDependencies": [],
-      "interactionRules": [],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
+
       "variants": [
         {
           "id": "ht-acid-303-v-sparse",
@@ -1358,14 +1333,9 @@ export const HOUSE_TECHNO_WORLD: GenreWorld = {
         "verse",
         "chorus"
       ],
-      "patternFunction": "Four-on-the-Floor Kick",
-      "roleDependencies": [],
-      "interactionRules": [],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
+
       "variants": [],
       "provenance": "Authored genre-pack pattern based on House; designed for engine-level recombination rather than literal transcription.",
       "authenticityTags": [
@@ -1428,14 +1398,9 @@ export const HOUSE_TECHNO_WORLD: GenreWorld = {
         "verse",
         "chorus"
       ],
-      "patternFunction": "Offbeat Hat",
-      "roleDependencies": [],
-      "interactionRules": [],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
+
       "variants": [],
       "provenance": "Authored genre-pack pattern based on House; designed for engine-level recombination rather than literal transcription.",
       "authenticityTags": [
@@ -1503,14 +1468,9 @@ export const HOUSE_TECHNO_WORLD: GenreWorld = {
         "groove",
         "chorus"
       ],
-      "patternFunction": "House Bass Lock",
-      "roleDependencies": [],
-      "interactionRules": [],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
+
       "variants": [],
       "provenance": "Authored genre-pack pattern based on House; designed for engine-level recombination rather than literal transcription.",
       "authenticityTags": [
@@ -1580,14 +1540,9 @@ export const HOUSE_TECHNO_WORLD: GenreWorld = {
         "groove",
         "chorus"
       ],
-      "patternFunction": "House Chord Stab",
-      "roleDependencies": [],
-      "interactionRules": [],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
+
       "variants": [],
       "provenance": "Authored genre-pack pattern based on House; designed for engine-level recombination rather than literal transcription.",
       "authenticityTags": [
@@ -1671,14 +1626,9 @@ export const HOUSE_TECHNO_WORLD: GenreWorld = {
         "chorus",
         "solo"
       ],
-      "patternFunction": "Detroit Sequence",
-      "roleDependencies": [],
-      "interactionRules": [],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
+
       "variants": [],
       "provenance": "Authored genre-pack pattern based on Detroit Techno; designed for engine-level recombination rather than literal transcription.",
       "authenticityTags": [
@@ -1767,14 +1717,9 @@ export const HOUSE_TECHNO_WORLD: GenreWorld = {
         "groove",
         "chorus"
       ],
-      "patternFunction": "Acid 303 Accent",
-      "roleDependencies": [],
-      "interactionRules": [],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
+
       "variants": [],
       "provenance": "Authored genre-pack pattern based on Acid; designed for engine-level recombination rather than literal transcription.",
       "authenticityTags": [
@@ -1842,14 +1787,9 @@ export const HOUSE_TECHNO_WORLD: GenreWorld = {
         "groove",
         "chorus"
       ],
-      "patternFunction": "Techno Clap Backbeat",
-      "roleDependencies": [],
-      "interactionRules": [],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
+
       "variants": [],
       "provenance": "Authored genre-pack pattern based on Techno; designed for engine-level recombination rather than literal transcription.",
       "authenticityTags": [
@@ -1929,14 +1869,9 @@ export const HOUSE_TECHNO_WORLD: GenreWorld = {
         "pre-chorus",
         "bridge"
       ],
-      "patternFunction": "Riser Build",
-      "roleDependencies": [],
-      "interactionRules": [],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
+
       "variants": [],
       "provenance": "Authored genre-pack pattern based on Arrangement; designed for engine-level recombination rather than literal transcription.",
       "authenticityTags": [
@@ -2005,14 +1940,9 @@ export const HOUSE_TECHNO_WORLD: GenreWorld = {
       "sectionUsage": [
         "breakdown"
       ],
-      "patternFunction": "Club Breakdown",
-      "roleDependencies": [],
-      "interactionRules": [],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
+
       "variants": [],
       "provenance": "Authored genre-pack pattern based on Arrangement; designed for engine-level recombination rather than literal transcription.",
       "authenticityTags": [
@@ -2083,14 +2013,9 @@ export const HOUSE_TECHNO_WORLD: GenreWorld = {
       "sectionUsage": [
         "chorus"
       ],
-      "patternFunction": "Drop Re-entry",
-      "roleDependencies": [],
-      "interactionRules": [],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
+
       "variants": [],
       "provenance": "Authored genre-pack pattern based on Arrangement; designed for engine-level recombination rather than literal transcription.",
       "authenticityTags": [
@@ -2106,96 +2031,6 @@ export const HOUSE_TECHNO_WORLD: GenreWorld = {
       "enabled": true
     }
   ],
-  "engineProfile": {
-    "phraseLengthsBars": [
-      1,
-      2,
-      4
-    ],
-    "primaryPulse": [
-      "four-on-floor grid",
-      "repetition with mutation",
-      "density automation"
-    ],
-    "rhythmicPriorities": [
-      "four-on-floor grid",
-      "repetition with mutation",
-      "density automation"
-    ],
-    "harmonicStrategy": [
-      "vamps",
-      "extended chords in house",
-      "static harmony with timbral evolution in techno"
-    ],
-    "melodicStrategy": [
-      "short motifs",
-      "sequenced cells",
-      "filter/registration changes"
-    ],
-    "arrangementStrategy": "Long DJ-friendly intros/outros, gradual layer builds, breakdowns and drops; house often foregrounds groove/chords while techno can foreground timbral sequence.",
-    "engineConstraints": [
-      "Do not add song-like chord changes every bar; do not humanize the clock so much that the club grid loses identity.",
-      "Prefer authored genre patterns over generic fallback patterns when an instrument/role match exists.",
-      "Use phrase-end variants and section transitions before introducing unrelated cells."
-    ],
-    "variationStrategy": "Develop density, accent, register, orchestration and phrase position before replacing the core identity."
-  },
-  "techniques": [
-    "grid precision",
-    "humanized house pocket",
-    "sequence mutation",
-    "accent/slide control",
-    "filter-driven density"
-  ],
-  "forms": [
-    "intro",
-    "build",
-    "groove",
-    "breakdown",
-    "drop",
-    "peak",
-    "outro"
-  ],
-  "relationships": [
-    "kick ↔ bass",
-    "hat ↔ bass",
-    "sequence ↔ filter/section density"
-  ],
-  "songBehaviors": [
-    "keep kick foundational",
-    "develop repetition through variants and timbre",
-    "do not fill every gap with percussion",
-    "use breakdowns to remove rather than merely lower volume",
-    "Phrase in 1–4 bar units before making a major pattern change.",
-    "Prioritize four-on-floor grid and repetition with mutation as the identity layer.",
-    "Use short motifs and sequenced cells for development rather than generic fills."
-  ],
-  "instrumentIdeas": {
-    "drums": [
-      "tight four-on-floor kit"
-    ],
-    "sub-bass": [
-      "mono club low end"
-    ],
-    "bass-lead": [
-      "acid-style sequence carrier"
-    ],
-    "polysynth": [
-      "detroit sequence"
-    ],
-    "saw-lead": [
-      "bright techno hook"
-    ]
-  },
-  "combinations": [
-    "House + Funk",
-    "Techno + Ambient",
-    "Acid + Electro"
-  ],
-  "danceTags": [
-    "festival-fusion",
-    "listening"
-  ],
   "tuningSystem": "12-tet",
   "signatureCell": "Four-on-floor pulse with offbeat hats and evolving bass/synth sequences",
   "grooveMechanics": {
@@ -2208,11 +2043,4 @@ export const HOUSE_TECHNO_WORLD: GenreWorld = {
     "House ↔ Funk / Disco",
     "Techno ↔ Electronic / Ambient"
   ],
-  "transformations": [
-    "trans-density",
-    "trans-anticipation",
-    "trans-accent",
-    "trans-phrase-position",
-    "trans-ensemble-interaction"
-  ]
 };

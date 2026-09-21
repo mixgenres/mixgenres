@@ -801,9 +801,7 @@ export const JAZZ_WORLD: GenreWorld = {
           "description": "Ray Brown-style ghosted triplet skip note"
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 1,
       "weight": 0.7,
       "provenance": "Jazz catalog rebuild: retained source material or generated structural support pattern.",
@@ -816,27 +814,8 @@ export const JAZZ_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 66,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "bass"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
-      "interactionRules": [
-        {
-          "id": "jazz-interaction-1",
-          "worldId": "jazz",
-          "sourceRole": "drums",
-          "targetRole": "bass",
-          "relationship": "reinforce",
-          "description": "Low-end attacks reinforce the main pulse",
-          "timingOffsetSteps": 0,
-          "probability": 0.78
-        }
-      ]
-    },
+
+},
     {
       "id": "jazz-ride-spangalang",
       "worldId": "jazz",
@@ -968,9 +947,7 @@ export const JAZZ_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 2,
       "weight": 0.7,
       "provenance": "Jazz catalog rebuild: retained source material or generated structural support pattern.",
@@ -983,27 +960,8 @@ export const JAZZ_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 66,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "drums",
-        "percussion"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
-      "interactionRules": [
-        {
-          "id": "jazz-interaction-2",
-          "worldId": "jazz",
-          "sourceRole": "voice",
-          "targetRole": "harmony",
-          "relationship": "leaveSpace",
-          "description": "Harmony reduces density under vocal entries",
-          "timingOffsetSteps": 0,
-          "probability": 0.72
-        }
-      ],
+
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -1125,9 +1083,7 @@ export const JAZZ_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 1,
       "weight": 0.7,
       "provenance": "Jazz catalog rebuild: retained source material or generated structural support pattern.",
@@ -1140,26 +1096,8 @@ export const JAZZ_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 66,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "harmony"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
-      "interactionRules": [
-        {
-          "id": "jazz-interaction-3",
-          "worldId": "jazz",
-          "sourceRole": "lead",
-          "targetRole": "voice",
-          "relationship": "answer",
-          "description": "Lead instrument answers a vocal phrase",
-          "timingOffsetSteps": 2,
-          "probability": 0.58
-        }
-      ],
+
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -1310,9 +1248,7 @@ export const JAZZ_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 3,
       "weight": 1,
       "provenance": "Jazz catalog rebuild: retained source material or generated structural support pattern.",
@@ -1325,14 +1261,7 @@ export const JAZZ_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 66,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "drums"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -1473,9 +1402,7 @@ export const JAZZ_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 2,
       "weight": 0.7,
       "provenance": "Jazz catalog rebuild: retained source material or generated structural support pattern.",
@@ -1488,26 +1415,8 @@ export const JAZZ_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 66,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "piano"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
-      "interactionRules": [
-        {
-          "id": "jazz-interaction-4",
-          "worldId": "jazz",
-          "sourceRole": "bass",
-          "targetRole": "drums",
-          "relationship": "accentWith",
-          "description": "Bass accents align with selected kick/backbeat",
-          "timingOffsetSteps": 0,
-          "probability": 0.65
-        }
-      ],
+
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -1613,9 +1522,7 @@ export const JAZZ_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 1,
       "weight": 1,
       "provenance": "Jazz catalog rebuild: retained source material or generated structural support pattern.",
@@ -1628,14 +1535,7 @@ export const JAZZ_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 66,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "piano"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -1734,9 +1634,7 @@ export const JAZZ_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 1,
       "weight": 1,
       "provenance": "Jazz catalog rebuild: retained source material or generated structural support pattern.",
@@ -1749,14 +1647,7 @@ export const JAZZ_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 66,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "drums"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -1878,9 +1769,7 @@ export const JAZZ_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 2,
       "weight": 1,
       "provenance": "Jazz catalog rebuild: retained source material or generated structural support pattern.",
@@ -1893,26 +1782,8 @@ export const JAZZ_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 66,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "drums"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
-      "interactionRules": [
-        {
-          "id": "jazz-interaction-5",
-          "worldId": "jazz",
-          "sourceRole": "harmony",
-          "targetRole": "lead",
-          "relationship": "leaveSpace",
-          "description": "Accompaniment thins when the instrumental lead",
-          "timingOffsetSteps": 0,
-          "probability": 0.62
-        }
-      ],
+
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -2027,9 +1898,7 @@ export const JAZZ_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 1,
       "weight": 1,
       "provenance": "Jazz catalog rebuild: retained source material or generated structural support pattern.",
@@ -2042,14 +1911,7 @@ export const JAZZ_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 66,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "bass"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -2155,9 +2017,7 @@ export const JAZZ_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 1,
       "weight": 1,
       "provenance": "Jazz catalog rebuild: retained source material or generated structural support pattern.",
@@ -2170,14 +2030,7 @@ export const JAZZ_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 66,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "piano"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -2281,9 +2134,7 @@ export const JAZZ_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 1,
       "weight": 1,
       "provenance": "Jazz catalog rebuild: retained source material or generated structural support pattern.",
@@ -2296,14 +2147,7 @@ export const JAZZ_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 66,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "drums"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -2436,9 +2280,7 @@ export const JAZZ_WORLD: GenreWorld = {
           ]
         }
       ],
-      "harmonicContext": [
-        "tonal or modal context"
-      ],
+
       "difficulty": 2,
       "weight": 1,
       "provenance": "Jazz catalog rebuild: retained source material or generated structural support pattern.",
@@ -2451,14 +2293,7 @@ export const JAZZ_WORLD: GenreWorld = {
       "tuningSystem": "12-tet",
       "swingPercentage": 66,
       "anticipationOffset": 0,
-      "roleDependencies": [
-        "drums"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
       "articulations": [
         "accented",
         "ghost-aware"
@@ -2534,19 +2369,8 @@ export const JAZZ_WORLD: GenreWorld = {
         "verse",
         "chorus"
       ],
-      "harmonicContext": [
-        "jazz dominant",
-        "ii-V-I",
-        "tonal or modal context"
-      ],
-      "roleDependencies": [
-        "voice"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "jazz-phrase-13-v-01",
@@ -2697,20 +2521,8 @@ export const JAZZ_WORLD: GenreWorld = {
         "chorus",
         "bridge"
       ],
-      "harmonicContext": [
-        "jazz dominant",
-        "ii-V-I",
-        "tonal or modal context"
-      ],
-      "roleDependencies": [
-        "voice",
-        "lead"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "jazz-call-14-v-01",
@@ -2905,19 +2717,8 @@ export const JAZZ_WORLD: GenreWorld = {
         "verse",
         "chorus"
       ],
-      "harmonicContext": [
-        "jazz dominant",
-        "ii-V-I",
-        "tonal or modal context"
-      ],
-      "roleDependencies": [
-        "bass"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "jazz-anchor-15-v-01",
@@ -3067,19 +2868,8 @@ export const JAZZ_WORLD: GenreWorld = {
         "verse",
         "chorus"
       ],
-      "harmonicContext": [
-        "jazz dominant",
-        "ii-V-I",
-        "tonal or modal context"
-      ],
-      "roleDependencies": [
-        "harmony"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "jazz-comp-16-v-01",
@@ -3235,20 +3025,8 @@ export const JAZZ_WORLD: GenreWorld = {
       "sectionUsage": [
         "intro"
       ],
-      "harmonicContext": [
-        "jazz dominant",
-        "ii-V-I",
-        "tonal or modal context"
-      ],
-      "roleDependencies": [
-        "harmony",
-        "texture"
-      ],
-      "transformations": [
-        "density",
-        "accent",
-        "phrasePosition"
-      ],
+
+
       "variants": [
         {
           "id": "jazz-intro-17-v-01",
@@ -3384,76 +3162,6 @@ export const JAZZ_WORLD: GenreWorld = {
       "weight": 0.7,
       "enabled": true
     }
-  ],
-  "techniques": [
-    "triplet swing feel",
-    "chromatic approach notes",
-    "drop-2 voicings",
-    "hi-hat chick on 2 & 4",
-    "linear drum comping"
-  ],
-  "forms": [
-    "head-solos-head",
-    "32-bar AABA",
-    "12-bar jazz blues",
-    "rhythm changes",
-    "modal vamp",
-    "coda"
-  ],
-  "relationships": [
-    "bass ↔ ride cymbal (swing time lock)",
-    "piano ↔ soloist (interactive comping dialogue)",
-    "drums ↔ horns (kick/snare accents supporting brass hits)"
-  ],
-  "transformations": [
-    "trans-density-sparse",
-    "trans-anticipation",
-    "trans-density-dense",
-    "trans-phrase-cadence",
-    "catalog-v2-density-variation",
-    "catalog-v2-transition-coverage",
-    "catalog-v2-ensemble-interactions"
-  ],
-  "songBehaviors": [
-    "rhythm section dynamically breathes around the soloist",
-    "subtle metric syncopation across bar lines",
-    "clear transitions between head statement and open solo space",
-    "avoid identical loop repetition by alternating pattern variants",
-    "use fills, breaks, cadences, and bridge textures as structural events",
-    "let lead/voice parts create space and response relationships"
-  ],
-  "instrumentIdeas": {
-    "bass": [
-      "walking quarter notes with chromatic leading tones",
-      "two-feel half note anchor"
-    ],
-    "piano": [
-      "crisp off-beat comping chords",
-      "quartal modern voicings"
-    ],
-    "drums": [
-      "spang-a-lang swing ride with feathering bass drum",
-      "brush circular snare sweeps"
-    ],
-    "sax": [
-      "horn-head and solo phrasing"
-    ],
-    "trumpet": [
-      "ensemble/shout punctuation"
-    ]
-  },
-  "combinations": [
-    "Jazz + Tango",
-    "Jazz + Flamenco",
-    "Jazz + Afro-Cuban",
-    "Jazz + Bossa Nova",
-    "Jazz + Funk"
-  ],
-  "danceTags": [
-    "social-partner",
-    "wcs-compatible",
-    "listening",
-    "festival-fusion"
   ],
   "tuningSystem": "12-tet",
   "signatureCell": "Spang-a-lang ride cymbal with 4-to-the-bar walking bass and ii-V-I progressions",

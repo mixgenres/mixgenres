@@ -1,5 +1,6 @@
 import { WorkletSynthesizer } from "spessasynth_lib";
 import { INSTRUMENTS_BY_ID, SOUNDFONT_MANIFEST, effectiveSoundfontPreset } from '../data/instruments';
+import type { SoundfontDeviceProfile } from '../data/instruments';
 import { Mp3Encoder } from '@breezystack/lamejs';
 import { createMasterChain, MasterChain, RoomPreset, roomFor, ROOMS } from './mixer';
 import { previewCulturalRules, culturalPitchSet, shoCluster, celticOpenHarmony } from './cultural';
@@ -17,8 +18,30 @@ export let isRenderingMp3 = false;
 /* ---------------------------------------------------------------------------
    Soundfont lazy-loading & Cache Storage persistence
 --------------------------------------------------------------------------- */
+// Buffers are keyed by device profile + soundfont id so a session can never
+// accidentally reuse a desktop SF3 after switching to a mobile/tablet profile.
 export const fontBuffers = new Map<string, ArrayBuffer>();
 const inFlightFetches = new Map<string, Promise<ArrayBuffer>>();
+const loadedInSynth = new Set<string>();
+let synthDeviceProfile: SoundfontDeviceProfile | null = null;
+const SOUNDFONT_CACHE_NAME = 'sf3-soundbanks-v4';
+
+function soundfontBufferKey(profile: SoundfontDeviceProfile, id: string): string {
+  return `${profile}:${id}`;
+}
+
+export function getSoundfontDeviceProfile(): SoundfontDeviceProfile {
+  if (typeof navigator === 'undefined') return 'desktop';
+  const ua = navigator.userAgent.toLowerCase();
+  // iPadOS 13+ can advertise a desktop-style Macintosh UA. maxTouchPoints
+  // distinguishes an actual Mac from an iPad using that compatibility mode.
+  const ipadDesktopMode = /macintosh/i.test(ua) && navigator.maxTouchPoints > 1;
+  const tablet = ipadDesktopMode || /ipad|tablet|android(?!.*mobile)/i.test(ua);
+  const mobile = /iphone|ipod|android.*mobile|mobile/i.test(ua);
+  if (tablet) return 'tablet';
+  if (mobile) return 'mobile';
+  return 'desktop';
+}
 
 export interface SoundfontStatus {
   isLoaded: boolean;
@@ -27,7 +50,10 @@ export interface SoundfontStatus {
 }
 
 export function getSoundfontStatus(): SoundfontStatus {
-  return { isLoaded: fontBuffers.has('main'), isLoading: false, percent: 100 };
+  const profile = getSoundfontDeviceProfile();
+  const key = soundfontBufferKey(profile, 'main');
+  const isLoading = Array.from(inFlightFetches.keys()).some(k => k === key);
+  return { isLoaded: fontBuffers.has(key), isLoading, percent: fontBuffers.has(key) ? 100 : 0 };
 }
 
 export function subscribeSoundfontStatus(listener: (status: SoundfontStatus) => void): () => void {
@@ -56,10 +82,12 @@ export function getAppBaseUrl(): string {
 }
 
 export function fetchSoundfont(id: string): Promise<ArrayBuffer> {
-  const cached = fontBuffers.get(id);
+  const profile = getSoundfontDeviceProfile();
+  const key = soundfontBufferKey(profile, id);
+  const cached = fontBuffers.get(key);
   if (cached) return Promise.resolve(cached);
 
-  const active = inFlightFetches.get(id);
+  const active = inFlightFetches.get(key);
   if (active) return active;
 
   const promise = (async () => {
@@ -68,13 +96,13 @@ export function fetchSoundfont(id: string): Promise<ArrayBuffer> {
 
     if (typeof caches !== 'undefined') {
       try {
-        const cache = await caches.open('sf2-soundbanks-v2');
-        const cacheKey = `https://local/sf2/${id}`;
+        const cache = await caches.open(SOUNDFONT_CACHE_NAME);
+        const cacheKey = `https://local/sf3/${profile}/${id}`;
         const matched = await cache.match(cacheKey);
         if (matched) {
           const buf = await matched.arrayBuffer();
-          if (buf.byteLength > 100000) {
-            fontBuffers.set(id, buf);
+          if (buf.byteLength > 100000 && buf.byteLength <= entry.maxBytes) {
+            fontBuffers.set(key, buf);
             return buf;
           }
         }
@@ -83,8 +111,8 @@ export function fetchSoundfont(id: string): Promise<ArrayBuffer> {
       }
     }
 
-    const cleanFile = entry.file.replace(/^public\//, '');
-    const url = new URL(cleanFile, getAppBaseUrl()).href;
+    const cleanFile = entry.files[profile].replace(/^public\//, '');
+    const url = new URL(cleanFile, new URL('soundfonts/', getAppBaseUrl())).href;
 
     try {
       let buf: ArrayBuffer | null = null;
@@ -92,39 +120,23 @@ export function fetchSoundfont(id: string): Promise<ArrayBuffer> {
         const res = await fetch(url, { cache: 'force-cache' });
         if (res.ok) {
           const fetchedBuf = await res.arrayBuffer();
-          if (fetchedBuf.byteLength >= 100000) {
+          if (fetchedBuf.byteLength >= 100000 && fetchedBuf.byteLength <= entry.maxBytes) {
             buf = fetchedBuf;
           }
         }
       } catch (e) {
         console.warn(`Failed to fetch local soundfont ${id}:`, e);
       }
-
-      if (!buf && id === 'main') {
-        console.warn('Local GeneralUser-GS.sf2 missing or too small, trying fallback URL...');
-        try {
-          const res = await fetch('https://raw.githubusercontent.com/mrbumpy409/GeneralUser-GS/main/GeneralUser-GS.sf2');
-          if (res.ok) {
-            const fetchedBuf = await res.arrayBuffer();
-            if (fetchedBuf.byteLength >= 100000) {
-              buf = fetchedBuf;
-            }
-          }
-        } catch (fallbackErr) {
-          console.error('Fallback fetch for GeneralUser-GS.sf2 failed:', fallbackErr);
-        }
-      }
-
-      if (!buf || buf.byteLength < 100000) {
+      if (!buf || buf.byteLength < 100000 || buf.byteLength > entry.maxBytes) {
         throw new Error(`Soundfont ${id} not found or too small (loaded ${buf ? buf.byteLength : 0} bytes)`);
       }
 
-      fontBuffers.set(id, buf);
+      fontBuffers.set(key, buf);
 
       if (typeof caches !== 'undefined') {
         try {
-          const cache = await caches.open('sf2-soundbanks-v2');
-          const cacheKey = `https://local/sf2/${id}`;
+          const cache = await caches.open(SOUNDFONT_CACHE_NAME);
+          const cacheKey = `https://local/sf3/${profile}/${id}`;
           await cache.put(cacheKey, new Response(buf.slice(0), {
             headers: { 'Content-Type': 'application/octet-stream' }
           }));
@@ -137,11 +149,11 @@ export function fetchSoundfont(id: string): Promise<ArrayBuffer> {
       console.error(`Error loading soundfont ${id}:`, err);
       throw err;
     } finally {
-      inFlightFetches.delete(id);
+      inFlightFetches.delete(key);
     }
   })();
 
-  inFlightFetches.set(id, promise);
+  inFlightFetches.set(key, promise);
   return promise;
 }
 
@@ -171,7 +183,17 @@ async function addSpessaWorklet(target: BaseAudioContext): Promise<void> {
 }
 
 export async function ensureSynth(): Promise<WorkletSynthesizer> {
-  if (synth) return synth;
+  const requestedProfile = getSoundfontDeviceProfile();
+  if (synth) {
+    // A browser normally cannot change its UA-derived device class mid-session.
+    // If it does (e.g. emulation/testing), never silently reuse a synth loaded
+    // with another profile's banks. Requiring a fresh synth is safer than
+    // playing a desktop bank on a mobile profile or vice versa.
+    if (synthDeviceProfile !== requestedProfile) {
+      throw new Error(`Audio device profile changed from ${synthDeviceProfile} to ${requestedProfile}; reload required.`);
+    }
+    return synth;
+  }
   if (initPromise) return initPromise;
 
   initPromise = (async () => {
@@ -188,7 +210,8 @@ export async function ensureSynth(): Promise<WorkletSynthesizer> {
         }
       }
 
-      // Eagerly preload only 'main' (base soundfont)
+      // Eagerly preload only the active device's 'main' bank.
+      const profile = getSoundfontDeviceProfile();
       const mainBuf = await fetchSoundfont('main');
       await addSpessaWorklet(ctx);
       const s = new WorkletSynthesizer(ctx);
@@ -205,6 +228,9 @@ export async function ensureSynth(): Promise<WorkletSynthesizer> {
 
       // Only add 'main' initially
       await s.soundBankManager.addSoundBank(mainBuf.slice(0), 'main', 0);
+      synthDeviceProfile = profile;
+      loadedInSynth.clear();
+      loadedInSynth.add(`${profile}:main`);
       await (s as any).isReady;
       synth = s;
       return s;
@@ -219,6 +245,9 @@ export async function ensureSynth(): Promise<WorkletSynthesizer> {
 }
 
 export async function ensureSoundfontsForPerformance(perf: Performance): Promise<void> {
+  // Only banks explicitly referenced by the current performance are fetched.
+  // `main` is the sole eager/base bank; *_misc banks are never pulled in by
+  // discovery because they have no exposed runtime mapping.
   const neededIds = new Set<string>(['main']);
   if (perf.programs) {
     for (const p of perf.programs) {
@@ -227,20 +256,28 @@ export async function ensureSoundfontsForPerformance(perf: Performance): Promise
   }
 
   const s = await ensureSynth();
-  await Promise.all(Array.from(neededIds).map(async (id) => {
+  const results = await Promise.all(Array.from(neededIds).map(async (id) => {
     try {
-      const alreadyLoaded = fontBuffers.has(id);
       const buf = await fetchSoundfont(id);
-      if (!alreadyLoaded && s) {
-        const entry = SOUNDFONT_MANIFEST.find(e => e.id === id);
-        if (entry) {
-          await s.soundBankManager.addSoundBank(buf.slice(0), entry.id, entry.bankOffset);
-        }
+      const entry = SOUNDFONT_MANIFEST.find(e => e.id === id);
+      const profile = getSoundfontDeviceProfile();
+      const loadedKey = `${profile}:${id}`;
+      if (!entry) throw new Error(`Unknown soundfont id: ${id}`);
+      if (!s || synthDeviceProfile !== profile) {
+        throw new Error(`Synth/device profile mismatch while loading ${id}.`);
       }
+      if (!loadedInSynth.has(loadedKey)) {
+        await s.soundBankManager.addSoundBank(buf.slice(0), entry.id, entry.bankOffset);
+        loadedInSynth.add(loadedKey);
+      }
+      return null;
     } catch (err) {
       console.warn(`Failed to lazy-load soundfont ${id}:`, err);
+      return err instanceof Error ? err : new Error(String(err));
     }
   }));
+  const failure = results.find(Boolean);
+  if (failure) throw failure;
 }
 
 export async function startAudio(): Promise<AudioContext | null> {
@@ -655,7 +692,7 @@ export function getVoiceFeedSummary(instrumentId: string, chord: string) {
         : [foldToRange(midiOf(pcs[0], 4), prof)];
     return {
       instrumentName: def.name,
-      source: preset ? `SoundFont ${preset.soundfontId} · bank ${preset.bankMSB}:${preset.bankLSB} · patch #${preset.program}` : `Cultural ${culture.harmonyModel} model; GM patch #${def.program ?? 0} is a timbral approximation`,
+      source: preset ? `SoundFont3 ${preset.soundfontId} · bank ${preset.bankMSB}:${preset.bankLSB} · patch #${preset.program}` : `Cultural ${culture.harmonyModel} model; GM patch #${def.program ?? 0} is a timbral approximation`,
       voicing: culture.sourceModel === 'modal-drone' && def.voicing === 'chord' ? 'modal open-fifth harmony' : culture.harmonyModel,
       notes: midis.map(m => theoryNoteName(m)),
     };
