@@ -22,7 +22,19 @@ export let isRenderingMp3 = false;
 --------------------------------------------------------------------------- */
 export const SOUNDFONT_FILE = 'soundfont.sf2';
 
+/* ---------------------------------------------------------------------------
+   A second, dedicated SoundFont for instruments that don't live in the main
+   GM bank. Today that's just Spanish Guitar (public/spanish_guitar.sf2),
+   loaded into soundBankManager at bank offset 1 — see InstrumentDef.bank and
+   src/data/soundfonts.ts. Unlike the main SoundFont, this one is optional:
+   if it's missing, instruments that ask for it just don't sound rather than
+   the whole synth failing to start.
+--------------------------------------------------------------------------- */
+export const SPANISH_GUITAR_SOUNDFONT_FILE = 'spanish_guitar.sf2';
+export const SPANISH_GUITAR_BANK_OFFSET = 1;
+
 let soundfontPromise: Promise<ArrayBuffer> | null = null;
+let spanishGuitarSoundfontPromise: Promise<ArrayBuffer | null> | null = null;
 
 export function getAppBaseUrl(): string {
   const viteBase = import.meta.env.BASE_URL || './';
@@ -63,6 +75,36 @@ export function preloadSoundfont(): Promise<ArrayBuffer> {
   })();
   soundfontPromise = promise;
   promise.catch(() => { if (soundfontPromise === promise) soundfontPromise = null; }); // allow retry
+  return promise;
+}
+
+/** Optional second SoundFont. Resolves to null (and warns) instead of
+ *  throwing, so a missing/broken file degrades the Spanish Guitar instrument
+ *  rather than breaking audio entirely. */
+export function preloadSpanishGuitarSoundfont(): Promise<ArrayBuffer | null> {
+  if (spanishGuitarSoundfontPromise) return spanishGuitarSoundfontPromise;
+  const url = new URL(SPANISH_GUITAR_SOUNDFONT_FILE, getAppBaseUrl()).href;
+  const promise = (async () => {
+    try {
+      const res = await fetch(url);
+      if (!res.ok) {
+        console.warn(`Spanish Guitar SoundFont not found at ${url} (HTTP ${res.status}). The Spanish Guitar instrument will be silent.`);
+        return null;
+      }
+      const buf = await res.arrayBuffer();
+      const magic = new TextDecoder('latin1').decode(new Uint8Array(buf, 0, Math.min(12, buf.byteLength)));
+      if (magic.slice(0, 4) !== 'RIFF' || magic.slice(8, 12) !== 'sfbk') {
+        console.warn(`${url} is not a SoundFont 2 (.sf2) file (${buf.byteLength} bytes). The Spanish Guitar instrument will be silent.`);
+        return null;
+      }
+      return buf;
+    } catch (err) {
+      console.warn('Could not load the Spanish Guitar SoundFont:', err);
+      return null;
+    }
+  })();
+  spanishGuitarSoundfontPromise = promise;
+  promise.catch(() => { if (spanishGuitarSoundfontPromise === promise) spanishGuitarSoundfontPromise = null; }); // allow retry
   return promise;
 }
 
@@ -118,6 +160,16 @@ export async function ensureSynth(): Promise<WorkletSynthesizer> {
       s.connect(masterGain);
 
       await s.soundBankManager.addSoundBank(sf2.slice(0), 'main', 0);
+
+      const guitarSf2 = await preloadSpanishGuitarSoundfont();
+      if (guitarSf2) {
+        try {
+          await s.soundBankManager.addSoundBank(guitarSf2.slice(0), 'spanish-guitar', SPANISH_GUITAR_BANK_OFFSET);
+        } catch (err) {
+          console.warn('Failed to add the Spanish Guitar SoundFont bank:', err);
+        }
+      }
+
       await (s as any).isReady;
       synth = s;
       return s;
@@ -254,11 +306,13 @@ function renderWithWorker(
       }
     };
 
-    preloadSoundfont()
-      .then(buf => {
+    Promise.all([preloadSoundfont(), preloadSpanishGuitarSoundfont()])
+      .then(([buf, guitarBuf]) => {
         if (settled) return;
 
         const soundfont = buf.slice(0);
+        const guitarSoundfont = guitarBuf ? guitarBuf.slice(0) : undefined;
+        const transfer = guitarSoundfont ? [soundfont, guitarSoundfont] : [soundfont];
 
         worker.postMessage(
           {
@@ -273,8 +327,9 @@ function renderWithWorker(
               tail: perf.tail,
             },
             soundfont,
+            guitarSoundfont,
           },
-          [soundfont],
+          transfer,
         );
       })
       .catch(error => {
@@ -575,7 +630,10 @@ export function createSink(): TransportSink {
     controlChange(channel, cc, value, time) {
       synth?.controllerChange(channel, cc as any, Math.max(0, Math.min(127, Math.round(value))), { time });
     },
-    programChange(channel, program, time) { synth?.programChange(channel, program, { time }); },
+    programChange(channel, program, time, bank) {
+      if (bank) synth?.controllerChange(channel, 0 as any, Math.max(0, Math.min(127, Math.round(bank))), { time });
+      synth?.programChange(channel, program, { time });
+    },
     setDrumChannel(channel, isDrum) {
       try {
         const chans = (synth as any)?.midiChannels;

@@ -22,6 +22,8 @@ interface RenderProgram {
   time: number;
   channel: number;
   program: number;
+  /** SoundFont bank (bank-select MSB). 0/undefined is the main GM bank. */
+  bank?: number;
   drum: boolean;
 }
 
@@ -39,6 +41,8 @@ interface RenderRequest {
   sampleRate: number;
   performance: RenderPerformance;
   soundfont: ArrayBuffer;
+  /** Optional second SoundFont (Spanish Guitar), loaded at bank offset 1. */
+  guitarSoundfont?: ArrayBuffer;
 }
 
 function midi(value: number): number {
@@ -74,6 +78,19 @@ async function render(request: RenderRequest): Promise<void> {
     0,
   );
 
+  if (request.guitarSoundfont) {
+    try {
+      synth.soundBankManager.addSoundBank(
+        SoundBankLoader.fromArrayBuffer(request.guitarSoundfont),
+        'spanish-guitar',
+        1,
+      );
+    } catch (err) {
+      // Non-fatal: tracks asking for bank 1 just won't sound.
+      console.warn('Failed to add the Spanish Guitar SoundFont bank during export:', err);
+    }
+  }
+
   await synth.processorInitialized;
 
   for (const ch of perf.drumChannels) {
@@ -95,6 +112,15 @@ async function render(request: RenderRequest): Promise<void> {
     const t = time(p.time);
 
     synth.midiChannels[ch]?.setDrums?.(p.drum);
+
+    if (p.bank) {
+      events.push({
+        time: t,
+        priority: 9,
+        order: order++,
+        message: [0xB0 | ch, 0, midi(p.bank)],
+      });
+    }
 
     events.push({
       time: t,

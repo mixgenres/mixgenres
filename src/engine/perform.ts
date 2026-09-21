@@ -62,6 +62,8 @@ export interface PerfProgram {
   time: number;
   channel: number;
   program: number;
+  /** SoundFont bank (bank-select MSB). 0 is the main GM bank. */
+  bank: number;
   drum: boolean;
 }
 
@@ -894,6 +896,7 @@ export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
       time: 0,
       channel,
       program: drum ? 0 : preset.program,
+      bank: drum ? 0 : preset.bank,
       drum,
     });
 

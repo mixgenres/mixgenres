@@ -65,6 +65,7 @@ const OVERRIDES: Record<string, Partial<VoiceProfile>> = {
   bones:             { sustain: 'percussive', centre: 76, low: 60, high: 90, pan: 0.34, trim: -4, space: 0.14, ring: 0.35 },
 
   guitar:           { centre: 55, low: 40, high: 76, pan: 0.22, ring: 2.2 },
+  'spanish-guitar': { centre: 55, low: 40, high: 76, pan: 0.22, ring: 2.6, space: 0.26 },
   'steel-guitar':   { centre: 55, low: 40, high: 78, pan: 0.28, ring: 2.4 },
   'electric-guitar':{ centre: 55, low: 40, high: 78, pan: 0.34, ring: 2.0, space: 0.2 },
   'jazz-guitar':    { centre: 55, low: 40, high: 76, pan: 0.3, ring: 2.0, space: 0.22 },

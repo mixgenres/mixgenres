@@ -9,7 +9,7 @@ export interface TransportSink {
   noteOff(channel: number, midi: number, time: number): void;
   pitchBend(channel: number, value: number, time: number): void;
   controlChange(channel: number, cc: number, value: number, time: number): void;
-  programChange(channel: number, program: number, time: number): void;
+  programChange(channel: number, program: number, time: number, bank?: number): void;
   setDrumChannel(channel: number, isDrum: boolean): void;
   allNotesOff(): void;
 }
@@ -139,7 +139,7 @@ export class Transport {
     for (const ch of this.perf.drumChannels) this.sink.setDrumChannel(ch, true);
     for (const p of this.perf.programs) {
       if (!p.drum) this.sink.setDrumChannel(p.channel, false);
-      this.sink.programChange(p.channel, p.program, t);
+      this.sink.programChange(p.channel, p.program, t, p.bank);
       this.channelsPrimed.add(p.channel);
     }
     // only the song-start values here; everything later is scheduled like a note

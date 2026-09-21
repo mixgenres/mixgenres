@@ -4,9 +4,11 @@ import { INSTRUMENTS_BY_ID } from './instruments';
  * PRESET RESOLUTION
  * =================
  *
- * The app plays one General MIDI SoundFont 2 file (public/soundfont.sf2).
- * Every preset is therefore just a GM program number in bank 0; drums use the
- * standard kit on the drum channel.
+ * The app plays a General MIDI SoundFont 2 file (public/soundfont.sf2) in
+ * bank 0; drums use the standard kit on the drum channel. A small number of
+ * instruments (currently just Spanish Guitar) are sampled from a second,
+ * dedicated SoundFont loaded at bank 1 (public/spanish_guitar.sf2) — see
+ * `InstrumentDef.bank` and src/engine/audio.ts.
  *
  * This module answers one question:
  *
@@ -22,6 +24,8 @@ import { INSTRUMENTS_BY_ID } from './instruments';
 export interface PresetResolution {
   /** General MIDI program number, 0–127. */
   program: number;
+  /** SoundFont bank (bank-select MSB) the program lives in. 0 is the main GM bank. */
+  bank: number;
   /** How the program was chosen, for the inspector and the validator. */
   via: 'articulation' | 'instrument';
   /** True when an articulation was requested but GM has no program for it. */
@@ -78,6 +82,9 @@ export function resolvePreset(opts: ResolvePresetOptions): PresetResolution {
     if (program !== undefined) {
       return {
         program: clamp7(program),
+        // Articulation programs (pizzicato, muted, brush) only exist in the
+        // main GM SoundFont, never in a secondary bank.
+        bank: 0,
         via: 'articulation',
         degraded: false,
         requestedTag: articulationTag,
@@ -88,6 +95,7 @@ export function resolvePreset(opts: ResolvePresetOptions): PresetResolution {
 
   return {
     program: clamp7(def?.program ?? 0),
+    bank: clamp7(def?.bank ?? 0),
     via: 'instrument',
     degraded: !!articulationTag,
     requestedTag: articulationTag,

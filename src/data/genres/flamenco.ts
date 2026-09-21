@@ -15,7 +15,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
       "origin": "Andalusia (Seville, Cádiz, Jerez)",
       "description": "Deep • 12-beat • Phrygian\nThe foundation",
       "characteristicInstruments": [
-        "guitar",
+        "spanish-guitar",
         "voice",
         "palmas",
         "cajon"
@@ -96,7 +96,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
       "origin": "Jerez de la Frontera & Triana",
       "description": "Fast • 12-beat • Contratiempo\nPlayful, explosive,",
       "characteristicInstruments": [
-        "guitar",
+        "spanish-guitar",
         "voice",
         "palmas",
         "cajon"
@@ -177,7 +177,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
       "origin": "Cádiz, western Andalusia",
       "description": "Bright • 12-beat • Major\nCadiz sparkle,",
       "characteristicInstruments": [
-        "guitar",
+        "spanish-guitar",
         "voice",
         "palmas",
         "cajon"
@@ -226,7 +226,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
       "origin": "Cádiz, Triana, Granada",
       "description": "Grounded • 4-beat • Phrygian\nHeavy pulse,",
       "characteristicInstruments": [
-        "guitar",
+        "spanish-guitar",
         "voice",
         "palmas",
         "cajon",
@@ -302,7 +302,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
       "origin": "Andalusia",
       "description": "Dark • Asymmetric • Cante jondo\nRaw,",
       "characteristicInstruments": [
-        "guitar",
+        "spanish-guitar",
         "voice",
         "palmas"
       ],
@@ -349,7 +349,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
       "origin": "Andalusia",
       "description": "Slow • 4-beat • Modal\nTangos stretched",
       "characteristicInstruments": [
-        "guitar",
+        "spanish-guitar",
         "voice",
         "palmas",
         "cajon"
@@ -396,7 +396,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
       "origin": "Huelva, Andalusia",
       "description": "Folk-rooted • 3-beat • Expressive\nCoplas, melody",
       "characteristicInstruments": [
-        "guitar",
+        "spanish-guitar",
         "voice",
         "palmas"
       ],
@@ -441,7 +441,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
       "origin": "Catalonia, Andalusia & Caribbean crossover",
       "description": "Driving • 4-beat • Crossover\nFlamenco guitar",
       "characteristicInstruments": [
-        "guitar",
+        "spanish-guitar",
         "cajon",
         "palmas",
         "bass",

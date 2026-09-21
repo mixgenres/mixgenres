@@ -39,6 +39,9 @@ export interface InstrumentDef {
   voicing: 'single' | 'chord' | 'bass' | 'unpitched';
   /** short plain-language hint shown in the picker */
   note?: string;
+  /** SoundFont bank (bank-select MSB) this instrument's program lives in.
+   *  Omit for the default GM bank 0 in public/soundfont.sf2. */
+  bank?: number;
 }
 
 export const INSTRUMENT_CATALOG: InstrumentDef[] = [
@@ -64,6 +67,7 @@ export const INSTRUMENT_CATALOG: InstrumentDef[] = [
 
   // — plucked —
   { id: 'guitar', name: 'Acoustic guitar', family: 'plucked', program: 24, voicing: 'chord' },
+  { id: 'spanish-guitar', name: 'Spanish Guitar', family: 'plucked', program: 24, bank: 1, voicing: 'chord', note: 'Sampled nylon-string guitar for flamenco and tango' },
   { id: 'acoustic-guitar', name: 'Steel-string guitar', family: 'plucked', program: 25, voicing: 'chord' },
   { id: 'steel-guitar', name: 'Steel-string guitar', family: 'plucked', program: 25, voicing: 'chord' },
   { id: 'electric-guitar', name: 'Clean electric guitar', family: 'plucked', program: 27, voicing: 'chord' },
@@ -336,7 +340,7 @@ export const WORLD_INSTRUMENT_HINTS: Record<string, string[]> = {
   timba: ['piano', 'bass', 'timbales', 'congas', 'trombone'],
   // Flamenco core ensemble only. Palo-specific extras (castanets, flute, bass)
   // belong to individual styles rather than the genre-wide starter pack.
-  flamenco: ['guitar', 'voice', 'palmas', 'cajon', 'zapateado'],
+  flamenco: ['spanish-guitar', 'voice', 'palmas', 'cajon', 'zapateado'],
   jazz: ['piano', 'upright-bass', 'brush-kit', 'tenor-sax', 'jazz-guitar'],
   blues: ['electric-guitar', 'bass', 'drums', 'piano', 'harmonica'],
   rock: ['overdrive-guitar', 'bass', 'drums', 'electric-guitar', 'organ'],

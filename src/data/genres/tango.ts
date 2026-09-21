@@ -160,7 +160,7 @@ export const TANGO_WORLD: GenreWorld = {
         "violin",
         "piano",
         "upright-bass",
-        "guitar"
+        "spanish-guitar"
       ],
       "preferredMeters": [
         "2/4"
