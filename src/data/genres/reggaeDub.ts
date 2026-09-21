@@ -711,6 +711,8 @@ export const REGGAE_DUB_WORLD: GenreWorld = {
       "roles": [
         "drums"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "drums",
         "kick",
@@ -747,7 +749,7 @@ export const REGGAE_DUB_WORLD: GenreWorld = {
         "kick",
         "rimshot"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start",
         "middle",
@@ -839,6 +841,8 @@ export const REGGAE_DUB_WORLD: GenreWorld = {
       "roles": [
         "harmony"
       ],
+
+      "approaches": ["comping"],
       "instruments": [
         "electric-guitar",
         "organ"
@@ -870,7 +874,7 @@ export const REGGAE_DUB_WORLD: GenreWorld = {
       "articulations": [
         "staccato"
       ],
-      "density": "sparse",
+      "supportedEnergy": [1, 2],
       "phrasePosition": [
         "start",
         "middle",
@@ -959,6 +963,8 @@ export const REGGAE_DUB_WORLD: GenreWorld = {
       "roles": [
         "bass"
       ],
+
+      "approaches": ["walking"],
       "instruments": [
         "bass",
         "sub-bass"
@@ -996,7 +1002,7 @@ export const REGGAE_DUB_WORLD: GenreWorld = {
       "articulations": [
         "legato"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start",
         "middle",
@@ -1075,6 +1081,7 @@ export const REGGAE_DUB_WORLD: GenreWorld = {
       "name": "Dub Dropout & Echo Fragment",
       "family": "Dub Space",
       "category": "break",
+      "transitionType": "fill",
       "description": "Removes selected skank/drum attacks and leaves",
       "tags": [
         "dub",
@@ -1091,6 +1098,8 @@ export const REGGAE_DUB_WORLD: GenreWorld = {
       "roles": [
         "texture"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "electric-guitar",
         "organ",
@@ -1120,7 +1129,7 @@ export const REGGAE_DUB_WORLD: GenreWorld = {
       "articulations": [
         "delay"
       ],
-      "density": "sparse",
+      "supportedEnergy": [1, 2],
       "phrasePosition": [
         "start",
         "middle",
@@ -1206,6 +1215,8 @@ export const REGGAE_DUB_WORLD: GenreWorld = {
       "roles": [
         "drums"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "drums",
         "kick"
@@ -1237,7 +1248,7 @@ export const REGGAE_DUB_WORLD: GenreWorld = {
       "articulations": [
         "kick"
       ],
-      "density": "sparse",
+      "supportedEnergy": [1, 2],
       "phrasePosition": [
         "start",
         "middle",
@@ -1322,6 +1333,8 @@ export const REGGAE_DUB_WORLD: GenreWorld = {
       "roles": [
         "drum-kit"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "drums"
       ],
@@ -1346,7 +1359,7 @@ export const REGGAE_DUB_WORLD: GenreWorld = {
       "articulations": [
         "one-drop"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "any"
       ],
@@ -1391,6 +1404,8 @@ export const REGGAE_DUB_WORLD: GenreWorld = {
       "roles": [
         "guitar"
       ],
+
+      "approaches": ["chop"],
       "instruments": [
         "electric-guitar",
         "guitar"
@@ -1416,7 +1431,7 @@ export const REGGAE_DUB_WORLD: GenreWorld = {
       "articulations": [
         "skank"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "any"
       ],
@@ -1461,6 +1476,8 @@ export const REGGAE_DUB_WORLD: GenreWorld = {
       "roles": [
         "bass"
       ],
+
+      "approaches": ["walking"],
       "instruments": [
         "bass"
       ],
@@ -1493,7 +1510,7 @@ export const REGGAE_DUB_WORLD: GenreWorld = {
       "articulations": [
         "bass-led"
       ],
-      "density": "dense",
+      "supportedEnergy": [4, 5],
       "phrasePosition": [
         "any"
       ],
@@ -1539,6 +1556,8 @@ export const REGGAE_DUB_WORLD: GenreWorld = {
       "roles": [
         "harmony"
       ],
+
+      "approaches": ["comping"],
       "instruments": [
         "organ"
       ],
@@ -1563,7 +1582,7 @@ export const REGGAE_DUB_WORLD: GenreWorld = {
       "articulations": [
         "organ bubble"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "middle"
       ],
@@ -1610,6 +1629,8 @@ export const REGGAE_DUB_WORLD: GenreWorld = {
       "roles": [
         "texture"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "snare",
         "shaker"
@@ -1632,7 +1653,7 @@ export const REGGAE_DUB_WORLD: GenreWorld = {
         "dub",
         " echo"
       ],
-      "density": "sparse",
+      "supportedEnergy": [1, 2],
       "phrasePosition": [
         "end"
       ],
@@ -1665,6 +1686,7 @@ export const REGGAE_DUB_WORLD: GenreWorld = {
       "name": "Dub subtraction / return",
       "family": "Dub",
       "category": "break",
+      "transitionType": "fill",
       "description": "Bass/drum dropout with a final pickup",
       "tags": [
         "dropout",
@@ -1680,6 +1702,8 @@ export const REGGAE_DUB_WORLD: GenreWorld = {
       "roles": [
         "texture"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "bass",
         "drums",
@@ -1703,7 +1727,7 @@ export const REGGAE_DUB_WORLD: GenreWorld = {
         "dropout",
         " version"
       ],
-      "density": "sparse",
+      "supportedEnergy": [1, 2],
       "phrasePosition": [
         "start",
         "end"
@@ -1749,6 +1773,8 @@ export const REGGAE_DUB_WORLD: GenreWorld = {
       "roles": [
         "pulse"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "kick",
         "drums"
@@ -1774,7 +1800,7 @@ export const REGGAE_DUB_WORLD: GenreWorld = {
       "articulations": [
         "steppers"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "any"
       ],
@@ -1820,6 +1846,8 @@ export const REGGAE_DUB_WORLD: GenreWorld = {
       "roles": [
         "percussion"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "shaker",
         "maracas"
@@ -1846,7 +1874,7 @@ export const REGGAE_DUB_WORLD: GenreWorld = {
         "shaker",
         " ghost"
       ],
-      "density": "dense",
+      "supportedEnergy": [4, 5],
       "phrasePosition": [
         "middle"
       ],
@@ -1892,6 +1920,8 @@ export const REGGAE_DUB_WORLD: GenreWorld = {
       "roles": [
         "lead"
       ],
+
+      "approaches": ["phrase"],
       "instruments": [
         "trumpet",
         "trombone"
@@ -1917,7 +1947,7 @@ export const REGGAE_DUB_WORLD: GenreWorld = {
       "articulations": [
         "horn reply"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "end"
       ],
@@ -1948,6 +1978,7 @@ export const REGGAE_DUB_WORLD: GenreWorld = {
       "name": "Dub Version Tag",
       "family": "Dub",
       "category": "cadence",
+      "transitionType": "fill",
       "description": "A short bass-and-drum tag announces a",
       "tags": [
         "version",
@@ -1963,6 +1994,8 @@ export const REGGAE_DUB_WORLD: GenreWorld = {
       "roles": [
         "fill"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "bass",
         "drums"
@@ -1987,7 +2020,7 @@ export const REGGAE_DUB_WORLD: GenreWorld = {
         "version",
         " tag"
       ],
-      "density": "sparse",
+      "supportedEnergy": [1, 2],
       "phrasePosition": [
         "end"
       ],

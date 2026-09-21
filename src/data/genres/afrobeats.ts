@@ -694,6 +694,8 @@ export const AFROBEATS_WORLD: GenreWorld = {
         "bass",
         "pulse"
       ],
+
+      "approaches": ["walking", "groove"],
       "instruments": [
         "bass",
         "synth"
@@ -725,7 +727,7 @@ export const AFROBEATS_WORLD: GenreWorld = {
         0.85,
         0.8
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start",
         "middle"
@@ -854,6 +856,8 @@ export const AFROBEATS_WORLD: GenreWorld = {
         "drums",
         "pulse"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "drums"
       ],
@@ -881,7 +885,7 @@ export const AFROBEATS_WORLD: GenreWorld = {
         0.7,
         0.8
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start",
         "middle"
@@ -999,6 +1003,8 @@ export const AFROBEATS_WORLD: GenreWorld = {
         "harmony",
         "guitar"
       ],
+
+      "approaches": ["comping", "chop"],
       "instruments": [
         "guitar",
         "electric-guitar"
@@ -1033,7 +1039,7 @@ export const AFROBEATS_WORLD: GenreWorld = {
         0.9,
         0.65
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start",
         "middle"
@@ -1165,6 +1171,8 @@ export const AFROBEATS_WORLD: GenreWorld = {
         "percussion",
         "hand-percussion"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "percussion",
         "guiro"
@@ -1226,7 +1234,7 @@ export const AFROBEATS_WORLD: GenreWorld = {
         0.7,
         0.5
       ],
-      "density": "dense",
+      "supportedEnergy": [4, 5],
       "phrasePosition": [
         "start"
       ],
@@ -1405,6 +1413,7 @@ export const AFROBEATS_WORLD: GenreWorld = {
       "name": "Fela Afrobeat Horn Section Stabs",
       "family": "Afro Horns",
       "category": "cadence",
+      "transitionType": "fill",
       "description": "Pungent brass section horn stabs locking",
       "tags": [
         "afrobeat",
@@ -1420,6 +1429,8 @@ export const AFROBEATS_WORLD: GenreWorld = {
         "lead",
         "brass"
       ],
+
+      "approaches": ["phrase"],
       "instruments": [
         "trumpet",
         "brass",
@@ -1446,7 +1457,7 @@ export const AFROBEATS_WORLD: GenreWorld = {
         0.9,
         0.95
       ],
-      "density": "sparse",
+      "supportedEnergy": [1, 2],
       "phrasePosition": [
         "middle",
         "end"
@@ -1593,6 +1604,8 @@ export const AFROBEATS_WORLD: GenreWorld = {
         "harmony",
         "texture"
       ],
+
+      "approaches": ["comping"],
       "instruments": [
         "keys",
         "piano",
@@ -1616,7 +1629,7 @@ export const AFROBEATS_WORLD: GenreWorld = {
         0.85,
         0.75
       ],
-      "density": "sparse",
+      "supportedEnergy": [1, 2],
       "phrasePosition": [
         "start"
       ],
@@ -1720,6 +1733,8 @@ export const AFROBEATS_WORLD: GenreWorld = {
       "roles": [
         "voice"
       ],
+
+      "approaches": ["phrase"],
       "instruments": [
         "voice"
       ],
@@ -1764,7 +1779,7 @@ export const AFROBEATS_WORLD: GenreWorld = {
         "breath",
         "phrase-end"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "middle"
       ],
@@ -1928,6 +1943,8 @@ export const AFROBEATS_WORLD: GenreWorld = {
       "roles": [
         "bass"
       ],
+
+      "approaches": ["walking"],
       "instruments": [
         "bass"
       ],
@@ -1972,7 +1989,7 @@ export const AFROBEATS_WORLD: GenreWorld = {
         "accented",
         "ghost-aware"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start",
         "middle"
@@ -2092,6 +2109,8 @@ export const AFROBEATS_WORLD: GenreWorld = {
       "roles": [
         "harmony"
       ],
+
+      "approaches": ["comping"],
       "instruments": [
         "guitar"
       ],
@@ -2136,7 +2155,7 @@ export const AFROBEATS_WORLD: GenreWorld = {
         "accented",
         "ghost-aware"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "middle"
       ],
@@ -2256,6 +2275,8 @@ export const AFROBEATS_WORLD: GenreWorld = {
         "harmony",
         "texture"
       ],
+
+      "approaches": ["comping"],
       "instruments": [
         "guitar"
       ],
@@ -2307,7 +2328,7 @@ export const AFROBEATS_WORLD: GenreWorld = {
         "accented",
         "ghost-aware"
       ],
-      "density": "dense",
+      "supportedEnergy": [4, 5],
       "phrasePosition": [
         "start"
       ],
@@ -2491,6 +2512,8 @@ export const AFROBEATS_WORLD: GenreWorld = {
         "rhythm-guitar",
         "drums"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "drums",
         "percussion",
@@ -2547,7 +2570,7 @@ export const AFROBEATS_WORLD: GenreWorld = {
         "accented",
         "ghost-aware"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "middle"
       ],
@@ -2679,6 +2702,8 @@ export const AFROBEATS_WORLD: GenreWorld = {
         "harmony",
         "drums"
       ],
+
+      "approaches": ["groove", "comping"],
       "instruments": [
         "drums",
         "percussion",
@@ -2735,7 +2760,7 @@ export const AFROBEATS_WORLD: GenreWorld = {
         "accented",
         "ghost-aware"
       ],
-      "density": "dynamic",
+      "supportedEnergy": [1, 2, 3, 4, 5],
       "phrasePosition": [
         "middle",
         "end"
@@ -2919,6 +2944,8 @@ export const AFROBEATS_WORLD: GenreWorld = {
         "harmony",
         "lead"
       ],
+
+      "approaches": ["comping", "phrase"],
       "instruments": [
         "guitar"
       ],
@@ -2969,7 +2996,7 @@ export const AFROBEATS_WORLD: GenreWorld = {
       "articulations": [
         "legato"
       ],
-      "density": "dense",
+      "supportedEnergy": [4, 5],
       "phrasePosition": [
         "middle"
       ],
@@ -3139,6 +3166,7 @@ export const AFROBEATS_WORLD: GenreWorld = {
       "name": "Horn Fill",
       "family": "Horn",
       "category": "fill",
+      "transitionType": "fill",
       "description": "A short transition fill that signals",
       "tags": [
         "afrobeats",
@@ -3154,6 +3182,8 @@ export const AFROBEATS_WORLD: GenreWorld = {
         "fill",
         "drums"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "drums",
         "percussion"
@@ -3200,7 +3230,7 @@ export const AFROBEATS_WORLD: GenreWorld = {
       "articulations": [
         "fill"
       ],
-      "density": "dense",
+      "supportedEnergy": [4, 5],
       "phrasePosition": [
         "end"
       ],
@@ -3350,6 +3380,7 @@ export const AFROBEATS_WORLD: GenreWorld = {
       "name": "Afrobeat Break",
       "family": "Afrobeat",
       "category": "break",
+      "transitionType": "fill",
       "description": "A deliberate drop in density for",
       "tags": [
         "afrobeats",
@@ -3365,6 +3396,8 @@ export const AFROBEATS_WORLD: GenreWorld = {
         "drums",
         "bass"
       ],
+
+      "approaches": ["groove", "walking"],
       "instruments": [
         "drums",
         "percussion",
@@ -3413,7 +3446,7 @@ export const AFROBEATS_WORLD: GenreWorld = {
       "articulations": [
         "accented"
       ],
-      "density": "sparse",
+      "supportedEnergy": [1, 2],
       "phrasePosition": [
         "middle",
         "end"
@@ -3563,6 +3596,7 @@ export const AFROBEATS_WORLD: GenreWorld = {
       "name": "Log Drum Cadence",
       "family": "Log Drum",
       "category": "cadence",
+      "transitionType": "fill",
       "description": "A phrase-ending cadence that gives the",
       "tags": [
         "afrobeats",
@@ -3578,6 +3612,8 @@ export const AFROBEATS_WORLD: GenreWorld = {
         "harmony",
         "bass"
       ],
+
+      "approaches": ["comping", "walking"],
       "instruments": [
         "guitar",
         "bass"
@@ -3625,7 +3661,7 @@ export const AFROBEATS_WORLD: GenreWorld = {
         "accented",
         "ghost-aware"
       ],
-      "density": "sparse",
+      "supportedEnergy": [1, 2],
       "phrasePosition": [
         "end"
       ],
@@ -3791,6 +3827,8 @@ export const AFROBEATS_WORLD: GenreWorld = {
       "roles": [
         "voice"
       ],
+
+      "approaches": ["phrase"],
       "instruments": [
         "voice"
       ],
@@ -3835,7 +3873,7 @@ export const AFROBEATS_WORLD: GenreWorld = {
         "breath",
         "phrase-end"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start",
         "middle"

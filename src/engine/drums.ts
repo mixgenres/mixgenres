@@ -2,6 +2,7 @@ import type { ResolvedStyle } from '../data/styles/schema';
 
 import { rand01 } from './groove';
 import type { DrumVoice } from '../data/instruments';
+import type { TransitionEvent } from './grid';
 
 export const GM = {
   kick: 36, kickTight: 35,
@@ -52,6 +53,9 @@ export interface KitContext {
   /** prefers the ride over the hats — jazz, swing, ballads, solos */
   rideFeel: boolean;
   seed: number;
+  transition?: TransitionEvent;
+  /** Contract-resolved behavioral approach. */
+  approach?: string;
 }
 
 export type KitFlavour = 'acoustic' | 'brush' | 'electronic' | 'roomy';
@@ -80,6 +84,12 @@ function onBeat(beat: number): boolean {
 export function kitVoicing(c: KitContext): KitVoicing {
   const b = c.beatInBar;
   const strong = c.accent;
+
+  /* A drop-out is an authored transition instruction, not a velocity cue.
+     Suppress kick generation while leaving the rest of the kit intact. */
+  if (c.transition?.type === 'drop-out' && c.transition.cyclePosition === c.transition.cycleLength - 1 && isDownbeat(b)) {
+    return { key: GM.kick, limb: 'kick', gain: 0 };
+  }
 
   /* ---- fills take over the bar entirely -------------------------------- */
   const fillZone = c.allowTomFills ? fillStartBeat(c) : null;
@@ -206,6 +216,8 @@ export function handPercVoicing(
 export function flavourForStyle(style: ResolvedStyle, instrumentId: string): KitFlavour {
   if (instrumentId === 'brush-kit') return 'brush';
   const mode = style.contract.percussion.kitMode;
+  const approach = style.contract.approaches?.[style.contract.percussion.kitMode === 'none' ? 'percussion' : 'drums'];
+  if (approach?.id === 'drums') return instrumentId === 'brush-kit' ? 'brush' : (mode === 'none' ? 'acoustic' : style.contract.timbreSpace.production.toLowerCase().includes('machine') ? 'electronic' : 'acoustic');
   if (mode === 'none') return 'acoustic';
   if (style.contract.timbreSpace.production.toLowerCase().includes('machine')) return 'electronic';
   if (style.contract.form.some(x => /solo|head/i.test(x)) && style.contract.percussion.ride) return 'brush';

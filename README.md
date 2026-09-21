@@ -17,6 +17,19 @@ The project is configured as a **static client-side application** and can be dep
 
 The workflow in `.github/workflows/deploy-pages.yml` runs `npm ci`, builds the Vite app, and publishes `dist/` to GitHub Pages.
 
+### SoundFont
+
+The app plays a single General MIDI SoundFont 2 file (for example GeneralUser GS).
+It is not included in this repository. Put your file at:
+
+```
+public/soundfont.sf2
+```
+
+The browser fetches it as-is: no size limit, no compression format, no Cache Storage, no per-device variants.
+It must be an uncompressed `.sf2` with the standard GM layout (programs 0–127 in bank 0, drum kits in the drum bank).
+If the file is missing or is not a real SF2, the console shows an explicit error instead of playing noise.
+
 ### Local development
 
 ```bash
@@ -35,7 +48,7 @@ npm run preview
 
 ### Notes
 
-- The app's audio engine and SoundFont assets run client-side in the browser.
+- The app's audio engine runs client-side in the browser and plays one raw SoundFont 2 file.
 - Vite uses relative asset paths so the app works when hosted at a GitHub Pages project URL such as `https://USERNAME.github.io/REPOSITORY/`.
 - The previous Express/AI server remains in the repository for reference, but it is **not used by the GitHub Pages deployment**. GitHub Pages cannot run that server or protect server-side API keys.
 - Do not commit real API keys or `.env` files.
@@ -44,7 +57,7 @@ npm run preview
 
 ```text
 ├── .github/workflows/   # GitHub Pages deployment
-├── public/              # SoundFonts and audio processor assets
+├── public/              # soundfont.sf2 (you add this) and the audio worklet processor
 ├── src/
 │   ├── data/            # Genre, instrument, and chord data
 │   ├── engine/          # Music/audio generation engine

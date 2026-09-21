@@ -3,6 +3,7 @@ import type { ResolvedStyle } from '../data/styles/schema';
 import { ParsedChord, nearestPc, pcOf } from './theory';
 import { VoiceProfile, foldToRange } from './instrumentProfile';
 import { rand01 } from './groove';
+import type { RhythmicContext } from './grid';
 
 export type VoicingStyle =
   /** close position, the way a guitarist grabs a shape */
@@ -33,6 +34,9 @@ export interface VoicingRequest {
   /** midi registers already occupied by other chordal parts this bar */
   avoid?: number[];
   seed: number;
+  rhythmicContext?: RhythmicContext;
+  /** Contract-resolved behavioral approach. */
+  approach?: string;
 }
 
 /** The chord tones that matter most, in the order you would give them up. */
@@ -65,6 +69,15 @@ function priorityIntervals(chord: ParsedChord, bassCovered: boolean, intensity: 
  */
 export function voiceChord(req: VoicingRequest): number[] {
   const { chord, profile, previous, intensity, seed } = req;
+  const phase = req.rhythmicContext?.cyclePosition ?? 0;
+  const energy = req.rhythmicContext?.sectionEnergy ?? 3;
+  const cycleLength = req.rhythmicContext?.cycleLength ?? 1;
+  const approach = req.approach;
+
+  if (approach === 'unison' || approach === 'melodic') {
+    const root = nearestPc(chord.rootPc, previous[0] ?? profile.centre);
+    return [root];
+  }
 
   if (req.style === 'power' || chord.isPower) {
     const root = nearestPc(chord.rootPc, previous[0] ?? profile.centre - 7);
@@ -72,7 +85,9 @@ export function voiceChord(req: VoicingRequest): number[] {
   }
 
   const wanted = priorityIntervals(chord, req.bassCovered, intensity);
-  const requestedSize = Math.max(2, Math.min(12, req.size));
+  const energySize = energy >= 5 ? 1 : energy <= 1 ? -1 : 0;
+  const phaseSize = cycleLength > 1 && phase === cycleLength - 1 ? 0 : 0;
+  const requestedSize = Math.max(2, Math.min(12, req.size + energySize + phaseSize));
   const chosen = wanted.slice(0, requestedSize);
   // Extended jazz chords may legitimately be rendered as large stacked voicings.
   // Once every distinct chord tone is present, repeat colour/guide tones in
@@ -128,7 +143,7 @@ export function voiceChord(req: VoicingRequest): number[] {
     }
   }
 
-  if (notes.length >= 3 && intensity > 0.6 && rand01(seed) > 0.78) {
+  if (notes.length >= 3 && intensity > 0.6 && energy >= 4 && rand01(seed ^ phase) > 0.78) {
     notes[notes.length - 1] = clampRange(notes[notes.length - 1] + 12, profile);
     notes.sort((a, b) => a - b);
   }

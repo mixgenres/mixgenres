@@ -309,6 +309,8 @@ export const SKA_WORLD: GenreWorld = {
       "roles": [
         "harmony"
       ],
+
+      "approaches": ["comping"],
       "instruments": [
         "electric-guitar",
         "piano"
@@ -340,7 +342,7 @@ export const SKA_WORLD: GenreWorld = {
       "articulations": [
         "upstroke"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start",
         "middle",
@@ -428,6 +430,8 @@ export const SKA_WORLD: GenreWorld = {
       "roles": [
         "bass"
       ],
+
+      "approaches": ["walking"],
       "instruments": [
         "bass",
         "upright-bass"
@@ -471,7 +475,7 @@ export const SKA_WORLD: GenreWorld = {
       "articulations": [
         "walking"
       ],
-      "density": "dense",
+      "supportedEnergy": [4, 5],
       "phrasePosition": [
         "start",
         "middle",
@@ -572,6 +576,8 @@ export const SKA_WORLD: GenreWorld = {
       "roles": [
         "lead"
       ],
+
+      "approaches": ["phrase"],
       "instruments": [
         "trumpet",
         "trombone"
@@ -609,7 +615,7 @@ export const SKA_WORLD: GenreWorld = {
       "articulations": [
         "staccato"
       ],
-      "density": "sparse",
+      "supportedEnergy": [1, 2],
       "phrasePosition": [
         "start",
         "middle",
@@ -703,6 +709,8 @@ export const SKA_WORLD: GenreWorld = {
       "roles": [
         "harmony"
       ],
+
+      "approaches": ["comping"],
       "instruments": [
         "electric-guitar",
         "drums"
@@ -734,7 +742,7 @@ export const SKA_WORLD: GenreWorld = {
       "articulations": [
         "upstroke"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start",
         "middle",
@@ -822,6 +830,8 @@ export const SKA_WORLD: GenreWorld = {
       "roles": [
         "bass"
       ],
+
+      "approaches": ["walking"],
       "instruments": [
         "bass",
         "upright-bass"
@@ -853,7 +863,7 @@ export const SKA_WORLD: GenreWorld = {
       "articulations": [
         "legato"
       ],
-      "density": "sparse",
+      "supportedEnergy": [1, 2],
       "phrasePosition": [
         "start",
         "middle",
@@ -940,6 +950,8 @@ export const SKA_WORLD: GenreWorld = {
       "roles": [
         "rhythm-guitar"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "electric-guitar",
         "piano"
@@ -965,7 +977,7 @@ export const SKA_WORLD: GenreWorld = {
       "articulations": [
         "offbeat chop"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "any"
       ],
@@ -1010,6 +1022,8 @@ export const SKA_WORLD: GenreWorld = {
       "roles": [
         "bass"
       ],
+
+      "approaches": ["walking"],
       "instruments": [
         "bass"
       ],
@@ -1042,7 +1056,7 @@ export const SKA_WORLD: GenreWorld = {
       "articulations": [
         "walking bass"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "any"
       ],
@@ -1088,6 +1102,8 @@ export const SKA_WORLD: GenreWorld = {
       "roles": [
         "horn-section"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "trumpet",
         "trombone",
@@ -1118,7 +1134,7 @@ export const SKA_WORLD: GenreWorld = {
       "articulations": [
         "horn answer"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "end"
       ],
@@ -1163,6 +1179,8 @@ export const SKA_WORLD: GenreWorld = {
       "roles": [
         "drum-kit"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "drums"
       ],
@@ -1191,7 +1209,7 @@ export const SKA_WORLD: GenreWorld = {
       "articulations": [
         "drive"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "any"
       ],
@@ -1236,6 +1254,8 @@ export const SKA_WORLD: GenreWorld = {
       "roles": [
         "bass"
       ],
+
+      "approaches": ["walking"],
       "instruments": [
         "bass",
         "drums"
@@ -1261,7 +1281,7 @@ export const SKA_WORLD: GenreWorld = {
       "articulations": [
         "rocksteady"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "any"
       ],
@@ -1306,6 +1326,8 @@ export const SKA_WORLD: GenreWorld = {
       "roles": [
         "rhythm-guitar"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "electric-guitar"
       ],
@@ -1334,7 +1356,7 @@ export const SKA_WORLD: GenreWorld = {
       "articulations": [
         "two-tone"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "any"
       ],
@@ -1378,6 +1400,8 @@ export const SKA_WORLD: GenreWorld = {
       "roles": [
         "piano"
       ],
+
+      "approaches": ["comping"],
       "instruments": [
         "piano"
       ],
@@ -1402,7 +1426,7 @@ export const SKA_WORLD: GenreWorld = {
       "articulations": [
         "piano bubble"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "middle"
       ],
@@ -1447,6 +1471,8 @@ export const SKA_WORLD: GenreWorld = {
       "roles": [
         "brass"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "trumpet",
         "trombone"
@@ -1472,7 +1498,7 @@ export const SKA_WORLD: GenreWorld = {
       "articulations": [
         "horn stab"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "any"
       ],
@@ -1503,6 +1529,7 @@ export const SKA_WORLD: GenreWorld = {
       "name": "Ska Break Call",
       "family": "Break",
       "category": "break",
+      "transitionType": "fill",
       "description": "Band stop followed by horn pickup",
       "tags": [
         "stop-time",
@@ -1518,6 +1545,8 @@ export const SKA_WORLD: GenreWorld = {
       "roles": [
         "fill"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "drums",
         "horn-section"
@@ -1542,7 +1571,7 @@ export const SKA_WORLD: GenreWorld = {
         "stop-time",
         " pickup"
       ],
-      "density": "sparse",
+      "supportedEnergy": [1, 2],
       "phrasePosition": [
         "end"
       ],
@@ -1574,6 +1603,7 @@ export const SKA_WORLD: GenreWorld = {
       "name": "Ska Final Shout",
       "family": "Cadence",
       "category": "cadence",
+      "transitionType": "fill",
       "description": "Full-band accent sequence for the ending,",
       "tags": [
         "final hit"
@@ -1588,6 +1618,8 @@ export const SKA_WORLD: GenreWorld = {
       "roles": [
         "fill"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "drums",
         "horn-section",
@@ -1616,7 +1648,7 @@ export const SKA_WORLD: GenreWorld = {
       "articulations": [
         "final hit"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "end"
       ],

@@ -392,6 +392,8 @@ export const SAMBA_BOSSA_WORLD: GenreWorld = {
       "roles": [
         "percussion"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "surdo",
         "drums"
@@ -420,7 +422,7 @@ export const SAMBA_BOSSA_WORLD: GenreWorld = {
       "articulations": [
         "low-drum"
       ],
-      "density": "sparse",
+      "supportedEnergy": [1, 2],
       "phrasePosition": [
         "start",
         "middle",
@@ -506,6 +508,8 @@ export const SAMBA_BOSSA_WORLD: GenreWorld = {
       "roles": [
         "percussion"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "pandeiro",
         "shaker"
@@ -543,7 +547,7 @@ export const SAMBA_BOSSA_WORLD: GenreWorld = {
       "articulations": [
         "hand-percussion"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start",
         "middle",
@@ -638,6 +642,8 @@ export const SAMBA_BOSSA_WORLD: GenreWorld = {
       "roles": [
         "harmony"
       ],
+
+      "approaches": ["comping"],
       "instruments": [
         "cavaquinho",
         "guitar"
@@ -669,7 +675,7 @@ export const SAMBA_BOSSA_WORLD: GenreWorld = {
       "articulations": [
         "staccato"
       ],
-      "density": "sparse",
+      "supportedEnergy": [1, 2],
       "phrasePosition": [
         "start",
         "middle",
@@ -757,6 +763,8 @@ export const SAMBA_BOSSA_WORLD: GenreWorld = {
       "roles": [
         "harmony"
       ],
+
+      "approaches": ["comping"],
       "instruments": [
         "guitar",
         "piano"
@@ -800,7 +808,7 @@ export const SAMBA_BOSSA_WORLD: GenreWorld = {
       "articulations": [
         "fingerstyle"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start",
         "middle",
@@ -901,6 +909,8 @@ export const SAMBA_BOSSA_WORLD: GenreWorld = {
       "roles": [
         "bass"
       ],
+
+      "approaches": ["walking"],
       "instruments": [
         "bass",
         "upright-bass"
@@ -938,7 +948,7 @@ export const SAMBA_BOSSA_WORLD: GenreWorld = {
       "articulations": [
         "fingerstyle"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start",
         "middle",
@@ -1032,6 +1042,8 @@ export const SAMBA_BOSSA_WORLD: GenreWorld = {
       "roles": [
         "pulse"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "surdo"
       ],
@@ -1053,7 +1065,7 @@ export const SAMBA_BOSSA_WORLD: GenreWorld = {
         "surdo",
         " samba"
       ],
-      "density": "sparse",
+      "supportedEnergy": [1, 2],
       "phrasePosition": [
         "any"
       ],
@@ -1100,6 +1112,8 @@ export const SAMBA_BOSSA_WORLD: GenreWorld = {
       "roles": [
         "percussion"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "pandeiro"
       ],
@@ -1129,7 +1143,7 @@ export const SAMBA_BOSSA_WORLD: GenreWorld = {
         "pandeiro",
         " interlock"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "any"
       ],
@@ -1176,6 +1190,8 @@ export const SAMBA_BOSSA_WORLD: GenreWorld = {
       "roles": [
         "percussion"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "tamborim"
       ],
@@ -1203,7 +1219,7 @@ export const SAMBA_BOSSA_WORLD: GenreWorld = {
         "tamborim",
         " accent"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "middle"
       ],
@@ -1250,6 +1266,8 @@ export const SAMBA_BOSSA_WORLD: GenreWorld = {
       "roles": [
         "guitar"
       ],
+
+      "approaches": ["chop"],
       "instruments": [
         "cavaquinho"
       ],
@@ -1275,7 +1293,7 @@ export const SAMBA_BOSSA_WORLD: GenreWorld = {
         "cavaquinho",
         " partido-alto"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "any"
       ],
@@ -1322,6 +1340,8 @@ export const SAMBA_BOSSA_WORLD: GenreWorld = {
       "roles": [
         "guitar"
       ],
+
+      "approaches": ["chop"],
       "instruments": [
         "guitar"
       ],
@@ -1351,7 +1371,7 @@ export const SAMBA_BOSSA_WORLD: GenreWorld = {
         "bossa",
         " guitar rhythm"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "any"
       ],
@@ -1399,6 +1419,8 @@ export const SAMBA_BOSSA_WORLD: GenreWorld = {
       "roles": [
         "bass"
       ],
+
+      "approaches": ["walking"],
       "instruments": [
         "bass"
       ],
@@ -1424,7 +1446,7 @@ export const SAMBA_BOSSA_WORLD: GenreWorld = {
         "bossa",
         " anticipation"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "any"
       ],
@@ -1471,6 +1493,8 @@ export const SAMBA_BOSSA_WORLD: GenreWorld = {
       "roles": [
         "harmony"
       ],
+
+      "approaches": ["comping"],
       "instruments": [
         "piano"
       ],
@@ -1496,7 +1520,7 @@ export const SAMBA_BOSSA_WORLD: GenreWorld = {
         "piano",
         " voicing"
       ],
-      "density": "dense",
+      "supportedEnergy": [4, 5],
       "phrasePosition": [
         "middle"
       ],
@@ -1542,6 +1566,8 @@ export const SAMBA_BOSSA_WORLD: GenreWorld = {
       "roles": [
         "counterline"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "pandeiro",
         "tamborim"
@@ -1567,7 +1593,7 @@ export const SAMBA_BOSSA_WORLD: GenreWorld = {
       "articulations": [
         "call-response"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "end"
       ],
@@ -1598,6 +1624,7 @@ export const SAMBA_BOSSA_WORLD: GenreWorld = {
       "name": "Batucada Break",
       "family": "Samba",
       "category": "break",
+      "transitionType": "fill",
       "description": "Brief reduction to surdo and a",
       "tags": [
         "batucada",
@@ -1613,6 +1640,8 @@ export const SAMBA_BOSSA_WORLD: GenreWorld = {
       "roles": [
         "percussion"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "surdo",
         "pandeiro",
@@ -1636,7 +1665,7 @@ export const SAMBA_BOSSA_WORLD: GenreWorld = {
         "batucada",
         " break"
       ],
-      "density": "sparse",
+      "supportedEnergy": [1, 2],
       "phrasePosition": [
         "end"
       ],
@@ -1668,6 +1697,7 @@ export const SAMBA_BOSSA_WORLD: GenreWorld = {
       "name": "Bossa ending cadence",
       "family": "Bossa Nova",
       "category": "cadence",
+      "transitionType": "fill",
       "description": "Short harmonic cadence figure for a",
       "tags": [
         "extended harmony",
@@ -1683,6 +1713,8 @@ export const SAMBA_BOSSA_WORLD: GenreWorld = {
       "roles": [
         "harmony"
       ],
+
+      "approaches": ["comping"],
       "instruments": [
         "guitar",
         "piano"
@@ -1709,7 +1741,7 @@ export const SAMBA_BOSSA_WORLD: GenreWorld = {
         "extended harmony",
         " release"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "end"
       ],

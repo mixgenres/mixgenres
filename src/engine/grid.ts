@@ -1,3 +1,28 @@
+export type TransitionType = 'fill' | 'turnaround' | 'drop-out' | 'arrastre' | 'corte';
+
+export interface TransitionEvent {
+  type: TransitionType;
+  fromEnergy: 1 | 2 | 3 | 4 | 5;
+  toEnergy: 1 | 2 | 3 | 4 | 5;
+  cyclePosition: number;
+  cycleLength: number;
+  /** True when the event is backed by a catalog-authored pattern/gesture. */
+  authored?: boolean;
+  patternId?: string;
+}
+
+export interface RhythmicContext {
+  cyclePosition: number;
+  cycleLength: number;
+  sectionEnergy: 1 | 2 | 3 | 4 | 5;
+  transition?: TransitionEvent;
+}
+
+export function culturalCyclePosition(barIndex: number, cycleLength: number): number {
+  const n = Math.max(1, Math.round(cycleLength || 1));
+  return ((barIndex % n) + n) % n;
+}
+
 export interface NativeSlice {
   /** step indices within this bar, on the pattern's own grid */
   onsets: number[];

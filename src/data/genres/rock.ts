@@ -743,6 +743,8 @@ export const ROCK_WORLD: GenreWorld = {
         "pulse",
         "drums"
       ],
+
+      "approaches": ["walking", "groove"],
       "instruments": [
         "electric-guitar",
         "bass",
@@ -778,7 +780,7 @@ export const ROCK_WORLD: GenreWorld = {
         0.85,
         0.75
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start",
         "middle"
@@ -897,6 +899,8 @@ export const ROCK_WORLD: GenreWorld = {
         "drums",
         "pulse"
       ],
+
+      "approaches": ["walking", "groove"],
       "instruments": [
         "electric-guitar",
         "bass",
@@ -935,7 +939,7 @@ export const ROCK_WORLD: GenreWorld = {
         0.85,
         0.65
       ],
-      "density": "dense",
+      "supportedEnergy": [4, 5],
       "phrasePosition": [
         "start",
         "middle"
@@ -1075,6 +1079,8 @@ export const ROCK_WORLD: GenreWorld = {
         "drums",
         "texture"
       ],
+
+      "approaches": ["walking", "groove"],
       "instruments": [
         "electric-guitar",
         "bass",
@@ -1102,7 +1108,7 @@ export const ROCK_WORLD: GenreWorld = {
         0.7,
         0.6
       ],
-      "density": "dynamic",
+      "supportedEnergy": [1, 2, 3, 4, 5],
       "phrasePosition": [
         "start",
         "middle",
@@ -1259,6 +1265,8 @@ export const ROCK_WORLD: GenreWorld = {
         "bass",
         "drums"
       ],
+
+      "approaches": ["walking", "groove"],
       "instruments": [
         "electric-guitar",
         "bass",
@@ -1285,7 +1293,7 @@ export const ROCK_WORLD: GenreWorld = {
         0.9,
         0.75
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start",
         "middle"
@@ -1382,6 +1390,7 @@ export const ROCK_WORLD: GenreWorld = {
       "name": "Power Chords",
       "family": "Guitar",
       "category": "fill",
+      "transitionType": "fill",
       "description": "Distorted 8th note power chords driving",
       "tags": [],
       "scopes": [
@@ -1390,6 +1399,8 @@ export const ROCK_WORLD: GenreWorld = {
       "roles": [
         "electric-guitar"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "electric-guitar"
       ],
@@ -1426,7 +1437,7 @@ export const ROCK_WORLD: GenreWorld = {
         0.82,
         0.78
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -1546,6 +1557,7 @@ export const ROCK_WORLD: GenreWorld = {
       "name": "Half-Time Groove",
       "family": "Drums",
       "category": "break",
+      "transitionType": "fill",
       "description": "Spacious half-time groove with massive snare",
       "tags": [],
       "scopes": [
@@ -1554,6 +1566,8 @@ export const ROCK_WORLD: GenreWorld = {
       "roles": [
         "drums"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "drums"
       ],
@@ -1572,7 +1586,7 @@ export const ROCK_WORLD: GenreWorld = {
         0.92,
         0.98
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -1656,6 +1670,7 @@ export const ROCK_WORLD: GenreWorld = {
       "name": "Tom Groove",
       "family": "Drums",
       "category": "cadence",
+      "transitionType": "fill",
       "description": "Tribal tom-tom beat for atmospheric verses",
       "tags": [],
       "scopes": [
@@ -1664,6 +1679,8 @@ export const ROCK_WORLD: GenreWorld = {
       "roles": [
         "drums"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "drums"
       ],
@@ -1700,7 +1717,7 @@ export const ROCK_WORLD: GenreWorld = {
         0.8,
         0.6
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -1834,6 +1851,8 @@ export const ROCK_WORLD: GenreWorld = {
       "roles": [
         "keys"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "keys"
       ],
@@ -1858,7 +1877,7 @@ export const ROCK_WORLD: GenreWorld = {
         0.8,
         0.6
       ],
-      "density": "sparse",
+      "supportedEnergy": [1, 2],
       "phrasePosition": [
         "start",
         "middle"
@@ -1963,6 +1982,8 @@ export const ROCK_WORLD: GenreWorld = {
       "roles": [
         "electric-guitar"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "electric-guitar"
       ],
@@ -1987,7 +2008,7 @@ export const ROCK_WORLD: GenreWorld = {
         0.85,
         0.7
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -2092,6 +2113,8 @@ export const ROCK_WORLD: GenreWorld = {
         "synth",
         "keys"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "synth",
         "keys"
@@ -2153,7 +2176,7 @@ export const ROCK_WORLD: GenreWorld = {
         0.7,
         0.6
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -2337,6 +2360,8 @@ export const ROCK_WORLD: GenreWorld = {
       "roles": [
         "guitar"
       ],
+
+      "approaches": ["chop"],
       "instruments": [
         "guitar"
       ],
@@ -2367,7 +2392,7 @@ export const ROCK_WORLD: GenreWorld = {
         0.8,
         0.7
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -2483,6 +2508,8 @@ export const ROCK_WORLD: GenreWorld = {
       "roles": [
         "electric-guitar"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "electric-guitar"
       ],
@@ -2501,7 +2528,7 @@ export const ROCK_WORLD: GenreWorld = {
         0.82,
         0.92
       ],
-      "density": "sparse",
+      "supportedEnergy": [1, 2],
       "phrasePosition": [
         "start"
       ],
@@ -2600,6 +2627,8 @@ export const ROCK_WORLD: GenreWorld = {
       "roles": [
         "voice"
       ],
+
+      "approaches": ["phrase"],
       "instruments": [
         "voice"
       ],
@@ -2643,7 +2672,7 @@ export const ROCK_WORLD: GenreWorld = {
       "articulations": [
         "muted"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "middle"
       ],
@@ -2750,6 +2779,8 @@ export const ROCK_WORLD: GenreWorld = {
       "roles": [
         "voice"
       ],
+
+      "approaches": ["phrase"],
       "instruments": [
         "voice"
       ],
@@ -2787,7 +2818,7 @@ export const ROCK_WORLD: GenreWorld = {
       "articulations": [
         "muted"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "middle"
       ],
@@ -2935,6 +2966,8 @@ export const ROCK_WORLD: GenreWorld = {
       "roles": [
         "bass"
       ],
+
+      "approaches": ["walking"],
       "instruments": [
         "bass"
       ],
@@ -2972,7 +3005,7 @@ export const ROCK_WORLD: GenreWorld = {
       "articulations": [
         "muted"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start",
         "middle"
@@ -3080,6 +3113,8 @@ export const ROCK_WORLD: GenreWorld = {
       "roles": [
         "harmony"
       ],
+
+      "approaches": ["comping"],
       "instruments": [
         "guitar",
         "keys"
@@ -3119,7 +3154,7 @@ export const ROCK_WORLD: GenreWorld = {
       "articulations": [
         "muted"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "middle"
       ],
@@ -3228,6 +3263,8 @@ export const ROCK_WORLD: GenreWorld = {
         "rhythm-guitar",
         "drums"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "drums",
         "percussion",
@@ -3283,7 +3320,7 @@ export const ROCK_WORLD: GenreWorld = {
       "articulations": [
         "muted"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "middle"
       ],

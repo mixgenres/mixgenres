@@ -3,6 +3,9 @@ import type { WorldContract } from '../data/styles/contracts';
 import { Region } from '../types';
 import { Voice } from './arrange';
 import { VoiceProfile } from './instrumentProfile';
+import type { RhythmicContext } from './grid';
+import type { SectionEnergy, SpotlightMode } from '../types';
+import { clampEnergy, energyOf, shapeScalarOf } from './energy';
 
 export type Priority = 'core' | 'body' | 'colour' | 'sweetener';
 
@@ -22,33 +25,13 @@ export function priorityOf(prof: VoiceProfile, instrumentId: string): Priority {
 /** The order parts drop out as a section gets smaller. */
 const DROP_ORDER: Priority[] = ['sweetener', 'colour', 'body', 'core'];
 
-export interface ArrangementDecision {
-  /** does this voice play in this section at all? */
-  plays: boolean;
-  /** multiplier on velocity, 0..1.4 */
-  drive: number;
-  /** semitone register shift, usually 0 or ±12 */
-  register: number;
-  /** 0..127 brightness for this section */
-  brightness: number;
-  /** multiplier on the instrument's reverb send */
-  wet: number;
-  /** why — shown in the UI so the user can see the arrangement thinking */
-  reason: string;
-}
-
 export interface SectionShape {
-  /** 0..1 */
   intensity: number;
   kind: string;
-  /** index of this section in the song */
   index: number;
   total: number;
-  /** is this the biggest section in the song? */
   isPeak: boolean;
-  /** the section right before a peak — builds get special treatment */
   isBuild: boolean;
-  /** first or last section */
   isOpening: boolean;
   isClosing: boolean;
 }
@@ -70,12 +53,103 @@ export function shapeOf(regions: Region[], index: number, intensityOf: (r: Regio
   };
 }
 
+export type { SpotlightMode, SectionEnergy };
+
+export interface ArrangementContext {
+  interactionModel: NonNullable<WorldContract['interactionModel']>;
+  /** Explicitly/on-by-default tracks participating in the interaction model. */
+  spotlightedTrackIds: string[];
+  /** Effective Section Energy assigned by the interaction model for this section. */
+  energyByTrack: Record<string, SectionEnergy>;
+  energyMappings: WorldContract['energyMappings'];
+}
+
+export interface ArrangementDecision {
+  /** does this voice play in this section at all? */
+  plays: boolean;
+  /** multiplier on velocity, 0..1.4 */
+  drive: number;
+  /** semitone register shift, usually 0 or ±12 */
+  register: number;
+  /** 0..127 brightness for this section */
+  brightness: number;
+  /** multiplier on the instrument's reverb send */
+  wet: number;
+  /** interaction-aware Section Energy for this part */
+  sectionEnergy: SectionEnergy;
+  /** why — shown in the UI so the user can see the arrangement thinking */
+  reason: string;
+}
+
+/**
+ * Resolve a track's spotlight state against a style's form grammar.
+ * `auto` is intentionally evaluated per section so changing the section's
+ * style immediately changes which roles receive attention.
+ */
+export function isSpotlit(
+  voice: Voice,
+  mode: SpotlightMode | undefined,
+  style: { form?: { defaultSpotlights?: Record<string, string[]> } },
+  sectionKind: string,
+): boolean {
+  if (mode === 'on') return true;
+  if (mode === 'off') return false;
+  const defaults = style.form?.defaultSpotlights ?? {};
+  const roles = defaults[sectionKind] ?? defaults.verse ?? [];
+  return roles.includes(voice.role);
+}
+
+export function buildArrangementContext(
+  voices: Voice[],
+  contract: WorldContract,
+  style: { form?: { defaultSpotlights?: Record<string, string[]> } },
+  sectionKind: string,
+  sectionIntensity = 0.55,
+): ArrangementContext {
+  const spotlightedTrackIds = voices
+    .filter(v => isSpotlit(v, v.spotlight, style, sectionKind))
+    .map(v => v.id);
+
+  const energyByTrack: Record<string, SectionEnergy> = {};
+  const energyEntries = ([1, 2, 3, 4, 5] as SectionEnergy[]).map(
+    level => [level, contract.energyMappings[level].activity] as const);
+  const targetActivity = Math.max(0, Math.min(1, sectionIntensity));
+  const baseEnergy = clampEnergy(
+    energyEntries.sort((a, b) => Math.abs(a[1] - targetActivity) - Math.abs(b[1] - targetActivity))[0]?.[0] ?? 3);
+  const model = contract.interactionModel;
+
+  if (model === 'homophonic' && spotlightedTrackIds.length) {
+    for (const v of voices) {
+      energyByTrack[v.id] = spotlightedTrackIds.includes(v.id) ? 5 : 1;
+    }
+  } else if (model === 'interlock' && spotlightedTrackIds.length > 1) {
+    // Give simultaneous spotlights different rhythmic weight: first carries
+    // the denser cell, second leaves space, and any further voices sit between.
+    spotlightedTrackIds.forEach((id, index) => {
+      energyByTrack[id] =
+        index === 0 ? 5 :
+        index === 1 ? 2 : 3;
+    });
+    for (const v of voices) {
+      if (energyByTrack[v.id] === undefined) energyByTrack[v.id] = 1;
+    }
+  } else if (model === 'unison' && spotlightedTrackIds.length) {
+    for (const v of voices) energyByTrack[v.id] = spotlightedTrackIds.includes(v.id) ? 5 : 1;
+  } else if (model === 'counterpoint' && spotlightedTrackIds.length) {
+    for (const v of voices) energyByTrack[v.id] = spotlightedTrackIds.includes(v.id) ? 3 : 1;
+  } else {
+    for (const v of voices) energyByTrack[v.id] = baseEnergy;
+  }
+
+  return { interactionModel: model, spotlightedTrackIds, energyByTrack, energyMappings: contract.energyMappings };
+}
+
 /**
  * Decide what one voice does in one section.
  *
- * `lift` is the user's macro control: at 0 every section is played the same
- * way, at 1 the contrast between the quiet and loud parts of the song is
- * exaggerated well past what a band would do.
+ * Interaction is evaluated from the resolved world contract rather than from
+ * a fixed priority/density formula. Section shape still controls macro
+ * dynamics, while the interaction context controls who occupies rhythmic space.
  */
 export function decide(
   voice: Voice,
@@ -83,9 +157,12 @@ export function decide(
   shape: SectionShape,
   lift: number,
   bandSize: number,
+  context?: ArrangementContext,
 ): ArrangementDecision {
   const priority = priorityOf(prof, voice.instrumentId);
   const rank = DROP_ORDER.indexOf(priority);
+  const spotlighted = context?.spotlightedTrackIds.includes(voice.id) ?? false;
+  const sectionEnergy = context?.energyByTrack[voice.id] ?? 3;
 
   let thin = (1 - shape.intensity) * (0.4 + lift * 1.2);
   if (shape.kind === 'breakdown') thin += 0.25;
@@ -107,6 +184,25 @@ export function decide(
     reason = `sits out — ${shape.kind} is being kept small`;
   }
 
+  // Interaction model takes precedence over the old static density intuition.
+  // A homophonic spotlight explicitly makes accompaniment step back.
+  if (context?.interactionModel === 'homophonic' && context.spotlightedTrackIds.length) {
+    if (spotlighted) {
+      plays = true;
+      reason = 'spotlight — homophonic lead';
+    } else {
+      thin = Math.min(1, thin + 0.25);
+      if (shape.intensity < 0.65 && priority !== 'core') plays = false;
+      reason = 'ducked — homophonic accompaniment';
+    }
+  } else if (context?.interactionModel === 'interlock' && context.spotlightedTrackIds.length > 1) {
+    reason = spotlighted
+      ? `interlock — Section Energy ${sectionEnergy}`
+      : 'interlock — leaves space for spotlighted parts';
+  } else if (spotlighted) {
+    reason = `spotlight — ${context?.interactionModel ?? 'arrangement'}`;
+  }
+
   const centred = shape.intensity - 0.55;
   let drive = 1 + centred * (0.35 + lift * 0.75);
 
@@ -114,22 +210,30 @@ export function decide(
   if (shape.isClosing) drive *= 0.92;
   if (priority === 'core') drive *= 1 + centred * 0.15;
 
+  if (spotlighted) drive *= 1.08;
+  if (context?.interactionModel === 'homophonic' && context.spotlightedTrackIds.length && !spotlighted) {
+    drive *= 0.72;
+  } else if (context?.interactionModel === 'interlock' && context.spotlightedTrackIds.length > 1) {
+    drive *= sectionEnergy >= 4 ? 1.05 : sectionEnergy <= 2 ? 0.8 : 0.92;
+  }
+
   let register = 0;
   if (shape.isPeak && (prof.role === 'lead' || prof.role === 'comp')) register = 12;
   if (shape.kind === 'breakdown' && prof.role === 'comp') register = -12;
   if (shape.kind === 'intro' && prof.role === 'pad') register = 12;
 
-  const base = 52 + shape.intensity * 62;
-  let brightness = base;
-  if (shape.kind === 'breakdown') brightness -= 22;
-  if (shape.kind === 'intro') brightness -= 12;
-  if (shape.isBuild) brightness += 10;
-  if (shape.isPeak) brightness = Math.max(brightness, 108);
-  brightness = Math.max(18, Math.min(127, brightness + (lift - 0.5) * 24));
+  // Energy is interpreted by the world contract, rather than as a universal
+  // loudness curve. Each culture can define its own density/brightness/FX meaning.
+  const mapped = context?.energyMappings?.[sectionEnergy];
+  let brightness = (mapped?.brightness ?? (sectionEnergy / 5)) * 127;
+  if (shape.kind === 'breakdown') brightness *= 0.82;
+  if (shape.kind === 'intro') brightness *= 0.9;
+  if (shape.isBuild) brightness += 8;
+  brightness = Math.max(18, Math.min(127, brightness + (lift - 0.5) * 12));
 
-  let wet = 1 + (0.55 - shape.intensity) * 0.9;
-  if (shape.kind === 'breakdown' || shape.kind === 'intro') wet *= 1.25;
-  if (shape.isPeak) wet *= 0.8;
+  let wet = mapped?.fxWetness ?? (1.35 - sectionEnergy * 0.1);
+  if (shape.kind === 'breakdown' || shape.kind === 'intro') wet *= 1.12;
+  if (shape.isPeak) wet *= 0.92;
   wet = Math.max(0.3, Math.min(2.2, wet));
 
   if (plays && !reason) {
@@ -139,7 +243,15 @@ export function decide(
       : 'playing';
   }
 
-  return { plays, drive: Math.max(0.45, Math.min(1.45, drive)), register, brightness, wet, reason };
+  return {
+    plays,
+    drive: Math.max(0.45, Math.min(1.45, drive)),
+    register,
+    brightness,
+    wet,
+    sectionEnergy,
+    reason,
+  };
 }
 
 /**

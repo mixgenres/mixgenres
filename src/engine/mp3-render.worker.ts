@@ -6,6 +6,7 @@ interface RenderNote {
   time: number;
   dur: number;
   midi: number;
+  pitchBend?: { offset: number; value: number }[];
   vel: number;
   channel: number;
 }
@@ -21,8 +22,6 @@ interface RenderProgram {
   time: number;
   channel: number;
   program: number;
-  bankMSB?: number;
-  bankLSB?: number;
   drum: boolean;
 }
 
@@ -35,17 +34,11 @@ interface RenderPerformance {
   tail: number;
 }
 
-interface SoundfontPayload {
-  id: string;
-  bankOffset: number;
-  buffer: ArrayBuffer;
-}
-
 interface RenderRequest {
   type: 'render';
   sampleRate: number;
   performance: RenderPerformance;
-  soundfonts: SoundfontPayload[];
+  soundfont: ArrayBuffer;
 }
 
 function midi(value: number): number {
@@ -75,14 +68,11 @@ async function render(request: RenderRequest): Promise<void> {
     maxBufferSize: 128,
   });
 
-  for (const font of request.soundfonts) {
-    const soundBank = SoundBankLoader.fromArrayBuffer(font.buffer);
-    synth.soundBankManager.addSoundBank(
-      soundBank,
-      font.id,
-      font.bankOffset,
-    );
-  }
+  synth.soundBankManager.addSoundBank(
+    SoundBankLoader.fromArrayBuffer(request.soundfont),
+    'main',
+    0,
+  );
 
   await synth.processorInitialized;
 
@@ -105,24 +95,6 @@ async function render(request: RenderRequest): Promise<void> {
     const t = time(p.time);
 
     synth.midiChannels[ch]?.setDrums?.(p.drum);
-
-    if (p.bankMSB !== undefined) {
-      events.push({
-        time: t,
-        priority: 10,
-        order: order++,
-        message: [0xB0 | ch, 0, midi(p.bankMSB)],
-      });
-    }
-
-    if (p.bankLSB !== undefined) {
-      events.push({
-        time: t,
-        priority: 10,
-        order: order++,
-        message: [0xB0 | ch, 32, midi(p.bankLSB)],
-      });
-    }
 
     events.push({
       time: t,
@@ -151,6 +123,25 @@ async function render(request: RenderRequest): Promise<void> {
       0.02,
       Number.isFinite(n.dur) ? n.dur : 0.02,
     );
+
+    if (n.pitchBend?.length) {
+      for (const point of n.pitchBend) {
+        const bendTime = Math.max(on, on + Math.max(0, Number(point.offset) || 0));
+        const value = Math.max(0, Math.min(16383, Math.round(point.value)));
+        events.push({
+          time: bendTime,
+          priority: 35,
+          order: order++,
+          message: [0xE0 | ch, value & 0x7F, (value >> 7) & 0x7F],
+        });
+      }
+      events.push({
+        time: off,
+        priority: 29,
+        order: order++,
+        message: [0xE0 | ch, 0, 64],
+      });
+    }
 
     events.push({
       time: off,

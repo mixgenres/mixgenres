@@ -1,4 +1,6 @@
-import { SongStyle } from './schema';
+import type { SongStyle, ImprovisationGrammar } from './schema';
+
+export type InteractionModel = 'homophonic' | 'interlock' | 'unison' | 'counterpoint';
 
 export type PulseModel =
   | 'metric-hierarchical'
@@ -31,10 +33,60 @@ export interface BassDialect {
   articulation: string[];
 }
 
+export interface ApproachSpec {
+  /** Stable behavioral vocabulary independent of the physical instrument. */
+  id: string;
+  description?: string;
+  /** Catalog tags/phrases that identify authored material for this approach. */
+  tags: string[];
+}
+
+/**
+ * What one Section Energy level *means inside this world*. Energy is never a
+ * universal loudness curve: a world decides how much of the authored material
+ * is actually voiced (`activity`), how bright the parts get, and how wet.
+ *
+ * `activity` replaces the old `density` field. It is the proportion of authored
+ * onsets a part is expected to voice at this energy, 0..1.
+ */
+export interface EnergyMapping {
+  activity: number;
+  brightness: number;
+  fxWetness: number;
+}
+
+export type EnergyDelta = 'build' | 'drop' | 'hold';
+export type TransitionType = 'fill' | 'turnaround' | 'drop-out' | 'arrastre' | 'corte';
+
+export interface TransitionGrammar {
+  /** Required transitions by energy delta. */
+  byDelta: Record<EnergyDelta, TransitionType[]>;
+  /** Legacy-compatible flattened vocabulary. */
+  types: TransitionType[];
+  onEnergyRise?: TransitionType;
+  onEnergyFall?: TransitionType;
+  authoredPriority?: boolean;
+}
+
+export interface PerformanceIdioms {
+  /** Enables genre-native expressive pitch gestures when the context matches. */
+  bluesRockLeadMinorThirdBend?: boolean;
+  /** Applies downward portamento on bass/lead notes at drop transitions. */
+  dropPortamento?: boolean;
+  /** Allows spotlighted lead phrasing to move independently of the master pocket. */
+  spotlightLeadRubato?: boolean;
+}
+
+
+
 export interface WorldContract {
   pulseModel: PulseModel;
   meter: string;
   cycleLength: number;
+  /** Genre-specific meaning of Section Energy 1..5. */
+  energyMappings: Record<1 | 2 | 3 | 4 | 5, EnergyMapping>;
+  /** Optional world-native names for the five energy steps, shown on the dial. */
+  energyLabels?: Partial<Record<1 | 2 | 3 | 4 | 5, string>>;
   subdivision: number;
   timeline: string;
   timelineGrid: number[];
@@ -51,6 +103,14 @@ export interface WorldContract {
   pitchIntervals: number[];
   bass: BassDialect;
   form: string[];
+  /** How parts are expected to interact when the arranger allocates attention. */
+  interactionModel: InteractionModel;
+  /** Role -> culturally meaningful performance behavior. */
+  approaches: Record<string, ApproachSpec>;
+  transitionGrammar: TransitionGrammar;
+  defaultSpotlights: Record<string, string[]>;
+  performanceIdioms: PerformanceIdioms;
+  improvisationGrammar: ImprovisationGrammar;
   ensemble: Record<string, string>;
   timbreSpace: { room: string; palette: string[]; production: string };
   forbidden: string[];
@@ -88,7 +148,7 @@ function base(
   forbidden: string[],
   groove: WorldContract['groove'],
   percussion: PercussionDialect,
-  opts: Partial<Pick<WorldContract,'cycleLength'|'subdivision'|'timelineRequired'|'harmonicRhythm'|'harmonyVocabulary'|'accentGrammar'|'articulationGrammar'|'microtiming'>> = {},
+  opts: Partial<Pick<WorldContract,'cycleLength'|'subdivision'|'timelineRequired'|'harmonicRhythm'|'harmonyVocabulary'|'accentGrammar'|'articulationGrammar'|'microtiming'|'interactionModel' | 'energyMappings' | 'transitionGrammar' | 'approaches' | 'performanceIdioms'>> = {},
 ): WorldContract {
   const pm = pitchModel.toLowerCase();
   const pitchIntervals = pm.includes('pentatonic') ? [0,2,4,7,9]
@@ -105,8 +165,23 @@ function base(
     if (i % Math.max(1, Math.round((opts.subdivision ?? 16) / 4)) === 0) return 1;
     return i % 2 === 0 ? 0.72 : 0.52;
   });
+  const transitionGrammar = opts.transitionGrammar ?? { byDelta: { build: ['fill'], drop: ['drop-out'], hold: [] }, types: ['fill', 'drop-out'], onEnergyRise: 'fill', onEnergyFall: 'drop-out', authoredPriority: true };
+  const approaches = opts.approaches ?? {
+      bass: { id: bass.style === 'walking' ? 'walking' : bass.style, tags: [bass.style, 'bass'] },
+      pulse: { id: bass.style === 'dembow' ? 'dembow-bass' : bass.style, tags: [bass.style, 'pulse', 'bass'] },
+      harmony: { id: 'comping', tags: ['harmony', 'comping'] },
+      lead: { id: 'phrase', tags: ['lead', 'phrase'] },
+      percussion: { id: 'groove', tags: ['percussion', 'groove'] },
+    };
+  const energyMappings = opts.energyMappings ?? {
+    1: { activity: 0.2, brightness: 0.25, fxWetness: 1.25 },
+    2: { activity: 0.4, brightness: 0.4, fxWetness: 1.1 },
+    3: { activity: 0.6, brightness: 0.58, fxWetness: 1.0 },
+    4: { activity: 0.8, brightness: 0.78, fxWetness: 0.9 },
+    5: { activity: 1.0, brightness: 1.0, fxWetness: 0.78 },
+  };
   return {
-    pulseModel, meter, cycleLength: opts.cycleLength ?? 1, subdivision: opts.subdivision ?? 16,
+    pulseModel, meter, cycleLength: opts.cycleLength ?? 1, energyMappings, subdivision: opts.subdivision ?? 16,
     timeline, timelineGrid: timeline === 'none' ? [] : (timeline.includes('clave') ? [0,2,5,8,10,12,14] : timeline.includes('3+3+2') ? [0,3,6,8] : []), timelineRequired: opts.timelineRequired ?? false,
     microtiming: opts.microtiming ?? {
       referenceTempo: 100, beatRelative: true,
@@ -118,7 +193,27 @@ function base(
     articulationGrammar: opts.articulationGrammar ?? { ensemble: ['style-native attack and release'] },
     harmonyModel, harmonyVocabulary: opts.harmonyVocabulary ?? ['shared chord library'],
     harmonicRhythm: opts.harmonicRhythm ?? '1-bar',
-    pitchModel, tuningSystem, pitchIntervals, bass, form, ensemble,
+    pitchModel, tuningSystem, pitchIntervals, bass, form,
+    interactionModel: opts.interactionModel ?? (timeline.includes('clave') ? 'interlock' : pulseModel === 'machine-grid' ? 'unison' : 'homophonic'),
+    approaches,
+    performanceIdioms: {
+      bluesRockLeadMinorThirdBend: true,
+      dropPortamento: true,
+      spotlightLeadRubato: true,
+      ...(opts as any).performanceIdioms,
+    },
+    improvisationGrammar: {
+      scaleMode: pm.includes('minor') ? 'minor-pentatonic' : 'major',
+      targetToneStrategy: 'chord-tone-on-beat-1',
+      phraseStages: ['state', 'rest', 'repeat-transpose', 'rapid-run'],
+      transposeDegrees: 2,
+      phraseBars: 4,
+      rapidRunOrnaments: ['rapid-run'],
+      ...(opts as any).improvisationGrammar,
+    },
+    transitionGrammar,
+    defaultSpotlights: { intro: ['pulse'], verse: ['harmony'], chorus: ['lead'], solo: ['lead'], outro: ['pulse'] },
+    ensemble,
     timbreSpace: { room, palette, production }, forbidden, groove, percussion,
   };
 }
@@ -149,7 +244,7 @@ G.salsa = base('timeline-cycle','4/4','son clave 2-3 or 3-2','modal-vamp','major
    microtiming:{referenceTempo:96,beatRelative:true,byRole:{bass:[0,-5,-10,-3],comp:[0,-4,-8,-2],percussion:[0,0,0,0],lead:[2,4,3,5]},jitterMs:3}});
 G.timba = { ...G.salsa, pulseModel:'timeline-cycle', timeline:'son clave / style-specific clave direction', form:['intro','verso','coro','marcha','gear','break','cierre'], ensemble:{motor:'tumbao + marcha',interaction:'gears, breaks, coro/pregón'}, timbreSpace:{...G.salsa.timbreSpace,production:'harder attacks, sectional breaks, dense percussion'}, forbidden:[...G.salsa.forbidden,'static salsa arrangement'], groove:{...G.salsa.groove,name:'Gear Pocket',lean:-3,roleLean:{...G.salsa.groove.roleLean,bass:-15,comp:-10,stab:-8},anticipationMs:-32,dynamicRange:1.32} };
 
-G.jazz = base('metric-hierarchical','4/4','none','functional','major/minor modes + chromatic','12-tet',
+G.jazz = { ...base('metric-hierarchical','4/4','none','functional','major/minor modes + chromatic','12-tet',
   {style:'walking',rhythmJob:'quarter-note walking with phrase-leading approach',pitchJob:'chord tones + scale passing tones',articulation:['pizzicato','ghost','legato']},
   ['head','solo','trading','solo','head','tag'], {motor:'ride + walking bass',comp:'interactive piano/guitar',lead:'horn'}, 'room',['tenor-sax','upright-bass','piano','jazz-guitar','brush-kit'],'live room, moderate width, soft compression',
   ['fixed pop backbeat','crash every section','four-bar fill rule'],
@@ -158,7 +253,16 @@ G.jazz = base('metric-hierarchical','4/4','none','functional','major/minor modes
   {harmonicRhythm:'1/2-bar',harmonyVocabulary:['ii-V-I','turnaround','dominant substitution','modal vamp'],
    accentGrammar:{ride:'triplet pulse',bass:'quarter-note walking',comp:'irregular comping',lead:'phrase accents'},
    articulationGrammar:{bass:['pizzicato'],drums:['ride','brush','ghost'],lead:['legato','fall','doit']},
-   microtiming:{referenceTempo:140,beatRelative:true,byRole:{ride:[0,2,0,2],bass:[-4,0,-4,0],comp:[7,4,9,4],lead:[8,14,10,16]},jitterMs:4}});
+   microtiming:{referenceTempo:140,beatRelative:true,byRole:{ride:[0,2,0,2],bass:[-4,0,-4,0],comp:[7,4,9,4],lead:[8,14,10,16]},jitterMs:4}}),
+  improvisationGrammar:{
+    scaleMode:'chromatic-enclosure',
+    targetToneStrategy:'chord-tone-on-beat-1',
+    phraseStages:['state','rest','repeat-transpose','rapid-run'],
+    transposeDegrees:2,
+    phraseBars:4,
+    rapidRunOrnaments:['rapid-run','mordent','grace-note'],
+  }
+};
 G.swing = { ...G.jazz, form:['head','ensemble riff','shout chorus','solo','head','tag'], ensemble:{...G.jazz.ensemble,sections:'sax/brass section writing and call-response riffs'}, groove:{...G.jazz.groove,name:'Big Band Swing',swing:.66,roleLean:{...G.jazz.groove.roleLean,comp:6,lead:7}} };
 G.blues = { ...G.jazz, harmonyModel:'blues-form', pitchModel:'blue-note vocabulary', form:['12-bar head','vocal/guitar answer','solo','turnaround'], bass:{...G.jazz.bass,style:'walking',rhythmJob:'shuffle / walking hybrid with turnaround'}, groove:{...G.jazz.groove,name:'Shuffle',swing:.63,lean:4,roleLean:{...G.jazz.groove.roleLean,lead:13,comp:8},humanizeMs:10} };
 
@@ -191,7 +295,16 @@ G.metal = simple('metal','4/4','machine-grid','precision',.5,{style:'riff',rhyth
 G['r-and-b'] = simple('r-and-b','4/4','metric-hierarchical','behind-the-beat pocket',.5,{style:'sub',rhythmJob:'syncopated melodic bass with space',pitchJob:'extended chord tones',articulation:['legato','ghost','slide']},['intro','verse','pre-chorus','chorus','bridge','outro'],{motor:'bass + drums',harmony:'Rhodes/keys',lead:'voice'},'studio',['rhodes','fretless-bass','clavinet','drums','voice'],['stiff quantization','rock backbeat default'],'none','functional','major/minor','warm, close, vocal-forward');
 G.reggae = simple('reggae','4/4','metric-hierarchical','one-drop + skank',.5,{style:'reggae',rhythmJob:'melodic heavy bass; leaves space',pitchJob:'root/5th/6th with melodic contour',articulation:['short','muted','legato']},['intro','verse','chorus','dub break','verse','outro'],{motor:'bass + one-drop',comp:'offbeat skank',texture:'organ bubble'},'tape',['organ','electric-guitar','bass','drums','voice'],['rock backbeat','kick on 1 as default','crash section start'],'none','modal-vamp','major/minor/mixolydian','drop-outs, delay throws');
 G.reggaeton = simple('reggaeton','4/4','machine-grid','straight dembow',.5,{style:'dembow',rhythmJob:'bass answers the dembow cell; avoid continuous blanket',pitchJob:'root/fifth/approach',articulation:['short','sub']},['intro','verso','coro','puente','coro','outro'],{motor:'dembow + sub-bass',lead:'voice'},'club',['synth','sub-bass','drums','congas','voice'],['swing','rock backbeat'],'3+3+2 dembow','functional/modal-vamp','minor/major','dry punch, controlled sub');
-G.rock = simple('rock','4/4','metric-hierarchical','driving backbeat',.5,{style:'riff',rhythmJob:'riff-centered bass/guitar lock',pitchJob:'root/fifth/power-chord tones',articulation:['pick','palm-mute','sustain']},['intro','verse','chorus','bridge','solo','outro'],{motor:'guitar + bass + drums',lead:'guitar/voice'},'room',['overdrive-guitar','bass','drums','organ','voice'],['swing as default','genre-inappropriate Latin cells'],'none','functional','major/minor/mixolydian','live room, guitar-forward');
+G.rock = { ...simple('rock','4/4','metric-hierarchical','driving backbeat',.5,{style:'riff',rhythmJob:'riff-centered bass/guitar lock',pitchJob:'root/fifth/power-chord tones',articulation:['pick','palm-mute','sustain']},['intro','verse','chorus','bridge','solo','outro'],{motor:'guitar + bass + drums',lead:'guitar/voice'},'room',['overdrive-guitar','bass','drums','organ','voice'],['swing as default','genre-inappropriate Latin cells'],'none','functional','major/minor/mixolydian','live room, guitar-forward'),
+  improvisationGrammar:{
+    scaleMode:'minor-pentatonic',
+    targetToneStrategy:'root-or-fifth-on-beat-1',
+    phraseStages:['state','rest','repeat-transpose','rapid-run'],
+    transposeDegrees:2,
+    phraseBars:4,
+    rapidRunOrnaments:['rapid-run','blues-slur','grace-note'],
+  }
+};
 G.ska = simple('ska','4/4','metric-hierarchical','fast offbeat skank',.5,{style:'walking',rhythmJob:'walking/propulsive bass under offbeat guitar',pitchJob:'root/fifth/passing',articulation:['short','staccato']},['intro','verse','chorus','instrumental','verse','outro'],{motor:'offbeat guitar + walking bass',lead:'horns'},'room',['trumpet','trombone','electric-guitar','bass','drums'],['reggae one-drop as identity'],'none','functional','major/minor','bright horns, dry room');
 G.soul = simple('soul','4/4','metric-hierarchical','deep pocket',.5,{style:'riff',rhythmJob:'melodic bass with backbeat support',pitchJob:'root/guide-tone/chromatic fills',articulation:['legato','short','ghost']},['intro','verse','chorus','bridge','instrumental','outro'],{motor:'bass + drums',answer:'horn/choir response',lead:'voice'},'room',['rhodes','strings','organ','bass','voice'],['generic R&B clone'],'none','functional','major/minor/blues','tape-like warmth, vocal space');
 G.zouk = simple('zouk','4/4','metric-hierarchical','rolling offbeat',.5,{style:'sub',rhythmJob:'soft rolling bass with offbeat movement',pitchJob:'root/5th/6th',articulation:['legato','short']},['intro','verse','refrain','break','refrain','outro'],{motor:'bass + percussion',harmony:'pads/keys',lead:'voice'},'club',['guitar','sub-bass','synth','shaker','voice'],['kizomba clone','reggaeton dembow'],'none','modal-vamp','major/minor','wide pads, soft transient profile');
@@ -199,6 +312,21 @@ G['drum-and-bass'] = simple('drum-and-bass','4/4','machine-grid','breakbeat driv
 G.industrial = simple('industrial','4/4','machine-grid','mechanical pulse',.5,{style:'riff',rhythmJob:'repeating machine riff and bass lock',pitchJob:'chromatic/power/tritone',articulation:['staccato','distorted','gated']},['intro','machine','verse','break','machine','outro'],{motor:'drums + bass + noise',texture:'distortion/noise'},'studio',['distortion-guitar','synth','drums','sub-bass','noise-sweep'],['swing','random humanization'],'none','fixed-cluster','chromatic','distortion/noise bursts');
 G['punk-hardcore'] = simple('punk-hardcore','4/4','machine-grid','straight speed',.5,{style:'riff',rhythmJob:'direct eighth-note root/power-chord lock',pitchJob:'root/fifth/power chords',articulation:['down-pick','staccato']},['intro','verse','chorus','break','chorus','ending'],{motor:'guitar + bass + drums',lead:'voice'},'room',['distortion-guitar','bass','drums','voice','electric-guitar'],['swing','extended jazz harmony','long intro'],'none','functional','major/minor/power','dry loud room');
 G['uk-bass'] = simple('uk-bass','4/4','machine-grid','broken club umbrella',.5,{style:'sub',rhythmJob:'style-owned 2-step/half-time bass cell',pitchJob:'sub root/5th with style-specific movement',articulation:['sustain','glide','gated']},['intro','groove','drop','breakdown','drop','outro'],{motor:'broken drums + sub',texture:'bass sound design'},'club',['sub-bass','synth','drums','cowbell','soprano-sax'],['generic EDM four-on-floor'],'2-step / half-time style cell','modal-vamp','minor/dorian','bass sound design, pumping where style permits');
+
+// Cultural overrides are explicit and data-driven; no genre inherits a universal cycle or interaction model.
+const CULTURAL_OVERRIDES: Record<string, Partial<WorldContract>> = {
+  tango: { cycleLength: 2, interactionModel: 'homophonic', transitionGrammar: { byDelta: { build: ['arrastre'], drop: ['corte'], hold: [] }, types: ['arrastre','corte'], onEnergyRise: 'arrastre', onEnergyFall: 'corte', authoredPriority: true } },
+  salsa: { cycleLength: 2, interactionModel: 'interlock', transitionGrammar: { byDelta: { build: ['fill'], drop: ['drop-out'], hold: [] }, types: ['fill','drop-out'], onEnergyRise: 'fill', onEnergyFall: 'drop-out', authoredPriority: true } },
+  flamenco: { cycleLength: 12, interactionModel: 'counterpoint', transitionGrammar: { byDelta: { build: ['fill','arrastre'], drop: ['corte'], hold: [] }, types: ['fill','arrastre','corte'], onEnergyRise: 'arrastre', onEnergyFall: 'corte', authoredPriority: true } },
+  blues: { cycleLength: 12, interactionModel: 'counterpoint' },
+  jazz: { cycleLength: 4, interactionModel: 'counterpoint' },
+  metal: { cycleLength: 1, interactionModel: 'unison' },
+  electronic: { cycleLength: 4, interactionModel: 'unison', transitionGrammar: { byDelta: { build: ['fill'], drop: ['drop-out'], hold: [] }, types: ['fill','drop-out'], onEnergyRise: 'fill', onEnergyFall: 'drop-out', authoredPriority: true } },
+  rock: { cycleLength: 4, interactionModel: 'homophonic', transitionGrammar: { byDelta: { build: ['fill'], drop: ['drop-out'], hold: [] }, types: ['fill','drop-out'], onEnergyRise: 'fill', onEnergyFall: 'drop-out', authoredPriority: true } },
+};
+for (const [id, override] of Object.entries(CULTURAL_OVERRIDES)) {
+  if (G[id]) G[id] = { ...G[id], ...override };
+}
 
 export const GENRE_CONTRACTS: Record<string, WorldContract> = G;
 
@@ -248,7 +376,7 @@ const STYLE_PATCHES: Record<string, Partial<WorldContract>> = {
   'metal-death-metal': { groove:{...G.metal.groove,lean:-4,roleLean:{...G.metal.groove.roleLean,bass:-4}}, bass:{...G.metal.bass,style:'riff'}, pitchModel:'minor/phrygian chromatic', timbreSpace:{...G.metal.timbreSpace,production:'dense double-kick and low-tuned guitar wall'} },
   'metal-black-metal': { groove:{...G.metal.groove,lean:0,roleLean:{...G.metal.groove.roleLean,lead:5}}, pitchModel:'minor/phrygian tremolo', timbreSpace:{...G.metal.timbreSpace,room:'hall',production:'cold wide guitars, tremolo layers'} },
   'metal-doom-metal': { groove:{...G.metal.groove,lean:5,roleLean:{...G.metal.groove.roleLean,bass:2}}, bass:{...G.metal.bass,style:'root'}, form:['intro','riff','verse','chorus','instrumental','coda'], timbreSpace:{...G.metal.timbreSpace,room:'hall',production:'slow sustained distortion'} },
-  'metal-sludge': { groove:{...G.metal.groove,lean:4}, bass:{...G.metal.bass,style:'riff'}, timbreSpace:{...G.metal.timbreSpace,room:'raw',production:'gritty saturation and loose density'} },
+  'metal-sludge': { groove:{...G.metal.groove,lean:4}, bass:{...G.metal.bass,style:'riff'}, timbreSpace:{...G.metal.timbreSpace,room:'raw',production:'gritty saturation, loose ensemble'} },
   'metal-progressive-metal': { groove:{...G.metal.groove,lean:-1}, pulseModel:'additive', meter:'4/4', timeline:'odd-grouping phrase cells', form:['intro','riff','development','chorus','odd-meter break','solo','coda'] },
 
   'rock-hard-rock': { groove:{...G.rock.groove,lean:-3}, bass:{...G.rock.bass,style:'riff'}, timbreSpace:{...G.rock.timbreSpace,production:'guitar-forward live band'} },

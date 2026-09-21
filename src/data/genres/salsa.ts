@@ -487,6 +487,8 @@ export const SALSA_WORLD: GenreWorld = {
         "percussion",
         "bell"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "percussion",
         "drums",
@@ -519,7 +521,7 @@ export const SALSA_WORLD: GenreWorld = {
       "articulations": [
         "clave-strike"
       ],
-      "density": "sparse",
+      "supportedEnergy": [1, 2],
       "phrasePosition": [
         "start",
         "middle",
@@ -621,6 +623,8 @@ export const SALSA_WORLD: GenreWorld = {
         "bass",
         "pulse"
       ],
+
+      "approaches": ["walking", "groove"],
       "instruments": [
         "bass",
         "piano"
@@ -644,7 +648,7 @@ export const SALSA_WORLD: GenreWorld = {
         "sustained-pizz",
         "percussive-finger"
       ],
-      "density": "sparse",
+      "supportedEnergy": [1, 2],
       "phrasePosition": [
         "start",
         "middle"
@@ -739,6 +743,8 @@ export const SALSA_WORLD: GenreWorld = {
         "keyboard",
         "counterline"
       ],
+
+      "approaches": ["comping"],
       "instruments": [
         "piano",
         "keys",
@@ -794,7 +800,7 @@ export const SALSA_WORLD: GenreWorld = {
         "staccato-octaves",
         "tenuto-top-note"
       ],
-      "density": "dense",
+      "supportedEnergy": [4, 5],
       "phrasePosition": [
         "start",
         "middle"
@@ -950,6 +956,8 @@ export const SALSA_WORLD: GenreWorld = {
         "aux-percussion",
         "drums"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "timbales",
         "percussion",
@@ -1015,7 +1023,7 @@ export const SALSA_WORLD: GenreWorld = {
       "articulations": [
         "cascara-side-stick"
       ],
-      "density": "dense",
+      "supportedEnergy": [4, 5],
       "phrasePosition": [
         "start",
         "middle"
@@ -1181,6 +1189,8 @@ export const SALSA_WORLD: GenreWorld = {
         "hand-percussion",
         "pulse"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "congas",
         "percussion"
@@ -1223,7 +1233,7 @@ export const SALSA_WORLD: GenreWorld = {
         "slap-tap",
         "abierto-open"
       ],
-      "density": "dense",
+      "supportedEnergy": [4, 5],
       "phrasePosition": [
         "start",
         "middle"
@@ -1354,6 +1364,8 @@ export const SALSA_WORLD: GenreWorld = {
         "horn-section",
         "counterline"
       ],
+
+      "approaches": ["phrase"],
       "instruments": [
         "trumpet",
         "sax",
@@ -1392,7 +1404,7 @@ export const SALSA_WORLD: GenreWorld = {
         "staccatissimo",
         "fall-off"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start",
         "middle",
@@ -1491,6 +1503,7 @@ export const SALSA_WORLD: GenreWorld = {
       "name": "Campana (Bongo Bell)",
       "family": "Bell",
       "category": "fill",
+      "transitionType": "fill",
       "description": "Driving hand-held bongo bell pattern with",
       "tags": [],
       "scopes": [
@@ -1499,6 +1512,8 @@ export const SALSA_WORLD: GenreWorld = {
       "roles": [
         "percussion"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "percussion"
       ],
@@ -1532,7 +1547,7 @@ export const SALSA_WORLD: GenreWorld = {
         0.9,
         0.8
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -1649,6 +1664,7 @@ export const SALSA_WORLD: GenreWorld = {
       "name": "Guiro Pattern",
       "family": "Guiro",
       "category": "break",
+      "transitionType": "fill",
       "description": "Traditional long down-stroke and rapid up-up",
       "tags": [],
       "scopes": [
@@ -1657,6 +1673,8 @@ export const SALSA_WORLD: GenreWorld = {
       "roles": [
         "percussion"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "percussion"
       ],
@@ -1705,7 +1723,7 @@ export const SALSA_WORLD: GenreWorld = {
         0.45,
         0.65
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -1853,6 +1871,7 @@ export const SALSA_WORLD: GenreWorld = {
       "name": "Maracas",
       "family": "Maracas",
       "category": "cadence",
+      "transitionType": "fill",
       "description": "Crisp forward-back maraca pulse with accented",
       "tags": [],
       "scopes": [
@@ -1861,6 +1880,8 @@ export const SALSA_WORLD: GenreWorld = {
       "roles": [
         "percussion"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "percussion"
       ],
@@ -1897,7 +1918,7 @@ export const SALSA_WORLD: GenreWorld = {
         0.85,
         0.6
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -2027,6 +2048,8 @@ export const SALSA_WORLD: GenreWorld = {
       "roles": [
         "percussion"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "percussion"
       ],
@@ -2054,7 +2077,7 @@ export const SALSA_WORLD: GenreWorld = {
         0.85,
         0.8
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -2162,6 +2185,8 @@ export const SALSA_WORLD: GenreWorld = {
       "roles": [
         "percussion"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "percussion"
       ],
@@ -2198,7 +2223,7 @@ export const SALSA_WORLD: GenreWorld = {
         0.8,
         0.65
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -2332,6 +2357,8 @@ export const SALSA_WORLD: GenreWorld = {
       "roles": [
         "voice"
       ],
+
+      "approaches": ["phrase"],
       "instruments": [
         "voice"
       ],
@@ -2376,7 +2403,7 @@ export const SALSA_WORLD: GenreWorld = {
         "breath",
         "phrase-end"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -2495,6 +2522,8 @@ export const SALSA_WORLD: GenreWorld = {
       "roles": [
         "voice"
       ],
+
+      "approaches": ["phrase"],
       "instruments": [
         "voice"
       ],
@@ -2539,7 +2568,7 @@ export const SALSA_WORLD: GenreWorld = {
         "breath",
         "phrase-end"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "middle"
       ],
@@ -2703,6 +2732,8 @@ export const SALSA_WORLD: GenreWorld = {
       "roles": [
         "bass"
       ],
+
+      "approaches": ["walking"],
       "instruments": [
         "bass"
       ],
@@ -2747,7 +2778,7 @@ export const SALSA_WORLD: GenreWorld = {
         "accented",
         "ghost-aware"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start",
         "middle"
@@ -2867,6 +2898,8 @@ export const SALSA_WORLD: GenreWorld = {
       "roles": [
         "harmony"
       ],
+
+      "approaches": ["comping"],
       "instruments": [
         "guitar",
         "piano"
@@ -2913,7 +2946,7 @@ export const SALSA_WORLD: GenreWorld = {
         "accented",
         "ghost-aware"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "middle"
       ],
@@ -3033,6 +3066,8 @@ export const SALSA_WORLD: GenreWorld = {
         "harmony",
         "texture"
       ],
+
+      "approaches": ["comping"],
       "instruments": [
         "guitar",
         "piano"
@@ -3086,7 +3121,7 @@ export const SALSA_WORLD: GenreWorld = {
         "accented",
         "ghost-aware"
       ],
-      "density": "dynamic",
+      "supportedEnergy": [1, 2, 3, 4, 5],
       "phrasePosition": [
         "start"
       ],
@@ -3268,6 +3303,8 @@ export const SALSA_WORLD: GenreWorld = {
       "roles": [
         "voice"
       ],
+
+      "approaches": ["phrase"],
       "instruments": [
         "voice"
       ],
@@ -3312,7 +3349,7 @@ export const SALSA_WORLD: GenreWorld = {
         "breath",
         "phrase-end"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start",
         "middle"

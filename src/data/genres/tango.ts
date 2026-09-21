@@ -464,6 +464,8 @@ export const TANGO_WORLD: GenreWorld = {
         "bass",
         "piano"
       ],
+
+      "approaches": ["groove", "comping", "walking"],
       "instruments": [
         "piano",
         "bass",
@@ -495,7 +497,7 @@ export const TANGO_WORLD: GenreWorld = {
         "staccato",
         "martellato"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start",
         "middle"
@@ -624,6 +626,8 @@ export const TANGO_WORLD: GenreWorld = {
         "bass",
         "piano"
       ],
+
+      "approaches": ["groove", "comping", "walking"],
       "instruments": [
         "piano",
         "bass",
@@ -649,7 +653,7 @@ export const TANGO_WORLD: GenreWorld = {
         "pesado",
         "legato-staccato"
       ],
-      "density": "sparse",
+      "supportedEnergy": [1, 2],
       "phrasePosition": [
         "start",
         "middle"
@@ -745,6 +749,8 @@ export const TANGO_WORLD: GenreWorld = {
         "bandoneon",
         "counterline"
       ],
+
+      "approaches": ["comping", "walking"],
       "instruments": [
         "piano",
         "bandoneon",
@@ -775,7 +781,7 @@ export const TANGO_WORLD: GenreWorld = {
       "articulations": [
         "staccato-accent"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start",
         "middle"
@@ -882,6 +888,8 @@ export const TANGO_WORLD: GenreWorld = {
         "bandoneon",
         "fill"
       ],
+
+      "approaches": ["walking", "comping"],
       "instruments": [
         "bass",
         "piano",
@@ -913,7 +921,7 @@ export const TANGO_WORLD: GenreWorld = {
         "glissando",
         "accented-arrival"
       ],
-      "density": "sparse",
+      "supportedEnergy": [1, 2],
       "phrasePosition": [
         "end"
       ],
@@ -1019,6 +1027,8 @@ export const TANGO_WORLD: GenreWorld = {
         "melodic-guitar",
         "counterline"
       ],
+
+      "approaches": ["comping", "walking"],
       "instruments": [
         "guitar",
         "electric-guitar",
@@ -1058,7 +1068,7 @@ export const TANGO_WORLD: GenreWorld = {
         "thumb-apoyando",
         "slur"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start",
         "middle"
@@ -1181,6 +1191,8 @@ export const TANGO_WORLD: GenreWorld = {
         "rhythm-guitar",
         "drums"
       ],
+
+      "approaches": ["groove", "comping", "walking"],
       "instruments": [
         "piano",
         "electric-guitar",
@@ -1210,7 +1222,7 @@ export const TANGO_WORLD: GenreWorld = {
       "articulations": [
         "staccato-accent"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start",
         "middle",
@@ -1313,6 +1325,8 @@ export const TANGO_WORLD: GenreWorld = {
         "lead",
         "counterline"
       ],
+
+      "approaches": ["phrase"],
       "instruments": [
         "bandoneon",
         "sax",
@@ -1361,7 +1375,7 @@ export const TANGO_WORLD: GenreWorld = {
         "espressivo",
         "portamento"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start",
         "middle"
@@ -1475,6 +1489,7 @@ export const TANGO_WORLD: GenreWorld = {
       "name": "Bandoneon Chords",
       "family": "Bandoneon",
       "category": "fill",
+      "transitionType": "fill",
       "description": "Staccato chordal accents with marcato dynamic",
       "tags": [],
       "scopes": [
@@ -1484,6 +1499,8 @@ export const TANGO_WORLD: GenreWorld = {
         "bandoneon",
         "keys"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "bandoneon",
         "keys"
@@ -1509,7 +1526,7 @@ export const TANGO_WORLD: GenreWorld = {
         0.85,
         0.65
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -1605,6 +1622,7 @@ export const TANGO_WORLD: GenreWorld = {
       "name": "Violin Legato",
       "family": "Strings",
       "category": "break",
+      "transitionType": "fill",
       "description": "Smooth expressive legato melody phrasing.",
       "tags": [],
       "scopes": [
@@ -1614,6 +1632,8 @@ export const TANGO_WORLD: GenreWorld = {
         "violin",
         "strings"
       ],
+
+      "approaches": ["sustain"],
       "instruments": [
         "violin",
         "strings"
@@ -1633,7 +1653,7 @@ export const TANGO_WORLD: GenreWorld = {
         0.95,
         0.75
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -1717,6 +1737,7 @@ export const TANGO_WORLD: GenreWorld = {
       "name": "Piano Chumba",
       "family": "Piano",
       "category": "cadence",
+      "transitionType": "fill",
       "description": "Heavy bass anchor on beats 1",
       "tags": [],
       "scopes": [
@@ -1726,6 +1747,8 @@ export const TANGO_WORLD: GenreWorld = {
         "piano",
         "keys"
       ],
+
+      "approaches": ["comping"],
       "instruments": [
         "piano",
         "keys"
@@ -1751,7 +1774,7 @@ export const TANGO_WORLD: GenreWorld = {
         0.9,
         0.55
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -1857,6 +1880,8 @@ export const TANGO_WORLD: GenreWorld = {
       "roles": [
         "bass"
       ],
+
+      "approaches": ["walking"],
       "instruments": [
         "bass"
       ],
@@ -1878,7 +1903,7 @@ export const TANGO_WORLD: GenreWorld = {
         0.8,
         0.7
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -1980,6 +2005,8 @@ export const TANGO_WORLD: GenreWorld = {
       "roles": [
         "voice"
       ],
+
+      "approaches": ["phrase"],
       "instruments": [
         "voice"
       ],
@@ -2026,7 +2053,7 @@ export const TANGO_WORLD: GenreWorld = {
       "articulations": [
         "rubato-aware"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -2153,6 +2180,8 @@ export const TANGO_WORLD: GenreWorld = {
         "voice",
         "lead"
       ],
+
+      "approaches": ["phrase"],
       "instruments": [
         "guitar",
         "bass",
@@ -2204,7 +2233,7 @@ export const TANGO_WORLD: GenreWorld = {
       "articulations": [
         "rubato-aware"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "middle"
       ],
@@ -2383,6 +2412,8 @@ export const TANGO_WORLD: GenreWorld = {
       "roles": [
         "bass"
       ],
+
+      "approaches": ["walking"],
       "instruments": [
         "bass"
       ],
@@ -2429,7 +2460,7 @@ export const TANGO_WORLD: GenreWorld = {
       "articulations": [
         "rubato-aware"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start",
         "middle"
@@ -2556,6 +2587,8 @@ export const TANGO_WORLD: GenreWorld = {
       "roles": [
         "harmony"
       ],
+
+      "approaches": ["comping"],
       "instruments": [
         "guitar",
         "piano"
@@ -2604,7 +2637,7 @@ export const TANGO_WORLD: GenreWorld = {
       "articulations": [
         "rubato-aware"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "middle"
       ],
@@ -2731,6 +2764,8 @@ export const TANGO_WORLD: GenreWorld = {
         "harmony",
         "texture"
       ],
+
+      "approaches": ["comping"],
       "instruments": [
         "guitar",
         "piano"
@@ -2777,7 +2812,7 @@ export const TANGO_WORLD: GenreWorld = {
       "articulations": [
         "rubato-aware"
       ],
-      "density": "dynamic",
+      "supportedEnergy": [1, 2, 3, 4, 5],
       "phrasePosition": [
         "start"
       ],
@@ -2940,6 +2975,8 @@ export const TANGO_WORLD: GenreWorld = {
         "rhythm-guitar",
         "drums"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "drums",
         "percussion",
@@ -2989,7 +3026,7 @@ export const TANGO_WORLD: GenreWorld = {
       "articulations": [
         "rubato-aware"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "middle"
       ],

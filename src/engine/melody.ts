@@ -1,5 +1,6 @@
-import { KeyInfo, ParsedChord, pcOf, nearestPc } from './theory';
+import { KeyInfo, ParsedChord, pcOf, nearestPc, scalePcsForMode } from './theory';
 import { VoiceProfile, foldToRange } from './instrumentProfile';
+import type { RhythmicContext } from './grid';
 import { rand01 } from './groove';
 import { resolveStyle } from '../data/styles';
 
@@ -31,31 +32,7 @@ export interface StyleMotifShape {
   weights?: number[];
 }
 
-export const SCALE_MODE_INTERVALS: Record<string, number[]> = {
-  'major': [0, 2, 4, 5, 7, 9, 11],
-  'ionian': [0, 2, 4, 5, 7, 9, 11],
-  'natural-minor': [0, 2, 3, 5, 7, 8, 10],
-  'aeolian': [0, 2, 3, 5, 7, 8, 10],
-  'harmonic-minor': [0, 2, 3, 5, 7, 8, 11],
-  'melodic-minor': [0, 2, 3, 5, 7, 9, 11],
-  'dorian': [0, 2, 3, 5, 7, 9, 10],
-  'phrygian': [0, 1, 3, 5, 7, 8, 10],
-  'phrygian-dominant': [0, 1, 4, 5, 7, 8, 10],
-  'flamenco': [0, 1, 4, 5, 7, 8, 10],
-  'lydian': [0, 2, 4, 6, 7, 9, 11],
-  'mixolydian': [0, 2, 4, 5, 7, 9, 10],
-  'locrian': [0, 1, 3, 5, 6, 8, 10],
-  'blues': [0, 3, 5, 6, 7, 10],
-  'minor-blues': [0, 3, 5, 6, 7, 10],
-  'major-blues': [0, 2, 3, 4, 7, 9],
-  'minor-pentatonic': [0, 3, 5, 7, 10],
-  'minor-pentatonic-jazz': [0, 3, 5, 7, 10],
-  'major-pentatonic': [0, 2, 4, 7, 9],
-  'pentatonic-major': [0, 2, 4, 7, 9],
-  'bebop-dominant': [0, 2, 4, 5, 7, 9, 10, 11],
-  'altered': [0, 1, 3, 4, 6, 8, 10],
-  'whole-tone': [0, 2, 4, 6, 8, 10],
-};
+export { SCALE_MODE_INTERVALS } from './theory';
 
 export const STYLE_SHAPES: StyleMotifShape[] = [
   // Piazzolla 3+3+2 additive syncopations
@@ -320,7 +297,7 @@ export function treatmentFor(
     case 'solo':
     case 'lead-break':
     case 'improvisation':
-      return 'free';
+      return 'solo';
 
     case 'intro':
     case 'breakdown':
@@ -370,12 +347,56 @@ export interface MelodyContext {
   chordToneTargeting?: boolean;
   /** Whether call-and-response alternating gates apply */
   callAndResponse?: boolean;
+  /** Arrangement spotlight state. Improvisation grammar is only activated for a true spotlight. */
+  spotlit?: boolean;
   /** Heterophonic doubling mode */
   heterophonic?: boolean;
-  /** Density setting */
-  density?: 'sparse' | 'normal' | 'busy';
+  /**
+   * The part's weight in this section, 1..5. Biases how often the phrase
+   * speaks: a weight-1 melody leaves room, a weight-5 melody fills it.
+   */
+  energy?: 1 | 2 | 3 | 4 | 5;
   /** Track previous leap distance for cantabile recovery */
   wasLeap?: boolean;
+}
+
+type ImprovisationStage = 'state' | 'rest' | 'repeat-transpose' | 'rapid-run';
+
+function soloGrammar(c: MelodyContext) {
+  if (!c.spotlit || c.treatment !== 'solo' || String(c.sectionKind ?? '').toLowerCase() !== 'solo' || !c.styleId) return undefined;
+  try {
+    return resolveStyle({ styleId: c.styleId }).contract.improvisationGrammar;
+  } catch {
+    return undefined;
+  }
+}
+
+function soloStage(c: MelodyContext, phraseBars: number, stages: ImprovisationStage[]): ImprovisationStage {
+  const ordered: ImprovisationStage[] = stages.length ? stages : ['state', 'rest', 'repeat-transpose', 'rapid-run'];
+  const phrasePos = (c.barInPhrase + c.beatInBar / c.beatsPerBar) / Math.max(1, phraseBars);
+  const index = Math.min(ordered.length - 1, Math.floor(Math.max(0, Math.min(0.9999, phrasePos)) * ordered.length));
+  return ordered[index];
+}
+
+function isBeatOne(c: MelodyContext): boolean {
+  return Math.abs(c.beatInBar) < 0.16;
+}
+
+function chordTargetForStrategy(c: MelodyContext, strategy: string, target: number): number {
+  const chordPcs = c.chord.intervals.map(iv => pcOf(c.chord.rootPc + iv));
+  if (!chordPcs.length) return target;
+  const lower = strategy.toLowerCase();
+  const candidates = lower.includes('root-or-fifth')
+    ? [pcOf(c.chord.rootPc), pcOf(c.chord.rootPc + 7)]
+    : chordPcs;
+  let best = target;
+  let bestDist = Infinity;
+  for (const cp of candidates) {
+    const cand = nearestPc(cp, target);
+    const d = Math.abs(cand - target);
+    if (d < bestDist) { bestDist = d; best = cand; }
+  }
+  return best;
 }
 
 export function melodyGate(c: MelodyContext): boolean {
@@ -398,26 +419,41 @@ export function melodyGate(c: MelodyContext): boolean {
     if (rand01(c.seed) > 0.34 + c.intensity * 0.26) return false;
   }
 
-  // Density multipliers
-  const densityThreshold = c.density === 'sparse' ? 0.25 : (c.density === 'busy' ? -0.15 : 0);
+  // Part weight shifts every gate threshold in the same direction: a light
+  // part has to clear a higher bar before it plays, a heavy one a lower.
+  const energy = c.energy ?? 3;
+  const energyThreshold = energy <= 2 ? 0.25 : (energy >= 4 ? -0.15 : 0);
+
+  const grammar = soloGrammar(c);
+  if (grammar) {
+    const phraseBars = grammar.phraseBars ?? c.motif.phraseBars ?? 4;
+    const stage = soloStage(c, phraseBars, grammar.phraseStages);
+    if (stage === 'rest') {
+      // A real rest: only allow a very occasional pickup so the phrase breathes.
+      return rand01(c.seed ^ 0x7a11) > 0.90 && c.beatInBar >= c.beatsPerBar - 0.5;
+    }
+    if (stage === 'rapid-run') return true;
+    if (stage === 'repeat-transpose') return nearMotif(c, 0.95) || rand01(c.seed ^ 0x71a3) > 0.55;
+    return nearMotif(c, 0.95) || rand01(c.seed ^ 0x1f2b) > 0.58;
+  }
 
   switch (c.treatment) {
     case 'fragment':
-      return nearMotif(c, 0.9) || rand01(c.seed ^ 0x2a) > (0.82 + densityThreshold);
+      return nearMotif(c, 0.9) || rand01(c.seed ^ 0x2a) > (0.82 + energyThreshold);
     case 'tag':
       return phrasePos > c.motif.span / c.beatsPerBar - 1.5 || rand01(c.seed) > 0.9;
     case 'free':
     case 'solo':
-      return rand01(c.seed ^ 0x9f) > Math.max(0.05, 0.22 - c.intensity * 0.12 + densityThreshold);
+      return rand01(c.seed ^ 0x9f) > Math.max(0.05, 0.22 - c.intensity * 0.12 + energyThreshold);
     case 'lift':
-      return nearMotif(c, 0.8) || rand01(c.seed ^ 0x13) > Math.max(0.1, 0.5 - c.intensity * 0.2 + densityThreshold);
+      return nearMotif(c, 0.8) || rand01(c.seed ^ 0x13) > Math.max(0.1, 0.5 - c.intensity * 0.2 + energyThreshold);
     case 'answer':
-      return nearMotif(c, 0.8) || rand01(c.seed ^ 0x71) > Math.max(0.1, 0.6 + densityThreshold);
+      return nearMotif(c, 0.8) || rand01(c.seed ^ 0x71) > Math.max(0.1, 0.6 + energyThreshold);
     case 'call-response':
-      return nearMotif(c, 0.75) || rand01(c.seed ^ 0x33) > Math.max(0.1, 0.5 + densityThreshold);
+      return nearMotif(c, 0.75) || rand01(c.seed ^ 0x33) > Math.max(0.1, 0.5 + energyThreshold);
     case 'state':
     default:
-      return nearMotif(c, 0.85) || rand01(c.seed ^ 0x45) > Math.max(0.1, 0.66 + densityThreshold);
+      return nearMotif(c, 0.85) || rand01(c.seed ^ 0x45) > Math.max(0.1, 0.66 + energyThreshold);
   }
 }
 
@@ -426,7 +462,7 @@ function nearMotif(c: MelodyContext, tolerance: number): boolean {
   return c.motif.notes.some(n => Math.abs(n.pos - pos) <= tolerance);
 }
 
-export function melodyNote(c: MelodyContext): { note: number; isLeap: boolean } {
+export function melodyNote(c: MelodyContext): { note: number; isLeap: boolean; rapidRun?: boolean; rapidRunScalePcs?: number[] } {
   const pos = c.barInPhrase * c.beatsPerBar + c.beatInBar;
 
   let governing = c.motif.notes[0] ?? { pos: 0, degree: 0, weight: 1 };
@@ -446,9 +482,24 @@ export function melodyNote(c: MelodyContext): { note: number; isLeap: boolean } 
       degree = 4 - degree;
       break;
     case 'free':
+      degree += Math.round((rand01(c.seed) - 0.5) * 5);
+      break;
     case 'solo': {
-      const drift = Math.round((rand01(c.seed) - 0.5) * 5);
-      degree += drift;
+      const grammar = soloGrammar(c);
+      if (grammar) {
+        const phraseBars = grammar.phraseBars ?? c.motif.phraseBars ?? 4;
+        const stage = soloStage(c, phraseBars, grammar.phraseStages);
+        if (stage === 'repeat-transpose') {
+          degree += grammar.transposeDegrees ?? 2;
+        } else if (stage === 'rapid-run') {
+          const phrasePos = (c.barInPhrase + c.beatInBar / c.beatsPerBar) / Math.max(1, phraseBars);
+          const runPos = Math.max(0, Math.min(0.999, (phrasePos - 0.75) / 0.25));
+          degree = Math.round((runPos * 7) + (c.motif.notes[0]?.degree ?? 0));
+        }
+      } else {
+        // Non-spotlit/non-solo callers retain the old free treatment behavior.
+        degree += Math.round((rand01(c.seed) - 0.5) * 5);
+      }
       break;
     }
     case 'fragment':
@@ -466,14 +517,18 @@ export function melodyNote(c: MelodyContext): { note: number; isLeap: boolean } 
   }
 
   // Scale resolution
+  const grammar = soloGrammar(c);
   let scale = c.pitchSet?.length ? c.pitchSet : c.key.pcs;
   if (!c.pitchSet?.length && c.styleId) {
     try {
       const resolved = resolveStyle({ styleId: c.styleId! });
-      if (resolved.melody?.pitchIntervals?.length) {
+      const mode = grammar?.scaleMode ?? resolved.melody?.scaleMode;
+      if (grammar?.scaleMode) {
+        scale = scalePcsForMode(grammar.scaleMode, c.key.tonicPc);
+      } else if (resolved.melody?.pitchIntervals?.length) {
         scale = resolved.melody.pitchIntervals.map(iv => (c.key.tonicPc + iv) % 12);
-      } else if (resolved.melody?.scaleMode && SCALE_MODE_INTERVALS[resolved.melody.scaleMode]) {
-        scale = SCALE_MODE_INTERVALS[resolved.melody.scaleMode].map(iv => (c.key.tonicPc + iv) % 12);
+      } else if (mode) {
+        scale = scalePcsForMode(mode, c.key.tonicPc);
       }
     } catch {
       // fallback
@@ -491,18 +546,16 @@ export function melodyNote(c: MelodyContext): { note: number; isLeap: boolean } 
   const onChordChange = c.beatInBar < 0.3;
   const shouldTargetChord = c.snapToChord !== false && (c.chordToneTargeting !== false) && (isStrongBeat || onChordChange);
 
-  if (shouldTargetChord) {
-    const chordPcs = c.chord.intervals.map(iv => pcOf(c.chord.rootPc + iv));
-    if (!chordPcs.includes(pcOf(target))) {
-      let bestNote = target, bestDist = Infinity;
-      for (const cp of chordPcs) {
-        const cand = nearestPc(cp, target);
-        const d = Math.abs(cand - target);
-        if (d < bestDist) { bestDist = d; bestNote = cand; }
-      }
-      if (bestDist <= 2 || onChordChange) {
-        target = bestNote;
-      }
+  if (shouldTargetChord || (grammar && isBeatOne(c))) {
+    const strategy = grammar?.targetToneStrategy ?? 'chord-tone-on-beat-1';
+    const desired = chordTargetForStrategy(c, strategy, target);
+    const desiredDist = Math.abs(desired - target);
+    if (desiredDist <= 4 || onChordChange || isBeatOne(c)) target = desired;
+
+    // Jazz-style chromatic enclosure: on the attack immediately before a strong
+    // target, approach it from a semitone below rather than wandering randomly.
+    if (grammar && /enclosure/i.test(strategy + ' ' + grammar.scaleMode) && c.beatInBar > 0 && c.beatInBar < 1.0 && rand01(c.seed ^ 0xace1) > 0.35) {
+      target = desired - 1;
     }
   }
 
@@ -548,7 +601,41 @@ export function melodyNote(c: MelodyContext): { note: number; isLeap: boolean } 
   if (Math.abs(drift) > 12) target -= Math.sign(drift) * 12;
 
   const folded = foldToRange(target, c.profile);
-  return { note: folded, isLeap };
+  const rapidRun = !!grammar && soloStage(c, grammar.phraseBars ?? c.motif.phraseBars ?? 4, grammar.phraseStages) === 'rapid-run';
+  return { note: folded, isLeap, rapidRun, rapidRunScalePcs: grammar ? scale : undefined };
+}
+
+export interface PitchBendPoint { offset: number; value: number; }
+
+/** Genre-native expressive pitch idioms. Values use MIDI's 14-bit bend range. */
+export function melodyPitchBend(c: {
+  midi: number; context: RhythmicContext; profile: VoiceProfile; genreId?: string; role: string;
+  chord: ParsedChord; key: KeyInfo; seed: number;
+}): PitchBendPoint[] | undefined {
+  const genre = (c.genreId ?? '').toLowerCase();
+  const isBluesRock = /blues|rock/.test(genre);
+  const transition = c.context.transition;
+  if (transition?.type === 'drop-out' || transition?.type === 'corte') {
+    const bend = 8192 - 1500;
+    return [
+      { offset: 0, value: 8192 },
+      { offset: 0.45, value: bend },
+      { offset: 0.85, value: 8192 },
+    ];
+  }
+  if ((c.role === 'lead' || c.role === 'melody') && isBluesRock && rand01(c.seed ^ 0xb31e) > 0.72) {
+    const minorThirdPc = (c.key.tonicPc + 3) % 12;
+    if (((c.midi % 12) + 12) % 12 === minorThirdPc) {
+      // About +0.35 semitone with the common ±2-semitone pitch-bend range.
+      const up = 8192 + 720;
+      return [
+        { offset: 0, value: 8192 },
+        { offset: 0.28, value: up },
+        { offset: 0.7, value: 8192 },
+      ];
+    }
+  }
+  return undefined;
 }
 
 export interface StyleOrnamentNote {
@@ -568,6 +655,7 @@ export function generateStyleOrnaments(
   _scalePcs: number[],
   profile: VoiceProfile,
   seed: number,
+  rapidRun = false,
 ): StyleOrnamentNote[] {
   if (!ornamentVocab || ornamentVocab.length === 0) return [];
   const out: StyleOrnamentNote[] = [];
@@ -576,6 +664,32 @@ export function generateStyleOrnaments(
 
   const roll = rand01(seed ^ 0xfe41);
   const isStrongBeat = Math.abs(targetBeat - Math.round(targetBeat)) < 0.12 && (Math.round(targetBeat) % 2 === 0);
+
+  // The final macro-phrase stage can request a compact scalar run into the
+  // resolved target. This is deliberately generated here so it uses the same
+  // style ornament vocabulary/performance path as other expressive gestures.
+  if (rapidRun && (vocab.has('rapid-run') || vocab.has('run') || vocab.has('scalar-run'))) {
+    const sorted = Array.from(new Set(_scalePcs.map(pc => ((pc % 12) + 12) % 12)));
+    let cursor = targetMidi;
+    const run: number[] = [];
+    for (let i = 0; i < 3; i++) {
+      let best = cursor - 1;
+      let bestDist = Infinity;
+      for (const pc of sorted) {
+        const cand = nearestPc(pc, cursor - 1);
+        if (cand < cursor && cursor - cand < bestDist) { best = cand; bestDist = cursor - cand; }
+      }
+      run.unshift(best);
+      cursor = best;
+    }
+    run.forEach((midi, i) => out.push({
+      midi: foldToRange(midi, profile),
+      timeOffsetBeats: -0.30 + i * 0.10,
+      durBeats: 0.07,
+      velocityMult: 0.42 + i * 0.06,
+    }));
+    return out;
+  }
 
   // Arrastre (Tango drag into downbeat)
   if ((vocab.has('arrastre') || /arrastre/.test(art)) && (isStrongBeat || /arrastre/.test(art))) {

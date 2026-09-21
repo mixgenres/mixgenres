@@ -231,6 +231,8 @@ export const TIMBA_WORLD: GenreWorld = {
         "piano",
         "keyboard"
       ],
+
+      "approaches": ["comping"],
       "instruments": [
         "piano",
         "keys"
@@ -281,7 +283,7 @@ export const TIMBA_WORLD: GenreWorld = {
         0.9,
         1
       ],
-      "density": "dynamic",
+      "supportedEnergy": [1, 2, 3, 4, 5],
       "phrasePosition": [
         "start",
         "middle"
@@ -456,6 +458,7 @@ export const TIMBA_WORLD: GenreWorld = {
       "name": "Songo Drum Kit & Cowbell Groove (Changuito / Los Van Van)",
       "family": "Songo Drumming",
       "category": "fill",
+      "transitionType": "fill",
       "description": "Changuito’s revolutionary drum groove combining foot",
       "tags": [
         "songo",
@@ -476,6 +479,8 @@ export const TIMBA_WORLD: GenreWorld = {
         "percussion",
         "pulse"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "drums",
         "timbales",
@@ -514,7 +519,7 @@ export const TIMBA_WORLD: GenreWorld = {
         0.95,
         0.6
       ],
-      "density": "dense",
+      "supportedEnergy": [4, 5],
       "phrasePosition": [
         "start",
         "middle"
@@ -643,6 +648,8 @@ export const TIMBA_WORLD: GenreWorld = {
         "bass",
         "pulse"
       ],
+
+      "approaches": ["walking", "groove"],
       "instruments": [
         "bass",
         "synth"
@@ -674,7 +681,7 @@ export const TIMBA_WORLD: GenreWorld = {
         0.9,
         0.85
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start",
         "middle"
@@ -772,6 +779,7 @@ export const TIMBA_WORLD: GenreWorld = {
       "name": "Timba Conga Gear",
       "family": "Conga",
       "category": "break",
+      "transitionType": "fill",
       "description": "Dense modern timba conga pattern with",
       "tags": [],
       "scopes": [
@@ -780,6 +788,8 @@ export const TIMBA_WORLD: GenreWorld = {
       "roles": [
         "percussion"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "percussion"
       ],
@@ -816,7 +826,7 @@ export const TIMBA_WORLD: GenreWorld = {
         0.55,
         0.85
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -936,6 +946,7 @@ export const TIMBA_WORLD: GenreWorld = {
       "name": "Bata Fusion",
       "family": "Percussion",
       "category": "cadence",
+      "transitionType": "fill",
       "description": "Bata drum accents blended into drumkit",
       "tags": [],
       "scopes": [
@@ -944,6 +955,8 @@ export const TIMBA_WORLD: GenreWorld = {
       "roles": [
         "percussion"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "percussion"
       ],
@@ -971,7 +984,7 @@ export const TIMBA_WORLD: GenreWorld = {
         0.75,
         0.9
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -1082,6 +1095,8 @@ export const TIMBA_WORLD: GenreWorld = {
         "bass",
         "synth"
       ],
+
+      "approaches": ["walking"],
       "instruments": [
         "synth",
         "bass"
@@ -1107,7 +1122,7 @@ export const TIMBA_WORLD: GenreWorld = {
         0.8,
         0.9
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -1213,6 +1228,8 @@ export const TIMBA_WORLD: GenreWorld = {
         "piano",
         "keys"
       ],
+
+      "approaches": ["comping"],
       "instruments": [
         "piano",
         "keys"
@@ -1244,7 +1261,7 @@ export const TIMBA_WORLD: GenreWorld = {
         0.9,
         0.75
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -1360,6 +1377,8 @@ export const TIMBA_WORLD: GenreWorld = {
       "roles": [
         "drums"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "drums"
       ],
@@ -1378,7 +1397,7 @@ export const TIMBA_WORLD: GenreWorld = {
         0.95,
         0.8
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -1471,6 +1490,8 @@ export const TIMBA_WORLD: GenreWorld = {
         "brass",
         "trumpet"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "brass",
         "trumpet"
@@ -1499,7 +1520,7 @@ export const TIMBA_WORLD: GenreWorld = {
         0.85,
         0.9
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -1607,6 +1628,8 @@ export const TIMBA_WORLD: GenreWorld = {
       "roles": [
         "percussion"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "percussion"
       ],
@@ -1634,7 +1657,7 @@ export const TIMBA_WORLD: GenreWorld = {
         0.9,
         0.85
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -1746,6 +1769,8 @@ export const TIMBA_WORLD: GenreWorld = {
       "roles": [
         "bass"
       ],
+
+      "approaches": ["walking"],
       "instruments": [
         "bass"
       ],
@@ -1770,7 +1795,7 @@ export const TIMBA_WORLD: GenreWorld = {
         0.9,
         0.95
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "middle",
         "end"
@@ -1881,6 +1906,8 @@ export const TIMBA_WORLD: GenreWorld = {
       "roles": [
         "voice"
       ],
+
+      "approaches": ["phrase"],
       "instruments": [
         "voice"
       ],
@@ -1928,7 +1955,7 @@ export const TIMBA_WORLD: GenreWorld = {
         "breath",
         "phrase-end"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -2055,6 +2082,8 @@ export const TIMBA_WORLD: GenreWorld = {
       "roles": [
         "voice"
       ],
+
+      "approaches": ["phrase"],
       "instruments": [
         "voice"
       ],
@@ -2102,7 +2131,7 @@ export const TIMBA_WORLD: GenreWorld = {
         "breath",
         "phrase-end"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "middle"
       ],
@@ -2282,6 +2311,8 @@ export const TIMBA_WORLD: GenreWorld = {
       "roles": [
         "bass"
       ],
+
+      "approaches": ["walking"],
       "instruments": [
         "bass"
       ],
@@ -2329,7 +2360,7 @@ export const TIMBA_WORLD: GenreWorld = {
         "accented",
         "ghost-aware"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start",
         "middle"
@@ -2457,6 +2488,8 @@ export const TIMBA_WORLD: GenreWorld = {
       "roles": [
         "harmony"
       ],
+
+      "approaches": ["comping"],
       "instruments": [
         "piano"
       ],
@@ -2504,7 +2537,7 @@ export const TIMBA_WORLD: GenreWorld = {
         "accented",
         "ghost-aware"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "middle"
       ],
@@ -2632,6 +2665,8 @@ export const TIMBA_WORLD: GenreWorld = {
         "harmony",
         "texture"
       ],
+
+      "approaches": ["comping"],
       "instruments": [
         "piano"
       ],
@@ -2677,7 +2712,7 @@ export const TIMBA_WORLD: GenreWorld = {
         "accented",
         "ghost-aware"
       ],
-      "density": "dense",
+      "supportedEnergy": [4, 5],
       "phrasePosition": [
         "start"
       ],
@@ -2839,6 +2874,8 @@ export const TIMBA_WORLD: GenreWorld = {
       "roles": [
         "voice"
       ],
+
+      "approaches": ["phrase"],
       "instruments": [
         "voice"
       ],
@@ -2883,7 +2920,7 @@ export const TIMBA_WORLD: GenreWorld = {
         "breath",
         "phrase-end"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start",
         "middle"

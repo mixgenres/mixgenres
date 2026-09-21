@@ -733,6 +733,7 @@ export const BLUES_WORLD: GenreWorld = {
       "name": "Chicago Shuffle",
       "family": "Shuffle",
       "category": "fill",
+      "transitionType": "fill",
       "description": "A repeating triplet-derived blues pulse with",
       "tags": [
         "blues",
@@ -751,6 +752,8 @@ export const BLUES_WORLD: GenreWorld = {
         "percussion",
         "pulse"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "drums",
         "percussion"
@@ -782,7 +785,7 @@ export const BLUES_WORLD: GenreWorld = {
         0.9,
         0.65
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start",
         "middle"
@@ -903,6 +906,8 @@ export const BLUES_WORLD: GenreWorld = {
         "bass",
         "pulse"
       ],
+
+      "approaches": ["walking", "groove"],
       "instruments": [
         "bass",
         "piano"
@@ -940,7 +945,7 @@ export const BLUES_WORLD: GenreWorld = {
         0.85,
         0.55
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start",
         "middle"
@@ -1059,6 +1064,7 @@ export const BLUES_WORLD: GenreWorld = {
       "name": "12-Bar Turnaround",
       "family": "Turnaround",
       "category": "cadence",
+      "transitionType": "fill",
       "description": "A compact cadence in the final",
       "tags": [
         "blues",
@@ -1076,6 +1082,8 @@ export const BLUES_WORLD: GenreWorld = {
         "rhythm-guitar",
         "melody"
       ],
+
+      "approaches": ["comping", "phrase"],
       "instruments": [
         "electric-guitar",
         "guitar",
@@ -1114,7 +1122,7 @@ export const BLUES_WORLD: GenreWorld = {
         0.65,
         1
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "end"
       ],
@@ -1282,6 +1290,7 @@ export const BLUES_WORLD: GenreWorld = {
       "name": "Slow 12/8 Groove",
       "family": "Drums",
       "category": "break",
+      "transitionType": "fill",
       "description": "Slow heavy triplet feel with snare",
       "tags": [],
       "scopes": [
@@ -1290,6 +1299,8 @@ export const BLUES_WORLD: GenreWorld = {
       "roles": [
         "drums"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "drums"
       ],
@@ -1314,7 +1325,7 @@ export const BLUES_WORLD: GenreWorld = {
         0.9,
         0.65
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -1419,6 +1430,8 @@ export const BLUES_WORLD: GenreWorld = {
         "guitar",
         "electric-guitar"
       ],
+
+      "approaches": ["chop"],
       "instruments": [
         "guitar",
         "electric-guitar"
@@ -1456,7 +1469,7 @@ export const BLUES_WORLD: GenreWorld = {
         0.8,
         0.65
       ],
-      "density": "dynamic",
+      "supportedEnergy": [1, 2, 3, 4, 5],
       "phrasePosition": [
         "start"
       ],
@@ -1585,6 +1598,8 @@ export const BLUES_WORLD: GenreWorld = {
       "roles": [
         "drums"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "drums"
       ],
@@ -1609,7 +1624,7 @@ export const BLUES_WORLD: GenreWorld = {
         0.9,
         0.6
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -1714,6 +1729,8 @@ export const BLUES_WORLD: GenreWorld = {
       "roles": [
         "bass"
       ],
+
+      "approaches": ["walking"],
       "instruments": [
         "bass"
       ],
@@ -1738,7 +1755,7 @@ export const BLUES_WORLD: GenreWorld = {
         0.85,
         0.75
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -1843,6 +1860,8 @@ export const BLUES_WORLD: GenreWorld = {
         "piano",
         "keys"
       ],
+
+      "approaches": ["comping"],
       "instruments": [
         "piano",
         "keys"
@@ -1892,7 +1911,7 @@ export const BLUES_WORLD: GenreWorld = {
         0.55,
         0.7
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -2050,6 +2069,8 @@ export const BLUES_WORLD: GenreWorld = {
         "trumpet",
         "sax"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "brass",
         "trumpet",
@@ -2070,7 +2091,7 @@ export const BLUES_WORLD: GenreWorld = {
         0.85,
         0.95
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -2163,6 +2184,8 @@ export const BLUES_WORLD: GenreWorld = {
         "guitar",
         "electric-guitar"
       ],
+
+      "approaches": ["chop"],
       "instruments": [
         "guitar",
         "electric-guitar"
@@ -2191,7 +2214,7 @@ export const BLUES_WORLD: GenreWorld = {
         0.7,
         0.8
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -2299,6 +2322,8 @@ export const BLUES_WORLD: GenreWorld = {
       "roles": [
         "drums"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "drums"
       ],
@@ -2329,7 +2354,7 @@ export const BLUES_WORLD: GenreWorld = {
         0.6,
         0.8
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -2446,6 +2471,8 @@ export const BLUES_WORLD: GenreWorld = {
         "keys",
         "synth"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "keys",
         "synth"
@@ -2465,7 +2492,7 @@ export const BLUES_WORLD: GenreWorld = {
         0.7,
         0.9
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -2563,6 +2590,8 @@ export const BLUES_WORLD: GenreWorld = {
       "roles": [
         "voice"
       ],
+
+      "approaches": ["phrase"],
       "instruments": [
         "voice"
       ],
@@ -2610,7 +2639,7 @@ export const BLUES_WORLD: GenreWorld = {
         "breath",
         "phrase-end"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -2737,6 +2766,8 @@ export const BLUES_WORLD: GenreWorld = {
       "roles": [
         "voice"
       ],
+
+      "approaches": ["phrase"],
       "instruments": [
         "voice"
       ],
@@ -2784,7 +2815,7 @@ export const BLUES_WORLD: GenreWorld = {
         "breath",
         "phrase-end"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "middle"
       ],
@@ -2964,6 +2995,8 @@ export const BLUES_WORLD: GenreWorld = {
       "roles": [
         "bass"
       ],
+
+      "approaches": ["walking"],
       "instruments": [
         "bass"
       ],
@@ -3011,7 +3044,7 @@ export const BLUES_WORLD: GenreWorld = {
         "accented",
         "ghost-aware"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start",
         "middle"
@@ -3139,6 +3172,8 @@ export const BLUES_WORLD: GenreWorld = {
       "roles": [
         "harmony"
       ],
+
+      "approaches": ["comping"],
       "instruments": [
         "guitar",
         "piano"
@@ -3188,7 +3223,7 @@ export const BLUES_WORLD: GenreWorld = {
         "accented",
         "ghost-aware"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "middle"
       ],
@@ -3315,6 +3350,8 @@ export const BLUES_WORLD: GenreWorld = {
       "roles": [
         "voice"
       ],
+
+      "approaches": ["phrase"],
       "instruments": [
         "voice"
       ],
@@ -3359,7 +3396,7 @@ export const BLUES_WORLD: GenreWorld = {
         "breath",
         "phrase-end"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start",
         "middle"

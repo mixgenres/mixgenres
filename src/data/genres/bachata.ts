@@ -761,6 +761,8 @@ export const BACHATA_WORLD: GenreWorld = {
         "harmony",
         "melodic-guitar"
       ],
+
+      "approaches": ["phrase", "comping"],
       "instruments": [
         "guitar",
         "electric-guitar"
@@ -802,7 +804,7 @@ export const BACHATA_WORLD: GenreWorld = {
         "muted-thumb",
         "bright-pluck"
       ],
-      "density": "dense",
+      "supportedEnergy": [4, 5],
       "phrasePosition": [
         "start",
         "middle"
@@ -1001,6 +1003,8 @@ export const BACHATA_WORLD: GenreWorld = {
         "bass",
         "pulse"
       ],
+
+      "approaches": ["walking", "groove"],
       "instruments": [
         "bass",
         "piano"
@@ -1026,7 +1030,7 @@ export const BACHATA_WORLD: GenreWorld = {
         0.75,
         0.9
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start",
         "middle"
@@ -1122,6 +1126,7 @@ export const BACHATA_WORLD: GenreWorld = {
       "name": "Bass Derecho",
       "family": "Bass",
       "category": "fill",
+      "transitionType": "fill",
       "description": "Standard bachata bass on 1, 2-and,",
       "tags": [
         "bachata",
@@ -1134,6 +1139,8 @@ export const BACHATA_WORLD: GenreWorld = {
       "roles": [
         "bass"
       ],
+
+      "approaches": ["walking"],
       "instruments": [
         "bass"
       ],
@@ -1158,7 +1165,7 @@ export const BACHATA_WORLD: GenreWorld = {
         0.8,
         0.9
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -1294,6 +1301,7 @@ export const BACHATA_WORLD: GenreWorld = {
       "name": "Bass Majao",
       "family": "Bass",
       "category": "break",
+      "transitionType": "fill",
       "description": "Driving syncopated bass pattern for majao",
       "tags": [
         "bachata",
@@ -1306,6 +1314,8 @@ export const BACHATA_WORLD: GenreWorld = {
       "roles": [
         "bass"
       ],
+
+      "approaches": ["walking"],
       "instruments": [
         "bass"
       ],
@@ -1327,7 +1337,7 @@ export const BACHATA_WORLD: GenreWorld = {
         0.8,
         0.9
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -1452,6 +1462,7 @@ export const BACHATA_WORLD: GenreWorld = {
       "name": "Bongo Derecho",
       "family": "Bongo",
       "category": "cadence",
+      "transitionType": "fill",
       "description": "Martillo bongo pattern for verses with",
       "tags": [
         "bachata",
@@ -1464,6 +1475,8 @@ export const BACHATA_WORLD: GenreWorld = {
       "roles": [
         "percussion"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "percussion"
       ],
@@ -1500,7 +1513,7 @@ export const BACHATA_WORLD: GenreWorld = {
         0.95,
         0.6
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -1686,6 +1699,8 @@ export const BACHATA_WORLD: GenreWorld = {
       "roles": [
         "percussion"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "percussion"
       ],
@@ -1710,7 +1725,7 @@ export const BACHATA_WORLD: GenreWorld = {
         0.85,
         0.95
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -1822,6 +1837,8 @@ export const BACHATA_WORLD: GenreWorld = {
       "roles": [
         "percussion"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "percussion"
       ],
@@ -1882,7 +1899,7 @@ export const BACHATA_WORLD: GenreWorld = {
         0.8,
         0.55
       ],
-      "density": "dense",
+      "supportedEnergy": [4, 5],
       "phrasePosition": [
         "start"
       ],
@@ -2072,6 +2089,8 @@ export const BACHATA_WORLD: GenreWorld = {
       "roles": [
         "guitar"
       ],
+
+      "approaches": ["chop"],
       "instruments": [
         "guitar"
       ],
@@ -2096,7 +2115,7 @@ export const BACHATA_WORLD: GenreWorld = {
         0.82,
         0.96
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -2207,6 +2226,8 @@ export const BACHATA_WORLD: GenreWorld = {
       "roles": [
         "percussion"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "percussion"
       ],
@@ -2237,7 +2258,7 @@ export const BACHATA_WORLD: GenreWorld = {
         0.7,
         0.95
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -2359,6 +2380,8 @@ export const BACHATA_WORLD: GenreWorld = {
       "roles": [
         "drums"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "drums",
         "drums"
@@ -2408,7 +2431,7 @@ export const BACHATA_WORLD: GenreWorld = {
         "accented",
         "ghost-aware"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "middle"
       ],
@@ -2535,6 +2558,8 @@ export const BACHATA_WORLD: GenreWorld = {
       "roles": [
         "voice"
       ],
+
+      "approaches": ["phrase"],
       "instruments": [
         "voice"
       ],
@@ -2582,7 +2607,7 @@ export const BACHATA_WORLD: GenreWorld = {
         "breath",
         "phrase-end"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "middle"
       ],
@@ -2758,6 +2783,8 @@ export const BACHATA_WORLD: GenreWorld = {
       "roles": [
         "bass"
       ],
+
+      "approaches": ["walking"],
       "instruments": [
         "bass"
       ],
@@ -2805,7 +2832,7 @@ export const BACHATA_WORLD: GenreWorld = {
         "accented",
         "ghost-aware"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start",
         "middle"
@@ -2933,6 +2960,8 @@ export const BACHATA_WORLD: GenreWorld = {
       "roles": [
         "harmony"
       ],
+
+      "approaches": ["comping"],
       "instruments": [
         "guitar"
       ],
@@ -2980,7 +3009,7 @@ export const BACHATA_WORLD: GenreWorld = {
         "accented",
         "ghost-aware"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "middle"
       ],
@@ -3108,6 +3137,8 @@ export const BACHATA_WORLD: GenreWorld = {
         "harmony",
         "texture"
       ],
+
+      "approaches": ["comping"],
       "instruments": [
         "guitar"
       ],
@@ -3156,7 +3187,7 @@ export const BACHATA_WORLD: GenreWorld = {
         "accented",
         "ghost-aware"
       ],
-      "density": "dense",
+      "supportedEnergy": [4, 5],
       "phrasePosition": [
         "start"
       ],
@@ -3332,6 +3363,8 @@ export const BACHATA_WORLD: GenreWorld = {
         "rhythm-guitar",
         "drums"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "drums",
         "percussion",
@@ -3385,7 +3418,7 @@ export const BACHATA_WORLD: GenreWorld = {
         "accented",
         "ghost-aware"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "middle"
       ],
@@ -3513,6 +3546,8 @@ export const BACHATA_WORLD: GenreWorld = {
         "harmony",
         "drums"
       ],
+
+      "approaches": ["groove", "comping"],
       "instruments": [
         "drums",
         "percussion",
@@ -3566,7 +3601,7 @@ export const BACHATA_WORLD: GenreWorld = {
         "accented",
         "ghost-aware"
       ],
-      "density": "dynamic",
+      "supportedEnergy": [1, 2, 3, 4, 5],
       "phrasePosition": [
         "middle",
         "end"
@@ -3741,6 +3776,8 @@ export const BACHATA_WORLD: GenreWorld = {
       "roles": [
         "voice"
       ],
+
+      "approaches": ["phrase"],
       "instruments": [
         "voice"
       ],
@@ -3785,7 +3822,7 @@ export const BACHATA_WORLD: GenreWorld = {
         "breath",
         "phrase-end"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start",
         "middle"

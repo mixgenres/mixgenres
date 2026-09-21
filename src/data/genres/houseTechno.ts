@@ -641,6 +641,8 @@ export const HOUSE_TECHNO_WORLD: GenreWorld = {
       "roles": [
         "pulse"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "drums",
         "kick"
@@ -672,7 +674,7 @@ export const HOUSE_TECHNO_WORLD: GenreWorld = {
       "articulations": [
         "kick"
       ],
-      "density": "sparse",
+      "supportedEnergy": [1, 2],
       "phrasePosition": [
         "start",
         "middle",
@@ -762,6 +764,8 @@ export const HOUSE_TECHNO_WORLD: GenreWorld = {
       "roles": [
         "percussion"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "hats",
         "drums"
@@ -793,7 +797,7 @@ export const HOUSE_TECHNO_WORLD: GenreWorld = {
       "articulations": [
         "hat"
       ],
-      "density": "sparse",
+      "supportedEnergy": [1, 2],
       "phrasePosition": [
         "start",
         "middle",
@@ -881,6 +885,8 @@ export const HOUSE_TECHNO_WORLD: GenreWorld = {
       "roles": [
         "bass"
       ],
+
+      "approaches": ["walking"],
       "instruments": [
         "bass",
         "sub-bass"
@@ -918,7 +924,7 @@ export const HOUSE_TECHNO_WORLD: GenreWorld = {
       "articulations": [
         "short"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start",
         "middle",
@@ -1012,6 +1018,8 @@ export const HOUSE_TECHNO_WORLD: GenreWorld = {
       "roles": [
         "melody"
       ],
+
+      "approaches": ["phrase"],
       "instruments": [
         "polysynth",
         "saw-lead"
@@ -1055,7 +1063,7 @@ export const HOUSE_TECHNO_WORLD: GenreWorld = {
       "articulations": [
         "sequence"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start",
         "middle",
@@ -1156,6 +1164,8 @@ export const HOUSE_TECHNO_WORLD: GenreWorld = {
       "roles": [
         "bass"
       ],
+
+      "approaches": ["walking"],
       "instruments": [
         "bass-lead",
         "sub-bass"
@@ -1200,7 +1210,7 @@ export const HOUSE_TECHNO_WORLD: GenreWorld = {
         "slide",
         "accent"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start",
         "middle",
@@ -1299,6 +1309,8 @@ export const HOUSE_TECHNO_WORLD: GenreWorld = {
       "roles": [
         "pulse"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "kick",
         "drums"
@@ -1324,7 +1336,7 @@ export const HOUSE_TECHNO_WORLD: GenreWorld = {
       "articulations": [
         "four-on-floor"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "any"
       ],
@@ -1370,6 +1382,8 @@ export const HOUSE_TECHNO_WORLD: GenreWorld = {
       "roles": [
         "percussion"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "hats"
       ],
@@ -1390,7 +1404,7 @@ export const HOUSE_TECHNO_WORLD: GenreWorld = {
       "articulations": [
         "offbeat hat"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "any"
       ],
@@ -1435,6 +1449,8 @@ export const HOUSE_TECHNO_WORLD: GenreWorld = {
       "roles": [
         "bass"
       ],
+
+      "approaches": ["walking"],
       "instruments": [
         "bass",
         "sub-bass"
@@ -1460,7 +1476,7 @@ export const HOUSE_TECHNO_WORLD: GenreWorld = {
       "articulations": [
         "bass lock"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "any"
       ],
@@ -1506,6 +1522,8 @@ export const HOUSE_TECHNO_WORLD: GenreWorld = {
       "roles": [
         "harmony"
       ],
+
+      "approaches": ["comping"],
       "instruments": [
         "piano",
         "polysynth"
@@ -1532,7 +1550,7 @@ export const HOUSE_TECHNO_WORLD: GenreWorld = {
         "stab",
         " offbeat"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "any"
       ],
@@ -1579,6 +1597,8 @@ export const HOUSE_TECHNO_WORLD: GenreWorld = {
       "roles": [
         "melody"
       ],
+
+      "approaches": ["phrase"],
       "instruments": [
         "synth",
         "saw-lead"
@@ -1617,7 +1637,7 @@ export const HOUSE_TECHNO_WORLD: GenreWorld = {
         "Detroit",
         " sequence"
       ],
-      "density": "dense",
+      "supportedEnergy": [4, 5],
       "phrasePosition": [
         "middle"
       ],
@@ -1666,6 +1686,8 @@ export const HOUSE_TECHNO_WORLD: GenreWorld = {
       "roles": [
         "bass"
       ],
+
+      "approaches": ["walking"],
       "instruments": [
         "acid-303"
       ],
@@ -1709,7 +1731,7 @@ export const HOUSE_TECHNO_WORLD: GenreWorld = {
         "acid",
         " slide"
       ],
-      "density": "dense",
+      "supportedEnergy": [4, 5],
       "phrasePosition": [
         "middle"
       ],
@@ -1757,6 +1779,8 @@ export const HOUSE_TECHNO_WORLD: GenreWorld = {
       "roles": [
         "percussion"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "drums",
         "claves"
@@ -1779,7 +1803,7 @@ export const HOUSE_TECHNO_WORLD: GenreWorld = {
         "clap",
         " backbeat"
       ],
-      "density": "sparse",
+      "supportedEnergy": [1, 2],
       "phrasePosition": [
         "any"
       ],
@@ -1826,6 +1850,8 @@ export const HOUSE_TECHNO_WORLD: GenreWorld = {
       "roles": [
         "texture"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "saw-lead",
         "noise-sweep"
@@ -1860,7 +1886,7 @@ export const HOUSE_TECHNO_WORLD: GenreWorld = {
         "build",
         " automation"
       ],
-      "density": "dense",
+      "supportedEnergy": [4, 5],
       "phrasePosition": [
         "start",
         "end"
@@ -1893,6 +1919,7 @@ export const HOUSE_TECHNO_WORLD: GenreWorld = {
       "name": "Club Breakdown",
       "family": "Arrangement",
       "category": "break",
+      "transitionType": "fill",
       "description": "Remove kick and bass for a",
       "tags": [
         "breakdown",
@@ -1908,6 +1935,8 @@ export const HOUSE_TECHNO_WORLD: GenreWorld = {
       "roles": [
         "texture"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "warm-pad",
         "polysynth"
@@ -1932,7 +1961,7 @@ export const HOUSE_TECHNO_WORLD: GenreWorld = {
         "breakdown",
         " tension"
       ],
-      "density": "sparse",
+      "supportedEnergy": [1, 2],
       "phrasePosition": [
         "start",
         "end"
@@ -1979,6 +2008,8 @@ export const HOUSE_TECHNO_WORLD: GenreWorld = {
       "roles": [
         "pulse"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "kick",
         "bass",
@@ -2006,7 +2037,7 @@ export const HOUSE_TECHNO_WORLD: GenreWorld = {
         "drop",
         " re-entry"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],

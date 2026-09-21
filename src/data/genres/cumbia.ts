@@ -734,6 +734,8 @@ export const CUMBIA_WORLD: GenreWorld = {
       "roles": [
         "bass"
       ],
+
+      "approaches": ["walking"],
       "instruments": [
         "bass",
         "acoustic-bass"
@@ -771,7 +773,7 @@ export const CUMBIA_WORLD: GenreWorld = {
       "articulations": [
         "short"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start",
         "middle",
@@ -860,6 +862,8 @@ export const CUMBIA_WORLD: GenreWorld = {
       "roles": [
         "percussion"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "cumbia-drum"
       ],
@@ -896,7 +900,7 @@ export const CUMBIA_WORLD: GenreWorld = {
       "articulations": [
         "hand-drum"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start",
         "middle",
@@ -990,6 +994,8 @@ export const CUMBIA_WORLD: GenreWorld = {
       "roles": [
         "percussion"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "guacharaca"
       ],
@@ -1041,7 +1047,7 @@ export const CUMBIA_WORLD: GenreWorld = {
       "articulations": [
         "scrape"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start",
         "middle",
@@ -1142,6 +1148,8 @@ export const CUMBIA_WORLD: GenreWorld = {
       "roles": [
         "melody"
       ],
+
+      "approaches": ["phrase"],
       "instruments": [
         "electric-guitar",
         "guitar"
@@ -1185,7 +1193,7 @@ export const CUMBIA_WORLD: GenreWorld = {
       "articulations": [
         "tremolo"
       ],
-      "density": "dense",
+      "supportedEnergy": [4, 5],
       "phrasePosition": [
         "start",
         "middle",
@@ -1285,6 +1293,8 @@ export const CUMBIA_WORLD: GenreWorld = {
       "roles": [
         "harmony"
       ],
+
+      "approaches": ["comping"],
       "instruments": [
         "polysynth",
         "organ"
@@ -1319,7 +1329,7 @@ export const CUMBIA_WORLD: GenreWorld = {
       "articulations": [
         "staccato"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start",
         "middle",
@@ -1410,6 +1420,8 @@ export const CUMBIA_WORLD: GenreWorld = {
       "roles": [
         "bass"
       ],
+
+      "approaches": ["walking"],
       "instruments": [
         "bass"
       ],
@@ -1439,7 +1451,7 @@ export const CUMBIA_WORLD: GenreWorld = {
         "tumbao",
         " bass"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "any"
       ],
@@ -1486,6 +1498,8 @@ export const CUMBIA_WORLD: GenreWorld = {
       "roles": [
         "percussion"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "cumbia-drum"
       ],
@@ -1519,7 +1533,7 @@ export const CUMBIA_WORLD: GenreWorld = {
         "tambor",
         " call-response"
       ],
-      "density": "dense",
+      "supportedEnergy": [4, 5],
       "phrasePosition": [
         "any"
       ],
@@ -1566,6 +1580,8 @@ export const CUMBIA_WORLD: GenreWorld = {
       "roles": [
         "percussion"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "guacharaca"
       ],
@@ -1603,7 +1619,7 @@ export const CUMBIA_WORLD: GenreWorld = {
         "guacharaca",
         " scrape"
       ],
-      "density": "dense",
+      "supportedEnergy": [4, 5],
       "phrasePosition": [
         "any"
       ],
@@ -1650,6 +1666,8 @@ export const CUMBIA_WORLD: GenreWorld = {
       "roles": [
         "guitar"
       ],
+
+      "approaches": ["chop"],
       "instruments": [
         "electric-guitar",
         "guitar"
@@ -1676,7 +1694,7 @@ export const CUMBIA_WORLD: GenreWorld = {
         "offbeat guitar",
         " cumbia"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "any"
       ],
@@ -1723,6 +1741,8 @@ export const CUMBIA_WORLD: GenreWorld = {
       "roles": [
         "melody"
       ],
+
+      "approaches": ["phrase"],
       "instruments": [
         "electric-guitar"
       ],
@@ -1764,7 +1784,7 @@ export const CUMBIA_WORLD: GenreWorld = {
         "chicha",
         " tremolo"
       ],
-      "density": "dense",
+      "supportedEnergy": [4, 5],
       "phrasePosition": [
         "middle"
       ],
@@ -1812,6 +1832,8 @@ export const CUMBIA_WORLD: GenreWorld = {
       "roles": [
         "harmony"
       ],
+
+      "approaches": ["comping"],
       "instruments": [
         "organ"
       ],
@@ -1841,7 +1863,7 @@ export const CUMBIA_WORLD: GenreWorld = {
         "organ",
         " hook"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "any"
       ],
@@ -1887,6 +1909,8 @@ export const CUMBIA_WORLD: GenreWorld = {
       "roles": [
         "percussion"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "maracas"
       ],
@@ -1920,7 +1944,7 @@ export const CUMBIA_WORLD: GenreWorld = {
         "maracas",
         " texture"
       ],
-      "density": "dense",
+      "supportedEnergy": [4, 5],
       "phrasePosition": [
         "middle"
       ],
@@ -1966,6 +1990,8 @@ export const CUMBIA_WORLD: GenreWorld = {
       "roles": [
         "counterline"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "electric-guitar",
         "organ"
@@ -1999,7 +2025,7 @@ export const CUMBIA_WORLD: GenreWorld = {
       "articulations": [
         "call-response"
       ],
-      "density": "dense",
+      "supportedEnergy": [4, 5],
       "phrasePosition": [
         "middle",
         "end"
@@ -2031,6 +2057,7 @@ export const CUMBIA_WORLD: GenreWorld = {
       "name": "Cumbia Stop Break",
       "family": "Break",
       "category": "break",
+      "transitionType": "fill",
       "description": "Band cuts the scraper and bass",
       "tags": [
         "stop-time",
@@ -2046,6 +2073,8 @@ export const CUMBIA_WORLD: GenreWorld = {
       "roles": [
         "percussion"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "drums",
         "guiro"
@@ -2068,7 +2097,7 @@ export const CUMBIA_WORLD: GenreWorld = {
         "stop-time",
         " re-entry"
       ],
-      "density": "sparse",
+      "supportedEnergy": [1, 2],
       "phrasePosition": [
         "end"
       ],
@@ -2100,6 +2129,7 @@ export const CUMBIA_WORLD: GenreWorld = {
       "name": "Cumbia Final Tag",
       "family": "Cadence",
       "category": "cadence",
+      "transitionType": "fill",
       "description": "Compact percussion and bass tag to",
       "tags": [
         "tag",
@@ -2115,6 +2145,8 @@ export const CUMBIA_WORLD: GenreWorld = {
       "roles": [
         "fill"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "bass",
         "cumbia-drum"
@@ -2139,7 +2171,7 @@ export const CUMBIA_WORLD: GenreWorld = {
         "tag",
         " cadence"
       ],
-      "density": "sparse",
+      "supportedEnergy": [1, 2],
       "phrasePosition": [
         "end"
       ],

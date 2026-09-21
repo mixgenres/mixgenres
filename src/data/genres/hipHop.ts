@@ -719,6 +719,8 @@ export const HIP_HOP_WORLD: GenreWorld = {
       "roles": [
         "drums"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "drums"
       ],
@@ -746,7 +748,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
         0.9,
         0.7
       ],
-      "density": "dynamic",
+      "supportedEnergy": [1, 2, 3, 4, 5],
       "phrasePosition": [
         "start"
       ],
@@ -848,6 +850,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
       "name": "Syncopated Kick",
       "family": "Beat",
       "category": "fill",
+      "transitionType": "fill",
       "description": "Boom Bap with syncopated 16th kick",
       "tags": [
         "hip-hop",
@@ -859,6 +862,8 @@ export const HIP_HOP_WORLD: GenreWorld = {
       "roles": [
         "drums"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "drums"
       ],
@@ -889,7 +894,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
         0.7,
         0.95
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -997,6 +1002,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
       "name": "Trap Half-Time",
       "family": "Beat",
       "category": "break",
+      "transitionType": "fill",
       "description": "Basic half-time trap beat with booming",
       "tags": [
         "hip-hop",
@@ -1009,6 +1015,8 @@ export const HIP_HOP_WORLD: GenreWorld = {
         "drums",
         "bass"
       ],
+
+      "approaches": ["groove", "walking"],
       "instruments": [
         "drums",
         "bass"
@@ -1031,7 +1039,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
         0.9,
         0.75
       ],
-      "density": "sparse",
+      "supportedEnergy": [1, 2],
       "phrasePosition": [
         "start"
       ],
@@ -1119,6 +1127,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
       "name": "Trap Hi-Hats",
       "family": "Beat",
       "category": "cadence",
+      "transitionType": "fill",
       "description": "Continuous 16ths with 32nd note hi-hat",
       "tags": [
         "hip-hop",
@@ -1130,6 +1139,8 @@ export const HIP_HOP_WORLD: GenreWorld = {
       "roles": [
         "drums"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "drums"
       ],
@@ -1193,7 +1204,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
         0.75,
         0.55
       ],
-      "density": "dense",
+      "supportedEnergy": [4, 5],
       "phrasePosition": [
         "start"
       ],
@@ -1387,6 +1398,8 @@ export const HIP_HOP_WORLD: GenreWorld = {
       "roles": [
         "harmony"
       ],
+
+      "approaches": ["comping"],
       "instruments": [
         "keys"
       ],
@@ -1414,7 +1427,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
         0.85,
         0.65
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -1532,6 +1545,8 @@ export const HIP_HOP_WORLD: GenreWorld = {
       "roles": [
         "drums"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "drums"
       ],
@@ -1568,7 +1583,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
         0.9,
         0.65
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -1700,6 +1715,8 @@ export const HIP_HOP_WORLD: GenreWorld = {
       "roles": [
         "drums"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "drums"
       ],
@@ -1724,7 +1741,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
         0.9,
         0.75
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -1831,6 +1848,8 @@ export const HIP_HOP_WORLD: GenreWorld = {
       "roles": [
         "drums"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "drums"
       ],
@@ -1864,7 +1883,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
         0.78,
         0.92
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -1991,6 +2010,8 @@ export const HIP_HOP_WORLD: GenreWorld = {
       "roles": [
         "drums"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "drums"
       ],
@@ -2021,7 +2042,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
         0.75,
         0.8
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -2140,6 +2161,8 @@ export const HIP_HOP_WORLD: GenreWorld = {
       "roles": [
         "drums"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "drums"
       ],
@@ -2167,7 +2190,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
         0.9,
         0.7
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -2278,6 +2301,8 @@ export const HIP_HOP_WORLD: GenreWorld = {
       "roles": [
         "drums"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "drums"
       ],
@@ -2302,7 +2327,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
         0.75,
         0.8
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -2410,6 +2435,8 @@ export const HIP_HOP_WORLD: GenreWorld = {
         "drums",
         "bass"
       ],
+
+      "approaches": ["groove", "walking"],
       "instruments": [
         "drums",
         "bass"
@@ -2432,7 +2459,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
         0.8,
         0.85
       ],
-      "density": "sparse",
+      "supportedEnergy": [1, 2],
       "phrasePosition": [
         "start"
       ],
@@ -2539,6 +2566,8 @@ export const HIP_HOP_WORLD: GenreWorld = {
         "drums",
         "pulse"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "drums"
       ],
@@ -2575,7 +2604,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
         0.92,
         0.82
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start",
         "middle"
@@ -2715,6 +2744,8 @@ export const HIP_HOP_WORLD: GenreWorld = {
         "bass",
         "pulse"
       ],
+
+      "approaches": ["walking", "groove"],
       "instruments": [
         "bass",
         "synth"
@@ -2737,7 +2768,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
         0.8,
         0.85
       ],
-      "density": "sparse",
+      "supportedEnergy": [1, 2],
       "phrasePosition": [
         "start"
       ],
@@ -2840,6 +2871,8 @@ export const HIP_HOP_WORLD: GenreWorld = {
       "roles": [
         "voice"
       ],
+
+      "approaches": ["phrase"],
       "instruments": [
         "voice"
       ],
@@ -2884,7 +2917,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
         "breath",
         "phrase-end"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "middle"
       ],
@@ -3048,6 +3081,8 @@ export const HIP_HOP_WORLD: GenreWorld = {
       "roles": [
         "bass"
       ],
+
+      "approaches": ["walking"],
       "instruments": [
         "bass"
       ],
@@ -3092,7 +3127,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
         "accented",
         "ghost-aware"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start",
         "middle"
@@ -3213,6 +3248,8 @@ export const HIP_HOP_WORLD: GenreWorld = {
       "roles": [
         "voice"
       ],
+
+      "approaches": ["phrase"],
       "instruments": [
         "voice"
       ],
@@ -3256,7 +3293,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
         "breath",
         "phrase-end"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start",
         "middle"

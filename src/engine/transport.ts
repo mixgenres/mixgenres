@@ -7,8 +7,8 @@ export interface TransportSink {
   now(): number;
   noteOn(channel: number, midi: number, vel: number, time: number): void;
   noteOff(channel: number, midi: number, time: number): void;
+  pitchBend(channel: number, value: number, time: number): void;
   controlChange(channel: number, cc: number, value: number, time: number): void;
-  bankSelect(channel: number, bankMSB: number, bankLSB: number, time: number): void;
   programChange(channel: number, program: number, time: number): void;
   setDrumChannel(channel: number, isDrum: boolean): void;
   allNotesOff(): void;
@@ -139,7 +139,6 @@ export class Transport {
     for (const ch of this.perf.drumChannels) this.sink.setDrumChannel(ch, true);
     for (const p of this.perf.programs) {
       if (!p.drum) this.sink.setDrumChannel(p.channel, false);
-      if (!p.drum && (p.bankMSB !== undefined || p.bankLSB !== undefined)) this.sink.bankSelect(p.channel, p.bankMSB ?? 0, p.bankLSB ?? 0, t);
       this.sink.programChange(p.channel, p.program, t);
       this.channelsPrimed.add(p.channel);
     }
@@ -212,7 +211,16 @@ export class Transport {
     const now = this.sink.now();
     const targetOn = Math.max(now, at);
     const targetOff = Math.max(targetOn + 0.02, at + Math.max(0.02, n.dur));
+    // Pitch bend is channel-wide, so schedule the trajectory immediately before
+    // the note and always restore center at note-off.
+    if (n.pitchBend?.length) {
+      for (const point of n.pitchBend) {
+        const bendAt = Math.max(targetOn, at + Math.max(0, point.offset));
+        this.sink.pitchBend(n.channel, point.value, bendAt);
+      }
+    }
     this.sink.noteOn(n.channel, midi, vel, targetOn);
     this.sink.noteOff(n.channel, midi, targetOff);
+    if (n.pitchBend?.length) this.sink.pitchBend(n.channel, 8192, targetOff);
   }
 }

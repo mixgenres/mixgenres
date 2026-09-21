@@ -740,6 +740,8 @@ export const METAL_WORLD: GenreWorld = {
         "bass",
         "drums"
       ],
+
+      "approaches": ["comping", "walking", "groove"],
       "instruments": [
         "electric-guitar",
         "bass",
@@ -795,7 +797,7 @@ export const METAL_WORLD: GenreWorld = {
         "palm-mute",
         "down-pick"
       ],
-      "density": "dense",
+      "supportedEnergy": [4, 5],
       "phrasePosition": [
         "start",
         "middle"
@@ -957,6 +959,8 @@ export const METAL_WORLD: GenreWorld = {
         "rhythm-guitar",
         "bass"
       ],
+
+      "approaches": ["comping", "walking"],
       "instruments": [
         "electric-guitar",
         "bass"
@@ -993,7 +997,7 @@ export const METAL_WORLD: GenreWorld = {
         "tight-djent-mute",
         "percussive-strike"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start",
         "middle"
@@ -1087,6 +1091,7 @@ export const METAL_WORLD: GenreWorld = {
       "name": "Blast Beat",
       "family": "Drums",
       "category": "fill",
+      "transitionType": "fill",
       "description": "Extremely fast alternating kick and snare",
       "tags": [],
       "scopes": [
@@ -1095,6 +1100,8 @@ export const METAL_WORLD: GenreWorld = {
       "roles": [
         "drums"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "drums"
       ],
@@ -1155,7 +1162,7 @@ export const METAL_WORLD: GenreWorld = {
         0.9,
         0.8
       ],
-      "density": "dense",
+      "supportedEnergy": [4, 5],
       "phrasePosition": [
         "start"
       ],
@@ -1389,6 +1396,7 @@ export const METAL_WORLD: GenreWorld = {
       "name": "Breakdown Chug",
       "family": "Guitar",
       "category": "break",
+      "transitionType": "fill",
       "description": "Crushing, heavy, syncopated palm-muted chords.",
       "tags": [],
       "scopes": [
@@ -1398,6 +1406,8 @@ export const METAL_WORLD: GenreWorld = {
         "electric-guitar",
         "bass"
       ],
+
+      "approaches": ["walking"],
       "instruments": [
         "electric-guitar",
         "bass"
@@ -1432,7 +1442,7 @@ export const METAL_WORLD: GenreWorld = {
         0.8,
         0.9
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -1548,6 +1558,7 @@ export const METAL_WORLD: GenreWorld = {
       "name": "Djent Syncopation",
       "family": "Guitar",
       "category": "cadence",
+      "transitionType": "fill",
       "description": "Complex syncopated low-register chugging.",
       "tags": [],
       "scopes": [
@@ -1556,6 +1567,8 @@ export const METAL_WORLD: GenreWorld = {
       "roles": [
         "electric-guitar"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "electric-guitar"
       ],
@@ -1586,7 +1599,7 @@ export const METAL_WORLD: GenreWorld = {
         0.8,
         0.95
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -1705,6 +1718,8 @@ export const METAL_WORLD: GenreWorld = {
         "electric-guitar",
         "guitar"
       ],
+
+      "approaches": ["chop"],
       "instruments": [
         "electric-guitar",
         "guitar"
@@ -1742,7 +1757,7 @@ export const METAL_WORLD: GenreWorld = {
         0.7,
         0.65
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -1871,6 +1886,8 @@ export const METAL_WORLD: GenreWorld = {
       "roles": [
         "bass"
       ],
+
+      "approaches": ["walking"],
       "instruments": [
         "bass"
       ],
@@ -1919,7 +1936,7 @@ export const METAL_WORLD: GenreWorld = {
         0.65,
         0.8
       ],
-      "density": "dense",
+      "supportedEnergy": [4, 5],
       "phrasePosition": [
         "start"
       ],
@@ -2076,6 +2093,8 @@ export const METAL_WORLD: GenreWorld = {
       "roles": [
         "electric-guitar"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "electric-guitar"
       ],
@@ -2103,7 +2122,7 @@ export const METAL_WORLD: GenreWorld = {
         0.9,
         0.65
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -2212,6 +2231,8 @@ export const METAL_WORLD: GenreWorld = {
       "roles": [
         "electric-guitar"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "electric-guitar"
       ],
@@ -2248,7 +2269,7 @@ export const METAL_WORLD: GenreWorld = {
         0.85,
         0.75
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -2382,6 +2403,8 @@ export const METAL_WORLD: GenreWorld = {
       "roles": [
         "voice"
       ],
+
+      "approaches": ["phrase"],
       "instruments": [
         "voice"
       ],
@@ -2425,7 +2448,7 @@ export const METAL_WORLD: GenreWorld = {
       "articulations": [
         "muted"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -2544,6 +2567,8 @@ export const METAL_WORLD: GenreWorld = {
       "roles": [
         "voice"
       ],
+
+      "approaches": ["phrase"],
       "instruments": [
         "voice"
       ],
@@ -2587,7 +2612,7 @@ export const METAL_WORLD: GenreWorld = {
       "articulations": [
         "muted"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "middle"
       ],
@@ -2751,6 +2776,8 @@ export const METAL_WORLD: GenreWorld = {
       "roles": [
         "bass"
       ],
+
+      "approaches": ["walking"],
       "instruments": [
         "bass"
       ],
@@ -2794,7 +2821,7 @@ export const METAL_WORLD: GenreWorld = {
       "articulations": [
         "muted"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start",
         "middle"
@@ -2914,6 +2941,8 @@ export const METAL_WORLD: GenreWorld = {
       "roles": [
         "harmony"
       ],
+
+      "approaches": ["comping"],
       "instruments": [
         "guitar"
       ],
@@ -2957,7 +2986,7 @@ export const METAL_WORLD: GenreWorld = {
       "articulations": [
         "muted"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "middle"
       ],
@@ -3077,6 +3106,8 @@ export const METAL_WORLD: GenreWorld = {
         "harmony",
         "texture"
       ],
+
+      "approaches": ["comping"],
       "instruments": [
         "guitar"
       ],
@@ -3127,7 +3158,7 @@ export const METAL_WORLD: GenreWorld = {
       "articulations": [
         "muted"
       ],
-      "density": "dense",
+      "supportedEnergy": [4, 5],
       "phrasePosition": [
         "start"
       ],
@@ -3315,6 +3346,8 @@ export const METAL_WORLD: GenreWorld = {
         "rhythm-guitar",
         "drums"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "drums",
         "percussion",
@@ -3370,7 +3403,7 @@ export const METAL_WORLD: GenreWorld = {
       "articulations": [
         "muted"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "middle"
       ],
@@ -3502,6 +3535,8 @@ export const METAL_WORLD: GenreWorld = {
         "harmony",
         "drums"
       ],
+
+      "approaches": ["groove", "comping"],
       "instruments": [
         "drums",
         "percussion",
@@ -3557,7 +3592,7 @@ export const METAL_WORLD: GenreWorld = {
       "articulations": [
         "muted"
       ],
-      "density": "dynamic",
+      "supportedEnergy": [1, 2, 3, 4, 5],
       "phrasePosition": [
         "middle",
         "end"
@@ -3736,6 +3771,8 @@ export const METAL_WORLD: GenreWorld = {
       "roles": [
         "voice"
       ],
+
+      "approaches": ["phrase"],
       "instruments": [
         "voice"
       ],
@@ -3780,7 +3817,7 @@ export const METAL_WORLD: GenreWorld = {
         "breath",
         "phrase-end"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start",
         "middle"

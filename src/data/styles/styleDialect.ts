@@ -48,6 +48,18 @@ const SPECIAL_STYLE_CELLS: Record<string, number[][]> = {
   'zouk:brazilian zouk': [[0,3,6,10,13],[0,4,8,12],[1,5,9,13],[0,3,7,11],[2,6,10,14]],
 };
 
+function makeStylePattern(style: SongStyle, instrumentId: string, index: number, cell: number[]): MusicalPattern {
+  const role = instrumentRole(instrumentId) as Role;
+  return {
+    id: `style-${style.id}-${index}-${instrumentId}`,
+    worldId: style.primaryGenre, styleIds: [style.id], name: `${style.name} ${instrumentId} cell`,
+    family: 'style-dialect', category: 'groove', description: `Generated ${style.name} role dialect`,
+    tags: [style.primaryGenre, 'style-dialect'], approaches: [role === 'bass' ? 'walking' : role === 'percussion' ? 'groove' : role === 'harmony' ? 'comping' : 'phrase'],
+    scopes: ['world'] as any, roles: [role], meter: style.rhythm?.meter ?? '4/4', cycleLength: 1,
+    subdivisions: 16, onsetGrid: cell, variants: [], supportedEnergy: [1,2,3,4,5], enabled: true,
+  } as MusicalPattern;
+}
+
 function instrumentRole(instrumentId: string): Role | string {
   const n = instrumentId.toLowerCase();
   if (/bass|guitarron/.test(n)) return 'bass';

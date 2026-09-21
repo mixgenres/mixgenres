@@ -1,8 +1,10 @@
-import { PartDensity } from '../types';
+import type { SectionEnergy, FormIntensity } from '../types';
 
-export type FormIntensity = 'low' | 'medium' | 'high' | 'peak';
+
+
+export type { FormIntensity };
 export interface FormStep { key:string; kind:string; bars:number; label:string; intensity:FormIntensity; }
-export interface GenreForm { steps:FormStep[]; allowed:string[]; densities?:Record<string,Partial<Record<string,PartDensity>>>; }
+export interface GenreForm { steps:FormStep[]; allowed:string[]; energyMappings?:Record<string,Partial<Record<string,SectionEnergy>>>; }
 export const formSummary = (form: GenreForm): string => form.steps.map(s => s.label).join(' · ');
 export const F = (key:string, kind:string, bars:number, label:string, intensity:FormIntensity):FormStep => ({key,kind,bars,label,intensity});
 

@@ -1,24 +1,38 @@
 import { Sheet, Voice } from './arrange';
 import { Measure, Region } from '../types';
-import { INSTRUMENTS_BY_ID, effectiveSoundfontPreset } from '../data/instruments';
+import { INSTRUMENTS_BY_ID } from '../data/instruments';
 import { PATTERNS_BY_ID } from '../data/genreData';
 import { voiceProfile, noteLengthBeats, foldToRange, VoiceProfile } from './instrumentProfile';
 import { grooveForStyle, applyFeel, seedOf, rand01, GrooveProfile, GrooveRole } from './groove';
 import { parseChord, inferKey, KeyInfo } from './theory';
 import { getResolvedSectionStyle } from './arrange';
 import { voiceChord, styleFor } from './voicing';
-import { bassNote, bassStyleForStyle, BassStyle } from './bass';
-import { makeMotif, melodyGate, melodyNote, treatmentFor, Motif, MelodyTreatment, generateStyleOrnaments } from './melody';
+import { bassNote, bassStyleForStyle, BassStyle, bassPitchBend } from './bass';
+import { makeMotif, melodyGate, melodyNote, treatmentFor, Motif, MelodyTreatment, melodyPitchBend } from './melody';
 import { GM, kitVoicing, handPercVoicing, flavourForStyle, usesRideStyle, KitVoicing } from './drums';
 import { roomForStyle } from './mixer';
 import { decide, shapeOf, ArrangementDecision, SectionShape } from './arrangement';
-import { beatsPerBarOf, type NativeSlice } from './grid';
+import type { TransitionType, TransitionEvent } from './grid';
+import { beatsPerBarOf, culturalCyclePosition, type NativeSlice, type RhythmicContext } from './grid';
 import { getEffectiveBpm } from './arrange';
 import { culturalRules, culturalPitchSet, culturalDronePitch, isCulturalWorld, shoCluster, celticOpenHarmony } from './cultural';
 import { resolveStyle } from '../data/styles/resolve';
 import { getCanonicalStyle } from '../data/styles/registry';
+import { blendPartStyle, type BlendReport } from './blend';
+import { activityFor, clampEnergy, energyOf, shapeScalarOf } from './energy';
+import { normaliseDials } from './dials';
+import { resolveArticulationStack, realizeArticulation, type ArticulationSpec } from './articulation';
+import { resolvePreset } from '../data/soundfonts';
+import type { GuestLens } from '../types';
 
 /* --- event model ---------------------------------------------------------- */
+
+export interface PitchBendPoint {
+  /** seconds after note-on at which this bend value is sent */
+  offset: number;
+  /** MIDI pitch-bend value, 0..16383; 8192 is center */
+  value: number;
+}
 
 export interface PerfNote {
   /** seconds from the start of the song */
@@ -26,6 +40,8 @@ export interface PerfNote {
   /** seconds */
   dur: number;
   midi: number;
+  /** Optional MIDI 0xE0 pitch-bend trajectory, scheduled relative to note-on. */
+  pitchBend?: PitchBendPoint[];
   /** 1..127 */
   vel: number;
   channel: number;
@@ -46,9 +62,6 @@ export interface PerfProgram {
   time: number;
   channel: number;
   program: number;
-  bankMSB?: number;
-  bankLSB?: number;
-  soundfontId?: string;
   drum: boolean;
 }
 
@@ -71,6 +84,8 @@ export interface Performance {
   drumChannels: number[];
   /** seconds of tail to let ring after the last note */
   tail: number;
+  /** `trackId|regionId` -> what the guest lens did, for the inspector. */
+  blends: Record<string, BlendReport>;
 }
 
 export interface CompileOptions {
@@ -80,6 +95,8 @@ export interface CompileOptions {
   lift?: number;
   /** master humanization scale, 0..1 */
   humanize?: number;
+  /** 0..1, how strongly ornaments, bends and swells are realized */
+  expression?: number;
 }
 
 /* --- meter and grid ------------------------------------------------------- */
@@ -188,6 +205,9 @@ interface Attack {
   stepsPerBar: number;
   authoredMs: number;
   articulation?: string;
+  articulations?: string[];
+  lens?: GuestLens;
+  partEnergy?: 1 | 2 | 3 | 4 | 5;
   onsetIndex: number;
   chordSymbol: string;
   anticipated: boolean;
@@ -221,65 +241,82 @@ function authoredKitVoicing(hitType: string, accent: number): KitVoicing {
 
 
 
-function nearestCulturalNeighbor(target: number, pcs: number[], direction: -1 | 1): number {
-  const options: number[] = [];
-  for (const pc of pcs) for (let o = -12; o <= 12; o++) options.push(pc + o * 12);
-  const filtered = options.filter(n => direction > 0 ? n < target : n > target);
-  if (!filtered.length) return target + direction;
-  return filtered.reduce((best, n) => {
-    const bd = Math.abs(best - target), nd = Math.abs(n - target);
-    return nd < bd ? n : best;
-  }, filtered[0]);
+function energyForRegion(region: Region): 1 | 2 | 3 | 4 | 5 {
+  return energyOf(region);
 }
 
-interface CulturalOrnamentNote {
-  midi: number;
-  timeOffsetBeats: number;
-  durBeats: number;
-  velocityMult: number;
+function authoredTransitionPattern(style: any, worldId: string, type: TransitionType, role: string): any | undefined {
+  if (!style?.contract?.transitionGrammar?.authoredPriority) return undefined;
+  const candidates = Object.values(PATTERNS_BY_ID) as any[];
+  return candidates
+    .filter(p => p.worldId === worldId)
+    .filter(p => p.category === 'fill' || p.category === 'transition' || p.tags?.some((t: string) => /fill|transition/i.test(t)))
+    .filter(p => !p.roles?.length || p.roles.includes(role) || (role === 'percussion' && p.roles.includes('drums')))
+    .filter(p => !style.patterns?.allowed?.length || style.patterns.allowed.includes(p.id))
+    .sort((a, b) => {
+      const af = a.category === 'fill' || a.tags?.some((t: string) => /fill/i.test(t)) ? 1 : 0;
+      const bf = b.category === 'fill' || b.tags?.some((t: string) => /fill/i.test(t)) ? 1 : 0;
+      return bf - af;
+    })[0];
 }
 
-function culturalOrnaments(
-  _patternId: string | undefined,
-  articulation: string | undefined,
-  target: number,
-  culture: ReturnType<typeof culturalRules>,
-  tonicPc: number,
-  profile: VoiceProfile,
-  seed: number,
-): CulturalOrnamentNote[] {
-  if (!culture) return [];
-  const art = (articulation ?? '').toLowerCase();
-  const pcs = culturalPitchSet(culture, tonicPc);
-  const out: CulturalOrnamentNote[] = [];
-  const upper = nearestCulturalNeighbor(target, pcs, 1);
-  const lower = nearestCulturalNeighbor(target, pcs, -1);
-
-  if (/roll/.test(art)) {
-    out.push({ midi: upper, timeOffsetBeats: -0.16, durBeats: 0.045, velocityMult: 0.32 });
-    out.push({ midi: target, timeOffsetBeats: -0.10, durBeats: 0.05, velocityMult: 0.42 });
-    out.push({ midi: lower, timeOffsetBeats: -0.045, durBeats: 0.04, velocityMult: 0.28 });
-  } else if (/cut|grace/.test(art)) {
-    out.push({ midi: upper, timeOffsetBeats: -0.09, durBeats: 0.045, velocityMult: 0.34 });
-  } else if (/turn/.test(art)) {
-    out.push({ midi: lower, timeOffsetBeats: -0.16, durBeats: 0.05, velocityMult: 0.28 });
-    out.push({ midi: upper, timeOffsetBeats: -0.08, durBeats: 0.045, velocityMult: 0.34 });
-  } else if (/glissando|portamento/.test(art)) {
-    out.push({ midi: seed & 1 ? lower : upper, timeOffsetBeats: -0.20, durBeats: 0.07, velocityMult: 0.30 });
-  } else if (/oshide|pitch bend|bend/.test(art)) {
-    out.push({ midi: lower, timeOffsetBeats: -0.12, durBeats: 0.05, velocityMult: 0.28 });
-  } else if (/hua yin|slide|gliss/.test(art)) {
-    out.push({ midi: seed & 1 ? upper : lower, timeOffsetBeats: -0.11, durBeats: 0.055, velocityMult: 0.30 });
-  } else if (/fan yin|harmonic point|harmonic/.test(art)) {
-    out.push({ midi: foldToRange(target + 12, profile), timeOffsetBeats: -0.02, durBeats: 0.04, velocityMult: 0.20 });
+export function buildTransitionEvents(sheet: Sheet): Map<number, TransitionEvent> {
+  const out = new Map<number, TransitionEvent>();
+  for (let i = 0; i < sheet.regions.length - 1; i++) {
+    const current = sheet.regions[i];
+    const next = sheet.regions[i + 1];
+    const style = getResolvedSectionStyle(sheet, current);
+    const fromEnergy = energyForRegion(current);
+    const toEnergy = energyForRegion(next);
+    if (fromEnergy === toEnergy) continue;
+    const grammar = style.contract.transitionGrammar;
+    const type = (toEnergy > fromEnergy ? grammar.onEnergyRise : grammar.onEnergyFall) ??
+      (toEnergy > fromEnergy ? 'fill' : 'drop-out');
+    if (!grammar.types.includes(type)) continue;
+    const cycleLength = Math.max(1, Math.round(style.contract.cycleLength || 1));
+    const finalStart = Math.max(current.start, current.end - cycleLength);
+    const authored = type === 'fill'
+      ? authoredTransitionPattern(style, current.genre ?? sheet.worldId, type, 'drums')
+      : undefined;
+    const bar = current.end - 1;
+    if (bar < finalStart) continue;
+    {
+      out.set(bar, {
+        type,
+        fromEnergy,
+        toEnergy,
+        cyclePosition: culturalCyclePosition(bar - current.start, cycleLength),
+        cycleLength,
+        authored: !!authored,
+        patternId: authored?.id,
+      });
+    }
   }
   return out;
 }
 
+/** True when the next section is heavier than this one. */
+function isBuildSection(regions: Region[], region: Region): boolean {
+  const i = regions.findIndex(r => r.id === region.id);
+  const next = regions[i + 1];
+  return !!next && energyOf(next) > energyOf(region);
+}
+
+function spotlightLeadRubatoOffset(spotlit: boolean, role: string, cyclePosition: number, cycleLength: number, secPerBeat: number, seed: number): number {
+  if (!spotlit || role !== 'lead') return 0;
+  // Small, deterministic timing breath independent of groove.ts pocket.
+  const phase = ((cyclePosition % Math.max(1, cycleLength)) + Math.max(1, cycleLength)) % Math.max(1, cycleLength);
+  const sign = ((seed ^ Math.round(phase * 17)) & 1) ? 1 : -1;
+  const amount = (0.035 + (Math.abs(seed % 7) / 6) * 0.045) * secPerBeat;
+  return sign * amount;
+}
+
 export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
-  const pocketAmount = opts.pocket ?? 0.5;
-  const liftAmount = opts.lift ?? 0.5;
+  const dials = normaliseDials(sheet);
+  const pocketAmount = opts.pocket ?? dials.pocket;
+  const liftAmount = opts.lift ?? dials.lift;
   const humanScale = opts.humanize ?? 1;
+  const expressionAmount = opts.expression ?? dials.expression;
 
   const bars = buildBarTimes(sheet);
   const tracks = sheet.tracks as Voice[];
@@ -289,10 +326,15 @@ export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
   const notes: PerfNote[] = [];
   const ccs: PerfCC[] = [];
   const programs: PerfProgram[] = [];
+  const blendReports: Record<string, BlendReport> = {};
+  /** Articulation preset requests, per channel: `channel` -> preset tag. */
+  const presetTagByChannel = new Map<number, string>();
 
   if (!bars.length || !tracks.length) {
-    return { notes, ccs, programs, bars, duration: 0, channelOf, drumChannels, tail: 0 };
+    return { notes, ccs, programs, bars, duration: 0, channelOf, drumChannels, tail: 0, blends: {} };
   }
+
+  const transitionEvents = buildTransitionEvents(sheet);
 
   /* ---- 1. gather every attack, per track, in order --------------------- */
   const attacksByTrack = new Map<string, Attack[]>();
@@ -308,17 +350,35 @@ export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
       if (t.muted) continue;
       const d = m.patternDetailsByTrack?.[t.id];
       if (!d) continue;
-      const perf = (d as any).perf as NativeSlice | undefined;
-      const onsets = perf?.onsets ?? d.onsetGrid ?? [];
-      if (!onsets.length) continue;
-      const stepsPerBar = perf?.stepsPerBar ?? 16;
-      const accents = perf?.accents ?? d.accentProfile ?? [];
-      const durations = perf?.durations ?? d.durationGrid ?? [];
-      const micro = perf?.microtiming ?? [];
-      const hitTypes = perf?.hitTypes ?? [];
-
       const def = INSTRUMENTS_BY_ID[t.instrumentId];
       if (!def) continue;
+      const perf = (d as any).perf as NativeSlice | undefined;
+      let onsets = perf?.onsets ?? d.onsetGrid ?? [];
+      if (!onsets.length) continue;
+      let stepsPerBar = perf?.stepsPerBar ?? 16;
+      let accents = perf?.accents ?? d.accentProfile ?? [];
+      let durations = perf?.durations ?? d.durationGrid ?? [];
+      let micro = perf?.microtiming ?? [];
+      let hitTypes = perf?.hitTypes ?? [];
+
+      // Lookahead transitions can replace a drum bar with catalog-authored
+      // fill material. This happens before attacks are staged, so the authored
+      // pattern genuinely replaces the ordinary groove rather than merely
+      // adding a procedural fill on top.
+      const transition = transitionEvents.get(barIndex);
+      const isDrum = !!def.kit || !!def.drum;
+      if (transition?.type === 'fill' && transition.patternId && isDrum) {
+        const fill = PATTERNS_BY_ID[transition.patternId];
+        if (fill) {
+          onsets = fill.onsetGrid ?? onsets;
+          stepsPerBar = fill.subdivisions || 16;
+          accents = fill.accentProfile ?? onsets.map(() => 0.82);
+          durations = fill.durationGrid ?? onsets.map(() => 1);
+          hitTypes = fill.hitGrid ?? onsets.map(() => 'tom');
+          micro = [];
+        }
+      }
+
       const prof = voiceProfile(t.instrumentId);
       const canAnticipate =
         prof.role === 'bass' || prof.role === 'comp' || prof.role === 'stab';
@@ -355,6 +415,9 @@ export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
           stepsPerBar,
           authoredMs: micro[i] ?? 0,
           articulation: d.articulation,
+          articulations: (d as any).articulations,
+          lens: (d as any).lens,
+          partEnergy: (d as any).partEnergy,
           onsetIndex: i,
           // an anticipation belongs harmonically to the bar it is announcing
           chordSymbol: anticipated ? nextMeasure!.chord : m.chord,
@@ -413,7 +476,7 @@ export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
     const prof = voiceProfile(t.instrumentId);
     for (const r of sheet.regions) {
       const shape = shapes.get(r.id)!;
-      decisions.set(`${t.id}|${r.id}`, decide(t, prof, shape, liftAmount, bandSize));
+      decisions.set(`${t.id}|${r.id}`, decide(t, prof, shape, liftAmount, bandSize, sheet.arrangementContext?.[r.id]));
     }
   }
 
@@ -451,19 +514,54 @@ export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
       if (!bt) continue;
       const region = regionById.get(bt.regionId);
       const regionGenreId = region?.genre ?? sheet.worldId;
-      const resolvedStyle = region
+      const sectionStyle = region
         ? getResolvedSectionStyle(sheet, region)
         : resolveStyle({ genreId: regionGenreId, styleId: getCanonicalStyle(regionGenreId).id });
-      const regionStyleId = resolvedStyle.id;
+
+      // The section decides the world. A guest lens on this part decides how
+      // this one voice speaks inside it. Everything downstream — groove, bass
+      // job, percussion dialect, articulation vocabulary — reads the blended
+      // style, so a reggae skank inside a cumbia arrives with reggae phrasing
+      // rather than being transcribed into cumbia phrasing.
+      const blended = blendPartStyle(sectionStyle, a.lens, String(t.role));
+      const resolvedStyle = blended.style;
+      if (a.lens && blended.report.weight > 0) {
+        blendReports[`${t.id}|${bt.regionId}`] = blended.report;
+      }
+      const regionStyleId = sectionStyle.id;
       const g: GrooveProfile = grooveForStyle(resolvedStyle);
-      const bassStyle: BassStyle = bassStyleForStyle(resolvedStyle, t.instrumentId);
-      const effectiveArticulation = a.articulation ?? resolvedStyle.contract.articulationGrammar[prof.role]?.[0] ?? resolvedStyle.contract.articulationGrammar.ensemble?.[0];
+      const bassStyle: BassStyle = bassStyleForStyle(resolvedStyle, t.instrumentId, t.role);
       const intensityRaw = intensityOf(region);
       // lift 0 flattens every section to the same weight, 1 exaggerates
       const intensity = 0.55 + (intensityRaw - 0.55) * (0.3 + liftAmount * 1.4);
 
       const decision = decisions.get(`${t.id}|${bt.regionId}`);
       if (decision && !decision.plays) continue;
+      const rhythmicContext: RhythmicContext = {
+        cyclePosition: culturalCyclePosition(a.bar - (region?.start ?? 0), resolvedStyle.contract.cycleLength),
+        cycleLength: Math.max(1, Math.round(resolvedStyle.contract.cycleLength || 1)),
+        sectionEnergy: decision?.sectionEnergy ?? 3,
+        transition: transitionEvents.get(a.bar),
+      };
+      const spotlit = !!sheet.arrangementContext?.[bt.regionId]?.spotlightedTrackIds.includes(t.id);
+      const spotlitLead = prof.role === 'lead' && spotlit;
+
+      // How much of the authored material this part actually voices is the
+      // world's decision, not a constant. `activity` comes straight from the
+      // contract's energy mapping, so a world that says "the compás never
+      // thins" (activity 0.95 at energy 1) keeps every stroke, while a world
+      // that says energy 1 means a skeleton drops most of them.
+      //
+      // Two onsets are never dropped: the downbeat, and anything the pattern
+      // accented hard enough to be structural. Thinning those is what turned
+      // sparse sections into unrecognisable ones.
+      const partEnergy = clampEnergy(a.partEnergy ?? decision?.sectionEnergy ?? 3);
+      const activity = activityFor(resolvedStyle.contract, partEnergy);
+      const structural = a.beatInBar < 0.12 || a.accent >= 0.88;
+      if (!structural && activity < 0.99 &&
+          rand01(seedOf(t.id, a.bar, a.onsetIndex, 'activity')) > activity) {
+        continue;
+      }
 
       const secPerBeat = 60 / bt.bpm;
       const chord = parseChord(a.chordSymbol);
@@ -489,6 +587,7 @@ export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
           styleId: regionStyleId,
           genreId: resolvedStyle.primaryGenre,
           sectionKind: String(region?.kind ?? 'verse'),
+          spotlit,
         });
         if (!gateOk) continue;
       }
@@ -507,7 +606,8 @@ export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
       });
 
       const jitterSec = (feel.offsetMs * humanScale) / 1000;
-      const time = bt.start + (a.beatInBar + feel.offsetBeats) * secPerBeat + jitterSec;
+      const rubato = resolvedStyle.contract.performanceIdioms?.spotlightLeadRubato ? spotlightLeadRubatoOffset(spotlitLead, prof.role, rhythmicContext.cyclePosition, rhythmicContext.cycleLength, secPerBeat, seedOf(t.id, a.bar, a.onsetIndex, 'rubato')) : 0;
+      const time = bt.start + (a.beatInBar + feel.offsetBeats) * secPerBeat + jitterSec + rubato;
 
       const next = list[i + 1];
       let gapBeats = 4;
@@ -516,10 +616,14 @@ export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
         if (gapBeats <= 0) gapBeats = 0.25;
       }
       const authoredBeats = (a.durationSteps / a.stepsPerBar) * bt.beatsPerBar;
-      const lenBeats = noteLengthBeats(prof, Math.max(0.05, authoredBeats), gapBeats, effectiveArticulation);
+      // The instrument's own sustain class sets a baseline length; the
+      // articulation engine then scales it. Passing the articulation name here
+      // too would apply the same shaping twice.
+      const lenBeats = noteLengthBeats(prof, Math.max(0.05, authoredBeats), gapBeats);
       const dur = Math.max(0.03, lenBeats * secPerBeat);
 
-      const base = 84 + (intensity - 0.55) * 46;
+      const energyMap = resolvedStyle.contract.energyMappings[rhythmicContext.sectionEnergy];
+      const base = 58 + energyMap.brightness * 62;
       const vel = Math.max(6, Math.min(127, Math.round(
         base * feel.velocityMult * (decision?.drive ?? 1),
       )));
@@ -527,7 +631,7 @@ export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
       if (def.kit || def.drum) {
         const regionStart = region?.start ?? 0;
         const regionEnd = region?.end ?? regionStart + 1;
-        const barInPhrase = (a.bar - regionStart + 64) % 4;
+        const barInPhrase = culturalCyclePosition(a.bar - regionStart, resolvedStyle.contract.cycleLength);
         const sameBar = attacksByBar.get(a.bar) ?? [];
 
         let kv: KitVoicing;
@@ -550,16 +654,19 @@ export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
             barInPhrase,
             sectionStart: a.bar === regionStart,
             sectionEnd: a.bar === regionEnd - 1,
-            phraseEnd: barInPhrase === 3,
+            phraseEnd: barInPhrase === rhythmicContext.cycleLength - 1,
             flavour: flavourForStyle(resolvedStyle, t.instrumentId),
             rideFeel: usesRideStyle(resolvedStyle, String(region?.kind ?? 'verse'), intensity),
             seed: seedOf(t.id, a.bar, a.onsetIndex, 'kit'),
+            transition: rhythmicContext.transition,
           });
         } else {
           kv = handPercVoicing(def.drum!, a.accent, intensity, seedOf(t.id, a.bar, a.onsetIndex, 'perc'), a.hitType);
         }
 
-        const drumBase = 100 + (intensity - 0.55) * 40;
+        if (kv.gain <= 0) continue;
+
+        const drumBase = 64 + energyMap.brightness * 58;
         const kvVel = Math.max(4, Math.min(127, Math.round(
           drumBase * (0.58 + 0.42 * feel.velocityMult) * kv.gain,
         )));
@@ -579,6 +686,8 @@ export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
 
       /* ---- the three jobs ----------------------------------------------- */
       let pitches: number[];
+      let rapidRun = false;
+      let rapidRunScalePcs: number[] | undefined;
 
       if (isBass && culture?.avoidBassFoundation) {
         // In styles organized around drones and melody, a bass part is a
@@ -597,6 +706,8 @@ export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
           intensity,
           seed: seedOf(t.id, a.bar, a.onsetIndex, 'bass'),
           previous: mem.lastNote,
+          rhythmicContext,
+          approach: resolvedStyle.contract.approaches?.[t.role]?.id,
         });
         mem.lastNote = n;
         pitches = [n];
@@ -609,7 +720,7 @@ export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
       } else if (isMelodic) {
         const phraseBar = (a.bar - (region ? region.start : 0) + 64) % phraseBars;
         const resolved = resolvedStyle;
-        const { note: n, isLeap } = melodyNote({
+        const { note: n, isLeap, rapidRun: shouldRapidRun, rapidRunScalePcs: rapidRunScalePcsResult } = melodyNote({
           motif, key, chord, profile: prof, treatment,
           barInPhrase: phraseBar,
           beatInBar: a.beatInBar,
@@ -620,6 +731,7 @@ export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
           styleId: regionStyleId,
           genreId: resolvedStyle.primaryGenre,
           sectionKind: String(region?.kind ?? 'verse'),
+          spotlit,
           pitchSet: culture ? culturalPitchSet(culture, culturalTonicPc) : undefined,
           tonicPc: culture ? culturalTonicPc : undefined,
           snapToChord: culture ? culture.snapToChord : resolved.melody?.snapToChord,
@@ -629,6 +741,8 @@ export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
           heterophonic: resolved.melody?.heterophonic,
           wasLeap: (mem as any).wasLeap,
         });
+        rapidRun = !!shouldRapidRun;
+        rapidRunScalePcs = rapidRunScalePcsResult;
         (mem as any).wasLeap = isLeap;
         mem.lastNote = n;
         pitches = [n];
@@ -647,6 +761,8 @@ export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
             bassCovered: hasBass,
             avoid,
             seed: seedOf(t.id, a.bar, a.onsetIndex, 'voice'),
+            rhythmicContext,
+            approach: resolvedStyle.contract.approaches?.[t.role]?.id,
           });
           mem.last = pitches;
           mem.lastNote = pitches[pitches.length - 1] ?? mem.lastNote;
@@ -664,51 +780,94 @@ export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
         });
       }
 
+      /* ---- realization ---------------------------------------------------
+         Up to this point the engine has decided *what* to play. Everything
+         from here decides *how* it is played, and it all goes through one
+         path: the articulation stack for this bar is resolved once, and the
+         articulation engine turns each written attack into the notes, bends
+         and CC messages the sampler actually receives.
+
+         The stack is layered, lowest priority first:
+           1. the world contract's articulation grammar for this role
+           2. the pattern's own authored articulations
+           3. the chosen variant's articulation
+         so a style-level "marcato" is overridden by a cell that says
+         "arrastre", which is overridden by a cadence variant that says "fall".
+      ------------------------------------------------------------------- */
+      const grammarArticulations =
+        resolvedStyle.contract.articulationGrammar[prof.role]
+        ?? resolvedStyle.contract.articulationGrammar[String(t.role)]
+        ?? resolvedStyle.contract.articulationGrammar.ensemble
+        ?? [];
+      const specs: ArticulationSpec[] = resolveArticulationStack([
+        grammarArticulations[0],
+        ...(a.articulations ?? []),
+        a.articulation,
+        // Culturally authored ornaments and the improvisation grammar's rapid
+        // run are ordinary articulations now, not a parallel code path.
+        ...(culture ? (resolvedStyle.melody?.ornamentVocabulary ?? []).slice(0, 1) : []),
+        rapidRun ? 'rapid-run' : undefined,
+      ]);
+
+      const activePitchSet = culture
+        ? culturalPitchSet(culture, culturalTonicPc)
+        : (rapidRunScalePcs ?? key.pcs);
+
       pitches.forEach((midi, vi) => {
-        if (vi === 0) {
-          if (culture) {
-            const ornaments = culturalOrnaments(
-              a.patternId, effectiveArticulation, midi, culture, culturalTonicPc, prof,
-              seedOf(t.id, a.bar, a.onsetIndex, 'ornament'),
-            );
-            ornaments.forEach(o => notes.push({
-              time: time + o.timeOffsetBeats * secPerBeat,
-              dur: Math.max(0.02, o.durBeats * secPerBeat),
-              midi: o.midi,
-              vel: Math.max(4, Math.min(127, Math.round(vel * o.velocityMult))),
-              channel, trackId: t.id, bar: a.bar,
-            }));
-          } else {
-            const resolved = resolvedStyle;
-            const ornaments = generateStyleOrnaments(
-              midi,
-              a.beatInBar,
-              a.patternId,
-              effectiveArticulation,
-              resolved.melody?.ornamentVocabulary,
-              key.pcs,
-              prof,
-              seedOf(t.id, a.bar, a.onsetIndex, 'style-ornament'),
-            );
-            ornaments.forEach(o => notes.push({
-              time: time + o.timeOffsetBeats * secPerBeat,
-              dur: Math.max(0.02, o.durBeats * secPerBeat),
-              midi: o.midi,
-              vel: Math.max(4, Math.min(127, Math.round(vel * o.velocityMult))),
-              channel, trackId: t.id, bar: a.bar,
-            }));
-          }
-        }
+        // A chord is rolled, not struck simultaneously: struck and plucked
+        // instruments spread more than bowed or blown ones.
         const rollMs = prof.sustain === 'decaying' || prof.sustain === 'short'
           ? vi * (1.6 + rand01(seedOf(t.id, a.bar, a.onsetIndex, vi)) * 2.4)
           : vi * 0.6;
-        notes.push({
-          time: time + (rollMs * humanScale) / 1000,
-          dur,
+        const voiceTime = time + (rollMs * humanScale) / 1000;
+
+        // Ornaments belong to the voice that carries the line, not to every
+        // note of a voicing — otherwise a four-note piano chord grows four
+        // grace notes.
+        const voiceSpecs = vi === 0 ? specs : specs.filter(x => x.family === 'duration' || x.family === 'attack');
+
+        const realized = realizeArticulation({
+          specs: voiceSpecs,
+          profile: prof,
           midi,
-          vel: Math.max(6, Math.min(127, Math.round(vel * (vi > 0 && vi < pitches.length - 1 ? 0.88 : 1)))),
-          channel, trackId: t.id, bar: a.bar,
+          velocity: Math.max(6, Math.min(127, Math.round(vel * (vi > 0 && vi < pitches.length - 1 ? 0.88 : 1)))),
+          lengthBeats: lenBeats,
+          gapBeats,
+          beatsPerBar: bt.beatsPerBar,
+          secPerBeat,
+          time: voiceTime,
+          pitchSet: activePitchSet,
+          expression: expressionAmount,
+          context: rhythmicContext,
+          seed: seedOf(t.id, a.bar, a.onsetIndex, vi, 'art'),
         });
+
+        if (realized.presetTag && vi === 0) presetTagByChannel.set(channel, realized.presetTag);
+
+        // Genre-native pitch idioms that depend on harmonic context rather than
+        // on a written articulation. These are additive: if the articulation
+        // stack already produced a bend, the idiom does not fight it.
+        const idiomBend = vi === 0
+          ? (isBass
+            ? bassPitchBend({ midi, context: rhythmicContext, profile: prof, genreId: resolvedStyle.primaryGenre, role: t.role, seed: seedOf(t.id, a.bar, a.onsetIndex, 'bend') })
+            : (isMelodic
+              ? melodyPitchBend({ midi, context: rhythmicContext, profile: prof, genreId: resolvedStyle.primaryGenre, role: t.role, chord, key, seed: seedOf(t.id, a.bar, a.onsetIndex, 'bend') })
+              : undefined))
+          : undefined;
+
+        realized.notes.forEach((n, ni) => {
+          notes.push({
+            time: n.time,
+            dur: n.durSeconds,
+            midi: n.midi,
+            pitchBend: n.pitchBend ?? (ni === 0 ? idiomBend : undefined),
+            vel: n.velocity,
+            channel, trackId: t.id, bar: a.bar,
+          });
+        });
+        for (const cc of realized.ccs) {
+          ccs.push({ time: cc.time, channel, cc: cc.cc, value: cc.value });
+        }
       });
     }
   }
@@ -724,8 +883,19 @@ export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
     const prof = voiceProfile(t.instrumentId);
     const drum = !!(def.kit || def.drum);
 
-    const preset = effectiveSoundfontPreset(t.instrumentId, finalStyle.primaryGenre);
-    programs.push({ time: 0, channel, program: preset?.program ?? (drum ? 0 : def.program ?? 0), bankMSB: preset?.bankMSB, bankLSB: preset?.bankLSB, soundfontId: preset?.soundfontId, drum });
+    // The articulation engine may have asked for a different sampled preset
+    // (pizzicato, muted, brush). resolvePreset answers with a General MIDI
+    // program and says whether it had to fall back to the instrument's own.
+    const preset = resolvePreset({
+      instrumentId: t.instrumentId,
+      articulationTag: presetTagByChannel.get(channel),
+    });
+    programs.push({
+      time: 0,
+      channel,
+      program: drum ? 0 : preset.program,
+      drum,
+    });
 
     const trim = Math.pow(10, prof.trim / 20);
     const level = Math.max(0, Math.min(1, (t.muted ? 0 : t.volume) * trim));
@@ -735,7 +905,17 @@ export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
     ccs.push({ time: 0, channel, cc: 91, value: Math.round(wet * 127) });
     ccs.push({ time: 0, channel, cc: 93, value: Math.round(wet * 40) });
     ccs.push({ time: 0, channel, cc: 74, value: 64 });
+    // CC11 rests at full and is modulated per note by the articulation engine.
+    // Pinning it to 127 and never touching it again is what made every long
+    // note a flat block of sound.
     ccs.push({ time: 0, channel, cc: 11, value: 127 });
+    // Ask the synth for a two-semitone bend range explicitly (RPN 0). Without
+    // it, the range is whatever the bank happens to declare, and a scoop that
+    // should be a semitone can arrive as a fifth.
+    ccs.push({ time: 0, channel, cc: 101, value: 0 });
+    ccs.push({ time: 0, channel, cc: 100, value: 0 });
+    ccs.push({ time: 0, channel, cc: 6, value: 2 });
+    ccs.push({ time: 0, channel, cc: 38, value: 0 });
   }
 
   /* ---- 5. automation: the mix follows the arrangement ---- */
@@ -754,12 +934,46 @@ export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
         time: at, channel, cc: 91,
         value: Math.round(Math.max(0, Math.min(127, prof.space * room.space * d.wet * 127))),
       });
+
+      // A section that is building should get louder across its own length,
+      // not step up at the boundary and sit flat. Three CC7 points give the
+      // shape without needing per-note automation.
+      const lastBar = bars[Math.max(r.start, r.end - 1)];
+      if (lastBar && r.end - r.start >= 4) {
+        const trimLin = Math.pow(10, prof.trim / 20);
+        const base = Math.max(0, Math.min(1, (t.muted ? 0 : t.volume) * trimLin));
+        const shape = shapeScalarOf(r);
+        const swell = (isBuildSection(sheet.regions, r) ? 0.12 : -0.03) * liftAmount;
+        const span = lastBar.end - firstBar.start;
+        const points: [number, number][] = [
+          [firstBar.start, base * (1 - swell * 0.5)],
+          [firstBar.start + span * 0.6, base * (1 + swell * 0.35 + shape * 0.04)],
+          [lastBar.end - 0.05, base * (1 + swell)],
+        ];
+        for (const [when, value] of points) {
+          ccs.push({
+            time: Math.max(0, when),
+            channel,
+            cc: 7,
+            value: Math.round(Math.pow(Math.max(0, Math.min(1, value)), 0.6) * 127),
+          });
+        }
+      }
     }
   }
 
   const sortedNotes = notes.sort((a, b) => a.time - b.time);
   // Clean overlap resolution: never let an active voice get prematurely killed
   // by a previous note's noteOff arriving after a new note starts on the same pitch/channel.
+  //
+  // Clamping the trimmed length to a 20 ms floor is not enough: when two
+  // attacks on the same pitch land closer together than that floor — which
+  // rolls, flams and dense ornaments routinely do — the trimmed note still
+  // runs past the next note-on, and the sampler's note-off kills the wrong
+  // voice. Anything that close is dropped instead, keeping the louder of the
+  // two so a ghost never silences an accent.
+  const MIN_GAP = 0.008;
+  const dropped = new Set<number>();
   const lastNoteIndexByPitch = new Map<string, number>();
   for (let idx = 0; idx < sortedNotes.length; idx++) {
     const n = sortedNotes[idx];
@@ -767,20 +981,31 @@ export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
     const prevIdx = lastNoteIndexByPitch.get(key);
     if (prevIdx !== undefined) {
       const prev = sortedNotes[prevIdx];
-      if (prev.time + prev.dur > n.time - 0.006) {
-        prev.dur = Math.max(0.02, n.time - prev.time - 0.006);
+      const available = n.time - prev.time - MIN_GAP;
+      if (available < 0.02) {
+        // Too close to sound as two notes at all.
+        if (n.vel > prev.vel) {
+          dropped.add(prevIdx);
+        } else {
+          dropped.add(idx);
+          continue;
+        }
+      } else if (prev.time + prev.dur > n.time - MIN_GAP) {
+        prev.dur = available;
       }
     }
     lastNoteIndexByPitch.set(key, idx);
   }
+  const playable = dropped.size ? sortedNotes.filter((_, i) => !dropped.has(i)) : sortedNotes;
 
-  const lastNote = sortedNotes.reduce((m, n) => Math.max(m, n.time + n.dur), 0);
+  const lastNote = playable.reduce((m, n) => Math.max(m, n.time + n.dur), 0);
   const songEnd = bars[bars.length - 1]?.end ?? 0;
   return {
-    notes: sortedNotes,
+    notes: playable,
     ccs: ccs.sort((a, b) => a.time - b.time), programs, bars,
     duration: songEnd,
     channelOf, drumChannels,
     tail: Math.max(0.6, lastNote - songEnd + 0.4),
+    blends: blendReports,
   };
 }

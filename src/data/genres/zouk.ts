@@ -405,6 +405,8 @@ export const ZOUK_WORLD: GenreWorld = {
         "bass",
         "pulse"
       ],
+
+      "approaches": ["walking", "groove"],
       "instruments": [
         "bass",
         "synth"
@@ -440,7 +442,7 @@ export const ZOUK_WORLD: GenreWorld = {
         "slap-pop",
         "warm-sub-slide"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start",
         "middle"
@@ -554,6 +556,8 @@ export const ZOUK_WORLD: GenreWorld = {
         "harmony",
         "rhythm-guitar"
       ],
+
+      "approaches": ["comping"],
       "instruments": [
         "electric-guitar",
         "guitar",
@@ -584,7 +588,7 @@ export const ZOUK_WORLD: GenreWorld = {
         "staccato-chop",
         "palm-mute"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start",
         "middle"
@@ -678,6 +682,7 @@ export const ZOUK_WORLD: GenreWorld = {
       "name": "French Antillean Zouk Bass",
       "family": "Bass",
       "category": "break",
+      "transitionType": "fill",
       "description": "Melodic driving bass line with Caribbean",
       "tags": [
         "zouk",
@@ -690,6 +695,8 @@ export const ZOUK_WORLD: GenreWorld = {
       "roles": [
         "bass"
       ],
+
+      "approaches": ["walking"],
       "instruments": [
         "bass"
       ],
@@ -717,7 +724,7 @@ export const ZOUK_WORLD: GenreWorld = {
         0.75,
         0.9
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -817,6 +824,7 @@ export const ZOUK_WORLD: GenreWorld = {
       "name": "Zouk Shaker",
       "family": "Percussion",
       "category": "cadence",
+      "transitionType": "fill",
       "description": "Continuous 16ths shaker with accented 8th",
       "tags": [
         "zouk",
@@ -829,6 +837,8 @@ export const ZOUK_WORLD: GenreWorld = {
       "roles": [
         "percussion"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "percussion"
       ],
@@ -889,7 +899,7 @@ export const ZOUK_WORLD: GenreWorld = {
         0.65,
         0.5
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -1081,6 +1091,8 @@ export const ZOUK_WORLD: GenreWorld = {
       "roles": [
         "percussion"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "percussion"
       ],
@@ -1114,7 +1126,7 @@ export const ZOUK_WORLD: GenreWorld = {
         0.68,
         0.84
       ],
-      "density": "dense",
+      "supportedEnergy": [4, 5],
       "phrasePosition": [
         "start"
       ],
@@ -1246,6 +1258,8 @@ export const ZOUK_WORLD: GenreWorld = {
         "keys",
         "synth"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "keys",
         "synth"
@@ -1271,7 +1285,7 @@ export const ZOUK_WORLD: GenreWorld = {
         0.82,
         0.96
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -1380,6 +1394,8 @@ export const ZOUK_WORLD: GenreWorld = {
       "roles": [
         "drums"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "drums"
       ],
@@ -1398,7 +1414,7 @@ export const ZOUK_WORLD: GenreWorld = {
         0.9,
         0.95
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -1498,6 +1514,8 @@ export const ZOUK_WORLD: GenreWorld = {
         "lead",
         "brass"
       ],
+
+      "approaches": ["phrase"],
       "instruments": [
         "trumpet",
         "brass"
@@ -1523,7 +1541,7 @@ export const ZOUK_WORLD: GenreWorld = {
         0.9,
         0.96
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start",
         "middle"
@@ -1633,6 +1651,8 @@ export const ZOUK_WORLD: GenreWorld = {
       "roles": [
         "voice"
       ],
+
+      "approaches": ["phrase"],
       "instruments": [
         "voice"
       ],
@@ -1677,7 +1697,7 @@ export const ZOUK_WORLD: GenreWorld = {
         "breath",
         "phrase-end"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -1796,6 +1816,8 @@ export const ZOUK_WORLD: GenreWorld = {
       "roles": [
         "voice"
       ],
+
+      "approaches": ["phrase"],
       "instruments": [
         "voice"
       ],
@@ -1840,7 +1862,7 @@ export const ZOUK_WORLD: GenreWorld = {
         "breath",
         "phrase-end"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "middle"
       ],
@@ -2004,6 +2026,8 @@ export const ZOUK_WORLD: GenreWorld = {
       "roles": [
         "bass"
       ],
+
+      "approaches": ["walking"],
       "instruments": [
         "bass"
       ],
@@ -2048,7 +2072,7 @@ export const ZOUK_WORLD: GenreWorld = {
         "accented",
         "ghost-aware"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start",
         "middle"
@@ -2168,6 +2192,8 @@ export const ZOUK_WORLD: GenreWorld = {
       "roles": [
         "harmony"
       ],
+
+      "approaches": ["comping"],
       "instruments": [
         "guitar",
         "keys"
@@ -2214,7 +2240,7 @@ export const ZOUK_WORLD: GenreWorld = {
         "accented",
         "ghost-aware"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "middle"
       ],
@@ -2334,6 +2360,8 @@ export const ZOUK_WORLD: GenreWorld = {
         "harmony",
         "texture"
       ],
+
+      "approaches": ["comping"],
       "instruments": [
         "guitar",
         "keys"
@@ -2384,7 +2412,7 @@ export const ZOUK_WORLD: GenreWorld = {
         "accented",
         "ghost-aware"
       ],
-      "density": "dense",
+      "supportedEnergy": [4, 5],
       "phrasePosition": [
         "start"
       ],
@@ -2560,6 +2588,8 @@ export const ZOUK_WORLD: GenreWorld = {
         "rhythm-guitar",
         "drums"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "drums",
         "percussion",
@@ -2613,7 +2643,7 @@ export const ZOUK_WORLD: GenreWorld = {
         "accented",
         "ghost-aware"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "middle"
       ],
@@ -2741,6 +2771,8 @@ export const ZOUK_WORLD: GenreWorld = {
         "harmony",
         "drums"
       ],
+
+      "approaches": ["groove", "comping"],
       "instruments": [
         "drums",
         "percussion",
@@ -2794,7 +2826,7 @@ export const ZOUK_WORLD: GenreWorld = {
         "accented",
         "ghost-aware"
       ],
-      "density": "dynamic",
+      "supportedEnergy": [1, 2, 3, 4, 5],
       "phrasePosition": [
         "middle",
         "end"
@@ -2970,6 +3002,8 @@ export const ZOUK_WORLD: GenreWorld = {
         "harmony",
         "lead"
       ],
+
+      "approaches": ["comping", "phrase"],
       "instruments": [
         "guitar",
         "keys"
@@ -3019,7 +3053,7 @@ export const ZOUK_WORLD: GenreWorld = {
       "articulations": [
         "legato"
       ],
-      "density": "dense",
+      "supportedEnergy": [4, 5],
       "phrasePosition": [
         "middle"
       ],
@@ -3195,6 +3229,8 @@ export const ZOUK_WORLD: GenreWorld = {
       "roles": [
         "voice"
       ],
+
+      "approaches": ["phrase"],
       "instruments": [
         "voice"
       ],
@@ -3239,7 +3275,7 @@ export const ZOUK_WORLD: GenreWorld = {
         "breath",
         "phrase-end"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start",
         "middle"

@@ -608,6 +608,8 @@ export const FLAMENCO_WORLD: GenreWorld = {
         "rhythm-guitar",
         "pulse"
       ],
+
+      "approaches": ["comping", "groove"],
       "instruments": [
         "guitar",
         "electric-guitar"
@@ -649,7 +651,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
         "abanico-fan",
         "golpe-tap"
       ],
-      "density": "dense",
+      "supportedEnergy": [4, 5],
       "phrasePosition": [
         "start",
         "middle"
@@ -820,6 +822,8 @@ export const FLAMENCO_WORLD: GenreWorld = {
         "percussion",
         "hand-percussion"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "hand-percussion",
         "percussion"
@@ -850,7 +854,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
         "rasgueado",
         "palmas-fuertes"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start",
         "middle"
@@ -958,6 +962,8 @@ export const FLAMENCO_WORLD: GenreWorld = {
         "lead",
         "voice"
       ],
+
+      "approaches": ["phrase"],
       "instruments": [
         "voice",
         "guitar"
@@ -991,7 +997,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
         "alzapua",
         "palmas-sordas"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start",
         "middle",
@@ -1103,6 +1109,8 @@ export const FLAMENCO_WORLD: GenreWorld = {
         "harmony",
         "counterline"
       ],
+
+      "approaches": ["walking", "comping"],
       "instruments": [
         "guitar",
         "electric-guitar",
@@ -1157,7 +1165,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
         "pulgar-apoyando",
         "brush-up"
       ],
-      "density": "dense",
+      "supportedEnergy": [4, 5],
       "phrasePosition": [
         "start",
         "middle"
@@ -1301,6 +1309,8 @@ export const FLAMENCO_WORLD: GenreWorld = {
         "lead",
         "counterline"
       ],
+
+      "approaches": ["phrase"],
       "instruments": [
         "guitar",
         "flute",
@@ -1358,7 +1368,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
         "ligado",
         "tremolo"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start",
         "middle",
@@ -1502,6 +1512,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
       "name": "Golpe (Tap)",
       "family": "Percussion",
       "category": "fill",
+      "transitionType": "fill",
       "description": "Resonant finger taps on the tapador/guitar",
       "tags": [],
       "scopes": [
@@ -1511,6 +1522,8 @@ export const FLAMENCO_WORLD: GenreWorld = {
         "percussion",
         "guitar"
       ],
+
+      "approaches": ["groove", "chop"],
       "instruments": [
         "percussion",
         "guitar"
@@ -1536,7 +1549,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
         0.8,
         0.95
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -1632,6 +1645,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
       "name": "Bulerias Palmas",
       "family": "Palmas",
       "category": "break",
+      "transitionType": "fill",
       "description": "12-beat compás cycle handclaps with classic",
       "tags": [],
       "scopes": [
@@ -1640,6 +1654,8 @@ export const FLAMENCO_WORLD: GenreWorld = {
       "roles": [
         "percussion"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "percussion"
       ],
@@ -1667,7 +1683,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
         0.9,
         0.95
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -1767,6 +1783,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
       "name": "Picado Scale",
       "family": "Guitar",
       "category": "cadence",
+      "transitionType": "fill",
       "description": "Rapid rest-stroke i-m finger scale passages.",
       "tags": [],
       "scopes": [
@@ -1775,6 +1792,8 @@ export const FLAMENCO_WORLD: GenreWorld = {
       "roles": [
         "guitar"
       ],
+
+      "approaches": ["chop"],
       "instruments": [
         "guitar"
       ],
@@ -1811,7 +1830,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
         0.8,
         0.7
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -1954,6 +1973,8 @@ export const FLAMENCO_WORLD: GenreWorld = {
         "percussion",
         "drums"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "percussion",
         "drums"
@@ -1985,7 +2006,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
         0.65,
         0.85
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -2108,6 +2129,8 @@ export const FLAMENCO_WORLD: GenreWorld = {
       "roles": [
         "voice"
       ],
+
+      "approaches": ["phrase"],
       "instruments": [
         "voice"
       ],
@@ -2154,7 +2177,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
       "articulations": [
         "rubato-aware"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -2281,6 +2304,8 @@ export const FLAMENCO_WORLD: GenreWorld = {
       "roles": [
         "voice"
       ],
+
+      "approaches": ["phrase"],
       "instruments": [
         "voice"
       ],
@@ -2327,7 +2352,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
       "articulations": [
         "rubato-aware"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "middle"
       ],
@@ -2507,6 +2532,8 @@ export const FLAMENCO_WORLD: GenreWorld = {
       "roles": [
         "bass"
       ],
+
+      "approaches": ["walking"],
       "instruments": [
         "bass"
       ],
@@ -2553,7 +2580,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
       "articulations": [
         "rubato-aware"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start",
         "middle"
@@ -2681,6 +2708,8 @@ export const FLAMENCO_WORLD: GenreWorld = {
       "roles": [
         "harmony"
       ],
+
+      "approaches": ["comping"],
       "instruments": [
         "guitar"
       ],
@@ -2721,7 +2750,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
       "articulations": [
         "rubato-aware"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "middle"
       ],
@@ -2833,6 +2862,8 @@ export const FLAMENCO_WORLD: GenreWorld = {
         "harmony",
         "texture"
       ],
+
+      "approaches": ["comping"],
       "instruments": [
         "guitar"
       ],
@@ -2877,7 +2908,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
       "articulations": [
         "rubato-aware"
       ],
-      "density": "dense",
+      "supportedEnergy": [4, 5],
       "phrasePosition": [
         "start"
       ],
@@ -3041,6 +3072,8 @@ export const FLAMENCO_WORLD: GenreWorld = {
         "rhythm-guitar",
         "drums"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "drums",
         "percussion",
@@ -3090,7 +3123,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
       "articulations": [
         "rubato-aware"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "middle"
       ],
@@ -3210,6 +3243,8 @@ export const FLAMENCO_WORLD: GenreWorld = {
         "harmony",
         "drums"
       ],
+
+      "approaches": ["groove", "comping"],
       "instruments": [
         "drums",
         "percussion",
@@ -3259,7 +3294,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
       "articulations": [
         "rubato-aware"
       ],
-      "density": "dynamic",
+      "supportedEnergy": [1, 2, 3, 4, 5],
       "phrasePosition": [
         "middle",
         "end"
@@ -3427,6 +3462,8 @@ export const FLAMENCO_WORLD: GenreWorld = {
         "harmony",
         "lead"
       ],
+
+      "approaches": ["comping", "phrase"],
       "instruments": [
         "guitar",
         "sax"
@@ -3467,7 +3504,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
       "articulations": [
         "rubato-aware"
       ],
-      "density": "dense",
+      "supportedEnergy": [4, 5],
       "phrasePosition": [
         "middle"
       ],
@@ -3620,6 +3657,8 @@ export const FLAMENCO_WORLD: GenreWorld = {
         "rhythm-guitar",
         "pulse"
       ],
+
+      "approaches": ["comping", "groove"],
       "instruments": [
         "guitar"
       ],
@@ -3651,7 +3690,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
       "articulations": [
         "rasgueado"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start",
         "middle",
@@ -3738,6 +3777,8 @@ export const FLAMENCO_WORLD: GenreWorld = {
         "percussion",
         "hand-percussion"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "palmas"
       ],
@@ -3775,7 +3816,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
       "articulations": [
         "palmas-sordas/claras"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start",
         "middle",
@@ -3809,6 +3850,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
       "name": "Llamada into Cante",
       "family": "Cante/Guitar Interaction",
       "category": "transition",
+      "transitionType": "fill",
       "description": "Short guitar-and-compás calling gesture that announces",
       "tags": [
         "llamada",
@@ -3827,6 +3869,8 @@ export const FLAMENCO_WORLD: GenreWorld = {
         "lead",
         "pulse"
       ],
+
+      "approaches": ["comping", "phrase", "groove"],
       "instruments": [
         "guitar"
       ],
@@ -3858,7 +3902,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
       "articulations": [
         "golpe + rasgueado"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "end",
         "start"
@@ -3924,6 +3968,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
       "name": "12-Beat Remate",
       "family": "Cadential Punctuation",
       "category": "cadence",
+      "transitionType": "fill",
       "description": "Ensemble remate: synchronized accent and release",
       "tags": [
         "remate",
@@ -3942,6 +3987,8 @@ export const FLAMENCO_WORLD: GenreWorld = {
         "percussion",
         "pulse"
       ],
+
+      "approaches": ["comping", "groove"],
       "instruments": [
         "guitar",
         "palmas",
@@ -3975,7 +4022,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
       "articulations": [
         "golpe/corte"
       ],
-      "density": "dense",
+      "supportedEnergy": [4, 5],
       "phrasePosition": [
         "end"
       ],
@@ -4026,6 +4073,8 @@ export const FLAMENCO_WORLD: GenreWorld = {
         "percussion",
         "harmony"
       ],
+
+      "approaches": ["groove", "comping"],
       "instruments": [
         "guitar",
         "palmas",
@@ -4065,7 +4114,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
       "articulations": [
         "rasgueado"
       ],
-      "density": "dense",
+      "supportedEnergy": [4, 5],
       "phrasePosition": [
         "start",
         "middle",
@@ -4147,6 +4196,8 @@ export const FLAMENCO_WORLD: GenreWorld = {
         "percussion",
         "hand-percussion"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "palmas"
       ],
@@ -4187,7 +4238,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
       "articulations": [
         "palmas-claras"
       ],
-      "density": "dense",
+      "supportedEnergy": [4, 5],
       "phrasePosition": [
         "start",
         "middle",
@@ -4240,6 +4291,8 @@ export const FLAMENCO_WORLD: GenreWorld = {
         "harmony",
         "counterline"
       ],
+
+      "approaches": ["walking", "comping"],
       "instruments": [
         "guitar"
       ],
@@ -4283,7 +4336,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
       "articulations": [
         "alzapúa"
       ],
-      "density": "dense",
+      "supportedEnergy": [4, 5],
       "phrasePosition": [
         "start",
         "middle",
@@ -4334,6 +4387,8 @@ export const FLAMENCO_WORLD: GenreWorld = {
         "harmony",
         "pulse"
       ],
+
+      "approaches": ["comping", "groove"],
       "instruments": [
         "guitar"
       ],
@@ -4365,7 +4420,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
       "articulations": [
         "rasgueado"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start",
         "middle",
@@ -4416,6 +4471,8 @@ export const FLAMENCO_WORLD: GenreWorld = {
         "percussion",
         "hand-percussion"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "palmas"
       ],
@@ -4453,7 +4510,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
       "articulations": [
         "palmas-claras"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start",
         "middle",
@@ -4504,6 +4561,8 @@ export const FLAMENCO_WORLD: GenreWorld = {
         "percussion",
         "pulse"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "zapateado",
         "cajon"
@@ -4545,7 +4604,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
       "articulations": [
         "taconeo"
       ],
-      "density": "dense",
+      "supportedEnergy": [4, 5],
       "phrasePosition": [
         "start",
         "middle",
@@ -4598,6 +4657,8 @@ export const FLAMENCO_WORLD: GenreWorld = {
         "percussion",
         "harmony"
       ],
+
+      "approaches": ["groove", "comping"],
       "instruments": [
         "guitar",
         "palmas"
@@ -4630,7 +4691,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
       "articulations": [
         "golpe + rasgueado"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start",
         "middle",
@@ -4715,6 +4776,8 @@ export const FLAMENCO_WORLD: GenreWorld = {
         "percussion",
         "hand-percussion"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "palmas"
       ],
@@ -4743,7 +4806,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
       "articulations": [
         "palmas-sordas"
       ],
-      "density": "sparse",
+      "supportedEnergy": [1, 2],
       "phrasePosition": [
         "start",
         "middle",
@@ -4796,6 +4859,8 @@ export const FLAMENCO_WORLD: GenreWorld = {
         "rhythm-guitar",
         "pulse"
       ],
+
+      "approaches": ["comping", "groove"],
       "instruments": [
         "guitar"
       ],
@@ -4833,7 +4898,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
       "articulations": [
         "rasgueado"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start",
         "middle",
@@ -4885,6 +4950,8 @@ export const FLAMENCO_WORLD: GenreWorld = {
         "harmony",
         "pulse"
       ],
+
+      "approaches": ["comping", "groove"],
       "instruments": [
         "guitar"
       ],
@@ -4919,7 +4986,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
       "articulations": [
         "rasgueado"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start",
         "middle",
@@ -4969,6 +5036,8 @@ export const FLAMENCO_WORLD: GenreWorld = {
         "percussion",
         "hand-percussion"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "palmas"
       ],
@@ -4997,7 +5066,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
       "articulations": [
         "palmas-sordas"
       ],
-      "density": "sparse",
+      "supportedEnergy": [1, 2],
       "phrasePosition": [
         "start",
         "middle",
@@ -5048,6 +5117,8 @@ export const FLAMENCO_WORLD: GenreWorld = {
       "roles": [
         "bass"
       ],
+
+      "approaches": ["walking"],
       "instruments": [
         "bass",
         "upright-bass"
@@ -5086,7 +5157,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
       "articulations": [
         "syncopated"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start",
         "middle",
@@ -5138,6 +5209,8 @@ export const FLAMENCO_WORLD: GenreWorld = {
         "harmony",
         "pulse"
       ],
+
+      "approaches": ["comping", "groove"],
       "instruments": [
         "guitar"
       ],
@@ -5163,7 +5236,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
       "articulations": [
         "rasgueado"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start",
         "middle",

@@ -711,6 +711,8 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
       "roles": [
         "pulse"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "drums",
         "kick",
@@ -797,7 +799,7 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
       "articulations": [
         "kick-snare"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start",
         "middle",
@@ -938,6 +940,8 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
       "roles": [
         "bass"
       ],
+
+      "approaches": ["walking"],
       "instruments": [
         "sub-bass",
         "bass"
@@ -982,7 +986,7 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
         "short",
         "sub"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start",
         "middle",
@@ -1082,6 +1086,8 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
       "roles": [
         "percussion"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "shaker",
         "cabasa"
@@ -1113,7 +1119,7 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
       "articulations": [
         "shaker"
       ],
-      "density": "sparse",
+      "supportedEnergy": [1, 2],
       "phrasePosition": [
         "start",
         "middle",
@@ -1206,6 +1212,8 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
       "roles": [
         "harmony"
       ],
+
+      "approaches": ["comping"],
       "instruments": [
         "polysynth",
         "clavinet"
@@ -1237,7 +1245,7 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
       "articulations": [
         "staccato"
       ],
-      "density": "sparse",
+      "supportedEnergy": [1, 2],
       "phrasePosition": [
         "start",
         "middle",
@@ -1309,6 +1317,7 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
       "name": "Dembow Break & Pickup",
       "family": "Breaks",
       "category": "break",
+      "transitionType": "fill",
       "description": "Drops the main kick for a",
       "tags": [
         "break",
@@ -1325,6 +1334,8 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
       "roles": [
         "drums"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "drums",
         "snare"
@@ -1366,7 +1377,7 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
       "articulations": [
         "fill"
       ],
-      "density": "sparse",
+      "supportedEnergy": [1, 2],
       "phrasePosition": [
         "start",
         "middle",
@@ -1458,6 +1469,8 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
       "roles": [
         "pulse"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "drums",
         "kick",
@@ -1527,7 +1540,7 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
         "dembow",
         "timeline"
       ],
-      "density": "dense",
+      "supportedEnergy": [4, 5],
       "phrasePosition": [
         "any"
       ],
@@ -1574,6 +1587,8 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
       "roles": [
         "percussion"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "shaker",
         "drums"
@@ -1608,7 +1623,7 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
         "offbeat texture",
         "negative space"
       ],
-      "density": "dense",
+      "supportedEnergy": [4, 5],
       "phrasePosition": [
         "middle"
       ],
@@ -1655,6 +1670,8 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
       "roles": [
         "bass"
       ],
+
+      "approaches": ["walking"],
       "instruments": [
         "sub-bass"
       ],
@@ -1688,7 +1705,7 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
         "sub-bass",
         " syncopation"
       ],
-      "density": "dense",
+      "supportedEnergy": [4, 5],
       "phrasePosition": [
         "any"
       ],
@@ -1735,6 +1752,8 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
       "roles": [
         "harmony"
       ],
+
+      "approaches": ["comping"],
       "instruments": [
         "piano",
         "polysynth"
@@ -1761,7 +1780,7 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
         "stabs",
         " offbeat"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "any"
       ],
@@ -1808,6 +1827,8 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
       "roles": [
         "percussion"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "shaker"
       ],
@@ -1841,7 +1862,7 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
         "shaker",
         " density control"
       ],
-      "density": "dense",
+      "supportedEnergy": [4, 5],
       "phrasePosition": [
         "middle"
       ],
@@ -1888,6 +1909,8 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
       "roles": [
         "voice"
       ],
+
+      "approaches": ["phrase"],
       "instruments": [
         "voice"
       ],
@@ -1911,7 +1934,7 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
         "pickup",
         " vocal pocket"
       ],
-      "density": "sparse",
+      "supportedEnergy": [1, 2],
       "phrasePosition": [
         "end"
       ],
@@ -1959,6 +1982,8 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
       "roles": [
         "pulse"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "drums"
       ],
@@ -2026,7 +2051,7 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
         "hook lift",
         "dembow"
       ],
-      "density": "dense",
+      "supportedEnergy": [4, 5],
       "phrasePosition": [
         "start",
         "middle",
@@ -2060,6 +2085,7 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
       "name": "Dembow Break / Re-entry",
       "family": "Breaks",
       "category": "break",
+      "transitionType": "fill",
       "description": "A sparse dembow break that keeps",
       "tags": [
         "dropout",
@@ -2075,6 +2101,8 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
       "roles": [
         "pulse"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "drums",
         "kick",
@@ -2111,7 +2139,7 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
         "dropout",
         "re-entry"
       ],
-      "density": "sparse",
+      "supportedEnergy": [1, 2],
       "phrasePosition": [
         "start",
         "end"
@@ -2144,6 +2172,7 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
       "name": "Modern Dembow Phrase-End Turn",
       "family": "Fill",
       "category": "fill",
+      "transitionType": "fill",
       "description": "A short 16th-note phrase-end turn that",
       "tags": [
         "fill",
@@ -2160,6 +2189,8 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
       "roles": [
         "fill"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "drums"
       ],
@@ -2188,7 +2219,7 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
         "fill",
         "phrase end"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "end"
       ],
@@ -2220,6 +2251,7 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
       "name": "Dembow tag turnaround",
       "family": "Cadence",
       "category": "cadence",
+      "transitionType": "fill",
       "description": "Four-hit turnaround into the next loop",
       "tags": [
         "tag",
@@ -2235,6 +2267,8 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
       "roles": [
         "fill"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "drums",
         "claves"
@@ -2267,7 +2301,7 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
         "tag",
         " transition"
       ],
-      "density": "sparse",
+      "supportedEnergy": [1, 2],
       "phrasePosition": [
         "end"
       ],

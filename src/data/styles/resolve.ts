@@ -40,7 +40,7 @@ type CompleteStyle = SongStyle & {
 function completeStyle(style: SongStyle): CompleteStyle {
   return {
     ...style,
-    form: { ...style.form, sectionVocab: style.form?.sectionVocab ?? [], templates: style.form?.templates ?? [], preferredMeters: style.form?.preferredMeters ?? [] },
+    form: { ...style.form, sectionVocab: style.form?.sectionVocab ?? [], templates: style.form?.templates ?? [], preferredMeters: style.form?.preferredMeters ?? [], defaultSpotlights: style.form?.defaultSpotlights ?? {} },
     harmony: { ...style.harmony, model: style.harmony?.model ?? 'functional', modePolicy: style.harmony?.modePolicy ?? 'major', progressionTemplates: style.harmony?.progressionTemplates ?? [], chordVocabulary: style.harmony?.chordVocabulary ?? [] },
     rhythm: { ...style.rhythm, meter: style.rhythm?.meter ?? '4/4', tempoRange: style.rhythm?.tempoRange ?? [80, 140], defaultBpm: style.rhythm?.defaultBpm ?? 110, feel: style.rhythm?.feel ?? 'style-native', swingPercentage: style.rhythm?.swingPercentage ?? 50, anticipationOffsetSteps: style.rhythm?.anticipationOffsetSteps ?? 0, microtimingFeel: style.rhythm?.microtimingFeel ?? 'straight', humanizeJitterMs: style.rhythm?.humanizeJitterMs ?? 8 },
     melody: { ...style.melody, scaleMode: style.melody?.scaleMode ?? 'major' },
@@ -240,7 +240,7 @@ export function resolveStyle(opts: ResolveStyleOptions): ResolvedStyle {
         ...merged.arrangement,
         ...child.arrangement,
         ensemble: child.arrangement.ensemble?.length ? child.arrangement.ensemble : merged.arrangement.ensemble,
-        densityCurve: { ...(merged.arrangement.densityCurve ?? {}), ...(child.arrangement.densityCurve ?? {}) },
+        energyMappings: { ...(merged.arrangement.energyMappings ?? {}), ...(child.arrangement.energyMappings ?? {}) },
       };
       recordDecision('arrangement', merged.arrangement, srcType, child.id);
     }
@@ -251,7 +251,6 @@ export function resolveStyle(opts: ResolveStyleOptions): ResolvedStyle {
         ...merged.sound,
         ...child.sound,
         instrumentPalette: child.sound.instrumentPalette?.length ? child.sound.instrumentPalette : merged.sound.instrumentPalette,
-        soundfontPicks: { ...(merged.sound.soundfontPicks ?? {}), ...(child.sound.soundfontPicks ?? {}) },
         fxChains: { ...(merged.sound.fxChains ?? {}), ...(child.sound.fxChains ?? {}) },
         masterProfile: { ...merged.sound.masterProfile, ...child.sound.masterProfile },
       };
@@ -359,10 +358,10 @@ export function resolveStyle(opts: ResolveStyleOptions): ResolvedStyle {
 
         case 'arrangement':
           if (infStyle.arrangement) {
-            if (w >= 0.4 && infStyle.arrangement.densityCurve) {
-              merged.arrangement.densityCurve = {
-                ...merged.arrangement.densityCurve,
-                ...infStyle.arrangement.densityCurve
+            if (w >= 0.4 && infStyle.arrangement.energyMappings) {
+              merged.arrangement.energyMappings = {
+                ...merged.arrangement.energyMappings,
+                ...infStyle.arrangement.energyMappings
               };
             }
             recordDecision('arrangement', merged.arrangement, 'influence', srcId, w);
@@ -376,12 +375,6 @@ export function resolveStyle(opts: ResolveStyleOptions): ResolvedStyle {
               infStyle.sound.instrumentPalette ?? [],
               w
             );
-            if (infStyle.sound.soundfontPicks) {
-              merged.sound.soundfontPicks = {
-                ...merged.sound.soundfontPicks,
-                ...infStyle.sound.soundfontPicks
-              };
-            }
             if (infStyle.sound.fxChains) {
               const mergedFx: Record<string, SoundFxPreset> = { ...merged.sound.fxChains };
               for (const [k, v] of Object.entries(infStyle.sound.fxChains)) {

@@ -4,7 +4,7 @@ import { createRoot } from 'react-dom/client';
 import App from './App';
 import { preloadSoundfont } from './engine/audio';
 
-// Kick off soundfont & audio engine preloading on the earliest execution tick
+// Start downloading public/soundfont.sf2 right away
 preloadSoundfont().catch(() => {});
 
 createRoot(document.getElementById('root')!).render(

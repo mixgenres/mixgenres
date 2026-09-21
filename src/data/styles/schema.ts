@@ -1,4 +1,4 @@
-import { Role, SectionType, TuningSystemTag, GrooveMechanics } from '../../types';
+import { Role, SectionType, TuningSystemTag, GrooveMechanics, SectionEnergy } from '../../types';
 import type { WorldContract } from './contracts';
 
 export type Aspect = 'form' | 'harmony' | 'rhythm' | 'melody' | 'arrangement' | 'sound' | 'gestures';
@@ -46,6 +46,8 @@ export interface FormGrammar {
   outros?: Weighted<string>[];
   breaks?: Weighted<string>[];
   pickups?: Weighted<boolean>[];
+  /** Roles that receive an automatic arrangement spotlight for each form section. */
+  defaultSpotlights: Record<string, Role[]>;
   preferredMeters: string[];
 }
 
@@ -79,6 +81,12 @@ export interface RhythmGrammar {
   grooveMechanics?: GrooveMechanics;
 }
 
+export interface PerformanceGrammar {
+  bluesRockLeadMinorThirdBend?: boolean;
+  dropPortamento?: boolean;
+  spotlightLeadRubato?: boolean;
+}
+
 export interface MelodyGrammar {
   scaleMode: string;
   pitchIntervals?: number[];
@@ -93,10 +101,24 @@ export interface MelodyGrammar {
   callAndResponse?: boolean;
 }
 
+/**
+ * World-level grammar for a spotlighted Solo section. Unlike MelodyGrammar,
+ * this describes improvisational behavior rather than the style's written/head melody.
+ */
+export interface ImprovisationGrammar {
+  scaleMode: string;
+  targetToneStrategy: string;
+  phraseStages: Array<'state' | 'rest' | 'repeat-transpose' | 'rapid-run'>;
+  transposeDegrees?: number;
+  phraseBars?: number;
+  rapidRunOrnaments?: string[];
+}
+
 export interface ArrangementGrammar {
   ensemble: { role: Role | string; instrumentIds: string[]; priority: number }[];
   schedule?: Record<string, string[]>;
-  densityCurve?: Record<string, 'sparse' | 'normal' | 'busy'>;
+  /** Section-key to energy level; world contracts hold the full 1..5 mapping. */
+  energyMappings?: Partial<Record<string, SectionEnergy>>;
   registerAllocation?: Record<string, [number, number]>;
   doublingRules?: string[];
   stabsAndHits?: Record<string, number>;
@@ -116,7 +138,6 @@ export interface SoundFxPreset {
 
 export interface SoundProfile {
   instrumentPalette: Weighted<string>[];
-  soundfontPicks?: Record<string, string>;
   articulations?: Record<string, string>;
   fxChains?: Record<string, SoundFxPreset>;
   reverbDelay?: { room: string; decay?: number; wet?: number };
@@ -157,11 +178,12 @@ export interface SongStyle {
   harmony?: Partial<HarmonyGrammar>;       // mode/key policy, progression templates (functional/roman), cadences, chord vocabulary + extensions, harmonic rhythm, voicing style, bass-motion rules
   rhythm?: Partial<RhythmGrammar>;         // meter, tempo range, feel/swing, timeline/clave, per-role groove families, microtiming per instrument, accent maps, fill grammar
   melody?: Partial<MelodyGrammar>;         // scale/mode, range per section, contour archetypes, phrase lengths, motif-development ops, ornament vocabulary, chord-tone targeting, call/response
-  arrangement?: Partial<ArrangementGrammar>; // ensemble template by role, entrance/exit schedule per section, density curve, register allocation, doubling, stabs/hits, solos
-  sound?: Partial<SoundProfile>;           // instrument palette (weighted), patch/soundfont picks, articulation, FX chains, reverb/delay character, saturation/compression, stereo image, master profile
+  arrangement?: Partial<ArrangementGrammar>; // ensemble template by role, entrance/exit schedule per section, energy mapping, register allocation, doubling, stabs/hits, solos
+  sound?: Partial<SoundProfile>;           // instrument palette (weighted), patch picks, articulation, FX chains, reverb/delay character, saturation/compression, stereo image, master profile
   patterns?: { require?: string[]; preferred?: string[]; allowed?: string[]; avoid?: string[] };
-  gestures?: Record<string, GestureRule>; // signature moves (arrastre, yumba, dembow fill, riser...) with per-context probabilities; 0 = style refrains from it
+  performance?: Partial<PerformanceGrammar>; // expressive pitch/timing idioms (arrastre, yumba, dembow fill, riser...) with per-context probabilities; 0 = style refrains from it
   rules?: { require?: RuleRef[]; forbid?: RuleRef[] };
+  gestures?: Record<string, GestureRule>;
 }
 
 export interface DecisionTraceItem {

@@ -2,6 +2,7 @@ import { ParsedChord, nearestPc, pcOf, midiOf, KeyInfo } from './theory';
 import { VoiceProfile, foldToRange } from './instrumentProfile';
 import { rand01 } from './groove';
 import type { ResolvedStyle } from '../data/styles/schema';
+import type { RhythmicContext } from './grid';
 
 export type BassStyle =
   | 'root'
@@ -32,6 +33,27 @@ export interface BassContext {
   intensity: number;
   seed: number;
   previous: number;
+  rhythmicContext?: RhythmicContext;
+  /** Contract-resolved behavioral approach; independent of instrument identity. */
+  approach?: string;
+}
+
+export interface PitchBendPoint { offset: number; value: number; }
+
+/** Bass expression is driven by the resolved world/transition context. */
+export function bassPitchBend(c: {
+  midi: number; context: RhythmicContext; profile: VoiceProfile; genreId?: string; role: string; seed: number;
+}): PitchBendPoint[] | undefined {
+  const transition = c.context.transition;
+  if (transition?.type === 'drop-out' || transition?.type === 'corte') {
+    // Downward portamento into the drop, then settle at the written pitch.
+    return [
+      { offset: 0, value: 8192 },
+      { offset: 0.5, value: 8192 - 1700 },
+      { offset: 0.95, value: 8192 },
+    ];
+  }
+  return undefined;
 }
 
 export function bassNote(c: BassContext): number {
@@ -40,12 +62,33 @@ export function bassNote(c: BassContext): number {
   const rootMidi = foldToRange(midiOf(root, 2), p);
   const isDownbeat = c.beatInBar < 0.26;
   const last = c.previous || rootMidi;
+  const phase = c.rhythmicContext?.cyclePosition ?? 0;
+  const energy = c.rhythmicContext?.sectionEnergy ?? 3;
+  const transition = c.rhythmicContext?.transition;
+
+  // Arrastre is a transition gesture: approach the next harmonic center
+  // chromatically rather than treating it as generic 'busy' bass.
+  if (transition?.type === 'arrastre' && c.next && transition.cyclePosition === transition.cycleLength - 1) {
+    const target = nearestPc(pcOf(c.next.bassPc), last);
+    const distance = target - last;
+    const step = distance === 0 ? 0 : (distance > 0 ? 1 : -1);
+    if (step) return foldToRange(last + step, p);
+  }
 
   if (c.anticipated) return near(root, last, p);
 
-  switch (c.style) {
+  const approachStyle: BassStyle | undefined = c.approach === 'walking' ? 'walking'
+    : c.approach === 'tumbao' ? 'tumbao'
+    : c.approach === 'dembow-bass' || c.approach === 'dembow' ? 'dembow'
+    : c.approach === 'sub-bass' || c.approach === 'sub' ? 'sub'
+    : c.approach === 'cumbia' ? 'cumbia'
+    : c.approach === 'reggae' ? 'reggae'
+    : c.approach === 'samba' ? 'samba'
+    : c.approach === 'riff' ? 'riff'
+    : undefined;
+  switch (approachStyle ?? c.style) {
     case 'sub': {
-      if (!isDownbeat && c.intensity > 0.7 && rand01(c.seed) > 0.8) {
+      if (!isDownbeat && energy >= 4 && c.intensity > 0.7 && rand01(c.seed ^ phase) > 0.8) {
         return near(pcOf(root + fifthOf(c.chord)), last, p);
       }
       return near(root, last, p);
@@ -69,7 +112,7 @@ export function bassNote(c: BassContext): number {
 
     case 'octave': {
       const base = near(root, last, p);
-      const high = c.onsetIndex % 2 === 1;
+      const high = (c.onsetIndex + phase) % 2 === 1;
       if (c.approaching && c.onsetIndex === c.onsetCount - 1 && c.next) return approach(c, last);
       return foldToRange(high ? base + 12 : base, p);
     }
@@ -185,7 +228,12 @@ function approach(c: BassContext, last: number): number {
   return foldToRange(cand, c.profile);
 }
 
-export function bassStyleForStyle(style: ResolvedStyle, instrumentId: string): BassStyle {
+export function bassStyleForStyle(style: ResolvedStyle, instrumentId: string, role?: string): BassStyle {
+  const approach = role ? style.contract.approaches?.[role] : undefined;
+  if (approach?.id === 'walking') return 'walking';
+  if (approach?.id === 'tumbao') return 'tumbao';
+  if (approach?.id === 'dembow-bass') return 'dembow';
+  if (approach?.id === 'sub-bass') return 'sub';
   if (/sub-bass/.test(instrumentId)) return 'sub';
   return style.contract.bass.style;
 }

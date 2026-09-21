@@ -746,6 +746,8 @@ export const FUNK_WORLD: GenreWorld = {
         "bass",
         "pulse"
       ],
+
+      "approaches": ["walking", "groove"],
       "instruments": [
         "bass",
         "synth"
@@ -788,7 +790,7 @@ export const FUNK_WORLD: GenreWorld = {
         "pop-pluck",
         "ghost-note"
       ],
-      "density": "dense",
+      "supportedEnergy": [4, 5],
       "phrasePosition": [
         "start",
         "middle"
@@ -916,6 +918,8 @@ export const FUNK_WORLD: GenreWorld = {
         "harmony",
         "rhythm-guitar"
       ],
+
+      "approaches": ["comping"],
       "instruments": [
         "electric-guitar",
         "guitar"
@@ -981,7 +985,7 @@ export const FUNK_WORLD: GenreWorld = {
         "percussive-scratch",
         "sharp-chord-accent"
       ],
-      "density": "dense",
+      "supportedEnergy": [4, 5],
       "phrasePosition": [
         "start",
         "middle"
@@ -1115,6 +1119,7 @@ export const FUNK_WORLD: GenreWorld = {
       "name": "Clyde Stubblefield \"Funky Drummer\" Breakbeat",
       "family": "Funk Drumming",
       "category": "fill",
+      "transitionType": "fill",
       "description": "The most sampled groove in music",
       "tags": [
         "drums",
@@ -1135,6 +1140,8 @@ export const FUNK_WORLD: GenreWorld = {
         "percussion",
         "pulse"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "drums",
         "percussion"
@@ -1178,7 +1185,7 @@ export const FUNK_WORLD: GenreWorld = {
         0.3,
         0.75
       ],
-      "density": "dense",
+      "supportedEnergy": [4, 5],
       "phrasePosition": [
         "start",
         "middle"
@@ -1298,6 +1305,7 @@ export const FUNK_WORLD: GenreWorld = {
       "name": "16th Note Strum",
       "family": "Guitar",
       "category": "break",
+      "transitionType": "fill",
       "description": "Continuous 16ths chicken-scratch with accented backbeat",
       "tags": [],
       "scopes": [
@@ -1306,6 +1314,8 @@ export const FUNK_WORLD: GenreWorld = {
       "roles": [
         "electric-guitar"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "electric-guitar"
       ],
@@ -1345,7 +1355,7 @@ export const FUNK_WORLD: GenreWorld = {
         0.95,
         0.6
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -1473,6 +1483,7 @@ export const FUNK_WORLD: GenreWorld = {
       "name": "Slap Bass",
       "family": "Bass",
       "category": "cadence",
+      "transitionType": "fill",
       "description": "Thumb slap on downbeats and syncopated",
       "tags": [],
       "scopes": [
@@ -1481,6 +1492,8 @@ export const FUNK_WORLD: GenreWorld = {
       "roles": [
         "bass"
       ],
+
+      "approaches": ["walking"],
       "instruments": [
         "bass"
       ],
@@ -1517,7 +1530,7 @@ export const FUNK_WORLD: GenreWorld = {
         0.65,
         0.8
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -1647,6 +1660,8 @@ export const FUNK_WORLD: GenreWorld = {
       "roles": [
         "drums"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "drums"
       ],
@@ -1683,7 +1698,7 @@ export const FUNK_WORLD: GenreWorld = {
         0.45,
         0.55
       ],
-      "density": "dynamic",
+      "supportedEnergy": [1, 2, 3, 4, 5],
       "phrasePosition": [
         "start"
       ],
@@ -1813,6 +1828,8 @@ export const FUNK_WORLD: GenreWorld = {
         "keys",
         "synth"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "keys",
         "synth"
@@ -1841,7 +1858,7 @@ export const FUNK_WORLD: GenreWorld = {
         0.75,
         0.8
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -1951,6 +1968,8 @@ export const FUNK_WORLD: GenreWorld = {
         "trumpet",
         "sax"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "brass",
         "trumpet",
@@ -1974,7 +1993,7 @@ export const FUNK_WORLD: GenreWorld = {
         0.9,
         0.85
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -2070,6 +2089,8 @@ export const FUNK_WORLD: GenreWorld = {
       "roles": [
         "bass"
       ],
+
+      "approaches": ["walking"],
       "instruments": [
         "bass"
       ],
@@ -2100,7 +2121,7 @@ export const FUNK_WORLD: GenreWorld = {
         0.65,
         0.9
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -2216,6 +2237,8 @@ export const FUNK_WORLD: GenreWorld = {
       "roles": [
         "drums"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "drums"
       ],
@@ -2240,7 +2263,7 @@ export const FUNK_WORLD: GenreWorld = {
         0.9,
         0.85
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -2344,6 +2367,8 @@ export const FUNK_WORLD: GenreWorld = {
       "roles": [
         "drums"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "drums"
       ],
@@ -2368,7 +2393,7 @@ export const FUNK_WORLD: GenreWorld = {
         0.7,
         0.9
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -2472,6 +2497,8 @@ export const FUNK_WORLD: GenreWorld = {
       "roles": [
         "electric-guitar"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "electric-guitar"
       ],
@@ -2508,7 +2535,7 @@ export const FUNK_WORLD: GenreWorld = {
         0.8,
         0.7
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -2642,6 +2669,8 @@ export const FUNK_WORLD: GenreWorld = {
       "roles": [
         "voice"
       ],
+
+      "approaches": ["phrase"],
       "instruments": [
         "voice"
       ],
@@ -2692,7 +2721,7 @@ export const FUNK_WORLD: GenreWorld = {
         "breath",
         "phrase-end"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -2823,6 +2852,8 @@ export const FUNK_WORLD: GenreWorld = {
       "roles": [
         "voice"
       ],
+
+      "approaches": ["phrase"],
       "instruments": [
         "voice"
       ],
@@ -2873,7 +2904,7 @@ export const FUNK_WORLD: GenreWorld = {
         "breath",
         "phrase-end"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "middle"
       ],
@@ -3061,6 +3092,8 @@ export const FUNK_WORLD: GenreWorld = {
       "roles": [
         "bass"
       ],
+
+      "approaches": ["walking"],
       "instruments": [
         "bass"
       ],
@@ -3111,7 +3144,7 @@ export const FUNK_WORLD: GenreWorld = {
         "accented",
         "ghost-aware"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start",
         "middle"
@@ -3243,6 +3276,8 @@ export const FUNK_WORLD: GenreWorld = {
       "roles": [
         "harmony"
       ],
+
+      "approaches": ["comping"],
       "instruments": [
         "guitar"
       ],
@@ -3287,7 +3322,7 @@ export const FUNK_WORLD: GenreWorld = {
         "accented",
         "ghost-aware"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "middle"
       ],
@@ -3406,6 +3441,8 @@ export const FUNK_WORLD: GenreWorld = {
       "roles": [
         "voice"
       ],
+
+      "approaches": ["phrase"],
       "instruments": [
         "voice"
       ],
@@ -3450,7 +3487,7 @@ export const FUNK_WORLD: GenreWorld = {
         "breath",
         "phrase-end"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start",
         "middle"

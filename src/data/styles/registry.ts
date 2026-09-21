@@ -5,6 +5,8 @@ import { applyStyleDialect } from './styleDialect';
 import { ALL_PATTERNS, PATTERNS_BY_WORLD, PATTERNS_BY_ID, GENRE_SOURCE_MAP } from '../genres';
 import { INSTRUMENTS_BY_ID } from '../instruments';
 import { contractForGenre } from './contracts';
+import { energyForFormIntensity } from '../../engine/energy';
+import type { SectionEnergy } from '../../types';
 
 const GENRE_RHYTHM: Record<string, { bpm: number; range: [number, number]; meter: string; feel: string; swing: number }> = {
   afrobeats:{bpm:108,range:[100,118],meter:'4/4',feel:'laid-back syncopation',swing:52}, bachata:{bpm:128,range:[118,138],meter:'4/4',feel:'derecho pocket',swing:52},
@@ -65,6 +67,13 @@ function styleFromSeed(worldId: string, seed: any, index: number): SongStyle {
     form:{
       sectionVocab:[...contract.form],
       templates:[{w:1, value:formSteps}],
+      defaultSpotlights:{
+        verse:['lead'],
+        chorus:['lead'],
+        coro:['lead'],
+        refrain:['lead'],
+        montuno:['harmony','pulse'],
+      },
       preferredMeters:[contract.meter],
     },
     harmony:{
@@ -104,11 +113,11 @@ function styleFromSeed(worldId: string, seed: any, index: number): SongStyle {
     },
     arrangement:{
       ensemble,
-      densityCurve:Object.fromEntries(formSteps.map(step => [step.key, step.intensity === 'low' ? 'sparse' : step.intensity === 'high' || step.intensity === 'peak' ? 'busy' : 'normal'])),
+      energyMappings:Object.fromEntries(formSteps.map(step => [step.key, energyForFormIntensity(step.intensity)])) as Partial<Record<string, SectionEnergy>>,
       doublingRules:[contract.ensemble.motor ?? '', contract.ensemble.answer ?? ''].filter(Boolean),
     },
     sound:{
-      instrumentPalette:instruments.map(value => ({value,w:1})),
+      instrumentPalette:instruments.map(value => ({value: String(value), w: 1})),
       masterProfile:{roomId:contract.timbreSpace.room,pocket:0.5,lift:0.5},
     },
     patterns:{require:[],preferred:[],allowed:[],avoid:[]}, gestures:{}, rules:{
@@ -161,8 +170,22 @@ export const STYLES_BY_GENRE: Record<string, SongStyle[]> = Object.fromEntries(
 
 export function getStyle(id: string): SongStyle | undefined { return ALL_STYLES_BY_ID[id]; }
 export function getStylesForGenre(genreId: string): SongStyle[] { return STYLES_BY_GENRE[genreId] ?? []; }
+/**
+ * The style a genre defaults to.
+ *
+ * An unknown genre used to fall through to `ALL_STYLES[0]` — a style belonging
+ * to some unrelated world. `resolveStyle` then threw "style X does not belong
+ * to genre Y" from deep inside a rebuild, thousands of lines from the typo that
+ * caused it. Failing here names the actual problem.
+ */
 export function getCanonicalStyle(genreId: string): SongStyle {
-  return getStylesForGenre(genreId).find(s => s.canonical) ?? getStylesForGenre(genreId)[0] ?? ALL_STYLES[0];
+  const styles = getStylesForGenre(genreId);
+  if (!styles.length) {
+    throw new Error(
+      `Unknown genre "${genreId}". Known genres: ${Object.keys(STYLES_BY_GENRE).filter(g => STYLES_BY_GENRE[g].length).join(', ')}`,
+    );
+  }
+  return styles.find(s => s.canonical) ?? styles[0];
 }
 
 

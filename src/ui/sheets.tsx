@@ -4,13 +4,15 @@ import { Glyph } from './Glyph';
 import { PLATES, plateFor } from './worlds';
 import { INSTRUMENT_CATALOG, FAMILY_LABELS, FAMILY_ORDER, instrument } from '../data/instruments';
 import { ALL_PATTERNS, GENRE_WORLDS_BY_ID, cleanPatternName, FEEL_ORDER, FEEL_LABELS, feelsForPattern, PatternFeel } from '../data/genres';
-import { Voice, toBar, BAR_CHOICES, FEELS, getGenreForm, PartDensity } from '../engine/arrange';
+import { Voice, toBar, BAR_CHOICES, FEELS, getGenreForm } from '../engine/arrange';
 import { Region } from '../types';
 import { CHORD_PALETTE, CHORD_MOODS, CHORD_MOOD_ORDER, ChordMood, JAZZ_CHORD_LIBRARY, suggestedPaletteForStyle } from '../data/chordPalette';
 import { parseChord } from '../engine/theory';
 import { formSummary } from '../data/genreForms';
 import { grooveSummary } from '../engine/groove';
 import { ROOMS, roomFor } from '../engine/mixer';
+import type { SectionEnergy } from '../types';
+import { ENERGY_LABELS } from '../engine/energy';
 
 
 /* ========================================================================== */
@@ -805,7 +807,7 @@ export function SectionSheet({
   songFeelName, onTempoShift,
   onChords,
   onGenre,
-  onDensity,
+  onEnergy,
   currentWorldId,
   customProgressions = [],
   onAddCustomChords,
@@ -826,7 +828,7 @@ export function SectionSheet({
   songFeelName?: string; onTempoShift?: (shift?: string) => void;
   onChords?: (chords: string[]) => void;
   onGenre?: (genreId: string) => void;
-  onDensity?: (density: PartDensity) => void;
+  onEnergy?: (energy: SectionEnergy) => void;
   currentWorldId?: string;
   customProgressions?: any[];
   onAddCustomChords?: (name: string, chords: string[]) => void;
@@ -931,26 +933,27 @@ export function SectionSheet({
         ))}
       </div>
 
-      {/* DENSITY */}
-      {onDensity && (
+      {/* WEIGHT — the one section dial. The genre decides what each step means. */}
+      {onEnergy && (
         <div className="mb-5">
-          <div className="micro mb-2">Part density</div>
+          <div className="micro mb-2">Weight</div>
           <div className="flex items-center gap-1.5">
-            {(['sparse', 'normal', 'busy'] as const).map(d => {
-              const isActive = (region.density ?? 'normal') === d;
+            {([1, 2, 3, 4, 5] as const).map(d => {
+              const isActive = (region.energy ?? 3) === d;
               return (
                 <button
                   key={d}
                   type="button"
-                  onClick={() => onDensity(d)}
-                  className="flex-1 py-2 px-3 rounded text-xs font-semibold capitalize transition-all cursor-pointer flex justify-center items-center"
+                  onClick={() => onEnergy(d)}
+                  title={ENERGY_LABELS[d]}
+                  className="flex-1 py-2 px-2 rounded text-xs font-semibold transition-all cursor-pointer flex justify-center items-center"
                   style={{
                     background: isActive ? 'var(--ink)' : 'color-mix(in srgb, var(--ink) 8%, transparent)',
                     color: isActive ? '#ffffff' : 'var(--ink)',
                     boxShadow: isActive ? 'none' : 'inset 0 0 0 1px color-mix(in srgb, var(--ink) 15%, transparent)',
                   }}
                 >
-                  {d}
+                  {isActive ? ENERGY_LABELS[d] : d}
                 </button>
               );
             })}
@@ -1482,7 +1485,9 @@ function describe(v: number, marks: [string, string, string]): string {
 
 export function PerformanceSheet({
   open, onClose, worldId, pocket, lift, roomId,
+  adventure, development, expression,
   onSetPocket, onSetLift, onSetRoom,
+  onSetAdventure, onSetDevelopment, onSetExpression,
 }: {
   open: boolean;
   onClose: () => void;
@@ -1490,9 +1495,15 @@ export function PerformanceSheet({
   pocket: number;
   lift: number;
   roomId: string;
+  adventure: number;
+  development: number;
+  expression: number;
   onSetPocket: (v: number) => void;
   onSetLift: (v: number) => void;
   onSetRoom: (id: string) => void;
+  onSetAdventure: (v: number) => void;
+  onSetDevelopment: (v: number) => void;
+  onSetExpression: (v: number) => void;
 }) {
   const groove = grooveSummary(worldId);
   const defaultRoom = roomFor(worldId);
@@ -1524,6 +1535,30 @@ export function PerformanceSheet({
         value={lift}
         onChange={onSetLift}
         marks={['flat', 'natural', 'dramatic']}
+      />
+
+      <Dial
+        label="Expression"
+        hint="How strongly ornaments, bends and swells are played. Left plays it straight."
+        value={expression}
+        onChange={onSetExpression}
+        marks={['plain', 'idiomatic', 'florid']}
+      />
+
+      <Dial
+        label="Development"
+        hint="How much a part changes each time it repeats."
+        value={development}
+        onChange={onSetDevelopment}
+        marks={['hypnotic', 'natural', 'restless']}
+      />
+
+      <Dial
+        label="Adventure"
+        hint="How far the engine may stray from this style's usual vocabulary. Right lets other genres in."
+        value={adventure}
+        onChange={onSetAdventure}
+        marks={['strict', 'idiomatic', 'open']}
       />
 
       <div className="micro mb-2 font-semibold">Space</div>

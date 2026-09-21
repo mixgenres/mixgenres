@@ -721,6 +721,8 @@ export const JAZZ_WORLD: GenreWorld = {
         "bass",
         "pulse"
       ],
+
+      "approaches": ["walking", "groove"],
       "instruments": [
         "bass",
         "piano"
@@ -750,7 +752,7 @@ export const JAZZ_WORLD: GenreWorld = {
         "tenuto-pizz",
         "chromatic-lead"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start",
         "middle"
@@ -843,6 +845,8 @@ export const JAZZ_WORLD: GenreWorld = {
         "percussion",
         "pulse"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "drums",
         "percussion"
@@ -874,7 +878,7 @@ export const JAZZ_WORLD: GenreWorld = {
         1,
         0.65
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start",
         "middle"
@@ -994,6 +998,8 @@ export const JAZZ_WORLD: GenreWorld = {
         "piano",
         "keyboard"
       ],
+
+      "approaches": ["comping"],
       "instruments": [
         "piano",
         "keys",
@@ -1018,7 +1024,7 @@ export const JAZZ_WORLD: GenreWorld = {
         0.95,
         0.8
       ],
-      "density": "sparse",
+      "supportedEnergy": [1, 2],
       "phrasePosition": [
         "start",
         "middle"
@@ -1110,6 +1116,7 @@ export const JAZZ_WORLD: GenreWorld = {
       "name": "Brushes Swing",
       "family": "Drums",
       "category": "fill",
+      "transitionType": "fill",
       "description": "Sweeping wire brush circular patterns on",
       "tags": [],
       "scopes": [
@@ -1118,6 +1125,8 @@ export const JAZZ_WORLD: GenreWorld = {
       "roles": [
         "drums"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "drums"
       ],
@@ -1154,7 +1163,7 @@ export const JAZZ_WORLD: GenreWorld = {
         0.8,
         0.65
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -1288,6 +1297,8 @@ export const JAZZ_WORLD: GenreWorld = {
         "piano",
         "keys"
       ],
+
+      "approaches": ["comping"],
       "instruments": [
         "piano",
         "keys"
@@ -1319,7 +1330,7 @@ export const JAZZ_WORLD: GenreWorld = {
         0.75,
         0.85
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -1429,6 +1440,7 @@ export const JAZZ_WORLD: GenreWorld = {
       "name": "Block Chords",
       "family": "Piano",
       "category": "break",
+      "transitionType": "fill",
       "description": "Locked-hands syncopated block chords.",
       "tags": [],
       "scopes": [
@@ -1438,6 +1450,8 @@ export const JAZZ_WORLD: GenreWorld = {
         "piano",
         "keys"
       ],
+
+      "approaches": ["comping"],
       "instruments": [
         "piano",
         "keys"
@@ -1460,7 +1474,7 @@ export const JAZZ_WORLD: GenreWorld = {
         0.75,
         0.95
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -1548,6 +1562,7 @@ export const JAZZ_WORLD: GenreWorld = {
       "name": "Hi-Hat 2 & 4",
       "family": "Drums",
       "category": "cadence",
+      "transitionType": "fill",
       "description": "Crisp foot hi-hat chick locking beats",
       "tags": [],
       "scopes": [
@@ -1556,6 +1571,8 @@ export const JAZZ_WORLD: GenreWorld = {
       "roles": [
         "drums"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "drums"
       ],
@@ -1574,7 +1591,7 @@ export const JAZZ_WORLD: GenreWorld = {
         0.85,
         0.95
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -1668,6 +1685,8 @@ export const JAZZ_WORLD: GenreWorld = {
       "roles": [
         "drums"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "drums"
       ],
@@ -1695,7 +1714,7 @@ export const JAZZ_WORLD: GenreWorld = {
         0.55,
         0.8
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -1804,6 +1823,8 @@ export const JAZZ_WORLD: GenreWorld = {
       "roles": [
         "bass"
       ],
+
+      "approaches": ["walking"],
       "instruments": [
         "bass"
       ],
@@ -1828,7 +1849,7 @@ export const JAZZ_WORLD: GenreWorld = {
         0.82,
         0.68
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -1933,6 +1954,8 @@ export const JAZZ_WORLD: GenreWorld = {
         "piano",
         "keys"
       ],
+
+      "approaches": ["comping"],
       "instruments": [
         "piano",
         "keys"
@@ -1955,7 +1978,7 @@ export const JAZZ_WORLD: GenreWorld = {
         0.95,
         0.85
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -2051,6 +2074,8 @@ export const JAZZ_WORLD: GenreWorld = {
       "roles": [
         "drums"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "drums"
       ],
@@ -2072,7 +2097,7 @@ export const JAZZ_WORLD: GenreWorld = {
         0.95,
         0.8
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -2168,6 +2193,8 @@ export const JAZZ_WORLD: GenreWorld = {
       "roles": [
         "drums"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "drums"
       ],
@@ -2198,7 +2225,7 @@ export const JAZZ_WORLD: GenreWorld = {
         0.85,
         0.65
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -2320,6 +2347,8 @@ export const JAZZ_WORLD: GenreWorld = {
       "roles": [
         "voice"
       ],
+
+      "approaches": ["phrase"],
       "instruments": [
         "voice"
       ],
@@ -2361,7 +2390,7 @@ export const JAZZ_WORLD: GenreWorld = {
         "breath",
         "phrase-end"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -2471,6 +2500,8 @@ export const JAZZ_WORLD: GenreWorld = {
       "roles": [
         "lead"
       ],
+
+      "approaches": ["phrase"],
       "instruments": [
         "sax"
       ],
@@ -2512,7 +2543,7 @@ export const JAZZ_WORLD: GenreWorld = {
         "breath",
         "phrase-end"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "middle"
       ],
@@ -2667,6 +2698,8 @@ export const JAZZ_WORLD: GenreWorld = {
       "roles": [
         "bass"
       ],
+
+      "approaches": ["walking"],
       "instruments": [
         "bass"
       ],
@@ -2708,7 +2741,7 @@ export const JAZZ_WORLD: GenreWorld = {
         "accented",
         "ghost-aware"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start",
         "middle"
@@ -2819,6 +2852,8 @@ export const JAZZ_WORLD: GenreWorld = {
       "roles": [
         "harmony"
       ],
+
+      "approaches": ["comping"],
       "instruments": [
         "piano"
       ],
@@ -2860,7 +2895,7 @@ export const JAZZ_WORLD: GenreWorld = {
         "accented",
         "ghost-aware"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "middle"
       ],
@@ -2972,6 +3007,8 @@ export const JAZZ_WORLD: GenreWorld = {
         "texture",
         "lead"
       ],
+
+      "approaches": ["comping", "phrase"],
       "instruments": [
         "trumpet"
       ],
@@ -3018,7 +3055,7 @@ export const JAZZ_WORLD: GenreWorld = {
         "accented",
         "ghost-aware"
       ],
-      "density": "dynamic",
+      "supportedEnergy": [1, 2, 3, 4, 5],
       "phrasePosition": [
         "start"
       ],

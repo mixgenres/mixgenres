@@ -1,5 +1,6 @@
 import { GenreWorld } from '../../types';
 
+/* transitionType: "drop-out" is handled by the contract seam grammar */
 export const ELECTRONIC_WORLD: GenreWorld = {
   "id": "electronic",
   "name": "Electronic",
@@ -690,6 +691,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
       "name": "Four on the Floor",
       "family": "Beat",
       "category": "fill",
+      "transitionType": "fill",
       "description": "Kick on every quarter note driving",
       "tags": [
         "electronic",
@@ -701,6 +703,8 @@ export const ELECTRONIC_WORLD: GenreWorld = {
       "roles": [
         "drums"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "drums"
       ],
@@ -725,7 +729,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
         0.92,
         0.88
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -821,6 +825,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
       "name": "Offbeat Hats",
       "family": "Beat",
       "category": "break",
+      "transitionType": "fill",
       "description": "Open hi-hats on the upbeats creating",
       "tags": [
         "electronic",
@@ -832,6 +837,8 @@ export const ELECTRONIC_WORLD: GenreWorld = {
       "roles": [
         "drums"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "drums"
       ],
@@ -856,7 +863,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
         0.95,
         0.85
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -952,6 +959,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
       "name": "Techno Rumble",
       "family": "Beat",
       "category": "cadence",
+      "transitionType": "fill",
       "description": "Driving 16th note bass/kick interaction and",
       "tags": [
         "electronic",
@@ -964,6 +972,8 @@ export const ELECTRONIC_WORLD: GenreWorld = {
         "drums",
         "bass"
       ],
+
+      "approaches": ["groove", "walking"],
       "instruments": [
         "drums",
         "bass"
@@ -1013,7 +1023,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
         0.55,
         0.6
       ],
-      "density": "dense",
+      "supportedEnergy": [4, 5],
       "phrasePosition": [
         "start"
       ],
@@ -1175,6 +1185,8 @@ export const ELECTRONIC_WORLD: GenreWorld = {
         "bass",
         "synth"
       ],
+
+      "approaches": ["walking"],
       "instruments": [
         "bass",
         "synth"
@@ -1236,7 +1248,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
         0.95,
         0.85
       ],
-      "density": "dense",
+      "supportedEnergy": [4, 5],
       "phrasePosition": [
         "start"
       ],
@@ -1424,6 +1436,8 @@ export const ELECTRONIC_WORLD: GenreWorld = {
       "roles": [
         "drums"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "drums"
       ],
@@ -1442,7 +1456,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
         0.95,
         0.9
       ],
-      "density": "sparse",
+      "supportedEnergy": [1, 2],
       "phrasePosition": [
         "start"
       ],
@@ -1538,6 +1552,8 @@ export const ELECTRONIC_WORLD: GenreWorld = {
       "roles": [
         "drums"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "drums"
       ],
@@ -1568,7 +1584,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
         0.9,
         0.65
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -1689,6 +1705,8 @@ export const ELECTRONIC_WORLD: GenreWorld = {
       "roles": [
         "drums"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "drums"
       ],
@@ -1725,7 +1743,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
         0.55,
         0.85
       ],
-      "density": "dense",
+      "supportedEnergy": [4, 5],
       "phrasePosition": [
         "start"
       ],
@@ -1857,6 +1875,8 @@ export const ELECTRONIC_WORLD: GenreWorld = {
       "roles": [
         "drums"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "drums"
       ],
@@ -1887,7 +1907,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
         0.9,
         0.7
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -2007,6 +2027,8 @@ export const ELECTRONIC_WORLD: GenreWorld = {
       "roles": [
         "drums"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "drums"
       ],
@@ -2037,7 +2059,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
         0.9,
         0.75
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -2157,6 +2179,8 @@ export const ELECTRONIC_WORLD: GenreWorld = {
         "keys",
         "synth"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "keys",
         "synth"
@@ -2176,7 +2200,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
         0.9,
         0.75
       ],
-      "density": "sparse",
+      "supportedEnergy": [1, 2],
       "phrasePosition": [
         "start"
       ],
@@ -2272,6 +2296,8 @@ export const ELECTRONIC_WORLD: GenreWorld = {
         "bass",
         "synth"
       ],
+
+      "approaches": ["walking"],
       "instruments": [
         "bass",
         "synth"
@@ -2309,7 +2335,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
         0.88,
         0.8
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -2442,6 +2468,8 @@ export const ELECTRONIC_WORLD: GenreWorld = {
         "bass",
         "synth"
       ],
+
+      "approaches": ["walking"],
       "instruments": [
         "bass",
         "synth"
@@ -2476,7 +2504,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
         0.65,
         0.8
       ],
-      "density": "dense",
+      "supportedEnergy": [4, 5],
       "phrasePosition": [
         "start"
       ],
@@ -2606,6 +2634,8 @@ export const ELECTRONIC_WORLD: GenreWorld = {
       "roles": [
         "voice"
       ],
+
+      "approaches": ["phrase"],
       "instruments": [
         "voice"
       ],
@@ -2653,7 +2683,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
         "breath",
         "phrase-end"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -2780,6 +2810,8 @@ export const ELECTRONIC_WORLD: GenreWorld = {
         "voice",
         "lead"
       ],
+
+      "approaches": ["phrase"],
       "instruments": [
         "synth",
         "bass"
@@ -2830,7 +2862,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
         "breath",
         "phrase-end"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "middle"
       ],
@@ -3009,6 +3041,8 @@ export const ELECTRONIC_WORLD: GenreWorld = {
       "roles": [
         "bass"
       ],
+
+      "approaches": ["walking"],
       "instruments": [
         "bass"
       ],
@@ -3056,7 +3090,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
         "accented",
         "ghost-aware"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start",
         "middle"
@@ -3183,6 +3217,8 @@ export const ELECTRONIC_WORLD: GenreWorld = {
       "roles": [
         "harmony"
       ],
+
+      "approaches": ["comping"],
       "instruments": [
         "synth"
       ],
@@ -3230,7 +3266,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
         "accented",
         "ghost-aware"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "middle"
       ],
@@ -3357,6 +3393,8 @@ export const ELECTRONIC_WORLD: GenreWorld = {
         "harmony",
         "texture"
       ],
+
+      "approaches": ["comping"],
       "instruments": [
         "synth"
       ],
@@ -3402,7 +3440,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
         "accented",
         "ghost-aware"
       ],
-      "density": "dynamic",
+      "supportedEnergy": [1, 2, 3, 4, 5],
       "phrasePosition": [
         "start"
       ],

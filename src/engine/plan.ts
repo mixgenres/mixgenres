@@ -5,8 +5,9 @@ import { KeyInfo, inferKey, chordTemplateInKey } from './theory';
 import { GrooveProfile, rand01, grooveForStyle } from './groove';
 import { instrument } from '../data/instruments';
 import { roleForInstrument } from './arrange';
-import { Role, InstrumentKind } from '../types';
+import { Role, InstrumentKind, SectionEnergy } from '../types';
 import { suggestedPaletteForGenre } from '../data/chordPalette';
+import { energyForFormIntensity } from './energy';
 
 export interface PlanSection {
   id: string;
@@ -20,7 +21,6 @@ export interface PlanSection {
   chords: string[];
   harmonicRhythm?: string;
   cadenceType?: string;
-  suggestedDensity?: 'sparse' | 'normal' | 'busy';
 }
 
 export interface PlanVoice {
@@ -90,15 +90,6 @@ const DEFAULT_KEYS: Record<string, string[]> = {
   'celtic-trad': ['D', 'G', 'A', 'Edor', 'Ador'],
 };
 
-/** Convert intensity label to numerical energy */
-function intensityToEnergy(intensity: 'low' | 'medium' | 'high' | 'peak'): number {
-  switch (intensity) {
-    case 'low': return 0.25;
-    case 'medium': return 0.55;
-    case 'high': return 0.8;
-    case 'peak': return 1.0;
-  }
-}
 
 /**
  * Plan a complete song from the ground up using the resolved SongStyle.
@@ -189,9 +180,7 @@ export function planSong(
         ?? ['C','G','Am','F'];
     const rawChords = chordTemplateInKey(cell, baseKeyInfo);
 
-    const energy = intensityToEnergy(step.intensity);
-    const density: 'sparse' | 'normal' | 'busy' = 
-      step.intensity === 'low' ? 'sparse' : (step.intensity === 'peak' ? 'busy' : 'normal');
+    const energy: SectionEnergy = energyForFormIntensity(step.intensity);
 
     return {
       id: `r${idx}`,
@@ -203,7 +192,6 @@ export function planSong(
       intensity: step.intensity,
       energy,
       chords: rawChords,
-      suggestedDensity: density,
     };
   });
 

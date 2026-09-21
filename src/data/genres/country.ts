@@ -762,6 +762,7 @@ export const COUNTRY_WORLD: GenreWorld = {
       "name": "Boom-Chuck",
       "family": "Rhythm",
       "category": "fill",
+      "transitionType": "fill",
       "description": "Alternating root/fifth bass and upbeat chord",
       "tags": [
         "country",
@@ -774,6 +775,8 @@ export const COUNTRY_WORLD: GenreWorld = {
         "rhythm-guitar",
         "bass"
       ],
+
+      "approaches": ["walking"],
       "instruments": [
         "guitar",
         "bass"
@@ -799,7 +802,7 @@ export const COUNTRY_WORLD: GenreWorld = {
         0.9,
         0.8
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -895,6 +898,7 @@ export const COUNTRY_WORLD: GenreWorld = {
       "name": "Train Beat",
       "family": "Beat",
       "category": "break",
+      "transitionType": "fill",
       "description": "Continuous 16ths snare train beat with",
       "tags": [
         "country",
@@ -906,6 +910,8 @@ export const COUNTRY_WORLD: GenreWorld = {
       "roles": [
         "drums"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "drums"
       ],
@@ -966,7 +972,7 @@ export const COUNTRY_WORLD: GenreWorld = {
         0.6,
         0.55
       ],
-      "density": "dense",
+      "supportedEnergy": [4, 5],
       "phrasePosition": [
         "start"
       ],
@@ -1142,6 +1148,7 @@ export const COUNTRY_WORLD: GenreWorld = {
       "name": "Hick-Hop Trap Hi-Hats",
       "family": "Beat",
       "category": "cadence",
+      "transitionType": "fill",
       "description": "Modern country-trap crossover: rolling hi-hat bursts",
       "tags": [
         "country",
@@ -1154,6 +1161,8 @@ export const COUNTRY_WORLD: GenreWorld = {
       "roles": [
         "drums"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "drums"
       ],
@@ -1190,7 +1199,7 @@ export const COUNTRY_WORLD: GenreWorld = {
         0.6,
         0.8
       ],
-      "density": "dense",
+      "supportedEnergy": [4, 5],
       "phrasePosition": [
         "start"
       ],
@@ -1323,6 +1332,8 @@ export const COUNTRY_WORLD: GenreWorld = {
       "roles": [
         "bass"
       ],
+
+      "approaches": ["walking"],
       "instruments": [
         "bass"
       ],
@@ -1359,7 +1370,7 @@ export const COUNTRY_WORLD: GenreWorld = {
         0.82,
         0.72
       ],
-      "density": "dense",
+      "supportedEnergy": [4, 5],
       "phrasePosition": [
         "start"
       ],
@@ -1492,6 +1503,8 @@ export const COUNTRY_WORLD: GenreWorld = {
         "drums",
         "bass"
       ],
+
+      "approaches": ["groove", "walking"],
       "instruments": [
         "drums",
         "bass"
@@ -1514,7 +1527,7 @@ export const COUNTRY_WORLD: GenreWorld = {
         0.7,
         0.65
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -1615,6 +1628,8 @@ export const COUNTRY_WORLD: GenreWorld = {
         "drums",
         "bass"
       ],
+
+      "approaches": ["groove", "walking"],
       "instruments": [
         "drums",
         "bass"
@@ -1640,7 +1655,7 @@ export const COUNTRY_WORLD: GenreWorld = {
         0.95,
         0.82
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -1748,6 +1763,8 @@ export const COUNTRY_WORLD: GenreWorld = {
       "roles": [
         "drums"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "drums"
       ],
@@ -1775,7 +1792,7 @@ export const COUNTRY_WORLD: GenreWorld = {
         0.85,
         0.7
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -1887,6 +1904,8 @@ export const COUNTRY_WORLD: GenreWorld = {
       "roles": [
         "texture"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "guitar"
       ],
@@ -1905,7 +1924,7 @@ export const COUNTRY_WORLD: GenreWorld = {
         0.7,
         0.95
       ],
-      "density": "sparse",
+      "supportedEnergy": [1, 2],
       "phrasePosition": [
         "start",
         "middle"
@@ -2001,6 +2020,8 @@ export const COUNTRY_WORLD: GenreWorld = {
       "roles": [
         "electric-guitar"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "electric-guitar"
       ],
@@ -2037,7 +2058,7 @@ export const COUNTRY_WORLD: GenreWorld = {
         0.85,
         0.75
       ],
-      "density": "dense",
+      "supportedEnergy": [4, 5],
       "phrasePosition": [
         "start"
       ],
@@ -2169,6 +2190,8 @@ export const COUNTRY_WORLD: GenreWorld = {
         "drums",
         "bass"
       ],
+
+      "approaches": ["groove", "walking"],
       "instruments": [
         "drums",
         "bass"
@@ -2188,7 +2211,7 @@ export const COUNTRY_WORLD: GenreWorld = {
         0.95,
         0.78
       ],
-      "density": "sparse",
+      "supportedEnergy": [1, 2],
       "phrasePosition": [
         "start"
       ],
@@ -2286,6 +2309,8 @@ export const COUNTRY_WORLD: GenreWorld = {
       "roles": [
         "voice"
       ],
+
+      "approaches": ["phrase"],
       "instruments": [
         "voice"
       ],
@@ -2336,7 +2361,7 @@ export const COUNTRY_WORLD: GenreWorld = {
         "breath",
         "phrase-end"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -2467,6 +2492,8 @@ export const COUNTRY_WORLD: GenreWorld = {
       "roles": [
         "voice"
       ],
+
+      "approaches": ["phrase"],
       "instruments": [
         "voice"
       ],
@@ -2517,7 +2544,7 @@ export const COUNTRY_WORLD: GenreWorld = {
         "breath",
         "phrase-end"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "middle"
       ],
@@ -2705,6 +2732,8 @@ export const COUNTRY_WORLD: GenreWorld = {
       "roles": [
         "bass"
       ],
+
+      "approaches": ["walking"],
       "instruments": [
         "bass"
       ],
@@ -2755,7 +2784,7 @@ export const COUNTRY_WORLD: GenreWorld = {
         "accented",
         "ghost-aware"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start",
         "middle"
@@ -2887,6 +2916,8 @@ export const COUNTRY_WORLD: GenreWorld = {
       "roles": [
         "harmony"
       ],
+
+      "approaches": ["comping"],
       "instruments": [
         "guitar"
       ],
@@ -2937,7 +2968,7 @@ export const COUNTRY_WORLD: GenreWorld = {
         "accented",
         "ghost-aware"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "middle"
       ],
@@ -3069,6 +3100,8 @@ export const COUNTRY_WORLD: GenreWorld = {
         "harmony",
         "texture"
       ],
+
+      "approaches": ["comping"],
       "instruments": [
         "guitar"
       ],
@@ -3111,7 +3144,7 @@ export const COUNTRY_WORLD: GenreWorld = {
         "accented",
         "ghost-aware"
       ],
-      "density": "dynamic",
+      "supportedEnergy": [1, 2, 3, 4, 5],
       "phrasePosition": [
         "start"
       ],
@@ -3267,6 +3300,8 @@ export const COUNTRY_WORLD: GenreWorld = {
         "rhythm-guitar",
         "drums"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "drums",
         "percussion",
@@ -3320,7 +3355,7 @@ export const COUNTRY_WORLD: GenreWorld = {
         "accented",
         "ghost-aware"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "middle"
       ],
@@ -3446,6 +3481,8 @@ export const COUNTRY_WORLD: GenreWorld = {
       "roles": [
         "voice"
       ],
+
+      "approaches": ["phrase"],
       "instruments": [
         "voice"
       ],
@@ -3490,7 +3527,7 @@ export const COUNTRY_WORLD: GenreWorld = {
         "breath",
         "phrase-end"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start",
         "middle"

@@ -667,6 +667,7 @@ export const KIZOMBA_WORLD: GenreWorld = {
       "name": "Kizomba Batida & Sub-Kick Beat",
       "family": "Kizomba Drumming",
       "category": "break",
+      "transitionType": "fill",
       "description": "The hypnotic heartbeat of Kizomba: low",
       "tags": [
         "kizomba",
@@ -687,6 +688,8 @@ export const KIZOMBA_WORLD: GenreWorld = {
         "percussion",
         "pulse"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "drums",
         "percussion"
@@ -715,7 +718,7 @@ export const KIZOMBA_WORLD: GenreWorld = {
         0.68,
         0.82
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start",
         "middle"
@@ -808,6 +811,7 @@ export const KIZOMBA_WORLD: GenreWorld = {
       "name": "Dikanza Scraper",
       "family": "Percussion",
       "category": "cadence",
+      "transitionType": "fill",
       "description": "Authentic Angolan dikanza (reco-reco / bamboo",
       "tags": [
         "kizomba",
@@ -822,6 +826,8 @@ export const KIZOMBA_WORLD: GenreWorld = {
       "roles": [
         "percussion"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "percussion"
       ],
@@ -852,7 +858,7 @@ export const KIZOMBA_WORLD: GenreWorld = {
         0.76,
         0.88
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -974,6 +980,8 @@ export const KIZOMBA_WORLD: GenreWorld = {
         "guitar",
         "electric-guitar"
       ],
+
+      "approaches": ["chop"],
       "instruments": [
         "guitar",
         "electric-guitar"
@@ -1005,7 +1013,7 @@ export const KIZOMBA_WORLD: GenreWorld = {
         0.88,
         0.76
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -1129,6 +1137,8 @@ export const KIZOMBA_WORLD: GenreWorld = {
         "bass",
         "synth"
       ],
+
+      "approaches": ["walking"],
       "instruments": [
         "bass",
         "synth"
@@ -1151,7 +1161,7 @@ export const KIZOMBA_WORLD: GenreWorld = {
         0.84,
         0.78
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -1253,6 +1263,8 @@ export const KIZOMBA_WORLD: GenreWorld = {
       "roles": [
         "drums"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "drums"
       ],
@@ -1277,7 +1289,7 @@ export const KIZOMBA_WORLD: GenreWorld = {
         0.86,
         0.74
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -1386,6 +1398,8 @@ export const KIZOMBA_WORLD: GenreWorld = {
       "roles": [
         "drums"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "drums"
       ],
@@ -1422,7 +1436,7 @@ export const KIZOMBA_WORLD: GenreWorld = {
         0.78,
         0.62
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -1557,6 +1571,8 @@ export const KIZOMBA_WORLD: GenreWorld = {
         "keys",
         "synth"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "keys",
         "synth"
@@ -1585,7 +1601,7 @@ export const KIZOMBA_WORLD: GenreWorld = {
         0.85,
         0.7
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -1698,6 +1714,8 @@ export const KIZOMBA_WORLD: GenreWorld = {
       "roles": [
         "voice"
       ],
+
+      "approaches": ["phrase"],
       "instruments": [
         "voice"
       ],
@@ -1722,7 +1740,7 @@ export const KIZOMBA_WORLD: GenreWorld = {
         0.9,
         0.75
       ],
-      "density": "sparse",
+      "supportedEnergy": [1, 2],
       "phrasePosition": [
         "start"
       ],
@@ -1832,6 +1850,8 @@ export const KIZOMBA_WORLD: GenreWorld = {
       "roles": [
         "voice"
       ],
+
+      "approaches": ["phrase"],
       "instruments": [
         "voice"
       ],
@@ -1879,7 +1899,7 @@ export const KIZOMBA_WORLD: GenreWorld = {
         "breath",
         "phrase-end"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -2006,6 +2026,8 @@ export const KIZOMBA_WORLD: GenreWorld = {
       "roles": [
         "voice"
       ],
+
+      "approaches": ["phrase"],
       "instruments": [
         "voice"
       ],
@@ -2053,7 +2075,7 @@ export const KIZOMBA_WORLD: GenreWorld = {
         "breath",
         "phrase-end"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "middle"
       ],
@@ -2229,6 +2251,8 @@ export const KIZOMBA_WORLD: GenreWorld = {
       "roles": [
         "bass"
       ],
+
+      "approaches": ["walking"],
       "instruments": [
         "bass"
       ],
@@ -2276,7 +2300,7 @@ export const KIZOMBA_WORLD: GenreWorld = {
         "accented",
         "ghost-aware"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start",
         "middle"
@@ -2404,6 +2428,8 @@ export const KIZOMBA_WORLD: GenreWorld = {
       "roles": [
         "harmony"
       ],
+
+      "approaches": ["comping"],
       "instruments": [
         "guitar",
         "keys"
@@ -2453,7 +2479,7 @@ export const KIZOMBA_WORLD: GenreWorld = {
         "accented",
         "ghost-aware"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "middle"
       ],
@@ -2581,6 +2607,8 @@ export const KIZOMBA_WORLD: GenreWorld = {
         "harmony",
         "texture"
       ],
+
+      "approaches": ["comping"],
       "instruments": [
         "guitar",
         "keys"
@@ -2634,7 +2662,7 @@ export const KIZOMBA_WORLD: GenreWorld = {
         "accented",
         "ghost-aware"
       ],
-      "density": "dense",
+      "supportedEnergy": [4, 5],
       "phrasePosition": [
         "start"
       ],
@@ -2814,6 +2842,8 @@ export const KIZOMBA_WORLD: GenreWorld = {
         "rhythm-guitar",
         "drums"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "drums",
         "percussion",
@@ -2870,7 +2900,7 @@ export const KIZOMBA_WORLD: GenreWorld = {
         "accented",
         "ghost-aware"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "middle"
       ],
@@ -3002,6 +3032,8 @@ export const KIZOMBA_WORLD: GenreWorld = {
         "harmony",
         "drums"
       ],
+
+      "approaches": ["groove", "comping"],
       "instruments": [
         "drums",
         "percussion",
@@ -3058,7 +3090,7 @@ export const KIZOMBA_WORLD: GenreWorld = {
         "accented",
         "ghost-aware"
       ],
-      "density": "dynamic",
+      "supportedEnergy": [1, 2, 3, 4, 5],
       "phrasePosition": [
         "middle",
         "end"
@@ -3242,6 +3274,8 @@ export const KIZOMBA_WORLD: GenreWorld = {
         "harmony",
         "lead"
       ],
+
+      "approaches": ["comping", "phrase"],
       "instruments": [
         "guitar",
         "keys"
@@ -3294,7 +3328,7 @@ export const KIZOMBA_WORLD: GenreWorld = {
       "articulations": [
         "legato"
       ],
-      "density": "dense",
+      "supportedEnergy": [4, 5],
       "phrasePosition": [
         "middle"
       ],
@@ -3464,6 +3498,7 @@ export const KIZOMBA_WORLD: GenreWorld = {
       "name": "Call Fill",
       "family": "Call",
       "category": "fill",
+      "transitionType": "fill",
       "description": "A short transition fill that signals",
       "tags": [
         "kizomba",
@@ -3479,6 +3514,8 @@ export const KIZOMBA_WORLD: GenreWorld = {
         "fill",
         "drums"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "drums",
         "percussion"
@@ -3519,7 +3556,7 @@ export const KIZOMBA_WORLD: GenreWorld = {
       "articulations": [
         "fill"
       ],
-      "density": "dense",
+      "supportedEnergy": [4, 5],
       "phrasePosition": [
         "end"
       ],

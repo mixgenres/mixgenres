@@ -291,6 +291,7 @@ export const SWING_WORLD: GenreWorld = {
       "name": "Spang-a-lang",
       "family": "Ride",
       "category": "fill",
+      "transitionType": "fill",
       "description": "Classic swing ride cymbal pattern with",
       "tags": [
         "swing",
@@ -302,6 +303,8 @@ export const SWING_WORLD: GenreWorld = {
       "roles": [
         "drums"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "drums"
       ],
@@ -332,7 +335,7 @@ export const SWING_WORLD: GenreWorld = {
         0.95,
         0.65
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -440,6 +443,7 @@ export const SWING_WORLD: GenreWorld = {
       "name": "Walking Bass",
       "family": "Bass",
       "category": "break",
+      "transitionType": "fill",
       "description": "Quarter note acoustic walking bass line",
       "tags": [
         "swing",
@@ -451,6 +455,8 @@ export const SWING_WORLD: GenreWorld = {
       "roles": [
         "bass"
       ],
+
+      "approaches": ["walking"],
       "instruments": [
         "bass"
       ],
@@ -475,7 +481,7 @@ export const SWING_WORLD: GenreWorld = {
         0.9,
         0.85
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -573,6 +579,7 @@ export const SWING_WORLD: GenreWorld = {
       "name": "2-Feel Bass",
       "family": "Bass",
       "category": "cadence",
+      "transitionType": "fill",
       "description": "Half note bass line for verses",
       "tags": [
         "swing",
@@ -584,6 +591,8 @@ export const SWING_WORLD: GenreWorld = {
       "roles": [
         "bass"
       ],
+
+      "approaches": ["walking"],
       "instruments": [
         "bass"
       ],
@@ -602,7 +611,7 @@ export const SWING_WORLD: GenreWorld = {
         0.95,
         0.8
       ],
-      "density": "sparse",
+      "supportedEnergy": [1, 2],
       "phrasePosition": [
         "start"
       ],
@@ -700,6 +709,8 @@ export const SWING_WORLD: GenreWorld = {
         "keys",
         "piano"
       ],
+
+      "approaches": ["comping"],
       "instruments": [
         "keys",
         "piano"
@@ -719,7 +730,7 @@ export const SWING_WORLD: GenreWorld = {
         0.95,
         0.8
       ],
-      "density": "sparse",
+      "supportedEnergy": [1, 2],
       "phrasePosition": [
         "start"
       ],
@@ -815,6 +826,8 @@ export const SWING_WORLD: GenreWorld = {
       "roles": [
         "drums"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "drums"
       ],
@@ -851,7 +864,7 @@ export const SWING_WORLD: GenreWorld = {
         0.9,
         0.7
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -989,6 +1002,8 @@ export const SWING_WORLD: GenreWorld = {
       "roles": [
         "drums"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "drums"
       ],
@@ -1022,7 +1037,7 @@ export const SWING_WORLD: GenreWorld = {
         0.65,
         0.85
       ],
-      "density": "dense",
+      "supportedEnergy": [4, 5],
       "phrasePosition": [
         "start"
       ],
@@ -1150,6 +1165,8 @@ export const SWING_WORLD: GenreWorld = {
       "roles": [
         "drums"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "drums"
       ],
@@ -1174,7 +1191,7 @@ export const SWING_WORLD: GenreWorld = {
         0.7,
         0.95
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -1255,6 +1272,8 @@ export const SWING_WORLD: GenreWorld = {
         "keys",
         "trumpet"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "keys",
         "trumpet"
@@ -1277,7 +1296,7 @@ export const SWING_WORLD: GenreWorld = {
         0.95,
         0.9
       ],
-      "density": "sparse",
+      "supportedEnergy": [1, 2],
       "phrasePosition": [
         "start"
       ],
@@ -1381,6 +1400,8 @@ export const SWING_WORLD: GenreWorld = {
         "trumpet",
         "drums"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "keys",
         "trumpet",
@@ -1413,7 +1434,7 @@ export const SWING_WORLD: GenreWorld = {
         0.75,
         0.85
       ],
-      "density": "dynamic",
+      "supportedEnergy": [1, 2, 3, 4, 5],
       "phrasePosition": [
         "end"
       ],
@@ -1583,6 +1604,8 @@ export const SWING_WORLD: GenreWorld = {
       "roles": [
         "voice"
       ],
+
+      "approaches": ["phrase"],
       "instruments": [
         "voice"
       ],
@@ -1630,7 +1653,7 @@ export const SWING_WORLD: GenreWorld = {
         "breath",
         "phrase-end"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -1757,6 +1780,8 @@ export const SWING_WORLD: GenreWorld = {
         "voice",
         "lead"
       ],
+
+      "approaches": ["phrase"],
       "instruments": [
         "drums",
         "bass",
@@ -1809,7 +1834,7 @@ export const SWING_WORLD: GenreWorld = {
         "breath",
         "phrase-end"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "middle"
       ],
@@ -1988,6 +2013,8 @@ export const SWING_WORLD: GenreWorld = {
       "roles": [
         "bass"
       ],
+
+      "approaches": ["walking"],
       "instruments": [
         "bass"
       ],
@@ -2035,7 +2062,7 @@ export const SWING_WORLD: GenreWorld = {
         "accented",
         "ghost-aware"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start",
         "middle"
@@ -2162,6 +2189,8 @@ export const SWING_WORLD: GenreWorld = {
       "roles": [
         "harmony"
       ],
+
+      "approaches": ["comping"],
       "instruments": [
         "piano"
       ],
@@ -2209,7 +2238,7 @@ export const SWING_WORLD: GenreWorld = {
         "accented",
         "ghost-aware"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "middle"
       ],
@@ -2336,6 +2365,8 @@ export const SWING_WORLD: GenreWorld = {
         "harmony",
         "texture"
       ],
+
+      "approaches": ["comping"],
       "instruments": [
         "piano"
       ],
@@ -2384,7 +2415,7 @@ export const SWING_WORLD: GenreWorld = {
         "accented",
         "ghost-aware"
       ],
-      "density": "dense",
+      "supportedEnergy": [4, 5],
       "phrasePosition": [
         "start"
       ],
@@ -2563,6 +2594,8 @@ export const SWING_WORLD: GenreWorld = {
         "rhythm-guitar",
         "drums"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "drums",
         "percussion",
@@ -2613,7 +2646,7 @@ export const SWING_WORLD: GenreWorld = {
         "accented",
         "ghost-aware"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "middle"
       ],
@@ -2732,6 +2765,8 @@ export const SWING_WORLD: GenreWorld = {
         "harmony",
         "drums"
       ],
+
+      "approaches": ["groove", "comping"],
       "instruments": [
         "drums",
         "percussion",
@@ -2785,7 +2820,7 @@ export const SWING_WORLD: GenreWorld = {
         "accented",
         "ghost-aware"
       ],
-      "density": "dense",
+      "supportedEnergy": [4, 5],
       "phrasePosition": [
         "middle",
         "end"
@@ -2963,6 +2998,8 @@ export const SWING_WORLD: GenreWorld = {
       "roles": [
         "voice"
       ],
+
+      "approaches": ["phrase"],
       "instruments": [
         "voice"
       ],
@@ -3007,7 +3044,7 @@ export const SWING_WORLD: GenreWorld = {
         "breath",
         "phrase-end"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start",
         "middle"

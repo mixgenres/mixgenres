@@ -725,6 +725,8 @@ export const FOLK_WORLD: GenreWorld = {
       "roles": [
         "rhythm-guitar"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "guitar"
       ],
@@ -755,7 +757,7 @@ export const FOLK_WORLD: GenreWorld = {
         0.7,
         0.75
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -868,6 +870,7 @@ export const FOLK_WORLD: GenreWorld = {
       "name": "Syncopated Travis",
       "family": "Fingerpicking",
       "category": "fill",
+      "transitionType": "fill",
       "description": "Travis picking with anticipations.",
       "tags": [
         "folk",
@@ -879,6 +882,8 @@ export const FOLK_WORLD: GenreWorld = {
       "roles": [
         "rhythm-guitar"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "guitar"
       ],
@@ -909,7 +914,7 @@ export const FOLK_WORLD: GenreWorld = {
         0.8,
         0.75
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -1017,6 +1022,7 @@ export const FOLK_WORLD: GenreWorld = {
       "name": "Basic Strum",
       "family": "Strumming",
       "category": "break",
+      "transitionType": "fill",
       "description": "Down on beats, up on offbeats.",
       "tags": [
         "folk",
@@ -1028,6 +1034,8 @@ export const FOLK_WORLD: GenreWorld = {
       "roles": [
         "rhythm-guitar"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "guitar"
       ],
@@ -1052,7 +1060,7 @@ export const FOLK_WORLD: GenreWorld = {
         0.85,
         0.75
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -1150,6 +1158,7 @@ export const FOLK_WORLD: GenreWorld = {
       "name": "Syncopated Strum",
       "family": "Strumming",
       "category": "cadence",
+      "transitionType": "fill",
       "description": "Standard folk syncopated strum (D-D-U-U-D-U).",
       "tags": [
         "folk",
@@ -1161,6 +1170,8 @@ export const FOLK_WORLD: GenreWorld = {
       "roles": [
         "rhythm-guitar"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "guitar"
       ],
@@ -1188,7 +1199,7 @@ export const FOLK_WORLD: GenreWorld = {
         0.7,
         0.8
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -1301,6 +1312,8 @@ export const FOLK_WORLD: GenreWorld = {
       "roles": [
         "rhythm-guitar"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "guitar"
       ],
@@ -1322,7 +1335,7 @@ export const FOLK_WORLD: GenreWorld = {
         0.68,
         0.6
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -1422,6 +1435,8 @@ export const FOLK_WORLD: GenreWorld = {
       "roles": [
         "rhythm-guitar"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "guitar"
       ],
@@ -1452,7 +1467,7 @@ export const FOLK_WORLD: GenreWorld = {
         0.65,
         0.7
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -1572,6 +1587,8 @@ export const FOLK_WORLD: GenreWorld = {
       "roles": [
         "rhythm-guitar"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "guitar"
       ],
@@ -1602,7 +1619,7 @@ export const FOLK_WORLD: GenreWorld = {
         0.6,
         0.65
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -1722,6 +1739,8 @@ export const FOLK_WORLD: GenreWorld = {
       "roles": [
         "violin"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "violin"
       ],
@@ -1752,7 +1771,7 @@ export const FOLK_WORLD: GenreWorld = {
         0.55,
         0.7
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -1871,6 +1890,8 @@ export const FOLK_WORLD: GenreWorld = {
       "roles": [
         "rhythm-guitar"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "guitar"
       ],
@@ -1895,7 +1916,7 @@ export const FOLK_WORLD: GenreWorld = {
         0.9,
         0.75
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -2002,6 +2023,8 @@ export const FOLK_WORLD: GenreWorld = {
       "roles": [
         "rhythm-guitar"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "guitar"
       ],
@@ -2038,7 +2061,7 @@ export const FOLK_WORLD: GenreWorld = {
         0.8,
         0.7
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
       ],
@@ -2172,6 +2195,8 @@ export const FOLK_WORLD: GenreWorld = {
       "roles": [
         "bass"
       ],
+
+      "approaches": ["walking"],
       "instruments": [
         "bass"
       ],
@@ -2213,7 +2238,7 @@ export const FOLK_WORLD: GenreWorld = {
         "accented",
         "ghost-aware"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "middle"
       ],
@@ -2324,6 +2349,8 @@ export const FOLK_WORLD: GenreWorld = {
       "roles": [
         "voice"
       ],
+
+      "approaches": ["phrase"],
       "instruments": [
         "voice"
       ],
@@ -2365,7 +2392,7 @@ export const FOLK_WORLD: GenreWorld = {
         "breath",
         "phrase-end"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "middle"
       ],
@@ -2476,6 +2503,8 @@ export const FOLK_WORLD: GenreWorld = {
       "roles": [
         "voice"
       ],
+
+      "approaches": ["phrase"],
       "instruments": [
         "voice"
       ],
@@ -2517,7 +2546,7 @@ export const FOLK_WORLD: GenreWorld = {
         "breath",
         "phrase-end"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "middle"
       ],
@@ -2673,6 +2702,8 @@ export const FOLK_WORLD: GenreWorld = {
       "roles": [
         "bass"
       ],
+
+      "approaches": ["walking"],
       "instruments": [
         "bass"
       ],
@@ -2714,7 +2745,7 @@ export const FOLK_WORLD: GenreWorld = {
         "accented",
         "ghost-aware"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start",
         "middle"
@@ -2826,6 +2857,8 @@ export const FOLK_WORLD: GenreWorld = {
       "roles": [
         "harmony"
       ],
+
+      "approaches": ["comping"],
       "instruments": [
         "guitar"
       ],
@@ -2861,7 +2894,7 @@ export const FOLK_WORLD: GenreWorld = {
         "accented",
         "ghost-aware"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "middle"
       ],
@@ -2961,6 +2994,8 @@ export const FOLK_WORLD: GenreWorld = {
         "harmony",
         "texture"
       ],
+
+      "approaches": ["comping"],
       "instruments": [
         "guitar"
       ],
@@ -3012,7 +3047,7 @@ export const FOLK_WORLD: GenreWorld = {
         "accented",
         "ghost-aware"
       ],
-      "density": "dynamic",
+      "supportedEnergy": [1, 2, 3, 4, 5],
       "phrasePosition": [
         "start"
       ],
@@ -3196,6 +3231,8 @@ export const FOLK_WORLD: GenreWorld = {
         "rhythm-guitar",
         "drums"
       ],
+
+      "approaches": ["groove"],
       "instruments": [
         "drums",
         "percussion",
@@ -3252,7 +3289,7 @@ export const FOLK_WORLD: GenreWorld = {
         "accented",
         "ghost-aware"
       ],
-      "density": "medium",
+      "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "middle"
       ],

@@ -1,6 +1,5 @@
 import { WorkletSynthesizer } from "spessasynth_lib";
-import { INSTRUMENTS_BY_ID, SOUNDFONT_MANIFEST, effectiveSoundfontPreset } from '../data/instruments';
-import type { SoundfontDeviceProfile } from '../data/instruments';
+import { INSTRUMENTS_BY_ID } from '../data/instruments';
 import { Mp3Encoder } from '@breezystack/lamejs';
 import { createMasterChain, MasterChain, RoomPreset, roomFor, ROOMS } from './mixer';
 import { previewCulturalRules, culturalPitchSet, shoCluster, celticOpenHarmony } from './cultural';
@@ -16,50 +15,14 @@ let initPromise: Promise<WorkletSynthesizer> | null = null;
 export let isRenderingMp3 = false;
 
 /* ---------------------------------------------------------------------------
-   Soundfont lazy-loading & Cache Storage persistence
+   SoundFont: one raw .sf2 file, fetched by the browser from public/soundfont.sf2.
+   No size limit, no Cache Storage, no per-device variants. The bytes are kept
+   in memory for the session only, so the live synth and the MP3 export worker
+   share one download.
 --------------------------------------------------------------------------- */
-// Buffers are keyed by device profile + soundfont id so a session can never
-// accidentally reuse a desktop SF3 after switching to a mobile/tablet profile.
-export const fontBuffers = new Map<string, ArrayBuffer>();
-const inFlightFetches = new Map<string, Promise<ArrayBuffer>>();
-const loadedInSynth = new Set<string>();
-let synthDeviceProfile: SoundfontDeviceProfile | null = null;
-const SOUNDFONT_CACHE_NAME = 'sf3-soundbanks-v4';
+export const SOUNDFONT_FILE = 'soundfont.sf2';
 
-function soundfontBufferKey(profile: SoundfontDeviceProfile, id: string): string {
-  return `${profile}:${id}`;
-}
-
-export function getSoundfontDeviceProfile(): SoundfontDeviceProfile {
-  if (typeof navigator === 'undefined') return 'desktop';
-  const ua = navigator.userAgent.toLowerCase();
-  // iPadOS 13+ can advertise a desktop-style Macintosh UA. maxTouchPoints
-  // distinguishes an actual Mac from an iPad using that compatibility mode.
-  const ipadDesktopMode = /macintosh/i.test(ua) && navigator.maxTouchPoints > 1;
-  const tablet = ipadDesktopMode || /ipad|tablet|android(?!.*mobile)/i.test(ua);
-  const mobile = /iphone|ipod|android.*mobile|mobile/i.test(ua);
-  if (tablet) return 'tablet';
-  if (mobile) return 'mobile';
-  return 'desktop';
-}
-
-export interface SoundfontStatus {
-  isLoaded: boolean;
-  isLoading: boolean;
-  percent: number;
-}
-
-export function getSoundfontStatus(): SoundfontStatus {
-  const profile = getSoundfontDeviceProfile();
-  const key = soundfontBufferKey(profile, 'main');
-  const isLoading = Array.from(inFlightFetches.keys()).some(k => k === key);
-  return { isLoaded: fontBuffers.has(key), isLoading, percent: fontBuffers.has(key) ? 100 : 0 };
-}
-
-export function subscribeSoundfontStatus(listener: (status: SoundfontStatus) => void): () => void {
-  listener(getSoundfontStatus());
-  return () => {};
-}
+let soundfontPromise: Promise<ArrayBuffer> | null = null;
 
 export function getAppBaseUrl(): string {
   const viteBase = import.meta.env.BASE_URL || './';
@@ -81,87 +44,27 @@ export function getAppBaseUrl(): string {
   return resolved;
 }
 
-export function fetchSoundfont(id: string): Promise<ArrayBuffer> {
-  const profile = getSoundfontDeviceProfile();
-  const key = soundfontBufferKey(profile, id);
-  const cached = fontBuffers.get(key);
-  if (cached) return Promise.resolve(cached);
-
-  const active = inFlightFetches.get(key);
-  if (active) return active;
-
+export function preloadSoundfont(): Promise<ArrayBuffer> {
+  if (soundfontPromise) return soundfontPromise;
+  const url = new URL(SOUNDFONT_FILE, getAppBaseUrl()).href;
   const promise = (async () => {
-    const entry = SOUNDFONT_MANIFEST.find(e => e.id === id);
-    if (!entry) throw new Error(`Unknown soundfont id: ${id}`);
-
-    if (typeof caches !== 'undefined') {
-      try {
-        const cache = await caches.open(SOUNDFONT_CACHE_NAME);
-        const cacheKey = `https://local/sf3/${profile}/${id}`;
-        const matched = await cache.match(cacheKey);
-        if (matched) {
-          const buf = await matched.arrayBuffer();
-          if (buf.byteLength > 100000 && buf.byteLength <= entry.maxBytes) {
-            fontBuffers.set(key, buf);
-            return buf;
-          }
-        }
-      } catch (err) {
-        console.warn('Cache Storage match failed:', err);
-      }
+    const res = await fetch(url);
+    if (!res.ok) {
+      throw new Error(`Could not load ${url} (HTTP ${res.status}). Put your SoundFont at public/${SOUNDFONT_FILE}.`);
     }
-
-    const cleanFile = entry.files[profile].replace(/^public\//, '');
-    const url = new URL(cleanFile, new URL('soundfonts/', getAppBaseUrl())).href;
-
-    try {
-      let buf: ArrayBuffer | null = null;
-      try {
-        const res = await fetch(url, { cache: 'force-cache' });
-        if (res.ok) {
-          const fetchedBuf = await res.arrayBuffer();
-          if (fetchedBuf.byteLength >= 100000 && fetchedBuf.byteLength <= entry.maxBytes) {
-            buf = fetchedBuf;
-          }
-        }
-      } catch (e) {
-        console.warn(`Failed to fetch local soundfont ${id}:`, e);
-      }
-      if (!buf || buf.byteLength < 100000 || buf.byteLength > entry.maxBytes) {
-        throw new Error(`Soundfont ${id} not found or too small (loaded ${buf ? buf.byteLength : 0} bytes)`);
-      }
-
-      fontBuffers.set(key, buf);
-
-      if (typeof caches !== 'undefined') {
-        try {
-          const cache = await caches.open(SOUNDFONT_CACHE_NAME);
-          const cacheKey = `https://local/sf3/${profile}/${id}`;
-          await cache.put(cacheKey, new Response(buf.slice(0), {
-            headers: { 'Content-Type': 'application/octet-stream' }
-          }));
-        } catch (err) {
-          console.warn('Cache Storage put failed:', err);
-        }
-      }
-      return buf;
-    } catch (err) {
-      console.error(`Error loading soundfont ${id}:`, err);
-      throw err;
-    } finally {
-      inFlightFetches.delete(key);
+    const buf = await res.arrayBuffer();
+    // A missing file on GitHub Pages returns an HTML 404 page, and a Git LFS
+    // pointer is a tiny text file. Fail loudly instead of feeding either to the synth.
+    const magic = new TextDecoder('latin1').decode(new Uint8Array(buf, 0, Math.min(12, buf.byteLength)));
+    if (magic.slice(0, 4) !== 'RIFF' || magic.slice(8, 12) !== 'sfbk') {
+      throw new Error(`${url} is not a SoundFont 2 (.sf2) file (${buf.byteLength} bytes).`);
     }
+    return buf;
   })();
-
-  inFlightFetches.set(key, promise);
+  soundfontPromise = promise;
+  promise.catch(() => { if (soundfontPromise === promise) soundfontPromise = null; }); // allow retry
   return promise;
 }
-
-export async function preloadSoundfont(): Promise<ArrayBuffer> {
-  return fetchSoundfont('main');
-}
-
-if (typeof window !== 'undefined') preloadSoundfont().catch(err => console.warn('Initial soundfont preload error:', err));
 
 /** Add the spessasynth worklet processor to any BaseAudioContext (live or offline). */
 async function addSpessaWorklet(target: BaseAudioContext): Promise<void> {
@@ -183,17 +86,7 @@ async function addSpessaWorklet(target: BaseAudioContext): Promise<void> {
 }
 
 export async function ensureSynth(): Promise<WorkletSynthesizer> {
-  const requestedProfile = getSoundfontDeviceProfile();
-  if (synth) {
-    // A browser normally cannot change its UA-derived device class mid-session.
-    // If it does (e.g. emulation/testing), never silently reuse a synth loaded
-    // with another profile's banks. Requiring a fresh synth is safer than
-    // playing a desktop bank on a mobile profile or vice versa.
-    if (synthDeviceProfile !== requestedProfile) {
-      throw new Error(`Audio device profile changed from ${synthDeviceProfile} to ${requestedProfile}; reload required.`);
-    }
-    return synth;
-  }
+  if (synth) return synth;
   if (initPromise) return initPromise;
 
   initPromise = (async () => {
@@ -210,9 +103,7 @@ export async function ensureSynth(): Promise<WorkletSynthesizer> {
         }
       }
 
-      // Eagerly preload only the active device's 'main' bank.
-      const profile = getSoundfontDeviceProfile();
-      const mainBuf = await fetchSoundfont('main');
+      const sf2 = await preloadSoundfont();
       await addSpessaWorklet(ctx);
       const s = new WorkletSynthesizer(ctx);
 
@@ -226,11 +117,7 @@ export async function ensureSynth(): Promise<WorkletSynthesizer> {
       masterGain.gain.value = 1;
       s.connect(masterGain);
 
-      // Only add 'main' initially
-      await s.soundBankManager.addSoundBank(mainBuf.slice(0), 'main', 0);
-      synthDeviceProfile = profile;
-      loadedInSynth.clear();
-      loadedInSynth.add(`${profile}:main`);
+      await s.soundBankManager.addSoundBank(sf2.slice(0), 'main', 0);
       await (s as any).isReady;
       synth = s;
       return s;
@@ -242,42 +129,6 @@ export async function ensureSynth(): Promise<WorkletSynthesizer> {
   })();
 
   return initPromise;
-}
-
-export async function ensureSoundfontsForPerformance(perf: Performance): Promise<void> {
-  // Only banks explicitly referenced by the current performance are fetched.
-  // `main` is the sole eager/base bank; *_misc banks are never pulled in by
-  // discovery because they have no exposed runtime mapping.
-  const neededIds = new Set<string>(['main']);
-  if (perf.programs) {
-    for (const p of perf.programs) {
-      if (p.soundfontId) neededIds.add(p.soundfontId);
-    }
-  }
-
-  const s = await ensureSynth();
-  const results = await Promise.all(Array.from(neededIds).map(async (id) => {
-    try {
-      const buf = await fetchSoundfont(id);
-      const entry = SOUNDFONT_MANIFEST.find(e => e.id === id);
-      const profile = getSoundfontDeviceProfile();
-      const loadedKey = `${profile}:${id}`;
-      if (!entry) throw new Error(`Unknown soundfont id: ${id}`);
-      if (!s || synthDeviceProfile !== profile) {
-        throw new Error(`Synth/device profile mismatch while loading ${id}.`);
-      }
-      if (!loadedInSynth.has(loadedKey)) {
-        await s.soundBankManager.addSoundBank(buf.slice(0), entry.id, entry.bankOffset);
-        loadedInSynth.add(loadedKey);
-      }
-      return null;
-    } catch (err) {
-      console.warn(`Failed to lazy-load soundfont ${id}:`, err);
-      return err instanceof Error ? err : new Error(String(err));
-    }
-  }));
-  const failure = results.find(Boolean);
-  if (failure) throw failure;
 }
 
 export async function startAudio(): Promise<AudioContext | null> {
@@ -403,27 +254,11 @@ function renderWithWorker(
       }
     };
 
-    const neededIds = new Set<string>(['main']);
-    if (perf.programs) {
-      for (const p of perf.programs) {
-        if (p.soundfontId) neededIds.add(p.soundfontId);
-      }
-    }
-
-    Promise.all(Array.from(neededIds).map(id => fetchSoundfont(id).then(buf => [id, buf] as const)))
-      .then(pairs => {
+    preloadSoundfont()
+      .then(buf => {
         if (settled) return;
 
-        const buffers = new Map(pairs);
-        const soundfonts = SOUNDFONT_MANIFEST.flatMap(entry => {
-          const buffer = buffers.get(entry.id);
-          if (!buffer) return [];
-          return [{
-            id: entry.id,
-            bankOffset: entry.bankOffset,
-            buffer: buffer.slice(0),
-          }];
-        });
+        const soundfont = buf.slice(0);
 
         worker.postMessage(
           {
@@ -437,9 +272,9 @@ function renderWithWorker(
               duration: perf.duration,
               tail: perf.tail,
             },
-            soundfonts,
+            soundfont,
           },
-          soundfonts.map(font => font.buffer),
+          [soundfont],
         );
       })
       .catch(error => {
@@ -681,7 +516,6 @@ export function getVoiceFeedSummary(instrumentId: string, chord: string) {
   }
   const parsed = parseChord(chord);
   const prof = voiceProfile(instrumentId);
-  const preset = effectiveSoundfontPreset(instrumentId);
   const culture = previewCulturalRules(instrumentId);
   if (culture) {
     const pcs = culturalPitchSet(culture, parsed.rootPc);
@@ -692,7 +526,7 @@ export function getVoiceFeedSummary(instrumentId: string, chord: string) {
         : [foldToRange(midiOf(pcs[0], 4), prof)];
     return {
       instrumentName: def.name,
-      source: preset ? `SoundFont3 ${preset.soundfontId} · bank ${preset.bankMSB}:${preset.bankLSB} · patch #${preset.program}` : `Cultural ${culture.harmonyModel} model; GM patch #${def.program ?? 0} is a timbral approximation`,
+      source: `Cultural ${culture.harmonyModel} model; GM patch #${def.program ?? 0} is a timbral approximation`,
       voicing: culture.sourceModel === 'modal-drone' && def.voicing === 'chord' ? 'modal open-fifth harmony' : culture.harmonyModel,
       notes: midis.map(m => theoryNoteName(m)),
     };
@@ -727,12 +561,19 @@ export function createSink(): TransportSink {
     noteOff(channel, midi, time) {
       synth?.noteOff(channel, midi, { time });
     },
+    pitchBend(channel, value, time) {
+      const v = Math.max(0, Math.min(16383, Math.round(value)));
+      const lsb = v & 0x7f;
+      const msb = (v >> 7) & 0x7f;
+      const target = (synth as any);
+      if (typeof target?.processMessage === 'function') {
+        target.processMessage(new Uint8Array([0xE0 | (channel & 0x0f), lsb, msb]), 0, { time });
+      } else {
+        // Older synth builds may expose no raw MIDI path; ignore gracefully.
+      }
+    },
     controlChange(channel, cc, value, time) {
       synth?.controllerChange(channel, cc as any, Math.max(0, Math.min(127, Math.round(value))), { time });
-    },
-    bankSelect(channel, bankMSB, bankLSB, time) {
-      synth?.controllerChange(channel, 0 as any, Math.max(0, Math.min(127, Math.round(bankMSB))), { time });
-      synth?.controllerChange(channel, 32 as any, Math.max(0, Math.min(127, Math.round(bankLSB))), { time });
     },
     programChange(channel, program, time) { synth?.programChange(channel, program, { time }); },
     setDrumChannel(channel, isDrum) {

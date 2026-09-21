@@ -19,14 +19,16 @@ import {
   isVoiceSilentInSection, isVoiceSilentInAll, silenceVoiceInSection, silenceVoiceInAll,
   unsilenceVoiceInSection, unsilenceVoiceInAll, toggleVoiceInSection,
   silenceAllVoicesInSection, unsilenceAllVoicesInSection,
-  FEELS, getEffectiveBpm, setSectionTempoShift, setSongTempoShift, setSongBpm, setSectionBpm, setSectionDensity,
+  setTrackSpotlight, getResolvedSectionStyle, setSongDial, setPartLens,
+  FEELS, getEffectiveBpm, setSectionTempoShift, setSongTempoShift, setSongBpm, setSectionBpm, setSectionEnergy,
 } from './engine/arrange';
 import {
   startAudio, stopAudio, setMasterVolume, renderSongToMp3,
   createSink, setRoom,
-  ensureSoundfontsForPerformance, getSoundfontStatus,
 } from './engine/audio';
 import { roomFor } from './engine/mixer';
+import { ENERGY_LABELS } from './engine/energy';
+import { normaliseDials } from './engine/dials';
 import { compile } from './engine/perform';
 import { Transport } from './engine/transport';
 import { PATTERNS_BY_ID, cleanPatternName } from './data/genres';
@@ -79,6 +81,12 @@ export default function App() {
     setToast(msg);
     toastTimerRef.current = window.setTimeout(() => setToast(null), 2500);
   };
+
+  // One normalised read of the song-level dials, so every consumer sees the
+  // same clamped values and an older saved song simply inherits the defaults.
+  const songDials = useMemo(() => normaliseDials(song), [
+    song.pocket, song.lift, song.adventure, song.development, song.expression, song.roomId,
+  ]);
 
   const currentResolvedStyle = useMemo(() => {
     return resolveStyle({
@@ -265,10 +273,9 @@ export default function App() {
   // Compile at low priority: the UI updates and paints with the new song first,
   // and the (tens of ms) recompile happens in a follow-up render.
   const deferredSong = useDeferredValue(song);
-  const perf = useMemo(
-    () => compile(deferredSong, { pocket: deferredSong.pocket ?? 0.5, lift: deferredSong.lift ?? 0.5 }),
-    [deferredSong],
-  );
+  // `compile` reads the dials off the sheet itself; passing them explicitly
+  // here would let the two disagree whenever a dial changes without a rebuild.
+  const perf = useMemo(() => compile(deferredSong), [deferredSong]);
   const perfRef = useRef(perf);
   perfRef.current = perf;
 
@@ -289,7 +296,6 @@ export default function App() {
         setAudioLoading(true);
         const ctx = await startAudio();
         if (!ctx || !alive) return;
-        await ensureSoundfontsForPerformance(perfRef.current);
         setAudioLoading(false);
         if (!alive) return;
         setMasterVolume(0.85);
@@ -332,14 +338,6 @@ export default function App() {
     };
   }, [playing]);
 
-  // Keep soundfonts topped up dynamically in the background as the user edits the song,
-  // avoiding any silent parts or stutter on-the-fly when changing instruments.
-  useEffect(() => {
-    if (getSoundfontStatus().isLoaded) {
-      ensureSoundfontsForPerformance(perf).catch(() => {});
-    }
-  }, [perf]);
-
   /* ---- what we are looking at ------------------------------------------ */
   const playingRegion = song.measures[bar]?.regionId ?? song.regions[0]?.id;
   const focusId = pickedRegion ?? playingRegion;
@@ -350,6 +348,13 @@ export default function App() {
   const live = region?.id === playingRegion;
   // One name for the focused part, used everywhere it shows up in text.
   const partName = region ? (region.formLabel ?? region.name ?? String(region.kind)) : '';
+  const sectionStyle = region ? getResolvedSectionStyle(song, region) : null;
+  const spotlightDefaults = sectionStyle?.form?.defaultSpotlights ?? {};
+  const defaultSpotlightRoles = spotlightDefaults[String(region?.formKey ?? region?.kind)] ?? [];
+  // Accepts a plain Track: the sheet's tracks always carry an instrumentId at
+  // runtime, but the stored type keeps it optional for older saved songs.
+  const spotlightIsActive = (track: Pick<Voice, 'spotlight' | 'role'>) =>
+    track.spotlight === 'on' || (track.spotlight !== 'off' && defaultSpotlightRoles.includes(track.role));
 
   const sectionGenreId = getSectionGenre(song, region?.id);
   const sectionPlate = plateFor(sectionGenreId);
@@ -733,9 +738,9 @@ export default function App() {
           </div>
         </div>
 
-        {/* Part Density, Chords, BPM & Part Genre in this section */}
+        {/* Weight, Chords, BPM & Part Genre in this section */}
         <div className="flex items-center gap-2.5 mb-5 flex-wrap">
-          {/* Part Density Selector */}
+          {/* Section weight selector */}
           <div
             className="btn-pill inline-flex items-center gap-1 p-1 shrink-0 h-[34px]"
             style={{
@@ -743,24 +748,23 @@ export default function App() {
               color: 'var(--ink)',
               boxShadow: 'inset 0 0 0 1px color-mix(in srgb, var(--ink) 25%, transparent)',
             }}
-            title="Part density"
+            title="Weight — how much this part of the song is working"
           >
-            {(['sparse', 'normal', 'busy'] as const).map(d => {
-              const currentD = region.density ?? (song.densities?.[region.id]?.v0 ?? 'normal');
-              const isActive = currentD === d;
-              const label = isActive ? (d.charAt(0).toUpperCase() + d.slice(1)) : d.charAt(0).toUpperCase();
+            {([1, 2, 3, 4, 5] as const).map(d => {
+              const isActive = (region.energy ?? 3) === d;
+              const label = isActive ? ENERGY_LABELS[d] : String(d);
               return (
                 <button
                   key={d}
                   type="button"
-                  onClick={() => edit(s => setSectionDensity(s, region.id, d))}
+                  onClick={() => edit(s => setSectionEnergy(s, region.id, d))}
                   className="px-2.5 h-full rounded-full text-xs font-bold cursor-pointer transition-all flex items-center justify-center min-w-[22px]"
                   style={{
                     background: isActive ? 'var(--ink)' : 'transparent',
                     color: isActive ? '#ffffff' : 'var(--ink)',
                     opacity: isActive ? 1 : 0.6,
                   }}
-                  title={`Part density: ${d}`}
+                  title={`Weight ${d} — ${ENERGY_LABELS[d]}`}
                 >
                   {label}
                 </button>
@@ -1023,8 +1027,32 @@ export default function App() {
                     )}
                   </div>
 
-                  {/* Right Column: Pattern Name & Actions */}
+                  {/* Right Column: Spotlight + Pattern Name & Actions */}
                   <div className="flex items-center justify-end gap-1.5 shrink-0">
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        const current = t.spotlight ?? 'auto';
+                        const next = current === 'auto' ? 'on' : current === 'on' ? 'off' : 'auto';
+                        edit(s => setTrackSpotlight(s, t.id, next));
+                      }}
+                      className="text-[10px] font-mono cursor-pointer transition-opacity hover:opacity-100 px-1.5 py-0.5"
+                      style={{
+                        opacity: spotlightIsActive(t) ? 0.95 : 0.55,
+                        color: spotlightIsActive(t) ? 'var(--ink)' : 'var(--ink)',
+                        background: spotlightIsActive(t) ? 'var(--tone)' : 'transparent',
+                        boxShadow: 'inset 0 0 0 1px color-mix(in srgb, var(--ink) 22%, transparent)',
+                      }}
+                      title={
+                        t.spotlight === 'auto'
+                          ? `Spotlight: Auto (${spotlightIsActive(t) ? 'active' : 'off'} from ${sectionStyle?.name ?? 'style'} defaults)`
+                          : `Spotlight: ${t.spotlight}. Click to cycle Auto → On → Off`
+                      }
+                      aria-label={`Spotlight ${t.name}: ${t.spotlight ?? 'auto'}`}
+                    >
+                      Spotlight · {t.spotlight === 'on' ? 'On' : t.spotlight === 'off' ? 'Off' : 'Auto'}
+                    </button>
                     <button
                       onClick={() => setPatternFor(t.id)}
                       className="text-right transition-all hover:opacity-100 font-mono cursor-pointer flex items-center gap-1 shrink-0 pb-[1px]"
@@ -1350,7 +1378,7 @@ export default function App() {
         songFeelName={songFeel.name}
         currentWorldId={song.worldId}
         onGenre={handleSelectSectionGenre}
-        onDensity={d => edit(s => setSectionDensity(s, region.id, d))}
+        onEnergy={d => edit(s => setSectionEnergy(s, region.id, d))}
         onChords={prog => edit(s => setSectionChords(s, region.id, prog))}
         onTempoShift={shift => edit(s => setSectionTempoShift(s, region.id, shift))}
         customProgressions={song.customProgressions ?? []}
@@ -1429,12 +1457,18 @@ export default function App() {
         open={performanceOpen}
         onClose={() => setPerformanceOpen(false)}
         worldId={song.worldId}
-        pocket={song.pocket ?? 0.5}
-        lift={song.lift ?? 0.5}
+        pocket={songDials.pocket}
+        lift={songDials.lift}
         roomId={activeRoomId}
-        onSetPocket={v => setSong(s => ({ ...s, pocket: v }))}
-        onSetLift={v => setSong(s => ({ ...s, lift: v }))}
+        adventure={songDials.adventure}
+        development={songDials.development}
+        expression={songDials.expression}
+        onSetPocket={v => edit(s => setSongDial(s, 'pocket', v))}
+        onSetLift={v => edit(s => setSongDial(s, 'lift', v))}
         onSetRoom={id => setSong(s => ({ ...s, roomId: id }))}
+        onSetAdventure={v => edit(s => setSongDial(s, 'adventure', v))}
+        onSetDevelopment={v => edit(s => setSongDial(s, 'development', v))}
+        onSetExpression={v => edit(s => setSongDial(s, 'expression', v))}
       />
 
       <TempoSheet
