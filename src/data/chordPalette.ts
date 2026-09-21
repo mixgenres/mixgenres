@@ -1,7 +1,21 @@
-/** General music-theory chord/progression catalog. Genre aliases are secondary metadata. */
+/** General music-theory chord/progression catalog. Genre aliases are secondary metadata.
+ *
+ * Three tiers, in this order:
+ *  1. SHARED  - progressions every piano/guitar/bass learner runs into early on
+ *               (open triads, simple 7ths, power chords). Reused across many genres.
+ *  2. JAZZ    - functional jazz vocabulary (ii-V-I family, turnarounds, extended
+ *               and altered dominants). Only this tier may contain chords voiced
+ *               with more than six distinct notes (13(#11), alt dominants, etc).
+ *  3. GENRE   - one exclusive cell per canonical genre: real vocabulary that
+ *               belongs to that style and isn't just a shared/jazz cell relabelled.
+ *
+ * Every cell has exactly four chords (house rule from GENRE_CATALOG_REQUIREMENTS.md).
+ */
 export type ChordMood =
   | 'warm-resolved' | 'bittersweet' | 'smooth-jazzy' | 'floating-modal'
   | 'tense-dramatic' | 'earthy-bluesy' | 'festive-celebratory' | 'aggressive-driving';
+
+export type ChordTier = 'shared' | 'jazz' | 'genre';
 
 export interface ChordOption {
   id: string;
@@ -9,6 +23,7 @@ export interface ChordOption {
   name: string;
   chords: string[];
   mood: ChordMood;
+  tier: ChordTier;
   blurb: string;
   genres: string[];
   /** Genre-specific musician vocabulary, never the primary name. */
@@ -33,38 +48,87 @@ export const CHORD_MOODS: Record<ChordMood, { label: string; description: string
 };
 export const CHORD_MOOD_ORDER: ChordMood[] = [...CHORD_MOOD_ORDER_RAW];
 
-export const CHORD_PALETTE: ChordOption[] = [
-  { id:'diatonic-I-V-vi-IV', name:'C – G – Am – F (I–V–vi–IV)', chords:['C','G','Am','F'], mood:'warm-resolved', blurb:'Common major-key four-chord cycle', genres:['country','folk','rock','latin-pop'], aliases:['pop four-chord cycle'] },
-  { id:'diatonic-I-IV-V-I', name:'G – C – D – G (I–IV–V–I)', chords:['G','C','D','G'], mood:'warm-resolved', blurb:'Tonic–subdominant–dominant–tonic', genres:['folk','country','brazilian'], aliases:['folk cadence'] },
-  { id:'minor-i-VI-III-VII', name:'Am – F – C – G (i–VI–III–VII)', chords:['Am','F','C','G'], mood:'bittersweet', blurb:'Natural-minor diatonic cycle', genres:['bachata','reggaeton','zouk','latin-pop'], aliases:['minor pop cycle'] },
-  { id:'minor-i-VII-VI-VII', name:'Am – G – F – G (i–VII–VI–VII)', chords:['Am','G','F','G'], mood:'floating-modal', blurb:'Repeating minor/modal bass motion', genres:['reggae','cumbia','uk-bass'], aliases:['reggae minor vamp'] },
-  { id:'jazz-ii-V-I', name:'Dm7 – G7 – Cmaj7 (ii–V–I)', chords:['Dm7','G7','Cmaj7'], mood:'smooth-jazzy', blurb:'Core functional jazz cadence', genres:['jazz','swing','r-and-b','soul','brazilian'], aliases:['jazz cadence'] },
-  { id:'jazz-ii-V-I-vi', name:'Dm7 – G7 – Cmaj7 – Am7 (ii–V–I–vi)', chords:['Dm7','G7','Cmaj7','Am7'], mood:'smooth-jazzy', blurb:'Major-key ii–V–I with vi continuation', genres:['jazz','swing','r-and-b','soul'], aliases:['jazz turnaround'] },
-  { id:'jazz-iii-VI-ii-V', name:'Em7 – A7 – Dm7 – G7 (iii–VI–ii–V)', chords:['Em7','A7','Dm7','G7'], mood:'smooth-jazzy', blurb:'Descending-fifths turnaround', genres:['jazz','swing','brazilian'], aliases:['cycle turnaround'] },
-  { id:'jazz-minor-ii-V-i', name:'Bm7b5 – E7 – Am7 (iiø7–V7–i)', chords:['Bm7b5','E7','Am7'], mood:'smooth-jazzy', blurb:'Minor-key functional cadence', genres:['jazz','tango','soul','r-and-b'], aliases:['minor ii–V–i'] },
-  { id:'jazz-extended-major', name:'Dm9 – G13 – Cmaj9 (ii–V–I)', chords:['Dm9','G13','Cmaj9'], mood:'smooth-jazzy', blurb:'Extended jazz voicings using 9th/13th colour', genres:['jazz','r-and-b','gospel'], aliases:['extended jazz ii–V–I'] },
-  { id:'jazz-extended-lydian', name:'Cmaj9 – D13 – G13 (Imaj9–II13–V13)', chords:['Cmaj9','D13','G13'], mood:'smooth-jazzy', blurb:'Major tonic with bright extended dominants', genres:['jazz','fusion','gospel'], aliases:['jazz major-color vamp'] },
-  { id:'jazz-altered-dominant', name:'Dm9 – G7(b9) – Cmaj9 (ii9–V7♭9–Imaj9)', chords:['Dm9','G7b9','Cmaj9'], mood:'smooth-jazzy', blurb:'Altered dominant resolving to extended tonic', genres:['jazz','gospel','r-and-b'], aliases:['altered ii–V–I'] },
-  { id:'jazz-tritone', name:'Dm9 – Db7 – Cmaj9 (ii–♭II7–I)', chords:['Dm9','Db7','Cmaj9'], mood:'smooth-jazzy', blurb:'Dominant tritone substitution', genres:['jazz','fusion'], aliases:['tritone-sub ii–V–I'] },
-  { id:'jazz-251-13', name:'Dm13 – G13 – Cmaj13 (ii13–V13–Imaj13)', chords:['Dm13','G13','Cmaj13'], mood:'smooth-jazzy', blurb:'Full 13th-color functional cadence', genres:['jazz','fusion','r-and-b'], aliases:['13th voicing cadence'] },
-  { id:'jazz-251-11', name:'Dm11 – G7(#11) – Cmaj9 (ii11–V7♯11–Imaj9)', chords:['Dm11','G7#11','Cmaj9'], mood:'smooth-jazzy', blurb:'11th and sharp-11 colour', genres:['jazz','fusion'], aliases:['modern jazz colour'] },
-  { id:'modal-dorian', name:'Dm – C – Bb – C (i–♭VII–♭VI–♭VII)', chords:['Dm','C','Bb','C'], mood:'floating-modal', blurb:'Open modal loop', genres:['funk','afrobeats','hip-hop','uk-bass'], aliases:['Dorian vamp'] },
-  { id:'modal-drone', name:'Em – D – C – Em (i–♭VII–♭VI–i)', chords:['Em','D','C','Em'], mood:'floating-modal', blurb:'Tonic-centered modal motion', genres:['electronic','folk','drum-and-bass'], aliases:['modal drone'] },
-  { id:'andalusian-cadence', name:'Am – G – F – E7 (i–♭VII–♭VI–V7)', chords:['Am','G','F','E7'], mood:'tense-dramatic', blurb:'Descending minor-to-dominant cadence', genres:['flamenco','cumbia','tango'], aliases:['Andalusian cadence','Phrygian/Andalusian turn'] },
-  { id:'minor-i-VI-VII-V', name:'Em – C – D – B7 (i–VI–VII–V)', chords:['Em','C','D','B7'], mood:'tense-dramatic', blurb:'Minor tonic with raised dominant', genres:['metal','rock','industrial'], aliases:['minor rock cycle'] },
-  { id:'blues-12-bar', name:'C7 – F7 – C7 – G7 (12-bar blues)', chords:['C7','C7','C7','C7','F7','F7','C7','C7','G7','F7','C7','G7'], mood:'earthy-bluesy', blurb:'Canonical 12-bar harmonic form', genres:['blues','rock','country','soul'], aliases:['12-bar blues'] },
-  { id:'blues-quick-four', name:'A7 – D7 – A7 – E7 (12-bar blues, quick IV)', chords:['A7','D7','A7','A7','D7','D7','A7','A7','E7','D7','A7','E7'], mood:'earthy-bluesy', blurb:'Quick-IV 12-bar variant', genres:['blues','funk','rock'], aliases:['quick-four blues'] },
-  { id:'gospel-IV-I-ii-V', name:'F – C – Dm7 – G7 (IV–I–ii–V)', chords:['F','C','Dm7','G7'], mood:'festive-celebratory', blurb:'Plagal-to-dominant gospel vocabulary', genres:['gospel','soul','r-and-b'], aliases:['gospel turnaround'] },
-  { id:'tango-minor-cadence', name:'Am – E7(b9) – Am – Dm (minor cadence)', chords:['Am','E7b9','Am','Dm'], mood:'tense-dramatic', blurb:'Minor tonic/dominant cadence with altered dominant', genres:['tango'], aliases:['tango minor cadence'] },
-  { id:'timba-minor-vamp', name:'Am7 – Dm7 – E7 – Am7 (minor vamp)', chords:['Am7','Dm7','E7','Am7'], mood:'tense-dramatic', blurb:'Minor vamp with dominant return', genres:['timba'], aliases:['timba minor vamp'] },
-  { id:'metal-power-riff', name:'E5 – C5 – D5 – B5 (power-chord riff)', chords:['E5','C5','D5','B5'], mood:'aggressive-driving', blurb:'Root/fifth power-chord riff vocabulary', genres:['metal','punk-hardcore','industrial'], aliases:['metal power-chord cycle'] },
-  { id:'dominant-sequence', name:'A7 – D7 – A7 – E7 (dominant blues movement)', chords:['A7','D7','A7','E7'], mood:'earthy-bluesy', blurb:'Dominant-seventh blues movement', genres:['blues','funk','country'], aliases:['dominant blues cycle'] },
+/* ============================================================================
+ * 1) SHARED — familiar to piano / guitar / bass learners, used across genres
+ * ==========================================================================*/
+const SHARED_CHORDS: ChordOption[] = [
+  { id:'diatonic-I-V-vi-IV', tier:'shared', name:'C – G – Am – F (I–V–vi–IV)', chords:['C','G','Am','F'], mood:'warm-resolved', blurb:'The universal four-chord pop cycle', genres:['country','folk','rock','latin-pop','disco','gospel','house','ska'], aliases:['pop four-chord cycle'] },
+  { id:'diatonic-I-IV-V-I', tier:'shared', name:'G – C – D – G (I–IV–V–I)', chords:['G','C','D','G'], mood:'warm-resolved', blurb:'Tonic, subdominant, dominant, tonic', genres:['folk','country','brazilian'], aliases:['folk cadence'] },
+  { id:'doo-wop-I-vi-IV-V', tier:'shared', name:'C – Am – F – G (I–vi–IV–V)', chords:['C','Am','F','G'], mood:'warm-resolved', blurb:'The classic 1950s doo-wop cycle', genres:['latin-pop','disco','soul','ska'], aliases:['50s progression'] },
+  { id:'circle-turnaround', tier:'shared', name:'Cmaj7 – Am7 – Dm7 – G7 (I–vi–ii–V)', chords:['Cmaj7','Am7','Dm7','G7'], mood:'warm-resolved', blurb:'Seventh-chord circle-of-fifths turnaround', genres:['soul','r-and-b','gospel','swing'], aliases:['circle-of-fifths turnaround'] },
+  { id:'minor-i-VI-III-VII', tier:'shared', name:'Am – F – C – G (i–VI–III–VII)', chords:['Am','F','C','G'], mood:'bittersweet', blurb:'Natural-minor diatonic cycle', genres:['bachata','reggaeton','zouk','latin-pop'], aliases:['minor pop cycle'] },
+  { id:'minor-i-VII-VI-VII', tier:'shared', name:'Am – G – F – G (i–VII–VI–VII)', chords:['Am','G','F','G'], mood:'floating-modal', blurb:'Repeating minor modal bass motion', genres:['reggae','cumbia','uk-bass'], aliases:['reggae minor vamp'] },
+  { id:'minor-i-iv-V-i', tier:'shared', name:'Am – Dm – E – Am (i–iv–V–i)', chords:['Am','Dm','E','Am'], mood:'tense-dramatic', blurb:'Natural minor with raised dominant', genres:['rock','metal','tango'], aliases:['minor cadence with raised V'] },
+  { id:'andalusian-cadence', tier:'shared', name:'Am – G – F – E7 (i–♭VII–♭VI–V7)', chords:['Am','G','F','E7'], mood:'tense-dramatic', blurb:'Descending minor-to-dominant cadence', genres:['flamenco','cumbia','tango'], aliases:['Andalusian cadence','Phrygian/Andalusian turn'] },
+  { id:'canon-descent', tier:'shared', name:'C – G – Am – Em (I–V–vi–iii)', chords:['C','G','Am','Em'], mood:'bittersweet', blurb:'Descending stepwise diatonic motion', genres:['folk','brazilian','latin-pop'], aliases:['Pachelbel-style descent'] },
+  { id:'blues-12-bar', tier:'shared', name:'C7 – F7 – G7 – C7 (12-bar blues)', chords:['C7','F7','G7','C7'], mood:'earthy-bluesy', blurb:'Core I–IV–V–I of 12-bar blues', genres:['blues','rock','country','soul'], aliases:['12-bar blues skeleton'] },
+  { id:'dominant-sequence', tier:'shared', name:'A7 – D7 – A7 – E7 (quick-change blues)', chords:['A7','D7','A7','E7'], mood:'earthy-bluesy', blurb:'Quick-IV dominant blues movement', genres:['blues','funk','country'], aliases:['quick-four blues','dominant blues cycle'] },
+  { id:'metal-power-riff', tier:'shared', name:'E5 – C5 – D5 – B5 (power-chord riff)', chords:['E5','C5','D5','B5'], mood:'aggressive-driving', blurb:'Root-fifth power-chord riff shape', genres:['metal','punk-hardcore','industrial'], aliases:['metal power-chord cycle'] },
 ];
 
+/* ============================================================================
+ * 2) JAZZ — functional jazz vocabulary. Only tier allowed >6-note voicings.
+ * ==========================================================================*/
+const JAZZ_CHORDS: ChordOption[] = [
+  { id:'jazz-ii-V-I', tier:'jazz', name:'Dm7 – G7 – Cmaj7 – Cmaj7 (ii–V–I)', chords:['Dm7','G7','Cmaj7','Cmaj7'], mood:'smooth-jazzy', blurb:'Core functional jazz cadence', genres:['jazz','swing','r-and-b','soul','brazilian'], aliases:['jazz cadence'] },
+  { id:'jazz-ii-V-I-vi', tier:'jazz', name:'Dm7 – G7 – Cmaj7 – Am7 (ii–V–I–vi)', chords:['Dm7','G7','Cmaj7','Am7'], mood:'smooth-jazzy', blurb:'Major-key ii–V–I with vi continuation', genres:['jazz','swing','r-and-b','soul'], aliases:['jazz turnaround'] },
+  { id:'jazz-iii-VI-ii-V', tier:'jazz', name:'Em7 – A7 – Dm7 – G7 (iii–VI–ii–V)', chords:['Em7','A7','Dm7','G7'], mood:'smooth-jazzy', blurb:'Descending-fifths turnaround', genres:['jazz','swing','brazilian'], aliases:['cycle turnaround'] },
+  { id:'jazz-minor-ii-V-i', tier:'jazz', name:'Bm7b5 – E7 – Am7 – Am7 (iiø7–V7–i)', chords:['Bm7b5','E7','Am7','Am7'], mood:'smooth-jazzy', blurb:'Minor-key functional cadence', genres:['jazz','tango','soul','r-and-b'], aliases:['minor ii–V–i'] },
+  { id:'jazz-rhythm-changes-bridge', tier:'jazz', name:'E7 – A7 – D7 – G7 (III7–VI7–II7–V7)', chords:['E7','A7','D7','G7'], mood:'smooth-jazzy', blurb:'Rhythm-changes bridge, cycle of dominants', genres:['jazz','swing'], aliases:['rhythm-changes bridge'] },
+  { id:'jazz-extended-major', tier:'jazz', name:'Dm9 – G13 – Cmaj9 – Cmaj9 (ii9–V13–Imaj9)', chords:['Dm9','G13','Cmaj9','Cmaj9'], mood:'smooth-jazzy', blurb:'Extended jazz voicings, ninth and thirteenth', genres:['jazz','r-and-b','gospel'], aliases:['extended jazz ii–V–I'] },
+  { id:'jazz-extended-lydian', tier:'jazz', name:'Cmaj9 – D13 – G13 – Cmaj9 (Imaj9–II13–V13–Imaj9)', chords:['Cmaj9','D13','G13','Cmaj9'], mood:'smooth-jazzy', blurb:'Bright tonic with extended dominants', genres:['jazz','fusion','gospel'], aliases:['jazz major-color vamp'] },
+  { id:'jazz-altered-dominant', tier:'jazz', name:'Dm9 – G7(b9) – Cmaj9 – Cmaj9 (ii9–V7♭9–Imaj9)', chords:['Dm9','G7b9','Cmaj9','Cmaj9'], mood:'smooth-jazzy', blurb:'Altered dominant resolving to extended tonic', genres:['jazz','gospel','r-and-b'], aliases:['altered ii–V–I'] },
+  { id:'jazz-tritone', tier:'jazz', name:'Dm9 – Db7 – Cmaj9 – Cmaj9 (ii–♭II7–I)', chords:['Dm9','Db7','Cmaj9','Cmaj9'], mood:'smooth-jazzy', blurb:'Dominant tritone substitution', genres:['jazz','fusion'], aliases:['tritone-sub ii–V–I'] },
+  { id:'jazz-251-13', tier:'jazz', name:'Dm13 – G13 – Cmaj13 – Cmaj13 (ii13–V13–Imaj13)', chords:['Dm13','G13','Cmaj13','Cmaj13'], mood:'smooth-jazzy', blurb:'Full 13th-colour functional cadence', genres:['jazz','fusion','r-and-b'], aliases:['13th voicing cadence'] },
+  { id:'jazz-251-11', tier:'jazz', name:'Dm11 – G7(#11) – Cmaj9 – Cmaj9 (ii11–V7♯11–Imaj9)', chords:['Dm11','G7#11','Cmaj9','Cmaj9'], mood:'smooth-jazzy', blurb:'Eleventh and sharp-eleven colour', genres:['jazz','fusion'], aliases:['modern jazz colour'] },
+  { id:'jazz-altered-full', tier:'jazz', name:'Dm9 – G7alt – Cmaj9 – Cmaj9 (ii9–V7alt–Imaj9)', chords:['Dm9','G7alt','Cmaj9','Cmaj9'], mood:'smooth-jazzy', blurb:'Fully altered dominant, seven-note voicing', genres:['jazz'], aliases:['altered dominant resolution'] },
+];
+
+/* ============================================================================
+ * 3) GENRE-SPECIFIC — one exclusive cell per canonical genre (33 total)
+ * ==========================================================================*/
+const GENRE_CHORDS: ChordOption[] = [
+  { id:'afrobeats-highlife-loop', tier:'genre', name:'Cmaj7 – Fmaj7 – Cmaj7 – G (I–IV–I–V)', chords:['Cmaj7','Fmaj7','Cmaj7','G'], mood:'floating-modal', blurb:'Highlife-derived major-seventh guitar loop', genres:['afrobeats'], aliases:['highlife loop'] },
+  { id:'bachata-minor-cadence', tier:'genre', name:'Am – Dm – E7 – Am (i–iv–V7–i)', chords:['Am','Dm','E7','Am'], mood:'bittersweet', blurb:'Bachata romantica minor cadence', genres:['bachata'], aliases:['bachata bolero cadence'] },
+  { id:'blues-minor-blues', tier:'genre', name:'Am7 – Dm7 – Am7 – E7 (i–iv–i–V)', chords:['Am7','Dm7','Am7','E7'], mood:'earthy-bluesy', blurb:'Minor-key blues cadence', genres:['blues'], aliases:['minor blues changes'] },
+  { id:'bossa-borrowed-iv', tier:'genre', name:'Fmaj7 – Fm6 – Cmaj7 – D7(b9) (IV–iv–I–V7/ii)', chords:['Fmaj7','Fm6','Cmaj7','D7b9'], mood:'bittersweet', blurb:'Bossa nova borrowed-minor-IV colour', genres:['brazilian'], aliases:['bossa modal-mixture move'] },
+  { id:'country-train-beat', tier:'genre', name:'G7 – C7 – G7 – D7 (I7–IV7–I7–V7)', chords:['G7','C7','G7','D7'], mood:'earthy-bluesy', blurb:'Dominant-seventh train-beat progression', genres:['country'], aliases:['train-beat changes'] },
+  { id:'cumbia-two-chord-vamp', tier:'genre', name:'Am – G – Am – G (i–♭VII–i–♭VII)', chords:['Am','G','Am','G'], mood:'floating-modal', blurb:'Sonidera two-chord cumbia vamp', genres:['cumbia'], aliases:['cumbia sonidera vamp'] },
+  { id:'disco-minor-groove', tier:'genre', name:'Am7 – D9 – Am7 – D9 (i7–IV9–i7–IV9)', chords:['Am7','D9','Am7','D9'], mood:'festive-celebratory', blurb:'Static minor-to-dominant-9th disco groove', genres:['disco'], aliases:['disco ii-less vamp'] },
+  { id:'electronic-natural-minor-loop', tier:'genre', name:'Am – Em – F – G (i–v–VI–VII)', chords:['Am','Em','F','G'], mood:'floating-modal', blurb:'Anthemic natural-minor build loop', genres:['electronic'], aliases:['EDM build loop'] },
+  { id:'folk-descending-bass', tier:'genre', name:'C – G/B – Am – F (I–V/vii–vi–IV)', chords:['C','G/B','Am','F'], mood:'warm-resolved', blurb:'Fingerstyle descending-bassline progression', genres:['folk'], aliases:['descending-bass fingerstyle'] },
+  { id:'funk-dominant-9-vamp', tier:'genre', name:'E9 – A9 – E9 – A9 (I9–IV9–I9–IV9)', chords:['E9','A9','E9','A9'], mood:'earthy-bluesy', blurb:'Static dominant-ninth funk vamp', genres:['funk'], aliases:['one-chord funk vamp'] },
+  { id:'gospel-pedal-vamp', tier:'genre', name:'C – F/C – C – F/C (I–IV/I–I–IV/I)', chords:['C','F/C','C','F/C'], mood:'festive-celebratory', blurb:'IV-over-tonic-pedal gospel vamp', genres:['gospel'], aliases:['gospel pedal-point vamp'] },
+  { id:'hiphop-soul-sample-loop', tier:'genre', name:'Fm7 – Bbm7 – Fm7 – Bbm7 (i–iv–i–iv)', chords:['Fm7','Bbm7','Fm7','Bbm7'], mood:'floating-modal', blurb:'Static minor-seventh sample-style loop', genres:['hip-hop'], aliases:['boom-bap sample loop'] },
+  { id:'house-deep-house-descent', tier:'genre', name:'Fmaj7 – Em7 – Dm7 – Cmaj7 (IV–iii–ii–I)', chords:['Fmaj7','Em7','Dm7','Cmaj7'], mood:'floating-modal', blurb:'Descending deep-house piano progression', genres:['house'], aliases:['deep house descent'] },
+  { id:'kizomba-ballad-loop', tier:'genre', name:'Fmaj7 – Em7 – Am7 – Dm7 (IV–iii–vi–ii)', chords:['Fmaj7','Em7','Am7','Dm7'], mood:'bittersweet', blurb:'Romantic kizomba ballad guitar loop', genres:['kizomba'], aliases:['kizomba ballad loop'] },
+  { id:'latin-pop-ii-V-vi', tier:'genre', name:'Dm – G – C – Am (ii–V–I–vi)', chords:['Dm','G','C','Am'], mood:'warm-resolved', blurb:'Triad-only pop ii–V–I–vi motion', genres:['latin-pop'], aliases:['latin pop turnaround'] },
+  { id:'tango-relative-major', tier:'genre', name:'C – G7 – C – Am (I–V7–I–vi)', chords:['C','G7','C','Am'], mood:'bittersweet', blurb:'Relative-major tango lyrical section', genres:['tango'], aliases:['tango relative-major turn'] },
+  { id:'flamenco-phrygian-vamp', tier:'genre', name:'Am – Bb – Am – Bb (i–♭II–i–♭II)', chords:['Am','Bb','Am','Bb'], mood:'tense-dramatic', blurb:'Phrygian tonic to flat-two vamp', genres:['flamenco'], aliases:['soleá Phrygian vamp'] },
+  { id:'metal-natural-minor-riff', tier:'genre', name:'Em – G – D – Em (i–III–VII–i)', chords:['Em','G','D','Em'], mood:'tense-dramatic', blurb:'Riff-friendly natural-minor progression', genres:['metal'], aliases:['metal riff cycle'] },
+  { id:'rnb-neo-soul-turnaround', tier:'genre', name:'Fmaj7 – Em7 – A7 – Dm7 (IV–iii–VI7–ii)', chords:['Fmaj7','Em7','A7','Dm7'], mood:'smooth-jazzy', blurb:'Neo-soul secondary-dominant turnaround', genres:['r-and-b'], aliases:['neo-soul turnaround'] },
+  { id:'reggae-one-drop-major', tier:'genre', name:'C – F – G – F (I–IV–V–IV)', chords:['C','F','G','F'], mood:'festive-celebratory', blurb:'Major-key roots-reggae one-drop loop', genres:['reggae'], aliases:['one-drop major loop'] },
+  { id:'reggaeton-dembow-resolve', tier:'genre', name:'Am – F – Dm – E7 (i–VI–iv–V7)', chords:['Am','F','Dm','E7'], mood:'tense-dramatic', blurb:'Dembow minor loop with dominant resolve', genres:['reggaeton'], aliases:['dembow resolving loop'] },
+  { id:'rock-mixolydian-riff', tier:'genre', name:'E – A – D – A (I–IV–♭VII–IV)', chords:['E','A','D','A'], mood:'aggressive-driving', blurb:'Mixolydian flat-seven rock riff', genres:['rock'], aliases:['classic-rock mixolydian riff'] },
+  { id:'salsa-montuno-vamp', tier:'genre', name:'Cmaj7 – Fmaj7 – G7 – Cmaj7 (I–IV–V–I)', chords:['Cmaj7','Fmaj7','G7','Cmaj7'], mood:'festive-celebratory', blurb:'Major-seventh salsa piano montuno', genres:['salsa'], aliases:['salsa montuno vamp'] },
+  { id:'ska-two-tone-turnaround', tier:'genre', name:'C – Dm – F – G (I–ii–IV–V)', chords:['C','Dm','F','G'], mood:'festive-celebratory', blurb:'Two-tone offbeat-skank turnaround', genres:['ska'], aliases:['two-tone skank turnaround'] },
+  { id:'soul-motown-secondary-dominant', tier:'genre', name:'C – E7 – F – G (I–III7–IV–V)', chords:['C','E7','F','G'], mood:'bittersweet', blurb:'Motown-style secondary-dominant motion', genres:['soul'], aliases:['Motown secondary dominant'] },
+  { id:'swing-rhythm-changes-A', tier:'genre', name:'Cmaj7 – A7 – Dm7 – G7 (I–VI7–ii7–V7)', chords:['Cmaj7','A7','Dm7','G7'], mood:'smooth-jazzy', blurb:'Rhythm-changes A-section turnaround', genres:['swing','jazz'], aliases:['rhythm changes A section'] },
+  { id:'timba-minor-vamp', tier:'genre', name:'Am7 – Dm7 – E7 – Am7 (i7–iv7–V7–i7)', chords:['Am7','Dm7','E7','Am7'], mood:'tense-dramatic', blurb:'Afro-Cuban minor vamp with dominant return', genres:['timba'], aliases:['timba minor vamp'] },
+  { id:'zouk-romantic-loop', tier:'genre', name:'Fmaj7 – Bbmaj7 – Am7 – Dm7 (IV–♭VII–vi–ii)', chords:['Fmaj7','Bbmaj7','Am7','Dm7'], mood:'bittersweet', blurb:'Romantic major-seventh zouk loop', genres:['zouk'], aliases:['zouk love-song loop'] },
+  { id:'dnb-atmospheric-pad', tier:'genre', name:'Am7 – Fmaj7 – Am7 – Fmaj7 (i7–♭VI–i7–♭VI)', chords:['Am7','Fmaj7','Am7','Fmaj7'], mood:'floating-modal', blurb:'Static atmospheric drum-and-bass pad', genres:['drum-and-bass'], aliases:['liquid DnB pad loop'] },
+  { id:'industrial-tritone-vamp', tier:'genre', name:'E5 – E5 – Bb5 – E5 (I–I–♭V–I)', chords:['E5','E5','Bb5','E5'], mood:'aggressive-driving', blurb:'Tritone power-chord industrial vamp', genres:['industrial'], aliases:['tritone power-chord vamp'] },
+  { id:'punk-three-chord-trick', tier:'genre', name:'E5 – A5 – B5 – E5 (I–IV–V–I)', chords:['E5','A5','B5','E5'], mood:'aggressive-driving', blurb:'Classic punk three-chord trick', genres:['punk-hardcore'], aliases:['punk three-chord trick'] },
+  { id:'ukbass-minor7-wobble', tier:'genre', name:'Dm7 – Am7 – Dm7 – Am7 (i7–v7–i7–v7)', chords:['Dm7','Am7','Dm7','Am7'], mood:'floating-modal', blurb:'Static minor-seventh bass-music wobble loop', genres:['uk-bass'], aliases:['2-step wobble loop'] },
+];
+
+export const CHORD_PALETTE: ChordOption[] = [...SHARED_CHORDS, ...JAZZ_CHORDS, ...GENRE_CHORDS];
+
+/** Flat vocabulary of typical jazz chord symbols (mood-board / reference use). */
 export const JAZZ_CHORD_LIBRARY = [
-  'Cmaj7','Cmaj9','Cmaj13','Cmaj13(#11)',
+  'Cmaj7','Cmaj9','Cmaj13','Cmaj13#11',
   'Cm7','Cm9','Cm11','Cm13',
-  'C7','C9','C13','C7(#11)',
+  'C7','C9','C13','C7#11',
   'C7b9','C7#9','C7b13','C7alt',
   'Cm7b5','Cdim7','C7sus4','C13sus4',
   'C6','C6/9','C9sus4','Cadd9',
@@ -81,7 +145,7 @@ export function suggestedPaletteForStyle(styleId?: string, genreId?: string): Ch
   if (!styleId) return base;
   const n = styleId.toLowerCase();
   if (/jazz|fusion|bebop|cool|hard-bop|spiritual/.test(n)) {
-    return [...CHORD_PALETTE.filter(c => c.id.startsWith('jazz-')), ...base].slice(0, 8);
+    return [...CHORD_PALETTE.filter(c => c.tier === 'jazz'), ...base].slice(0, 8);
   }
   return base;
 }
