@@ -485,10 +485,6 @@ export function suggestPattern(
       if (!Number.isFinite(n)) return { id: p.id, n: Number.NEGATIVE_INFINITY };
       if (p.id === DEFAULT_PATTERN_PREFERENCES[worldId]?.[voice.instrumentId]) n += 8;
       if (styleId && p.styleIds?.includes(styleId)) n += 30;
-      // Representative starter cells are fixed role/instrument assignments,
-      // not random alternatives. They must win the initial arrangement for
-      // the instrument they were authored for.
-      if (p.id === `style-${styleId}-starter-${voice.instrumentId}`) n += 80;
       if (resolved?.contract.timelineRequired && resolved.contract.timelineGrid.length) {
         const authored = new Set(p.onsetGrid ?? []);
         const overlap = resolved.contract.timelineGrid.filter(x => authored.has(x)).length / resolved.contract.timelineGrid.length;

@@ -6,8 +6,8 @@ import { profileForStyle } from './styleProfiles';
 
 
 
-const SPECIAL_STARTER_CELLS: Record<string, number[][]> = {
-  // Starter cells are indexed by the resolved five-part ensemble order.
+const SPECIAL_STYLE_CELLS: Record<string, number[][]> = {
+  // Style cells are indexed by the resolved five-part ensemble order.
   'tango:guardia vieja': [[0,4,7,12],[0,3,6,8,11,14],[0,4,8,12],[2,6,10,14],[0,3,8,11]],
   'tango:troilo': [[0,3,6,8,11,14],[0,4,8,12],[1,5,9,13],[0,6,8,14],[3,7,11,15]],
   'tango:pugliese': [[0,5,8,11,14],[0,4,8,12],[2,6,10,14],[0,3,8,11],[0,6,9,14]],
@@ -57,48 +57,15 @@ function instrumentRole(instrumentId: string): Role | string {
   return 'harmony';
 }
 
-function starterCellsFor(style: SongStyle): number[][] {
+function styleCellsFor(style: SongStyle): number[][] {
   const key = `${style.primaryGenre}:${style.name.toLowerCase()}`;
-  if (SPECIAL_STARTER_CELLS[key]) return SPECIAL_STARTER_CELLS[key];
+  if (SPECIAL_STYLE_CELLS[key]) return SPECIAL_STYLE_CELLS[key];
   const base = /2\/4/.test(style.rhythm?.meter ?? '') ? [[0,2,4,6],[1,3,5,7],[0,3,5,7],[0,2,5],[2,4,6]]
     : /3\/4/.test(style.rhythm?.meter ?? '') ? [[0,4,8],[2,6,10],[0,6,12],[3,7,11],[1,5,9]]
     : /6\/8|12\/8/.test(style.rhythm?.meter ?? '') ? [[0,3,6,9],[0,4,8],[2,6,10],[0,3,7,10],[1,5,9,11]]
     : [[0,4,8,12],[2,6,10,14],[0,3,7,11],[1,5,9,13],[0,3,6,11,14]];
   const shift = Math.abs(style.name.split('').reduce((a,c)=>a+c.charCodeAt(0),0)) % 5;
   return base.map((_, i) => base[(i + shift) % base.length]);
-}
-
-function makeStarterPattern(style: SongStyle, instrumentId: string, _index: number, onsets: number[]): MusicalPattern {
-  const role = instrumentRole(instrumentId);
-  const category: MusicalPattern['category'] = role === 'bass' ? 'bass' : role === 'percussion' ? 'groove' : role === 'voice' || role === 'melody' ? 'phrasePattern' : 'rolePattern';
-  const subdivisions = /2\/4/.test(style.rhythm?.meter ?? '') ? 8 : /3\/4/.test(style.rhythm?.meter ?? '') ? 12 : /6\/8|12\/8/.test(style.rhythm?.meter ?? '') ? 12 : 16;
-  // Starter cells are authored on a normalized 16-step reference grid. Map
-  // them into the style meter instead of clamping, which would collapse the
-  // upper half of a 2/4 or compound-meter pattern onto one final subdivision.
-  const safe = onsets.map(x => Math.round(x * subdivisions / 16))
-    .map(x => Math.max(0, Math.min(subdivisions - 1, x)))
-    .filter((x,i,a)=>a.indexOf(x)===i);
-  const accents = safe.map((_, i) => i % 3 === 0 ? 1 : i % 2 ? .55 : .78);
-  return {
-    id:`style-${style.id}-starter-${instrumentId}`,
-    worldId:style.primaryGenre,
-    styleIds:[style.id],
-    name:`${style.name} starter — ${instrumentId}`,
-    shortName:`${style.name} ${instrumentId}`,
-    family:`${style.primaryGenre}-starter`,
-    category,
-    description:`Fixed representative starter cell for ${style.name}, assigned to ${instrumentId}.`,
-    tags:[style.primaryGenre,style.name.toLowerCase(),'starter','role-specific'],
-    scopes:['region','track'], roles:[role as any], compatibleRoles:[role as any],
-    instruments:[instrumentId], compatibleInstruments:[instrumentId],
-    meter:style.rhythm?.meter ?? '4/4', cycleLength:/clave|tango|cumbia/.test(style.name.toLowerCase()) ? 2 : 1,
-    subdivisions, onsetGrid:safe, durationGrid:safe.map(()=>role==='bass'?2:1), accentProfile:accents, velocityProfile:accents,
-    syncopationRating:safe.length > 5 ? .72 : .45, anticipationOffset:/bass|tumbao|milonga/.test(style.rhythm?.feel ?? '') ? -1 : 0,
-    swingPercentage:style.rhythm?.swingPercentage, articulations:role==='bass'?['short','accent']:['accent','ghost'],
-    density:'medium', phrasePosition:['any'], sectionUsage:['intro','verse','chorus','bridge','groove','montuno','coro','outro'] as any,
-    variants:[],
-    provenance:`curated starter grammar for ${style.name}`, authenticityTags:[style.primaryGenre,style.name.toLowerCase(),'starter'], enabled:true, weight:60,
-  };
 }
 
 
@@ -218,11 +185,11 @@ export function applyStyleDialect(style: SongStyle, index: number): SongStyle {
 
 export function dialectPatternsForStyle(style: SongStyle, _index: number): MusicalPattern[] {
   const instruments = (style.sound?.instrumentPalette ?? []).map(x => x.value).filter(Boolean).slice(0,5);
-  const cells = starterCellsFor(style);
-  // Create one fixed starter cell per representative instrument. Other material
+  const cells = styleCellsFor(style);
+  // Create one fixed style cell per representative instrument. Other material
   // comes from the authored pattern catalog.
   return instruments.map((instrumentId, i) =>
-    makeStarterPattern(style, instrumentId, i, cells[i % Math.max(1, cells.length)])
+    makeStylePattern(style, instrumentId, i, cells[i % Math.max(1, cells.length)])
   );
 }
 

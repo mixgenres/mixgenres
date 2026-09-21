@@ -1,46 +1,10 @@
 import { SongStyle } from './schema';
 import { GENRE_WORLDS, GENRE_NAMES } from '../genres';
 import { buildCuratedStyles, assembleStylePatterns } from './catalog';
-import { applyStyleDialect, dialectPatternsForStyle } from './styleDialect';
+import { applyStyleDialect } from './styleDialect';
 import { ALL_PATTERNS, PATTERNS_BY_WORLD, PATTERNS_BY_ID, GENRE_SOURCE_MAP } from '../genres';
 import { INSTRUMENTS_BY_ID } from '../instruments';
 import { contractForGenre } from './contracts';
-
-const STARTER_INSTRUMENTS: Record<string, string[]> = {
-  afrobeats: ['log-drum','kalimba','shaker','bass','voice'],
-  bachata: ['requinto','guitarron','guiro','bongos','voice'],
-  blues: ['harmonica','jazz-guitar','upright-bass','brush-kit','voice'],
-  brazilian: ['cavaquinho','pandeiro','surdo','tamborim','voice'],
-  country: ['steel-guitar','fiddle','banjo','upright-bass','voice'],
-  cumbia: ['accordion','guacharaca','tambor-alegre','bass','voice'],
-  disco: ['strings','clavinet','synth','slap-bass','drums'],
-  electronic: ['synth','acid-303','drums','sub-bass','noise-sweep'],
-  folk: ['banjo','fiddle','mandolin','upright-bass','voice'],
-  funk: ['clavinet','slap-bass','electric-guitar','drums','horn-section'],
-  gospel: ['organ','choir','piano','bass','drums'],
-  'hip-hop': ['drums','sub-bass','synth','electric-guitar','voice'],
-  house: ['acid-303','synth','drums','sub-bass','cowbell'],
-  jazz: ['tenor-sax','upright-bass','brush-kit','piano','jazz-guitar'],
-  kizomba: ['sub-bass','guitar','shaker','drums','voice'],
-  'latin-pop': ['requinto','synth','bass','congas','voice'],
-  tango: ['bandoneon','violin','piano','upright-bass','cello'],
-  flamenco: ['guitar','palmas','cajon','voice','castanets'],
-  metal: ['distortion-guitar','bass','drums','tremolo-strings','voice'],
-  'r-and-b': ['rhodes','fretless-bass','clavinet','drums','voice'],
-  reggae: ['organ','electric-guitar','bass','drums','voice'],
-  reggaeton: ['synth','sub-bass','drums','congas','voice'],
-  rock: ['overdrive-guitar','bass','drums','organ','voice'],
-  salsa: ['piano','timbales','congas','trumpet','bass'],
-  ska: ['trumpet','trombone','electric-guitar','bass','drums'],
-  soul: ['rhodes','strings','organ','bass','voice'],
-  swing: ['upright-bass','ride','trumpet','clarinet','piano'],
-  timba: ['tres','timbales','congas','slap-bass','horn-section'],
-  zouk: ['guitar','sub-bass','synth','shaker','voice'],
-  'drum-and-bass': ['sub-bass','drums','synth','soprano-sax','noise-sweep'],
-  industrial: ['distortion-guitar','synth','drums','sub-bass','noise-sweep'],
-  'punk-hardcore': ['distortion-guitar','bass','drums','voice','electric-guitar'],
-  'uk-bass': ['sub-bass','synth','drums','cowbell','soprano-sax'],
-};
 
 const GENRE_RHYTHM: Record<string, { bpm: number; range: [number, number]; meter: string; feel: string; swing: number }> = {
   afrobeats:{bpm:108,range:[100,118],meter:'4/4',feel:'laid-back syncopation',swing:52}, bachata:{bpm:128,range:[118,138],meter:'4/4',feel:'derecho pocket',swing:52},
@@ -70,8 +34,12 @@ function shortText(value: string): string {
 function styleFromSeed(worldId: string, seed: any, index: number): SongStyle {
   const contract = contractForGenre(worldId);
   const rhythm = GENRE_RHYTHM[worldId] ?? { bpm: 110, range:[80,140] as [number,number], meter:contract.meter, feel:contract.groove.name, swing:contract.groove.swing * 100 };
-  const instruments = (STARTER_INSTRUMENTS[worldId] ?? seed.characteristicInstruments ?? ['piano','bass','drums','guitar','voice'])
-    .filter((id: string) => INSTRUMENTS_BY_ID[id]).slice(0, 5);
+  // The ensemble is authored by the style seed. Never synthesize a genre-level
+  // starter ensemble: a song style must inherit only its own musical personnel.
+  const canonicalAliases: Record<string, string> = { 'nylon-guitar': 'guitar', 'bongo': 'bongos', 'batá': 'bata' };
+  const instruments = Array.from(new Set((seed.characteristicInstruments ?? ['piano','bass','drums','guitar','voice'])
+    .map((id: string) => canonicalAliases[id] ?? id)
+    .filter((id: string) => INSTRUMENTS_BY_ID[id]))).slice(0, 5);
   const formSteps = contract.form.map((name, i) => ({
     key: `${name.toLowerCase().replace(/[^a-z0-9]+/g,'-')}-${i}`,
     label: name,
@@ -159,8 +127,7 @@ for (const world of GENRE_WORLDS) {
 
 let styles = buildCuratedStyles(baseStyles, ALL_PATTERNS);
 styles = styles.map((style, index) => applyStyleDialect(style, index));
-const dialectPatterns = styles.flatMap((style, index) => dialectPatternsForStyle(style, index));
-const curatedPatterns = [...assembleStylePatterns(styles, ALL_PATTERNS), ...dialectPatterns];
+const curatedPatterns = assembleStylePatterns(styles, ALL_PATTERNS);
 
 // The runtime registry exposes shared pattern definitions through genre views.
 ALL_PATTERNS.splice(0, ALL_PATTERNS.length, ...curatedPatterns);
@@ -174,15 +141,16 @@ for (const pattern of curatedPatterns) {
   }
 }
 
-// Styles select from shared authored patterns; starter cells supplement them.
+// Pattern selection is exclusively drawn from authored, reusable catalog entries.
+// No per-style generated patterns are created or exposed.
 for (const style of styles) {
-  const dialect = dialectPatterns.filter(p => p.id.startsWith(`style-${style.id}-`));
   const curated = Array.from(new Set(style.patterns?.allowed ?? []));
-  const required = Array.from(new Set([...(style.patterns?.require ?? []), ...dialect.slice(0, 1).map(p => p.id)]));
-  const preferred = Array.from(new Set([...(style.patterns?.preferred ?? []), ...dialect.slice(1).map(p => p.id)]))
-    .filter(id => !required.includes(id));
-  const allowed = Array.from(new Set([...curated, ...dialect.map(p => p.id)]));
-  style.patterns = { require: required, preferred, allowed, avoid: style.patterns?.avoid ?? [] };
+  style.patterns = {
+    require: Array.from(new Set(style.patterns?.require ?? [])).filter(id => curated.includes(id)),
+    preferred: Array.from(new Set(style.patterns?.preferred ?? [])).filter(id => curated.includes(id)),
+    allowed: curated,
+    avoid: Array.from(new Set(style.patterns?.avoid ?? [])),
+  };
 }
 
 export const ALL_STYLES = styles;

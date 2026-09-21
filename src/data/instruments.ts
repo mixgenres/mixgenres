@@ -106,9 +106,8 @@ export const INSTRUMENT_CATALOG: InstrumentDef[] = [
   { id: 'dulcimer', name: 'Dulcimer', family: 'metal-and-wood', program: 15, soundfont: { soundfontId: 'main', bankMSB: 0, bankLSB: 0, program: 15 }, voicing: 'single' },
 
   // — plucked —
-  { id: 'guitar', name: 'Nylon guitar', family: 'plucked', program: 24, soundfont: { soundfontId: 'main', bankMSB: 0, bankLSB: 0, program: 24 }, voicing: 'chord' },
-  { id: 'nylon-guitar', name: 'Nylon guitar (explicit)', family: 'plucked', program: 24, soundfont: { soundfontId: 'main', bankMSB: 0, bankLSB: 0, program: 24 }, voicing: 'chord' },
-  { id: 'acoustic-guitar', name: 'Acoustic guitar', family: 'plucked', program: 25, soundfont: { soundfontId: 'main', bankMSB: 0, bankLSB: 0, program: 25 }, voicing: 'chord' },
+  { id: 'guitar', name: 'Acoustic guitar', family: 'plucked', program: 24, soundfont: { soundfontId: 'main', bankMSB: 0, bankLSB: 0, program: 24 }, voicing: 'chord' },
+  { id: 'acoustic-guitar', name: 'Steel-string guitar', family: 'plucked', program: 25, soundfont: { soundfontId: 'main', bankMSB: 0, bankLSB: 0, program: 25 }, voicing: 'chord' },
   { id: 'steel-guitar', name: 'Steel-string guitar', family: 'plucked', program: 25, soundfont: { soundfontId: 'main', bankMSB: 0, bankLSB: 0, program: 25 }, voicing: 'chord' },
   { id: 'electric-guitar', name: 'Clean electric guitar', family: 'plucked', program: 27, soundfont: { soundfontId: 'main', bankMSB: 0, bankLSB: 0, program: 27 }, voicing: 'chord' },
   { id: 'jazz-guitar', name: 'Jazz guitar', family: 'plucked', program: 26, soundfont: { soundfontId: 'main', bankMSB: 0, bankLSB: 0, program: 26 }, voicing: 'chord' },
@@ -201,11 +200,9 @@ export const INSTRUMENT_CATALOG: InstrumentDef[] = [
   // — hand drums —
   { id: 'congas', name: 'Congas', family: 'hand-drums', drum: { low: 64, mid: 62, high: 63 }, soundfont: { soundfontId: 'percussion', bankMSB: 0, bankLSB: 0, program: 0 }, voicing: 'unpitched', note: 'Accents open the tone' },
   { id: 'bongos', name: 'Bongos', family: 'hand-drums', drum: { low: 61, mid: 61, high: 60 }, soundfont: { soundfontId: 'percussion', bankMSB: 0, bankLSB: 0, program: 0 }, voicing: 'unpitched' },
-  { id: 'bongo', name: 'Bongo', family: 'hand-drums', drum: { low: 61, mid: 61, high: 60 }, soundfont: { soundfontId: 'percussion', bankMSB: 0, bankLSB: 0, program: 0 }, voicing: 'unpitched' },
   { id: 'zabumba', name: 'Zabumba', family: 'hand-drums', drum: { low: 41, mid: 43, high: 45 }, soundfont: { soundfontId: 'percussion', bankMSB: 0, bankLSB: 0, program: 0 }, voicing: 'unpitched', note: 'Brazilian folk bass drum' },
   { id: 'bombo', name: 'Bombo', family: 'hand-drums', drum: { low: 41, mid: 43, high: 45 }, soundfont: { soundfontId: 'percussion', bankMSB: 0, bankLSB: 0, program: 0 }, voicing: 'unpitched', note: 'Generic Argentine folk bombo' },
   { id: 'bata', name: 'Batá', family: 'hand-drums', drum: { low: 64, mid: 62, high: 63 }, soundfont: { soundfontId: 'percussion', bankMSB: 0, bankLSB: 0, program: 0 }, voicing: 'unpitched', note: 'Afro-Cuban double-headed drum color' },
-  { id: 'batá', name: 'Batá (accented ID)', family: 'hand-drums', drum: { low: 64, mid: 62, high: 63 }, soundfont: { soundfontId: 'percussion', bankMSB: 0, bankLSB: 0, program: 0 }, voicing: 'unpitched', note: 'Afro-Cuban double-headed drum color' },
   { id: 'cajon', name: 'Cajon', family: 'hand-drums', drum: { low: 36, mid: 38, high: 40 }, soundfont: { soundfontId: 'percussion', bankMSB: 0, bankLSB: 0, program: 0 }, voicing: 'unpitched' },
   { id: 'timbales', name: 'Timbales', family: 'hand-drums', drum: { low: 66, mid: 65, high: 65 }, soundfont: { soundfontId: 'percussion', bankMSB: 0, bankLSB: 0, program: 0 }, voicing: 'unpitched' },
   { id: 'surdo', name: 'Surdo', family: 'hand-drums', drum: { low: 41, mid: 41, high: 43 }, soundfont: { soundfontId: 'percussion', bankMSB: 0, bankLSB: 0, program: 0 }, voicing: 'unpitched' },
@@ -272,6 +269,10 @@ export const INSTRUMENT_CATALOG: InstrumentDef[] = [
 export const INSTRUMENTS_BY_ID: Record<string, InstrumentDef> = Object.fromEntries(
   INSTRUMENT_CATALOG.map(i => [i.id, i])
 );
+
+// Public aliases resolve to one canonical picker entry. Soundfont-specific
+// timbres are implementation details, not duplicate user-facing instruments.
+INSTRUMENTS_BY_ID['nylon-guitar'] = INSTRUMENTS_BY_ID['guitar'];
 
 export const GENRE_SOUNDFONT_OVERRIDES: Record<string, Record<string, SoundfontPresetRef>> = {
   tango: {
