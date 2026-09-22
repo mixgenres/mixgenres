@@ -89,8 +89,26 @@ export function modelForInstrument(instrumentId: string, luthier?: LuthierPhysic
       case 'flamenco-cajon': return 4;
     }
   }
+
+  // Explicit instrument routing must run before family regexes. The catalog
+  // contains several instruments whose names include "guitar", "piano", or
+  // "keys", so broad family matching would otherwise collapse distinct
+  // instruments into the wrong physical model.
+  const EXACT_MODELS: Record<string, number> = {
+    clavinet: 19,
+    harpsichord: 20,
+    'electric-guitar': 21,
+    'jazz-guitar': 22,
+    'muted-guitar': 23,
+    'distortion-guitar': 24,
+    'overdrive-guitar': 25,
+    'guitar-harmonics': 26,
+  };
+  const exactModel = EXACT_MODELS[id];
+  if (exactModel !== undefined) return exactModel;
+
   if (/guitar|tres|cuatro|requinto|charango|vihuela|sitar|oud|kora|berimbau|cavaquinho|harp|mandolin|banjo|shamisen|guqin|pipa|guzheng|jarana|koto|dulcimer/.test(id)) {
-    return /electric|strat|tele|lespaul/.test(id) ? 2 : 0;
+    return 0;
   }
   if (/bass|bajo|contrabajo|tuba/.test(id)) return 3;
   // Tuned struck/mallet resonators (long, pitched decay) are checked before
@@ -121,13 +139,14 @@ export function modelForInstrument(instrumentId: string, luthier?: LuthierPhysic
   if (/sax|clarinet|oboe|bagpipe|uilleann|shawm|dulzaina|bombarde/.test(id)) return 16;
   if (/flute|quena|zampoña|tin-whistle|low-whistle|piccolo|shakuhachi|xiao|dizi|ryuteki|hichiriki|recorder|ocarina/.test(id)) return 7;
   if (/accordion|bandoneon|harmonica|shō|sho|concertina|melodica/.test(id)) return 10;
-  if (/grand-piano|upright-piano|piano|player-piano|harpsichord/.test(id)) return 11;
+  if (/grand-piano|upright-piano|piano|player-piano/.test(id)) return 11;
   if (/organ|hammond|church-organ|pipe-organ/.test(id)) return 13;
   if (/voice|vocal|choir|soprano|alto|tenor|baritone|chorus/.test(id)) return 12;
   if (/rhodes|wurlitzer|electric-piano|fm-ep|epiano/.test(id)) return 14;
   // marimba/vibes/xylophone/etc. are already handled above; this catches
   // the remaining piano-adjacent and mallet-adjacent ids (kalimba, keys).
-  if (/piano|keys|clavinet|kalimba/.test(id)) return /clavinet/.test(id) ? 2 : 8;
+  // Clavinet is handled by the exact routing table above.
+  if (/piano|keys|kalimba/.test(id)) return 8;
   if (/synth|lead|pad|acid|808|909|noise-sweep|dub-echo|turntable/.test(id)) return 9;
   return 0;
 }
@@ -180,7 +199,15 @@ export const GAIN_BY_MODEL: Record<number, number> = {
   // adding those two representative instruments moves the measured median,
   // so this shifts every value slightly, not just the two new ones.
   0: 2.847,  // plucked strings (guitar family)
-  2: 1.000,  // overdriven electric guitar
+  2: 1.000,  // legacy overdriven electric guitar
+  19: 1.000, // clavinet
+  20: 3.224, // harpsichord
+  21: 1.000, // clean electric guitar
+  22: 1.000, // jazz guitar
+  23: 1.000, // muted electric guitar
+  24: 1.000, // distortion guitar
+  25: 1.000, // overdrive guitar
+  26: 1.000, // guitar harmonics
   3: 0.896,  // bass
   4: 2.172,  // membrane percussion (congas/tabla/etc.) -- model 5 shares this patch
   5: 2.172,
@@ -317,6 +344,169 @@ export function renderVoice(
 
       const driven = el.tanh(el.mul(el.const({ value: 1 + params.drive * 5 }), combSig));
       rawAudio = el.lowpass(1200 + b * 5500, 1.2, driven);
+      break;
+    }
+    case 19: {
+      // Clavinet: short, bright plucked-string excitation through a
+      // guitar-like pickup/filter response. This is intentionally separate
+      // from both the piano and electric-guitar models.
+      const sr = 44100;
+      const delayLength = Math.max(2, Math.min(4000, sr / Math.max(20, freq)));
+      const impulse = el.mul(
+        el.noise(),
+        el.adsr(0.00025, 0.004, 0, 0.002, gateSignal)
+      );
+      const stringLoop = el.delay(
+        { size: 44100 },
+        el.const({ value: delayLength }),
+        el.const({ value: 0.975 }),
+        impulse
+      );
+      const pickup = el.svf(
+        { mode: 'bandpass' },
+        700 + b * 1800,
+        1.1,
+        stringLoop
+      );
+      const click = el.mul(
+        0.18,
+        el.mul(
+          el.highpass(2200, 1.0, el.noise()),
+          el.adsr(0.0001, 0.003, 0, 0.0015, gateSignal)
+        )
+      );
+      rawAudio = el.lowpass(1200 + b * 4200, 1.0, el.add(pickup, click));
+      break;
+    }
+    case 20: {
+      // Harpsichord: very fast plectrum-like excitation with a dry,
+      // bright double-string character. Unlike piano, the excitation is
+      // plucked rather than hammer-driven.
+      const sr = 44100;
+      const delayLength = Math.max(2, Math.min(4000, sr / Math.max(20, freq)));
+      const detunedLength = Math.max(2, Math.min(4000, sr / Math.max(20, freq * 1.003)));
+      const pluck = el.mul(
+        el.noise(),
+        el.adsr(0.0001, 0.0025, 0, 0.0015, gateSignal)
+      );
+      const string1 = el.delay(
+        { size: 44100 },
+        el.const({ value: delayLength }),
+        el.const({ value: 0.989 }),
+        pluck
+      );
+      const string2 = el.delay(
+        { size: 44100 },
+        el.const({ value: detunedLength }),
+        el.const({ value: 0.986 }),
+        pluck
+      );
+      const upper = el.mul(
+        0.18,
+        el.cycle(el.mul(freqSignal, 2.0))
+      );
+      const tone = el.add(string1, el.add(el.mul(0.75, string2), upper));
+      rawAudio = el.lowpass(1400 + b * 7600, 1.0, tone);
+      break;
+    }
+    case 21:
+    case 22:
+    case 23:
+    case 24:
+    case 25:
+    case 26: {
+      // Electric-guitar family. The variants share the same string/pickup
+      // architecture but differ in damping, pickup filtering, drive, and
+      // harmonic emphasis so named electric-guitar styles no longer render
+      // through the acoustic guitar model.
+      const sr = 44100;
+      const delayLength = Math.max(2, Math.min(4000, sr / Math.max(20, freq)));
+      const isJazz = model === 22;
+      const isMutedGuitar = model === 23;
+      const isDistortion = model === 24;
+      const isOverdrive = model === 25;
+      const isHarmonics = model === 26;
+
+      const damping =
+        isMutedGuitar ? 0.93 :
+        isJazz ? 0.975 :
+        isDistortion ? 0.992 :
+        isOverdrive ? 0.989 :
+        0.986;
+
+      const attackTime = isMutedGuitar ? 0.00035 : 0.0007;
+      const impulse = el.mul(
+        el.noise(),
+        el.adsr(attackTime, isMutedGuitar ? 0.004 : 0.008, 0, 0.003, gateSignal)
+      );
+      const stringLoop = el.delay(
+        { size: 44100 },
+        el.const({ value: delayLength }),
+        el.const({ value: damping }),
+        impulse
+      );
+
+      const pickPos = Math.max(
+        0.04,
+        Math.min(0.5, isJazz ? 0.34 : params.pluckPosition)
+      );
+      const combOffset = Math.max(1, delayLength * pickPos);
+      const combSig = el.sub(
+        stringLoop,
+        el.delay(
+          { size: 44100 },
+          el.const({ value: combOffset }),
+          el.const({ value: 0 }),
+          stringLoop
+        )
+      );
+
+      const pickupCut =
+        isJazz ? 2200 :
+        isMutedGuitar ? 1700 :
+        isDistortion ? 4200 :
+        isOverdrive ? 5000 :
+        6000;
+
+      const driveAmount =
+        isDistortion ? 7.5 :
+        isOverdrive ? 4.0 :
+        isHarmonics ? 1.6 :
+        1.2 + params.drive * 2.0;
+
+      const driven = el.tanh(
+        el.mul(el.const({ value: driveAmount }), combSig)
+      );
+      const pickup = el.lowpass(
+        pickupCut + b * (isJazz ? 900 : 2200),
+        1.1,
+        driven
+      );
+
+      const harmonic = isHarmonics
+        ? el.mul(
+            0.65,
+            el.cycle(el.mul(freqSignal, 2.0))
+          )
+        : 0;
+
+      const mutedBody = isMutedGuitar
+        ? el.mul(0.45, el.highpass(900, 1.0, pickup))
+        : pickup;
+
+      rawAudio = el.add(
+        mutedBody,
+        el.add(
+          harmonic,
+          el.mul(
+            isDistortion ? 0.85 :
+            isOverdrive ? 0.9 :
+            isJazz ? 0.82 :
+            1.0,
+            pickup
+          )
+        )
+      );
       break;
     }
     case 3: {
