@@ -5,7 +5,7 @@ import { applyStyleDialect } from './styleDialect';
 import { ALL_PATTERNS, PATTERNS_BY_WORLD, PATTERNS_BY_ID, GENRE_SOURCE_MAP } from '../genres';
 import { INSTRUMENTS_BY_ID } from '../instruments';
 import { contractForGenre } from './contracts';
-import { energyForFormIntensity } from '../../engine/energy';
+import { energyForFormIntensity } from '../../engine/metadata/energy';
 import type { SectionEnergy } from '../../types';
 
 const GENRE_RHYTHM: Record<string, { bpm: number; range: [number, number]; meter: string; feel: string; swing: number }> = {

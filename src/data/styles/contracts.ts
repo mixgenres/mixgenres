@@ -113,6 +113,7 @@ export interface WorldContract {
   improvisationGrammar: ImprovisationGrammar;
   ensemble: Record<string, string>;
   timbreSpace: { room: string; palette: string[]; production: string };
+  performanceMode?: 'acoustic-ensemble' | 'programmed-electronic' | 'hybrid';
   forbidden: string[];
   groove: {
     name: string;
@@ -174,10 +175,15 @@ function base(
       percussion: { id: 'groove', tags: ['percussion', 'groove'] },
     };
   const energyMappings = opts.energyMappings ?? {
-    1: { activity: 0.2, brightness: 0.25, fxWetness: 1.25 },
-    2: { activity: 0.4, brightness: 0.4, fxWetness: 1.1 },
-    3: { activity: 0.6, brightness: 0.58, fxWetness: 1.0 },
-    4: { activity: 0.8, brightness: 0.78, fxWetness: 0.9 },
+    // Activity is a light simplifier, not a note-by-note mute switch. The
+    // previous 20/40/60/80/100 curve randomly removed too much authored
+    // material, especially from accompaniment, leaving songs with one audible
+    // foreground loop. Section decisions already control personnel and role
+    // density, so the remaining activity curve should preserve the vocabulary.
+    1: { activity: 0.35, brightness: 0.25, fxWetness: 1.25 },
+    2: { activity: 0.55, brightness: 0.4, fxWetness: 1.1 },
+    3: { activity: 0.75, brightness: 0.58, fxWetness: 1.0 },
+    4: { activity: 0.9, brightness: 0.78, fxWetness: 0.9 },
     5: { activity: 1.0, brightness: 1.0, fxWetness: 0.78 },
   };
   return {

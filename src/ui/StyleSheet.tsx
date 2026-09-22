@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { Sheet, NoteCard } from './Sheet';
-import { getStylesForGenre } from '../data/styles';
-import type { SongStyle } from '../data/styles';
+import { getStylesForGenre } from '../data/styles/registry';
+import type { SongStyle } from '../data/styles/schema';
 import { plateFor } from './worlds';
 
 /**

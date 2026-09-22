@@ -21,15 +21,15 @@ import {
   silenceAllVoicesInSection, unsilenceAllVoicesInSection,
   setTrackSpotlight, getResolvedSectionStyle, setSongDial, setPartLens,
   FEELS, getEffectiveBpm, setSectionTempoShift, setSongTempoShift, setSongBpm, setSectionBpm, setSectionEnergy,
-} from './engine/arrange';
+} from './engine/generators/arrange';
 import {
   startAudio, stopAudio, setMasterVolume, renderSongToMp3,
-  createSink, setRoom,
+  createSink, setRoom, setTrackInstruments, setActiveWorld,
 } from './engine/audio';
 import { roomFor } from './engine/mixer';
-import { ENERGY_LABELS } from './engine/energy';
-import { normaliseDials } from './engine/dials';
-import { compile } from './engine/perform';
+import { ENERGY_LABELS } from './engine/metadata/energy';
+import { normaliseDials } from './engine/metadata/dials';
+import { compile } from './engine/sequencing/perform';
 import { Transport } from './engine/transport';
 import { PATTERNS_BY_ID, cleanPatternName } from './data/genres';
 
@@ -142,9 +142,17 @@ export default function App() {
     setIsBouncing(true);
     setBounceProgress(0);
     try {
-      const blob = await renderSongToMp3(perfRef.current, { selectedTrackIds }, (frac) => {
-        if (!bounceCancelledRef.current) setBounceProgress(frac);
-      });
+      const blob = await renderSongToMp3(
+        perfRef.current,
+        {
+          selectedTrackIds,
+          worldId: songRef.current.worldId,
+          styleId: songRef.current.styleId,
+        },
+        (frac) => {
+          if (!bounceCancelledRef.current) setBounceProgress(frac);
+        }
+      );
       if (bounceCancelledRef.current) return;
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
@@ -282,6 +290,16 @@ export default function App() {
   useEffect(() => {
     transportRef.current?.setPerformance(perf);
   }, [perf]);
+
+  // The audio engine resolves a physical model per note from the instrument
+  // id, but the transport only ever hands it a bare track id — keep it in
+  // sync with the current song so noteOn can look the instrument back up.
+  useEffect(() => {
+    const map: Record<string, string | undefined> = {};
+    for (const t of song.tracks) map[t.id] = t.instrumentId ?? t.instrument;
+    setTrackInstruments(map);
+    setActiveWorld(song.worldId, song.styleId);
+  }, [song.tracks, song.worldId, song.styleId]);
 
   useEffect(() => {
     if (!playing) {

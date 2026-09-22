@@ -14,19 +14,21 @@
     "clean": "rm -rf dist",
     "lint": "tsc --noEmit",
     "test": "tsx scripts/test-filter.ts",
-    "check:style-reads": "tsx scripts/check-style-reads.ts",
-    "style-check": "tsx scripts/style-check.ts"
+    "render-song": "tsx scripts/render-song.ts",
+    "gain-calibration": "tsx scripts/gain-calibration.ts",
+    "verify-fixes": "tsx scripts/verify-fixes.ts"
   },
   "dependencies": {
     "@breezystack/lamejs": "^1.2.7",
-    "spessasynth_core": "^4.3.22",
+    "@elemaudio/core": "^4.0.1",
+    "@elemaudio/offline-renderer": "^4.0.3",
+    "@elemaudio/web-renderer": "^4.0.3",
     "@tailwindcss/vite": "^4.1.14",
     "@vitejs/plugin-react": "^5.0.4",
     "lucide-react": "^0.546.0",
     "motion": "^12.23.24",
     "react": "^19.0.1",
     "react-dom": "^19.0.1",
-    "spessasynth_lib": "^4.3.14",
     "vite": "^6.2.3"
   },
   "devDependencies": {

@@ -6,7 +6,7 @@ import {
   FormStepTemplate,
   Aspect
 } from './schema';
-import { rand01 } from '../../engine/groove';
+import { rand01 } from '../../engine/generators/groove';
 
 export class StyleRuntime {
   public readonly resolved: ResolvedStyle;

@@ -155,7 +155,11 @@ export const PATTERNS_BY_ID: Record<string, MusicalPattern> = Object.fromEntries
 export const PATTERNS_BY_WORLD: Record<string, MusicalPattern[]> = Object.fromEntries(
   GENRE_WORLDS.map(world => [
     world.id,
-    ALL_PATTERNS.filter(p => p.worldId === GENRE_SOURCE_MAP[world.id] || p.canCrossRole),
+    // A pattern's `canCrossRole` flag permits use on another instrument role
+    // within a musical world. It must never make the pattern globally visible
+    // to unrelated genres. Cross-genre material is admitted explicitly by the
+    // adventure/blend layer, where the originating world is retained.
+    ALL_PATTERNS.filter(p => p.worldId === GENRE_SOURCE_MAP[world.id]),
   ])
 );
 export const PATTERNS_BY_GENRE = PATTERNS_BY_WORLD;

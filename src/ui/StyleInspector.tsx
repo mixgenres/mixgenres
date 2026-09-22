@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Sheet as SongSheet } from '../engine/arrange';
-import { resolveStyle } from '../data/styles';
+import { Sheet as SongSheet } from '../engine/generators/arrange';
+import { resolveStyle } from '../data/styles/resolve';
 import { Copy, Check, X, Terminal } from 'lucide-react';
 
 interface StyleInspectorProps {
