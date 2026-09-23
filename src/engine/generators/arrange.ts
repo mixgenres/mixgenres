@@ -17,9 +17,12 @@ export interface Voice extends Track {
 }
 
 /** regionId -> trackId -> patternId */
+import { LRUMap, registerCache } from '../util/lru';
+
 export type Arrangement = Record<string, Record<string, string>>;
 
-const persistentPhrasePatternCache = new Map<string, string>();
+const persistentPhrasePatternCache = new LRUMap<string, string>(1000, 'persistentPhrasePatternCache');
+registerCache(persistentPhrasePatternCache);
 
 export function clearPersistentPhrasePatternCache(): void {
   persistentPhrasePatternCache.clear();

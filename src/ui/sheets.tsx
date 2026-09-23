@@ -15,7 +15,7 @@ import { ENERGY_LABELS } from '../engine/metadata/energy';
 
 
 /* ========================================================================== */
-/*  Worlds / Lenses — twelve colour plates & musical traditions.              */
+/*  Worlds / Lenses — genre color plates & musical traditions.                */
 /* ========================================================================== */
 function GenreTile({
   id: _id,
@@ -1300,7 +1300,7 @@ export function TempoSheet({
 
 
 /* ========================================================================== */
-/*  Download Sheet — export mp3, ptb (Power Tab), gp5 (Guitar Pro 5), sheet   */
+/*  Download Sheet — export song and stems to MP3                             */
 /* ========================================================================== */
 
 export function DownloadSheet({

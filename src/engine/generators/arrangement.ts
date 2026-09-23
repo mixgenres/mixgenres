@@ -7,18 +7,64 @@ import type { RhythmicContext } from '../sequencing/grid';
 import type { SectionEnergy, SpotlightMode } from '../../types';
 import { clampEnergy, energyOf, shapeScalarOf } from '../metadata/energy';
 
+import { INSTRUMENTS_BY_ID } from '../../data/instruments';
+
 export type Priority = 'core' | 'body' | 'colour' | 'sweetener';
+
+const FAMILY_PRIORITY_DEFAULT: Record<string, Priority> = {
+  kit: 'core',
+  'hand-drums': 'body',
+  'bellows-and-keys': 'body',
+  plucked: 'body',
+  brass: 'colour',
+  winds: 'colour',
+  bowed: 'colour',
+  voice: 'sweetener',
+  electronic: 'colour',
+  'metal-and-wood': 'colour',
+};
+
+const INSTRUMENT_PRIORITY_OVERRIDE: Record<string, Priority> = {
+  drums: 'core',
+  'brush-kit': 'core',
+  kick: 'core',
+  snare: 'core',
+  bass: 'core',
+  'upright-bass': 'core',
+  'acoustic-bass': 'core',
+  'electric-bass': 'core',
+  'synth-bass': 'core',
+  'sub-bass': 'core',
+  hats: 'colour',
+  ride: 'colour',
+  shaker: 'colour',
+  maracas: 'colour',
+  cabasa: 'colour',
+  tambourine: 'colour',
+  glockenspiel: 'sweetener',
+  celeste: 'sweetener',
+  crystal: 'sweetener',
+  'music-box': 'sweetener',
+  harp: 'sweetener',
+  'orchestral-harp': 'sweetener',
+  'backing-vocals': 'sweetener',
+  choir: 'sweetener',
+};
 
 export function priorityOf(prof: VoiceProfile, instrumentId: string): Priority {
   if (prof.role === 'bass') return 'core';
-  if (/^drums$|^brush-kit$|^kick$|^snare$/.test(instrumentId)) return 'core';
-  if (prof.role === 'perc') return /hats|ride|shaker|maracas|cabasa|tambourine/.test(instrumentId) ? 'colour' : 'body';
+  if (INSTRUMENT_PRIORITY_OVERRIDE[instrumentId]) {
+    return INSTRUMENT_PRIORITY_OVERRIDE[instrumentId];
+  }
   if (prof.role === 'pad') return 'sweetener';
   if (prof.role === 'lead') return 'body';
-  if (/backing-vocals|choir|strings|synth-strings|glockenspiel|celeste|crystal|music-box|harp/.test(instrumentId)) {
-    return 'sweetener';
+  if (prof.role === 'comp') return 'body';
+  if (prof.role === 'perc') return 'body';
+
+  const def = INSTRUMENTS_BY_ID[instrumentId];
+  if (def?.family && FAMILY_PRIORITY_DEFAULT[def.family]) {
+    return FAMILY_PRIORITY_DEFAULT[def.family];
   }
-  if (/piano|rhodes|guitar|organ|clav|bandoneon|accordion|tres|banjo/.test(instrumentId)) return 'body';
   return 'colour';
 }
 

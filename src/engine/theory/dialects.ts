@@ -1,4 +1,6 @@
 import type { PerformanceMode } from '../elementary/elementaryEngine';
+import { contractForGenre } from '../../data/styles/contracts';
+import { INSTRUMENTS_BY_ID } from '../../data/instruments';
 
 export interface InstrumentDialect {
   id: string;
@@ -16,6 +18,10 @@ export interface InstrumentDialect {
   tuningSystemId?: string;
   micProximityPreset?: 'close-mic' | 'room-ambient' | 'direct-box' | 'hall-stage';
   bendGlideMs?: number;
+  courses?: number;
+  bodyConstruction?: 'wood-box' | 'gourd' | 'skin-faced' | 'board' | 'solid-electric';
+  excitationType?: 'plectrum' | 'nail' | 'fingerpad' | 'hard-pick' | 'hammer';
+  sympatheticStrings?: boolean;
 }
 
 export const DIALECTS: Record<string, InstrumentDialect> = {
@@ -161,7 +167,82 @@ export const DIALECTS: Record<string, InstrumentDialect> = {
   },
 };
 
+const DEFAULT_DIALECT_SHAPE: InstrumentDialect = {
+  id: 'generic:dialect',
+  instrumentId: '',
+  name: 'Acoustic Dialect',
+  family: 'plucked',
+  performanceMode: 'acoustic-ensemble',
+  defaultTechnique: 'default',
+  allowedTechniques: ['default'],
+  brightnessMultiplier: 1.0,
+  decayMultiplier: 1.0,
+};
+
 export function resolveDialect(
+  instrumentId: string,
+  worldId = '',
+  styleId = ''
+): InstrumentDialect | null {
+  const normId = instrumentId.toLowerCase().replace(/_/g, '-');
+  if (worldId) {
+    try {
+      const contract = contractForGenre(worldId);
+      if (contract?.instrumentDialects) {
+        // 1. Exact match
+        const exact = contract.instrumentDialects[normId] || contract.instrumentDialects[instrumentId];
+        if (exact) {
+          return {
+            ...DEFAULT_DIALECT_SHAPE,
+            id: `${normId}:${worldId}`,
+            instrumentId: normId,
+            name: `${normId} (${worldId})`,
+            ...exact,
+          };
+        }
+
+        // 2. Alias / substring matches for common instruments
+        const aliases: string[] = [];
+        if (normId.includes('bass') || normId.includes('contrabajo')) aliases.push('contrabajo', 'upright-bass', 'double-bass', 'bass', 'pick-bass');
+        if (normId.includes('guitar') || normId.includes('guitarra')) aliases.push('guitar', 'spanish-guitar', 'acoustic-guitar', 'electric-guitar');
+        if (normId.includes('sax')) aliases.push('tenor-sax', 'alto-sax', 'soprano-sax', 'bari-sax', 'sax');
+        if (normId.includes('drum') || normId.includes('kit')) aliases.push('drums', 'brush-kit');
+
+        for (const alias of aliases) {
+          const matched = contract.instrumentDialects[alias];
+          if (matched) {
+            return {
+              ...DEFAULT_DIALECT_SHAPE,
+              id: `${normId}:${worldId}`,
+              instrumentId: normId,
+              name: `${normId} (${worldId})`,
+              ...matched,
+            };
+          }
+        }
+
+        // 3. Match by instrument family
+        const def = INSTRUMENTS_BY_ID[normId] || INSTRUMENTS_BY_ID[instrumentId];
+        if (def && contract.instrumentDialects[def.family]) {
+          return {
+            ...DEFAULT_DIALECT_SHAPE,
+            id: `${def.family}:${worldId}`,
+            instrumentId: normId,
+            name: `${def.name} (${worldId} ${def.family})`,
+            family: def.family,
+            ...contract.instrumentDialects[def.family],
+          };
+        }
+      }
+    } catch {
+      // Contract lookup fallback
+    }
+  }
+
+  return legacyResolveDialect(instrumentId, worldId, styleId);
+}
+
+export function legacyResolveDialect(
   instrumentId: string,
   worldId = '',
   styleId = ''

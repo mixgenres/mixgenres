@@ -63,7 +63,10 @@ export interface BlendedPartStyle {
   report: BlendReport;
 }
 
-const blendCache = new Map<string, BlendedPartStyle>();
+import { LRUMap, registerCache } from '../util/lru';
+
+const blendCache = new LRUMap<string, BlendedPartStyle>(1000, 'blendCache');
+registerCache(blendCache);
 
 function lerp(a: number, b: number, t: number): number {
   return a + (b - a) * Math.max(0, Math.min(1, t));

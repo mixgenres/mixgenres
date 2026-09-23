@@ -9,6 +9,7 @@ export interface TransitionEvent {
   /** True when the event is backed by a catalog-authored pattern/gesture. */
   authored?: boolean;
   patternId?: string;
+  authoredByRole?: Record<string, string | undefined>;
 }
 
 export interface RhythmicContext {

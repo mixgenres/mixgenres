@@ -112,9 +112,13 @@ export function hashString(str: string): string {
 // GLOBAL CACHES
 // ============================================================================
 
+import { LRUMap, registerCache } from '../util/lru';
+
 let cachedStructure: CompiledStructure | null = null;
-const arrangementCellCache = new Map<string, ArrangementCell>();
-const performanceCellCache = new Map<string, PerformanceCell>();
+const arrangementCellCache = new LRUMap<string, ArrangementCell>(2000, 'arrangementCellCache');
+const performanceCellCache = new LRUMap<string, PerformanceCell>(2000, 'performanceCellCache');
+registerCache(arrangementCellCache);
+registerCache(performanceCellCache);
 
 export function clearEngineCache(): void {
   cachedStructure = null;
@@ -434,7 +438,14 @@ export function realizePerformanceCell(params: RealizeCellParams): PerformanceCe
       trackInteractions.push({ targetTrackId: 'lead', relationship: 'accentWith' as const });
     }
 
-    if (rawPattern && (!transition || transition.type !== 'fill' || !isDrum)) {
+    const transitionPatternId = transition?.authoredByRole?.[t.role] || (isDrum ? transition?.patternId : undefined);
+    const isTransitionBar = !!transition;
+    const transitionDirection = transition ? (transition.toEnergy > transition.fromEnergy ? 'build' : 'drop') : undefined;
+    const effectivePattern = (transition?.type === 'fill' && transitionPatternId && PATTERNS_BY_ID[transitionPatternId])
+      ? PATTERNS_BY_ID[transitionPatternId]
+      : rawPattern;
+
+    if (effectivePattern) {
       const currentParsedChord = parseChord(m.chord);
       const nextParsedChord = nextMeasure ? parseChord(nextMeasure.chord) : undefined;
       const partEnergy = (d as any).partEnergy ?? 3;
@@ -443,7 +454,7 @@ export function realizePerformanceCell(params: RealizeCellParams): PerformanceCe
         trackId: t.id,
         role: prof.role,
         instrumentId: t.instrumentId,
-        pattern: rawPattern,
+        pattern: effectivePattern,
         grammar,
         chord: currentParsedChord,
         nextChord: nextParsedChord,
@@ -457,6 +468,8 @@ export function realizePerformanceCell(params: RealizeCellParams): PerformanceCe
         isCadenceBar,
         isSectionStart,
         isSectionEnd,
+        isTransitionBar,
+        transitionDirection,
         sectionKind: region.kind,
         memory: mem,
         developmentDial: dials.development,
@@ -478,7 +491,7 @@ export function realizePerformanceCell(params: RealizeCellParams): PerformanceCe
           beatInBar,
           accent: ia.accent,
           durationSteps: ia.durationSteps,
-          stepsPerBar: rawPattern.subdivisions || 16,
+          stepsPerBar: effectivePattern.subdivisions || 16,
           authoredMs: 0,
           articulation: ia.articulation || d.articulation,
           articulations: (d as any).articulations,
@@ -487,7 +500,7 @@ export function realizePerformanceCell(params: RealizeCellParams): PerformanceCe
           onsetIndex: ia.onsetIndex ?? i,
           chordSymbol: anticipated ? nextMeasure!.chord : m.chord,
           anticipated,
-          hitType: ia.hitType || (rawPattern.hitGrid ? rawPattern.hitGrid[ia.onsetIndex ?? i] : undefined),
+          hitType: ia.hitType || (effectivePattern.hitGrid ? effectivePattern.hitGrid[ia.onsetIndex ?? i] : undefined),
           styleId: (d as any).styleId,
           patternId: (d as any).patternId,
           performanceKind: ia.kind,
@@ -509,14 +522,14 @@ export function realizePerformanceCell(params: RealizeCellParams): PerformanceCe
     let micro = perf?.microtiming ?? [];
     let hitTypes = perf?.hitTypes ?? [];
 
-    if (transition?.type === 'fill' && transition.patternId && isDrum) {
-      const fill = PATTERNS_BY_ID[transition.patternId];
+    if (transition?.type === 'fill' && transitionPatternId) {
+      const fill = PATTERNS_BY_ID[transitionPatternId];
       if (fill) {
         onsets = fill.onsetGrid ?? onsets;
         stepsPerBar = fill.subdivisions || 16;
         accents = fill.accentProfile ?? onsets.map(() => 0.82);
         durations = fill.durationGrid ?? onsets.map(() => 1);
-        hitTypes = fill.hitGrid ?? onsets.map(() => 'tom');
+        hitTypes = fill.hitGrid ?? onsets.map(() => (isDrum ? 'tom' : ''));
         micro = [];
       }
     }

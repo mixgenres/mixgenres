@@ -178,12 +178,15 @@ const OVERRIDES: Record<string, Partial<VoiceProfile>> = {
   taiko:    { pan: 0, trim: 0, space: 0.24 },
 };
 
+import { LRUMap, registerCache } from '../util/lru';
+
 const BASE: VoiceProfile = {
   sustain: 'decaying', role: 'comp', centre: 60, low: 36, high: 88,
   pan: 0, trim: -2, space: 0.28, ring: 2,
 };
 
-const cache = new Map<string, VoiceProfile>();
+const cache = new LRUMap<string, VoiceProfile>(500, 'voiceProfileCache');
+registerCache(cache);
 
 export function voiceProfile(instrumentId: string): VoiceProfile {
   const hit = cache.get(instrumentId);

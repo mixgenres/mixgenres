@@ -65,6 +65,8 @@ export interface InterpretPatternOptions {
   isCadenceBar: boolean;
   isSectionStart?: boolean;
   isSectionEnd?: boolean;
+  isTransitionBar?: boolean;
+  transitionDirection?: 'build' | 'drop';
   sectionKind?: string;
   memory: PerformancePhraseMemory;
   developmentDial: number; // 0..1
@@ -77,6 +79,26 @@ export interface InterpretPatternOptions {
 export interface InterpretationResult {
   attacks: InterpretedAttack[];
   explanation: PerformanceExplanation;
+}
+
+/**
+ * Dynamically escalates authored articulation contextually based on cadence/phrase position
+ * and role vocabulary in the active performance grammar.
+ */
+function contextualArticulation(
+  authored: string | undefined,
+  isCadenceBar: boolean,
+  isStructural: boolean,
+  grammar: PerformanceGrammar,
+  role: string,
+): string | undefined {
+  if (!authored) return authored;
+  const vocab = grammar.articulationVocabulary?.[role] ?? [];
+  // Into a cadence, an instrument leans harder into a drag/weight articulation
+  // if the genre's vocabulary offers one, rather than repeating the same tag.
+  if (isCadenceBar && vocab.includes('pesante') && !isStructural) return 'pesante';
+  if (isCadenceBar && vocab.includes('arrastre')) return 'arrastre';
+  return authored;
 }
 
 /**
@@ -104,6 +126,9 @@ export function interpretPattern(options: InterpretPatternOptions): Interpretati
     isPhraseEnd,
     isCadenceBar,
     isSectionStart = false,
+    isSectionEnd = false,
+    isTransitionBar = false,
+    transitionDirection,
     sectionKind,
     memory,
     developmentDial,
@@ -266,14 +291,21 @@ export function interpretPattern(options: InterpretPatternOptions): Interpretati
     const beat = (o.step / stepsPerMeasure) * beatsPerBar;
     const isDownbeat = beat < 0.12;
     const isStrongBeat = Math.abs(beat - Math.round(beat)) < 0.12;
-    const isStructural = isDownbeat || o.accent >= 0.82 || grammar.preserveAuthoredRhythm >= 0.95;
+    const isLooseFeel = grammar.microtiming?.tendency === 'rubato' || grammar.microtiming?.tendency === 'drunk' || grammar.microtiming?.tendency === 'laid-back';
+    const structuralThreshold = isLooseFeel ? 0.92 : 0.82;
+    const isStructural = isDownbeat
+      ? (isLooseFeel && role !== 'bass' ? o.accent >= 0.88 : true)
+      : (o.accent >= structuralThreshold || grammar.preserveAuthoredRhythm >= 0.95);
 
     // Pitch intent determination
     let pitchIntent: InterpretedAttack['pitchIntent'] = 'written';
     let registerOffset = 0;
 
     if (role === 'bass') {
-      if (isDownbeat) {
+      if (isTransitionBar && transitionDirection === 'build') {
+        // Parametric walk-up: bias pitchIntent toward 'approach' across transition bars
+        pitchIntent = 'approach';
+      } else if (isDownbeat) {
         pitchIntent = 'root';
       } else if (i === barOnsets.length - 1 && nextChord && nextChord.rootPc !== chord.rootPc) {
         pitchIntent = 'approach';
@@ -307,6 +339,16 @@ export function interpretPattern(options: InterpretPatternOptions): Interpretati
       velocityMultiplier -= 0.12;
     }
 
+    // Parametric transition shaping for accompaniment
+    if (isTransitionBar && (role === 'harmony' || role === 'comp' || role === 'pad' || role === 'texture' || role === 'keyboard')) {
+      const barProgress = Math.max(0, Math.min(1, o.step / sub));
+      if (transitionDirection === 'build') {
+        velocityMultiplier *= (0.8 + 0.45 * barProgress); // crescendo
+      } else if (transitionDirection === 'drop') {
+        velocityMultiplier *= (1.15 - 0.45 * barProgress); // decrescendo
+      }
+    }
+
     const calculatedVelocity = Math.max(20, Math.min(127, Math.round(o.accent * 100 * velocityMultiplier)));
 
     attacks.push({
@@ -319,11 +361,19 @@ export function interpretPattern(options: InterpretPatternOptions): Interpretati
       pitchIntent,
       structural: isStructural,
       hitType: o.hitType,
-      articulation: activeVariant?.articulation,
+      articulation: contextualArticulation(activeVariant?.articulation, isCadenceBar, isStructural, grammar, role),
       onsetIndex: o.originalIdx,
       registerOffset,
     });
     authoredCount++;
+  }
+
+  // Cadence/phrase-end fallback: ensure phrase boundaries feel intentional even when no authored variant exists
+  if (!activeVariant && (isCadenceBar || isPhraseEnd) && attacks.length > 0) {
+    const last = attacks[attacks.length - 1];
+    last.accent = Math.min(1, last.accent * 1.12);
+    last.velocity = Math.min(127, Math.round(last.velocity * 1.1));
+    last.structural = true; // protect it from the thinning pass below
   }
 
   // 5. Attack-Level Rejection / Thinning / Space Decision Making:
@@ -350,7 +400,8 @@ export function interpretPattern(options: InterpretPatternOptions): Interpretati
   }
 
   // 6. Subdivision & Derived Pickup Attacks (where permitted by grammar)
-  const canSubdivide = grammar.allowDerivedAttacks > 0.15 &&
+  const isPostDropLead = (role === 'lead' || role === 'melody') && isSectionStart && transitionDirection === 'drop';
+  const canSubdivide = !isPostDropLead && grammar.allowDerivedAttacks > 0.15 &&
     (stage === 'vary' || stage === 'transition' || sectionEnergy >= 4) &&
     developmentDial > 0.35 &&
     !(grammar.forbiddenInterpretations?.includes('dense-subdivision'));

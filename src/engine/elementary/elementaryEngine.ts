@@ -29,6 +29,30 @@ dampedExcite
 // Post-filter shapes the body resonance and dampens the tail
 return el.lowpass(dampingCutoffHz, dampingQ, loop);
 }
+/**
+ * Frequency-compensated feedback gain for a Karplus-Strong style delay loop.
+ * Guarantees the loop's T60 decay time (in seconds) is governed by
+ * `decaySeconds` regardless of the note's pitch (i.e. regardless of how
+ * short the delay line is). Without this, higher notes — which loop far
+ * more times per second — decay dramatically faster than low notes purely
+ * as an artifact of delay-line length, not string physics.
+ */
+export function fbGainForDecay(freqHz: number, decaySeconds: number): number {
+  const loopsPerSecond = Math.max(1, freqHz);
+  const g = Math.exp(-3 * Math.LN10 / (Math.max(0.05, decaySeconds) * loopsPerSecond));
+  return Math.min(0.9995, Math.max(0.5, g)); // safety clamp: never runaway, never mute instantly
+}
+
+export function compensatedFeedbackGain(
+  delaySamples: number | Node,
+  decaySeconds: number,
+  sr = 44100,
+): Node {
+  const loopsPerSecond = el.div(el.const({ value: sr }), el.max(el.const({ value: 1 }), delaySamples));
+  const exponent = el.div(el.const({ value: -3 * Math.LN10 }), el.mul(el.const({ value: Math.max(0.05, decaySeconds) }), loopsPerSecond));
+  return el.pow(el.const({ value: Math.E }), exponent);
+}
+
 export function midiToFreq(note: number): number {
 return 440 * Math.pow(2, (note - 69) / 12);
 }
@@ -173,13 +197,39 @@ tuba: { f1: { freq: 250, q: 2.2, gain: 0.9 }, f2: { freq: 630, q: 2.4, gain: 0.4
 brass: { f1: { freq: 850, q: 1.6, gain: 0.8 }, f2: { freq: 1950, q: 1.9, gain: 0.5 }, f3: { freq: 3600, q: 1.7, gain: 0.25 }, tongueType: 'lip-slap', tongueFreq: 2000 },
 };
 export function getFormantProfileForInstrument(instrumentId: string, model: number): AcousticFormantProfile {
-const idLower = instrumentId.toLowerCase();
-const exact = WIND_BRASS_REED_FORMANTS[idLower];
-if (exact) return exact;
-if (model === 7) return WIND_BRASS_REED_FORMANTS['flute'];
-if (model === 15) return WIND_BRASS_REED_FORMANTS['brass'];
-if (model === 16) return WIND_BRASS_REED_FORMANTS['alto-sax'];
-return WIND_BRASS_REED_FORMANTS['flute'];
+  const idLower = instrumentId.toLowerCase().replace(/_/g, '-');
+  const exact = WIND_BRASS_REED_FORMANTS[idLower];
+  if (exact) return exact;
+
+  // Mid-tier fallback keyed by instrument name patterns
+  if (/pipe|reed|sax|oboe|clarinet|bassoon|harmonica|hichiriki|duduk|shenai|zurna|bagpipe/.test(idLower)) {
+    if (typeof process !== 'undefined' && process.env?.NODE_ENV !== 'production') {
+      console.warn(`[ElementaryEngine] Mid-tier fallback (reed) for instrument "${instrumentId}" (model ${model})`);
+    }
+    return WIND_BRASS_REED_FORMANTS['alto-sax'];
+  }
+  if (/brass|trumpet|trombone|horn|tuba|cornet|euphonium|bugle/.test(idLower)) {
+    if (typeof process !== 'undefined' && process.env?.NODE_ENV !== 'production') {
+      console.warn(`[ElementaryEngine] Mid-tier fallback (brass) for instrument "${instrumentId}" (model ${model})`);
+    }
+    return WIND_BRASS_REED_FORMANTS['brass'];
+  }
+  if (/flute|whistle|piccolo|quena|ocarina|shakuhachi|xiao|dizi|recorder/.test(idLower)) {
+    if (typeof process !== 'undefined' && process.env?.NODE_ENV !== 'production') {
+      console.warn(`[ElementaryEngine] Mid-tier fallback (flute) for instrument "${instrumentId}" (model ${model})`);
+    }
+    return WIND_BRASS_REED_FORMANTS['flute'];
+  }
+
+  // Model-based fallback
+  if (model === 7) return WIND_BRASS_REED_FORMANTS['flute'];
+  if (model === 15) return WIND_BRASS_REED_FORMANTS['brass'];
+  if (model === 16) return WIND_BRASS_REED_FORMANTS['alto-sax'];
+
+  if (typeof process !== 'undefined' && process.env?.NODE_ENV !== 'production') {
+    console.warn(`[ElementaryEngine] Default formant fallback (flute) for unknown instrument "${instrumentId}" (model ${model})`);
+  }
+  return WIND_BRASS_REED_FORMANTS['flute'];
 }
 export interface BowedResonanceProfile {
 bodyFreq: number;
@@ -545,12 +595,13 @@ const woodClick = el.mul(el.highpass(1400, 1.2, el.noise()), el.adsr(0.0002, 0.0
 rawAudio = el.add(el.mul(0.75, bodyPunch), el.mul(0.25, woodClick));
 } else switch (model) {
 case 2: {
-const delayTimeSignal = el.min(el.const({ value: 4000 }), el.max(el.const({ value: 2 }), el.div(el.sr(), safeFreqSignal)));
-const pickPos = Math.max(0.05, Math.min(0.5, params.pluckPosition));
+  const delayTimeSignal = el.min(el.const({ value: 4000 }), el.max(el.const({ value: 2 }), el.div(el.sr(), safeFreqSignal)));
+  const pickPos = Math.max(0.05, Math.min(0.5, params.pluckPosition));
 
-const impulse = el.mul(el.noise(), el.adsr(0.0005, 0.008, 0, 0.003, gateSignal));
-  const dampingCutoff = Math.min(19000, 1800 + b * 8500);
-  const fbGain = 0.985 - (1 - b) * 0.015;
+  const impulse = el.mul(el.noise(), el.adsr(0.0005, 0.008, 0, 0.003, gateSignal));
+  const dampingCutoff = Math.min(19000, Math.max(1800, freq * (3.5 + b * 6.0)));
+  const targetDecaySeconds = 0.4 + decayTime * (0.8 + b * 1.6);
+  const fbGain = fbGainForDecay(freq, targetDecaySeconds);
   const stringLoop = createDampedStringLoop(`${pk}:eg`, delayTimeSignal, fbGain, dampingCutoff, impulse);
 
   const combOffset = el.max(el.const({ value: 1 }), el.mul(delayTimeSignal, el.const({ value: pickPos })));
@@ -563,8 +614,9 @@ const impulse = el.mul(el.noise(), el.adsr(0.0005, 0.008, 0, 0.003, gateSignal))
 case 19: {
   const delayTimeSignal = el.min(el.const({ value: 4000 }), el.max(el.const({ value: 2 }), el.div(el.sr(), safeFreqSignal)));
   const impulse = el.mul(el.noise(), el.adsr(0.00025, 0.004, 0, 0.002, gateSignal));
-  const clavCutoff = Math.min(19000, 2200 + b * 7200);
-  const fbGain = 0.978 - (1 - b) * 0.012;
+  const clavCutoff = Math.min(19000, Math.max(2000, freq * (4.0 + b * 5.5)));
+  const targetDecaySeconds = 0.25 + decayTime * (0.4 + b * 0.8);
+  const fbGain = fbGainForDecay(freq, targetDecaySeconds);
   const stringLoop = createDampedStringLoop(`${pk}:clav`, delayTimeSignal, fbGain, clavCutoff, impulse);
   const pickup = el.svf({ mode: 'bandpass' }, Math.min(19000, 700 + b * 1800), 1.1, stringLoop);
   const click = el.mul(0.18, el.mul(el.highpass(Math.min(19000, 2200), 1.0, el.noise()), el.adsr(0.0001, 0.003, 0, 0.0015, gateSignal)));
@@ -576,9 +628,13 @@ case 20: {
   const detunedFreqSignal = el.max(el.const({ value: 20 }), el.mul(freqSignal, el.const({ value: 1.003 })));
   const detunedDelaySignal = el.min(el.const({ value: 4000 }), el.max(el.const({ value: 2 }), el.div(el.sr(), detunedFreqSignal)));
   const pluck = el.mul(el.noise(), el.adsr(0.0001, 0.0025, 0, 0.0015, gateSignal));
-  const harpsiCutoff = Math.min(19000, 2500 + b * 9000);
-  const string1 = createDampedStringLoop(`${pk}:h1`, delayTimeSignal, 0.989 - (1 - b) * 0.008, harpsiCutoff, pluck);
-  const string2 = createDampedStringLoop(`${pk}:h2`, detunedDelaySignal, 0.986 - (1 - b) * 0.008, harpsiCutoff * 0.98, pluck);
+  const harpsiCutoff = Math.min(19000, Math.max(2200, freq * (4.5 + b * 6.5)));
+  const targetDecaySeconds1 = 0.35 + decayTime * (0.6 + b * 1.2);
+  const targetDecaySeconds2 = targetDecaySeconds1 * 0.92;
+  const fbGain1 = fbGainForDecay(freq, targetDecaySeconds1);
+  const fbGain2 = fbGainForDecay(freq * 1.003, targetDecaySeconds2);
+  const string1 = createDampedStringLoop(`${pk}:h1`, delayTimeSignal, fbGain1, harpsiCutoff, pluck);
+  const string2 = createDampedStringLoop(`${pk}:h2`, detunedDelaySignal, fbGain2, harpsiCutoff * 0.98, pluck);
   const upper = el.mul(0.18, el.cycle(el.mul(freqSignal, 2.0)));
   const tone = el.add(string1, el.add(el.mul(0.75, string2), upper));
   rawAudio = el.lowpass(Math.min(19000, 1400 + b * 7600), 1.0, tone);
@@ -597,10 +653,15 @@ case 26: {
   const isOverdrive = model === 25;
   const isHarmonics = model === 26;
 
-  const damping = isMutedGuitar ? 0.93 : isJazz ? 0.975 : isDistortion ? 0.992 : isOverdrive ? 0.989 : 0.986;
+  const targetDecaySeconds = isMutedGuitar
+    ? (0.08 + decayTime * 0.25)
+    : isJazz
+    ? (0.35 + decayTime * 0.9)
+    : (0.45 + decayTime * 1.8);
+  const damping = fbGainForDecay(freq, targetDecaySeconds);
   const attackTime = isMutedGuitar ? 0.00035 : 0.0007;
   const impulse = el.mul(el.noise(), el.adsr(attackTime, isMutedGuitar ? 0.004 : 0.008, 0, 0.003, gateSignal));
-  const loopCutoff = Math.min(19000, isJazz ? 1500 + b * 3500 : isMutedGuitar ? 1300 + b * 3000 : 2200 + b * 8500);
+  const loopCutoff = Math.min(19000, Math.max(1200, freq * (isJazz ? (2.5 + b * 3.5) : isMutedGuitar ? (2.0 + b * 2.5) : (3.5 + b * 6.5))));
   
   const stringLoop = createDampedStringLoop(`${pk}:egf`, delayTimeSignal, damping, loopCutoff, impulse);
 
@@ -651,8 +712,9 @@ case 3: {
     }
 
     const slapClick = isSlap ? el.mul(0.5, el.adsr(0.0002, 0.004, 0, 0.002, gateSignal)) : 0;
-    const damping = isUpright ? 0.982 : 0.99;
-    const bassCutoff = Math.min(19000, isUpright ? 850 + b * 2400 : 1200 + b * 4800);
+    const targetDecaySeconds = isUpright ? (0.5 + decayTime * 1.2) : (0.6 + decayTime * 1.8);
+    const damping = fbGainForDecay(freq, targetDecaySeconds);
+    const bassCutoff = Math.min(19000, Math.max(600, freq * (isUpright ? (3.0 + b * 4.0) : (4.0 + b * 6.0))));
     const stringLoop = createDampedStringLoop(`${pk}:bass`, delayTimeSignal, damping, bassCutoff, el.add(impulse, slapClick));
 
     if (isUpright) {
@@ -766,8 +828,10 @@ case 6: {
   if (isPizz) {
     const delayTimeSignal = el.min(el.const({ value: 4000 }), el.max(el.const({ value: 2 }), el.div(el.sr(), safeFreqSignal)));
     const impulse = el.mul(el.noise(), el.adsr(0.0005, 0.006, 0, 0.003, gateSignal));
-    const pizzCutoff = Math.min(19000, 1000 + b * 5200);
-    const stringLoop = createDampedStringLoop(`${pk}:pizz`, delayTimeSignal, 0.982 - (1 - b) * 0.015, pizzCutoff, impulse);
+    const pizzCutoff = Math.min(19000, Math.max(1000, freq * (3.0 + b * 5.0)));
+    const targetDecaySeconds = 0.2 + decayTime * (0.4 + b * 0.8);
+    const fbGain = fbGainForDecay(freq, targetDecaySeconds);
+    const stringLoop = createDampedStringLoop(`${pk}:pizz`, delayTimeSignal, fbGain, pizzCutoff, impulse);
     rawAudio = el.lowpass(Math.min(19000, 800 + b * 4000), 1.1, stringLoop);
   } else {
     const noteSeed = seedOf(voice.id || 'voice', voice.note, retrig);
@@ -895,10 +959,13 @@ case 11: {
   const len1 = el.min(el.const({ value: 4000 }), el.max(el.const({ value: 2 }), el.div(el.sr(), safeFreqSignal)));
   const len2 = el.min(el.const({ value: 4000 }), el.max(el.const({ value: 2 }), el.div(el.sr(), el.max(el.const({ value: 20 }), el.mul(safeFreqSignal, el.const({ value: 2.001 }))))));
   const len3 = el.min(el.const({ value: 4000 }), el.max(el.const({ value: 2 }), el.div(el.sr(), el.max(el.const({ value: 20 }), el.mul(safeFreqSignal, el.const({ value: 3.006 }))))));
-  const pianoCutoff = Math.min(19000, 1800 + b * 7500);
-  const s1 = createDampedStringLoop(`${pk}:p1`, len1, 0.994 - (1 - b) * 0.006, pianoCutoff, hammer);
-  const s2 = createDampedStringLoop(`${pk}:p2`, len2, 0.989 - (1 - b) * 0.008, pianoCutoff * 0.95, hammer);
-  const s3 = createDampedStringLoop(`${pk}:p3`, len3, 0.982 - (1 - b) * 0.010, pianoCutoff * 0.9, hammer);
+  const pianoCutoff = Math.min(19000, Math.max(1600, freq * (3.5 + b * 6.5)));
+  const targetDecaySeconds1 = 0.8 + decayTime * (1.2 + b * 2.0);
+  const targetDecaySeconds2 = targetDecaySeconds1 * 0.75;
+  const targetDecaySeconds3 = targetDecaySeconds1 * 0.55;
+  const s1 = createDampedStringLoop(`${pk}:p1`, len1, fbGainForDecay(freq, targetDecaySeconds1), pianoCutoff, hammer);
+  const s2 = createDampedStringLoop(`${pk}:p2`, len2, fbGainForDecay(freq * 2.001, targetDecaySeconds2), pianoCutoff * 0.95, hammer);
+  const s3 = createDampedStringLoop(`${pk}:p3`, len3, fbGainForDecay(freq * 3.006, targetDecaySeconds3), pianoCutoff * 0.9, hammer);
   const tone = el.add(s1, el.add(el.mul(0.45, s2), el.mul(0.2, s3)));
   rawAudio = el.lowpass(Math.min(19000, 900 + b * 7000), 1.0, tone);
   break;
@@ -1010,25 +1077,29 @@ default: {
 
   let stringSignal: Node;
   const baseDelaySignal = el.min(el.const({ value: 4000 }), el.max(el.const({ value: 2 }), el.div(el.sr(), safeFreqSignal)));
-  const stringCutoff = Math.min(19000, construction === 'board'
-    ? 1100 + b * 4800
-    : construction === 'skin-faced'
-    ? 1800 + b * 8500
-    : 1400 + b * 7200);
+  const stringCutoff = Math.min(19000, Math.max(1200, freq * (
+    construction === 'board'
+      ? (2.8 + b * 4.5)
+      : construction === 'skin-faced'
+      ? (3.8 + b * 6.5)
+      : (3.2 + b * 6.0)
+  )));
+
+  const targetDecaySeconds = 0.35 + decayTime * (0.6 + b * 1.5);
+  const d1 = fbGainForDecay(freq, targetDecaySeconds);
 
   if (numCourses > 1) {
-    const d1 = 0.988 - (1 - b) * 0.018;
     const loop1 = createDampedStringLoop(`${pk}:c1`, baseDelaySignal, d1, stringCutoff, impulse);
 
     const freqCourse2 = el.mul(freqSignal, 1.00277);
     const delayCourse2 = el.min(el.const({ value: 4000 }), el.max(el.const({ value: 2 }), el.div(el.sr(), el.max(el.const({ value: 20 }), freqCourse2))));
-    const d2 = 0.985 - (1 - b) * 0.020;
+    const d2 = fbGainForDecay(freq * 1.00277, targetDecaySeconds * 0.94);
     const loop2 = createDampedStringLoop(`${pk}:c2`, delayCourse2, d2, stringCutoff * 0.96, impulse);
 
     if (numCourses >= 3) {
       const freqCourse3 = el.mul(freqSignal, 0.99757);
       const delayCourse3 = el.min(el.const({ value: 4000 }), el.max(el.const({ value: 2 }), el.div(el.sr(), el.max(el.const({ value: 20 }), freqCourse3))));
-      const d3 = 0.983 - (1 - b) * 0.022;
+      const d3 = fbGainForDecay(freq * 0.99757, targetDecaySeconds * 0.88);
       const loop3 = createDampedStringLoop(`${pk}:c3`, delayCourse3, d3, stringCutoff * 0.93, impulse);
       stringSignal = el.mul(0.48, el.add(loop1, el.add(loop2, loop3)));
     } else {
@@ -1037,8 +1108,9 @@ default: {
   } else {
     const inharmonicFreq = el.mul(freqSignal, Math.sqrt(1 + B * 4));
     const inharmonicDelay = el.min(el.const({ value: 4000 }), el.max(el.const({ value: 2 }), el.div(el.sr(), el.max(el.const({ value: 20 }), inharmonicFreq))));
-    const loop1 = createDampedStringLoop(`${pk}:s1`, baseDelaySignal, 0.988 - (1 - b) * 0.018, stringCutoff, impulse);
-    const loop2 = createDampedStringLoop(`${pk}:s2`, inharmonicDelay, 0.982 - (1 - b) * 0.020, stringCutoff * 0.9, impulse);
+    const loop1 = createDampedStringLoop(`${pk}:s1`, baseDelaySignal, d1, stringCutoff, impulse);
+    const d2 = fbGainForDecay(freq * Math.sqrt(1 + B * 4), targetDecaySeconds * 0.85);
+    const loop2 = createDampedStringLoop(`${pk}:s2`, inharmonicDelay, d2, stringCutoff * 0.9, impulse);
     stringSignal = el.add(loop1, el.mul(0.25, loop2));
   }
 

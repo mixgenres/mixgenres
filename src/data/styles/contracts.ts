@@ -68,6 +68,14 @@ export interface TransitionGrammar {
   authoredPriority?: boolean;
 }
 
+export interface DragProfile {
+  roles: string[];              // e.g. ['lead', 'bass', 'harmony', 'comp']
+  maxLagBeats: number;          // how far behind the grid the drag can pull at its peak
+  growthCurve: 'linear' | 'eased-in' | 'eased-in-out';
+  resolvesAtCadence: boolean;   // snaps back to on-time at phrase/cadence boundaries
+  affectsTempo?: boolean;       // phrase-local tempo elasticity for soloist/expressive tracks
+}
+
 export interface PerformanceIdioms {
   /** Enables genre-native expressive pitch gestures when the context matches. */
   bluesRockLeadMinorThirdBend?: boolean;
@@ -75,9 +83,18 @@ export interface PerformanceIdioms {
   dropPortamento?: boolean;
   /** Allows spotlighted lead phrasing to move independently of the master pocket. */
   spotlightLeadRubato?: boolean;
+  /** Directional, phrase-position-dependent lag profile for rubato/arrastre/drag gestures. */
+  dragProfile?: DragProfile;
 }
 
 
+
+export interface MixCharacter {
+  dryness: number;      // 0..1, 1 = very dry/close, 0 = roomy/ambient
+  bassForward: number;  // 0..1, how far forward the bass/drums sit vs. the rest
+  width: number;        // 0..1, overall stereo spread
+  brightness: number;   // 0..1, overall top-end lift
+}
 
 export interface WorldContract {
   pulseModel: PulseModel;
@@ -112,7 +129,8 @@ export interface WorldContract {
   performanceIdioms: PerformanceIdioms;
   improvisationGrammar: ImprovisationGrammar;
   ensemble: Record<string, string>;
-  timbreSpace: { palette: string[]; production: string };
+  timbreSpace: { palette: string[]; production: string; mixCharacter?: MixCharacter };
+  instrumentDialects?: Record<string, Partial<import('../../engine/theory/dialects').InstrumentDialect>>;
   performanceGrammar?: import('./schema').PerformanceGrammar;
   performanceMode?: 'acoustic-ensemble' | 'programmed-electronic' | 'hybrid';
   forbidden: string[];
@@ -149,7 +167,7 @@ function base(
   forbidden: string[],
   groove: WorldContract['groove'],
   percussion: PercussionDialect,
-  opts: Partial<Pick<WorldContract,'cycleLength'|'subdivision'|'timelineRequired'|'harmonicRhythm'|'harmonyVocabulary'|'accentGrammar'|'articulationGrammar'|'microtiming'|'interactionModel' | 'energyMappings' | 'transitionGrammar' | 'approaches' | 'performanceIdioms'>> = {},
+  opts: Partial<Pick<WorldContract,'cycleLength'|'subdivision'|'timelineRequired'|'harmonicRhythm'|'harmonyVocabulary'|'accentGrammar'|'articulationGrammar'|'microtiming'|'interactionModel' | 'energyMappings' | 'transitionGrammar' | 'approaches' | 'performanceIdioms' | 'instrumentDialects'>> & { mixCharacter?: MixCharacter } = {},
 ): WorldContract {
   const pm = pitchModel.toLowerCase();
   const pitchIntervals = pm.includes('pentatonic') ? [0,2,4,7,9]
@@ -203,9 +221,9 @@ function base(
     interactionModel: opts.interactionModel ?? (timeline.includes('clave') ? 'interlock' : pulseModel === 'machine-grid' ? 'unison' : 'homophonic'),
     approaches,
     performanceIdioms: {
-      bluesRockLeadMinorThirdBend: true,
-      dropPortamento: true,
-      spotlightLeadRubato: true,
+      bluesRockLeadMinorThirdBend: false,
+      dropPortamento: false,
+      spotlightLeadRubato: false,
       ...(opts as any).performanceIdioms,
     },
     improvisationGrammar: {
@@ -220,7 +238,15 @@ function base(
     transitionGrammar,
     defaultSpotlights: { intro: ['pulse'], verse: ['harmony'], chorus: ['lead'], solo: ['lead'], outro: ['pulse'] },
     ensemble,
-    timbreSpace: { palette, production }, forbidden, groove, percussion,
+    timbreSpace: {
+      palette,
+      production,
+      mixCharacter: opts.mixCharacter ?? { dryness: 0.6, bassForward: 0.5, width: 0.5, brightness: 0.5 },
+    },
+    instrumentDialects: opts.instrumentDialects ?? {},
+    forbidden,
+    groove,
+    percussion,
   };
 }
 
@@ -320,17 +346,766 @@ G['uk-bass'] = simple('uk-bass','4/4','machine-grid','broken club umbrella',.5,{
 
 // Cultural overrides are explicit and data-driven; no genre inherits a universal cycle or interaction model.
 const CULTURAL_OVERRIDES: Record<string, Partial<WorldContract>> = {
-  tango: { cycleLength: 2, interactionModel: 'homophonic', transitionGrammar: { byDelta: { build: ['arrastre'], drop: ['corte'], hold: [] }, types: ['arrastre','corte'], onEnergyRise: 'arrastre', onEnergyFall: 'corte', authoredPriority: true } },
-  salsa: { cycleLength: 2, interactionModel: 'interlock', transitionGrammar: { byDelta: { build: ['fill'], drop: ['drop-out'], hold: [] }, types: ['fill','drop-out'], onEnergyRise: 'fill', onEnergyFall: 'drop-out', authoredPriority: true } },
-  flamenco: { cycleLength: 12, interactionModel: 'counterpoint', transitionGrammar: { byDelta: { build: ['fill','arrastre'], drop: ['corte'], hold: [] }, types: ['fill','arrastre','corte'], onEnergyRise: 'arrastre', onEnergyFall: 'corte', authoredPriority: true } },
-  blues: { cycleLength: 12, interactionModel: 'counterpoint' },
-  jazz: { cycleLength: 4, interactionModel: 'counterpoint' },
-  metal: { cycleLength: 1, interactionModel: 'unison' },
-  electronic: { cycleLength: 4, interactionModel: 'unison', transitionGrammar: { byDelta: { build: ['fill'], drop: ['drop-out'], hold: [] }, types: ['fill','drop-out'], onEnergyRise: 'fill', onEnergyFall: 'drop-out', authoredPriority: true } },
-  rock: { cycleLength: 4, interactionModel: 'homophonic', transitionGrammar: { byDelta: { build: ['fill'], drop: ['drop-out'], hold: [] }, types: ['fill','drop-out'], onEnergyRise: 'fill', onEnergyFall: 'drop-out', authoredPriority: true } },
+  tango: {
+    cycleLength: 2,
+    interactionModel: 'homophonic',
+    transitionGrammar: { byDelta: { build: ['arrastre'], drop: ['corte'], hold: [] }, types: ['arrastre','corte'], onEnergyRise: 'arrastre', onEnergyFall: 'corte', authoredPriority: true },
+    performanceIdioms: {
+      spotlightLeadRubato: true,
+      dragProfile: {
+        roles: ['lead', 'melody', 'harmony', 'comp', 'bass'],
+        maxLagBeats: 0.22,
+        growthCurve: 'eased-in',
+        resolvesAtCadence: true,
+        affectsTempo: true,
+      },
+    },
+    timbreSpace: {
+      palette: ['bandoneon', 'violin', 'piano', 'upright-bass', 'cello'],
+      production: 'dry room, wood/bellows/bow detail',
+      mixCharacter: { dryness: 0.75, bassForward: 0.45, width: 0.4, brightness: 0.48 },
+    },
+    instrumentDialects: {
+      cello: {
+        defaultTechnique: 'arco',
+        allowedTechniques: ['arco', 'arrastre', 'pizzicato', 'chicharra'],
+        bowPressureOverride: 0.7,
+        decayMultiplier: 1.5,
+        brightnessMultiplier: 0.82,
+        bendGlideMs: 55,
+        micProximityPreset: 'hall-stage',
+        performanceMode: 'acoustic-ensemble',
+      },
+      violin: {
+        defaultTechnique: 'arco',
+        allowedTechniques: ['arco', 'chicharra', 'látigo', 'arrastre', 'pizzicato'],
+        bowPressureOverride: 0.6,
+        decayMultiplier: 1.2,
+        brightnessMultiplier: 0.9,
+        bendGlideMs: 40,
+        micProximityPreset: 'hall-stage',
+        performanceMode: 'acoustic-ensemble',
+      },
+      contrabajo: {
+        defaultTechnique: 'arco',
+        allowedTechniques: ['arco', 'arrastre', 'chicharra', 'pizzicato', 'golpe'],
+        bowPressureOverride: 0.65,
+        decayMultiplier: 1.4,
+        brightnessMultiplier: 0.85,
+        micProximityPreset: 'hall-stage',
+        bendGlideMs: 45,
+        performanceMode: 'acoustic-ensemble',
+      },
+      'upright-bass': {
+        defaultTechnique: 'arco',
+        allowedTechniques: ['arco', 'arrastre', 'chicharra', 'pizzicato', 'golpe'],
+        bowPressureOverride: 0.65,
+        decayMultiplier: 1.4,
+        brightnessMultiplier: 0.85,
+        micProximityPreset: 'hall-stage',
+        bendGlideMs: 45,
+        performanceMode: 'acoustic-ensemble',
+      },
+      bandoneon: {
+        defaultTechnique: 'bellows-press',
+        allowedTechniques: ['bellows-press', 'staccato-stab', 'bellows-shake'],
+        micProximityPreset: 'room-ambient',
+        performanceMode: 'acoustic-ensemble',
+      },
+      piano: {
+        defaultTechnique: 'marcato',
+        allowedTechniques: ['marcato', 'arrastre', 'staccato'],
+        brightnessMultiplier: 1.1,
+        decayMultiplier: 0.82,
+        performanceMode: 'acoustic-ensemble',
+      },
+      guitar: {
+        defaultTechnique: 'punteado',
+        allowedTechniques: ['punteado', 'arrastre', 'palm-mute', 'chicharra'],
+        pluckPositionOverride: 0.35,
+        brightnessMultiplier: 0.9,
+        decayMultiplier: 0.75,
+        micProximityPreset: 'close-mic',
+        performanceMode: 'acoustic-ensemble',
+      },
+    },
+  },
+  salsa: {
+    cycleLength: 2,
+    interactionModel: 'interlock',
+    transitionGrammar: { byDelta: { build: ['fill'], drop: ['drop-out'], hold: [] }, types: ['fill','drop-out'], onEnergyRise: 'fill', onEnergyFall: 'drop-out', authoredPriority: true },
+    timbreSpace: {
+      palette: ['piano', 'timbales', 'congas', 'trumpet', 'upright-bass'],
+      production: 'bright brass, forward percussion, tight room',
+      mixCharacter: { dryness: 0.7, bassForward: 0.6, width: 0.65, brightness: 0.75 },
+    },
+    instrumentDialects: {
+      contrabajo: {
+        defaultTechnique: 'pizzicato',
+        allowedTechniques: ['pizzicato', 'slap-bass', 'mute'],
+        pluckPositionOverride: 0.15,
+        contactPointOverride: 0.2,
+        decayMultiplier: 0.7,
+        brightnessMultiplier: 1.15,
+        micProximityPreset: 'close-mic',
+        performanceMode: 'acoustic-ensemble',
+      },
+      'upright-bass': {
+        defaultTechnique: 'pizzicato',
+        allowedTechniques: ['pizzicato', 'slap-bass', 'mute'],
+        pluckPositionOverride: 0.15,
+        contactPointOverride: 0.2,
+        decayMultiplier: 0.7,
+        brightnessMultiplier: 1.15,
+        micProximityPreset: 'close-mic',
+        performanceMode: 'acoustic-ensemble',
+      },
+      piano: {
+        defaultTechnique: 'guajeo-staccato',
+        allowedTechniques: ['staccato', 'montuno', 'accent'],
+        brightnessMultiplier: 1.2,
+        decayMultiplier: 0.85,
+        micProximityPreset: 'close-mic',
+      },
+      congas: {
+        defaultTechnique: 'open-tone',
+        allowedTechniques: ['open', 'slap', 'muff', 'bass-tone'],
+        brightnessMultiplier: 1.15,
+        decayMultiplier: 0.75,
+        micProximityPreset: 'close-mic',
+      },
+      timbales: {
+        defaultTechnique: 'cascara',
+        allowedTechniques: ['cascara', 'paila', 'rim', 'campana'],
+        brightnessMultiplier: 1.25,
+        decayMultiplier: 0.65,
+        micProximityPreset: 'close-mic',
+      },
+      trumpet: {
+        defaultTechnique: 'stab',
+        allowedTechniques: ['stab', 'accent', 'fall'],
+        brightnessMultiplier: 1.3,
+        decayMultiplier: 0.7,
+        bendGlideMs: 25,
+      },
+    },
+  },
+  timba: {
+    timbreSpace: {
+      palette: ['piano', 'timbales', 'congas', 'trumpet', 'bass'],
+      production: 'harder attacks, sectional breaks, dense percussion',
+      mixCharacter: { dryness: 0.75, bassForward: 0.65, width: 0.7, brightness: 0.8 },
+    },
+    instrumentDialects: {
+      bass: {
+        defaultTechnique: 'slap-bass',
+        allowedTechniques: ['slap-bass', 'pizzicato', 'slide'],
+        brightnessMultiplier: 1.35,
+        decayMultiplier: 0.6,
+      },
+      timbales: {
+        defaultTechnique: 'cascara',
+        allowedTechniques: ['cascara', 'paila', 'rim', 'campana', 'kick-sub'],
+        brightnessMultiplier: 1.3,
+        decayMultiplier: 0.6,
+      },
+      trumpet: {
+        defaultTechnique: 'stab',
+        allowedTechniques: ['stab', 'screamer', 'fall'],
+        brightnessMultiplier: 1.35,
+        decayMultiplier: 0.65,
+      },
+    },
+  },
+  flamenco: {
+    cycleLength: 12,
+    interactionModel: 'counterpoint',
+    transitionGrammar: { byDelta: { build: ['fill','arrastre'], drop: ['corte'], hold: [] }, types: ['fill','arrastre','corte'], onEnergyRise: 'arrastre', onEnergyFall: 'corte', authoredPriority: true },
+    performanceIdioms: { spotlightLeadRubato: true },
+    timbreSpace: {
+      palette: ['guitar', 'palmas', 'cajon', 'voice', 'castanets'],
+      production: 'dry room, strong transient contrast',
+      mixCharacter: { dryness: 0.85, bassForward: 0.3, width: 0.35, brightness: 0.6 },
+    },
+    instrumentDialects: {
+      'spanish-guitar': {
+        defaultTechnique: 'punteado',
+        allowedTechniques: ['punteado', 'rasgueado', 'abanico', 'golpe', 'arrastre', 'palm-mute'],
+        pluckPositionOverride: 0.22,
+        brightnessMultiplier: 1.25,
+        decayMultiplier: 0.85,
+        micProximityPreset: 'close-mic',
+        excitationType: 'nail',
+        performanceMode: 'acoustic-ensemble',
+      },
+      guitar: {
+        defaultTechnique: 'punteado',
+        allowedTechniques: ['punteado', 'rasgueado', 'abanico', 'golpe', 'arrastre', 'palm-mute'],
+        pluckPositionOverride: 0.22,
+        brightnessMultiplier: 1.25,
+        decayMultiplier: 0.85,
+        micProximityPreset: 'close-mic',
+        excitationType: 'nail',
+        performanceMode: 'acoustic-ensemble',
+      },
+      cajon: {
+        defaultTechnique: 'center-bass',
+        allowedTechniques: ['center-bass', 'edge-slap', 'rim-tap', 'side-wood'],
+        micProximityPreset: 'close-mic',
+        performanceMode: 'acoustic-ensemble',
+      },
+      palmas: {
+        defaultTechnique: 'clara',
+        allowedTechniques: ['sorda', 'clara', 'remate'],
+        brightnessMultiplier: 1.2,
+        micProximityPreset: 'close-mic',
+      },
+      voice: {
+        defaultTechnique: 'quejio',
+        allowedTechniques: ['quejio', 'vibrato', 'falsetto'],
+        brightnessMultiplier: 1.15,
+        bendGlideMs: 35,
+      },
+    },
+  },
+  jazz: {
+    cycleLength: 4,
+    interactionModel: 'counterpoint',
+    performanceIdioms: { spotlightLeadRubato: true },
+    timbreSpace: {
+      palette: ['tenor-sax', 'upright-bass', 'piano', 'jazz-guitar', 'brush-kit'],
+      production: 'live room, moderate width, soft compression',
+      mixCharacter: { dryness: 0.45, bassForward: 0.5, width: 0.55, brightness: 0.5 },
+    },
+    instrumentDialects: {
+      'upright-bass': {
+        defaultTechnique: 'pizzicato',
+        allowedTechniques: ['pizzicato', 'ghost', 'walk'],
+        pluckPositionOverride: 0.3,
+        decayMultiplier: 1.1,
+        brightnessMultiplier: 0.95,
+        micProximityPreset: 'room-ambient',
+        performanceMode: 'acoustic-ensemble',
+      },
+      'jazz-guitar': {
+        defaultTechnique: 'pick',
+        allowedTechniques: ['pick', 'comp', 'chord-melody'],
+        pluckPositionOverride: 0.35,
+        brightnessMultiplier: 0.85,
+        decayMultiplier: 1.05,
+        excitationType: 'fingerpad',
+        micProximityPreset: 'direct-box',
+        performanceMode: 'acoustic-ensemble',
+      },
+      'brush-kit': {
+        defaultTechnique: 'swish',
+        allowedTechniques: ['swish', 'tap', 'feather-kick'],
+        decayMultiplier: 1.2,
+        brightnessMultiplier: 0.9,
+        micProximityPreset: 'room-ambient',
+      },
+      'tenor-sax': {
+        defaultTechnique: 'breath',
+        allowedTechniques: ['subtone', 'growl', 'legato'],
+        brightnessMultiplier: 1.05,
+        bendGlideMs: 30,
+        micProximityPreset: 'room-ambient',
+      },
+      piano: {
+        defaultTechnique: 'comp',
+        allowedTechniques: ['comp', 'voicing', 'legato'],
+        brightnessMultiplier: 0.95,
+        decayMultiplier: 1.1,
+        micProximityPreset: 'room-ambient',
+      },
+    },
+  },
+  swing: {
+    timbreSpace: {
+      palette: ['tenor-sax', 'trumpet', 'trombone', 'piano', 'upright-bass', 'drums'],
+      production: 'big band width, brass sizzle, wooden floor acoustic',
+      mixCharacter: { dryness: 0.5, bassForward: 0.52, width: 0.6, brightness: 0.6 },
+    },
+  },
+  blues: {
+    cycleLength: 12,
+    interactionModel: 'counterpoint',
+    performanceIdioms: { bluesRockLeadMinorThirdBend: true, spotlightLeadRubato: true },
+    timbreSpace: {
+      palette: ['electric-guitar', 'harmonica', 'piano', 'bass', 'drums'],
+      production: 'tape compression, warm valve room',
+      mixCharacter: { dryness: 0.6, bassForward: 0.55, width: 0.5, brightness: 0.55 },
+    },
+    instrumentDialects: {
+      guitar: {
+        defaultTechnique: 'pick',
+        allowedTechniques: ['pick', 'slide', 'bend', 'palm-mute'],
+        pluckPositionOverride: 0.3,
+        brightnessMultiplier: 1.1,
+        decayMultiplier: 1.2,
+        tuningSystemId: 'blues-continuum',
+        micProximityPreset: 'direct-box',
+        bendGlideMs: 40,
+        performanceMode: 'acoustic-ensemble',
+      },
+      'electric-guitar': {
+        defaultTechnique: 'pick',
+        allowedTechniques: ['pick', 'slide', 'bend', 'palm-mute'],
+        pluckPositionOverride: 0.3,
+        brightnessMultiplier: 1.1,
+        decayMultiplier: 1.2,
+        tuningSystemId: 'blues-continuum',
+        micProximityPreset: 'direct-box',
+        bendGlideMs: 40,
+        performanceMode: 'acoustic-ensemble',
+      },
+      harmonica: {
+        defaultTechnique: 'reed-draw',
+        allowedTechniques: ['bend', 'draw', 'blow', 'chuff'],
+        brightnessMultiplier: 1.2,
+        bendGlideMs: 45,
+        micProximityPreset: 'close-mic',
+      },
+    },
+  },
+  funk: {
+    performanceIdioms: { bluesRockLeadMinorThirdBend: true },
+    timbreSpace: {
+      palette: ['slap-bass', 'clavinet', 'electric-guitar', 'drums', 'horn-section'],
+      production: 'tape warmth, tight mono-ish center',
+      mixCharacter: { dryness: 0.75, bassForward: 0.75, width: 0.45, brightness: 0.65 },
+    },
+    instrumentDialects: {
+      'slap-bass': {
+        defaultTechnique: 'thumb-slap',
+        allowedTechniques: ['thumb-slap', 'pop', 'ghost', 'mute'],
+        pluckPositionOverride: 0.12,
+        brightnessMultiplier: 1.4,
+        decayMultiplier: 0.6,
+        micProximityPreset: 'direct-box',
+        performanceMode: 'hybrid',
+      },
+      'electric-guitar': {
+        defaultTechnique: 'scratch',
+        allowedTechniques: ['scratch', 'mute', 'skank'],
+        pluckPositionOverride: 0.18,
+        brightnessMultiplier: 1.35,
+        decayMultiplier: 0.55,
+        excitationType: 'hard-pick',
+      },
+      clavinet: {
+        defaultTechnique: 'percussive-key',
+        allowedTechniques: ['percussive-key', 'mute'],
+        brightnessMultiplier: 1.3,
+        decayMultiplier: 0.5,
+      },
+      'horn-section': {
+        defaultTechnique: 'stab',
+        allowedTechniques: ['stab', 'rip', 'fall'],
+        brightnessMultiplier: 1.3,
+        decayMultiplier: 0.5,
+      },
+    },
+  },
+  reggae: {
+    performanceIdioms: { dropPortamento: true },
+    timbreSpace: {
+      palette: ['organ', 'electric-guitar', 'bass', 'drums', 'voice'],
+      production: 'drop-outs, delay throws',
+      mixCharacter: { dryness: 0.25, bassForward: 0.8, width: 0.7, brightness: 0.4 },
+    },
+    instrumentDialects: {
+      bass: {
+        defaultTechnique: 'deep-sub-finger',
+        allowedTechniques: ['finger', 'palm-mute'],
+        decayMultiplier: 1.3,
+        brightnessMultiplier: 0.75,
+        contactPointOverride: 0.1,
+        micProximityPreset: 'direct-box',
+      },
+      'electric-guitar': {
+        defaultTechnique: 'choked-skank',
+        allowedTechniques: ['skank', 'chop', 'palm-mute'],
+        decayMultiplier: 0.4,
+        brightnessMultiplier: 1.2,
+        excitationType: 'hard-pick',
+      },
+      organ: {
+        defaultTechnique: 'bubble-chop',
+        allowedTechniques: ['chop', 'bubble', 'swell'],
+        decayMultiplier: 0.6,
+        brightnessMultiplier: 0.85,
+      },
+    },
+  },
+  brazilian: {
+    timbreSpace: {
+      palette: ['cavaquinho', 'pandeiro', 'surdo', 'tamborim', 'voice'],
+      production: 'tight ensemble, natural room',
+      mixCharacter: { dryness: 0.6, bassForward: 0.55, width: 0.5, brightness: 0.6 },
+    },
+    instrumentDialects: {
+      cavaquinho: {
+        defaultTechnique: 'palheta',
+        allowedTechniques: ['palheta', 'rasgado'],
+        courses: 1,
+        excitationType: 'hard-pick',
+        pluckPositionOverride: 0.18,
+        brightnessMultiplier: 1.35,
+        decayMultiplier: 0.7,
+      },
+      pandeiro: {
+        defaultTechnique: 'thumb-slap',
+        allowedTechniques: ['thumb', 'fingertip', 'palm', 'jingle'],
+        brightnessMultiplier: 1.2,
+        decayMultiplier: 0.8,
+      },
+      surdo: {
+        defaultTechnique: 'mallet',
+        allowedTechniques: ['open', 'damped', 'hand-mute'],
+        brightnessMultiplier: 0.8,
+        decayMultiplier: 1.4,
+      },
+      guitar: {
+        defaultTechnique: 'dedilhado',
+        allowedTechniques: ['dedilhado', 'batida'],
+        excitationType: 'nail',
+        brightnessMultiplier: 1.05,
+        decayMultiplier: 0.9,
+      },
+    },
+  },
+  metal: {
+    cycleLength: 1,
+    interactionModel: 'unison',
+    performanceIdioms: { bluesRockLeadMinorThirdBend: true },
+    timbreSpace: {
+      palette: ['distortion-guitar', 'bass', 'drums', 'tremolo-strings', 'voice'],
+      production: 'tight multitrack, saturation',
+      mixCharacter: { dryness: 0.8, bassForward: 0.7, width: 0.85, brightness: 0.7 },
+    },
+    instrumentDialects: {
+      'distortion-guitar': {
+        defaultTechnique: 'palm-mute',
+        allowedTechniques: ['palm-mute', 'open', 'pinch-harmonic', 'tremolo'],
+        excitationType: 'hard-pick',
+        decayMultiplier: 0.7,
+        brightnessMultiplier: 1.35,
+        performanceMode: 'acoustic-ensemble',
+      },
+      'overdrive-guitar': {
+        defaultTechnique: 'palm-mute',
+        allowedTechniques: ['palm-mute', 'open', 'pinch-harmonic'],
+        excitationType: 'hard-pick',
+        decayMultiplier: 0.75,
+        brightnessMultiplier: 1.25,
+      },
+      bass: {
+        defaultTechnique: 'pick',
+        allowedTechniques: ['pick', 'down-pick', 'mute'],
+        excitationType: 'hard-pick',
+        brightnessMultiplier: 1.3,
+        decayMultiplier: 0.75,
+      },
+      'pick-bass': {
+        defaultTechnique: 'pick',
+        allowedTechniques: ['pick', 'down-pick', 'mute'],
+        excitationType: 'hard-pick',
+        brightnessMultiplier: 1.35,
+        decayMultiplier: 0.75,
+      },
+    },
+  },
+  country: {
+    performanceIdioms: { bluesRockLeadMinorThirdBend: true },
+    timbreSpace: {
+      palette: ['steel-guitar', 'fiddle', 'banjo', 'upright-bass', 'voice'],
+      production: 'dry room, string articulation',
+      mixCharacter: { dryness: 0.65, bassForward: 0.5, width: 0.55, brightness: 0.6 },
+    },
+    instrumentDialects: {
+      'steel-guitar': {
+        defaultTechnique: 'bar-slide',
+        allowedTechniques: ['slide', 'volume-swell', 'pedal-bend'],
+        bendGlideMs: 60,
+        brightnessMultiplier: 1.2,
+        decayMultiplier: 1.4,
+      },
+      fiddle: {
+        defaultTechnique: 'shuffle-bow',
+        allowedTechniques: ['shuffle-bow', 'double-stop', 'sawstroke'],
+        bowPressureOverride: 0.6,
+        brightnessMultiplier: 1.25,
+        decayMultiplier: 0.85,
+      },
+      banjo: {
+        defaultTechnique: 'three-finger-roll',
+        allowedTechniques: ['roll', 'clawhammer', 'choke'],
+        excitationType: 'hard-pick',
+        brightnessMultiplier: 1.4,
+        decayMultiplier: 0.65,
+      },
+    },
+  },
+  cumbia: {
+    timbreSpace: {
+      palette: ['accordion', 'guacharaca', 'tambora', 'bass', 'voice'],
+      production: 'dry percussion, bright melodic lead',
+      mixCharacter: { dryness: 0.7, bassForward: 0.6, width: 0.5, brightness: 0.65 },
+    },
+    instrumentDialects: {
+      accordion: {
+        defaultTechnique: 'bellows-pique',
+        allowedTechniques: ['pique', 'chucu-chucu', 'legato'],
+        brightnessMultiplier: 1.15,
+        decayMultiplier: 0.9,
+      },
+      guacharaca: {
+        defaultTechnique: 'scrape',
+        allowedTechniques: ['down-up', 'accent-scrape'],
+        brightnessMultiplier: 1.3,
+        decayMultiplier: 0.5,
+      },
+      tambora: {
+        defaultTechnique: 'rim-and-skin',
+        allowedTechniques: ['skin', 'wood-rim'],
+        brightnessMultiplier: 1.1,
+        decayMultiplier: 0.85,
+      },
+    },
+  },
+  bachata: {
+    timbreSpace: {
+      palette: ['requinto', 'guitarron', 'guiro', 'bongos', 'voice'],
+      production: 'bright guitar, dry percussion',
+      mixCharacter: { dryness: 0.75, bassForward: 0.6, width: 0.55, brightness: 0.7 },
+    },
+    instrumentDialects: {
+      requinto: {
+        defaultTechnique: 'pique',
+        allowedTechniques: ['pique', 'bend', 'staccato'],
+        excitationType: 'hard-pick',
+        pluckPositionOverride: 0.2,
+        brightnessMultiplier: 1.4,
+        decayMultiplier: 0.65,
+        bendGlideMs: 25,
+      },
+      guiro: {
+        defaultTechnique: 'scrape',
+        allowedTechniques: ['scrape', 'tap'],
+        brightnessMultiplier: 1.3,
+        decayMultiplier: 0.5,
+      },
+      bongos: {
+        defaultTechnique: 'martillo',
+        allowedTechniques: ['martillo', 'rim-shot', 'open-tone'],
+        brightnessMultiplier: 1.25,
+        decayMultiplier: 0.7,
+      },
+    },
+  },
+  afrobeats: {
+    timbreSpace: {
+      palette: ['log-drum', 'kalimba', 'shaker', 'bass', 'voice'],
+      production: 'layered percussion, controlled sub',
+      mixCharacter: { dryness: 0.6, bassForward: 0.75, width: 0.65, brightness: 0.65 },
+    },
+    instrumentDialects: {
+      'log-drum': {
+        defaultTechnique: 'soft-mallet',
+        allowedTechniques: ['mallet', 'sub-thump'],
+        brightnessMultiplier: 0.85,
+        decayMultiplier: 1.2,
+      },
+      shaker: {
+        defaultTechnique: 'shekere-roll',
+        allowedTechniques: ['forward-back', 'accent-hit'],
+        brightnessMultiplier: 1.1,
+        decayMultiplier: 0.6,
+      },
+      'electric-guitar': {
+        defaultTechnique: 'highlife-pluck',
+        allowedTechniques: ['clean-pluck', 'palm-mute'],
+        pluckPositionOverride: 0.22,
+        brightnessMultiplier: 1.2,
+        decayMultiplier: 0.75,
+        excitationType: 'hard-pick',
+      },
+    },
+  },
+  kizomba: {
+    timbreSpace: {
+      palette: ['sub-bass', 'guitar', 'shaker', 'drums', 'voice'],
+      production: 'sub-heavy, soft transients',
+      mixCharacter: { dryness: 0.5, bassForward: 0.8, width: 0.65, brightness: 0.5 },
+    },
+    instrumentDialects: {
+      'sub-bass': {
+        defaultTechnique: 'sub-sweep',
+        allowedTechniques: ['sub-sweep', 'punch-stab'],
+        performanceMode: 'programmed-electronic',
+        micProximityPreset: 'direct-box',
+      },
+      shaker: {
+        defaultTechnique: 'soft-shake',
+        allowedTechniques: ['soft-shake'],
+        brightnessMultiplier: 0.9,
+        decayMultiplier: 0.6,
+      },
+    },
+  },
+  rock: {
+    cycleLength: 4,
+    interactionModel: 'homophonic',
+    transitionGrammar: { byDelta: { build: ['fill'], drop: ['drop-out'], hold: [] }, types: ['fill','drop-out'], onEnergyRise: 'fill', onEnergyFall: 'drop-out', authoredPriority: true },
+    performanceIdioms: { bluesRockLeadMinorThirdBend: true },
+    timbreSpace: {
+      palette: ['overdrive-guitar', 'bass', 'drums', 'organ', 'voice'],
+      production: 'live room, guitar-forward',
+      mixCharacter: { dryness: 0.65, bassForward: 0.6, width: 0.7, brightness: 0.65 },
+    },
+  },
+  'hip-hop': {
+    performanceIdioms: { dropPortamento: true },
+    timbreSpace: {
+      palette: ['drums', 'sub-bass', 'synth', 'electric-guitar', 'voice'],
+      production: 'sample space, controlled sub',
+      mixCharacter: { dryness: 0.65, bassForward: 0.85, width: 0.6, brightness: 0.55 },
+    },
+  },
+  house: {
+    timbreSpace: {
+      palette: ['acid-303', 'synth', 'drums', 'sub-bass', 'cowbell'],
+      production: 'sidechain pumping, filter automation',
+      mixCharacter: { dryness: 0.55, bassForward: 0.8, width: 0.75, brightness: 0.65 },
+    },
+  },
+  electronic: {
+    cycleLength: 4,
+    interactionModel: 'unison',
+    transitionGrammar: { byDelta: { build: ['fill'], drop: ['drop-out'], hold: [] }, types: ['fill','drop-out'], onEnergyRise: 'fill', onEnergyFall: 'drop-out', authoredPriority: true },
+    performanceIdioms: { dropPortamento: true },
+    timbreSpace: {
+      palette: ['synth', 'acid-303', 'drums', 'sub-bass', 'noise-sweep'],
+      production: 'automation and filter movement',
+      mixCharacter: { dryness: 0.5, bassForward: 0.75, width: 0.8, brightness: 0.7 },
+    },
+  },
+  industrial: {
+    timbreSpace: {
+      palette: ['distortion-guitar', 'synth', 'drums', 'sub-bass', 'noise-sweep'],
+      production: 'distortion/noise bursts',
+      mixCharacter: { dryness: 0.8, bassForward: 0.8, width: 0.8, brightness: 0.75 },
+    },
+  },
+  'drum-and-bass': {
+    performanceIdioms: { dropPortamento: true },
+    timbreSpace: {
+      palette: ['sub-bass', 'drums', 'synth', 'soprano-sax', 'noise-sweep'],
+      production: 'sub-heavy, pumping',
+      mixCharacter: { dryness: 0.6, bassForward: 0.88, width: 0.75, brightness: 0.7 },
+    },
+  },
+  'uk-bass': {
+    performanceIdioms: { dropPortamento: true },
+    timbreSpace: {
+      palette: ['sub-bass', 'synth', 'drums', 'cowbell', 'soprano-sax'],
+      production: 'bass sound design, pumping where style permits',
+      mixCharacter: { dryness: 0.55, bassForward: 0.85, width: 0.75, brightness: 0.65 },
+    },
+  },
+  reggaeton: {
+    performanceIdioms: { dropPortamento: true },
+    timbreSpace: {
+      palette: ['synth', 'sub-bass', 'drums', 'congas', 'voice'],
+      production: 'dry punch, controlled sub',
+      mixCharacter: { dryness: 0.7, bassForward: 0.85, width: 0.6, brightness: 0.65 },
+    },
+  },
+  disco: {
+    timbreSpace: {
+      palette: ['strings', 'clavinet', 'synth', 'slap-bass', 'drums'],
+      production: 'pumping sidechain-style dynamics',
+      mixCharacter: { dryness: 0.5, bassForward: 0.7, width: 0.75, brightness: 0.7 },
+    },
+  },
+  folk: {
+    performanceIdioms: { spotlightLeadRubato: true },
+    timbreSpace: {
+      palette: ['banjo', 'fiddle', 'mandolin', 'upright-bass', 'voice'],
+      production: 'natural room, limited processing',
+      mixCharacter: { dryness: 0.55, bassForward: 0.4, width: 0.45, brightness: 0.5 },
+    },
+  },
+  gospel: {
+    performanceIdioms: { spotlightLeadRubato: true },
+    timbreSpace: {
+      palette: ['organ', 'choir', 'piano', 'bass', 'drums'],
+      production: 'crescendo and room bloom',
+      mixCharacter: { dryness: 0.35, bassForward: 0.55, width: 0.7, brightness: 0.6 },
+    },
+  },
+  'r-and-b': {
+    performanceIdioms: { bluesRockLeadMinorThirdBend: true },
+    timbreSpace: {
+      palette: ['rhodes', 'fretless-bass', 'clavinet', 'drums', 'voice'],
+      production: 'warm, close, vocal-forward',
+      mixCharacter: { dryness: 0.6, bassForward: 0.7, width: 0.6, brightness: 0.55 },
+    },
+  },
+  soul: {
+    performanceIdioms: { bluesRockLeadMinorThirdBend: true },
+    timbreSpace: {
+      palette: ['rhodes', 'strings', 'organ', 'bass', 'voice'],
+      production: 'tape-like warmth, vocal space',
+      mixCharacter: { dryness: 0.5, bassForward: 0.65, width: 0.55, brightness: 0.55 },
+    },
+  },
+  ska: {
+    timbreSpace: {
+      palette: ['trumpet', 'trombone', 'electric-guitar', 'bass', 'drums'],
+      production: 'bright horns, dry room',
+      mixCharacter: { dryness: 0.75, bassForward: 0.6, width: 0.6, brightness: 0.7 },
+    },
+  },
+  zouk: {
+    timbreSpace: {
+      palette: ['guitar', 'sub-bass', 'synth', 'shaker', 'voice'],
+      production: 'wide pads, soft transient profile',
+      mixCharacter: { dryness: 0.45, bassForward: 0.7, width: 0.7, brightness: 0.6 },
+    },
+  },
+  'punk-hardcore': {
+    timbreSpace: {
+      palette: ['distortion-guitar', 'bass', 'drums', 'voice', 'electric-guitar'],
+      production: 'dry loud room',
+      mixCharacter: { dryness: 0.85, bassForward: 0.65, width: 0.75, brightness: 0.75 },
+    },
+  },
 };
 for (const [id, override] of Object.entries(CULTURAL_OVERRIDES)) {
-  if (G[id]) G[id] = { ...G[id], ...override };
+  if (G[id]) {
+    G[id] = {
+      ...G[id],
+      ...override,
+      performanceIdioms: {
+        ...(G[id]?.performanceIdioms ?? {}),
+        ...(override.performanceIdioms ?? {}),
+      },
+      timbreSpace: {
+        ...G[id].timbreSpace,
+        ...(override.timbreSpace ?? {}),
+        mixCharacter: {
+          ...(G[id].timbreSpace.mixCharacter ?? { dryness: 0.6, bassForward: 0.5, width: 0.5, brightness: 0.5 }),
+          ...(override.timbreSpace?.mixCharacter ?? {}),
+        },
+      },
+      instrumentDialects: {
+        ...(G[id]?.instrumentDialects ?? {}),
+        ...(override.instrumentDialects ?? {}),
+      },
+    };
+  }
 }
 
 export const GENRE_CONTRACTS: Record<string, WorldContract> = G;
@@ -451,7 +1226,15 @@ function mergeContract(baseContract: WorldContract, patch: Partial<WorldContract
   out.groove = { ...baseContract.groove, ...(patch.groove ?? {}), roleLean:{...baseContract.groove.roleLean,...(patch.groove?.roleLean ?? {})} };
   out.bass = { ...baseContract.bass, ...(patch.bass ?? {}) };
   out.microtiming = { ...baseContract.microtiming, ...(patch.microtiming ?? {}), byRole:{...baseContract.microtiming.byRole,...(patch.microtiming?.byRole ?? {})} };
-  out.timbreSpace = { ...baseContract.timbreSpace, ...(patch.timbreSpace ?? {}) };
+  out.timbreSpace = {
+    ...baseContract.timbreSpace,
+    ...(patch.timbreSpace ?? {}),
+    mixCharacter: {
+      ...(baseContract.timbreSpace.mixCharacter ?? { dryness: 0.6, bassForward: 0.5, width: 0.5, brightness: 0.5 }),
+      ...(patch.timbreSpace?.mixCharacter ?? {}),
+    },
+  };
   out.percussion = { ...baseContract.percussion, ...(patch.percussion ?? {}) };
+  out.instrumentDialects = { ...baseContract.instrumentDialects, ...(patch.instrumentDialects ?? {}) };
   return out;
 }

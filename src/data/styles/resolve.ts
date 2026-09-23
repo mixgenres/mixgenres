@@ -51,20 +51,27 @@ function completeStyle(style: SongStyle): CompleteStyle {
   };
 }
 
+import { LRUMap, registerCache } from '../../engine/util/lru';
+
 // Deterministic memoization cache
-const resolveCache = new Map<string, ResolvedStyle>();
+const resolveCache = new LRUMap<string, ResolvedStyle>(2000, 'resolveCache');
+registerCache(resolveCache);
 
 function cacheKey(opts: ResolveStyleOptions): string {
-  return JSON.stringify({
-    genreId: opts.genreId ?? '',
-    styleId: opts.styleId,
-    influences: (opts.influences ?? []).map(inf => ({
-      s: inf.source.styleId ?? inf.source.genreId,
-      w: Math.round(inf.weight * 100) / 100,
-      a: [...inf.aspects].sort()
-    })),
-    userOverrides: opts.userOverrides ? Object.keys(opts.userOverrides).sort() : undefined
-  });
+  const g = opts.genreId ?? '';
+  const s = opts.styleId;
+  let infKey = '';
+  if (opts.influences && opts.influences.length > 0) {
+    infKey = opts.influences
+      .map(inf => `${inf.source.styleId ?? inf.source.genreId}:${(inf.weight * 100) | 0}:${inf.aspects.slice().sort().join(',')}`)
+      .sort()
+      .join(';');
+  }
+  let overKey = '';
+  if (opts.userOverrides) {
+    overKey = Object.keys(opts.userOverrides).sort().join(',');
+  }
+  return `${g}|${s}|${infKey}|${overKey}`;
 }
 
 function lerp(a: number, b: number, t: number): number {

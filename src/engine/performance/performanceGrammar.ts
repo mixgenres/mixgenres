@@ -311,7 +311,7 @@ export function getPerformanceGrammar(style: any, role?: string): PerformanceGra
     ...baseGrammar,
     articulationVocabulary: mergedArticulations,
     forbiddenInterpretations: mergedForbidden,
-    microtiming: baseGrammar.microtiming ?? microtiming,
+    microtiming: microtiming,
   };
 
   return result;

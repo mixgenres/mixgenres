@@ -174,6 +174,13 @@ export type TuningSystemTag =
   | 'xenharmonic'
   | string;
 
+/**
+ * Catalog/UI display data for groove mechanics.
+ * NOTE: styleDefinitions[].grooveMechanics is catalog display data ONLY.
+ * It has no effect on audio runtime. To change how a style actually sounds,
+ * edit the style's RhythmGrammar in data/styles (see resolve.ts / schema.ts)
+ * or the WorldContract (see contracts.ts).
+ */
 export interface GrooveMechanics {
   swingPercentage?: number;
   anticipationOffsetSteps?: number;
@@ -436,6 +443,20 @@ export interface Song {
   styleInfluences?: any[];
   styleOverrides?: Record<string, unknown>;
   phrasePatternCache?: Record<string, string>;
+  grooveFusion?: GrooveFusionSpec;
+}
+
+export interface GrooveFusionSpec {
+  /** The two (or more) genres being fused, with a weight each summing to 1. */
+  members: { genreId: string; styleId?: string; weight: number }[];
+  /** How the two onset grids combine, not just how parameters lerp. */
+  cellStrategy: 'interleave' | 'layer' | 'alternate-by-section' | 'call-and-response';
+  /** Which genre's meter/cycle wins when they conflict (fusion always needs
+   *  one clock — but which parts speak which genre's rhythmic vocabulary is
+   *  now negotiable per role). */
+  clockGenreId: string;
+  /** For call-and-response, how often (in bars) tracks alternate which genre they speak */
+  rotatesEveryBars?: number;
 }
 
 

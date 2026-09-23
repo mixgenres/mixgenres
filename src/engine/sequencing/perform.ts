@@ -184,6 +184,7 @@ export function thinForSustain(
   attacks: { beatInBar: number; accent: number }[],
   beatsPerBar: number,
   intensity: number,
+  prevLastKeptBeat?: number,
 ): boolean[] {
   const keep = attacks.map(() => true);
   if (prof.sustain !== 'sustained' && prof.sustain !== 'blown') return keep;
@@ -193,9 +194,9 @@ export function thinForSustain(
     ? (intensity > 0.8 ? beatsPerBar / 2 : beatsPerBar)
     : prof.sustain === 'blown' ? 0.5 : 1.0;
 
-  let lastKept = -Infinity;
+  let lastKept = prevLastKeptBeat !== undefined ? prevLastKeptBeat : -Infinity;
   attacks.forEach((a, i) => {
-    if (a.beatInBar - lastKept + 1e-6 >= minGap || i === 0) {
+    if (a.beatInBar - lastKept + 1e-6 >= minGap || (prevLastKeptBeat === undefined && i === 0)) {
       lastKept = a.beatInBar;
     } else {
       keep[i] = false;
@@ -289,9 +290,17 @@ export function buildTransitionEvents(sheet: Sheet): Map<number, TransitionEvent
     if (!grammar.types.includes(type)) continue;
     const cycleLength = Math.max(1, Math.round(style.contract.cycleLength || 1));
     const finalStart = Math.max(current.start, current.end - cycleLength);
-    const authored = type === 'fill'
-      ? authoredTransitionPattern(style, current.genre ?? sheet.worldId, type, 'drums')
-      : undefined;
+    const roles = Array.from(new Set(['drums', 'percussion', 'bass', 'harmony', 'comp', 'lead', 'texture', 'pad', 'voice', ...(sheet.tracks ?? []).map(t => t.role)]));
+    const authoredByRole: Record<string, string | undefined> = {};
+    if (type === 'fill') {
+      for (const r of roles) {
+        const p = authoredTransitionPattern(style, current.genre ?? sheet.worldId, type, r);
+        if (p) authoredByRole[r] = p.id;
+      }
+    }
+    const authored = authoredByRole['drums'] ?? (type === 'fill'
+      ? authoredTransitionPattern(style, current.genre ?? sheet.worldId, type, 'drums')?.id
+      : undefined);
     const bar = current.end - 1;
     if (bar < finalStart) continue;
     {
@@ -301,8 +310,9 @@ export function buildTransitionEvents(sheet: Sheet): Map<number, TransitionEvent
         toEnergy,
         cyclePosition: culturalCyclePosition(bar - current.start, cycleLength),
         cycleLength,
-        authored: !!authored,
-        patternId: authored?.id,
+        authored: Object.keys(authoredByRole).length > 0 || !!authored,
+        patternId: authoredByRole['drums'] ?? authored,
+        authoredByRole,
       });
     }
   }
@@ -323,6 +333,35 @@ export function spotlightLeadRubatoOffset(spotlit: boolean, role: string, cycleP
   const sign = ((seed ^ Math.round(phase * 17)) & 1) ? 1 : -1;
   const amount = (0.035 + (Math.abs(seed % 7) / 6) * 0.045) * secPerBeat;
   return sign * amount;
+}
+
+export function dragOffset(
+  role: string,
+  dragProfile: import('../../data/styles/contracts').DragProfile | undefined,
+  cyclePosition: number,
+  cycleLength: number,
+  isCadenceBar: boolean,
+  secPerBeat: number,
+): number {
+  if (!dragProfile || !dragProfile.roles.includes(role)) return 0;
+  if (dragProfile.resolvesAtCadence && isCadenceBar) return 0; // snap back to on-time at phrase/cadence boundary
+  const cycleLen = Math.max(1, cycleLength);
+  const phase = ((cyclePosition % cycleLen) + cycleLen) % cycleLen;
+  const t = phase / cycleLen; // 0..1 through the phrase
+  const shaped = dragProfile.growthCurve === 'eased-in' ? t * t
+    : dragProfile.growthCurve === 'eased-in-out' ? (1 - Math.cos(t * Math.PI)) / 2
+    : t;
+  // Always LATE (positive), never early: this is what "drag" means.
+  return shaped * dragProfile.maxLagBeats * secPerBeat;
+}
+
+export function tempoMultiplierAt(
+  phraseT: number,
+  curve: 'rubato-pull' | 'none' = 'rubato-pull'
+): number {
+  if (curve !== 'rubato-pull') return 1;
+  // Slightly slower through the middle of the phrase, resolving to on-tempo at cadence
+  return 1 + 0.06 * Math.sin(phraseT * Math.PI);
 }
 
 export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
@@ -355,6 +394,7 @@ export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
   for (const t of tracks) {
     trackPhraseMemories.set(t.id, createInitialPhraseMemory());
   }
+  const lastKeptBeatByTrack = new Map<string, { bar: number; beatInBar: number }>();
 
   sheet.measures.forEach((m: Measure, barIndex: number) => {
     const bt = bars[barIndex];
@@ -461,9 +501,16 @@ export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
         trackInteractions.push({ targetTrackId: 'lead', relationship: 'accentWith' as const });
       }
 
-      // If we have an authored pattern and it's not overridden by a drum fill,
+      const transitionPatternId = transition?.authoredByRole?.[t.role] || (isDrum ? transition?.patternId : undefined);
+      const isTransitionBar = !!transition;
+      const transitionDirection = transition ? (transition.toEnergy > transition.fromEnergy ? 'build' : 'drop') : undefined;
+      const effectivePattern = (transition?.type === 'fill' && transitionPatternId && PATTERNS_BY_ID[transitionPatternId])
+        ? PATTERNS_BY_ID[transitionPatternId]
+        : rawPattern;
+
+      // If we have an authored pattern (or transition pattern),
       // run the culturally grounded performance interpreter!
-      if (rawPattern && (!transition || transition.type !== 'fill' || !isDrum)) {
+      if (effectivePattern) {
         const currentParsedChord = parseChord(m.chord);
         const nextParsedChord = nextMeasure ? parseChord(nextMeasure.chord) : undefined;
         const partEnergy = (d as any).partEnergy ?? 3;
@@ -472,7 +519,7 @@ export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
           trackId: t.id,
           role: prof.role,
           instrumentId: t.instrumentId,
-          pattern: rawPattern,
+          pattern: effectivePattern,
           grammar,
           chord: currentParsedChord,
           nextChord: nextParsedChord,
@@ -486,6 +533,8 @@ export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
           isCadenceBar,
           isSectionStart,
           isSectionEnd,
+          isTransitionBar,
+          transitionDirection,
           sectionKind: region?.kind,
           memory: mem,
           developmentDial: dials.development,
@@ -507,7 +556,7 @@ export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
             beatInBar,
             accent: ia.accent,
             durationSteps: ia.durationSteps,
-            stepsPerBar: rawPattern.subdivisions || 16,
+            stepsPerBar: effectivePattern.subdivisions || 16,
             authoredMs: 0,
             articulation: ia.articulation || d.articulation,
             articulations: (d as any).articulations,
@@ -516,7 +565,7 @@ export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
             onsetIndex: ia.onsetIndex ?? i,
             chordSymbol: anticipated ? nextMeasure!.chord : m.chord,
             anticipated,
-            hitType: ia.hitType || (rawPattern.hitGrid ? rawPattern.hitGrid[ia.onsetIndex ?? i] : undefined),
+            hitType: ia.hitType || (effectivePattern.hitGrid ? effectivePattern.hitGrid[ia.onsetIndex ?? i] : undefined),
             styleId: (d as any).styleId,
             patternId: (d as any).patternId,
             performanceKind: ia.kind,
@@ -541,14 +590,14 @@ export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
       let micro = perf?.microtiming ?? [];
       let hitTypes = perf?.hitTypes ?? [];
 
-      if (transition?.type === 'fill' && transition.patternId && isDrum) {
-        const fill = PATTERNS_BY_ID[transition.patternId];
+      if (transition?.type === 'fill' && transitionPatternId) {
+        const fill = PATTERNS_BY_ID[transitionPatternId];
         if (fill) {
           onsets = fill.onsetGrid ?? onsets;
           stepsPerBar = fill.subdivisions || 16;
           accents = fill.accentProfile ?? onsets.map(() => 0.82);
           durations = fill.durationGrid ?? onsets.map(() => 1);
-          hitTypes = fill.hitGrid ?? onsets.map(() => 'tom');
+          hitTypes = fill.hitGrid ?? onsets.map(() => (isDrum ? 'tom' : ''));
           micro = [];
         }
       }
@@ -559,13 +608,21 @@ export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
       }));
       const melodicVoice = def.voicing === 'single' && prof.role !== 'bass' && prof.role !== 'pad';
       const percussiveVoice = !!def.kit || !!def.drum;
+
+      const lastKeptInfo = lastKeptBeatByTrack.get(t.id);
+      const prevLastKeptBeat = lastKeptInfo && lastKeptInfo.bar === barIndex - 1
+        ? lastKeptInfo.beatInBar - bt.beatsPerBar
+        : undefined;
+
       const keep = melodicVoice || percussiveVoice
         ? staged.map(() => true)
-        : thinForSustain(prof, staged, bt.beatsPerBar, intensityOf(region));
+        : thinForSustain(prof, staged, bt.beatsPerBar, intensityOf(region), prevLastKeptBeat);
 
+      let lastKeptInThisBar: number | undefined;
       onsets.forEach((step, i) => {
         if (!keep[i]) return;
         const beatInBar = (step / stepsPerBar) * bt.beatsPerBar;
+        lastKeptInThisBar = beatInBar;
         const lastHalfBeat = beatInBar >= bt.beatsPerBar - 0.51;
         const chordChanges = !!nextMeasure && nextMeasure.chord !== m.chord;
         const anticipated = canAnticipate && lastHalfBeat && chordChanges;
@@ -589,6 +646,9 @@ export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
           patternId: (d as any).patternId,
         });
       });
+      if (lastKeptInThisBar !== undefined) {
+        lastKeptBeatByTrack.set(t.id, { bar: barIndex, beatInBar: lastKeptInThisBar });
+      }
     }
   });
 
@@ -730,7 +790,7 @@ export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
       arr.push(atk);
     }
 
-    const mem: VoiceMemory = { last: [], lastNote: 0, lastBar: -1 };
+    const mem: VoiceMemory = { last: [], lastNote: prof.centre, lastBar: -1 };
     const lastVoiceEndTimes = new Map<string, number>();
     const isBass = prof.role === 'bass';
     const isMelodic = melodyLayer.has(t.id);
@@ -749,7 +809,7 @@ export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
       const a = list[i];
       if (mem.lastBar !== undefined && mem.lastBar >= 0 && (a.bar - mem.lastBar) > 2) {
         mem.last = [];
-        mem.lastNote = 0;
+        mem.lastNote = prof.centre;
       }
       mem.lastBar = a.bar;
       const prevNoteMidi = mem.lastNote;
@@ -886,6 +946,7 @@ export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
         accent: a.accent,
         seed: seedOf(t.id, a.bar, a.onsetIndex, Math.round(a.beatInBar * 96)),
         ensembleSeed: seedOf(a.bar, Math.round(a.beatInBar * 96), resolvedStyle.id, 'ensemble-breath'),
+        bpm: bt.bpm,
         authoredMs: a.authoredMs,
         anticipated: a.anticipated,
         intensity,
@@ -904,8 +965,17 @@ export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
         jitterSec = 0.70 * anchorJitter + 0.30 * jitterSec;
       }
 
+      const dragProf = resolvedStyle.contract.performanceIdioms?.dragProfile;
+      const isCadence = (a.bar - (region ? region.start : 0) + 1) % phraseBars === 0;
+      const roleStr = String(prof.role);
+      const drag = dragOffset(roleStr, dragProf, rhythmicContext.cyclePosition, rhythmicContext.cycleLength, isCadence, secPerBeat);
       const rubato = resolvedStyle.contract.performanceIdioms?.spotlightLeadRubato ? spotlightLeadRubatoOffset(spotlitLead, prof.role, rhythmicContext.cyclePosition, rhythmicContext.cycleLength, secPerBeat, seedOf(t.id, a.bar, a.onsetIndex, 'rubato')) : 0;
-      const time = bt.start + (a.beatInBar + feel.offsetBeats) * secPerBeat + jitterSec + rubato;
+      const cycleLen = Math.max(1, rhythmicContext.cycleLength);
+      const phraseT = (((rhythmicContext.cyclePosition % cycleLen) + cycleLen) % cycleLen) / cycleLen;
+      const tempoScale = dragProf?.affectsTempo && (roleStr === 'lead' || roleStr === 'melody' || roleStr === 'comp' || roleStr === 'pad')
+        ? tempoMultiplierAt(phraseT, 'rubato-pull')
+        : 1.0;
+      const time = bt.start + ((a.beatInBar + feel.offsetBeats) * secPerBeat * tempoScale) + jitterSec + rubato + drag;
 
       const next = list[i + 1];
       let gapBeats = 4;

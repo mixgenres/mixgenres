@@ -18,6 +18,12 @@ export interface GrooveProfile {
   lean: number;
   /** per-role lean on top of the band lean, in ms */
   roleLean: Partial<Record<GrooveRole, number>>;
+  /** Per-role ms offset table from WorldContract.microtiming.byRole,
+   *  layered on top of `pocket` (which is genre-wide) rather than
+   *  replacing it. This is where "the bandoneón lags more than the bass"
+   *  kind of per-role drag lives. */
+  roleMicrotiming?: Partial<Record<string, number[]>>;
+  roleMicrotimingReferenceTempo?: number;
   /** random spread per note, in ms (1 sigma). small numbers matter a lot */
   humanizeMs: number;
   /** random velocity spread, 0..1 */
@@ -52,6 +58,8 @@ export function grooveForStyle(style: ResolvedStyle): GrooveProfile {
     swingUnit: g.swingUnit,
     lean: g.lean,
     roleLean: { ...g.roleLean },
+    roleMicrotiming: c.microtiming?.byRole,
+    roleMicrotimingReferenceTempo: c.microtiming?.referenceTempo,
     humanizeMs: g.humanizeMs,
     humanizeVel: g.humanizeVel,
     accentDepth: g.accentDepth,
@@ -132,6 +140,8 @@ export interface FeelInput {
   accent: number;
   /** stable identity for the wobble: track + bar + onset */
   seed: number;
+  /** song/section tempo in bpm, used for tempo-relative microtiming scaling */
+  bpm?: number;
   /** pattern-authored microtiming, in ms */
   authoredMs?: number;
   /** this note is an anticipation of the next chord/bar */
@@ -181,9 +191,16 @@ export function applyFeel(g: GrooveProfile, input: FeelInput): FeelOutput {
   // 2. Apply the style's pocket and timing offsets. Authored timing takes priority.
   const slots = Math.max(1, g.subdivision ?? 16);
   const slot = Math.round((input.beatInBar / Math.max(1e-6, input.beatsPerBar)) * slots) % slots;
+
+  const roleTable = g.roleMicrotiming?.[input.role];
+  const roleMs = roleTable?.length
+    ? roleTable[Math.round((input.beatInBar / Math.max(1e-6, input.beatsPerBar)) * roleTable.length) % roleTable.length]
+      * (g.roleMicrotimingReferenceTempo && input.bpm ? g.roleMicrotimingReferenceTempo / input.bpm : 1)
+    : 0;
+
   const ms = input.authoredTimingOnly
     ? (input.authoredMs ?? 0)
-    : (g.lean + (g.roleLean[input.role] ?? 0) + (g.pocket?.[slot] ?? 0) + (input.anticipated ? g.anticipationMs : 0)) * scale + (input.authoredMs ?? 0);
+    : (g.lean + (g.roleLean[input.role] ?? 0) + (g.pocket?.[slot] ?? 0) + roleMs + (input.anticipated ? g.anticipationMs : 0)) * scale + (input.authoredMs ?? 0);
 
   // A human ensemble does not independently jitter every player. There is a
   // shared breath/pocket plus a much smaller player-specific deviation. This

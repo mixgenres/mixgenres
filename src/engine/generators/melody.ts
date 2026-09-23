@@ -580,8 +580,17 @@ export function melodyNote(c: MelodyContext): { note: number | number[]; isLeap:
     // Default section register pushes
     const isPeakSection = sectionKind === 'chorus' || sectionKind === 'montuno' || sectionKind === 'mambo' || sectionKind === 'peak';
     const isIntroOutro = sectionKind === 'intro' || sectionKind === 'outro' || sectionKind === 'coda';
-    const registerPush = isPeakSection && c.intensity > 0.7 ? 12 : (isIntroOutro ? -7 : 0);
-    target += registerPush;
+
+    // Headroom-aware: only push up by as much of an octave as the instrument's
+    // own range comfortably allows above its median, never a flat 12.
+    const headroomAboveCentre = c.profile.high - c.profile.centre;
+    const maxSafePush = Math.max(0, Math.min(12, headroomAboveCentre - 4)); // leave 4 semitones of ceiling
+    const registerPush = isPeakSection && c.intensity > 0.7
+      ? Math.round(maxSafePush * 0.6) // lift toward the climax, don't slam the ceiling
+      : (isIntroOutro ? -7 : 0);
+
+    const registerPushScale = c.profile.sustain === 'blown' ? 0.35 : c.profile.sustain === 'sustained' ? 0.7 : 1.0;
+    target += Math.round(registerPush * registerPushScale);
   }
 
   const drift = target - c.profile.centre;

@@ -16,6 +16,7 @@ import {
 } from '../elementary/elementaryEngine';
 
 import { resolveDialect, performanceModeForContext } from '../theory/dialects';
+import { contractForGenre } from '../../data/styles/contracts';
 
 export function getPolyphonyForTrack(instrumentId: string, role?: string): number {
   const r = (role || '').toLowerCase();
@@ -61,6 +62,16 @@ export class BandWorkletNode {
   setWorldAndStyle(worldId: string, styleId?: string) {
     this.activeWorldId = worldId;
     this.activeStyleId = styleId || '';
+    if (worldId && this.masterChain) {
+      try {
+        const contract = contractForGenre(worldId);
+        if (contract?.timbreSpace?.mixCharacter) {
+          this.masterChain.setMixCharacter(contract.timbreSpace.mixCharacter);
+        }
+      } catch {
+        // world not yet defined or invalid id
+      }
+    }
   }
 
   async initialize(context: AudioContext, volume = 1): Promise<AudioNode> {
@@ -80,7 +91,13 @@ export class BandWorkletNode {
     if (this.masterChain) {
       this.masterChain.dispose();
     }
-    this.masterChain = createMasterChain(context);
+    let initialMixChar: import('../../data/styles/contracts').MixCharacter | undefined;
+    if (this.activeWorldId) {
+      try {
+        initialMixChar = contractForGenre(this.activeWorldId)?.timbreSpace?.mixCharacter;
+      } catch {}
+    }
+    this.masterChain = createMasterChain(context, initialMixChar);
     this.masterChain.setVolume(volume);
     this.audioNode.connect(this.masterChain.input);
 
