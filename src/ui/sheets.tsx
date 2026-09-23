@@ -10,7 +10,7 @@ import { CHORD_PALETTE, CHORD_MOODS, CHORD_MOOD_ORDER, ChordMood, JAZZ_CHORD_LIB
 import { parseChord } from '../engine/theory/theory';
 import { formSummary } from '../data/genreForms';
 import { grooveSummary } from '../engine/generators/groove';
-import { ROOMS, roomFor } from '../engine/mixer';
+import { ROOMS, roomFor } from '../engine/audio/mixer';
 import type { SectionEnergy } from '../types';
 import { ENERGY_LABELS } from '../engine/metadata/energy';
 
@@ -1313,9 +1313,11 @@ export function DownloadSheet({
   open: boolean;
   onClose: () => void;
   song: any;
-  onBounceMp3?: (selectedTrackIds: string[]) => void;
+  onBounceMp3?: (selectedTrackIds: string[], roomId: string) => void;
 }) {
   const [selectedTracks, setSelectedTracks] = useState<Record<string, boolean>>({});
+  const defaultRoomId = song?.roomId ?? (song?.worldId ? roomFor(song.worldId).id : 'studio');
+  const [exportRoomId, setExportRoomId] = useState<string>(defaultRoomId);
 
   // Initialize selected tracks when dialog opens or tracks change
   useEffect(() => {
@@ -1325,8 +1327,9 @@ export function DownloadSheet({
         initial[t.id] = !t.muted;
       });
       setSelectedTracks(initial);
+      setExportRoomId(song?.roomId ?? (song?.worldId ? roomFor(song.worldId).id : 'studio'));
     }
-  }, [open, song?.tracks]);
+  }, [open, song?.tracks, song?.roomId, song?.worldId]);
 
   const activeTrackCount = Object.values(selectedTracks).filter(Boolean).length;
 
@@ -1343,12 +1346,39 @@ export function DownloadSheet({
       const selectedTrackIds = song.tracks
         .filter((t: any) => selectedTracks[t.id])
         .map((t: any) => t.id);
-      onBounceMp3(selectedTrackIds);
+      onBounceMp3(selectedTrackIds, exportRoomId);
     }
   };
 
   return (
     <Sheet open={open} onClose={onClose} title="Download">
+      <div className="mb-4">
+        <div className="micro font-semibold mb-2">Mastering Room Space</div>
+        <div className="grid grid-cols-2 gap-1.5">
+          {ROOMS.map(r => {
+            const active = r.id === exportRoomId;
+            return (
+              <button
+                key={r.id}
+                type="button"
+                onClick={() => setExportRoomId(r.id)}
+                className="py-2 px-2.5 text-left transition-all cursor-pointer rounded-[3px]"
+                style={{
+                  background: active ? 'var(--ink)' : 'var(--tone)',
+                  color: active ? 'var(--ground)' : 'var(--ink)',
+                  boxShadow: active ? 'none' : 'inset 0 0 0 1px color-mix(in srgb, var(--ink) 20%, transparent)',
+                }}
+              >
+                <div className="font-bold text-xs">{r.name}</div>
+                <div className="text-[10px] micro opacity-75 mt-0.5" style={{ lineHeight: 1.25 }}>
+                  {r.description}
+                </div>
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
       <div className="mb-5">
         <div className="flex items-center justify-between mb-2">
           <div className="micro font-semibold">Included instruments ({activeTrackCount}/{song?.tracks?.length || 0})</div>

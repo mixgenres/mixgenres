@@ -10,7 +10,7 @@ import { voiceChord, styleFor } from '../theory/voicing';
 import { bassNote, bassStyleForStyle, BassStyle, bassPitchBend } from '../generators/bass';
 import { makeMotif, melodyGate, melodyNote, treatmentFor, Motif, MelodyTreatment, melodyPitchBend, generateStyleOrnaments } from '../generators/melody';
 import { GM, kitVoicing, handPercVoicing, flavourForStyle, usesRideStyle, KitVoicing } from '../generators/drums';
-import { roomForStyle } from '../mixer';
+import { roomForStyle } from '../audio/mixer';
 import { decide, shapeOf, ArrangementDecision, SectionShape } from '../generators/arrangement';
 import type { TransitionType, TransitionEvent } from './grid';
 import { beatsPerBarOf, culturalCyclePosition, type NativeSlice, type RhythmicContext } from './grid';
@@ -24,8 +24,8 @@ import { normaliseDials } from '../metadata/dials';
 import { resolveArticulationStack, realizeArticulation, type ArticulationSpec } from '../theory/articulation';
 import type { GuestLens } from '../../types';
 
-import { applyEnsembleInteraction } from '../ensembleInteraction';
-import { resolveTuningSystem } from '../tuning';
+import { applyEnsembleInteraction } from '../performance/ensembleInteraction';
+import { resolveTuningSystem } from '../theory/tuning';
 
 /* --- event model ---------------------------------------------------------- */
 
@@ -61,6 +61,15 @@ export interface PerfCC {
   cc: number;
   /** 0..127 */
   value: number;
+}
+
+export interface PerfProgram {
+  time: number;
+  trackId: string;
+  program: number;
+  bankMSB?: number;
+  bankLSB?: number;
+  drum?: boolean;
 }
 
 export interface BarTime {

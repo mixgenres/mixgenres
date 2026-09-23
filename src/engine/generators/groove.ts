@@ -227,3 +227,17 @@ export function grooveSummary(worldId: string): { name: string; description: str
     description: `${contract.pulseModel}; ${contract.timeline}`,
   };
 }
+
+export function grooveFor(worldId: string): GrooveProfile {
+  const contract = contractForGenre(worldId);
+  return grooveForStyle({
+    id: worldId,
+    name: contract.groove.name,
+    contract,
+  } as any);
+}
+
+export const GROOVE_PROFILES: Record<string, GrooveProfile> = new Proxy({}, {
+  get: (_target, prop: string) => grooveFor(prop),
+});
+

@@ -256,9 +256,23 @@ export function assembleStylePatterns(styles: SongStyle[], patterns: MusicalPatt
     add(style.id);
     add(style.name);
   }
+
+  const resolveStaleId = (id: string): string => {
+    const cleanId = String(id).toLowerCase().normalize('NFKD').replace(/[^a-z0-9]+/gi, '-').replace(/^-|-$/g, '');
+    // Exact match first
+    if (styleIdBySlug.has(cleanId)) return styleIdBySlug.get(cleanId)!;
+    // Fuzzy substring match: e.g. "afro-son-montuno" includes "son-montuno" which maps to "salsa-son-montuno"
+    for (const [slug, styleId] of styleIdBySlug.entries()) {
+      if (slug.length >= 4 && (cleanId.includes(slug) || slug.includes(cleanId))) {
+        return styleId;
+      }
+    }
+    return id;
+  };
+
   for (const p of patterns) {
     p.styleIds = Array.from(new Set((p.styleIds ?? [])
-      .map(id => styleIdBySlug.get(String(id).toLowerCase().normalize('NFKD').replace(/[^a-z0-9]+/gi, '-').replace(/^-|-$/g, '')) ?? id)
+      .map(id => resolveStaleId(id))
       .filter(id => styles.some(style => style.id === id))));
   }
 

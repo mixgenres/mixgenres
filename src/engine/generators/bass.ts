@@ -1,8 +1,8 @@
-import { ParsedChord, nearestPc, pcOf, midiOf, KeyInfo } from '../theory';
-import { VoiceProfile, foldToRange } from '../instrumentProfile';
+import { ParsedChord, nearestPc, pcOf, midiOf, KeyInfo } from '../theory/theory';
+import { VoiceProfile, foldToRange } from '../theory/instrumentProfile';
 import { rand01 } from './groove';
 import type { ResolvedStyle } from '../../data/styles/schema';
-import type { RhythmicContext } from '../grid';
+import type { RhythmicContext } from '../sequencing/grid';
 
 export type BassStyle =
   | 'root'
@@ -237,4 +237,59 @@ export function bassStyleForStyle(style: ResolvedStyle, instrumentId: string, ro
   if (/sub-bass/.test(instrumentId)) return 'sub';
   return style.contract.bass.style;
 }
+
+export const BASS_STYLE_BY_WORLD: Record<string, BassStyle> = {
+  tango: 'riff',
+  salsa: 'tumbao',
+  timba: 'tumbao',
+  bachata: 'tumbao',
+  zouk: 'tumbao',
+  kizomba: 'sub',
+  flamenco: 'root',
+  jazz: 'walking',
+  swing: 'walking',
+  blues: 'walking',
+  rock: 'riff',
+  'rock-en-espanol': 'riff',
+  metal: 'riff',
+  'math-rock': 'riff',
+  funk: 'riff',
+  'hip-hop': 'sub',
+  electronic: 'octave',
+  country: 'rootFifth',
+  folk: 'rootFifth',
+  afrobeats: 'riff',
+  'j-pop': 'octave',
+  jpop: 'octave',
+  'chinese-rock': 'riff',
+  'fusion-ambient': 'sub',
+  'chinese-traditional': 'root',
+  'japanese-traditional': 'root',
+  'reggaeton-dembow': 'dembow',
+  cumbia: 'cumbia',
+  trova: 'root',
+  folclorico: 'rootFifth',
+  'house-techno': 'house',
+  'reggae-dub': 'reggae',
+  ska: 'walking',
+  'samba-bossa': 'samba',
+  brazilian: 'samba',
+  reggae: 'reggae',
+  house: 'house',
+  disco: 'octave',
+  gospel: 'rootFifth',
+  soul: 'riff',
+  'r-and-b': 'sub',
+  'latin-pop': 'tumbao',
+  reggaeton: 'dembow',
+  'drum-and-bass': 'sub',
+  industrial: 'riff',
+  'punk-hardcore': 'riff',
+  'uk-bass': 'sub',
+};
+
+export function bassStyleFor(worldId: string): BassStyle {
+  return BASS_STYLE_BY_WORLD[worldId] ?? 'root';
+}
+
 

@@ -16,7 +16,9 @@
     "test": "tsx scripts/test-filter.ts",
     "render-song": "tsx scripts/render-song.ts",
     "gain-calibration": "tsx scripts/gain-calibration.ts",
-    "verify-fixes": "tsx scripts/verify-fixes.ts"
+    "verify-fixes": "tsx scripts/verify-fixes.ts",
+    "test:audio": "tsx scripts/audio-regression-harness.ts",
+    "audit:instruments": "tsx scripts/audit-instruments.ts"
   },
   "dependencies": {
     "@breezystack/lamejs": "^1.2.7",
@@ -27,6 +29,7 @@
     "@vitejs/plugin-react": "^5.0.4",
     "lucide-react": "^0.546.0",
     "motion": "^12.23.24",
+    "node-web-audio-api": "^2.2.0",
     "react": "^19.0.1",
     "react-dom": "^19.0.1",
     "vite": "^6.2.3"

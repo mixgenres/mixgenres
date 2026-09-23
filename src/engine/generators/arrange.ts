@@ -1,16 +1,16 @@
 import { Song, Region, Track, Measure, SectionType, PatternVariant, MusicalPattern, SpotlightMode, SectionEnergy, GuestLens } from '../../types';
 import { GENRE_WORLDS_BY_ID, ALL_PATTERNS, PATTERNS_BY_ID, PATTERNS_BY_WORLD } from '../../data/genres';
 import { INSTRUMENTS_BY_ID, INSTRUMENT_CATALOG, instrument, instrumentPatternKinds } from '../../data/instruments';
-import { sliceBarNative } from '../grid';
+import { sliceBarNative } from '../sequencing/grid';
 import { progressionForSection, buildArrangementContext, ArrangementContext } from './arrangement';
-import { inferKey, parseChord, assertValidChordProgression, SHARP_NAMES } from '../theory';
+import { inferKey, parseChord, assertValidChordProgression, SHARP_NAMES } from '../theory/theory';
 import { voiceProfile } from '../theory/instrumentProfile';
 import { resolveStyle, StyleRuntime, StyleInfluence, SongStyle, getCanonicalStyle, getStyle } from '../../data/styles';
 import type { ApproachSpec } from '../../data/styles/contracts';
 import { suggestedPaletteForGenre } from '../../data/chordPalette';
-import { clampEnergy, energyForFormIntensity, energyOf, formIntensityForEnergy, shapeScalarOf } from '../energy';
+import { clampEnergy, energyForFormIntensity, energyOf, formIntensityForEnergy, shapeScalarOf } from '../metadata/energy';
 import { inferLensFromPattern } from './blend';
-import { DEFAULT_SONG_DIALS, normaliseDials, type SongDials } from '../dials';
+import { DEFAULT_SONG_DIALS, normaliseDials, type SongDials } from '../metadata/dials';
 
 export interface Voice extends Track {
   instrumentId: string;
@@ -304,7 +304,10 @@ export function patternStyleFit(
     return Number.NEGATIVE_INFINITY;
   }
 
-  const ids = new Set(pattern.styleIds ?? []);
+  // Filter styleIds to only those that actually exist in our registry.
+  // Stale styleIds from catalog rebuilds should be treated as unowned/unscoped fallback material
+  // rather than a "sibling style" mismatch which would veto the pattern.
+  const ids = new Set((pattern.styleIds ?? []).filter(id => !!getStyle(id)));
   if (ids.has(styleId)) return 100;
   if (stylePatternIds.require?.includes(pattern.id)) return 90;
   if (stylePatternIds.preferred?.includes(pattern.id)) return 70;
@@ -2169,4 +2172,14 @@ export function setSectionBpm(sheet: Sheet, regionId: string, bpm?: number): She
   });
   return rebuild({ ...sheet, regions });
 }
+
+export type PartDensity = 'sparse' | 'normal' | 'busy';
+
+export function setPartDensity(sheet: Sheet, regionId: string, density: PartDensity): Sheet {
+  const energyMap: Record<PartDensity, 1 | 3 | 5> = { sparse: 1, normal: 3, busy: 5 };
+  return setSectionEnergy(sheet, regionId, energyMap[density]);
+}
+
+export const setSectionDensity = setPartDensity;
+
 

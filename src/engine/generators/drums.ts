@@ -2,7 +2,7 @@ import type { ResolvedStyle } from '../../data/styles/schema';
 
 import { rand01 } from './groove';
 import type { DrumVoice } from '../../data/instruments';
-import type { TransitionEvent } from '../grid';
+import type { TransitionEvent } from '../sequencing/grid';
 
 export const GM = {
   kick: 36, kickTight: 35,
@@ -274,4 +274,19 @@ export function usesRideStyle(style: ResolvedStyle, sectionKind: string, intensi
   if (!style.contract.percussion.ride) return false;
   return /solo|head|instrumental/i.test(sectionKind) || intensity > 0.78;
 }
+
+export function flavourFor(instrumentId: string, worldId: string): KitFlavour {
+  if (['electronic', 'hip-hop', 'house-techno', 'house', 'drum-and-bass', 'reggaeton', 'reggaeton-dembow', 'industrial'].includes(worldId)) return 'electronic';
+  if (['jazz', 'swing', 'fusion-ambient'].includes(worldId)) return 'brush';
+  if (['folk', 'blues', 'country', 'gospel'].includes(worldId)) return 'roomy';
+  return 'acoustic';
+}
+
+export function usesRide(worldId: string, sectionKind: string, intensity: number): boolean {
+  if (['jazz', 'swing'].includes(worldId)) return true;
+  if (['blues', 'fusion-ambient'].includes(worldId) && intensity < 0.8) return true;
+  if (sectionKind === 'solo' && intensity > 0.6) return true;
+  return false;
+}
+
 

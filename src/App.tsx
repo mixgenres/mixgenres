@@ -25,12 +25,12 @@ import {
 import {
   startAudio, stopAudio, setMasterVolume, renderSongToMp3,
   createSink, setRoom, setTrackInstruments, setActiveWorld,
-} from './engine/audio';
-import { roomFor } from './engine/mixer';
+} from './engine/audio/audio';
+import { roomFor } from './engine/audio/mixer';
 import { ENERGY_LABELS } from './engine/metadata/energy';
 import { normaliseDials } from './engine/metadata/dials';
 import { compile } from './engine/sequencing/perform';
-import { Transport } from './engine/transport';
+import { Transport } from './engine/sequencing/transport';
 import { PATTERNS_BY_ID, cleanPatternName } from './data/genres';
 
 function loadInitialSong(): { song: SongSheet; isNew: boolean } {
@@ -137,15 +137,17 @@ export default function App() {
    * Renders the current song straight from its compiled event list to an
    * MP3, without playing it out loud or touching the transport at all.
    */
-  const handleBounceMp3 = async (selectedTrackIds: string[]) => {
+  const handleBounceMp3 = async (selectedTrackIds: string[], exportRoomId?: string) => {
     bounceCancelledRef.current = false;
     setIsBouncing(true);
     setBounceProgress(0);
+    const chosenRoomId = exportRoomId || songRef.current.roomId || roomFor(songRef.current.worldId).id;
     try {
       const blob = await renderSongToMp3(
         perfRef.current,
         {
           selectedTrackIds,
+          roomId: chosenRoomId,
           worldId: songRef.current.worldId,
           styleId: songRef.current.styleId,
         },
@@ -1550,9 +1552,9 @@ export default function App() {
           open={downloadOpen}
           onClose={() => setDownloadOpen(false)}
           song={song}
-          onBounceMp3={(selectedTrackIds) => {
+          onBounceMp3={(selectedTrackIds, exportRoomId) => {
             setDownloadOpen(false);
-            handleBounceMp3(selectedTrackIds);
+            handleBounceMp3(selectedTrackIds, exportRoomId);
           }}
         />
       )}

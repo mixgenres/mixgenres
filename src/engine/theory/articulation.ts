@@ -132,9 +132,9 @@ const SPECS: ArticulationSpec[] = [
     id: 'staccato',
     family: 'duration',
     aliases: [
-      'staccato', 'seco', 'picado', 'short', 'detached', 'punteado', 'stacc',
-      'pick', 'plucked', 'slap', 'martillo', 'cáscara', 'cascara', 'golpe seco',
-      'gated', 'down-pick', 'tamborim', 'bachi', 'alternate-pluck',
+      'staccato', 'seco', 'picado', 'short', 'muted', 'staccato-chop', 'percussive-strike', 'short', 'detached', 'punteado', 'stacc',
+      'pick', 'picked', 'flatpick', 'bright-pluck', 'pop-pluck', 'percussive-finger', 'percussive-scratch', 'plectrum', 'plucked', 'fingerstyle', 'slap', 'martillo', 'cáscara', 'cascara', 'golpe seco',
+      'gated', 'down-pick', 'down-picking', 'alternate-picking', 'tamborim', 'bachi', 'alternate-pluck', 'upstroke', 'offbeat chop', 'skank', 'taconeo', 'heel-toe', 'slap-tap', 'staccato-octaves',
     ],
     uses: ['note-length', 'velocity'],
     fidelity: 'faithful',
@@ -163,7 +163,7 @@ const SPECS: ArticulationSpec[] = [
   {
     id: 'legato',
     family: 'duration',
-    aliases: ['legato', 'ligado', 'slur', 'smooth', 'cantabile', 'sustain', 'sustained', 'drone', 'bellows phrasing'],
+    aliases: ['legato', 'ligado', 'slur', 'breath', 'phrase-end', 'smooth', 'cantabile', 'espressivo', 'sustain', 'sustained', 'drone', 'bellows phrasing'],
     uses: ['note-length'],
     fidelity: 'faithful',
     durationScale: 1.35,
@@ -183,7 +183,7 @@ const SPECS: ArticulationSpec[] = [
   {
     id: 'accent',
     family: 'attack',
-    aliases: ['accent', 'accented', 'marcato-light', '>', 'stab', 'campana', 'ride', 'bell', 'rim', 'paila'],
+    aliases: ['accent', 'accented', 'accented-arrival', 'marcato-light', 'martellato', 'palmas-fuertes', 'staccato-accent', 'horn-stab', 'stab', '>', 'stab', 'campana', 'ride', 'bell', 'rim', 'rimshot', 'paila', 'palmas-claras', 'cascara-side-stick', 'clave-strike', 'stabs'],
     uses: ['velocity'],
     fidelity: 'faithful',
     velocityScale: 1.22,
@@ -210,7 +210,7 @@ const SPECS: ArticulationSpec[] = [
   {
     id: 'ghost',
     family: 'attack',
-    aliases: ['ghost', 'ghosted', 'dead note', 'dead-note', 'muffled', 'muff', 'soft'],
+    aliases: ['ghost', 'ghosted', 'ghost-aware', 'dead note', 'dead-note', 'ghost-note', 'palmas-sordas', 'dead-note', 'muffled', 'muff', 'soft'],
     uses: ['velocity', 'note-length'],
     fidelity: 'faithful',
     velocityScale: 0.34,
@@ -252,7 +252,7 @@ const SPECS: ArticulationSpec[] = [
   {
     id: 'scoop',
     family: 'pitch-gesture',
-    aliases: ['scoop', 'doit-up', 'lift-in'],
+    aliases: ['scoop', 'doit-up', 'lift-in', 'fall-off', 'subito-piano'],
     uses: ['pitch-bend'],
     fidelity: 'faithful',
     bend: [
@@ -263,7 +263,7 @@ const SPECS: ArticulationSpec[] = [
   {
     id: 'fall',
     family: 'pitch-gesture',
-    aliases: ['fall', 'drop', 'doit-down', 'caida'],
+    aliases: ['fall', 'drop', 'doit-down', 'caida', 'fall-off', 'subito-piano'],
     uses: ['pitch-bend'],
     fidelity: 'faithful',
     bend: [
@@ -298,7 +298,7 @@ const SPECS: ArticulationSpec[] = [
   {
     id: 'portamento',
     family: 'pitch-gesture',
-    aliases: ['portamento', 'slide', 'glissando', 'gliss', 'hua yin'],
+    aliases: ['portamento', 'slide', 'glissando', 'gliss', 'hua yin', 'warm-sub-slide'],
     uses: ['note-length'],
     fidelity: 'faithful',
     durationScale: 1.15,
@@ -346,7 +346,7 @@ const SPECS: ArticulationSpec[] = [
   {
     id: 'alzapua',
     family: 'reiteration',
-    aliases: ['alzapúa', 'alzapua', 'thumb-sweep'],
+    aliases: ['alzapúa', 'alzapua', 'thumb-sweep', 'thumb-apoyando', 'pulgar-apoyando'],
     uses: ['extra-notes', 'velocity'],
     fidelity: 'approximate',
     caveat: 'The performance layer realizes the thumb sweep as alternating attacks while the Faust plucked-string model changes excitation emphasis.',
@@ -410,7 +410,7 @@ const SPECS: ArticulationSpec[] = [
   {
     id: 'pizzicato',
     family: 'timbre',
-    aliases: ['pizzicato', 'pizz', 'plucked'],
+    aliases: ['pizzicato', 'pizz', 'plucked', 'tenuto-pizz', 'sustained-pizz', 'sustained-pizz'],
     uses: ['preset-swap', 'note-length'],
     fidelity: 'faithful',
     presetTag: 'pizzicato',
@@ -419,7 +419,7 @@ const SPECS: ArticulationSpec[] = [
   {
     id: 'arco',
     family: 'timbre',
-    aliases: ['arco', 'bowed'],
+    aliases: ['arco', 'bowed', 'detaché', 'detache', 'spiccato', 'sul-ponticello', 'sul-tasto'],
     uses: ['preset-swap', 'note-length'],
     fidelity: 'faithful',
     presetTag: 'arco',
@@ -429,7 +429,7 @@ const SPECS: ArticulationSpec[] = [
   {
     id: 'harmonic',
     family: 'timbre',
-    aliases: ['harmonic', 'harmonics', 'fan yin', 'flageolet'],
+    aliases: ['harmonic', 'harmonics', 'fan yin', 'flageolet', 'natural-harmonic'],
     uses: ['preset-swap', 'extra-notes', 'velocity'],
     fidelity: 'approximate',
     caveat: 'Sounded an octave (or twelfth) up at low velocity; without a harmonics preset the timbre is the open string.',
@@ -440,7 +440,7 @@ const SPECS: ArticulationSpec[] = [
   {
     id: 'brushed',
     family: 'timbre',
-    aliases: ['brush', 'brushed', 'sweep', 'escobilla', 'brushes'],
+    aliases: ['brush', 'brushed', 'sweep', 'escobilla', 'brushes', 'brush-up', 'scrape', 'brush-sweep', 'brush-tap'],
     uses: ['preset-swap', 'velocity'],
     fidelity: 'approximate',
     caveat: 'Brush textures rely on the kit having brush samples; otherwise a soft rim/hat stands in.',
@@ -450,7 +450,7 @@ const SPECS: ArticulationSpec[] = [
   {
     id: 'chicharra',
     family: 'timbre',
-    aliases: ['chicharra', 'latigo', 'látigo', 'tambor', 'golpe', 'zapateado'],
+    aliases: ['chicharra', 'latigo', 'látigo', 'tambor', 'golpe', 'zapateado', 'golpe-tap', 'golpe/corte'],
     uses: ['preset-swap', 'velocity', 'extra-notes'],
     fidelity: 'symbolic',
     caveat: 'The current physical model renders the gesture as a body/percussive excitation. It is intentionally marked symbolic until a measured instrument-specific model is added.',
@@ -460,7 +460,7 @@ const SPECS: ArticulationSpec[] = [
   {
     id: 'low-tone',
     family: 'timbre',
-    aliases: ['bass', 'bass tone', 'bajo', 'low tone', 'heel', 'surdo-open'],
+    aliases: ['bass', 'bass tone', 'bajo', 'low tone', 'heel', 'surdo-open', 'abierto-open'],
     uses: ['velocity', 'note-length'],
     fidelity: 'faithful',
     // The low open stroke on a hand drum: the drum's own `low` key, struck
@@ -505,7 +505,7 @@ const SPECS: ArticulationSpec[] = [
   {
     id: 'pesante',
     family: 'dynamic',
-    aliases: ['pesante', 'pesado', 'heavy', 'weighted'],
+    aliases: ['pesante', 'pesado', 'heavy', 'heavy', 'weighted'],
     uses: ['velocity', 'note-length', 'onset-offset'],
     fidelity: 'faithful',
     velocityScale: 1.14,

@@ -4,7 +4,7 @@
 import { writeFileSync } from 'fs';
 import { makeSheet } from '../src/engine/generators/arrange';
 import { compile } from '../src/engine/sequencing/perform';
-import { renderPerformanceToMp3 } from '../src/engine/offlineRender';
+import { renderPerformanceToMp3 } from '../src/engine/audio/offlineRender';
 
 async function main() {
   const genreId = process.argv[2] || 'salsa';

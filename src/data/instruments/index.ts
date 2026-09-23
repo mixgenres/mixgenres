@@ -1,0 +1,483 @@
+import type { InstrumentDef, InstrumentFamily, InstrumentTechniqueProfile } from './types';
+import { bandoneon } from './definitions/bandoneon';
+import { accordion } from './definitions/accordion';
+import { piano } from './definitions/piano';
+import { fm_ep } from './definitions/fm_ep';
+import { rhodes } from './definitions/rhodes';
+import { clavinet } from './definitions/clavinet';
+import { organ } from './definitions/organ';
+import { rock_organ } from './definitions/rock_organ';
+import { harpsichord } from './definitions/harpsichord';
+import { celeste } from './definitions/celeste';
+import { glockenspiel } from './definitions/glockenspiel';
+import { crystal } from './definitions/crystal';
+import { vibraphone } from './definitions/vibraphone';
+import { marimba } from './definitions/marimba';
+import { music_box } from './definitions/music_box';
+import { xylophone } from './definitions/xylophone';
+import { tubular_bells } from './definitions/tubular_bells';
+import { dulcimer } from './definitions/dulcimer';
+import { guitar } from './definitions/guitar';
+import { spanish_guitar } from './definitions/spanish_guitar';
+import { acoustic_guitar } from './definitions/acoustic_guitar';
+import { steel_guitar } from './definitions/steel_guitar';
+import { i_12_string_guitar } from './definitions/12_string_guitar';
+import { electric_guitar } from './definitions/electric_guitar';
+import { jazz_guitar } from './definitions/jazz_guitar';
+import { distortion_guitar } from './definitions/distortion_guitar';
+import { muted_guitar } from './definitions/muted_guitar';
+import { guitar_harmonics } from './definitions/guitar_harmonics';
+import { requinto } from './definitions/requinto';
+import { overdrive_guitar } from './definitions/overdrive_guitar';
+import { tres } from './definitions/tres';
+import { cuatro } from './definitions/cuatro';
+import { cavaquinho } from './definitions/cavaquinho';
+import { charango } from './definitions/charango';
+import { oud } from './definitions/oud';
+import { bouzouki } from './definitions/bouzouki';
+import { harp } from './definitions/harp';
+import { celtic_harp } from './definitions/celtic_harp';
+import { concertina } from './definitions/concertina';
+import { guitarron } from './definitions/guitarron';
+import { mandolin } from './definitions/mandolin';
+import { banjo } from './definitions/banjo';
+import { sitar } from './definitions/sitar';
+import { shamisen } from './definitions/shamisen';
+import { kora } from './definitions/kora';
+import { berimbau } from './definitions/berimbau';
+import { sh_ } from './definitions/sh_';
+import { guqin } from './definitions/guqin';
+import { pipa } from './definitions/pipa';
+import { guzheng } from './definitions/guzheng';
+import { jarana } from './definitions/jarana';
+import { koto } from './definitions/koto';
+import { kalimba } from './definitions/kalimba';
+import { bass } from './definitions/bass';
+import { upright_bass } from './definitions/upright_bass';
+import { slap_bass } from './definitions/slap_bass';
+import { acoustic_bass } from './definitions/acoustic_bass';
+import { pick_bass } from './definitions/pick_bass';
+import { fretless_bass } from './definitions/fretless_bass';
+import { sub_bass } from './definitions/sub_bass';
+import { synth } from './definitions/synth';
+import { violin } from './definitions/violin';
+import { viola } from './definitions/viola';
+import { cello } from './definitions/cello';
+import { strings } from './definitions/strings';
+import { slow_strings } from './definitions/slow_strings';
+import { tremolo_strings } from './definitions/tremolo_strings';
+import { orchestral_harp } from './definitions/orchestral_harp';
+import { pizz_strings } from './definitions/pizz_strings';
+import { fiddle } from './definitions/fiddle';
+import { erhu } from './definitions/erhu';
+import { jinghu } from './definitions/jinghu';
+import { flute } from './definitions/flute';
+import { tin_whistle } from './definitions/tin_whistle';
+import { low_whistle } from './definitions/low_whistle';
+import { bagpipes } from './definitions/bagpipes';
+import { uilleann_pipes } from './definitions/uilleann_pipes';
+import { clarinet } from './definitions/clarinet';
+import { quena } from './definitions/quena';
+import { harmonica } from './definitions/harmonica';
+import { soprano_sax } from './definitions/soprano_sax';
+import { alto_sax } from './definitions/alto_sax';
+import { tenor_sax } from './definitions/tenor_sax';
+import { bari_sax } from './definitions/bari_sax';
+import { oboe } from './definitions/oboe';
+import { bassoon } from './definitions/bassoon';
+import { piccolo } from './definitions/piccolo';
+import { pan_flute } from './definitions/pan_flute';
+import { shakuhachi } from './definitions/shakuhachi';
+import { xiao } from './definitions/xiao';
+import { dizi } from './definitions/dizi';
+import { ryuteki } from './definitions/ryuteki';
+import { hichiriki } from './definitions/hichiriki';
+import { english_horn } from './definitions/english_horn';
+import { recorder } from './definitions/recorder';
+import { ocarina } from './definitions/ocarina';
+import { trumpet } from './definitions/trumpet';
+import { muted_trumpet } from './definitions/muted_trumpet';
+import { trombone } from './definitions/trombone';
+import { horn_section } from './definitions/horn_section';
+import { brass } from './definitions/brass';
+import { french_horn } from './definitions/french_horn';
+import { tuba } from './definitions/tuba';
+import { synth_brass } from './definitions/synth_brass';
+import { voice } from './definitions/voice';
+import { choir } from './definitions/choir';
+import { backing_vocals } from './definitions/backing_vocals';
+import { congas } from './definitions/congas';
+import { bongos } from './definitions/bongos';
+import { zabumba } from './definitions/zabumba';
+import { bombo } from './definitions/bombo';
+import { bata } from './definitions/bata';
+import { cajon } from './definitions/cajon';
+import { timbales } from './definitions/timbales';
+import { surdo } from './definitions/surdo';
+import { pandeiro } from './definitions/pandeiro';
+import { bodhran } from './definitions/bodhran';
+import { bones } from './definitions/bones';
+import { tamborim } from './definitions/tamborim';
+import { darbuka } from './definitions/darbuka';
+import { tabla } from './definitions/tabla';
+import { log_drum } from './definitions/log_drum';
+import { cumbia_drum } from './definitions/cumbia_drum';
+import { bombo_andino } from './definitions/bombo_andino';
+import { vihuela } from './definitions/vihuela';
+import { tambora } from './definitions/tambora';
+import { tambor_alegre } from './definitions/tambor_alegre';
+import { guacharaca } from './definitions/guacharaca';
+import { bombo_leguero } from './definitions/bombo_leguero';
+import { gongs } from './definitions/gongs';
+import { cowbell } from './definitions/cowbell';
+import { agogo } from './definitions/agogo';
+import { claves } from './definitions/claves';
+import { woodblock } from './definitions/woodblock';
+import { triangle } from './definitions/triangle';
+import { maracas } from './definitions/maracas';
+import { shaker } from './definitions/shaker';
+import { guiro } from './definitions/guiro';
+import { cabasa } from './definitions/cabasa';
+import { tambourine } from './definitions/tambourine';
+import { castanets } from './definitions/castanets';
+import { palmas } from './definitions/palmas';
+import { ride } from './definitions/ride';
+import { steel_drums } from './definitions/steel_drums';
+import { taiko } from './definitions/taiko';
+import { paigu } from './definitions/paigu';
+import { kane } from './definitions/kane';
+import { zapateado } from './definitions/zapateado';
+import { drums } from './definitions/drums';
+import { brush_kit } from './definitions/brush_kit';
+import { kick } from './definitions/kick';
+import { snare } from './definitions/snare';
+import { hats } from './definitions/hats';
+import { acid_303 } from './definitions/acid_303';
+import { noise_sweep } from './definitions/noise_sweep';
+import { dub_echo } from './definitions/dub_echo';
+import { turntable } from './definitions/turntable';
+import { melodica } from './definitions/melodica';
+import { saw_lead } from './definitions/saw_lead';
+import { square_lead } from './definitions/square_lead';
+import { warm_pad } from './definitions/warm_pad';
+import { synth_strings } from './definitions/synth_strings';
+import { bass_lead } from './definitions/bass_lead';
+import { polysynth } from './definitions/polysynth';
+import { halo_pad } from './definitions/halo_pad';
+import { sweep_pad } from './definitions/sweep_pad';
+
+export type { InstrumentDef, InstrumentFamily, DrumVoice, InstrumentTechniqueProfile } from './types';
+
+export const INSTRUMENT_CATALOG: InstrumentDef[] = [
+  bandoneon,
+  accordion,
+  piano,
+  fm_ep,
+  rhodes,
+  clavinet,
+  organ,
+  rock_organ,
+  harpsichord,
+  celeste,
+  glockenspiel,
+  crystal,
+  vibraphone,
+  marimba,
+  music_box,
+  xylophone,
+  tubular_bells,
+  dulcimer,
+  guitar,
+  spanish_guitar,
+  acoustic_guitar,
+  steel_guitar,
+  i_12_string_guitar,
+  electric_guitar,
+  jazz_guitar,
+  distortion_guitar,
+  muted_guitar,
+  guitar_harmonics,
+  requinto,
+  overdrive_guitar,
+  tres,
+  cuatro,
+  cavaquinho,
+  charango,
+  oud,
+  bouzouki,
+  harp,
+  celtic_harp,
+  concertina,
+  guitarron,
+  mandolin,
+  banjo,
+  sitar,
+  shamisen,
+  kora,
+  berimbau,
+  sh_,
+  guqin,
+  pipa,
+  guzheng,
+  jarana,
+  koto,
+  kalimba,
+  bass,
+  upright_bass,
+  slap_bass,
+  acoustic_bass,
+  pick_bass,
+  fretless_bass,
+  sub_bass,
+  synth,
+  violin,
+  viola,
+  cello,
+  strings,
+  slow_strings,
+  tremolo_strings,
+  orchestral_harp,
+  pizz_strings,
+  fiddle,
+  erhu,
+  jinghu,
+  flute,
+  tin_whistle,
+  low_whistle,
+  bagpipes,
+  uilleann_pipes,
+  clarinet,
+  quena,
+  harmonica,
+  soprano_sax,
+  alto_sax,
+  tenor_sax,
+  bari_sax,
+  oboe,
+  bassoon,
+  piccolo,
+  pan_flute,
+  shakuhachi,
+  xiao,
+  dizi,
+  ryuteki,
+  hichiriki,
+  english_horn,
+  recorder,
+  ocarina,
+  trumpet,
+  muted_trumpet,
+  trombone,
+  horn_section,
+  brass,
+  french_horn,
+  tuba,
+  synth_brass,
+  voice,
+  choir,
+  backing_vocals,
+  congas,
+  bongos,
+  zabumba,
+  bombo,
+  bata,
+  cajon,
+  timbales,
+  surdo,
+  pandeiro,
+  bodhran,
+  bones,
+  tamborim,
+  darbuka,
+  tabla,
+  log_drum,
+  cumbia_drum,
+  bombo_andino,
+  vihuela,
+  tambora,
+  tambor_alegre,
+  guacharaca,
+  bombo_leguero,
+  gongs,
+  cowbell,
+  agogo,
+  claves,
+  woodblock,
+  triangle,
+  maracas,
+  shaker,
+  guiro,
+  cabasa,
+  tambourine,
+  castanets,
+  palmas,
+  ride,
+  steel_drums,
+  taiko,
+  paigu,
+  kane,
+  zapateado,
+  drums,
+  brush_kit,
+  kick,
+  snare,
+  hats,
+  acid_303,
+  noise_sweep,
+  dub_echo,
+  turntable,
+  melodica,
+  saw_lead,
+  square_lead,
+  warm_pad,
+  synth_strings,
+  bass_lead,
+  polysynth,
+  halo_pad,
+  sweep_pad,
+];
+
+export const INSTRUMENTS_BY_ID: Record<string, InstrumentDef> = Object.fromEntries(INSTRUMENT_CATALOG.map(i => [i.id, i]));
+INSTRUMENTS_BY_ID['nylon-guitar'] = INSTRUMENTS_BY_ID['guitar'];
+
+export const FAMILY_LABELS: Record<InstrumentFamily, string> = {
+  'bellows-and-keys': 'Bellows & keys',
+  plucked: 'Plucked & strung',
+  bowed: 'Bowed',
+  winds: 'Winds',
+  brass: 'Brass',
+  voice: 'Voices',
+  'hand-drums': 'Hand drums',
+  'metal-and-wood': 'Metal & wood',
+  kit: 'Kit pieces',
+  electronic: 'Electronic',
+};
+
+export const FAMILY_ORDER: InstrumentFamily[] = [
+  'bellows-and-keys', 'plucked', 'bowed', 'winds', 'brass',
+  'voice', 'hand-drums', 'metal-and-wood', 'kit', 'electronic',
+];
+
+export function instrument(id: string): InstrumentDef {
+  return INSTRUMENTS_BY_ID[id] ?? INSTRUMENT_CATALOG[0];
+}
+
+/** Pattern vocabulary aliases. Genre pattern data uses musical roles/kinds
+ * (e.g. "keys", "guitar", "percussion") rather than catalog IDs. Keep that
+ * vocabulary separate from the concrete GeneralUser patch selected by a track. */
+export function instrumentPatternKinds(id: string): string[] {
+  const d = INSTRUMENTS_BY_ID[id];
+  if (!d) return [];
+  const out = new Set<string>([id]);
+  if (d.voicing === 'bass') out.add('bass');
+  if (d.voicing === 'unpitched') out.add('percussion');
+  if (d.voicing === 'single') { out.add('melody'); out.add('lead'); }
+  if (d.voicing === 'chord') out.add('harmony');
+  if (d.family === 'kit') { out.add('drums'); out.add('percussion'); out.add('pulse'); }
+  if (d.family === 'plucked') { out.add('guitar'); out.add('plucked'); }
+  if (d.family === 'bowed') { out.add('strings'); if (id === 'violin' || id === 'fiddle') out.add('violin'); if (id === 'cello') out.add('cello'); }
+  if (d.family === 'winds' && ['soprano-sax', 'alto-sax', 'tenor-sax', 'bari-sax'].includes(id)) out.add('sax');
+  if (id === 'flute' || id === 'dizi' || id === 'xiao' || id === 'tin-whistle' || id === 'low-whistle' || id === 'quena') { out.add('flute'); out.add('lead'); }
+  if (d.family === 'brass') out.add('brass');
+  if (d.family === 'voice') { out.add('voice'); out.add('coro'); }
+  if (id === 'backing-vocals' || id === 'choir') out.add('coro');
+  if (d.family === 'bellows-and-keys') { out.add('keys'); if (id.includes('accordion') || id.includes('concertina')) out.add('accordion'); }
+  if (d.family === 'electronic') { out.add('synth'); out.add('texture'); }
+  if (id === 'piano') { out.add('piano'); out.add('keys'); }
+  if (id === 'rhodes') { out.add('piano'); out.add('keys'); }
+  if (id === 'organ') { out.add('organ'); out.add('keys'); }
+  if (id === 'electric-guitar' || id.includes('guitar')) out.add('electric-guitar');
+  if (id === 'congas') out.add('congas');
+  if (id === 'bongos') out.add('bongos');
+  if (id === 'timbales') out.add('timbales');
+  if (id === 'guiro' || id === 'guacharaca') { out.add('guiro'); out.add('guacharaca'); }
+  if (id === 'pandeiro' || id === 'tamborim') { out.add('hand-percussion'); out.add('pandeiro'); }
+  if (id === 'bodhran') { out.add('bodhran'); out.add('percussion'); }
+  if (id === 'cajon') { out.add('cajon'); out.add('percussion'); }
+  if (id === 'palmas' || id === 'zapateado') { out.add('palmas'); out.add('percussion'); }
+  if (id === 'tambora') { out.add('tambora'); out.add('percussion'); }
+  if (id === 'taiko' || id === 'kane' || id === 'paigu') { out.add('percussion'); }
+  if (id === 'tabla') { out.add('tabla'); out.add('percussion'); }
+  if (id === 'shaker') { out.add('shaker'); out.add('percussion'); }
+  if (id === 'log-drum') { out.add('log-drum'); out.add('percussion'); out.add('bass'); }
+  if (id === 'uilleann-pipes' || id === 'bagpipes') { out.add('uilleann-pipes'); out.add('bagpipes'); out.add('lead'); }
+  if (id === 'celtic-harp' || id === 'harp') { out.add('celtic-harp'); out.add('harp'); out.add('harmony'); }
+  if (id === 'tres') { out.add('tres'); out.add('guitar'); }
+  if (id === 'charango') { out.add('charango'); out.add('guitar'); }
+  if (id === 'requinto') { out.add('requinto'); out.add('guitar'); }
+  if (id === 'guitarron') { out.add('guitarron'); out.add('bass'); }
+  if (id === 'erhu') { out.add('erhu'); out.add('strings'); out.add('lead'); }
+  if (id === 'pipa') { out.add('pipa'); out.add('plucked'); out.add('lead'); }
+  if (id === 'guzheng' || id === 'guqin') { out.add('guzheng'); out.add('plucked'); out.add('harmony'); }
+  if (id === 'koto') { out.add('koto'); out.add('plucked'); out.add('harmony'); }
+  if (id === 'shamisen') { out.add('shamisen'); out.add('plucked'); out.add('lead'); }
+  if (id === 'shakuhachi') { out.add('shakuhachi'); out.add('flute'); out.add('lead'); }
+  return [...out];
+}
+
+export function isPercussive(id: string): boolean {
+  const def = INSTRUMENTS_BY_ID[id];
+  return !!def && (def.kit === true || def.drum !== undefined);
+}
+
+export function cleanInstrumentName(name: string): string {
+  return name
+    .replace(/\s*\([^)]*GM[^)]*\)/gi, '')
+    .replace(/\s*\([^)]*approx[^)]*\)/gi, '')
+    .replace(/\s*\(GM approximation\)/gi, '')
+    .replace(/GM approximation/gi, '')
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .trim();
+}
+
+/**
+ * Instruments a world tends to reach for first, by world id.
+ *
+ * Keys must be live genre ids. Entries for removed or renamed genres are dead
+ * configuration that reads as support for a genre the catalog no longer has;
+ * `validate.ts` fails the build if any appear.
+ */
+export const WORLD_INSTRUMENT_HINTS: Record<string, string[]> = {
+  // The first five are the default demo: a compact, identity-carrying ensemble.
+  // Remaining instruments stay available through the picker for fuller arrangements.
+  tango: ['bandoneon', 'piano', 'upright-bass', 'violin', 'cello'],
+  salsa: ['piano', 'bass', 'congas', 'timbales', 'trumpet'],
+  timba: ['piano', 'bass', 'timbales', 'congas', 'trombone'],
+  // Flamenco core ensemble only. Palo-specific extras (castanets, flute, bass)
+  // belong to individual styles rather than the genre-wide starter pack.
+  flamenco: ['spanish-guitar', 'voice', 'palmas', 'cajon', 'zapateado'],
+  jazz: ['piano', 'upright-bass', 'brush-kit', 'tenor-sax', 'jazz-guitar'],
+  blues: ['electric-guitar', 'bass', 'drums', 'piano', 'harmonica'],
+  rock: ['overdrive-guitar', 'bass', 'drums', 'electric-guitar', 'organ'],
+  zouk: ['sub-bass', 'drums', 'rhodes', 'electric-guitar', 'warm-pad'],
+  kizomba: ['sub-bass', 'drums', 'rhodes', 'electric-guitar', 'warm-pad'],
+  funk: ['slap-bass', 'drums', 'clavinet', 'electric-guitar', 'horn-section'],
+  metal: ['distortion-guitar', 'overdrive-guitar', 'bass', 'drums', 'guitar-harmonics'],
+  bachata: ['requinto', 'guitar', 'bass', 'bongos', 'guiro'],
+  folk: ['guitar', 'fiddle', 'upright-bass', 'bodhran', 'mandolin'],
+  'hip-hop': ['drums', 'sub-bass', 'piano', 'turntable', 'warm-pad'],
+  electronic: ['drums', 'bass-lead', 'warm-pad', 'saw-lead', 'polysynth'],
+  country: ['steel-guitar', 'upright-bass', 'brush-kit', 'fiddle', 'banjo'],
+  swing: ['upright-bass', 'drums', 'piano', 'tenor-sax', 'jazz-guitar'],
+  afrobeats: ['sub-bass', 'log-drum', 'electric-guitar', 'shaker', 'tenor-sax'],
+  cumbia: ['bass', 'tambora', 'accordion', 'guitar', 'guacharaca'],
+  ska: ['bass', 'drums', 'electric-guitar', 'organ', 'trumpet'],
+};
+
+
+/** Return the authored technique profile for an instrument, with a safe fallback. */
+export function techniqueProfile(id: string): InstrumentTechniqueProfile {
+  return INSTRUMENTS_BY_ID[id]?.techniques ?? { articulations: [], techniqueMethods: [], playingStyles: [] };
+}
+
+/** Pick style-specific idiomatic articulations without inventing unsupported gestures. */
+export function genreTechniquesForInstrument(id: string, styleId?: string): string[] {
+  const p = techniqueProfile(id);
+  if (!styleId) return p.articulations;
+  const key = styleId.toLowerCase();
+  for (const [style, arts] of Object.entries(p.genreTechniques ?? {})) {
+    if (key === style || key.includes(style) || style.includes(key)) return arts.filter(a => p.articulations.includes(a));
+  }
+  return p.articulations;
+}

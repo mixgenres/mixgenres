@@ -2,7 +2,7 @@ import { writeFileSync } from 'fs';
 import { execSync } from 'child_process';
 import { makeSheet } from '../src/engine/generators/arrange';
 import { compile } from '../src/engine/sequencing/perform';
-import { renderPerformanceToMp3 } from '../src/engine/offlineRender';
+import { renderPerformanceToMp3 } from '../src/engine/audio/offlineRender';
 
 function volumedetectMeanDb(path: string): number {
   const out = execSync(`ffmpeg -i ${path} -af volumedetect -f null - 2>&1`).toString();
