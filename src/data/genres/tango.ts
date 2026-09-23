@@ -19,7 +19,8 @@ export const TANGO_WORLD: GenreWorld = {
         "bandoneon",
         "violin",
         "piano",
-        "upright-bass"
+        "upright-bass",
+        "voice"
       ],
       "preferredMeters": [
         "4/4",
@@ -229,7 +230,8 @@ export const TANGO_WORLD: GenreWorld = {
         "violin",
         "bandoneon",
         "piano",
-        "upright-bass"
+        "upright-bass",
+        "voice"
       ],
       "preferredMeters": [
         "3/4"
@@ -299,8 +301,7 @@ export const TANGO_WORLD: GenreWorld = {
         "sub-bass",
         "drums",
         "sampler",
-        "acoustic-guitar",
-        "synth"
+        "acoustic-guitar"
       ],
       "preferredMeters": [
         "4/4"

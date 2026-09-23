@@ -18,10 +18,9 @@ export const CUMBIA_WORLD: GenreWorld = {
       "characteristicInstruments": [
         "accordion",
         "drums",
-        "percussion",
+        "hand-percussion",
         "bass",
-        "flute",
-        "voice"
+        "flute"
       ],
       "preferredMeters": [
         "2/4"
@@ -101,8 +100,7 @@ export const CUMBIA_WORLD: GenreWorld = {
         "drums",
         "bass",
         "guiro",
-        "sampler",
-        "voice"
+        "sampler"
       ],
       "preferredMeters": [
         "2/4"
@@ -182,8 +180,7 @@ export const CUMBIA_WORLD: GenreWorld = {
         "synth",
         "bass",
         "timbales",
-        "guiro",
-        "bongos"
+        "guiro"
       ],
       "preferredMeters": [
         "2/4"
@@ -264,9 +261,7 @@ export const CUMBIA_WORLD: GenreWorld = {
         "brass",
         "piano",
         "bass",
-        "timbales",
-        "congas",
-        "voice"
+        "timbales"
       ],
       "preferredMeters": [
         "2/4"
@@ -345,8 +340,7 @@ export const CUMBIA_WORLD: GenreWorld = {
         "bass",
         "guiro",
         "drums",
-        "voice",
-        "sampler"
+        "voice"
       ],
       "preferredMeters": [
         "2/4"
@@ -426,8 +420,7 @@ export const CUMBIA_WORLD: GenreWorld = {
         "sampler",
         "sub-bass",
         "guiro",
-        "flute",
-        "drums"
+        "flute"
       ],
       "preferredMeters": [
         "2/4",
@@ -505,11 +498,10 @@ export const CUMBIA_WORLD: GenreWorld = {
       "description": "Romantic • Guitar-led • Melodic\nAcoustic guitar",
       "characteristicInstruments": [
         "accordion",
-        "guitar",
+        "acoustic-guitar",
         "bass",
         "timbales",
-        "guiro",
-        "voice"
+        "guiro"
       ],
       "preferredMeters": [
         "2/4"
@@ -588,8 +580,7 @@ export const CUMBIA_WORLD: GenreWorld = {
         "trumpet",
         "clarinet",
         "drums",
-        "percussion",
-        "bass"
+        "hand-percussion"
       ],
       "preferredMeters": [
         "2/4"

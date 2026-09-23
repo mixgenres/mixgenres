@@ -20,8 +20,7 @@ export const SWING_WORLD: GenreWorld = {
         "clarinet",
         "piano",
         "upright-bass",
-        "drums",
-        "guitar"
+        "drums"
       ],
       "preferredMeters": [
         "4/4"
@@ -94,7 +93,8 @@ export const SWING_WORLD: GenreWorld = {
         "acoustic-guitar",
         "violin",
         "upright-bass",
-        "clarinet"
+        "clarinet",
+        "voice"
       ],
       "preferredMeters": [
         "4/4"
@@ -178,9 +178,7 @@ export const SWING_WORLD: GenreWorld = {
         "brass",
         "piano",
         "upright-bass",
-        "drums",
-        "electric-guitar",
-        "voice"
+        "drums"
       ],
       "preferredMeters": [
         "4/4"

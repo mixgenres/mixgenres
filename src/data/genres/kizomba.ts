@@ -18,10 +18,9 @@ export const KIZOMBA_WORLD: GenreWorld = {
       "characteristicInstruments": [
         "bass",
         "drums",
-        "guitar",
+        "acoustic-guitar",
         "synth",
-        "percussion",
-        "voice"
+        "hand-percussion"
       ],
       "preferredMeters": [
         "4/4"
@@ -96,11 +95,10 @@ export const KIZOMBA_WORLD: GenreWorld = {
       "era": "1950s–Present",
       "description": "Upbeat • Bouncy • Roots\nJoyful fast-paced",
       "characteristicInstruments": [
-        "guitar",
+        "electric-guitar",
         "bass",
         "drums",
         "congas",
-        "dikanza",
         "voice"
       ],
       "preferredMeters": [
@@ -261,7 +259,8 @@ export const KIZOMBA_WORLD: GenreWorld = {
         "sub-bass",
         "drums",
         "synth",
-        "sampler"
+        "sampler",
+        "voice"
       ],
       "preferredMeters": [
         "4/4"
@@ -314,7 +313,8 @@ export const KIZOMBA_WORLD: GenreWorld = {
         "sub-bass",
         "drums",
         "synth",
-        "sampler"
+        "sampler",
+        "voice"
       ],
       "preferredMeters": [
         "4/4"
@@ -368,11 +368,10 @@ export const KIZOMBA_WORLD: GenreWorld = {
       "era": "1980s–Present",
       "description": "Smooth • Walking • Classic\nRefined, flowing",
       "characteristicInstruments": [
-        "guitar",
+        "acoustic-guitar",
         "bass",
-        "piano",
         "drums",
-        "brass",
+        "piano",
         "voice"
       ],
       "preferredMeters": [
@@ -528,10 +527,10 @@ export const KIZOMBA_WORLD: GenreWorld = {
       "era": "1970s–Present",
       "description": "Slow • Nostalgic • Grounded\nDeep, soulful",
       "characteristicInstruments": [
-        "guitar",
+        "acoustic-guitar",
         "acoustic-bass",
-        "percussion",
         "dikanza",
+        "hand-percussion",
         "voice"
       ],
       "preferredMeters": [

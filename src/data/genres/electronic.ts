@@ -21,8 +21,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
         "drums",
         "bass",
         "sampler",
-        "guitar",
-        "piano"
+        "acoustic-guitar"
       ],
       "preferredMeters": [
         "4/4"
@@ -102,8 +101,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
         "bass",
         "sampler",
         "synth",
-        "strings",
-        "voice"
+        "strings"
       ],
       "preferredMeters": [
         "4/4"
@@ -183,7 +181,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
         "synth",
         "drums",
         "sub-bass",
-        "modular-synth"
+        "voice"
       ],
       "preferredMeters": [
         "4/4",
@@ -334,8 +332,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
         "bass",
         "synth",
         "sampler",
-        "piano",
-        "voice"
+        "piano"
       ],
       "preferredMeters": [
         "4/4"
@@ -415,7 +412,8 @@ export const ELECTRONIC_WORLD: GenreWorld = {
         "synth",
         "drums",
         "bass",
-        "electric-guitar"
+        "electric-guitar",
+        "voice"
       ],
       "preferredMeters": [
         "4/4"
@@ -494,7 +492,8 @@ export const ELECTRONIC_WORLD: GenreWorld = {
         "synth",
         "sampler",
         "drone",
-        "guitar"
+        "strings",
+        "piano"
       ],
       "preferredMeters": [
         "free"
@@ -564,7 +563,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
         "synth",
         "sub-bass",
         "sampler",
-        "modular-synth"
+        "voice"
       ],
       "preferredMeters": [
         "4/4"

@@ -20,8 +20,7 @@ export const COUNTRY_WORLD: GenreWorld = {
         "fiddle",
         "acoustic-guitar",
         "electric-guitar",
-        "bass",
-        "drums"
+        "bass"
       ],
       "preferredMeters": [
         "4/4"
@@ -107,8 +106,7 @@ export const COUNTRY_WORLD: GenreWorld = {
         "acoustic-guitar",
         "bass",
         "drums",
-        "harmonica",
-        "voice"
+        "harmonica"
       ],
       "preferredMeters": [
         "4/4"
@@ -187,7 +185,7 @@ export const COUNTRY_WORLD: GenreWorld = {
         "banjo",
         "mandolin",
         "fiddle",
-        "guitar",
+        "acoustic-guitar",
         "upright-bass"
       ],
       "preferredMeters": [
@@ -276,8 +274,7 @@ export const COUNTRY_WORLD: GenreWorld = {
         "steel-guitar",
         "acoustic-guitar",
         "upright-bass",
-        "piano",
-        "voice"
+        "piano"
       ],
       "preferredMeters": [
         "4/4",
@@ -356,7 +353,6 @@ export const COUNTRY_WORLD: GenreWorld = {
         "steel-guitar",
         "bass",
         "drums",
-        "fiddle",
         "voice"
       ],
       "preferredMeters": [
@@ -445,8 +441,7 @@ export const COUNTRY_WORLD: GenreWorld = {
         "fiddle",
         "banjo",
         "bass",
-        "drums",
-        "voice"
+        "drums"
       ],
       "preferredMeters": [
         "4/4",
@@ -528,8 +523,7 @@ export const COUNTRY_WORLD: GenreWorld = {
         "piano",
         "steel-guitar",
         "upright-bass",
-        "drums",
-        "voice"
+        "drums"
       ],
       "preferredMeters": [
         "4/4",
@@ -618,8 +612,7 @@ export const COUNTRY_WORLD: GenreWorld = {
         "steel-guitar",
         "electric-guitar",
         "upright-bass",
-        "drums",
-        "brass"
+        "drums"
       ],
       "preferredMeters": [
         "4/4"

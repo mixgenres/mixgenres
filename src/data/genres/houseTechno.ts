@@ -94,7 +94,8 @@ export const HOUSE_TECHNO_WORLD: GenreWorld = {
         "drums",
         "sampler",
         "synth",
-        "sub-bass"
+        "sub-bass",
+        "voice"
       ],
       "preferredMeters": [
         "4/4"
@@ -290,7 +291,8 @@ export const HOUSE_TECHNO_WORLD: GenreWorld = {
         "synth",
         "drums",
         "sub-bass",
-        "sampler"
+        "sampler",
+        "voice"
       ],
       "preferredMeters": [
         "4/4"
@@ -358,7 +360,8 @@ export const HOUSE_TECHNO_WORLD: GenreWorld = {
         "drums",
         "sub-bass",
         "synth",
-        "sampler"
+        "sampler",
+        "voice"
       ],
       "preferredMeters": [
         "4/4"

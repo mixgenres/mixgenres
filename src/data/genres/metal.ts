@@ -19,7 +19,8 @@ export const METAL_WORLD: GenreWorld = {
         "electric-guitar",
         "bass",
         "drums",
-        "voice"
+        "voice",
+        "hand-percussion"
       ],
       "preferredMeters": [
         "4/4"
@@ -107,7 +108,8 @@ export const METAL_WORLD: GenreWorld = {
         "electric-guitar",
         "bass",
         "drums",
-        "voice"
+        "voice",
+        "hand-percussion"
       ],
       "preferredMeters": [
         "4/4"
@@ -185,7 +187,8 @@ export const METAL_WORLD: GenreWorld = {
         "electric-guitar",
         "bass",
         "drums",
-        "voice"
+        "voice",
+        "hand-percussion"
       ],
       "preferredMeters": [
         "4/4"
@@ -422,7 +425,8 @@ export const METAL_WORLD: GenreWorld = {
         "electric-guitar",
         "bass",
         "drums",
-        "voice"
+        "voice",
+        "hand-percussion"
       ],
       "preferredMeters": [
         "4/4"
@@ -500,7 +504,8 @@ export const METAL_WORLD: GenreWorld = {
         "electric-guitar",
         "bass",
         "drums",
-        "voice"
+        "voice",
+        "hand-percussion"
       ],
       "preferredMeters": [
         "4/4"

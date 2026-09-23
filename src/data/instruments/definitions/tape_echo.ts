@@ -1,8 +1,8 @@
 import type { InstrumentDef } from '../types';
 
-export const steel_drums: InstrumentDef = {
-  id: 'steel_drums', name: 'Steel pan', family: 'metal-and-wood', voicing: 'unpitched',
-  note: 'tuned steel pan; struck convex notes with bright partials',
+export const tape_echo: InstrumentDef = {
+  id: 'tape-echo', name: 'Tape echo', family: 'electronic', voicing: 'unpitched',
+  note: 'magnetic tape delay; softened repeats with wow/flutter and feedback',
   techniques: {
     articulations: ['accent', 'staccato', 'ghost', 'roll'],
     techniqueMethods: ['style-specific attack', 'velocity shaping', 'muting/damping'],

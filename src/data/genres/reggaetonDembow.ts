@@ -338,8 +338,7 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
         "synth",
         "drums",
         "sub-bass",
-        "piano",
-        "voice"
+        "piano"
       ],
       "preferredMeters": [
         "4/4"
@@ -497,7 +496,7 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
         "sampler",
         "drums",
         "synth",
-        "turntables",
+        "turntable",
         "voice"
       ],
       "preferredMeters": [
@@ -565,11 +564,10 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
       "description": "Requinto • Bongo • Dembow Fusion\nBachata-reggaeton",
       "characteristicInstruments": [
         "requinto",
-        "bongo",
+        "bongos",
         "sub-bass",
         "drums",
-        "guiro",
-        "voice"
+        "guiro"
       ],
       "preferredMeters": [
         "4/4"

@@ -19,9 +19,8 @@ export const HIP_HOP_WORLD: GenreWorld = {
         "sampler",
         "drums",
         "bass",
-        "turntables",
-        "piano",
-        "voice"
+        "turntable",
+        "piano"
       ],
       "preferredMeters": [
         "4/4"
@@ -176,7 +175,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
         "piano",
         "drums",
         "bass",
-        "guitar"
+        "acoustic-guitar"
       ],
       "preferredMeters": [
         "4/4"
@@ -335,8 +334,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
         "bass",
         "drums",
         "electric-guitar",
-        "voice",
-        "piano"
+        "voice"
       ],
       "preferredMeters": [
         "4/4"
@@ -569,8 +567,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
         "brass",
         "drums",
         "piano",
-        "sampler",
-        "voice"
+        "sampler"
       ],
       "preferredMeters": [
         "4/4"

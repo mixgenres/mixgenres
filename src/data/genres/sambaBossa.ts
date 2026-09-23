@@ -20,8 +20,7 @@ export const SAMBA_BOSSA_WORLD: GenreWorld = {
         "piano",
         "flute",
         "upright-bass",
-        "drums",
-        "voice"
+        "drums"
       ],
       "preferredMeters": [
         "2/4",
@@ -101,8 +100,7 @@ export const SAMBA_BOSSA_WORLD: GenreWorld = {
         "tamborim",
         "cavaquinho",
         "cuica",
-        "brass",
-        "voice"
+        "brass"
       ],
       "preferredMeters": [
         "2/4"
@@ -180,7 +178,7 @@ export const SAMBA_BOSSA_WORLD: GenreWorld = {
         "cavaquinho",
         "pandeiro",
         "tantan",
-        "banjo",
+        "repinique",
         "voice"
       ],
       "preferredMeters": [
@@ -257,7 +255,7 @@ export const SAMBA_BOSSA_WORLD: GenreWorld = {
       "description": "Afro-Bahian Drums • Slow Swing •",
       "characteristicInstruments": [
         "surdo",
-        "timbal",
+        "timbales",
         "repinique",
         "brass",
         "voice"

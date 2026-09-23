@@ -25,6 +25,7 @@ import { resolveArticulationStack, realizeArticulation, type ArticulationSpec } 
 import type { GuestLens } from '../../types';
 
 import { applyEnsembleInteraction } from '../performance/ensembleInteraction';
+import { polishPerformance } from '../performance/performanceQuality';
 import { resolveTuningSystem } from '../theory/tuning';
 
 /* --- event model ---------------------------------------------------------- */
@@ -1325,5 +1326,5 @@ export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
     trackInfo: Object.fromEntries(tracks.map(t => [t.id, { instrumentId: t.instrumentId, role: t.role }])),
   };
 
-  return applyEnsembleInteraction(rawPerf);
+  return polishPerformance(applyEnsembleInteraction(rawPerf), { timingScale: humanScale, velocityScale: humanScale });
 }

@@ -1,8 +1,8 @@
 import type { InstrumentDef } from '../types';
 
-export const steel_drums: InstrumentDef = {
-  id: 'steel_drums', name: 'Steel pan', family: 'metal-and-wood', voicing: 'unpitched',
-  note: 'tuned steel pan; struck convex notes with bright partials',
+export const spring_reverb: InstrumentDef = {
+  id: 'spring-reverb', name: 'Spring reverb', family: 'electronic', voicing: 'unpitched',
+  note: 'spring tank reverb; boingy metallic decay',
   techniques: {
     articulations: ['accent', 'staccato', 'ghost', 'roll'],
     techniqueMethods: ['style-specific attack', 'velocity shaping', 'muting/damping'],

@@ -20,8 +20,7 @@ export const FUNK_WORLD: GenreWorld = {
         "drums",
         "electric-guitar",
         "synth",
-        "brass",
-        "voice"
+        "brass"
       ],
       "preferredMeters": [
         "4/4"
@@ -182,8 +181,7 @@ export const FUNK_WORLD: GenreWorld = {
         "drums",
         "bass",
         "electric-guitar",
-        "brass",
-        "voice"
+        "brass"
       ],
       "preferredMeters": [
         "4/4"
@@ -263,8 +261,7 @@ export const FUNK_WORLD: GenreWorld = {
         "bass",
         "electric-guitar",
         "strings",
-        "brass",
-        "voice"
+        "brass"
       ],
       "preferredMeters": [
         "4/4"
@@ -345,9 +342,7 @@ export const FUNK_WORLD: GenreWorld = {
         "cowbell",
         "timbales",
         "bass",
-        "brass",
-        "organ",
-        "voice"
+        "brass"
       ],
       "preferredMeters": [
         "4/4"
@@ -427,8 +422,7 @@ export const FUNK_WORLD: GenreWorld = {
         "bass",
         "drums",
         "electric-guitar",
-        "piano",
-        "voice"
+        "piano"
       ],
       "preferredMeters": [
         "4/4"
@@ -508,8 +502,7 @@ export const FUNK_WORLD: GenreWorld = {
         "bass",
         "electric-guitar",
         "brass",
-        "percussion",
-        "organ"
+        "hand-percussion"
       ],
       "preferredMeters": [
         "4/4"

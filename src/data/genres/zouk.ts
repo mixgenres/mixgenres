@@ -20,8 +20,7 @@ export const ZOUK_WORLD: GenreWorld = {
         "drums",
         "bass",
         "synth",
-        "percussion",
-        "voice"
+        "hand-percussion"
       ],
       "preferredMeters": [
         "4/4"

@@ -21,9 +21,7 @@ export const TIMBA_WORLD: GenreWorld = {
         "timbales",
         "congas",
         "bass",
-        "piano",
-        "brass",
-        "voice"
+        "piano"
       ],
       "preferredMeters": [
         "4/4"
@@ -99,8 +97,7 @@ export const TIMBA_WORLD: GenreWorld = {
         "congas",
         "bass",
         "piano",
-        "flute",
-        "voice"
+        "flute"
       ],
       "preferredMeters": [
         "4/4"

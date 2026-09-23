@@ -16,12 +16,11 @@ export const BACHATA_WORLD: GenreWorld = {
       "era": "1999–Present",
       "description": "Smooth • 4/4 • Guitar-driven\nPop and",
       "characteristicInstruments": [
-        "guitar",
+        "acoustic-guitar",
         "bass",
         "bongos",
         "guiro",
-        "voice",
-        "synth"
+        "voice"
       ],
       "preferredMeters": [
         "4/4"
@@ -107,7 +106,7 @@ export const BACHATA_WORLD: GenreWorld = {
       "era": "1960s–1980s",
       "description": "Fast • Arpeggiated • Raw\nAcoustic guitar",
       "characteristicInstruments": [
-        "guitar",
+        "acoustic-guitar",
         "bass",
         "bongos",
         "guiro",
@@ -197,12 +196,11 @@ export const BACHATA_WORLD: GenreWorld = {
       "era": "2005–Present",
       "description": "Slow • Expressive • Body rolls\nModern",
       "characteristicInstruments": [
-        "guitar",
+        "acoustic-guitar",
         "bass",
         "synth",
         "bongos",
-        "guiro",
-        "voice"
+        "guiro"
       ],
       "preferredMeters": [
         "4/4"
@@ -285,12 +283,11 @@ export const BACHATA_WORLD: GenreWorld = {
       "era": "2000s–2010s",
       "description": "Balanced • Pop-infused • Clear Syncopation\nVersatile",
       "characteristicInstruments": [
-        "guitar",
+        "acoustic-guitar",
         "bass",
         "bongos",
         "guiro",
-        "synth",
-        "voice"
+        "synth"
       ],
       "preferredMeters": [
         "4/4"
@@ -365,7 +362,7 @@ export const BACHATA_WORLD: GenreWorld = {
       "era": "1950s–1960s",
       "description": "Slow • Vintage • Lyrical\n50s romantic",
       "characteristicInstruments": [
-        "guitar",
+        "acoustic-guitar",
         "upright-bass",
         "bongos",
         "maracas",
@@ -447,10 +444,9 @@ export const BACHATA_WORLD: GenreWorld = {
       "characteristicInstruments": [
         "bandoneon",
         "violin",
-        "guitar",
+        "acoustic-guitar",
         "bass",
-        "bongos",
-        "guiro"
+        "bongos"
       ],
       "preferredMeters": [
         "4/4"
@@ -526,7 +522,7 @@ export const BACHATA_WORLD: GenreWorld = {
       "era": "1970s–1980s",
       "description": "Raw • Unpolished • Folk\nHinterland Dominican",
       "characteristicInstruments": [
-        "guitar",
+        "acoustic-guitar",
         "bass",
         "bongos",
         "guiro",
@@ -605,7 +601,7 @@ export const BACHATA_WORLD: GenreWorld = {
       "era": "1970s–Present",
       "description": "Fast • Driving Tambora • Guitar-led\nHigh-tempo",
       "characteristicInstruments": [
-        "guitar",
+        "acoustic-guitar",
         "bass",
         "drums",
         "guiro",

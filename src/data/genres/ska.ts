@@ -100,8 +100,7 @@ export const SKA_WORLD: GenreWorld = {
         "organ",
         "brass",
         "bass",
-        "drums",
-        "voice"
+        "drums"
       ],
       "preferredMeters": [
         "4/4"

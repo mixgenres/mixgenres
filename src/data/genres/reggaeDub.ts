@@ -20,8 +20,7 @@ export const REGGAE_DUB_WORLD: GenreWorld = {
         "bass",
         "electric-guitar",
         "organ",
-        "brass",
-        "voice"
+        "brass"
       ],
       "preferredMeters": [
         "4/4"
@@ -241,8 +240,7 @@ export const REGGAE_DUB_WORLD: GenreWorld = {
         "bass",
         "drums",
         "piano",
-        "strings",
-        "voice"
+        "strings"
       ],
       "preferredMeters": [
         "4/4"
@@ -321,8 +319,7 @@ export const REGGAE_DUB_WORLD: GenreWorld = {
         "electric-guitar",
         "drums",
         "brass",
-        "piano",
-        "voice"
+        "piano"
       ],
       "preferredMeters": [
         "4/4"
@@ -481,8 +478,7 @@ export const REGGAE_DUB_WORLD: GenreWorld = {
         "electric-guitar",
         "upright-bass",
         "drums",
-        "piano",
-        "voice"
+        "piano"
       ],
       "preferredMeters": [
         "4/4"
@@ -558,12 +554,11 @@ export const REGGAE_DUB_WORLD: GenreWorld = {
       "era": "Early 20th Century–Present",
       "description": "Steelpan • Acoustic • Witty\nTrinidadian storytelling",
       "characteristicInstruments": [
-        "steel-pan",
+        "steel_drums",
         "acoustic-guitar",
         "brass",
-        "percussion",
-        "bass",
-        "voice"
+        "hand-percussion",
+        "bass"
       ],
       "preferredMeters": [
         "2/4",

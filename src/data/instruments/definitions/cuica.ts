@@ -1,8 +1,8 @@
 import type { InstrumentDef } from '../types';
 
-export const steel_drums: InstrumentDef = {
-  id: 'steel_drums', name: 'Steel pan', family: 'metal-and-wood', voicing: 'unpitched',
-  note: 'tuned steel pan; struck convex notes with bright partials',
+export const cuica: InstrumentDef = {
+  id: 'cuica', name: 'Cuíca', family: 'hand-drums', voicing: 'unpitched',
+  note: 'friction drum; high-pitched squeal and short resonant pops',
   techniques: {
     articulations: ['accent', 'staccato', 'ghost', 'roll'],
     techniqueMethods: ['style-specific attack', 'velocity shaping', 'muting/damping'],

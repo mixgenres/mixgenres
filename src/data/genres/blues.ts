@@ -20,8 +20,7 @@ export const BLUES_WORLD: GenreWorld = {
         "harmonica",
         "piano",
         "bass",
-        "drums",
-        "voice"
+        "drums"
       ],
       "preferredMeters": [
         "4/4"
@@ -105,10 +104,11 @@ export const BLUES_WORLD: GenreWorld = {
       "era": "1920s–1930s",
       "description": "Raw • Acoustic • Bottleneck\nSlide guitar",
       "characteristicInstruments": [
-        "guitar",
+        "acoustic-guitar",
         "voice",
         "harmonica",
-        "percussion"
+        "foot-stomp",
+        "slide-guitar"
       ],
       "preferredMeters": [
         "4/4"
@@ -181,8 +181,7 @@ export const BLUES_WORLD: GenreWorld = {
         "bass",
         "drums",
         "piano",
-        "voice",
-        "brass"
+        "voice"
       ],
       "preferredMeters": [
         "4/4"
@@ -266,10 +265,11 @@ export const BLUES_WORLD: GenreWorld = {
       "era": "1920s–1940s",
       "description": "Bouncy • Ragtime • Fingerpicked\nSyncopated acoustic",
       "characteristicInstruments": [
-        "guitar",
-        "harmonica",
+        "acoustic-guitar",
         "voice",
-        "washboard"
+        "washboard",
+        "harmonica",
+        "upright-bass"
       ],
       "preferredMeters": [
         "4/4"
@@ -349,8 +349,7 @@ export const BLUES_WORLD: GenreWorld = {
         "piano",
         "electric-guitar",
         "upright-bass",
-        "drums",
-        "voice"
+        "drums"
       ],
       "preferredMeters": [
         "4/4"
@@ -437,7 +436,8 @@ export const BLUES_WORLD: GenreWorld = {
         "electric-guitar",
         "drums",
         "bass",
-        "voice"
+        "voice",
+        "hand-percussion"
       ],
       "preferredMeters": [
         "4/4"
@@ -591,8 +591,7 @@ export const BLUES_WORLD: GenreWorld = {
         "brass",
         "organ",
         "bass",
-        "drums",
-        "voice"
+        "drums"
       ],
       "preferredMeters": [
         "4/4"

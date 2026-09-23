@@ -89,10 +89,8 @@ export const SALSA_WORLD: GenreWorld = {
         "brass",
         "congas",
         "timbales",
-        "bongo",
-        "piano",
-        "bass",
-        "voice"
+        "bongos",
+        "piano"
       ],
       "preferredMeters": [
         "4/4"
@@ -165,11 +163,10 @@ export const SALSA_WORLD: GenreWorld = {
       "description": "Tres Cubano • Bongo • Root",
       "characteristicInstruments": [
         "tres",
-        "bongo",
+        "bongos",
         "claves",
         "acoustic-bass",
-        "trumpet",
-        "voice"
+        "trumpet"
       ],
       "preferredMeters": [
         "4/4"
@@ -245,9 +242,7 @@ export const SALSA_WORLD: GenreWorld = {
         "violin",
         "guiro",
         "congas",
-        "piano",
-        "bass",
-        "voice"
+        "piano"
       ],
       "preferredMeters": [
         "4/4"
@@ -326,9 +321,7 @@ export const SALSA_WORLD: GenreWorld = {
         "piano",
         "synth",
         "congas",
-        "timbales",
-        "bass",
-        "voice"
+        "timbales"
       ],
       "preferredMeters": [
         "4/4"

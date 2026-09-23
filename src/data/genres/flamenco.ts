@@ -18,7 +18,8 @@ export const FLAMENCO_WORLD: GenreWorld = {
         "spanish-guitar",
         "voice",
         "palmas",
-        "cajon"
+        "cajon",
+        "hand-percussion"
       ],
       "preferredMeters": [
         "12/8",
@@ -99,7 +100,8 @@ export const FLAMENCO_WORLD: GenreWorld = {
         "spanish-guitar",
         "voice",
         "palmas",
-        "cajon"
+        "cajon",
+        "hand-percussion"
       ],
       "preferredMeters": [
         "12/8",
@@ -180,7 +182,8 @@ export const FLAMENCO_WORLD: GenreWorld = {
         "spanish-guitar",
         "voice",
         "palmas",
-        "cajon"
+        "cajon",
+        "hand-percussion"
       ],
       "preferredMeters": [
         "12/8",
@@ -304,7 +307,9 @@ export const FLAMENCO_WORLD: GenreWorld = {
       "characteristicInstruments": [
         "spanish-guitar",
         "voice",
-        "palmas"
+        "palmas",
+        "hand-percussion",
+        "drums"
       ],
       "preferredMeters": [
         "12/8",
@@ -352,7 +357,8 @@ export const FLAMENCO_WORLD: GenreWorld = {
         "spanish-guitar",
         "voice",
         "palmas",
-        "cajon"
+        "cajon",
+        "hand-percussion"
       ],
       "preferredMeters": [
         "4/4",
@@ -398,7 +404,9 @@ export const FLAMENCO_WORLD: GenreWorld = {
       "characteristicInstruments": [
         "spanish-guitar",
         "voice",
-        "palmas"
+        "palmas",
+        "hand-percussion",
+        "drums"
       ],
       "preferredMeters": [
         "3/4",
@@ -445,8 +453,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
         "cajon",
         "palmas",
         "bass",
-        "voice",
-        "flute"
+        "voice"
       ],
       "preferredMeters": [
         "4/4"

@@ -19,7 +19,8 @@ export const ROCK_WORLD: GenreWorld = {
         "electric-guitar",
         "bass",
         "drums",
-        "voice"
+        "voice",
+        "hand-percussion"
       ],
       "preferredMeters": [
         "4/4"
@@ -104,7 +105,8 @@ export const ROCK_WORLD: GenreWorld = {
         "electric-guitar",
         "bass",
         "drums",
-        "voice"
+        "voice",
+        "hand-percussion"
       ],
       "preferredMeters": [
         "4/4",
@@ -182,12 +184,10 @@ export const ROCK_WORLD: GenreWorld = {
       "description": "Odd Meters • Mellotron • Multi-Movement\nComplex",
       "characteristicInstruments": [
         "electric-guitar",
-        "mellotron",
+        "strings",
         "bass",
         "drums",
-        "organ",
-        "synth",
-        "voice"
+        "organ"
       ],
       "preferredMeters": [
         "7/8",
@@ -269,7 +269,8 @@ export const ROCK_WORLD: GenreWorld = {
         "electric-guitar",
         "bass",
         "drums",
-        "voice"
+        "voice",
+        "hand-percussion"
       ],
       "preferredMeters": [
         "4/4"
@@ -348,7 +349,8 @@ export const ROCK_WORLD: GenreWorld = {
         "electric-guitar",
         "bass",
         "drums",
-        "voice"
+        "voice",
+        "hand-percussion"
       ],
       "preferredMeters": [
         "4/4"

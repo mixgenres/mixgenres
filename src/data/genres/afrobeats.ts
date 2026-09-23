@@ -18,10 +18,9 @@ export const AFROBEATS_WORLD: GenreWorld = {
       "characteristicInstruments": [
         "drums",
         "bass",
-        "guitar",
+        "acoustic-guitar",
         "synth",
-        "percussion",
-        "voice"
+        "hand-percussion"
       ],
       "preferredMeters": [
         "4/4"
@@ -94,8 +93,7 @@ export const AFROBEATS_WORLD: GenreWorld = {
         "bass",
         "electric-guitar",
         "brass",
-        "percussion",
-        "organ"
+        "hand-percussion"
       ],
       "preferredMeters": [
         "4/4"
@@ -167,8 +165,7 @@ export const AFROBEATS_WORLD: GenreWorld = {
         "bass",
         "piano",
         "synth",
-        "shaker",
-        "percussion"
+        "shaker"
       ],
       "preferredMeters": [
         "4/4"
@@ -239,7 +236,7 @@ export const AFROBEATS_WORLD: GenreWorld = {
         "drums",
         "sub-bass",
         "synth",
-        "percussion",
+        "hand-percussion",
         "sampler"
       ],
       "preferredMeters": [
@@ -310,9 +307,8 @@ export const AFROBEATS_WORLD: GenreWorld = {
         "drums",
         "bass",
         "synth",
-        "percussion",
-        "piano",
-        "voice"
+        "hand-percussion",
+        "piano"
       ],
       "preferredMeters": [
         "4/4"
@@ -380,12 +376,11 @@ export const AFROBEATS_WORLD: GenreWorld = {
       "era": "1950s–Present",
       "description": "Bouncy • Bright Guitars • Horns\nFoundational",
       "characteristicInstruments": [
-        "guitar",
+        "acoustic-guitar",
         "bass",
         "drums",
         "brass",
-        "percussion",
-        "voice"
+        "hand-percussion"
       ],
       "preferredMeters": [
         "4/4"
@@ -460,11 +455,11 @@ export const AFROBEATS_WORLD: GenreWorld = {
       "era": "1920s–1960s",
       "description": "Acoustic • Laid Back • Folk\nRaw",
       "characteristicInstruments": [
-        "guitar",
-        "percussion",
+        "acoustic-guitar",
+        "hand-percussion",
         "bass",
         "voice",
-        "hand-percussion"
+        "drums"
       ],
       "preferredMeters": [
         "4/4"
@@ -539,9 +534,8 @@ export const AFROBEATS_WORLD: GenreWorld = {
         "synth",
         "bass",
         "drums",
-        "guitar",
-        "voice",
-        "piano"
+        "acoustic-guitar",
+        "voice"
       ],
       "preferredMeters": [
         "4/4"

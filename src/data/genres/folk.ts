@@ -20,8 +20,7 @@ export const FOLK_WORLD: GenreWorld = {
         "banjo",
         "voice",
         "piano",
-        "drums",
-        "bass"
+        "drums"
       ],
       "preferredMeters": [
         "4/4",
@@ -101,8 +100,9 @@ export const FOLK_WORLD: GenreWorld = {
       "characteristicInstruments": [
         "banjo",
         "fiddle",
-        "guitar",
-        "voice"
+        "acoustic-guitar",
+        "voice",
+        "hand-percussion"
       ],
       "preferredMeters": [
         "2/4",
@@ -181,7 +181,9 @@ export const FOLK_WORLD: GenreWorld = {
       "characteristicInstruments": [
         "acoustic-guitar",
         "harmonica",
-        "voice"
+        "voice",
+        "hand-percussion",
+        "drums"
       ],
       "preferredMeters": [
         "4/4",
@@ -259,8 +261,7 @@ export const FOLK_WORLD: GenreWorld = {
         "sitar",
         "flute",
         "hand-percussion",
-        "synth",
-        "voice"
+        "synth"
       ],
       "preferredMeters": [
         "4/4",
@@ -420,7 +421,7 @@ export const FOLK_WORLD: GenreWorld = {
       "characteristicInstruments": [
         "banjo",
         "mandolin",
-        "guitar",
+        "acoustic-guitar",
         "fiddle",
         "upright-bass"
       ],
@@ -579,8 +580,7 @@ export const FOLK_WORLD: GenreWorld = {
         "strings",
         "violin",
         "flute",
-        "piano",
-        "voice"
+        "piano"
       ],
       "preferredMeters": [
         "4/4",

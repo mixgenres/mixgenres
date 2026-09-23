@@ -100,8 +100,7 @@ export const JAZZ_WORLD: GenreWorld = {
         "alto-sax",
         "piano",
         "upright-bass",
-        "drums",
-        "flute"
+        "drums"
       ],
       "preferredMeters": [
         "4/4",
@@ -319,7 +318,8 @@ export const JAZZ_WORLD: GenreWorld = {
         "acoustic-guitar",
         "violin",
         "upright-bass",
-        "clarinet"
+        "clarinet",
+        "voice"
       ],
       "preferredMeters": [
         "4/4"
@@ -399,8 +399,7 @@ export const JAZZ_WORLD: GenreWorld = {
         "electric-guitar",
         "bass",
         "drums",
-        "tenor-sax",
-        "fretless-bass"
+        "tenor-sax"
       ],
       "preferredMeters": [
         "4/4",
@@ -481,8 +480,7 @@ export const JAZZ_WORLD: GenreWorld = {
         "harp",
         "piano",
         "upright-bass",
-        "drums",
-        "hand-percussion"
+        "drums"
       ],
       "preferredMeters": [
         "4/4",
@@ -557,8 +555,10 @@ export const JAZZ_WORLD: GenreWorld = {
       "description": "Syncopated • Marching Bass • Piano\nFoundational",
       "characteristicInstruments": [
         "piano",
+        "banjo",
+        "brass",
         "upright-bass",
-        "banjo"
+        "drums"
       ],
       "preferredMeters": [
         "2/4"
