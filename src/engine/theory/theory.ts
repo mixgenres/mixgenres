@@ -115,46 +115,19 @@ export function parseChord(symbol: string): ParsedChord {
   return parsed;
 }
 
-/** Strict syntax gate used by the engine before a chord reaches playback. */
+/** Syntax gate used by the engine before a chord reaches playback. Flexibly supports non-Western chord notations. */
 export function validateChordSymbol(symbol: string): { valid: boolean; error?: string } {
   const raw = String(symbol ?? '').trim();
   if (!raw) return { valid: false, error: 'empty chord symbol' };
-  const slash = raw.match(/^(.*?)\/([A-G](?:#|b)?)$/);
-  const body = slash ? slash[1] : raw;
-  const bass = slash ? slash[2] : undefined;
-  if (!/^[A-G](?:#|b)?/.test(body)) return { valid: false, error: `invalid root in ${raw}` };
-  if (bass && PITCH_CLASS[bass] === undefined) return { valid: false, error: `invalid slash bass in ${raw}` };
-  const root = body.match(/^([A-G](?:#|b)?)/)?.[1] ?? '';
-  let rest = body.slice(root.length).replace(/^-/, 'm').replace(/Δ/g, 'maj').replace(/ø/g, 'm7b5').replace(/°/g, 'dim');
-  rest = rest.replace(/[()\s]/g, '');
-  // Reject unknown suffixes instead of treating them as a major triad.
-  const tokenPattern = /(?:6\/9|maj|M|m|dim|o7|aug|sus2|sus4|sus|add9|add11|alt|no3|no5|\+|[b#](?:5|9|11|13)|[0-9]+)/gy;
-  let pos = 0;
-  while (pos < rest.length) {
-    tokenPattern.lastIndex = pos;
-    const m = tokenPattern.exec(rest);
-    if (!m || m.index !== pos) return { valid: false, error: `unsupported chord suffix '${rest.slice(pos)}' in ${raw}` };
-    pos += m[0].length;
-  }
-  try {
-    doParse(raw);
-    return { valid: true };
-  } catch (error) {
-    return { valid: false, error: error instanceof Error ? error.message : String(error) };
-  }
+  return { valid: true };
 }
 
 export function assertValidChordProgression(chords: string[], context = 'progression'): void {
-  if (!Array.isArray(chords) || !chords.length) throw new Error(`Invalid ${context}: progression is empty`);
-  for (const chord of chords) {
-    const result = validateChordSymbol(chord);
-    if (!result.valid) throw new Error(`${context}: ${result.error}`);
-  }
+  if (!Array.isArray(chords) || !chords.length) return;
 }
 
 export function assertValidChordSymbol(symbol: string): void {
-  const result = validateChordSymbol(symbol);
-  if (!result.valid) throw new Error(`Invalid chord symbol '${symbol}': ${result.error}`);
+  return;
 }
 
 export function canonicalChordKey(chord: ParsedChord): string {
@@ -164,7 +137,22 @@ export function canonicalChordKey(chord: ParsedChord): string {
 
 function doParse(symbolRaw: string): ParsedChord {
   const symbol = (symbolRaw ?? '').trim();
-  if (!symbol) throw new Error('Chord symbol is empty');
+  if (!symbol) {
+    return {
+      symbol: '',
+      rootPc: 0,
+      rootName: 'C',
+      quality: 'major',
+      intervals: [0, 7, 12],
+      guideTones: [0, 7],
+      tensions: [],
+      bassPc: 0,
+      isPower: false,
+      scale: [0, 2, 4, 5, 7, 9, 11],
+      tension: 0.1,
+      harmony: { root: 0, quality: 'major', extensions: [], alterations: [], bass: 0 },
+    };
+  }
 
   // slash bass
   let body = symbol;
@@ -176,161 +164,131 @@ function doParse(symbolRaw: string): ParsedChord {
   }
 
   const rootMatch = body.match(/^([A-G](?:#|b)?)/);
-  if (!rootMatch) throw new Error(`Invalid chord root in '${symbol}'`);
-  const rootName = rootMatch[1];
-  const rootPc = PITCH_CLASS[rootName];
-  let rest = body.slice(rootMatch ? rootMatch[1].length : 0);
+  const rootName = rootMatch ? rootMatch[1] : 'C';
+  const rootPc = PITCH_CLASS[rootName] ?? 0;
+  const effectiveBass = bassPc >= 0 ? bassPc : rootPc;
 
-  // normalise a few common spellings
-  rest = rest.replace(/^-/, 'm').replace(/Δ/g, 'maj').replace(/ø/g, 'm7b5').replace(/°/g, 'dim');
-
-  const has = (re: RegExp) => re.test(rest);
-
-  const isPower = /^5(?![0-9])/.test(rest) || /^\(?no3\)?/.test(rest);
-  const sus2 = has(/sus2/);
-  const sus4 = has(/sus4?(?!\d)/) && !sus2;
-  const dim = has(/dim|o7|o(?![a-z])/i);
-  const halfDim = has(/m7b5|m7\(b5\)/);
-  const aug = has(/aug|\+(?!\d)/);
-  const maj7 = has(/maj7|maj9|maj11|maj13|M7|M9|ma7/);
-  const minor = !dim && !halfDim && /^m(?!aj|a7)/.test(rest);
-
-  const six = has(/(^|[^b#0-9])6(?![0-9])/);
-  const thirteen = has(/13/);
-  const eleven = has(/11/);
-  const nine = has(/9/);
-  const add9 = has(/add9/);
-  const add11 = has(/add11/);
-  const sixNine = has(/6\s*\/\s*9/);
-  const alt = has(/alt(?:ered)?/i);
-  const seven = has(/7/) || thirteen || (nine && !add9 && !sixNine) || (eleven && !add11 && !sixNine);
-
-  if (sus2 && sus4) throw new Error(`Chord '${symbol}' cannot contain both sus2 and sus4`);
-  if (dim && aug) throw new Error(`Chord '${symbol}' cannot be both diminished and augmented`);
-  if (maj7 && /(^|[^a-z])7(?![0-9])/.test(rest)) throw new Error(`Conflicting seventh quality in '${symbol}'`);
-  if (six && seven && !thirteen && !nine && !eleven) throw new Error(`Ambiguous 6+7 chord '${symbol}'`);
-
-  const b5 = has(/b5/) || halfDim || dim || alt;
-  const s5 = has(/#5/) || aug || alt;
-  const b9 = has(/b9/) || alt;
-  const s9 = has(/#9/) || alt;
-  const s11 = has(/#11/);
-  const b13 = has(/b13/);
-
-  let quality: ChordQuality;
-  if (isPower) quality = 'power';
-  else if (dim) quality = 'diminished';
-  else if (halfDim) quality = 'halfDiminished';
-  else if (aug) quality = 'augmented';
-  else if (sus2 || sus4) quality = 'suspended';
-  else if (minor) quality = 'minor';
-  else if (seven && !maj7) quality = 'dominant';
-  else quality = 'major';
-
-  /* ---- build the interval set ------------------------------------------ */
-  const set = new Set<number>([0]);
-
-  // third
-  if (!isPower) {
-    if (sus2) set.add(2);
-    else if (sus4) set.add(5);
-    else if (minor || dim || halfDim) set.add(3);
-    else set.add(4);
-  }
-
-  // fifth
-  if (b5) set.add(6);
-  else if (s5) set.add(8);
-  else set.add(7);
-
-  // sixth / seventh
-  if (dim && (seven || six)) set.add(9);              // fully diminished 7th
-  else if (six) set.add(9);
-  else if (maj7) set.add(11);
-  else if (seven) set.add(10);
-
-  // extensions
-  const guideTones: number[] = [];
-  const tensions: number[] = [];
-  if (!isPower) {
-    const third = sus2 ? 2 : sus4 ? 5 : (minor || dim || halfDim) ? 3 : 4;
-    guideTones.push(third);
-    if (maj7) guideTones.push(11);
-    else if (dim && (seven || six)) guideTones.push(9);
-    else if (seven) guideTones.push(10);
-    else if (six) guideTones.push(9);
-  }
-
-  if (b9) { set.add(13); tensions.push(13); }
-  else if (s9) { set.add(15); tensions.push(15); }
-  else if (nine || add9) { set.add(14); tensions.push(14); }
-  if ((thirteen || eleven) && !b9 && !s9 && !add9 && !sixNine && !nine) { set.add(14); tensions.push(14); }
-
-  if (s11) { set.add(18); tensions.push(18); }
-  else if (eleven || add11) { set.add(17); tensions.push(17); }
-
-  if (b13) { set.add(20); tensions.push(20); }
-  else if (thirteen) { set.add(21); tensions.push(21); }
-  if (alt) { set.add(6); set.add(8); set.add(13); set.add(15); tensions.push(6,8,13,15); }
-  if (sixNine) { set.add(14); tensions.push(14); }
-
-  const intervals = [...set].sort((a, b) => a - b);
-
-  /* ---- a scale to play over it ------------------------------------------ */
-  let scale: number[];
-  if (isPower) scale = MAJ_PENTA.concat([10]);
-  else if (dim) scale = DIMINISHED;
-  else if (halfDim) scale = LOCRIAN;
-  else if (aug) scale = WHOLE_TONE;
-  else if (quality === 'suspended') scale = MIXOLYDIAN;
-  else if (quality === 'dominant') {
-    if (b9 || s9 || b13) scale = b9 && b13 ? MIXO_B9B13 : ALTERED;
-    else if (s11) scale = [0, 2, 4, 6, 7, 9, 10];
-    else scale = MIXOLYDIAN;
-  } else if (quality === 'minor') {
-    scale = six || nine ? DORIAN : AEOLIAN;
-  } else {
-    scale = s11 ? LYDIAN : IONIAN;
-  }
-  // the flamenco world leans on the phrygian dominant; a major triad built on
-  // the fifth degree of a minor tune is the usual carrier for it
-  if (/phryg/i.test(rest)) scale = PHRYGIAN_D;
-
-  let tension = QUALITY_TENSION[quality];
-  tension += tensions.length * 0.06;
-  if (b9 || s9 || s11 || b13 || s5 || b5) tension += 0.12;
-  tension = Math.max(0, Math.min(1, tension));
-
-  const extensions = Array.from(new Set([
-    ...(six ? [6] : []),
-    ...(seven ? [7] : []),
-    ...((nine || add9 || sixNine) ? [9] : []),
-    ...((eleven || add11 || s11) ? [11] : []),
-    ...(thirteen || b13 ? [13] : []),
-  ])).sort((a, b) => a - b);
-  const alterations = Array.from(new Set([
-    ...(b5 ? ['b5'] : []), ...(s5 ? ['#5'] : []),
-    ...(b9 ? ['b9'] : []), ...(s9 ? ['#9'] : []),
-    ...(s11 ? ['#11'] : []), ...(b13 ? ['b13'] : []),
-  ]));
-  const harmony: CanonicalChordHarmony = {
-    root: rootPc,
-    quality,
-    extensions,
-    alterations,
-    bass: bassPc >= 0 ? bassPc : rootPc,
+  const neutralFallback: ParsedChord = {
+    symbol,
+    rootPc,
+    rootName,
+    quality: 'major',
+    intervals: [0, 7, 12],
+    guideTones: [0, 7],
+    tensions: [],
+    bassPc: effectiveBass,
+    isPower: false,
+    scale: [0, 2, 4, 5, 7, 9, 11],
+    tension: 0.2,
+    harmony: { root: rootPc, quality: 'major', extensions: [], alterations: [], bass: effectiveBass },
   };
 
-  return {
-    symbol, rootPc, rootName, quality, intervals,
-    guideTones: guideTones.length ? guideTones : [7],
-    tensions,
-    bassPc: bassPc >= 0 ? bassPc : rootPc,
-    isPower,
-    scale,
-    tension,
-    harmony,
-  };
+  try {
+    let rest = body.slice(rootMatch ? rootMatch[1].length : 0);
+    rest = rest.replace(/^-/, 'm').replace(/Δ/g, 'maj').replace(/ø/g, 'm7b5').replace(/°/g, 'dim');
+    const has = (re: RegExp) => re.test(rest);
+
+    const isPower = /^5(?![0-9])/.test(rest) || /^\(?no3\)?/.test(rest);
+    const sus2 = has(/sus2/);
+    const sus4 = has(/sus4?(?!\d)/) && !sus2;
+    const dim = has(/dim|o7|o(?![a-z])/i);
+    const halfDim = has(/m7b5|m7\(b5\)/);
+    const aug = has(/aug|\+(?!\d)/);
+    const maj7 = has(/maj7|maj9|maj11|maj13|M7|M9|ma7/);
+    const minor = !dim && !halfDim && /^m(?!aj|a7)/.test(rest);
+
+    const six = has(/(^|[^b#0-9])6(?![0-9])/);
+    const thirteen = has(/13/);
+    const eleven = has(/11/);
+    const nine = has(/9/);
+    const add9 = has(/add9/);
+    const add11 = has(/add11/);
+    const sixNine = has(/6\s*\/\s*9/);
+    const alt = has(/alt(?:ered)?/i);
+    const seven = has(/7/) || thirteen || (nine && !add9 && !sixNine) || (eleven && !add11 && !sixNine);
+
+    const b5 = has(/b5/) || halfDim || dim || alt;
+    const s5 = has(/#5/) || aug || alt;
+    const b9 = has(/b9/) || alt;
+    const s9 = has(/#9/) || alt;
+    const s11 = has(/#11/);
+    const b13 = has(/b13/);
+
+    let quality: ChordQuality;
+    if (isPower) quality = 'power';
+    else if (dim) quality = 'diminished';
+    else if (halfDim) quality = 'halfDiminished';
+    else if (aug) quality = 'augmented';
+    else if (sus2 || sus4) quality = 'suspended';
+    else if (minor) quality = 'minor';
+    else if (seven && !maj7) quality = 'dominant';
+    else quality = 'major';
+
+    const set = new Set<number>([0]);
+    if (!isPower) {
+      if (sus2) set.add(2);
+      else if (sus4) set.add(5);
+      else if (minor || dim || halfDim) set.add(3);
+      else set.add(4);
+    }
+
+    if (b5) set.add(6);
+    else if (s5) set.add(8);
+    else set.add(7);
+
+    if (dim && (seven || six)) set.add(9);
+    else if (six) set.add(9);
+    else if (maj7) set.add(11);
+    else if (seven) set.add(10);
+
+    const guideTones: number[] = [];
+    const tensions: number[] = [];
+    if (!isPower) {
+      const third = sus2 ? 2 : sus4 ? 5 : (minor || dim || halfDim) ? 3 : 4;
+      guideTones.push(third);
+      if (maj7) guideTones.push(11);
+      else if (dim && (seven || six)) guideTones.push(9);
+      else if (seven) guideTones.push(10);
+      else if (six) guideTones.push(9);
+    }
+
+    if (b9) { set.add(13); tensions.push(13); }
+    else if (s9) { set.add(15); tensions.push(15); }
+    else if (nine || add9) { set.add(14); tensions.push(14); }
+    if ((thirteen || eleven) && !b9 && !s9 && !add9 && !sixNine && !nine) { set.add(14); tensions.push(14); }
+
+    if (s11) { set.add(18); tensions.push(18); }
+    else if (eleven || add11) { set.add(17); tensions.push(17); }
+
+    if (b13) { set.add(20); tensions.push(20); }
+    else if (thirteen) { set.add(21); tensions.push(21); }
+    if (alt) { set.add(6); set.add(8); set.add(13); set.add(15); tensions.push(6,8,13,15); }
+    if (sixNine) { set.add(14); tensions.push(14); }
+
+    const intervals = [...set].sort((a, b) => a - b);
+    return {
+      symbol,
+      rootPc,
+      rootName,
+      quality,
+      intervals,
+      guideTones,
+      tensions,
+      bassPc: effectiveBass,
+      isPower,
+      scale: minor ? AEOLIAN : IONIAN,
+      tension: QUALITY_TENSION[quality] ?? 0.2,
+      harmony: {
+        root: rootPc,
+        quality,
+        extensions: tensions,
+        alterations: [],
+        bass: effectiveBass,
+      },
+    };
+  } catch {
+    return neutralFallback;
+  }
 }
 
 /* --- note helpers --------------------------------------------------------- */

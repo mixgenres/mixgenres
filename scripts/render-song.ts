@@ -23,7 +23,6 @@ async function main() {
     perf,
     {
       trackInstruments,
-      roomId: sheet.roomId ?? 'club',
       worldId: sheet.worldId,
       styleId: sheet.styleId,
     },

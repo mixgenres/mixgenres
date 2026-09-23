@@ -36,10 +36,20 @@ export function polishPerformance(perf: Performance, options: PerformanceQuality
     };
   });
 
-  // Keep a note from running into the next note of the same track/pitch.
+  // Keep a note from running into the next note.
+  // For monophonic tracks (bass, lead, melody, wind, brass, solo), group strictly by track ID
+  // so any new note cuts off the previous note regardless of pitch.
+  const isMonoTrack = (trackId: string) => {
+    const r = (info[trackId]?.role || '').toLowerCase();
+    const inst = (info[trackId]?.instrumentId || trackId).toLowerCase();
+    if (r === 'bass' || r === 'lead' || r === 'melody' || r === 'solo') return true;
+    if (/flute|sax|trumpet|horn|trombone|clarinet|oboe|bassoon|whistle|duduk|shakuhachi|bansuri|sitar|oud|kora|erhu|violin_solo|cello_solo|voice|vocal|synth_lead|acid/i.test(inst)) return true;
+    return false;
+  };
+
   const byVoice = new Map<string, PerfNote[]>();
   for (const n of notes) {
-    const key = `${n.trackId}:${n.midi}`;
+    const key = isMonoTrack(n.trackId) ? `${n.trackId}` : `${n.trackId}:${n.midi}`;
     const list = byVoice.get(key) ?? [];
     list.push(n);
     byVoice.set(key, list);
@@ -48,7 +58,17 @@ export function polishPerformance(perf: Performance, options: PerformanceQuality
     list.sort((a, b) => a.time - b.time);
     for (let i = 0; i < list.length - 1; i++) {
       const gap = list[i + 1].time - list[i].time;
-      if (gap > 0) list[i].dur = Math.min(list[i].dur, Math.max(minDur, gap - 0.004));
+      if (gap > 0) {
+        const curNote = list[i];
+        const artic = String(curNote.articulation || '').toLowerCase();
+        const hasGlideLegato = /slide|portamento|glissando|legato|arrastre|slur|bind|bend/.test(artic);
+        if (hasGlideLegato) {
+          // Allow duration to overlap subsequent note by 18ms for smooth DSP glides
+          curNote.dur = Math.max(curNote.dur, gap + 0.018);
+        } else {
+          curNote.dur = Math.min(curNote.dur, Math.max(minDur, gap - 0.004));
+        }
+      }
     }
   }
   notes.sort((a, b) => a.time - b.time || a.trackId.localeCompare(b.trackId));

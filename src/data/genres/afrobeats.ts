@@ -665,7 +665,7 @@ export const AFROBEATS_WORLD: GenreWorld = {
     {
       "id": "afro-log-drum-bass",
       "worldId": "afrobeats",
-      "styleIds": ["afrobeats-modern"],
+      "styleIds": ["afrobeats-afro-pop"],
       "name": "Pitched Log Drum Bass Groove",
       "family": "Log Drum",
       "category": "groove",
@@ -828,7 +828,7 @@ export const AFROBEATS_WORLD: GenreWorld = {
     {
       "id": "afro-syncopated-kit",
       "worldId": "afrobeats",
-      "styleIds": ["afrobeats-modern"],
+      "styleIds": ["afrobeats-afro-pop"],
       "name": "Modern Afropop Kick & Rim Pocket",
       "family": "Afrobeats Drums",
       "category": "groove",
@@ -978,7 +978,7 @@ export const AFROBEATS_WORLD: GenreWorld = {
     {
       "id": "afro-highlife-guitar",
       "worldId": "afrobeats",
-      "styleIds": ["afrobeats-modern"],
+      "styleIds": ["afrobeats-afro-pop"],
       "name": "Highlife Fingerstyle Clean Guitar",
       "family": "Highlife Guitar",
       "category": "ostinato",
@@ -1147,7 +1147,7 @@ export const AFROBEATS_WORLD: GenreWorld = {
     {
       "id": "afro-shekere-shaker",
       "worldId": "afrobeats",
-      "styleIds": ["afrobeat-fela"],
+      "styleIds": ["afrobeats-afrobeat"],
       "name": "Shekere & Gourd Shaker Engine",
       "family": "Afro Percussion",
       "category": "groove",
@@ -1403,7 +1403,7 @@ export const AFROBEATS_WORLD: GenreWorld = {
     {
       "id": "afro-horn-stabs",
       "worldId": "afrobeats",
-      "styleIds": ["afrobeat-fela"],
+      "styleIds": ["afrobeats-afrobeat"],
       "name": "Fela Afrobeat Horn Section Stabs",
       "family": "Afro Horns",
       "category": "cadence",
@@ -1709,7 +1709,7 @@ export const AFROBEATS_WORLD: GenreWorld = {
     {
       "id": "afrobeats-call-7",
       "worldId": "afrobeats",
-      "styleIds": ["afrobeats-modern"],
+      "styleIds": ["afrobeats-afro-pop"],
       "name": "Shekere Response",
       "family": "Shekere",
       "category": "interactionPattern",
@@ -1919,7 +1919,7 @@ export const AFROBEATS_WORLD: GenreWorld = {
     {
       "id": "afrobeats-anchor-8",
       "worldId": "afrobeats",
-      "styleIds": ["afrobeats-modern"],
+      "styleIds": ["afrobeats-afro-pop"],
       "name": "Hook Anchor",
       "family": "Hook",
       "category": "ostinato",
@@ -2085,7 +2085,7 @@ export const AFROBEATS_WORLD: GenreWorld = {
     {
       "id": "afrobeats-comp-9",
       "worldId": "afrobeats",
-      "styleIds": ["afrobeats-modern"],
+      "styleIds": ["afrobeats-afro-pop"],
       "name": "Horn Comping",
       "family": "Horn",
       "category": "groove",
@@ -2250,7 +2250,7 @@ export const AFROBEATS_WORLD: GenreWorld = {
     {
       "id": "afrobeats-intro-10",
       "worldId": "afrobeats",
-      "styleIds": ["afrobeats-modern"],
+      "styleIds": ["afrobeats-afro-pop"],
       "name": "Afrobeat Intro",
       "family": "Afrobeat",
       "category": "sectionPattern",
@@ -2486,7 +2486,7 @@ export const AFROBEATS_WORLD: GenreWorld = {
     {
       "id": "afrobeats-verse-11",
       "worldId": "afrobeats",
-      "styleIds": ["afrobeats-modern"],
+      "styleIds": ["afrobeats-afro-pop"],
       "name": "Log Drum Verse Variation",
       "family": "Log Drum",
       "category": "groove",
@@ -2676,7 +2676,7 @@ export const AFROBEATS_WORLD: GenreWorld = {
     {
       "id": "afrobeats-chorus-12",
       "worldId": "afrobeats",
-      "styleIds": ["afrobeats-modern"],
+      "styleIds": ["afrobeats-afro-pop"],
       "name": "Shekere Chorus Lift",
       "family": "Shekere",
       "category": "sectionPattern",
@@ -2919,7 +2919,7 @@ export const AFROBEATS_WORLD: GenreWorld = {
     {
       "id": "afrobeats-bridge-13",
       "worldId": "afrobeats",
-      "styleIds": ["afrobeats-modern"],
+      "styleIds": ["afrobeats-afro-pop"],
       "name": "Hook Bridge",
       "family": "Hook",
       "category": "sectionPattern",
@@ -3156,7 +3156,7 @@ export const AFROBEATS_WORLD: GenreWorld = {
     {
       "id": "afrobeats-fill-14",
       "worldId": "afrobeats",
-      "styleIds": ["afrobeats-modern"],
+      "styleIds": ["afrobeats-afro-pop"],
       "name": "Horn Fill",
       "family": "Horn",
       "category": "fill",
@@ -3221,9 +3221,7 @@ export const AFROBEATS_WORLD: GenreWorld = {
       "syncopationRating": 0.5,
       "anticipationOffset": 1,
       "swingPercentage": 50,
-      "articulations": [
-        "fill"
-      ],
+      "articulations": ["accent"],
       "supportedEnergy": [4, 5],
       "phrasePosition": [
         "end"
@@ -3370,7 +3368,7 @@ export const AFROBEATS_WORLD: GenreWorld = {
     {
       "id": "afrobeats-break-15",
       "worldId": "afrobeats",
-      "styleIds": ["afrobeats-modern"],
+      "styleIds": ["afrobeats-afro-pop"],
       "name": "Afrobeat Break",
       "family": "Afrobeat",
       "category": "break",
@@ -3586,7 +3584,7 @@ export const AFROBEATS_WORLD: GenreWorld = {
     {
       "id": "afrobeats-cadence-16",
       "worldId": "afrobeats",
-      "styleIds": ["afrobeats-modern"],
+      "styleIds": ["afrobeats-afro-pop"],
       "name": "Log Drum Cadence",
       "family": "Log Drum",
       "category": "cadence",
@@ -3803,7 +3801,7 @@ export const AFROBEATS_WORLD: GenreWorld = {
     {
       "id": "afrobeats-voice-phrasing",
       "worldId": "afrobeats",
-      "styleIds": ["afrobeats-modern"],
+      "styleIds": ["afrobeats-afro-pop"],
       "name": "Afrobeats Vocal Phrasing",
       "family": "Vocal Phrasing",
       "category": "phrasePattern",

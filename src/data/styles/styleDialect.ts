@@ -83,20 +83,31 @@ function styleCellsFor(style: SongStyle): number[][] {
 
 
 const GENRE_PROGRESSION_FALLBACKS: Record<string, string[][][]> = {
+  afrobeats: [[['Fmaj7','Em7','Dm7','Cmaj7'],['Dm7','G7','Em7','Am7']],[['C','G','Am','F'],['F','G','Am','Em']]],
+  bachata: [[['Am','Dm','E7','Am'],['Dm','G','C','E7']],[['Bm','Em','F#7','Bm'],['Em','A7','D','F#7']]],
+  blues: [[['A7','D7','A7','E7'],['D7','D7','A7','A7']],[['C7','F7','C7','G7'],['F7','F7','C7','G7']]],
+  brazilian: [[['Cmaj7','A7','Dm7','G7'],['Em7','A7','Dm7','G7']],[['Dm7','G7','Cmaj7','C6'],['Fmaj7','Fm6','Em7','A7']]],
+  country: [[['G','C','G','D7'],['G','C','D7','G']],[['C','F','C','G7'],['C','F','G7','C']]],
   cumbia: [[['Am','G','F','E7'],['Dm','C','Bb','A7']],[['Am','F','G','E7'],['Dm','G','C','A7']]],
-  flamenco: [[['Am','G','F','E7'],['Dm','C','Bb','A7']],[['E7','Am','G','F'],['Am','Bb','E7','Am']]],
+  disco: [[['Dm7','G7','Cmaj7','Am7'],['Fmaj7','Em7','Dm7','G7']],[['Cm7','F7','Bbmaj7','Gm7'],['Abmaj7','G7','Cm7','C7']]],
   electronic: [[['Am','F','C','G'],['Em','D','C','Em']],[['Dm7','G7','Cmaj7','Am7'],['Am7','G','F','G']]],
+  flamenco: [[['Am','G','F','E7'],['Dm','C','Bb','A7']],[['E7','Am','G','F'],['Am','Bb','E7','Am']]],
   folk: [[['G','C','G','D'],['Em','C','G','D']],[['Dm','C','Bb','C'],['G','D','Em','C']]],
-  gospel: [[['C','F','G','Am'],['F','C','Dm7','G7']],[['Cmaj7','Am7','Dm7','G7'],['Ab','Bb','C','C']]],
   funk: [[['Dm7','C','Bb','C'],['Am7','D7','G7','C7']],[['Em7','A7','Dm7','G7'],['C7','C7','F7','G7']]],
+  gospel: [[['C','F','G','Am'],['F','C','Dm7','G7']],[['Cmaj7','Am7','Dm7','G7'],['Ab','Bb','C','C']]],
   'hip-hop': [[['Dm7','Bb','F','C'],['Am7','Fmaj7','Cmaj7','G6']],[['Dm9','G7','Cm9','A7'],['Am','G','F','G']]],
+  house: [[['Am7','Fmaj7','C','G'],['Dm7','Em7','Am7','G']],[['Cm7','Abmaj7','Eb','Bb'],['Fm7','Gm7','Cm7','Bb']]],
+  jazz: [[['Cmaj7','A7','Dm7','G7'],['Em7','A7','Dm7','G7']],[['Fmaj7','Bb7','Cmaj7','A7'],['Dm7','G7','Em7','A7']]],
   kizomba: [[['Am7','Fmaj7','Cmaj7','G7'],['Dm7','G7','Cmaj7','Am7']],[['Bm7','Gmaj7','Dmaj7','A7'],['Em7','A7','Dmaj7','Bm7']]],
-  'latin-pop': [[['C','G','Am','F'],['Dm7','G7','Cmaj7','Am7']],[['Am7','Fmaj7','Cmaj7','G6'],['Dm7','G7','Cmaj7','A7']]],
   'r-and-b': [[['Dm9','G13','Cmaj9','Am9'],['Fmaj9','Em7','Dm9','G13']],[['Cmaj9','A7#5','Dm9','G13'],['Ebmaj9','F13','Gm9','C13']]],
+  reggae: [[['G','C','G','D'],['Am','Bm','C','D']],[['C','G','Am','F'],['G','D','Em','C']]],
+  reggaeton: [[['Am','F','C','G'],['Dm','F','Am','G']],[['Cm','Ab','Eb','Bb'],['Fm','Ab','Cm','Bb']]],
   rock: [[['E5','C5','D5','B5'],['A','D','E','A']],[['Em','C','G','D'],['A','G','D','E']]],
+  salsa: [[['Am7','Dm7','G7','Cmaj7'],['Fmaj7','Bm7b5','E7','Am7']],[['Cm7','Fm7','Bb7','Ebmaj7'],['Abmaj7','Dm7b5','G7','Cm7']]],
   ska: [[['C','G','Am','F'],['F','C','G','C']],[['Dm7','G7','Cmaj7','A7'],['C','Bb','F','G']]],
   soul: [[['Cmaj7','Am7','Dm7','G7'],['Fmaj7','Em7','Dm7','G7']],[['Ebmaj7','Cm7','Fm7','Bb7'],['Cmaj7','A7','Dm7','G7']]],
   swing: [[['C6','A7','Dm7','G7'],['Dm7','G7','C6','A7']],[['Fmaj7','D7','Gm7','C7'],['Bb6','G7','Cm7','F7']]],
+  tango: [[['Am','Dm','E7','Am'],['Dm','G7','C','E7']],[['Cm','Fm','G7','Cm'],['Fm','Bb7','Eb','G7']]],
   timba: [[['Am7','Dm7','E7','Am7'],['Dm7','G7','Cmaj7','A7']],[['Cm7','Fm7','G7','Cm7'],['Dm7','G7','C7','A7']]],
   zouk: [[['Am7','Fmaj7','Cmaj7','G7'],['Dm9','G13','Cmaj9','Am7']],[['Bm7','Gmaj7','Dmaj7','A7'],['Em9','A13','Dmaj9','Bm7']]],
   'drum-and-bass': [[['Em7','Cmaj7','G','D'],['Dm7','Bbmaj7','F','C']],[['Am7','G','Fmaj7','G'],['Em9','D','Cmaj7','B7']]],
@@ -116,7 +127,6 @@ const GENRE_RHYTHM_FALLBACKS: Record<string,{bpm:number;range:[number,number];me
   industrial:{bpm:128,range:[110,145],meter:'4/4',feel:'machine pulse',swing:50},
   'punk-hardcore':{bpm:180,range:[150,220],meter:'4/4',feel:'straight speed',swing:50},
   'uk-bass':{bpm:132,range:[125,140],meter:'4/4',feel:'broken club',swing:50},
-  'latin-pop':{bpm:100,range:[88,116],meter:'4/4',feel:'Latin pop pulse',swing:50},
 };
 
 

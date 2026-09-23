@@ -32,6 +32,8 @@ export interface NativeSlice {
   hitTypes: string[];
   /** how many steps this pattern puts in one bar */
   stepsPerBar: number;
+  /** fractional percentage (0..1) of the bar where each onset occurs */
+  fractionalPositions: number[];
 }
 
 export function sliceBarNative(
@@ -53,18 +55,20 @@ export function sliceBarNative(
   const stepsPerBar = Math.max(1, Math.round(total / cycleBars));
 
   const from = (barInCycle % cycleBars) * stepsPerBar;
-  const keepO: number[] = [], keepA: number[] = [], keepD: number[] = [], keepM: number[] = [], keepH: string[] = [];
+  const keepO: number[] = [], keepA: number[] = [], keepD: number[] = [], keepM: number[] = [], keepH: string[] = [], keepF: number[] = [];
 
   onsets.forEach((o, i) => {
     if (o < from || o >= from + stepsPerBar) return;
-    keepO.push(o - from);
+    const barStep = o - from;
+    keepO.push(barStep);
+    keepF.push(barStep / stepsPerBar);
     keepA.push(accents?.[i] ?? 0.78);
     keepD.push(durations?.[i] ?? 1);
     keepM.push(micro?.[i] ?? 0);
     keepH.push(hitTypes?.[i] ?? '');
   });
 
-  return { onsets: keepO, accents: keepA, durations: keepD, microtiming: keepM, hitTypes: keepH, stepsPerBar };
+  return { onsets: keepO, accents: keepA, durations: keepD, microtiming: keepM, hitTypes: keepH, stepsPerBar, fractionalPositions: keepF };
 }
 
 /** Quarter-note beats in one bar of the given time signature. */

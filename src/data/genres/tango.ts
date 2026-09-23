@@ -440,7 +440,7 @@ export const TANGO_WORLD: GenreWorld = {
     {
       "id": "tango-marcato-4",
       "worldId": "tango",
-      "styleIds": ["tango-epoca-oro"],
+      "styleIds": ["tango-tango-tradicional"],
       "name": "Marcato en 4 (Orquesta Típica)",
       "family": "Marcato Accompaniment",
       "category": "ostinato",
@@ -603,7 +603,7 @@ export const TANGO_WORLD: GenreWorld = {
     {
       "id": "tango-marcato-2",
       "worldId": "tango",
-      "styleIds": ["tango-epoca-oro"],
+      "styleIds": ["tango-tango-tradicional"],
       "name": "Marcato en 2 (Troilo / Di Sarli)",
       "family": "Marcato Accompaniment",
       "category": "ostinato",
@@ -727,7 +727,7 @@ export const TANGO_WORLD: GenreWorld = {
     {
       "id": "tango-sincopa",
       "worldId": "tango",
-      "styleIds": ["tango-epoca-oro"],
+      "styleIds": ["tango-tango-tradicional"],
       "name": "Síncopa a Tierra (Standard Syncopation)",
       "family": "Syncopated Figures",
       "category": "cell",
@@ -866,7 +866,7 @@ export const TANGO_WORLD: GenreWorld = {
     {
       "id": "tango-arrastre",
       "worldId": "tango",
-      "styleIds": ["tango-epoca-oro"],
+      "styleIds": ["tango-tango-tradicional"],
       "name": "Arrastre (Chromatic Drag Lead-in)",
       "family": "Ornamental Transitions",
       "category": "phrasePattern",
@@ -1006,7 +1006,7 @@ export const TANGO_WORLD: GenreWorld = {
     {
       "id": "tango-bordoneo",
       "worldId": "tango",
-      "styleIds": ["tango-guardia-vieja"],
+      "styleIds": ["tango-milonga"],
       "name": "Bordoneo Criollo (Guitar Bass Movement)",
       "family": "Guitar Bordoneos",
       "category": "rolePattern",
@@ -1304,7 +1304,7 @@ export const TANGO_WORLD: GenreWorld = {
     {
       "id": "tango-fraseo-bandoneon",
       "worldId": "tango",
-      "styleIds": ["tango-epoca-oro"],
+      "styleIds": ["tango-tango-tradicional"],
       "name": "Fraseo y Rubato (Bandoneón Lead)",
       "family": "Lyrical Lead Phrases",
       "category": "phrasePattern",
@@ -1486,7 +1486,7 @@ export const TANGO_WORLD: GenreWorld = {
     {
       "id": "tango-bandoneon-chords",
       "worldId": "tango",
-      "styleIds": ["tango-guardia-vieja"],
+      "styleIds": ["tango-milonga"],
       "name": "Bandoneon Chords",
       "family": "Bandoneon",
       "category": "fill",
@@ -1619,7 +1619,7 @@ export const TANGO_WORLD: GenreWorld = {
     {
       "id": "tango-violin-melody",
       "worldId": "tango",
-      "styleIds": ["tango-epoca-oro"],
+      "styleIds": ["tango-tango-tradicional"],
       "name": "Violin Legato",
       "family": "Strings",
       "category": "break",
@@ -1734,7 +1734,7 @@ export const TANGO_WORLD: GenreWorld = {
     {
       "id": "tango-piano-chumba",
       "worldId": "tango",
-      "styleIds": ["tango-epoca-oro"],
+      "styleIds": ["tango-tango-tradicional"],
       "name": "Piano Chumba",
       "family": "Piano",
       "category": "cadence",
@@ -1988,7 +1988,7 @@ export const TANGO_WORLD: GenreWorld = {
     {
       "id": "tango-phrase-12",
       "worldId": "tango",
-      "styleIds": ["tango-guardia-vieja"],
+      "styleIds": ["tango-milonga"],
       "name": "Marcato Phrase",
       "family": "Marcato",
       "category": "phrasePattern",
@@ -2162,7 +2162,7 @@ export const TANGO_WORLD: GenreWorld = {
     {
       "id": "tango-call-13",
       "worldId": "tango",
-      "styleIds": ["tango-guardia-vieja"],
+      "styleIds": ["tango-milonga"],
       "name": "Síncopa Response",
       "family": "Síncopa",
       "category": "interactionPattern",
@@ -2395,7 +2395,7 @@ export const TANGO_WORLD: GenreWorld = {
     {
       "id": "tango-anchor-14",
       "worldId": "tango",
-      "styleIds": ["tango-guardia-vieja"],
+      "styleIds": ["tango-milonga"],
       "name": "Arrastre Anchor",
       "family": "Arrastre",
       "category": "ostinato",
@@ -2570,7 +2570,7 @@ export const TANGO_WORLD: GenreWorld = {
     {
       "id": "tango-comp-15",
       "worldId": "tango",
-      "styleIds": ["tango-guardia-vieja"],
+      "styleIds": ["tango-milonga"],
       "name": "Yumba Comping",
       "family": "Yumba",
       "category": "groove",
@@ -2746,7 +2746,7 @@ export const TANGO_WORLD: GenreWorld = {
     {
       "id": "tango-intro-16",
       "worldId": "tango",
-      "styleIds": ["tango-guardia-vieja"],
+      "styleIds": ["tango-milonga"],
       "name": "Marcato Intro",
       "family": "Marcato",
       "category": "sectionPattern",
@@ -2956,7 +2956,7 @@ export const TANGO_WORLD: GenreWorld = {
     {
       "id": "tango-verse-17",
       "worldId": "tango",
-      "styleIds": ["tango-guardia-vieja"],
+      "styleIds": ["tango-milonga"],
       "name": "Síncopa Verse Variation",
       "family": "Síncopa",
       "category": "groove",

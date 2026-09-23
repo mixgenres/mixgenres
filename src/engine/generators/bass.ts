@@ -280,7 +280,6 @@ export const BASS_STYLE_BY_WORLD: Record<string, BassStyle> = {
   gospel: 'rootFifth',
   soul: 'riff',
   'r-and-b': 'sub',
-  'latin-pop': 'tumbao',
   reggaeton: 'dembow',
   'drum-and-bass': 'sub',
   industrial: 'riff',

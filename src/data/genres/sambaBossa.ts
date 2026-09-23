@@ -1059,10 +1059,7 @@ export const SAMBA_BOSSA_WORLD: GenreWorld = {
       "syncopationRating": 0,
       "anticipationOffset": 0,
       "swingPercentage": 50,
-      "articulations": [
-        "surdo",
-        " samba"
-      ],
+      "articulations": [" samba"],
       "supportedEnergy": [1, 2],
       "phrasePosition": [
         "any"
@@ -1137,10 +1134,7 @@ export const SAMBA_BOSSA_WORLD: GenreWorld = {
       "syncopationRating": 0.67,
       "anticipationOffset": 0,
       "swingPercentage": 50,
-      "articulations": [
-        "pandeiro",
-        " interlock"
-      ],
+      "articulations": [" interlock"],
       "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "any"
@@ -1213,10 +1207,7 @@ export const SAMBA_BOSSA_WORLD: GenreWorld = {
       "syncopationRating": 0.8,
       "anticipationOffset": -1,
       "swingPercentage": 50,
-      "articulations": [
-        "tamborim",
-        " accent"
-      ],
+      "articulations": [" accent"],
       "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "middle"
@@ -1287,10 +1278,7 @@ export const SAMBA_BOSSA_WORLD: GenreWorld = {
       "syncopationRating": 1,
       "anticipationOffset": -1,
       "swingPercentage": 50,
-      "articulations": [
-        "cavaquinho",
-        " partido-alto"
-      ],
+      "articulations": [" partido-alto"],
       "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "any"
@@ -1365,10 +1353,7 @@ export const SAMBA_BOSSA_WORLD: GenreWorld = {
       "syncopationRating": 0.67,
       "anticipationOffset": -1,
       "swingPercentage": 50,
-      "articulations": [
-        "bossa",
-        " guitar rhythm"
-      ],
+      "articulations": [" guitar rhythm"],
       "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "any"
@@ -1440,10 +1425,7 @@ export const SAMBA_BOSSA_WORLD: GenreWorld = {
       "syncopationRating": 0.75,
       "anticipationOffset": 0,
       "swingPercentage": 50,
-      "articulations": [
-        "bossa",
-        " anticipation"
-      ],
+      "articulations": [" anticipation"],
       "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "any"
@@ -1514,10 +1496,7 @@ export const SAMBA_BOSSA_WORLD: GenreWorld = {
       "syncopationRating": 1,
       "anticipationOffset": 0,
       "swingPercentage": 50,
-      "articulations": [
-        "piano",
-        " voicing"
-      ],
+      "articulations": [" voicing"],
       "supportedEnergy": [4, 5],
       "phrasePosition": [
         "middle"
@@ -1588,9 +1567,7 @@ export const SAMBA_BOSSA_WORLD: GenreWorld = {
       "syncopationRating": 0.5,
       "anticipationOffset": 0,
       "swingPercentage": 50,
-      "articulations": [
-        "call-response"
-      ],
+      "articulations": ["accent"],
       "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "end"
@@ -1659,10 +1636,7 @@ export const SAMBA_BOSSA_WORLD: GenreWorld = {
       "syncopationRating": 0.5,
       "anticipationOffset": 0,
       "swingPercentage": 50,
-      "articulations": [
-        "batucada",
-        " break"
-      ],
+      "articulations": [" break"],
       "supportedEnergy": [1, 2],
       "phrasePosition": [
         "end"
@@ -1735,10 +1709,7 @@ export const SAMBA_BOSSA_WORLD: GenreWorld = {
       "syncopationRating": 0.5,
       "anticipationOffset": 0,
       "swingPercentage": 50,
-      "articulations": [
-        "extended harmony",
-        " release"
-      ],
+      "articulations": [" release"],
       "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "end"

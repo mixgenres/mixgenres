@@ -966,10 +966,7 @@ export const JAZZ_WORLD: GenreWorld = {
       "anticipationOffset": 0,
 
 
-      "articulations": [
-        "accented",
-        "ghost-aware"
-      ]
+      "articulations": ["accented"]
     },
     {
       "id": "jazz-piano-comping",
@@ -1104,10 +1101,7 @@ export const JAZZ_WORLD: GenreWorld = {
       "anticipationOffset": 0,
 
 
-      "articulations": [
-        "accented",
-        "ghost-aware"
-      ]
+      "articulations": ["accented"]
     },
     {
       "id": "jazz-brushes-swing",
@@ -1271,10 +1265,7 @@ export const JAZZ_WORLD: GenreWorld = {
       "swingPercentage": 66,
       "anticipationOffset": 0,
 
-      "articulations": [
-        "accented",
-        "ghost-aware"
-      ]
+      "articulations": ["accented"]
     },
     {
       "id": "jazz-latin-montuno-comp",
@@ -1428,10 +1419,7 @@ export const JAZZ_WORLD: GenreWorld = {
       "anticipationOffset": 0,
 
 
-      "articulations": [
-        "accented",
-        "ghost-aware"
-      ]
+      "articulations": ["accented"]
     },
     {
       "id": "jazz-piano-red-garland",
@@ -1550,10 +1538,7 @@ export const JAZZ_WORLD: GenreWorld = {
       "swingPercentage": 66,
       "anticipationOffset": 0,
 
-      "articulations": [
-        "accented",
-        "ghost-aware"
-      ]
+      "articulations": ["accented"]
     },
     {
       "id": "jazz-hihat-2-4",
@@ -1665,10 +1650,7 @@ export const JAZZ_WORLD: GenreWorld = {
       "swingPercentage": 66,
       "anticipationOffset": 0,
 
-      "articulations": [
-        "accented",
-        "ghost-aware"
-      ]
+      "articulations": ["accented"]
     },
     {
       "id": "jazz-ride-broken",
@@ -1803,10 +1785,7 @@ export const JAZZ_WORLD: GenreWorld = {
       "anticipationOffset": 0,
 
 
-      "articulations": [
-        "accented",
-        "ghost-aware"
-      ]
+      "articulations": ["accented"]
     },
     {
       "id": "jazz-bass-pedal",
@@ -1933,10 +1912,7 @@ export const JAZZ_WORLD: GenreWorld = {
       "swingPercentage": 66,
       "anticipationOffset": 0,
 
-      "articulations": [
-        "accented",
-        "ghost-aware"
-      ]
+      "articulations": ["accented"]
     },
     {
       "id": "jazz-comping-sync",
@@ -2054,10 +2030,7 @@ export const JAZZ_WORLD: GenreWorld = {
       "swingPercentage": 66,
       "anticipationOffset": 0,
 
-      "articulations": [
-        "accented",
-        "ghost-aware"
-      ]
+      "articulations": ["accented"]
     },
     {
       "id": "jazz-snare-comp",
@@ -2173,10 +2146,7 @@ export const JAZZ_WORLD: GenreWorld = {
       "swingPercentage": 66,
       "anticipationOffset": 0,
 
-      "articulations": [
-        "accented",
-        "ghost-aware"
-      ]
+      "articulations": ["accented"]
     },
     {
       "id": "jazz-waltz-ride",
@@ -2321,10 +2291,7 @@ export const JAZZ_WORLD: GenreWorld = {
       "swingPercentage": 66,
       "anticipationOffset": 0,
 
-      "articulations": [
-        "accented",
-        "ghost-aware"
-      ]
+      "articulations": ["accented"]
     },
     {
       "id": "jazz-phrase-13",
@@ -2386,10 +2353,7 @@ export const JAZZ_WORLD: GenreWorld = {
       "syncopationRating": 0.8,
       "anticipationOffset": 0,
       "swingPercentage": 66,
-      "articulations": [
-        "breath",
-        "phrase-end"
-      ],
+      "articulations": ["breath"],
       "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
@@ -2539,10 +2503,7 @@ export const JAZZ_WORLD: GenreWorld = {
       "syncopationRating": 0.8,
       "anticipationOffset": 0,
       "swingPercentage": 66,
-      "articulations": [
-        "breath",
-        "phrase-end"
-      ],
+      "articulations": ["breath"],
       "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "middle"
@@ -2737,10 +2698,7 @@ export const JAZZ_WORLD: GenreWorld = {
       "syncopationRating": 0.8,
       "anticipationOffset": 0,
       "swingPercentage": 66,
-      "articulations": [
-        "accented",
-        "ghost-aware"
-      ],
+      "articulations": ["accented"],
       "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start",
@@ -2891,10 +2849,7 @@ export const JAZZ_WORLD: GenreWorld = {
       "syncopationRating": 0.8,
       "anticipationOffset": 0,
       "swingPercentage": 66,
-      "articulations": [
-        "accented",
-        "ghost-aware"
-      ],
+      "articulations": ["accented"],
       "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "middle"
@@ -3051,10 +3006,7 @@ export const JAZZ_WORLD: GenreWorld = {
       "syncopationRating": 0.5,
       "anticipationOffset": 0,
       "swingPercentage": 66,
-      "articulations": [
-        "accented",
-        "ghost-aware"
-      ],
+      "articulations": ["accented"],
       "supportedEnergy": [1, 2, 3, 4, 5],
       "phrasePosition": [
         "start"

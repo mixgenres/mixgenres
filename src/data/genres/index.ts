@@ -33,7 +33,7 @@ export const GENRE_SOURCE_MAP: Record<string, string> = {
   afrobeats: 'afrobeats', bachata: 'bachata', blues: 'blues', brazilian: 'samba-bossa',
   country: 'country', cumbia: 'cumbia', disco: 'funk', electronic: 'electronic',
   folk: 'folk', funk: 'funk', gospel: 'folk', 'hip-hop': 'hip-hop', house: 'house-techno',
-  jazz: 'jazz', kizomba: 'kizomba', 'latin-pop': 'reggaeton-dembow', tango: 'tango',
+  jazz: 'jazz', kizomba: 'kizomba', tango: 'tango',
   flamenco: 'flamenco', metal: 'metal', 'r-and-b': 'funk', reggae: 'reggae-dub',
   reggaeton: 'reggaeton-dembow', rock: 'rock', salsa: 'salsa', ska: 'ska', soul: 'funk',
   swing: 'swing', timba: 'timba', zouk: 'zouk', 'drum-and-bass': 'electronic',
@@ -44,7 +44,7 @@ export const GENRE_NAMES: Record<string, string> = {
   afrobeats: 'Afrobeats', bachata: 'Bachata', blues: 'Blues', brazilian: 'Brazilian',
   country: 'Country', cumbia: 'Cumbia', disco: 'Disco', electronic: 'Electronic',
   folk: 'Folk', funk: 'Funk', gospel: 'Gospel', 'hip-hop': 'Hip Hop', house: 'House',
-  jazz: 'Jazz', kizomba: 'Kizomba', 'latin-pop': 'Latin Pop', tango: 'Tango', flamenco: 'Flamenco',
+  jazz: 'Jazz', kizomba: 'Kizomba', tango: 'Tango', flamenco: 'Flamenco',
   metal: 'Metal', 'r-and-b': 'R&B', reggae: 'Reggae', reggaeton: 'Reggaeton', rock: 'Rock',
   salsa: 'Salsa', ska: 'Ska', soul: 'Soul', swing: 'Swing', timba: 'Timba', zouk: 'Zouk',
   'drum-and-bass': 'Drum & Bass', industrial: 'Industrial', 'punk-hardcore': 'Punk / Hardcore',
@@ -53,12 +53,11 @@ export const GENRE_NAMES: Record<string, string> = {
 
 const GENRE_KINDS: Record<string, 'world'|'family'|'fusion'> = {
   brazilian:'family', electronic:'family', folk:'family', gospel:'family', reggae:'family', 'uk-bass':'family',
-  'latin-pop':'fusion',
 };
 const GENRE_STRICTNESS: Record<string, 'strict'|'flexible'|'open'> = {
   tango:'strict', flamenco:'strict', salsa:'strict', timba:'strict', cumbia:'strict', bachata:'strict',
   brazilian:'flexible', electronic:'open', folk:'flexible', gospel:'flexible', reggae:'strict', reggaeton:'strict',
-  'latin-pop':'open', jazz:'flexible', blues:'flexible', funk:'strict', house:'strict', disco:'strict',
+  jazz:'flexible', blues:'flexible', funk:'strict', house:'strict', disco:'strict',
   metal:'strict', 'punk-hardcore':'strict', rock:'flexible', 'drum-and-bass':'strict', industrial:'strict', 'uk-bass':'strict',
 };
 const PROMOTED_FROM: Record<string,string> = {
@@ -90,7 +89,7 @@ function makeGenreWorld(genreId: string): GenreWorld {
     kind: GENRE_KINDS[genreId] ?? 'world',
     promotedFrom: PROMOTED_FROM[genreId],
     strictness: GENRE_STRICTNESS[genreId] ?? 'flexible',
-    homeStyleId: genreId === 'latin-pop' ? 'latin-pop-latin-pop' : undefined,
+    homeStyleId: undefined,
     family: source.family,
     level: 'world',
     parentId: undefined,

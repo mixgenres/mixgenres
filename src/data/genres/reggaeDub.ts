@@ -1351,9 +1351,7 @@ export const REGGAE_DUB_WORLD: GenreWorld = {
       "syncopationRating": 0.25,
       "anticipationOffset": 0,
       "swingPercentage": 50,
-      "articulations": [
-        "one-drop"
-      ],
+      "articulations": ["accent"],
       "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "any"
@@ -1423,9 +1421,7 @@ export const REGGAE_DUB_WORLD: GenreWorld = {
       "syncopationRating": 1,
       "anticipationOffset": 0,
       "swingPercentage": 50,
-      "articulations": [
-        "skank"
-      ],
+      "articulations": ["accent"],
       "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "any"
@@ -1502,9 +1498,7 @@ export const REGGAE_DUB_WORLD: GenreWorld = {
       "syncopationRating": 0.75,
       "anticipationOffset": 0,
       "swingPercentage": 50,
-      "articulations": [
-        "bass-led"
-      ],
+      "articulations": ["accent"],
       "supportedEnergy": [4, 5],
       "phrasePosition": [
         "any"
@@ -1574,9 +1568,7 @@ export const REGGAE_DUB_WORLD: GenreWorld = {
       "syncopationRating": 1,
       "anticipationOffset": 0,
       "swingPercentage": 50,
-      "articulations": [
-        "organ bubble"
-      ],
+      "articulations": ["accent"],
       "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "middle"
@@ -1644,10 +1636,7 @@ export const REGGAE_DUB_WORLD: GenreWorld = {
       "syncopationRating": 0,
       "anticipationOffset": 0,
       "swingPercentage": 50,
-      "articulations": [
-        "dub",
-        " echo"
-      ],
+      "articulations": [" echo"],
       "supportedEnergy": [1, 2],
       "phrasePosition": [
         "end"
@@ -1792,9 +1781,7 @@ export const REGGAE_DUB_WORLD: GenreWorld = {
       "syncopationRating": 0,
       "anticipationOffset": 0,
       "swingPercentage": 50,
-      "articulations": [
-        "steppers"
-      ],
+      "articulations": ["accent"],
       "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "any"
@@ -1939,9 +1926,7 @@ export const REGGAE_DUB_WORLD: GenreWorld = {
       "syncopationRating": 0,
       "anticipationOffset": 0,
       "swingPercentage": 50,
-      "articulations": [
-        "horn reply"
-      ],
+      "articulations": ["accent"],
       "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "end"
@@ -2011,10 +1996,7 @@ export const REGGAE_DUB_WORLD: GenreWorld = {
       "syncopationRating": 0.33,
       "anticipationOffset": -1,
       "swingPercentage": 50,
-      "articulations": [
-        "version",
-        " tag"
-      ],
+      "articulations": [" tag"],
       "supportedEnergy": [1, 2],
       "phrasePosition": [
         "end"

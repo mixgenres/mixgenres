@@ -16,9 +16,9 @@ import {
   renderTrack,
   renderMaster,
   type VoiceState,
-  type RoomParams,
+  type MasterParams,
 } from '../src/engine/elementary/elementaryEngine';
-import { createMasterChain, ROOMS, roomFor } from '../src/engine/audio/mixer';
+import { createMasterChain } from '../src/engine/audio/mixer';
 
 const SAMPLE_RATE = 44100;
 const DURATION_S = 1.2;
@@ -245,15 +245,10 @@ async function renderInstrumentMetric(instrumentId: string, note = 60, vel = 0.8
 }
 
 async function renderMasterChainMetric(): Promise<{ compressedPeak: number; reverbEnergyRatio: number }> {
-  // Render a burst through master chain to verify compressor and reverb network
-  const roomParams: RoomParams = {
-    warmth: 0.5,
-    presence: 0.5,
-    air: 0.5,
+  // Render a burst through master chain to verify compressor and natural summing
+  const masterParams: MasterParams = {
     highPass: 30,
-    space: 0.35,
     volume: 1.0,
-    roomId: 'studio',
   };
 
   const luthier = getLuthierModelForInstrument('drums');
@@ -269,7 +264,7 @@ async function renderMasterChainMetric(): Promise<{ compressedPeak: number; reve
 
   const voice: VoiceState = { id: 'master_test', note: 48, velocity: 1.0, gate: 1 };
   const trackSig = renderTrack('master_test', [voice], params);
-  const masterSig = renderMaster([trackSig], roomParams);
+  const masterSig = renderMaster([trackSig], masterParams);
   await core.render(masterSig.left, masterSig.right);
 
   const BLOCK = 512;

@@ -137,46 +137,30 @@ export function blendPartStyle(
   const applied: string[] = [];
   const violations: BlendReport['violations'] = [];
 
-  /* ---- timeline / meter: host property, never negotiable ---------------- */
-  if (hc.timelineRequired && gc.timeline !== hc.timeline && gc.timeline !== 'none') {
-    violations.push({
-      aspect: 'timeline',
-      reason: `${host.name} locks ${hc.timeline}; ${guest.name}'s ${gc.timeline} cannot displace it`,
-    });
-  }
+  /* ---- timeline / meter: enable proportional hybrid grid mapping ---------------- */
   if (gc.meter !== hc.meter) {
-    violations.push({
-      aspect: 'meter',
-      reason: `${guest.name} is felt in ${gc.meter}; the part is re-read in the host's ${hc.meter}`,
-    });
+    applied.push(`meter scaled (${gc.meter} -> ${hc.meter})`);
+  }
+  if (gc.timeline !== hc.timeline && gc.timeline !== 'none') {
+    applied.push(`timeline hybrid (${gc.timeline})`);
   }
 
-  /* ---- groove: interpolates, but timeline-locked worlds keep their swing - */
-  const swingLocked = hc.timelineRequired;
+  /* ---- groove: interpolates swing and pocket ----------------------------- */
   const groove: WorldContract['groove'] = {
     ...hc.groove,
     name: w > 0.5 ? `${gc.groove.name} in ${hc.groove.name}` : hc.groove.name,
-    swing: swingLocked ? hc.groove.swing : lerp(hc.groove.swing, gc.groove.swing, w),
-    swingUnit: w > 0.6 ? gc.groove.swingUnit : hc.groove.swingUnit,
+    swing: lerp(hc.groove.swing, gc.groove.swing, w),
+    swingUnit: w > 0.5 ? gc.groove.swingUnit : hc.groove.swingUnit,
     lean: lerp(hc.groove.lean, gc.groove.lean, w),
     roleLean: blendRoleLean(hc.groove.roleLean, gc.groove.roleLean, w, role),
     humanizeMs: lerp(hc.groove.humanizeMs, gc.groove.humanizeMs, w),
     humanizeVel: lerp(hc.groove.humanizeVel, gc.groove.humanizeVel, w),
     accentDepth: lerp(hc.groove.accentDepth, gc.groove.accentDepth, w),
-    // The pocket template is the host's signature limp. A guest may shade it,
-    // never replace it: a dembow lurch under a jazz comp is still a dembow.
     pocket: hc.groove.pocket.map((v, i) => lerp(v, (gc.groove.pocket[i] ?? 0) * 0.5 + v * 0.5, w)),
     anticipationMs: lerp(hc.groove.anticipationMs, gc.groove.anticipationMs, w),
     dynamicRange: lerp(hc.groove.dynamicRange, gc.groove.dynamicRange, w),
   };
-  if (swingLocked && Math.abs(gc.groove.swing - hc.groove.swing) > 0.02) {
-    violations.push({
-      aspect: 'swing',
-      reason: `${host.name}'s timeline fixes the subdivision; ${guest.name}'s swing is not applied`,
-    });
-  } else if (Math.abs(groove.swing - hc.groove.swing) > 0.01) {
-    applied.push('swing');
-  }
+  if (Math.abs(groove.swing - hc.groove.swing) > 0.01) applied.push('swing');
   if (Math.abs(groove.lean - hc.groove.lean) > 0.5) applied.push('timing lean');
 
   /* ---- role-scoped dialects --------------------------------------------- */
@@ -190,26 +174,15 @@ export function blendPartStyle(
 
   let percussion: PercussionDialect = hc.percussion;
   if (roleKind === 'percussion' && w >= 0.35) {
-    // The host's prohibitions survive the blend. A guest can add hit types,
-    // never re-permit something the host explicitly forbids.
     percussion = {
-      kitMode: hc.percussion.kitMode === 'none' && w < 0.8 ? 'none' : gc.percussion.kitMode,
-      allowedHitTypes: hc.percussion.allowedHitTypes.length
-        ? Array.from(new Set([...hc.percussion.allowedHitTypes, ...gc.percussion.allowedHitTypes]))
-        : gc.percussion.allowedHitTypes,
-      forbidWesternBackbeat: hc.percussion.forbidWesternBackbeat,
-      forbidSectionCrash: hc.percussion.forbidSectionCrash,
-      allowTomFills: hc.percussion.allowTomFills && gc.percussion.allowTomFills,
-      ride: gc.percussion.ride && !hc.percussion.forbidWesternBackbeat,
+      kitMode: gc.percussion.kitMode !== 'none' ? gc.percussion.kitMode : hc.percussion.kitMode,
+      allowedHitTypes: Array.from(new Set([...hc.percussion.allowedHitTypes, ...gc.percussion.allowedHitTypes])),
+      forbidWesternBackbeat: w >= 0.5 ? gc.percussion.forbidWesternBackbeat : hc.percussion.forbidWesternBackbeat,
+      forbidSectionCrash: w >= 0.5 ? gc.percussion.forbidSectionCrash : hc.percussion.forbidSectionCrash,
+      allowTomFills: hc.percussion.allowTomFills || gc.percussion.allowTomFills,
+      ride: gc.percussion.ride ?? hc.percussion.ride,
     };
     applied.push('percussion dialect');
-    if (gc.percussion.forbidWesternBackbeat !== hc.percussion.forbidWesternBackbeat && !hc.percussion.forbidWesternBackbeat) {
-      // guest is stricter; adopting the stricter rule is always safe
-      percussion.forbidWesternBackbeat = true;
-    }
-    if (hc.percussion.forbidWesternBackbeat && !gc.percussion.forbidWesternBackbeat) {
-      violations.push({ aspect: 'backbeat', reason: `${host.name} forbids a 2-and-4 backbeat` });
-    }
   }
 
   /* ---- articulation and ornament vocabulary: additive ------------------- */
@@ -238,8 +211,8 @@ export function blendPartStyle(
     // not modal/timeline-bound: harmony is the most audible identity marker.
     harmonyModel: w >= 0.75 && !hc.timelineRequired ? gc.harmonyModel : hc.harmonyModel,
     harmonyVocabulary: Array.from(new Set([...hc.harmonyVocabulary, ...(w >= 0.5 ? gc.harmonyVocabulary : [])])),
-    // Prohibitions are unioned, never relaxed.
-    forbidden: Array.from(new Set([...hc.forbidden, ...gc.forbidden])),
+    // Allow blending/adventure to bypass host forbidden array so clashing elements can be explored
+    forbidden: w >= 0.5 ? gc.forbidden : (w > 0 ? [] : hc.forbidden),
     microtiming: {
       ...hc.microtiming,
       jitterMs: lerpInt(hc.microtiming.jitterMs, gc.microtiming.jitterMs, w),

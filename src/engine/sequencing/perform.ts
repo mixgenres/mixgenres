@@ -176,6 +176,7 @@ export function intensityOf(region: Region | undefined): number {
 interface VoiceMemory {
   last: number[];
   lastNote: number;
+  lastBar?: number;
 }
 
 function thinForSustain(
@@ -226,6 +227,7 @@ interface Attack {
   styleId?: string;
   performanceKind?: string;
   pitchIntent?: string;
+  registerOffset?: number;
 }
 
 function authoredKitVoicing(hitType: string, accent: number): KitVoicing {
@@ -359,6 +361,55 @@ export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
     if (!bt) return;
     const region = regionById.get(m.regionId);
     const nextMeasure = sheet.measures[barIndex + 1];
+    const isSectionStart = region ? barIndex === region.start : barIndex === 0;
+    const isSectionEnd = region ? barIndex === region.end - 1 : false;
+
+    // Pre-calculate ensemble context for this measure across all tracks
+    const kickTimesInBar: number[] = [];
+    const leadActiveBeats: [number, number][] = [];
+    const otherAccentsInBar: number[] = [];
+    const occupiedSubdivisions: number[] = [];
+    const trackRoleMap: Record<string, string> = {};
+
+    for (const track of tracks) {
+      if (track.muted) continue;
+      const detail = m.patternDetailsByTrack?.[track.id];
+      if (!detail) continue;
+      const vProf = voiceProfile(track.instrumentId);
+      trackRoleMap[track.id] = vProf.role;
+
+      const rawP = detail.patternId ? PATTERNS_BY_ID[detail.patternId] : undefined;
+      const onsets = rawP?.onsetGrid ?? (detail as any).perf?.onsets ?? detail.onsetGrid ?? [];
+      const subDiv = rawP?.subdivisions ?? (detail as any).perf?.stepsPerBar ?? 16;
+      const hitGrid = rawP?.hitGrid ?? (detail as any).perf?.hitTypes ?? [];
+      const accGrid = rawP?.accentProfile ?? (detail as any).perf?.accents ?? [];
+
+      for (let oi = 0; oi < onsets.length; oi++) {
+        const step = onsets[oi];
+        const bInB = (step / subDiv) * bt.beatsPerBar;
+        const hit = hitGrid[oi];
+        const acc = accGrid[oi] ?? 0.75;
+        if (vProf.role === 'kick' || vProf.role === 'perc' || /kick|bombo|bass_drum/i.test(track.instrumentId) || hit === 'kick') {
+          kickTimesInBar.push(bInB);
+        }
+        if (vProf.role === 'lead') {
+          leadActiveBeats.push([bInB, bInB + 0.5]);
+        }
+        if (acc >= 0.85) {
+          otherAccentsInBar.push(bInB);
+        }
+        occupiedSubdivisions.push(step);
+      }
+    }
+
+    const ensembleContext = {
+      kickTimesInBar,
+      leadActiveBeats,
+      otherAccentsInBar,
+      occupiedSubdivisions,
+      activeTrackIds: tracks.filter(t => !t.muted).map(t => t.id),
+      trackRoleMap,
+    };
 
     for (const t of tracks) {
       if (t.muted) continue;
@@ -395,8 +446,20 @@ export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
         phraseIndex,
         grammar.phraseDevelopment,
         isCadenceBar,
-        seedOf(t.id, barIndex, 'dev-advance')
+        seedOf(t.id, barIndex, 'dev-advance'),
+        prof.role
       );
+
+      // Build track interaction directives
+      const trackInteractions = [];
+      if (prof.role === 'comp' || prof.role === 'pad') {
+        if (leadActiveBeats.length > 0) {
+          trackInteractions.push({ targetTrackId: 'lead', relationship: 'avoid' as const });
+        }
+        trackInteractions.push({ targetTrackId: 'drums', relationship: 'complement' as const });
+      } else if (prof.role === 'stab') {
+        trackInteractions.push({ targetTrackId: 'lead', relationship: 'accentWith' as const });
+      }
 
       // If we have an authored pattern and it's not overridden by a drum fill,
       // run the culturally grounded performance interpreter!
@@ -421,10 +484,15 @@ export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
           isPhraseStart,
           isPhraseEnd,
           isCadenceBar,
+          isSectionStart,
+          isSectionEnd,
+          sectionKind: region?.kind,
           memory: mem,
           developmentDial: dials.development,
           expressionDial: dials.expression,
           seed: seedOf(t.id, barIndex, 'pattern-interpret'),
+          ensembleContext,
+          interactions: trackInteractions,
         });
 
         for (let i = 0; i < result.attacks.length; i++) {
@@ -453,9 +521,15 @@ export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
             patternId: (d as any).patternId,
             performanceKind: ia.kind,
             pitchIntent: ia.pitchIntent,
+            registerOffset: ia.registerOffset,
           });
         }
         continue;
+      }
+
+      // Handle non-authored pattern fallback path
+      if (mem.developmentStage === 'rest') {
+        continue; // Intentional musical rest
       }
 
       const perf = (d as any).perf as NativeSlice | undefined;
@@ -618,7 +692,23 @@ export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
     trajectory: 'pickup-and-target' | 'question-answer' | 'continuous-run' | 'sparse-accent';
   }>();
 
-  for (const t of tracks) {
+  // Identify anchorTrack (rhythm section pulse leader) to anchor microtiming
+  const anchorTrack = tracks.find(t => {
+    const prof = voiceProfile(t.instrumentId);
+    return prof.role === 'kick' || prof.role === 'snare' || prof.role === 'hat' || prof.role === 'ride' || prof.role === 'perc' || t.instrumentId === 'drums' || t.instrumentId === 'kick' || t.instrumentId === 'cajon' || t.instrumentId === 'timbales';
+  }) ?? tracks[0];
+  const anchorTrackId = anchorTrack?.id;
+
+  // Sort tracks so anchorTrack is processed first to establish the rhythmic pocket
+  const sortedTracks = [...tracks].sort((a, b) => {
+    if (a.id === anchorTrackId) return -1;
+    if (b.id === anchorTrackId) return 1;
+    return 0;
+  });
+
+  const anchorJitterMap = new Map<string, number>();
+
+  for (const t of sortedTracks) {
     const channel = channelOf[t.id];
     if (channel === undefined || t.muted) continue;
 
@@ -640,7 +730,7 @@ export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
       arr.push(atk);
     }
 
-    const mem: VoiceMemory = { last: [], lastNote: 0 };
+    const mem: VoiceMemory = { last: [], lastNote: 0, lastBar: -1 };
     const lastVoiceEndTimes = new Map<string, number>();
     const isBass = prof.role === 'bass';
     const isMelodic = melodyLayer.has(t.id);
@@ -657,6 +747,11 @@ export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
 
     for (let i = 0; i < list.length; i++) {
       const a = list[i];
+      if (mem.lastBar !== undefined && mem.lastBar >= 0 && (a.bar - mem.lastBar) > 2) {
+        mem.last = [];
+        mem.lastNote = 0;
+      }
+      mem.lastBar = a.bar;
       const prevNoteMidi = mem.lastNote;
       const bt = bars[a.bar];
       if (!bt) continue;
@@ -798,7 +893,17 @@ export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
         authoredTimingOnly: !!culture?.authoredTimingOnly,
       });
 
-      const jitterSec = (feel.offsetMs * humanScale) / 1000;
+      const stepKey = `${a.bar}-${Math.round(a.beatInBar * 96)}`;
+      let jitterSec = (feel.offsetMs * humanScale) / 1000;
+
+      if (t.id === anchorTrackId) {
+        anchorJitterMap.set(stepKey, jitterSec);
+      } else if (anchorJitterMap.has(stepKey) && (prof.role === 'bass' || prof.role === 'comp' || prof.role === 'pad' || prof.role === 'stab' || prof.role === 'perc')) {
+        const anchorJitter = anchorJitterMap.get(stepKey)!;
+        // Rhythmic Magnetism: blend 70% toward anchor track's jitter, 30% own jitter
+        jitterSec = 0.70 * anchorJitter + 0.30 * jitterSec;
+      }
+
       const rubato = resolvedStyle.contract.performanceIdioms?.spotlightLeadRubato ? spotlightLeadRubatoOffset(spotlitLead, prof.role, rhythmicContext.cyclePosition, rhythmicContext.cycleLength, secPerBeat, seedOf(t.id, a.bar, a.onsetIndex, 'rubato')) : 0;
       const time = bt.start + (a.beatInBar + feel.offsetBeats) * secPerBeat + jitterSec + rubato;
 
@@ -809,10 +914,13 @@ export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
         if (gapBeats <= 0) gapBeats = 0.25;
       }
       const authoredBeats = (a.durationSteps / a.stepsPerBar) * bt.beatsPerBar;
+      const effectiveBeats = prof.ring && prof.ring > authoredBeats
+        ? Math.min(gapBeats, Math.max(authoredBeats, prof.ring))
+        : authoredBeats;
       // The instrument's own sustain class sets a baseline length; the
       // articulation engine then scales it. Passing the articulation name here
       // too would apply the same shaping twice.
-      const lenBeats = noteLengthBeats(prof, Math.max(0.05, authoredBeats), gapBeats);
+      const lenBeats = noteLengthBeats(prof, Math.max(0.05, effectiveBeats), gapBeats);
       const dur = Math.max(0.03, lenBeats * secPerBeat);
 
       const energyMap = resolvedStyle.contract.energyMappings[rhythmicContext.sectionEnergy];
@@ -911,7 +1019,20 @@ export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
           rhythmicContext,
           approach: resolvedStyle.contract.approaches?.[t.role]?.id,
         });
-        const bassPitches = Array.isArray(n) ? n : [n];
+        let bassPitches = Array.isArray(n) ? n : [n];
+        if (a.pitchIntent === 'fifth' && bassPitches.length > 0) {
+          const rootPc = chord.bassPc ?? chord.rootPc;
+          const fifthPc = (rootPc + 7) % 12;
+          const refMidi = bassPitches[0];
+          const refPc = ((refMidi % 12) + 12) % 12;
+          let diff = (fifthPc - refPc) % 12;
+          if (diff > 6) diff -= 12;
+          if (diff < -6) diff += 12;
+          bassPitches = [foldToRange(refMidi + diff, prof)];
+        } else if (a.pitchIntent === 'octave' && bassPitches.length > 0) {
+          const octaveShift = bassPitches[0] + 12 <= prof.high ? 12 : -12;
+          bassPitches = [foldToRange(bassPitches[0] + octaveShift, prof)];
+        }
         mem.lastNote = bassPitches[bassPitches.length - 1];
         pitches = bassPitches;
       } else if (culturalHarmonyPattern) {
@@ -958,7 +1079,17 @@ export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
         } else {
           const { style, size } = styleFor(prof, t.instrumentId, chord, intensity, resolvedStyle);
           const avoid = occupied.get(a.bar);
-          if (phraseState.currentVoicing && phraseState.currentVoicing.chordSymbol === a.chordSymbol) {
+          const currentPhrase = Math.floor((a.bar - (region?.start ?? 0)) / 4);
+          const barInPhrase = ((a.bar - (region?.start ?? 0)) % 4 + 4) % 4;
+
+          const shouldRevoice =
+            !phraseState.currentVoicing ||
+            phraseState.currentVoicing.chordSymbol !== a.chordSymbol ||
+            phraseState.currentPhraseIndex !== currentPhrase ||
+            a.performanceKind === 'variation' ||
+            barInPhrase === 0;
+
+          if (!shouldRevoice && phraseState.currentVoicing) {
             pitches = phraseState.currentVoicing.pitches;
           } else {
             pitches = voiceChord({
@@ -972,6 +1103,10 @@ export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
               approach: resolvedStyle.contract.approaches?.[t.role]?.id,
             });
             phraseState.currentVoicing = { chordSymbol: a.chordSymbol, pitches };
+            phraseState.currentPhraseIndex = currentPhrase;
+          }
+          if (a.registerOffset) {
+            pitches = pitches.map(p => foldToRange(p + a.registerOffset!, prof));
           }
           mem.last = pitches;
           mem.lastNote = pitches[pitches.length - 1] ?? mem.lastNote;
@@ -1034,26 +1169,36 @@ export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
         t.instrumentId?.includes('pipa') ||
         t.instrumentId?.includes('guzheng')
       );
-      const isDownstroke = rand01(seedOf(t.id, a.bar, a.onsetIndex, 'strum-direction')) > 0.45;
+      const isUpstroke = a.articulation === 'upstroke' || specs.some(s => s.id === 'upstroke' || s.id === 'up');
+      const isDownstroke = !isUpstroke && (rand01(seedOf(t.id, a.bar, a.onsetIndex, 'strum-direction')) > 0.45);
+
+      // Dynamic Strum Delay: Inversely map delay per string to overall chord velocity
+      // Velocity 110 yields ~4ms delay per string; velocity 40 yields ~35ms delay per string
+      const velRatio = Math.max(0, Math.min(1, (vel - 30) / 90));
+      const dynamicStrumMs = Math.max(3, Math.min(45, 35 - velRatio * 31));
 
       pitches.forEach((midi, vi) => {
         let rollMs = 0;
+        const stringIndex = isUpstroke ? (pitches.length - 1 - vi) : vi;
         if (isPlucked && pitches.length > 1) {
-          // Plucked Strings Strum Stagger: Downstroke (15-35ms) vs Upstroke (20-40ms)
-          const staggerBaseMs = isDownstroke ? 18 : 28;
-          rollMs = vi * (staggerBaseMs + rand01(seedOf(t.id, a.bar, a.onsetIndex, vi)) * 12);
+          rollMs = stringIndex * (dynamicStrumMs + rand01(seedOf(t.id, a.bar, a.onsetIndex, vi)) * 4);
         } else {
-          rollMs = prof.sustain === 'decaying' || prof.sustain === 'short'
-            ? vi * (1.6 + rand01(seedOf(t.id, a.bar, a.onsetIndex, vi)) * 2.4)
-            : vi * 0.6;
+          rollMs = vi * (prof.sustain === 'decaying' || prof.sustain === 'short'
+            ? (1.6 + rand01(seedOf(t.id, a.bar, a.onsetIndex, vi)) * 2.4)
+            : 0.6);
         }
         const voiceTime = time + (rollMs * humanScale) / 1000;
 
         // Ornaments belong to the voice that carries the line
         const voiceSpecs = vi === 0 ? specs : specs.filter(x => x.family === 'duration' || x.family === 'attack');
 
-        // Logarithmic Velocity Curve calibration for keyboards
+        // Logarithmic Velocity Curve & Upstroke Wrist Mechanics
         let velocityTarget = Math.max(6, Math.min(127, Math.round(vel * (vi > 0 && vi < pitches.length - 1 ? 0.88 : 1))));
+        if (isUpstroke && isPlucked && pitches.length > 1) {
+          // Subtle velocity decay across higher strings on upstroke to simulate wrist movement against gravity
+          const gravityFactor = 1.0 - (stringIndex / pitches.length) * 0.12;
+          velocityTarget = Math.max(6, Math.round(velocityTarget * gravityFactor));
+        }
         if (t.instrumentId?.includes('piano') || t.instrumentId?.includes('rhodes') || t.instrumentId?.includes('clav') || t.instrumentId?.includes('ep-')) {
           const normalized = velocityTarget / 127;
           velocityTarget = Math.max(4, Math.round(127 * Math.pow(normalized, 1.45)));
@@ -1218,16 +1363,59 @@ export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
           }
         }
 
+        const isEnsemble = !isPercussion && (
+          t.instrumentId?.includes('strings') ||
+          t.instrumentId?.includes('choir') ||
+          t.instrumentId?.includes('horn_section') ||
+          t.instrumentId?.includes('orchestra') ||
+          t.instrumentId?.includes('brass') ||
+          t.instrumentId?.includes('slow_strings') ||
+          t.instrumentId?.includes('synth_strings') ||
+          prof.ensembleSmearMs !== undefined
+        );
+
         realized.notes.forEach((n, ni) => {
-          notes.push({
-            time: n.time,
-            dur: n.durSeconds,
-            midi: n.midi,
-            pitchBend: n.pitchBend ?? slideBend ?? (ni === 0 ? idiomBend : undefined),
-            vel: n.velocity,
-            trackId: t.id, bar: a.bar,
-            articulation: voiceSpecs[0]?.id || a.articulation,
-          });
+          if (isEnsemble) {
+            // Ensemble Smear: Split note into 3 micro-voices with randomized millisecond offsets & micro-pitch/vel deviations
+            const smearSeed = seedOf(t.id, a.bar, a.onsetIndex, vi, ni, 'smear');
+            const offsets = [
+              0,
+              (rand01(smearSeed ^ 0x1111) - 0.5) * 0.024, // ±12ms
+              (rand01(smearSeed ^ 0x2222) - 0.5) * 0.030  // ±15ms
+            ];
+            const velMults = [
+              1.0,
+              0.90 + rand01(smearSeed ^ 0x3333) * 0.08,
+              0.85 + rand01(smearSeed ^ 0x4444) * 0.08
+            ];
+            const detuneSemitones = [
+              0,
+              (rand01(smearSeed ^ 0x5555) - 0.5) * 0.04, // ±2 cents
+              (rand01(smearSeed ^ 0x6666) - 0.5) * 0.05  // ±2.5 cents
+            ];
+
+            for (let mv = 0; mv < 3; mv++) {
+              notes.push({
+                time: Math.max(0, n.time + offsets[mv]),
+                dur: Math.max(0.05, n.durSeconds * (1.0 + (mv > 0 ? (offsets[mv] * 0.5) : 0))),
+                midi: n.midi + detuneSemitones[mv],
+                pitchBend: n.pitchBend ?? slideBend ?? (ni === 0 ? idiomBend : undefined),
+                vel: Math.max(1, Math.min(127, Math.round(n.velocity * velMults[mv]))),
+                trackId: t.id, bar: a.bar,
+                articulation: voiceSpecs[0]?.id || a.articulation,
+              });
+            }
+          } else {
+            notes.push({
+              time: n.time,
+              dur: n.durSeconds,
+              midi: n.midi,
+              pitchBend: n.pitchBend ?? slideBend ?? (ni === 0 ? idiomBend : undefined),
+              vel: n.velocity,
+              trackId: t.id, bar: a.bar,
+              articulation: voiceSpecs[0]?.id || a.articulation,
+            });
+          }
         });
 
         for (const cc of realized.ccs) {
@@ -1313,13 +1501,25 @@ export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
     }
   }
 
+  const isMonoTrack = (tId: string): boolean => {
+    const t = tracks.find(tr => tr.id === tId);
+    if (!t) return false;
+    const role = (t.role || '').toLowerCase();
+    const kind = (t.kind || '').toLowerCase();
+    const instId = (t.instrumentId || t.instrument || '').toLowerCase();
+    if (role === 'bass' || role === 'melody' || role === 'lead' || role === 'voice' || role === 'counterline') return true;
+    if (kind === 'bass' || kind === 'voice' || kind === 'flute' || kind === 'sax' || kind === 'trumpet' || kind === 'horn' || kind === 'violin') return true;
+    return /bass|flute|whistle|trumpet|sax|erhu|dizi|xiao|pipe|oboe|clarinet|monophonic|lead/.test(instId);
+  };
+
   const sortedNotes = notes.sort((a, b) => a.time - b.time);
   const MIN_GAP = 0.008;
   const dropped = new Set<number>();
   const lastNoteIndexByPitch = new Map<string, number>();
   for (let idx = 0; idx < sortedNotes.length; idx++) {
     const n = sortedNotes[idx];
-    const key = `${n.trackId}:${n.midi}`;
+    const isMono = isMonoTrack(n.trackId);
+    const key = isMono ? `${n.trackId}` : `${n.trackId}:${n.midi}`;
     const prevIdx = lastNoteIndexByPitch.get(key);
     if (prevIdx !== undefined) {
       const prev = sortedNotes[prevIdx];
@@ -1332,7 +1532,7 @@ export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
           continue;
         }
       } else if (prev.time + prev.dur > n.time - MIN_GAP) {
-        prev.dur = available;
+        prev.dur = Math.max(0.01, available);
       }
     }
     lastNoteIndexByPitch.set(key, idx);

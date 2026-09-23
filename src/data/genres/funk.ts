@@ -778,11 +778,7 @@ export const FUNK_WORLD: GenreWorld = {
         0.65,
         0.8
       ],
-      "articulations": [
-        "slap-thumb",
-        "pop-pluck",
-        "ghost-note"
-      ],
+      "articulations": ["ghost"],
       "supportedEnergy": [4, 5],
       "phrasePosition": [
         "start",
@@ -974,10 +970,7 @@ export const FUNK_WORLD: GenreWorld = {
         0.9,
         0.3
       ],
-      "articulations": [
-        "percussive-scratch",
-        "sharp-chord-accent"
-      ],
+      "articulations": ["accent"],
       "supportedEnergy": [4, 5],
       "phrasePosition": [
         "start",
@@ -1286,10 +1279,7 @@ export const FUNK_WORLD: GenreWorld = {
       "swingPercentage": 50,
       "anticipationOffset": 0,
 
-      "articulations": [
-        "accented",
-        "ghost-aware"
-      ]
+      "articulations": ["accented"]
     },
     {
       "id": "funk-16th-strum",
@@ -1464,10 +1454,7 @@ export const FUNK_WORLD: GenreWorld = {
       "swingPercentage": 50,
       "anticipationOffset": 0,
 
-      "articulations": [
-        "accented",
-        "ghost-aware"
-      ]
+      "articulations": ["accented"]
     },
     {
       "id": "funk-slap-bass",
@@ -1633,10 +1620,7 @@ export const FUNK_WORLD: GenreWorld = {
       "swingPercentage": 50,
       "anticipationOffset": 0,
 
-      "articulations": [
-        "accented",
-        "ghost-aware"
-      ]
+      "articulations": ["accented"]
     },
     {
       "id": "funk-ghost-snares",
@@ -1800,10 +1784,7 @@ export const FUNK_WORLD: GenreWorld = {
       "anticipationOffset": 0,
 
 
-      "articulations": [
-        "accented",
-        "ghost-aware"
-      ]
+      "articulations": ["accented"]
     },
     {
       "id": "funk-clavinet",
@@ -1939,10 +1920,7 @@ export const FUNK_WORLD: GenreWorld = {
       "swingPercentage": 50,
       "anticipationOffset": 0,
 
-      "articulations": [
-        "accented",
-        "ghost-aware"
-      ]
+      "articulations": ["accented"]
     },
     {
       "id": "funk-horn-section",
@@ -2062,10 +2040,7 @@ export const FUNK_WORLD: GenreWorld = {
       "swingPercentage": 50,
       "anticipationOffset": 0,
 
-      "articulations": [
-        "accented",
-        "ghost-aware"
-      ]
+      "articulations": ["accented"]
     },
     {
       "id": "funk-soul-bass",
@@ -2210,10 +2185,7 @@ export const FUNK_WORLD: GenreWorld = {
       "swingPercentage": 50,
       "anticipationOffset": 0,
 
-      "articulations": [
-        "accented",
-        "ghost-aware"
-      ]
+      "articulations": ["accented"]
     },
     {
       "id": "funk-hihat-open",
@@ -2340,10 +2312,7 @@ export const FUNK_WORLD: GenreWorld = {
       "swingPercentage": 50,
       "anticipationOffset": 0,
 
-      "articulations": [
-        "accented",
-        "ghost-aware"
-      ]
+      "articulations": ["accented"]
     },
     {
       "id": "funk-neo-soul-beat",
@@ -2470,10 +2439,7 @@ export const FUNK_WORLD: GenreWorld = {
       "swingPercentage": 50,
       "anticipationOffset": 0,
 
-      "articulations": [
-        "accented",
-        "ghost-aware"
-      ]
+      "articulations": ["accented"]
     },
     {
       "id": "funk-wah-guitar",
@@ -2636,10 +2602,7 @@ export const FUNK_WORLD: GenreWorld = {
       "swingPercentage": 50,
       "anticipationOffset": 0,
 
-      "articulations": [
-        "accented",
-        "ghost-aware"
-      ]
+      "articulations": ["accented"]
     },
     {
       "id": "funk-phrase-13",
@@ -3133,10 +3096,7 @@ export const FUNK_WORLD: GenreWorld = {
       "syncopationRating": 1,
       "anticipationOffset": 0,
       "swingPercentage": 50,
-      "articulations": [
-        "accented",
-        "ghost-aware"
-      ],
+      "articulations": ["accented"],
       "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start",
@@ -3311,10 +3271,7 @@ export const FUNK_WORLD: GenreWorld = {
       "syncopationRating": 0.8333333333333334,
       "anticipationOffset": 0,
       "swingPercentage": 50,
-      "articulations": [
-        "accented",
-        "ghost-aware"
-      ],
+      "articulations": ["accented"],
       "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "middle"

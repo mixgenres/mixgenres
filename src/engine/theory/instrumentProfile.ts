@@ -29,6 +29,8 @@ export interface VoiceProfile {
   space: number;
   /** maximum ring-out in beats for decaying instruments */
   ring: number;
+  /** optional micro-voice timing smear in ms for ensemble instruments */
+  ensembleSmearMs?: number;
 }
 
 const FAMILY_DEFAULTS: Record<string, Partial<VoiceProfile>> = {

@@ -721,7 +721,7 @@ export const ROCK_WORLD: GenreWorld = {
     {
       "id": "rock-riff-lock",
       "worldId": "rock",
-      "styleIds": ["rock-classic"],
+      "styleIds": ["rock-hard-rock"],
       "name": "Riff + Bass Lock",
       "family": "Riff",
       "category": "ostinato",
@@ -869,15 +869,12 @@ export const ROCK_WORLD: GenreWorld = {
       "anticipationOffset": 0,
 
 
-      "articulations": [
-        "accented",
-        "ghost-aware"
-      ]
+      "articulations": ["accented"]
     },
     {
       "id": "rock-straight-drive",
       "worldId": "rock",
-      "styleIds": ["rock-punk"],
+      "styleIds": ["rock-punk-rock"],
       "name": "Straight-Eighth Drive",
       "family": "Driving Eighths",
       "category": "phrasePattern",
@@ -1051,15 +1048,12 @@ export const ROCK_WORLD: GenreWorld = {
       "anticipationOffset": 0,
 
 
-      "articulations": [
-        "accented",
-        "ghost-aware"
-      ]
+      "articulations": ["accented"]
     },
     {
       "id": "rock-open-close",
       "worldId": "rock",
-      "styleIds": ["rock-alt"],
+      "styleIds": ["rock-grunge"],
       "name": "Open Verse → Full Chorus",
       "family": "Dynamic Arrangement",
       "category": "sectionPattern",
@@ -1237,15 +1231,12 @@ export const ROCK_WORLD: GenreWorld = {
       "anticipationOffset": 0,
 
 
-      "articulations": [
-        "accented",
-        "ghost-aware"
-      ]
+      "articulations": ["accented"]
     },
     {
       "id": "rock-odd-meter",
       "worldId": "rock",
-      "styleIds": ["rock-progressive"],
+      "styleIds": ["rock-progressive-rock"],
       "name": "7/8 Accent Group",
       "family": "Odd Meter",
       "category": "ostinato",
@@ -1380,15 +1371,12 @@ export const ROCK_WORLD: GenreWorld = {
       "swingPercentage": 50,
       "anticipationOffset": 0,
 
-      "articulations": [
-        "accented",
-        "ghost-aware"
-      ]
+      "articulations": ["accented"]
     },
     {
       "id": "rock-power-chords",
       "worldId": "rock",
-      "styleIds": ["rock-punk"],
+      "styleIds": ["rock-punk-rock"],
       "name": "Power Chords",
       "family": "Guitar",
       "category": "fill",
@@ -1547,15 +1535,12 @@ export const ROCK_WORLD: GenreWorld = {
       "swingPercentage": 50,
       "anticipationOffset": 0,
 
-      "articulations": [
-        "accented",
-        "ghost-aware"
-      ]
+      "articulations": ["accented"]
     },
     {
       "id": "rock-halftime-groove",
       "worldId": "rock",
-      "styleIds": ["rock-alt"],
+      "styleIds": ["rock-grunge"],
       "name": "Half-Time Groove",
       "family": "Drums",
       "category": "break",
@@ -1660,15 +1645,12 @@ export const ROCK_WORLD: GenreWorld = {
       "swingPercentage": 50,
       "anticipationOffset": 0,
 
-      "articulations": [
-        "accented",
-        "ghost-aware"
-      ]
+      "articulations": ["accented"]
     },
     {
       "id": "rock-tom-beat",
       "worldId": "rock",
-      "styleIds": ["rock-alt"],
+      "styleIds": ["rock-grunge"],
       "name": "Tom Groove",
       "family": "Drums",
       "category": "cadence",
@@ -1829,15 +1811,12 @@ export const ROCK_WORLD: GenreWorld = {
       "swingPercentage": 50,
       "anticipationOffset": 0,
 
-      "articulations": [
-        "accented",
-        "ghost-aware"
-      ]
+      "articulations": ["accented"]
     },
     {
       "id": "rock-organ-sustain",
       "worldId": "rock",
-      "styleIds": ["rock-classic"],
+      "styleIds": ["rock-hard-rock"],
       "name": "Hammond Organ Sustain",
       "family": "Keys",
       "category": "cell",
@@ -1964,15 +1943,12 @@ export const ROCK_WORLD: GenreWorld = {
       "swingPercentage": 50,
       "anticipationOffset": 0,
 
-      "articulations": [
-        "accented",
-        "ghost-aware"
-      ]
+      "articulations": ["accented"]
     },
     {
       "id": "rock-prog-7-8",
       "worldId": "rock",
-      "styleIds": ["rock-progressive"],
+      "styleIds": ["rock-progressive-rock"],
       "name": "7/8 Riff",
       "family": "Guitar",
       "category": "groove",
@@ -2094,15 +2070,12 @@ export const ROCK_WORLD: GenreWorld = {
       "swingPercentage": 50,
       "anticipationOffset": 0,
 
-      "articulations": [
-        "accented",
-        "ghost-aware"
-      ]
+      "articulations": ["accented"]
     },
     {
       "id": "rock-prog-synth",
       "worldId": "rock",
-      "styleIds": ["rock-progressive"],
+      "styleIds": ["rock-progressive-rock"],
       "name": "Prog Synth Arp",
       "family": "Synth",
       "category": "groove",
@@ -2342,15 +2315,12 @@ export const ROCK_WORLD: GenreWorld = {
       "swingPercentage": 50,
       "anticipationOffset": 0,
 
-      "articulations": [
-        "accented",
-        "ghost-aware"
-      ]
+      "articulations": ["accented"]
     },
     {
       "id": "rock-acoustic-strum",
       "worldId": "rock",
-      "styleIds": ["rock-classic"],
+      "styleIds": ["rock-hard-rock"],
       "name": "Acoustic Strum",
       "family": "Guitar",
       "category": "groove",
@@ -2490,15 +2460,12 @@ export const ROCK_WORLD: GenreWorld = {
       "swingPercentage": 50,
       "anticipationOffset": 0,
 
-      "articulations": [
-        "accented",
-        "ghost-aware"
-      ]
+      "articulations": ["accented"]
     },
     {
       "id": "rock-lead-bend",
       "worldId": "rock",
-      "styleIds": ["rock-classic"],
+      "styleIds": ["rock-hard-rock"],
       "name": "Lead Guitar Bend",
       "family": "Guitar",
       "category": "groove",
@@ -2603,15 +2570,12 @@ export const ROCK_WORLD: GenreWorld = {
       "swingPercentage": 50,
       "anticipationOffset": 0,
 
-      "articulations": [
-        "accented",
-        "ghost-aware"
-      ]
+      "articulations": ["accented"]
     },
     {
       "id": "rock-roster-voice",
       "worldId": "rock",
-      "styleIds": ["rock-classic"],
+      "styleIds": ["rock-hard-rock"],
       "name": "Rock voice part",
       "family": "Build",
       "category": "rolePattern",
@@ -2763,7 +2727,7 @@ export const ROCK_WORLD: GenreWorld = {
     {
       "id": "rock-call-14",
       "worldId": "rock",
-      "styleIds": ["rock-classic"],
+      "styleIds": ["rock-hard-rock"],
       "name": "Break Response",
       "family": "Break",
       "category": "interactionPattern",
@@ -2950,7 +2914,7 @@ export const ROCK_WORLD: GenreWorld = {
     {
       "id": "rock-anchor-15",
       "worldId": "rock",
-      "styleIds": ["rock-classic"],
+      "styleIds": ["rock-hard-rock"],
       "name": "Power Chord Anchor",
       "family": "Power Chord",
       "category": "ostinato",
@@ -3097,7 +3061,7 @@ export const ROCK_WORLD: GenreWorld = {
     {
       "id": "rock-comp-16",
       "worldId": "rock",
-      "styleIds": ["rock-classic"],
+      "styleIds": ["rock-hard-rock"],
       "name": "Backbeat Comping",
       "family": "Backbeat",
       "category": "groove",
@@ -3245,7 +3209,7 @@ export const ROCK_WORLD: GenreWorld = {
     {
       "id": "rock-verse-17",
       "worldId": "rock",
-      "styleIds": ["rock-classic"],
+      "styleIds": ["rock-hard-rock"],
       "name": "Solo Verse Variation",
       "family": "Solo",
       "category": "groove",

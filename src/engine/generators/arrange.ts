@@ -19,6 +19,12 @@ export interface Voice extends Track {
 /** regionId -> trackId -> patternId */
 export type Arrangement = Record<string, Record<string, string>>;
 
+const persistentPhrasePatternCache = new Map<string, string>();
+
+export function clearPersistentPhrasePatternCache(): void {
+  persistentPhrasePatternCache.clear();
+}
+
 
 export function phraseSpanBars(cycleLength: number): number {
   const cycle = Math.max(1, Math.round(cycleLength || 1));
@@ -52,6 +58,7 @@ export interface Sheet extends Song {
   energies?: Record<string, Record<string, SectionEnergy>>;
   worldId: string;
   patternMemory?: Record<string, Record<string, string>>;
+  phrasePatternCache?: Record<string, string>;
   tempoShift?: string;
   customProgressions?: (CustomProgression | string[])[];
   /** 0..1 — how far the genre's feel is pushed. 0.5 is "as the genre intends". */
@@ -277,11 +284,11 @@ function canonicalPatternSection(sectionKind?: string): string | undefined {
   const k = String(sectionKind ?? '').toLowerCase();
   if (!k) return undefined;
   if (/intro|introduc|salida|opening/.test(k)) return 'intro';
-  if (/chorus|coro|refrain|hook|montuno/.test(k)) return 'chorus';
+  if (/chorus|coro|refrain|hook|montuno|remate/.test(k)) return 'chorus';
   if (/verse|verso|tema|letra|preg|a$|b$/.test(k)) return 'verse';
   if (/solo|trading|instrumental|falseta|variaci|descarga|mambo|development/.test(k)) return 'solo';
   if (/bridge|puente|break|drop|breakdown/.test(k)) return 'bridge';
-  if (/coda|cierre|outro|ending|tag|remate/.test(k)) return 'ending';
+  if (/coda|cierre|outro|ending|tag/.test(k)) return 'ending';
   return k;
 }
 
@@ -551,15 +558,16 @@ function choosePatternVariant(
     return base;
   };
 
-  const total = eligible.reduce((sum, v) => sum + variantWeight(v), 1);
-  const roll = hash(`variant:${seed}`, 0) * total;
-  // A high canonical threshold means "keep playing the cell as written".
-  // Development lowers it, so the part is allowed to become a variant.
+  const totalVariantsWeight = eligible.reduce((sum, v) => sum + variantWeight(v), 0);
   const dev = Math.max(0, Math.min(1, development));
-  const energyBias = partEnergy >= 5 ? -0.3 : partEnergy <= 2 ? -0.1 : 0;
-  const canonicalThreshold = Math.max(0.15, Math.min(1.4, 1.35 - dev * 0.75 + energyBias));
-  if (roll < canonicalThreshold) return undefined;
-  let cursor = canonicalThreshold;
+  const energyBias = partEnergy >= 5 ? 0.35 : partEnergy <= 2 ? 0.15 : 0;
+  // A high canonical weight means "keep playing the cell as written".
+  // Development lowers it proportionally to variant weights, so the part develops organically.
+  const canonicalWeight = Math.max(0.05, totalVariantsWeight * Math.max(0.08, 1.15 - dev * 1.45 - energyBias));
+  const total = canonicalWeight + totalVariantsWeight;
+  const roll = hash(`variant:${seed}`, 0) * total;
+  if (roll < canonicalWeight) return undefined;
+  let cursor = canonicalWeight;
   for (const v of eligible) {
     cursor += variantWeight(v);
     if (roll < cursor) return v;
@@ -713,7 +721,10 @@ export function rebuild(sheet: Sheet): Sheet {
     );
   }
 
-  const phrasePatternCache = new Map<string, string>();
+  const phrasePatternCache = new Map<string, string>([
+    ...persistentPhrasePatternCache.entries(),
+    ...Object.entries(sheet.phrasePatternCache ?? {}),
+  ]);
   const measures: Measure[] = [];
   for (const r of regions) {
     const chords = r.chords?.length ? r.chords : ['Am'];
@@ -759,13 +770,15 @@ export function rebuild(sheet: Sheet): Sheet {
               })
               .map(p => {
                 let score = affinity(p.id, track as Voice, r.genre ?? sheet.worldId, getSectionStyleId(sheet, r), dials.adventure);
-                if (p.id === basePatternId) score += 18;
+                // When exploring development across phrases, reward family/category coherence over exact base repeat
+                if (p.id === basePatternId) score += 4;
+                else score += 14;
                 if (base && p.family === base.family) score += 12;
-                if (base && p.category === base.category) score += 4;
+                if (base && p.category === base.category) score += 6;
                 if (p.sectionUsage?.includes(r.kind as any)) score += 5;
                 if (p.phrasePosition?.includes((i % phraseSpanBars(getResolvedSectionStyle(sheet, r).contract.cycleLength)) === 0 ? 'start' : 'middle')) score += 2;
                 if (usedPatterns.has(p.id)) score -= 8;
-                return { p, score: score + hash(`${basePatternId}:${p.id}:${r.id}`, phrase) * 2 };
+                return { p, score: score + hash(`${basePatternId}:${p.id}:${r.id}`, phrase) * 3 };
               })
               .filter(x => x.score > 20)
               .sort((a,b) => b.score-a.score);
@@ -776,11 +789,12 @@ export function rebuild(sheet: Sheet): Sheet {
             const pickHashKey = isRhythm ? `rhythm:${r.id}` : `${track.id}:${r.id}`;
             const moves = hash(devHashKey, phrase) < dials.development;
             if (candidates.length && moves) {
-              const reach = Math.max(1, Math.round(1 + dials.development * 5));
+              const reach = Math.max(1, Math.round(1 + dials.development * 6));
               const top = candidates.slice(0, Math.min(reach, candidates.length));
               patternId = top[Math.floor(hash(pickHashKey, phrase) * top.length)].p.id;
             }
             phrasePatternCache.set(cacheKey, patternId);
+            persistentPhrasePatternCache.set(cacheKey, patternId);
           }
         }
         usedPatterns.add(patternId);
@@ -892,6 +906,7 @@ export function rebuild(sheet: Sheet): Sheet {
     durationMeasures: measures.length,
     energies: migrated ? energies : sheet.energies,
     arrangementContext,
+    phrasePatternCache: Object.fromEntries(phrasePatternCache.entries()),
   };
 }
 
@@ -2015,6 +2030,7 @@ export function makeSheet(
  * section's pattern vocabulary. Switching back and forth is a full genre reset.
  */
 export function switchWorld(sheet: Sheet, worldId: string, styleId?: string): Sheet {
+  clearPersistentPhrasePatternCache();
   // A whole-song genre change is a form change, not a recolor. Replace the
   // section grammar, bars, labels, intensity, chords, instruments, and
   // pattern assignments in one deterministic rebuild. Preserve the user's

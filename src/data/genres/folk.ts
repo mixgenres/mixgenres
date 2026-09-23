@@ -858,10 +858,7 @@ export const FOLK_WORLD: GenreWorld = {
       "anticipationOffset": 0,
 
 
-      "articulations": [
-        "accented",
-        "ghost-aware"
-      ]
+      "articulations": ["accented"]
     },
     {
       "id": "folk-travis-sync",
@@ -1010,10 +1007,7 @@ export const FOLK_WORLD: GenreWorld = {
       "swingPercentage": 52,
       "anticipationOffset": 0,
 
-      "articulations": [
-        "accented",
-        "ghost-aware"
-      ]
+      "articulations": ["accented"]
     },
     {
       "id": "folk-strum-basic",
@@ -1146,10 +1140,7 @@ export const FOLK_WORLD: GenreWorld = {
       "swingPercentage": 52,
       "anticipationOffset": 0,
 
-      "articulations": [
-        "accented",
-        "ghost-aware"
-      ]
+      "articulations": ["accented"]
     },
     {
       "id": "folk-strum-sync",
@@ -1289,10 +1280,7 @@ export const FOLK_WORLD: GenreWorld = {
       "swingPercentage": 52,
       "anticipationOffset": 0,
 
-      "articulations": [
-        "accented",
-        "ghost-aware"
-      ]
+      "articulations": ["accented"]
     },
     {
       "id": "folk-waltz",
@@ -1412,10 +1400,7 @@ export const FOLK_WORLD: GenreWorld = {
       "anticipationOffset": 0,
 
 
-      "articulations": [
-        "accented",
-        "ghost-aware"
-      ]
+      "articulations": ["accented"]
     },
     {
       "id": "folk-waltz-pick",
@@ -1564,10 +1549,7 @@ export const FOLK_WORLD: GenreWorld = {
       "anticipationOffset": 0,
 
 
-      "articulations": [
-        "accented",
-        "ghost-aware"
-      ]
+      "articulations": ["accented"]
     },
     {
       "id": "folk-68-arpeggio",
@@ -1715,10 +1697,7 @@ export const FOLK_WORLD: GenreWorld = {
       "swingPercentage": 52,
       "anticipationOffset": 0,
 
-      "articulations": [
-        "accented",
-        "ghost-aware"
-      ]
+      "articulations": ["accented"]
     },
     {
       "id": "folk-fiddle-drone",
@@ -1867,10 +1846,7 @@ export const FOLK_WORLD: GenreWorld = {
       "swingPercentage": 52,
       "anticipationOffset": 0,
 
-      "articulations": [
-        "accented",
-        "ghost-aware"
-      ]
+      "articulations": ["accented"]
     },
     {
       "id": "folk-fast-bluegrass",
@@ -2000,10 +1976,7 @@ export const FOLK_WORLD: GenreWorld = {
       "swingPercentage": 52,
       "anticipationOffset": 0,
 
-      "articulations": [
-        "accented",
-        "ghost-aware"
-      ]
+      "articulations": ["accented"]
     },
     {
       "id": "folk-driving-8ths",
@@ -2169,10 +2142,7 @@ export const FOLK_WORLD: GenreWorld = {
       "swingPercentage": 52,
       "anticipationOffset": 0,
 
-      "articulations": [
-        "accented",
-        "ghost-aware"
-      ]
+      "articulations": ["accented"]
     },
     {
       "id": "folk-roster-bass",
@@ -2234,10 +2204,7 @@ export const FOLK_WORLD: GenreWorld = {
       "syncopationRating": 0.6,
       "anticipationOffset": 0,
       "swingPercentage": 52,
-      "articulations": [
-        "accented",
-        "ghost-aware"
-      ],
+      "articulations": ["accented"],
       "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "middle"
@@ -2388,10 +2355,7 @@ export const FOLK_WORLD: GenreWorld = {
       "syncopationRating": 0.8,
       "anticipationOffset": 0,
       "swingPercentage": 52,
-      "articulations": [
-        "breath",
-        "phrase-end"
-      ],
+      "articulations": ["breath"],
       "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "middle"
@@ -2542,10 +2506,7 @@ export const FOLK_WORLD: GenreWorld = {
       "syncopationRating": 0.8,
       "anticipationOffset": 0,
       "swingPercentage": 52,
-      "articulations": [
-        "breath",
-        "phrase-end"
-      ],
+      "articulations": ["breath"],
       "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "middle"
@@ -2741,10 +2702,7 @@ export const FOLK_WORLD: GenreWorld = {
       "syncopationRating": 0.8,
       "anticipationOffset": 0,
       "swingPercentage": 52,
-      "articulations": [
-        "accented",
-        "ghost-aware"
-      ],
+      "articulations": ["accented"],
       "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start",
@@ -2890,10 +2848,7 @@ export const FOLK_WORLD: GenreWorld = {
       "syncopationRating": 0.3333333333333333,
       "anticipationOffset": 0,
       "swingPercentage": 52,
-      "articulations": [
-        "accented",
-        "ghost-aware"
-      ],
+      "articulations": ["accented"],
       "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "middle"
@@ -3043,10 +2998,7 @@ export const FOLK_WORLD: GenreWorld = {
       "syncopationRating": 0.5,
       "anticipationOffset": 0,
       "swingPercentage": 52,
-      "articulations": [
-        "accented",
-        "ghost-aware"
-      ],
+      "articulations": ["accented"],
       "supportedEnergy": [1, 2, 3, 4, 5],
       "phrasePosition": [
         "start"
@@ -3285,10 +3237,7 @@ export const FOLK_WORLD: GenreWorld = {
       "syncopationRating": 0.875,
       "anticipationOffset": 0,
       "swingPercentage": 52,
-      "articulations": [
-        "accented",
-        "ghost-aware"
-      ],
+      "articulations": ["accented"],
       "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "middle"

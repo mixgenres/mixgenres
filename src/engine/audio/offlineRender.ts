@@ -26,7 +26,7 @@ type RenderEvent =
   | { sample: number; kind: 'on'; note: PerfNote }
   | { sample: number; kind: 'off'; trackId: string; midi: number }
   | { sample: number; kind: 'cc'; cc: PerfCC }
-  | { sample: number; kind: 'bend'; trackId: string; value: number };
+  | { sample: number; kind: 'bend'; trackId: string; value: number; targetMidi?: number };
 
 export async function renderPerformanceToMp3(
   perf: Performance,
@@ -68,7 +68,17 @@ export async function renderPerformanceToMp3(
       if (dialect.bendGlideMs !== undefined) params.bendGlideMs = dialect.bendGlideMs;
     }
     trackParamsMap.set(trackId, params);
-    trackVoicesMap.set(trackId, []);
+    const preallocatedVoices: VoiceState[] = [];
+    for (let vIdx = 0; vIdx < 32; vIdx++) {
+      preallocatedVoices.push({
+        id: `offline-${trackId}-v${vIdx}`,
+        gate: 0,
+        frequencyHz: 440,
+        note: 60,
+        velocity: 0,
+      });
+    }
+    trackVoicesMap.set(trackId, preallocatedVoices);
   }
 
   const events: RenderEvent[] = [];
@@ -79,13 +89,13 @@ export async function renderPerformanceToMp3(
     events.push({ sample: start, kind: 'on', note });
     events.push({ sample: end, kind: 'off', trackId: note.trackId, midi: note.midi });
     for (const bend of note.pitchBend ?? []) {
-      events.push({ sample: Math.max(0, start + Math.round(bend.offset * sampleRate)), kind: 'bend', trackId: note.trackId, value: bend.value });
+      events.push({ sample: Math.max(0, start + Math.round(bend.offset * sampleRate)), kind: 'bend', trackId: note.trackId, value: bend.value, targetMidi: note.midi });
     }
     if (note.pitchBend?.length) {
       const lastBend = note.pitchBend[note.pitchBend.length - 1];
       const unbendSample = Math.max(0, start + Math.round((lastBend.offset + 0.05) * sampleRate));
       if (unbendSample < end) {
-        events.push({ sample: unbendSample, kind: 'bend', trackId: note.trackId, value: 8192 });
+        events.push({ sample: unbendSample, kind: 'bend', trackId: note.trackId, value: 8192, targetMidi: note.midi });
       }
     }
   }
@@ -129,12 +139,33 @@ export async function renderPerformanceToMp3(
 
   let eventIdx = 0;
   let cursor = 0;
+  let eventSeq = 0;
 
   while (cursor < totalSamples) {
-    const blockEnd = Math.min(cursor + BLOCK_SIZE, totalSamples);
-    let graphDirty = false;
+    const nextEventSample = eventIdx < events.length ? events[eventIdx].sample : totalSamples;
+    const targetSample = Math.min(nextEventSample, totalSamples);
 
-    while (eventIdx < events.length && events[eventIdx].sample < blockEnd) {
+    while (cursor < targetSample) {
+      const chunkSize = Math.min(BLOCK_SIZE, targetSample - cursor);
+      const stepBlock = [new Float32Array(chunkSize), new Float32Array(chunkSize)];
+      core.process([], stepBlock);
+
+      for (let i = 0; i < chunkSize; i++) {
+        left[cursor + i] = stepBlock[0][i] || 0;
+        right[cursor + i] = stepBlock[1][i] || 0;
+      }
+
+      cursor += chunkSize;
+
+      if (onProgress && cursor % (BLOCK_SIZE * 32) === 0) {
+        onProgress(0.05 + (cursor / totalSamples) * 0.62);
+      }
+    }
+
+    if (cursor >= totalSamples) break;
+
+    let graphDirty = false;
+    while (eventIdx < events.length && events[eventIdx].sample <= cursor) {
       const event = events[eventIdx++];
       const eventTrackId = event.kind === 'on' ? event.note.trackId : event.kind === 'cc' ? event.cc.trackId : event.trackId;
       const params = trackParamsMap.get(eventTrackId);
@@ -160,26 +191,23 @@ export async function renderPerformanceToMp3(
           params.articulation = articulationNorm;
           params.decay = Math.max(0.1, Math.min(8.0, event.note.dur));
 
-          let voice = voices.find(v => v.note === noteMidi);
-          if (!voice) {
-            if (voices.length >= 8) {
-              voice = voices.find(v => v.gate === 0) || voices[0];
-            } else {
-              voice = {
-                id: `offline-${eventTrackId}-${voices.length}`,
-                gate: 0,
-                frequencyHz: event.note.frequencyHz ?? midiToFreq(noteMidi),
-                note: noteMidi,
-                velocity: velScaled,
-              };
-              voices.push(voice);
-            }
+          let voice = voices.find(v => v.note === noteMidi && v.gate === 1)
+            || voices.find(v => v.gate === 0)
+            || voices.reduce((oldest, current) => {
+                const oSeq = (oldest as any).triggerSeq ?? 0;
+                const cSeq = (current as any).triggerSeq ?? 0;
+                return cSeq < oSeq ? current : oldest;
+              }, voices[0]);
+
+          if (voice.gate === 1) {
+            voice.retriggerId = (voice.retriggerId || 0) + 1;
           }
 
           voice.note = noteMidi;
-          const targetFreq = event.note.frequencyHz ?? midiToFreq(noteMidi);
+          const targetFreq = Math.max(20, event.note.frequencyHz ?? midiToFreq(noteMidi));
           voice.frequencyHz = targetFreq;
           (voice as any).baseFrequencyHz = targetFreq;
+          (voice as any).triggerSeq = ++eventSeq;
           voice.velocity = velScaled;
           voice.gate = 1;
           graphDirty = true;
@@ -193,15 +221,23 @@ export async function renderPerformanceToMp3(
             graphDirty = true;
           }
         } else if (event.kind === 'bend') {
-          const semitones = ((event.value - 8192) / 8192) * 2;
-          const bendRatio = Math.pow(2, semitones / 12);
-          for (const voice of voices) {
-            if (voice.gate === 1) {
-              const base = (voice as any).baseFrequencyHz ?? voice.frequencyHz ?? midiToFreq(voice.note);
-              (voice as any).baseFrequencyHz = base;
-              voice.frequencyHz = base * bendRatio;
-              graphDirty = true;
-            }
+          const activeVoices = voices.filter(v => v.gate === 1);
+          if (activeVoices.length > 0) {
+            const semitones = ((event.value - 8192) / 8192) * 2;
+            const bendRatio = Math.pow(2, semitones / 12);
+            const targetVoice = (event.targetMidi !== undefined
+              ? activeVoices.find(v => Math.round(v.note) === Math.round(event.targetMidi!))
+              : undefined)
+              ?? activeVoices.reduce((latest, current) => {
+                const tSeq = (current as any).triggerSeq ?? 0;
+                const lSeq = (latest as any).triggerSeq ?? 0;
+                return tSeq >= lSeq ? current : latest;
+              }, activeVoices[0]);
+
+            const base = (targetVoice as any).baseFrequencyHz ?? targetVoice.frequencyHz ?? midiToFreq(targetVoice.note);
+            (targetVoice as any).baseFrequencyHz = base;
+            targetVoice.frequencyHz = base * bendRatio;
+            graphDirty = true;
           }
         } else if (event.kind === 'cc') {
           const norm = event.cc.value / 127;
@@ -229,20 +265,6 @@ export async function renderPerformanceToMp3(
 
     if (graphDirty) {
       await syncGraph();
-    }
-
-    const frames = Math.min(BLOCK_SIZE, totalSamples - cursor);
-    core.process([], outBlock);
-
-    for (let i = 0; i < frames; i++) {
-      left[cursor + i] = outBlock[0][i] || 0;
-      right[cursor + i] = outBlock[1][i] || 0;
-    }
-
-    cursor += frames;
-
-    if (onProgress && cursor % (BLOCK_SIZE * 32) === 0) {
-      onProgress(0.05 + (cursor / totalSamples) * 0.62);
     }
   }
 

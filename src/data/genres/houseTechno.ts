@@ -1063,9 +1063,7 @@ export const HOUSE_TECHNO_WORLD: GenreWorld = {
       "syncopationRating": 0.82,
       "anticipationOffset": 0,
       "swingPercentage": 50,
-      "articulations": [
-        "sequence"
-      ],
+      "articulations": ["accent"],
       "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start",
@@ -1209,10 +1207,7 @@ export const HOUSE_TECHNO_WORLD: GenreWorld = {
       "syncopationRating": 0.88,
       "anticipationOffset": 0,
       "swingPercentage": 50,
-      "articulations": [
-        "slide",
-        "accent"
-      ],
+      "articulations": ["accent"],
       "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start",
@@ -1336,9 +1331,7 @@ export const HOUSE_TECHNO_WORLD: GenreWorld = {
       "syncopationRating": 0,
       "anticipationOffset": 0,
       "swingPercentage": 50,
-      "articulations": [
-        "four-on-floor"
-      ],
+      "articulations": ["accent"],
       "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "any"
@@ -1404,9 +1397,7 @@ export const HOUSE_TECHNO_WORLD: GenreWorld = {
       "syncopationRating": 1,
       "anticipationOffset": 0,
       "swingPercentage": 50,
-      "articulations": [
-        "offbeat hat"
-      ],
+      "articulations": ["accent"],
       "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "any"
@@ -1476,9 +1467,7 @@ export const HOUSE_TECHNO_WORLD: GenreWorld = {
       "syncopationRating": 1,
       "anticipationOffset": 0,
       "swingPercentage": 50,
-      "articulations": [
-        "bass lock"
-      ],
+      "articulations": ["accent"],
       "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "any"
@@ -1549,10 +1538,7 @@ export const HOUSE_TECHNO_WORLD: GenreWorld = {
       "syncopationRating": 1,
       "anticipationOffset": 0,
       "swingPercentage": 50,
-      "articulations": [
-        "stab",
-        " offbeat"
-      ],
+      "articulations": [" offbeat"],
       "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "any"
@@ -1636,10 +1622,7 @@ export const HOUSE_TECHNO_WORLD: GenreWorld = {
       "syncopationRating": 0.6,
       "anticipationOffset": -1,
       "swingPercentage": 50,
-      "articulations": [
-        "Detroit",
-        " sequence"
-      ],
+      "articulations": [" sequence"],
       "supportedEnergy": [4, 5],
       "phrasePosition": [
         "middle"
@@ -1730,10 +1713,7 @@ export const HOUSE_TECHNO_WORLD: GenreWorld = {
       "syncopationRating": 0.69,
       "anticipationOffset": -1,
       "swingPercentage": 50,
-      "articulations": [
-        "acid",
-        " slide"
-      ],
+      "articulations": [" slide"],
       "supportedEnergy": [4, 5],
       "phrasePosition": [
         "middle"
@@ -1802,10 +1782,7 @@ export const HOUSE_TECHNO_WORLD: GenreWorld = {
       "syncopationRating": 0,
       "anticipationOffset": 0,
       "swingPercentage": 50,
-      "articulations": [
-        "clap",
-        " backbeat"
-      ],
+      "articulations": [" backbeat"],
       "supportedEnergy": [1, 2],
       "phrasePosition": [
         "any"
@@ -1885,10 +1862,7 @@ export const HOUSE_TECHNO_WORLD: GenreWorld = {
       "syncopationRating": 0,
       "anticipationOffset": 0,
       "swingPercentage": 50,
-      "articulations": [
-        "build",
-        " automation"
-      ],
+      "articulations": [" automation"],
       "supportedEnergy": [4, 5],
       "phrasePosition": [
         "start",
@@ -1960,10 +1934,7 @@ export const HOUSE_TECHNO_WORLD: GenreWorld = {
       "syncopationRating": 0,
       "anticipationOffset": 0,
       "swingPercentage": 50,
-      "articulations": [
-        "breakdown",
-        " tension"
-      ],
+      "articulations": [" tension"],
       "supportedEnergy": [1, 2],
       "phrasePosition": [
         "start",
@@ -2036,10 +2007,7 @@ export const HOUSE_TECHNO_WORLD: GenreWorld = {
       "syncopationRating": 0,
       "anticipationOffset": 0,
       "swingPercentage": 50,
-      "articulations": [
-        "drop",
-        " re-entry"
-      ],
+      "articulations": [" re-entry"],
       "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"

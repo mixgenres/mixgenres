@@ -456,7 +456,7 @@ export const SALSA_WORLD: GenreWorld = {
     {
       "id": "afro-clave-son-23",
       "worldId": "salsa",
-      "styleIds": ["afro-son-montuno"],
+      "styleIds": ["salsa-son-montuno"],
       "name": "Son Clave 2–3 Structural Timeline",
       "family": "Clave Timelines",
       "category": "ostinato",
@@ -593,7 +593,7 @@ export const SALSA_WORLD: GenreWorld = {
     {
       "id": "afro-bass-tumbao",
       "worldId": "salsa",
-      "styleIds": ["afro-son-montuno"],
+      "styleIds": ["salsa-son-montuno"],
       "name": "Bass Tumbao (Anticipated Harmony)",
       "family": "Tumbao Basslines",
       "category": "ostinato",
@@ -711,7 +711,7 @@ export const SALSA_WORLD: GenreWorld = {
     {
       "id": "afro-piano-montuno",
       "worldId": "salsa",
-      "styleIds": ["afro-son-montuno"],
+      "styleIds": ["salsa-son-montuno"],
       "name": "Piano Montuno / Guajeo (Interlocking Arpeggios)",
       "family": "Montuno Interlocking Figures",
       "category": "ostinato",
@@ -926,7 +926,7 @@ export const SALSA_WORLD: GenreWorld = {
     {
       "id": "afro-timbal-cascara",
       "worldId": "salsa",
-      "styleIds": ["afro-salsa-dura"],
+      "styleIds": ["salsa-salsa-dura"],
       "name": "Timbal Cáscara Pattern (Side-Shell Stick)",
       "family": "Percussion Timelines",
       "category": "ostinato",
@@ -1158,7 +1158,7 @@ export const SALSA_WORLD: GenreWorld = {
     {
       "id": "afro-conga-tumbao",
       "worldId": "salsa",
-      "styleIds": ["afro-son-montuno"],
+      "styleIds": ["salsa-son-montuno"],
       "name": "Conga Marcha (Slap & Open Tones)",
       "family": "Conga Tumbaos",
       "category": "ostinato",
@@ -1334,7 +1334,7 @@ export const SALSA_WORLD: GenreWorld = {
     {
       "id": "afro-mambo-horn-hits",
       "worldId": "salsa",
-      "styleIds": ["afro-salsa-dura"],
+      "styleIds": ["salsa-salsa-dura"],
       "name": "Mambo Section Horn Stabs & Punctuation",
       "family": "Horn Mambos",
       "category": "phrasePattern",
@@ -1492,7 +1492,7 @@ export const SALSA_WORLD: GenreWorld = {
     {
       "id": "salsa-campana",
       "worldId": "salsa",
-      "styleIds": ["afro-salsa-dura"],
+      "styleIds": ["salsa-salsa-dura"],
       "name": "Campana (Bongo Bell)",
       "family": "Bell",
       "category": "fill",
@@ -1653,7 +1653,7 @@ export const SALSA_WORLD: GenreWorld = {
     {
       "id": "salsa-guiro",
       "worldId": "salsa",
-      "styleIds": ["afro-salsa-dura"],
+      "styleIds": ["salsa-salsa-dura"],
       "name": "Guiro Pattern",
       "family": "Guiro",
       "category": "break",
@@ -1860,7 +1860,7 @@ export const SALSA_WORLD: GenreWorld = {
     {
       "id": "salsa-maracas",
       "worldId": "salsa",
-      "styleIds": ["afro-salsa-dura"],
+      "styleIds": ["salsa-salsa-dura"],
       "name": "Maracas",
       "family": "Maracas",
       "category": "cadence",
@@ -2029,7 +2029,7 @@ export const SALSA_WORLD: GenreWorld = {
     {
       "id": "salsa-clave-32",
       "worldId": "salsa",
-      "styleIds": ["afro-salsa-dura"],
+      "styleIds": ["salsa-salsa-dura"],
       "name": "3-2 Son Clave",
       "family": "Clave",
       "category": "groove",
@@ -2166,7 +2166,7 @@ export const SALSA_WORLD: GenreWorld = {
     {
       "id": "salsa-timbal-bell",
       "worldId": "salsa",
-      "styleIds": ["afro-salsa-dura"],
+      "styleIds": ["salsa-salsa-dura"],
       "name": "Timbal Mambo Bell",
       "family": "Bell",
       "category": "groove",
@@ -2332,7 +2332,7 @@ export const SALSA_WORLD: GenreWorld = {
     {
       "id": "salsa-phrase-12",
       "worldId": "salsa",
-      "styleIds": ["afro-salsa-dura"],
+      "styleIds": ["salsa-salsa-dura"],
       "name": "Coro Phrase",
       "family": "Coro / backing vocals",
       "category": "phrasePattern",
@@ -2497,7 +2497,7 @@ export const SALSA_WORLD: GenreWorld = {
     {
       "id": "salsa-call-13",
       "worldId": "salsa",
-      "styleIds": ["afro-salsa-dura"],
+      "styleIds": ["salsa-salsa-dura"],
       "name": "Mambo Response",
       "family": "Mambo",
       "category": "interactionPattern",
@@ -2707,7 +2707,7 @@ export const SALSA_WORLD: GenreWorld = {
     {
       "id": "salsa-anchor-14",
       "worldId": "salsa",
-      "styleIds": ["afro-salsa-dura"],
+      "styleIds": ["salsa-salsa-dura"],
       "name": "Tumbao Anchor",
       "family": "Tumbao",
       "category": "ostinato",
@@ -2873,7 +2873,7 @@ export const SALSA_WORLD: GenreWorld = {
     {
       "id": "salsa-comp-15",
       "worldId": "salsa",
-      "styleIds": ["afro-salsa-dura"],
+      "styleIds": ["salsa-salsa-dura"],
       "name": "Son Clave Comping",
       "family": "Son Clave",
       "category": "groove",
@@ -3040,7 +3040,7 @@ export const SALSA_WORLD: GenreWorld = {
     {
       "id": "salsa-intro-16",
       "worldId": "salsa",
-      "styleIds": ["afro-salsa-dura"],
+      "styleIds": ["salsa-salsa-dura"],
       "name": "Montuno Intro",
       "family": "Montuno",
       "category": "sectionPattern",
@@ -3278,7 +3278,7 @@ export const SALSA_WORLD: GenreWorld = {
     {
       "id": "salsa-voice-phrasing",
       "worldId": "salsa",
-      "styleIds": ["afro-son-montuno"],
+      "styleIds": ["salsa-son-montuno"],
       "name": "Salsa Vocal Phrasing",
       "family": "Vocal Phrasing",
       "category": "phrasePattern",

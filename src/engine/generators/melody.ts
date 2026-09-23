@@ -559,23 +559,10 @@ export function melodyNote(c: MelodyContext): { note: number | number[]; isLeap:
     }
   }
 
-  // Leap-then-step recovery: if previous note was a leap (> 4 semitones), recover by step in the opposite direction
   let isLeap = false;
   if (c.previous) {
-    const prevDiff = target - c.previous;
-    if (c.wasLeap) {
-      // Force step (1 or 2 semitones) in opposite direction of the leap
-      const stepDir = -Math.sign(prevDiff);
-      const stepTarget = c.previous + (stepDir * (scale.length > 5 ? 2 : 3));
-      target = nearestPc(pcOf(stepTarget), stepTarget);
-    } else if (Math.abs(prevDiff) > 4) {
+    if (Math.abs(target - c.previous) > 4) {
       isLeap = true;
-    }
-
-    // Octave guard so melodies don't jump erratically
-    let guard = 0;
-    while (Math.abs(target - c.previous) > 10 && guard++ < 4) {
-      target += target > c.previous ? -12 : 12;
     }
   }
 

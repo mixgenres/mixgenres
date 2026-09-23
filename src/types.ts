@@ -435,6 +435,7 @@ export interface Song {
   styleId?: string;
   styleInfluences?: any[];
   styleOverrides?: Record<string, unknown>;
+  phrasePatternCache?: Record<string, string>;
 }
 
 

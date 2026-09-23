@@ -19,7 +19,6 @@ export const CURATED_STYLE_NAMES: Record<string, string[]> = {
   house: ['Deep House','Classic House','Soulful House','Tech House','Garage House','Acid House','French House'],
   jazz: ['Bebop','Cool Jazz','Hard Bop','Free Jazz','Gypsy Jazz','Fusion','Spiritual Jazz','Ragtime'],
   kizomba: ['Tradicional','Semba Playful','Passada','Tarraxinha','Urbankiz','Ghetto Zouk','Kizomba Afro'],
-  'latin-pop': ['Latin Pop','Pop Ballad','Tropical Pop','Urban Latin Pop','Rock Latino','Dance Latin Pop'],
   tango: ['Tango Tradicional','Guardia Vieja','Troilo','Pugliese','Milonga','Tango Vals','Tango Nuevo','Piazzolla','Chacarera'],
   flamenco: ['Soleá','Bulerías','Alegrías','Tangos','Seguiriya','Rumba'],
   metal: ['Heavy Metal','Thrash','Death Metal','Black Metal','Power Metal','Doom Metal','Sludge','Progressive Metal'],
@@ -68,11 +67,11 @@ const SOURCE_STYLE_OVERRIDES: Record<string, Record<string, string>> = {
   brazilian: { 'Samba': 'Samba de Enredo', 'Bossa Nova': 'Bossa Nova', 'Pagode': 'Pagode', 'Choro': 'Choro', 'Samba-Rock': 'Samba Reggae', 'Forró': 'Samba de Roda' },
   disco: { 'Studio Disco': 'Disco', 'Eurodisco': 'Disco', 'Hi-NRG': 'Disco', 'Disco-Funk': 'Boogie', 'Italo Disco': 'Synth Funk', 'Nu-Disco': 'Boogie' },
   gospel: { 'Traditional Gospel': 'Old-Time', 'Contemporary Gospel': 'Indie Folk', 'Southern Gospel': 'Neo-Traditional', 'Choir Gospel': 'Chamber Folk', 'Gospel Soul': 'Indie Folk', 'Gospel Funk': 'Boogie' },
-  house: { 'Deep House': 'Downtempo', 'Classic House': 'Techno', 'Soulful House': 'Soulful House', 'Tech House': 'Techno', 'Garage House': 'Garage', 'Acid House': 'Acid Techno', 'French House': 'Disco' },
-  'drum-and-bass': { 'Liquid DnB': 'Downtempo', 'Jungle': 'Breakbeat', 'Jump-Up': 'Dubstep', 'Neurofunk': 'IDM', 'Dancefloor DnB': 'Electro', 'Minimal DnB': 'Techno' },
-  industrial: { 'Industrial Metal': 'Industrial Metal', 'EBM': 'EBM', 'Industrial Rock': 'Industrial Rock', 'Industrial Techno': 'Industrial Techno', 'Noise Industrial': 'Noise Industrial', 'Dark Industrial': 'Industrial Rock' },
-  'punk-hardcore': { 'Punk Rock': 'Hard Rock', 'Hardcore Punk': 'Punk Rock', 'Post-Hardcore': 'Alternative Rock', 'Skate Punk': 'Garage Rock', 'Crust Punk': 'Grunge', 'Melodic Hardcore': 'Alternative Rock', 'Pop Punk': 'Hard Rock' },
-  'uk-bass': { 'UK Garage': 'Garage', '2-Step': 'Garage', 'Grime': 'Dubstep', 'Dubstep': 'Dubstep', 'Future Garage': 'Downtempo', 'Bassline': 'Breakbeat', 'Breaks': 'Breakbeat' },
+  house: { 'Deep House': 'Dub Techno', 'Classic House': 'Detroit Techno', 'Soulful House': 'Melodic Techno', 'Tech House': 'Peak Time', 'Garage House': 'Minimal', 'Acid House': 'Acid Techno', 'French House': 'Detroit Techno' },
+  'drum-and-bass': { 'Liquid DnB': 'Downtempo', 'Jungle': 'IDM', 'Jump-Up': 'Breakbeat', 'Neurofunk': 'IDM', 'Dancefloor DnB': 'Techno', 'Minimal DnB': 'Techno' },
+  industrial: { 'Industrial Metal': 'Thrash', 'EBM': 'Black Metal', 'Industrial Rock': 'Heavy Metal', 'Industrial Techno': 'Doom Metal', 'Noise Industrial': 'Sludge', 'Dark Industrial': 'Death Metal' },
+  'punk-hardcore': { 'Punk Rock': 'Hard Rock', 'Hardcore Punk': 'Hard Rock', 'Post-Hardcore': 'Grunge', 'Skate Punk': 'Garage Rock', 'Crust Punk': 'Grunge', 'Melodic Hardcore': 'Alternative Rock', 'Pop Punk': 'Hard Rock' },
+  'uk-bass': { 'UK Garage': 'Electro', '2-Step': 'Breakbeat', 'Grime': 'Techno', 'Dubstep': 'Downtempo', 'Future Garage': 'Ambient', 'Bassline': 'Electro', 'Breaks': 'Breakbeat' },
 };
 
 function slug(value: string): string {
@@ -220,15 +219,6 @@ export function buildCuratedStyles(baseStyles: SongStyle[], _patterns: MusicalPa
       const style = cloneStyle(base, genreId, name, `${genreId}-${slug(name)}`);
       style.canonical = index === 0;
       style.summary = base.summary || shortText(`${name} ${GENRE_NAMES[genreId]}`);
-      if (genreId === 'latin-pop') {
-        style.kind = 'fusion';
-        style.influences = [
-          { source: { styleId: 'bachata-tradicional' }, weight: 0.35, aspects: ['rhythm','arrangement'] },
-          { source: { styleId: 'reggaeton-perreo' }, weight: 0.35, aspects: ['rhythm','sound'] },
-          { source: { genreId: 'salsa' }, weight: 0.20, aspects: ['rhythm','harmony'] },
-        ];
-        style.authoringNotes = 'Fusion recipe: source-world aspects are weighted; source forbid rules remain authoritative for borrowed aspects.';
-      }
       result.push(style);
     });
   }

@@ -879,10 +879,7 @@ export const COUNTRY_WORLD: GenreWorld = {
       "swingPercentage": 52,
       "anticipationOffset": 0,
 
-      "articulations": [
-        "accented",
-        "ghost-aware"
-      ]
+      "articulations": ["accented"]
     },
     {
       "id": "country-train",
@@ -1129,15 +1126,12 @@ export const COUNTRY_WORLD: GenreWorld = {
       "swingPercentage": 52,
       "anticipationOffset": 0,
 
-      "articulations": [
-        "accented",
-        "ghost-aware"
-      ]
+      "articulations": ["accented"]
     },
     {
       "id": "country-trap-hats",
       "worldId": "country",
-      "styleIds": ["country-contemporary"],
+      "styleIds": ["country-americana"],
       "name": "Hick-Hop Trap Hi-Hats",
       "family": "Beat",
       "category": "cadence",
@@ -1302,10 +1296,7 @@ export const COUNTRY_WORLD: GenreWorld = {
       "swingPercentage": 52,
       "anticipationOffset": 0,
 
-      "articulations": [
-        "accented",
-        "ghost-aware"
-      ]
+      "articulations": ["accented"]
     },
     {
       "id": "country-outlaw",
@@ -1472,10 +1463,7 @@ export const COUNTRY_WORLD: GenreWorld = {
       "anticipationOffset": 0,
 
 
-      "articulations": [
-        "accented",
-        "ghost-aware"
-      ]
+      "articulations": ["accented"]
     },
     {
       "id": "country-waltz",
@@ -1597,10 +1585,7 @@ export const COUNTRY_WORLD: GenreWorld = {
       "anticipationOffset": 0,
 
 
-      "articulations": [
-        "accented",
-        "ghost-aware"
-      ]
+      "articulations": ["accented"]
     },
     {
       "id": "country-western-swing",
@@ -1733,15 +1718,12 @@ export const COUNTRY_WORLD: GenreWorld = {
       "anticipationOffset": 0,
 
 
-      "articulations": [
-        "accented",
-        "ghost-aware"
-      ]
+      "articulations": ["accented"]
     },
     {
       "id": "country-nashville",
       "worldId": "country",
-      "styleIds": ["country-contemporary"],
+      "styleIds": ["country-americana"],
       "name": "Nashville Smooth",
       "family": "Beat",
       "category": "groove",
@@ -1873,15 +1855,12 @@ export const COUNTRY_WORLD: GenreWorld = {
       "swingPercentage": 52,
       "anticipationOffset": 0,
 
-      "articulations": [
-        "accented",
-        "ghost-aware"
-      ]
+      "articulations": ["accented"]
     },
     {
       "id": "country-pedal-steel-swell",
       "worldId": "country",
-      "styleIds": ["country-contemporary"],
+      "styleIds": ["country-americana"],
       "name": "Pedal Steel Volume Swell",
       "family": "Texture",
       "category": "cell",
@@ -1990,10 +1969,7 @@ export const COUNTRY_WORLD: GenreWorld = {
       "swingPercentage": 52,
       "anticipationOffset": 0,
 
-      "articulations": [
-        "accented",
-        "ghost-aware"
-      ]
+      "articulations": ["accented"]
     },
     {
       "id": "country-chicken",
@@ -2159,15 +2135,12 @@ export const COUNTRY_WORLD: GenreWorld = {
       "swingPercentage": 52,
       "anticipationOffset": 0,
 
-      "articulations": [
-        "accented",
-        "ghost-aware"
-      ]
+      "articulations": ["accented"]
     },
     {
       "id": "country-ballad",
       "worldId": "country",
-      "styleIds": ["country-contemporary"],
+      "styleIds": ["country-americana"],
       "name": "Slow Ballad 6/8",
       "family": "Beat",
       "category": "groove",
@@ -2276,10 +2249,7 @@ export const COUNTRY_WORLD: GenreWorld = {
       "swingPercentage": 52,
       "anticipationOffset": 0,
 
-      "articulations": [
-        "accented",
-        "ghost-aware"
-      ]
+      "articulations": ["accented"]
     },
     {
       "id": "country-phrase-11",
@@ -2350,10 +2320,7 @@ export const COUNTRY_WORLD: GenreWorld = {
       "syncopationRating": 0.625,
       "anticipationOffset": 0,
       "swingPercentage": 52,
-      "articulations": [
-        "breath",
-        "phrase-end"
-      ],
+      "articulations": ["breath"],
       "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
@@ -2533,10 +2500,7 @@ export const COUNTRY_WORLD: GenreWorld = {
       "syncopationRating": 0.75,
       "anticipationOffset": 0,
       "swingPercentage": 52,
-      "articulations": [
-        "breath",
-        "phrase-end"
-      ],
+      "articulations": ["breath"],
       "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "middle"
@@ -2773,10 +2737,7 @@ export const COUNTRY_WORLD: GenreWorld = {
       "syncopationRating": 0.75,
       "anticipationOffset": 0,
       "swingPercentage": 52,
-      "articulations": [
-        "accented",
-        "ghost-aware"
-      ],
+      "articulations": ["accented"],
       "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start",
@@ -2957,10 +2918,7 @@ export const COUNTRY_WORLD: GenreWorld = {
       "syncopationRating": 0.625,
       "anticipationOffset": 0,
       "swingPercentage": 52,
-      "articulations": [
-        "accented",
-        "ghost-aware"
-      ],
+      "articulations": ["accented"],
       "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "middle"
@@ -3133,10 +3091,7 @@ export const COUNTRY_WORLD: GenreWorld = {
       "syncopationRating": 0.6,
       "anticipationOffset": 0,
       "swingPercentage": 52,
-      "articulations": [
-        "accented",
-        "ghost-aware"
-      ],
+      "articulations": ["accented"],
       "supportedEnergy": [1, 2, 3, 4, 5],
       "phrasePosition": [
         "start"
@@ -3344,10 +3299,7 @@ export const COUNTRY_WORLD: GenreWorld = {
       "syncopationRating": 0.7142857142857143,
       "anticipationOffset": 0,
       "swingPercentage": 52,
-      "articulations": [
-        "accented",
-        "ghost-aware"
-      ],
+      "articulations": ["accented"],
       "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "middle"
@@ -3516,10 +3468,7 @@ export const COUNTRY_WORLD: GenreWorld = {
       "syncopationRating": 0.6666666666666666,
       "anticipationOffset": 0,
       "swingPercentage": 50,
-      "articulations": [
-        "breath",
-        "phrase-end"
-      ],
+      "articulations": ["breath"],
       "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start",

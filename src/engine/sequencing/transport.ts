@@ -38,11 +38,13 @@ export interface TransportSink {
   now(): number;
   noteOn(trackId: string | number, midi: number, vel: number, time: number, articulation?: string, frequencyHz?: number): void;
   noteOff(trackId: string | number, midi: number, time: number): void;
-  pitchBend(trackId: string | number, value: number, time: number): void;
+  pitchBend(trackId: string | number, value: number, time: number, targetMidi?: number): void;
   controlChange(trackId: string | number, cc: number, value: number, time: number): void;
   programChange(trackId: string | number, program: number, time: number, bank?: number): void;
   setDrumChannel(trackId: string | number, isDrum: boolean): void;
   allNotesOff(): void;
+  softNotesOff?(): void;
+  processPendingEvents?(): void;
 }
 
 export interface TransportCallbacks {
@@ -92,7 +94,11 @@ export class Transport {
     const pos = wasRunning ? this.position() : this.startOffset;
     this.perf = perf;
     if (wasRunning) {
-      this.sink.allNotesOff();
+      if (typeof this.sink.softNotesOff === 'function') {
+        this.sink.softNotesOff();
+      } else {
+        this.sink.allNotesOff();
+      }
       this.locate(pos);
     }
   }
@@ -214,6 +220,7 @@ export class Transport {
   }
 
   private tick() {
+    this.sink.processPendingEvents?.();
     if (!this.running || !this.perf) return;
     const notes = this.perf.notes;
     const total = this.totalLength();
@@ -268,11 +275,11 @@ export class Transport {
     if (n.pitchBend?.length) {
       for (const point of n.pitchBend) {
         const bendAt = Math.max(targetOn, at + Math.max(0, point.offset));
-        this.sink.pitchBend(n.trackId, point.value, bendAt);
+        this.sink.pitchBend(n.trackId, point.value, bendAt, midi);
       }
     }
     this.sink.noteOn(n.trackId, midi, vel, targetOn, n.articulation, n.frequencyHz);
     this.sink.noteOff(n.trackId, midi, targetOff);
-    if (n.pitchBend?.length) this.sink.pitchBend(n.trackId, 8192, targetOff);
+    if (n.pitchBend?.length) this.sink.pitchBend(n.trackId, 8192, targetOff, midi);
   }
 }

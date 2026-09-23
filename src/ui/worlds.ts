@@ -36,7 +36,6 @@ const CURATED_PLATES: Record<string, Omit<Plate, 'short'>> = {
   'house': { ground: '#CDE5EB', tone: '#CDE5EB', ink: '#1F1F1F', signal: '#5A6B7A' },
   'jazz': { ground: '#D8DDE1', tone: '#D8DDE1', ink: '#1F1F1F', signal: '#5A6B7A' },
   'kizomba': { ground: '#D4DEC9', tone: '#D4DEC9', ink: '#1F1F1F', signal: '#5A6B7A' },
-  'latin-pop': { ground: '#E7D8C8', tone: '#E7D8C8', ink: '#1F1F1F', signal: '#5A6B7A' },
   'tango': { ground: '#DAD6E1', tone: '#DAD6E1', ink: '#1F1F1F', signal: '#5A6B7A' },
   'flamenco': { ground: '#E5D2C1', tone: '#E5D2C1', ink: '#1F1F1F', signal: '#5A6B7A' },
   'metal': { ground: '#CFCFD3', tone: '#CFCFD3', ink: '#1F1F1F', signal: '#5A6B7A' },

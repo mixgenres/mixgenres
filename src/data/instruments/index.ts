@@ -45,7 +45,7 @@ import { sitar } from './definitions/sitar';
 import { shamisen } from './definitions/shamisen';
 import { kora } from './definitions/kora';
 import { berimbau } from './definitions/berimbau';
-import { sh_ } from './definitions/sh_';
+import { sho } from './definitions/sh_';
 import { guqin } from './definitions/guqin';
 import { pipa } from './definitions/pipa';
 import { guzheng } from './definitions/guzheng';
@@ -243,7 +243,7 @@ export const INSTRUMENT_CATALOG: InstrumentDef[] = [
   shamisen,
   kora,
   berimbau,
-  sh_,
+  sho,
   guqin,
   pipa,
   guzheng,
@@ -340,7 +340,6 @@ export const INSTRUMENT_CATALOG: InstrumentDef[] = [
   castanets,
   palmas,
   ride,
-  steel_drums,
   taiko,
   paigu,
   kane,
@@ -375,28 +374,37 @@ function enrichInstrumentPhysics(d: InstrumentDef): InstrumentDef {
   const isString = d.family === 'plucked' || d.family === 'bowed';
   const isPerc = d.family === 'hand-drums' || d.family === 'metal-and-wood' || d.family === 'kit';
   const isWind = d.family === 'winds' || d.family === 'brass';
-  const model = isString ? (d.family === 'bowed' ? 'bowed-string' : 'plucked-string')
+  const isFreeReed = ['accordion', 'bandoneon', 'concertina', 'harmonium', 'melodica', 'shō', 'harmonica'].includes(id);
+  const isWoodwindReed = id.includes('sax') || id.includes('clarinet') || id.includes('oboe') || id.includes('bassoon');
+  const isLipReed = id.includes('trumpet') || id.includes('trombone') || id.includes('horn') || id === 'tuba';
+  const isStruckAcousticString = id === 'piano' || id === 'dulcimer' || id === 'celeste';
+
+  const model = isStruckAcousticString ? 'struck-string'
+    : isString ? (d.family === 'bowed' ? 'bowed-string' : 'plucked-string')
     : isPerc ? (d.bodyConstruction === 'skin-faced' ? 'membrane' : 'metal-impact')
-    : isWind ? (id.includes('sax') || id.includes('clarinet') || id.includes('oboe') || id.includes('bassoon') ? 'blown-reed' : id.includes('trumpet') || id.includes('trombone') || id.includes('horn') || id === 'tuba' ? 'lip-reed' : 'blown-air')
+    : isFreeReed || isWoodwindReed ? 'blown-reed'
+    : isLipReed ? 'lip-reed'
+    : (isWind || id.includes('organ')) ? 'blown-air'
     : d.family === 'voice' ? 'voice-source'
     : d.family === 'electronic' ? (id.includes('fm') ? 'fm-synth' : id.includes('303') || id.includes('lead') || id.includes('pad') || id.includes('synth') ? 'subtractive-synth' : 'sample-playback')
     : 'hybrid';
+
   const parameters: Record<string, number | undefined> = {
     stiffness: isString ? (id.includes('bass') ? 0.72 : id.includes('guitar') ? 0.58 : 0.45) : undefined,
     damping: isString ? 0.32 : isPerc ? 0.45 : 0.28,
     inharmonicity: isString ? 0.22 : undefined,
-    bodyResonance: isString ? 0.72 : 0.4,
-    airResonance: isWind ? 0.7 : undefined,
+    bodyResonance: isString || isStruckAcousticString ? 0.72 : 0.4,
+    airResonance: (isWind || isFreeReed) ? 0.7 : undefined,
     membraneTension: isPerc && d.bodyConstruction === 'skin-faced' ? 0.62 : undefined,
     membraneDamping: isPerc && d.bodyConstruction === 'skin-faced' ? 0.38 : undefined,
-    pickupPosition: d.family === 'plucked' && id.includes('electric') ? 0.42 : undefined,
-    pickupDistance: d.family === 'plucked' && id.includes('electric') ? 0.3 : undefined,
+    pickupPosition: d.family === 'plucked' && (id.includes('electric') || d.bodyConstruction === 'solid-electric') ? 0.42 : undefined,
+    pickupDistance: d.family === 'plucked' && (id.includes('electric') || d.bodyConstruction === 'solid-electric') ? 0.3 : undefined,
     nonlinearDrive: id.includes('distortion') || id.includes('overdrive') || id.includes('acid') ? 0.72 : 0.08,
     saturation: id.includes('tape') || id.includes('echo') ? 0.48 : 0.12,
     pluckPosition: isString && d.family === 'plucked' ? 0.24 : undefined,
-    pluckHardness: isString && d.family === 'plucked' ? 0.55 : undefined,
-    reedStiffness: isWind ? 0.52 : undefined,
-    breathNoise: isWind || d.family === 'voice' ? 0.18 : undefined,
+    pluckHardness: isString && d.family === 'plucked' ? (d.excitationType === 'hard-pick' ? 0.75 : 0.55) : undefined,
+    reedStiffness: (isFreeReed || isWoodwindReed) ? 0.52 : undefined,
+    breathNoise: (isWind || isFreeReed || d.family === 'voice') ? 0.18 : undefined,
     transientSharpness: isPerc ? 0.76 : 0.42,
     noiseAmount: isPerc || isWind ? 0.22 : 0.06,
   };
@@ -416,6 +424,14 @@ export const ENRICHED_INSTRUMENT_CATALOG = INSTRUMENT_CATALOG.map(enrichInstrume
 
 export const INSTRUMENTS_BY_ID: Record<string, InstrumentDef> = Object.fromEntries(ENRICHED_INSTRUMENT_CATALOG.map(i => [i.id, i]));
 INSTRUMENTS_BY_ID['nylon-guitar'] = INSTRUMENTS_BY_ID['guitar'];
+INSTRUMENTS_BY_ID['steel_drums'] = INSTRUMENTS_BY_ID['steel-drums'];
+INSTRUMENTS_BY_ID['slide_guitar'] = INSTRUMENTS_BY_ID['slide-guitar'];
+INSTRUMENTS_BY_ID['12_string_guitar'] = INSTRUMENTS_BY_ID['12-string-guitar'];
+INSTRUMENTS_BY_ID['sho'] = INSTRUMENTS_BY_ID['shō'];
+INSTRUMENTS_BY_ID['foot_stomp'] = INSTRUMENTS_BY_ID['foot-stomp'];
+INSTRUMENTS_BY_ID['hand_percussion'] = INSTRUMENTS_BY_ID['hand-percussion'];
+INSTRUMENTS_BY_ID['spring_reverb'] = INSTRUMENTS_BY_ID['spring-reverb'];
+INSTRUMENTS_BY_ID['tape_echo'] = INSTRUMENTS_BY_ID['tape-echo'];
 
 export const FAMILY_LABELS: Record<InstrumentFamily, string> = {
   'bellows-and-keys': 'Bellows & keys',
@@ -489,6 +505,10 @@ export function instrumentPatternKinds(id: string): string[] {
   if (id === 'koto') { out.add('koto'); out.add('plucked'); out.add('harmony'); }
   if (id === 'shamisen') { out.add('shamisen'); out.add('plucked'); out.add('lead'); }
   if (id === 'shakuhachi') { out.add('shakuhachi'); out.add('flute'); out.add('lead'); }
+  if (id === 'steel-drums' || id === 'steel_drums') { out.add('steel-drums'); out.add('percussion'); out.add('melody'); }
+  if (id === 'slide-guitar' || id === 'slide_guitar') { out.add('slide-guitar'); out.add('guitar'); out.add('lead'); }
+  if (id === 'harmonium') { out.add('harmonium'); out.add('keys'); out.add('drone'); }
+  if (id === 'drone') { out.add('drone'); out.add('pad'); out.add('texture'); }
   return [...out];
 }
 

@@ -174,12 +174,17 @@ export function createSink(): TransportSink {
         spatialPosition: { x: 0, y: 0, z: 0 },
         luthier,
         worldId: activeWorldId,
+        midi,
+        velocity: vel,
+        frequencyHz: freqHz,
+        duration: 0.5,
+        techniqueModifier: effectiveArticulation,
       }, time);
     },
     noteOff(trackId, midi, time) {
       // Releases sustain-capable voices (bowed/reed/wind/held synth); a
       // no-op for decaying/percussive voices, which just ring out.
-      if (bandWorklet) bandWorklet.postRelease(voiceId(trackId, midi), time);
+      if (bandWorklet) bandWorklet.postRelease(String(trackId), midi, time);
     },
     pitchBend(trackId, value, time) {
       if (bandWorklet) bandWorklet.postBend(String(trackId), value, time);
@@ -198,6 +203,12 @@ export function createSink(): TransportSink {
       if (bandWorklet) {
         bandWorklet.clear();
       }
+    },
+    softNotesOff() {
+      if (bandWorklet) bandWorklet.softNotesOff();
+    },
+    processPendingEvents() {
+      if (bandWorklet) bandWorklet.processPendingEvents();
     },
   };
 }

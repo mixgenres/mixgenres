@@ -429,10 +429,7 @@ export const SWING_WORLD: GenreWorld = {
       "swingPercentage": 66,
       "anticipationOffset": 0,
 
-      "articulations": [
-        "accented",
-        "ghost-aware"
-      ]
+      "articulations": ["accented"]
     },
     {
       "id": "swing-walking-bass",
@@ -565,10 +562,7 @@ export const SWING_WORLD: GenreWorld = {
       "swingPercentage": 66,
       "anticipationOffset": 0,
 
-      "articulations": [
-        "accented",
-        "ghost-aware"
-      ]
+      "articulations": ["accented"]
     },
     {
       "id": "swing-2-feel",
@@ -683,10 +677,7 @@ export const SWING_WORLD: GenreWorld = {
       "swingPercentage": 66,
       "anticipationOffset": 0,
 
-      "articulations": [
-        "accented",
-        "ghost-aware"
-      ]
+      "articulations": ["accented"]
     },
     {
       "id": "swing-charleston",
@@ -801,10 +792,7 @@ export const SWING_WORLD: GenreWorld = {
       "anticipationOffset": 0,
 
 
-      "articulations": [
-        "accented",
-        "ghost-aware"
-      ]
+      "articulations": ["accented"]
     },
     {
       "id": "swing-shuffle",
@@ -977,10 +965,7 @@ export const SWING_WORLD: GenreWorld = {
       "anticipationOffset": 0,
 
 
-      "articulations": [
-        "accented",
-        "ghost-aware"
-      ]
+      "articulations": ["accented"]
     },
     {
       "id": "swing-bebop-ride",
@@ -1140,10 +1125,7 @@ export const SWING_WORLD: GenreWorld = {
       "anticipationOffset": 0,
 
 
-      "articulations": [
-        "accented",
-        "ghost-aware"
-      ]
+      "articulations": ["accented"]
     },
     {
       "id": "swing-brushes",
@@ -1246,10 +1228,7 @@ export const SWING_WORLD: GenreWorld = {
       "anticipationOffset": 0,
 
 
-      "articulations": [
-        "accented",
-        "ghost-aware"
-      ]
+      "articulations": ["accented"]
     },
     {
       "id": "swing-ensemble",
@@ -1371,10 +1350,7 @@ export const SWING_WORLD: GenreWorld = {
       "anticipationOffset": 0,
 
 
-      "articulations": [
-        "accented",
-        "ghost-aware"
-      ]
+      "articulations": ["accented"]
     },
     {
       "id": "swing-shout-chorus",
@@ -1576,10 +1552,7 @@ export const SWING_WORLD: GenreWorld = {
       "swingPercentage": 66,
       "anticipationOffset": 0,
 
-      "articulations": [
-        "accented",
-        "ghost-aware"
-      ]
+      "articulations": ["accented"]
     },
     {
       "id": "swing-phrase-10",
@@ -1647,10 +1620,7 @@ export const SWING_WORLD: GenreWorld = {
       "syncopationRating": 0.7142857142857143,
       "anticipationOffset": 0,
       "swingPercentage": 66,
-      "articulations": [
-        "breath",
-        "phrase-end"
-      ],
+      "articulations": ["breath"],
       "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start"
@@ -1828,10 +1798,7 @@ export const SWING_WORLD: GenreWorld = {
       "syncopationRating": 0.7142857142857143,
       "anticipationOffset": 0,
       "swingPercentage": 66,
-      "articulations": [
-        "breath",
-        "phrase-end"
-      ],
+      "articulations": ["breath"],
       "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "middle"
@@ -2056,10 +2023,7 @@ export const SWING_WORLD: GenreWorld = {
       "syncopationRating": 0.7142857142857143,
       "anticipationOffset": 0,
       "swingPercentage": 66,
-      "articulations": [
-        "accented",
-        "ghost-aware"
-      ],
+      "articulations": ["accented"],
       "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start",
@@ -2232,10 +2196,7 @@ export const SWING_WORLD: GenreWorld = {
       "syncopationRating": 0.7142857142857143,
       "anticipationOffset": 0,
       "swingPercentage": 66,
-      "articulations": [
-        "accented",
-        "ghost-aware"
-      ],
+      "articulations": ["accented"],
       "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "middle"
@@ -2409,10 +2370,7 @@ export const SWING_WORLD: GenreWorld = {
       "syncopationRating": 0.7142857142857143,
       "anticipationOffset": 0,
       "swingPercentage": 66,
-      "articulations": [
-        "accented",
-        "ghost-aware"
-      ],
+      "articulations": ["accented"],
       "supportedEnergy": [4, 5],
       "phrasePosition": [
         "start"
@@ -2640,10 +2598,7 @@ export const SWING_WORLD: GenreWorld = {
       "syncopationRating": 0.8333333333333334,
       "anticipationOffset": 0,
       "swingPercentage": 66,
-      "articulations": [
-        "accented",
-        "ghost-aware"
-      ],
+      "articulations": ["accented"],
       "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "middle"
@@ -2814,10 +2769,7 @@ export const SWING_WORLD: GenreWorld = {
       "syncopationRating": 0.7142857142857143,
       "anticipationOffset": 1,
       "swingPercentage": 66,
-      "articulations": [
-        "accented",
-        "ghost-aware"
-      ],
+      "articulations": ["accented"],
       "supportedEnergy": [4, 5],
       "phrasePosition": [
         "middle",
@@ -3038,10 +2990,7 @@ export const SWING_WORLD: GenreWorld = {
       "syncopationRating": 0.66,
       "anticipationOffset": 0,
       "swingPercentage": 55,
-      "articulations": [
-        "breath",
-        "phrase-end"
-      ],
+      "articulations": ["breath"],
       "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start",

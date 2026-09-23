@@ -25,7 +25,6 @@ async function main() {
     const blob = await renderPerformanceToMp3(perf, {
       selectedTrackIds: [t.id],
       trackInstruments,
-      roomId: sheet.roomId ?? 'club',
       worldId: sheet.worldId,
       styleId: sheet.styleId,
     });
@@ -43,7 +42,6 @@ async function main() {
   console.log('\n--- section loudness (full mix) ---');
   const fullBlob = await renderPerformanceToMp3(perf, {
     trackInstruments,
-    roomId: sheet.roomId ?? 'club',
     worldId: sheet.worldId,
     styleId: sheet.styleId,
   });

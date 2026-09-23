@@ -16,7 +16,7 @@ const GENRE_RHYTHM: Record<string, { bpm: number; range: [number, number]; meter
   folk:{bpm:96,range:[78,122],meter:'4/4',feel:'acoustic pulse',swing:52}, funk:{bpm:104,range:[92,116],meter:'4/4',feel:'on-the-one',swing:55},
   gospel:{bpm:104,range:[76,124],meter:'4/4',feel:'church pocket',swing:54}, 'hip-hop':{bpm:90,range:[70,110],meter:'4/4',feel:'laid-back drag',swing:57},
   house:{bpm:124,range:[118,130],meter:'4/4',feel:'club grid',swing:50}, jazz:{bpm:140,range:[110,180],meter:'4/4',feel:'swing',swing:64},
-  kizomba:{bpm:92,range:[82,102],meter:'4/4',feel:'deep laid-back',swing:55}, 'latin-pop':{bpm:100,range:[88,116],meter:'4/4',feel:'Latin pop pulse',swing:50},
+  kizomba:{bpm:92,range:[82,102],meter:'4/4',feel:'deep laid-back',swing:55},
   tango:{bpm:120,range:[108,132],meter:'4/4',feel:'marcato',swing:50}, flamenco:{bpm:96,range:[70,140],meter:'12/8',feel:'compás',swing:50},
   metal:{bpm:150,range:[110,210],meter:'4/4',feel:'machine-tight',swing:50}, 'r-and-b':{bpm:82,range:[65,105],meter:'4/4',feel:'behind-the-beat',swing:54},
   reggae:{bpm:78,range:[68,94],meter:'4/4',feel:'one-drop',swing:50}, reggaeton:{bpm:96,range:[88,108],meter:'4/4',feel:'dembow',swing:50},

@@ -720,7 +720,7 @@ export const METAL_WORLD: GenreWorld = {
     {
       "id": "metal-gallop-riff",
       "worldId": "metal",
-      "styleIds": ["metal-heavy-thrash"],
+      "styleIds": ["metal-heavy-metal"],
       "name": "The Gallop Rhythm (Iron Maiden / Steve Harris)",
       "family": "Metal Gallop",
       "category": "ostinato",
@@ -940,7 +940,7 @@ export const METAL_WORLD: GenreWorld = {
     {
       "id": "metal-djent-chug",
       "worldId": "metal",
-      "styleIds": ["metal-prog-djent"],
+      "styleIds": ["metal-progressive-metal"],
       "name": "Djent Polymetric Low Chug",
       "family": "Djent Rhythms",
       "category": "ostinato",
@@ -1092,7 +1092,7 @@ export const METAL_WORLD: GenreWorld = {
     {
       "id": "metal-blast-beat",
       "worldId": "metal",
-      "styleIds": ["metal-heavy-thrash"],
+      "styleIds": ["metal-heavy-metal"],
       "name": "Blast Beat",
       "family": "Drums",
       "category": "fill",
@@ -1389,15 +1389,12 @@ export const METAL_WORLD: GenreWorld = {
       "swingPercentage": 50,
       "anticipationOffset": 0,
 
-      "articulations": [
-        "accented",
-        "ghost-aware"
-      ]
+      "articulations": ["accented"]
     },
     {
       "id": "metal-breakdown",
       "worldId": "metal",
-      "styleIds": ["metal-prog-djent"],
+      "styleIds": ["metal-progressive-metal"],
       "name": "Breakdown Chug",
       "family": "Guitar",
       "category": "break",
@@ -1551,15 +1548,12 @@ export const METAL_WORLD: GenreWorld = {
       "swingPercentage": 50,
       "anticipationOffset": 0,
 
-      "articulations": [
-        "accented",
-        "ghost-aware"
-      ]
+      "articulations": ["accented"]
     },
     {
       "id": "metal-djent-sync",
       "worldId": "metal",
-      "styleIds": ["metal-prog-djent"],
+      "styleIds": ["metal-progressive-metal"],
       "name": "Djent Syncopation",
       "family": "Guitar",
       "category": "cadence",
@@ -1702,15 +1696,12 @@ export const METAL_WORLD: GenreWorld = {
       "swingPercentage": 50,
       "anticipationOffset": 0,
 
-      "articulations": [
-        "accented",
-        "ghost-aware"
-      ]
+      "articulations": ["accented"]
     },
     {
       "id": "metal-clean-arp",
       "worldId": "metal",
-      "styleIds": ["metal-prog-djent"],
+      "styleIds": ["metal-progressive-metal"],
       "name": "Clean Arpeggio",
       "family": "Guitar",
       "category": "groove",
@@ -1871,15 +1862,12 @@ export const METAL_WORLD: GenreWorld = {
       "anticipationOffset": 0,
 
 
-      "articulations": [
-        "accented",
-        "ghost-aware"
-      ]
+      "articulations": ["accented"]
     },
     {
       "id": "metal-bass-gallop",
       "worldId": "metal",
-      "styleIds": ["metal-heavy-thrash"],
+      "styleIds": ["metal-heavy-metal"],
       "name": "Bass Gallop",
       "family": "Bass",
       "category": "groove",
@@ -2078,15 +2066,12 @@ export const METAL_WORLD: GenreWorld = {
       "anticipationOffset": 0,
 
 
-      "articulations": [
-        "accented",
-        "ghost-aware"
-      ]
+      "articulations": ["accented"]
     },
     {
       "id": "metal-prog-odd-meter",
       "worldId": "metal",
-      "styleIds": ["metal-prog-djent"],
+      "styleIds": ["metal-progressive-metal"],
       "name": "5/8 Riff",
       "family": "Guitar",
       "category": "groove",
@@ -2216,15 +2201,12 @@ export const METAL_WORLD: GenreWorld = {
       "anticipationOffset": 0,
 
 
-      "articulations": [
-        "accented",
-        "ghost-aware"
-      ]
+      "articulations": ["accented"]
     },
     {
       "id": "metal-groove-metal",
       "worldId": "metal",
-      "styleIds": ["metal-heavy-thrash"],
+      "styleIds": ["metal-heavy-metal"],
       "name": "Groove Metal Riff",
       "family": "Guitar",
       "category": "groove",
@@ -2382,15 +2364,12 @@ export const METAL_WORLD: GenreWorld = {
       "swingPercentage": 50,
       "anticipationOffset": 0,
 
-      "articulations": [
-        "accented",
-        "ghost-aware"
-      ]
+      "articulations": ["accented"]
     },
     {
       "id": "metal-phrase-10",
       "worldId": "metal",
-      "styleIds": ["metal-heavy-thrash"],
+      "styleIds": ["metal-heavy-metal"],
       "name": "Breakdown Phrase",
       "family": "Breakdown",
       "category": "phrasePattern",
@@ -2554,7 +2533,7 @@ export const METAL_WORLD: GenreWorld = {
     {
       "id": "metal-call-11",
       "worldId": "metal",
-      "styleIds": ["metal-heavy-thrash"],
+      "styleIds": ["metal-heavy-metal"],
       "name": "Gallop Response",
       "family": "Gallop",
       "category": "interactionPattern",
@@ -2763,7 +2742,7 @@ export const METAL_WORLD: GenreWorld = {
     {
       "id": "metal-anchor-12",
       "worldId": "metal",
-      "styleIds": ["metal-heavy-thrash"],
+      "styleIds": ["metal-heavy-metal"],
       "name": "Tremolo Anchor",
       "family": "Tremolo",
       "category": "ostinato",
@@ -2928,7 +2907,7 @@ export const METAL_WORLD: GenreWorld = {
     {
       "id": "metal-comp-13",
       "worldId": "metal",
-      "styleIds": ["metal-heavy-thrash"],
+      "styleIds": ["metal-heavy-metal"],
       "name": "Blast Comping",
       "family": "Blast",
       "category": "groove",
@@ -3092,7 +3071,7 @@ export const METAL_WORLD: GenreWorld = {
     {
       "id": "metal-intro-14",
       "worldId": "metal",
-      "styleIds": ["metal-heavy-thrash"],
+      "styleIds": ["metal-heavy-metal"],
       "name": "Lead Intro",
       "family": "Lead",
       "category": "sectionPattern",
@@ -3331,7 +3310,7 @@ export const METAL_WORLD: GenreWorld = {
     {
       "id": "metal-verse-15",
       "worldId": "metal",
-      "styleIds": ["metal-heavy-thrash"],
+      "styleIds": ["metal-heavy-metal"],
       "name": "Breakdown Verse Variation",
       "family": "Breakdown",
       "category": "groove",
@@ -3520,7 +3499,7 @@ export const METAL_WORLD: GenreWorld = {
     {
       "id": "metal-chorus-16",
       "worldId": "metal",
-      "styleIds": ["metal-heavy-thrash"],
+      "styleIds": ["metal-heavy-metal"],
       "name": "Gallop Chorus Lift",
       "family": "Gallop",
       "category": "sectionPattern",
@@ -3758,7 +3737,7 @@ export const METAL_WORLD: GenreWorld = {
     {
       "id": "metal-voice-phrasing",
       "worldId": "metal",
-      "styleIds": ["metal-heavy-thrash"],
+      "styleIds": ["metal-heavy-metal"],
       "name": "Metal Vocal Phrasing",
       "family": "Vocal Phrasing",
       "category": "phrasePattern",
@@ -3818,10 +3797,7 @@ export const METAL_WORLD: GenreWorld = {
       "syncopationRating": 0.6666666666666666,
       "anticipationOffset": 0,
       "swingPercentage": 50,
-      "articulations": [
-        "breath",
-        "phrase-end"
-      ],
+      "articulations": ["breath"],
       "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start",

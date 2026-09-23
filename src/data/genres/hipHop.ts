@@ -701,7 +701,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
     {
       "id": "hiphop-boom-basic",
       "worldId": "hip-hop",
-      "styleIds": ["hiphop-boombap"],
+      "styleIds": ["hip-hop-boom-bap"],
       "name": "Boom Bap Basic",
       "family": "Beat",
       "category": "sectionPattern",
@@ -843,7 +843,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
     {
       "id": "hiphop-boom-sync",
       "worldId": "hip-hop",
-      "styleIds": ["hiphop-boombap"],
+      "styleIds": ["hip-hop-boom-bap"],
       "name": "Syncopated Kick",
       "family": "Beat",
       "category": "fill",
@@ -995,7 +995,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
     {
       "id": "hiphop-trap-basic",
       "worldId": "hip-hop",
-      "styleIds": ["hiphop-trap"],
+      "styleIds": ["hip-hop-trap"],
       "name": "Trap Half-Time",
       "family": "Beat",
       "category": "break",
@@ -1120,7 +1120,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
     {
       "id": "hiphop-trap-hats",
       "worldId": "hip-hop",
-      "styleIds": ["hiphop-trap"],
+      "styleIds": ["hip-hop-trap"],
       "name": "Trap Hi-Hats",
       "family": "Beat",
       "category": "cadence",
@@ -1379,7 +1379,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
     {
       "id": "hip-hop-sampled-keys",
       "worldId": "hip-hop",
-      "styleIds": ["hiphop-boombap"],
+      "styleIds": ["hip-hop-boom-bap"],
       "name": "Sampled Keys Loop",
       "family": "Sample Loop",
       "category": "groove",
@@ -1527,7 +1527,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
     {
       "id": "hiphop-gfunk",
       "worldId": "hip-hop",
-      "styleIds": ["hiphop-boombap"],
+      "styleIds": ["hip-hop-boom-bap"],
       "name": "G-Funk",
       "family": "Beat",
       "category": "groove",
@@ -1697,7 +1697,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
     {
       "id": "hiphop-drill",
       "worldId": "hip-hop",
-      "styleIds": ["hiphop-trap"],
+      "styleIds": ["hip-hop-trap"],
       "name": "Drill Beat",
       "family": "Beat",
       "category": "groove",
@@ -1830,7 +1830,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
     {
       "id": "hiphop-breakbeat",
       "worldId": "hip-hop",
-      "styleIds": ["hiphop-boombap"],
+      "styleIds": ["hip-hop-boom-bap"],
       "name": "Old School Break",
       "family": "Beat",
       "category": "groove",
@@ -1992,7 +1992,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
     {
       "id": "hiphop-bounce",
       "worldId": "hip-hop",
-      "styleIds": ["hiphop-trap"],
+      "styleIds": ["hip-hop-trap"],
       "name": "Bounce Beat",
       "family": "Beat",
       "category": "groove",
@@ -2143,7 +2143,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
     {
       "id": "hiphop-westcoast",
       "worldId": "hip-hop",
-      "styleIds": ["hiphop-boombap"],
+      "styleIds": ["hip-hop-boom-bap"],
       "name": "West Coast",
       "family": "Beat",
       "category": "groove",
@@ -2283,7 +2283,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
     {
       "id": "hiphop-neosoul",
       "worldId": "hip-hop",
-      "styleIds": ["hiphop-boombap"],
+      "styleIds": ["hip-hop-boom-bap"],
       "name": "Neo-Soul Hip Hop",
       "family": "Beat",
       "category": "groove",
@@ -2416,7 +2416,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
     {
       "id": "hiphop-minimal808",
       "worldId": "hip-hop",
-      "styleIds": ["hiphop-trap"],
+      "styleIds": ["hip-hop-trap"],
       "name": "Minimal 808",
       "family": "Beat",
       "category": "groove",
@@ -2540,7 +2540,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
     {
       "id": "hiphop-dembow-riddim",
       "worldId": "hip-hop",
-      "styleIds": ["hiphop-dembow"],
+      "styleIds": ["hip-hop-drill"],
       "name": "Classic Dembow Riddim",
       "family": "Dembow",
       "category": "groove",
@@ -2718,7 +2718,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
     {
       "id": "hiphop-808-glide-bass",
       "worldId": "hip-hop",
-      "styleIds": ["hiphop-trap"],
+      "styleIds": ["hip-hop-trap"],
       "name": "808 Glide & Sub Slide Bass",
       "family": "808 Bass",
       "category": "ostinato",
@@ -2850,7 +2850,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
     {
       "id": "hip-hop-call-15",
       "worldId": "hip-hop",
-      "styleIds": ["hiphop-boombap"],
+      "styleIds": ["hip-hop-boom-bap"],
       "name": "Boom Bap Response",
       "family": "Boom Bap",
       "category": "interactionPattern",
@@ -3060,7 +3060,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
     {
       "id": "hip-hop-anchor-16",
       "worldId": "hip-hop",
-      "styleIds": ["hiphop-boombap"],
+      "styleIds": ["hip-hop-boom-bap"],
       "name": "Sample Chop Anchor",
       "family": "Sample Chop",
       "category": "ostinato",
@@ -3226,7 +3226,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
     {
       "id": "hip-hop-voice-phrasing",
       "worldId": "hip-hop",
-      "styleIds": ["hiphop-boombap"],
+      "styleIds": ["hip-hop-boom-bap"],
       "name": "Rap Cadence & Hook",
       "family": "Vocal Phrasing",
       "category": "phrasePattern",

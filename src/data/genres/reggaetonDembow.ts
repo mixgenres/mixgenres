@@ -794,9 +794,7 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
       "syncopationRating": 0.92,
       "anticipationOffset": 1,
       "swingPercentage": 50,
-      "articulations": [
-        "kick-snare"
-      ],
+      "articulations": ["accent"],
       "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "start",
@@ -1114,9 +1112,7 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
       "syncopationRating": 0.65,
       "anticipationOffset": 0,
       "swingPercentage": 50,
-      "articulations": [
-        "shaker"
-      ],
+      "articulations": ["accent"],
       "supportedEnergy": [1, 2],
       "phrasePosition": [
         "start",
@@ -1372,9 +1368,7 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
       "syncopationRating": 0.8,
       "anticipationOffset": 1,
       "swingPercentage": 50,
-      "articulations": [
-        "fill"
-      ],
+      "articulations": ["accent"],
       "supportedEnergy": [1, 2],
       "phrasePosition": [
         "start",
@@ -1534,10 +1528,7 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
       "syncopationRating": 0.38,
       "anticipationOffset": 0,
       "swingPercentage": 50,
-      "articulations": [
-        "dembow",
-        "timeline"
-      ],
+      "articulations": ["timeline"],
       "supportedEnergy": [4, 5],
       "phrasePosition": [
         "any"
@@ -1699,10 +1690,7 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
       "syncopationRating": 0.75,
       "anticipationOffset": 0,
       "swingPercentage": 50,
-      "articulations": [
-        "sub-bass",
-        " syncopation"
-      ],
+      "articulations": [" syncopation"],
       "supportedEnergy": [4, 5],
       "phrasePosition": [
         "any"
@@ -1774,10 +1762,7 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
       "syncopationRating": 1,
       "anticipationOffset": 0,
       "swingPercentage": 50,
-      "articulations": [
-        "stabs",
-        " offbeat"
-      ],
+      "articulations": [" offbeat"],
       "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "any"
@@ -1856,10 +1841,7 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
       "syncopationRating": 1,
       "anticipationOffset": -1,
       "swingPercentage": 50,
-      "articulations": [
-        "shaker",
-        " density control"
-      ],
+      "articulations": [" density control"],
       "supportedEnergy": [4, 5],
       "phrasePosition": [
         "middle"
@@ -1928,10 +1910,7 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
       "syncopationRating": 1,
       "anticipationOffset": -1,
       "swingPercentage": 50,
-      "articulations": [
-        "pickup",
-        " vocal pocket"
-      ],
+      "articulations": [" vocal pocket"],
       "supportedEnergy": [1, 2],
       "phrasePosition": [
         "end"
@@ -2045,10 +2024,7 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
       "syncopationRating": 0.54,
       "anticipationOffset": 0,
       "swingPercentage": 50,
-      "articulations": [
-        "hook lift",
-        "dembow"
-      ],
+      "articulations": ["accent"],
       "supportedEnergy": [4, 5],
       "phrasePosition": [
         "start",
@@ -2133,10 +2109,7 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
       "syncopationRating": 0.49,
       "anticipationOffset": 0,
       "swingPercentage": 50,
-      "articulations": [
-        "dropout",
-        "re-entry"
-      ],
+      "articulations": ["accent"],
       "supportedEnergy": [1, 2],
       "phrasePosition": [
         "start",
@@ -2213,10 +2186,7 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
       "syncopationRating": 0.72,
       "anticipationOffset": 0,
       "swingPercentage": 50,
-      "articulations": [
-        "fill",
-        "phrase end"
-      ],
+      "articulations": ["accent"],
       "supportedEnergy": [2, 3, 4],
       "phrasePosition": [
         "end"
@@ -2295,10 +2265,7 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
       "syncopationRating": 0.5,
       "anticipationOffset": 0,
       "swingPercentage": 50,
-      "articulations": [
-        "tag",
-        " transition"
-      ],
+      "articulations": [" transition"],
       "supportedEnergy": [1, 2],
       "phrasePosition": [
         "end"

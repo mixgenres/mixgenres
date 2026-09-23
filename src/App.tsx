@@ -132,6 +132,8 @@ export default function App() {
   // so a user who hits Cancel doesn't get a surprise download afterwards.
   const bounceCancelledRef = useRef(false);
 
+  const lastExportUrlRef = useRef<string | null>(null);
+
   /**
    * Renders the current song straight from its compiled event list to an
    * MP3, without playing it out loud or touching the transport at all.
@@ -153,13 +155,15 @@ export default function App() {
         }
       );
       if (bounceCancelledRef.current) return;
+      if (lastExportUrlRef.current) {
+        URL.revokeObjectURL(lastExportUrlRef.current);
+      }
       const url = URL.createObjectURL(blob);
+      lastExportUrlRef.current = url;
       const a = document.createElement('a');
       a.href = url;
       a.download = `${(songRef.current.title || 'song').toLowerCase().replace(/\s+/g, '-')}.mp3`;
       a.click();
-      // Give Safari/Firefox time to begin the blob download before releasing it.
-      window.setTimeout(() => URL.revokeObjectURL(url), 1000);
       showToast('MP3 exported');
     } catch (err) {
       console.error('MP3 render failed:', err);
