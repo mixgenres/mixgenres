@@ -99,7 +99,7 @@ export const KIZOMBA_WORLD: GenreWorld = {
         "bass",
         "drums",
         "congas",
-        "voice"
+        "synth"
       ],
       "preferredMeters": [
         "4/4"
@@ -179,7 +179,7 @@ export const KIZOMBA_WORLD: GenreWorld = {
         "drums",
         "sub-bass",
         "sampler",
-        "voice"
+        "synth"
       ],
       "preferredMeters": [
         "4/4"
@@ -260,7 +260,7 @@ export const KIZOMBA_WORLD: GenreWorld = {
         "drums",
         "synth",
         "sampler",
-        "voice"
+        "synth"
       ],
       "preferredMeters": [
         "4/4"
@@ -314,7 +314,7 @@ export const KIZOMBA_WORLD: GenreWorld = {
         "drums",
         "synth",
         "sampler",
-        "voice"
+        "synth"
       ],
       "preferredMeters": [
         "4/4"
@@ -372,7 +372,7 @@ export const KIZOMBA_WORLD: GenreWorld = {
         "bass",
         "drums",
         "piano",
-        "voice"
+        "synth"
       ],
       "preferredMeters": [
         "4/4"
@@ -451,7 +451,7 @@ export const KIZOMBA_WORLD: GenreWorld = {
         "drums",
         "sub-bass",
         "piano",
-        "voice"
+        "synth"
       ],
       "preferredMeters": [
         "4/4"
@@ -531,7 +531,7 @@ export const KIZOMBA_WORLD: GenreWorld = {
         "acoustic-bass",
         "dikanza",
         "hand-percussion",
-        "voice"
+        "synth"
       ],
       "preferredMeters": [
         "4/4"
@@ -653,7 +653,7 @@ export const KIZOMBA_WORLD: GenreWorld = {
       "hi-hat 16th shuffles",
       "dikanza scrape"
     ],
-    "voice": [
+    "synth": [
       "Portuguese and Kimbundu lyric phrasing",
       "sensual vocal call and response"
     ]
@@ -1699,24 +1699,24 @@ export const KIZOMBA_WORLD: GenreWorld = {
       "worldId": "kizomba",
       "styleIds": ["kizomba-semba"],
       "name": "Kizomba Vocal Phrase Response",
-      "family": "Voice",
+      "family": "synth",
       "category": "groove",
       "description": "Sensual vocal phrase answers and smooth",
       "tags": [
         "kizomba",
-        "voice",
+        "synth",
         "comping"
       ],
       "scopes": [
         "measure"
       ],
       "roles": [
-        "voice"
+        "synth"
       ],
 
       "approaches": ["phrase"],
       "instruments": [
-        "voice"
+        "synth"
       ],
       "meter": "4/4",
       "cycleLength": 1,
@@ -1847,18 +1847,18 @@ export const KIZOMBA_WORLD: GenreWorld = {
         "phrase"
       ],
       "roles": [
-        "voice"
+        "synth"
       ],
 
       "approaches": ["phrase"],
       "instruments": [
-        "voice"
+        "synth"
       ],
       "compatibleRoles": [
-        "voice"
+        "synth"
       ],
       "compatibleInstruments": [
-        "voice"
+        "synth"
       ],
       "canCrossRole": true,
       "meter": "4/4",
@@ -2023,18 +2023,18 @@ export const KIZOMBA_WORLD: GenreWorld = {
         "phrase"
       ],
       "roles": [
-        "voice"
+        "synth"
       ],
 
       "approaches": ["phrase"],
       "instruments": [
-        "voice"
+        "synth"
       ],
       "compatibleRoles": [
-        "voice"
+        "synth"
       ],
       "compatibleInstruments": [
-        "voice"
+        "synth"
       ],
       "canCrossRole": true,
       "meter": "4/4",

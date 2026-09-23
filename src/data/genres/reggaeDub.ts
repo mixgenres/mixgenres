@@ -170,7 +170,7 @@ export const REGGAE_DUB_WORLD: GenreWorld = {
         "drums",
         "sub-bass",
         "synth",
-        "voice"
+        "horn-section"
       ],
       "preferredMeters": [
         "4/4"
@@ -399,7 +399,7 @@ export const REGGAE_DUB_WORLD: GenreWorld = {
         "drums",
         "sub-bass",
         "synth",
-        "voice"
+        "horn-section"
       ],
       "preferredMeters": [
         "4/4"
@@ -678,7 +678,7 @@ export const REGGAE_DUB_WORLD: GenreWorld = {
     "texture": [
       "dub fragments"
     ],
-    "voice": [
+    "horn-section": [
       "laid-back lead/coro"
     ]
   },
@@ -1098,7 +1098,7 @@ export const REGGAE_DUB_WORLD: GenreWorld = {
       "instruments": [
         "electric-guitar",
         "organ",
-        "voice"
+        "horn-section"
       ],
       "meter": "4/4",
       "cycleLength": 1,

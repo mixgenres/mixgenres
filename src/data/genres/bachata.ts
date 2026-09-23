@@ -20,7 +20,7 @@ export const BACHATA_WORLD: GenreWorld = {
         "bass",
         "bongos",
         "guiro",
-        "voice"
+        "requinto"
       ],
       "preferredMeters": [
         "4/4"
@@ -110,7 +110,7 @@ export const BACHATA_WORLD: GenreWorld = {
         "bass",
         "bongos",
         "guiro",
-        "voice"
+        "requinto"
       ],
       "preferredMeters": [
         "4/4"
@@ -366,7 +366,7 @@ export const BACHATA_WORLD: GenreWorld = {
         "upright-bass",
         "bongos",
         "maracas",
-        "voice"
+        "requinto"
       ],
       "preferredMeters": [
         "4/4"
@@ -526,7 +526,7 @@ export const BACHATA_WORLD: GenreWorld = {
         "bass",
         "bongos",
         "guiro",
-        "voice"
+        "requinto"
       ],
       "preferredMeters": [
         "4/4"
@@ -605,7 +605,7 @@ export const BACHATA_WORLD: GenreWorld = {
         "bass",
         "drums",
         "guiro",
-        "voice"
+        "requinto"
       ],
       "preferredMeters": [
         "2/4"
@@ -2552,18 +2552,18 @@ export const BACHATA_WORLD: GenreWorld = {
         "phrase"
       ],
       "roles": [
-        "voice"
+        "requinto"
       ],
 
       "approaches": ["phrase"],
       "instruments": [
-        "voice"
+        "requinto"
       ],
       "compatibleRoles": [
-        "voice"
+        "requinto"
       ],
       "compatibleInstruments": [
-        "voice"
+        "requinto"
       ],
       "canCrossRole": true,
       "meter": "4/4",
@@ -3752,7 +3752,7 @@ export const BACHATA_WORLD: GenreWorld = {
       "enabled": true
     },
     {
-      "id": "bachata-voice-phrasing",
+      "id": "bachata--phrasing",
       "worldId": "bachata",
       "styleIds": ["latin-bachata"],
       "name": "Bachata Vocal Phrasing",
@@ -3761,7 +3761,7 @@ export const BACHATA_WORLD: GenreWorld = {
       "description": "Romantic verse/coro phrase placement that leaves",
       "tags": [
         "bachata",
-        "voice",
+        "requinto",
         "vocal-phrasing",
         "catalog-v2"
       ],
@@ -3770,19 +3770,19 @@ export const BACHATA_WORLD: GenreWorld = {
         "phrase"
       ],
       "roles": [
-        "voice"
+        "requinto"
       ],
 
       "approaches": ["phrase"],
       "instruments": [
-        "voice"
+        "requinto"
       ],
       "compatibleRoles": [
-        "voice",
+        "requinto",
         "lead"
       ],
       "compatibleInstruments": [
-        "voice"
+        "requinto"
       ],
       "meter": "4/4",
       "cycleLength": 1,
@@ -3832,8 +3832,8 @@ export const BACHATA_WORLD: GenreWorld = {
 
       "variants": [
         {
-          "id": "bachata-voice-phrasing-v-voice-alt",
-          "parentPatternId": "bachata-voice-phrasing",
+          "id": "bachata--phrasing-v--alt",
+          "parentPatternId": "bachata--phrasing",
           "name": "Bachata Vocal Phrasing — alternate phrasing",
           "variationType": "phraseStart",
           "probability": 0.2,
@@ -3872,8 +3872,8 @@ export const BACHATA_WORLD: GenreWorld = {
           ]
         },
         {
-          "id": "bachata-voice-phrasing-v-final-accent",
-          "parentPatternId": "bachata-voice-phrasing",
+          "id": "bachata--phrasing-v-final-accent",
+          "parentPatternId": "bachata--phrasing",
           "name": "Bachata Vocal Phrasing — accent shift",
           "variationType": "accentShift",
           "probability": 0.18,
@@ -3915,7 +3915,7 @@ export const BACHATA_WORLD: GenreWorld = {
       "provenance": "GenreDAW catalog rebuild: dedicated vocal phrasing coverage for Bachata.",
       "authenticityTags": [
         "bachata",
-        "voice"
+        "requinto"
       ],
       "danceTags": [
         "listening"

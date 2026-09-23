@@ -459,8 +459,20 @@ export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
       if (!def) continue;
 
       const prof = voiceProfile(t.instrumentId);
-      const canAnticipate =
+      const resolvedStyle = region
+        ? getResolvedSectionStyle(sheet, region)
+        : resolveStyle({ genreId: sheet.worldId, styleId: getCanonicalStyle(sheet.worldId).id });
+
+      let canAnticipate =
         prof.role === 'bass' || prof.role === 'comp' || prof.role === 'stab';
+
+      const isSalsaTimba = /salsa|timba/i.test(resolvedStyle.id || '') || /salsa|timba/i.test(resolvedStyle.primaryGenre || '');
+      if (isSalsaTimba) {
+        const is32 = /3-2/i.test(resolvedStyle.rhythm?.timelineClave ?? resolvedStyle.contract?.timeline ?? '3-2');
+        if (!is32) {
+          canAnticipate = false; // in 2-3 clave, disable anticipation so changes are played on-time
+        }
+      }
       const list = attacksByTrack.get(t.id)!;
 
       const rawPattern = d.patternId ? PATTERNS_BY_ID[d.patternId] : undefined;
@@ -476,9 +488,7 @@ export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
       const isPhraseEnd = barInPhrase === phraseBars - 1;
       const isCadenceBar = isPhraseEnd || (nextMeasure && nextMeasure.regionId !== m.regionId);
 
-      const sectionStyle = region
-        ? getResolvedSectionStyle(sheet, region)
-        : resolveStyle({ genreId: sheet.worldId, styleId: getCanonicalStyle(sheet.worldId).id });
+      const sectionStyle = resolvedStyle;
       const grammar = getPerformanceGrammar(sectionStyle, prof.role);
 
       advancePhraseDevelopment(
@@ -750,6 +760,7 @@ export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
     currentVoicing: { chordSymbol: string; pitches: number[] } | null;
     currentPhraseIndex: number;
     trajectory: 'pickup-and-target' | 'question-answer' | 'continuous-run' | 'sparse-accent';
+    previousChord?: any;
   }>();
 
   // Identify anchorTrack (rhythm section pulse leader) to anchor microtiming
@@ -800,7 +811,8 @@ export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
       trackPhraseStates.set(t.id, {
         currentVoicing: null,
         currentPhraseIndex: -1,
-        trajectory: 'question-answer'
+        trajectory: 'question-answer',
+        previousChord: undefined,
       });
     }
     const phraseState = trackPhraseStates.get(t.id)!;
@@ -921,6 +933,20 @@ export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
           trajectoryGate = b < 0.12 || Math.abs(b - bt.beatsPerBar / 2) < 0.12;
         }
 
+        const currentBeats = a.bar * bt.beatsPerBar + a.beatInBar;
+        const lastNoteTimeBeats = (mem as any).lastPlayedTimeBeats ?? -999;
+        const deltaBeats = currentBeats - lastNoteTimeBeats;
+        
+        let consecutiveCount = (mem as any).consecutiveNotesCount ?? 0;
+        if (consecutiveCount >= 8) {
+          if (deltaBeats < 2.0) {
+            continue; // Force 2-beat rest breath carving
+          } else {
+            (mem as any).consecutiveNotesCount = 0;
+            consecutiveCount = 0;
+          }
+        }
+
         const gateOk = isVocalLead && /verse|verso|chorus|coro|refrain|letra|preg|tema|head/.test(String(region?.kind ?? '').toLowerCase())
           ? true
           : melodyGate({
@@ -936,7 +962,15 @@ export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
           sectionKind: String(region?.kind ?? 'verse'),
           spotlit,
         });
-        if (!gateOk || !trajectoryGate) continue;
+        if (!gateOk || !trajectoryGate) {
+          if (deltaBeats > 1.0) {
+            (mem as any).consecutiveNotesCount = 0;
+          }
+          continue;
+        }
+
+        (mem as any).lastPlayedTimeBeats = currentBeats;
+        (mem as any).consecutiveNotesCount = consecutiveCount + 1;
       }
 
       const feel = applyFeel(g, {
@@ -1114,6 +1148,10 @@ export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
       } else if (isMelodic) {
         const phraseBar = (a.bar - (region ? region.start : 0) + 64) % phraseBars;
         const resolved = resolvedStyle;
+        const progress = region ? (a.bar - region.start) / Math.max(1, region.end - region.start) : 0;
+        const nextMeasure = sheet.measures[a.bar + 1];
+        const nextChord = nextMeasure ? parseChord(nextMeasure.chord || 'C') : undefined;
+        
         const { note: n, isLeap, rapidRun: shouldRapidRun, rapidRunScalePcs: rapidRunScalePcsResult } = melodyNote({
           motif, key, chord, profile: prof, treatment,
           barInPhrase: phraseBar,
@@ -1134,13 +1172,24 @@ export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
           callAndResponse: resolved.melody?.callAndResponse,
           heterophonic: resolved.melody?.heterophonic,
           wasLeap: (mem as any).wasLeap,
+          nextChord,
+          progress,
         });
         rapidRun = !!shouldRapidRun;
         rapidRunScalePcs = rapidRunScalePcsResult;
         (mem as any).wasLeap = isLeap;
         const melodyPitches = Array.isArray(n) ? n : [n];
+        let pitchesToPlay = [...melodyPitches];
+        const isChorus = String(region?.kind ?? '').toLowerCase().includes('chorus');
+        if (isChorus) {
+          if (t.role === 'pad' || t.instrumentId?.includes('strings') || t.instrumentId?.includes('synth') || t.instrumentId === 'slow-strings') {
+            pitchesToPlay = [...pitchesToPlay, ...pitchesToPlay.map(p => foldToRange(p + 12, prof))];
+          } else if (t.role === 'bass') {
+            pitchesToPlay = pitchesToPlay.map(p => foldToRange(p - 12, prof));
+          }
+        }
         mem.lastNote = melodyPitches[melodyPitches.length - 1];
-        pitches = melodyPitches;
+        pitches = pitchesToPlay;
       } else {
         if (culture?.harmonyModel === 'fixed-cluster' && t.instrumentId === 'shō') {
           pitches = shoCluster(culturalTonicPc, prof, intensity);
@@ -1171,8 +1220,12 @@ export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
               seed: seedOf(t.id, a.bar, a.onsetIndex, 'voice'),
               rhythmicContext,
               approach: resolvedStyle.contract.approaches?.[t.role]?.id,
+              genreId: resolvedStyle.primaryGenre,
+              styleId: resolvedStyle.id,
+              previousChord: phraseState.previousChord,
             });
             phraseState.currentVoicing = { chordSymbol: a.chordSymbol, pitches };
+            phraseState.previousChord = chord;
             phraseState.currentPhraseIndex = currentPhrase;
           }
           if (a.registerOffset) {
@@ -1253,11 +1306,13 @@ export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
         if (isPlucked && pitches.length > 1) {
           rollMs = stringIndex * (dynamicStrumMs + rand01(seedOf(t.id, a.bar, a.onsetIndex, vi)) * 4);
         } else {
+          const isStringsSection = t.instrumentId?.includes('strings') || t.instrumentId === 'slow-strings' || t.instrumentId === 'tremolo-strings';
+          const divisiDelayMs = isStringsSection ? 18 : 0.6;
           rollMs = vi * (prof.sustain === 'decaying' || prof.sustain === 'short'
             ? (1.6 + rand01(seedOf(t.id, a.bar, a.onsetIndex, vi)) * 2.4)
-            : 0.6);
+            : divisiDelayMs);
         }
-        const voiceTime = time + (rollMs * humanScale) / 1000;
+        let voiceTime = time + (rollMs * humanScale) / 1000;
 
         // Ornaments belong to the voice that carries the line
         const voiceSpecs = vi === 0 ? specs : specs.filter(x => x.family === 'duration' || x.family === 'attack');
@@ -1272,6 +1327,11 @@ export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
         if (t.instrumentId?.includes('piano') || t.instrumentId?.includes('rhodes') || t.instrumentId?.includes('clav') || t.instrumentId?.includes('ep-')) {
           const normalized = velocityTarget / 127;
           velocityTarget = Math.max(4, Math.round(127 * Math.pow(normalized, 1.45)));
+          
+          // Pianistic Independence (Prompt 10): Left hand and Right hand strike asynchronously
+          const isLh = midi <= 52;
+          const staggerMs = isLh ? -8 : 12;
+          voiceTime += staggerMs / 1000;
         }
 
         // Plucked Strings Palm Muting & Resistance
@@ -1476,15 +1536,130 @@ export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
               });
             }
           } else {
-            notes.push({
-              time: n.time,
-              dur: n.durSeconds,
-              midi: n.midi,
-              pitchBend: n.pitchBend ?? slideBend ?? (ni === 0 ? idiomBend : undefined),
-              vel: n.velocity,
-              trackId: t.id, bar: a.bar,
-              articulation: voiceSpecs[0]?.id || a.articulation,
-            });
+            const isHonkyTonk = /honky|old-time|old_time|saloon/i.test(`${resolvedStyle.id} ${resolvedStyle.primaryGenre}`.toLowerCase());
+            const isPiano = t.instrumentId === 'piano';
+            if (isPiano && isHonkyTonk) {
+              const detuneCents = 4 + rand01(seedOf(t.id, a.bar, a.onsetIndex, vi, 'honky')) * 8; // 4 to 12 cents
+              const detuneSemitones = detuneCents / 100;
+              
+              // Left voice: detuned flat
+              notes.push({
+                time: n.time,
+                dur: n.durSeconds,
+                midi: n.midi - detuneSemitones,
+                pitchBend: n.pitchBend ?? slideBend ?? (ni === 0 ? idiomBend : undefined),
+                vel: Math.max(1, Math.round(n.velocity * 0.95)),
+                trackId: t.id, bar: a.bar,
+                articulation: voiceSpecs[0]?.id || a.articulation,
+              });
+              
+              // Right voice: detuned sharp
+              notes.push({
+                time: n.time + 0.002, // slight phase offset
+                dur: n.durSeconds,
+                midi: n.midi + detuneSemitones,
+                pitchBend: n.pitchBend ?? slideBend ?? (ni === 0 ? idiomBend : undefined),
+                vel: Math.max(1, Math.round(n.velocity * 0.95)),
+                trackId: t.id, bar: a.bar,
+                articulation: voiceSpecs[0]?.id || a.articulation,
+              });
+              
+              // Pan left and right
+              ccs.push({ time: n.time, trackId: t.id, cc: 10, value: 20 });
+              ccs.push({ time: n.time + 0.002, trackId: t.id, cc: 10, value: 108 });
+            } else {
+              let finalVel = n.velocity;
+              const isYumba = voiceSpecs.some(s => s.id === 'yumba' || s.aliases.includes('yumba')) || (resolvedStyle.id?.includes('tango') && (a.beatInBar === 0 || a.beatInBar === 2));
+              if (isYumba && t.instrumentId === 'piano') {
+                finalVel = 127;
+                ccs.push({ time: n.time, trackId: t.id, cc: 11, value: 127 });
+                ccs.push({ time: n.time + 0.04, trackId: t.id, cc: 11, value: 25 });
+                ccs.push({ time: n.time + n.durSeconds - 0.01, trackId: t.id, cc: 11, value: 127 });
+              }
+
+              let finalArticulation = voiceSpecs[0]?.id || a.articulation;
+              const isViolin = t.instrumentId === 'violin' || t.instrumentId?.includes('string');
+              if (resolvedStyle.id?.includes('tango') && isViolin && Math.abs(a.beatInBar - 3.5) < 0.1) {
+                finalArticulation = 'chicharra';
+              }
+
+              notes.push({
+                time: n.time,
+                dur: n.durSeconds,
+                midi: n.midi,
+                pitchBend: n.pitchBend ?? slideBend ?? (ni === 0 ? idiomBend : undefined),
+                vel: finalVel,
+                trackId: t.id, bar: a.bar,
+                articulation: finalArticulation,
+              });
+
+              // Bandoneón Sub-Bass Coupling (zinc reed growl) (Prompt Tango 1)
+              if (t.instrumentId === 'bandoneon' && n.midi < 48) {
+                notes.push({
+                  time: n.time + 0.003,
+                  dur: n.durSeconds,
+                  midi: n.midi + 12,
+                  pitchBend: n.pitchBend ?? slideBend ?? (ni === 0 ? idiomBend : undefined),
+                  vel: Math.max(1, Math.round(finalVel * 0.4)),
+                  trackId: t.id, bar: a.bar,
+                  articulation: 'sub-bass-coupling',
+                });
+              }
+
+              // Sitar, Sarod, Tanpura Sympathetic Resonance (Prompt 16)
+              const isIndian = /sitar|sarod|tanpura/i.test(t.instrumentId || '');
+              if (isIndian) {
+                const sympatheticIntervals = [5, 7, 12, 19];
+                sympatheticIntervals.forEach((iv, index) => {
+                  notes.push({
+                    time: n.time + 0.015 + index * 0.005,
+                    dur: n.durSeconds * 1.5,
+                    midi: foldToRange(n.midi + iv, prof),
+                    pitchBend: n.pitchBend ?? slideBend ?? (ni === 0 ? idiomBend : undefined),
+                    vel: Math.max(1, Math.round(n.velocity * 0.18)),
+                    trackId: t.id, bar: a.bar,
+                    articulation: 'sympathetic',
+                  });
+                });
+              }
+
+              // Piano Damper Pedal Resonance (Prompt 17)
+              const isPianoTrack = t.instrumentId === 'piano' || t.instrumentId?.includes('clav');
+              if (isPianoTrack && n.velocity > 40) {
+                const resMidi1 = foldToRange(n.midi - 12, prof);
+                const resMidi2 = foldToRange(n.midi - 7, prof);
+                notes.push({
+                  time: n.time + 0.005,
+                  dur: n.durSeconds * 1.2,
+                  midi: resMidi1,
+                  vel: Math.max(1, Math.min(11, Math.round(n.velocity * 0.12))),
+                  trackId: t.id, bar: a.bar,
+                  articulation: 'resonance',
+                });
+                notes.push({
+                  time: n.time + 0.010,
+                  dur: n.durSeconds * 1.1,
+                  midi: resMidi2,
+                  vel: Math.max(1, Math.min(11, Math.round(n.velocity * 0.10))),
+                  trackId: t.id, bar: a.bar,
+                  articulation: 'resonance',
+                });
+              }
+
+              // Acoustic Guitar Body Thump (Prompt 17)
+              const isAcousticGuitar = t.instrumentId === 'acoustic-guitar' || t.instrumentId === 'guitar';
+              const isHeavyDownbeat = a.beatInBar === 0 && a.accent > 0.8;
+              if (isAcousticGuitar && isHeavyDownbeat) {
+                notes.push({
+                  time: n.time,
+                  dur: 0.10,
+                  midi: 29, // Low-frequency body thump
+                  vel: Math.round(n.velocity * 0.45),
+                  trackId: t.id, bar: a.bar,
+                  articulation: 'body-thump',
+                });
+              }
+            }
           }
         });
 
@@ -1602,12 +1777,128 @@ export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
           continue;
         }
       } else if (prev.time + prev.dur > n.time - MIN_GAP) {
-        prev.dur = Math.max(0.01, available);
+        const isChokingArt = n.articulation?.includes('mute') || n.articulation?.includes('stac') || n.articulation?.includes('damp');
+        const gap = isChokingArt ? 0.002 : MIN_GAP;
+        prev.dur = Math.max(0.01, n.time - prev.time - gap);
       }
     }
     lastNoteIndexByPitch.set(key, idx);
   }
-  const playable = dropped.size ? sortedNotes.filter((_, i) => !dropped.has(i)) : sortedNotes;
+  const initialPlayable = dropped.size ? sortedNotes.filter((_, i) => !dropped.has(i)) : sortedNotes;
+
+  // =========================================================================
+  // MACRO ARRANGEMENT & DYNAMIC TENSION PASS (Prompt 14)
+  // =========================================================================
+  const regionByIdForTuning = new Map(sheet.regions.map(r => [r.id, r]));
+  const trackInfoMap = Object.fromEntries(tracks.map(t => [t.id, { instrumentId: t.instrumentId, role: t.role }]));
+
+  // 1. Pre-Chorus Squeeze (Stereo Width and High-pass on Bass/Drums)
+  const preChorusOrBuildBars = new Set<number>();
+  bars.forEach((b, barIdx) => {
+    const kind = String(regionByIdForTuning.get(b.regionId)?.kind ?? '').toLowerCase();
+    if (kind.includes('pre-chorus') || kind.includes('build')) {
+      preChorusOrBuildBars.add(barIdx);
+    }
+  });
+
+  for (const n of initialPlayable) {
+    if (preChorusOrBuildBars.has(n.bar)) {
+      ccs.push({ time: n.time, trackId: n.trackId, cc: 10, value: 64 }); // Mono / Narrow pan
+      const tInfo = trackInfoMap[n.trackId];
+      if (tInfo?.role === 'bass' || tInfo?.role === 'drums') {
+        ccs.push({ time: n.time, trackId: n.trackId, cc: 11, value: 50 }); // HPF thin out volume
+      }
+    } else {
+      const prevBar = bars[n.bar - 1];
+      if (prevBar && preChorusOrBuildBars.has(n.bar - 1)) {
+        const tInfo = trackInfoMap[n.trackId];
+        ccs.push({ time: n.time, trackId: n.trackId, cc: 10, value: tInfo?.role === 'comp' ? 32 : 64 }); // return to normal pan
+        if (tInfo?.role === 'bass' || tInfo?.role === 'drums') {
+          ccs.push({ time: n.time, trackId: n.trackId, cc: 11, value: 127 }); // restore full volume
+        }
+      }
+    }
+  }
+
+  // 2. Drop Chorus Mute (1 beat before Drop or Chorus)
+  const chorusStartTimes = new Set<number>();
+  bars.forEach((b, barIdx) => {
+    const kind = String(regionByIdForTuning.get(b.regionId)?.kind ?? '').toLowerCase();
+    const isChorus = kind.includes('chorus') || kind.includes('drop') || kind.includes('peak');
+    const prevB = bars[barIdx - 1];
+    const prevKind = prevB ? String(regionByIdForTuning.get(prevB.regionId)?.kind ?? '').toLowerCase() : '';
+    const prevIsChorus = prevKind.includes('chorus') || prevKind.includes('drop') || prevKind.includes('peak');
+    if (isChorus && prevB && !prevIsChorus) {
+      chorusStartTimes.add(b.start);
+    }
+  });
+
+  let filteredPlayable = initialPlayable;
+  const mutedNotes = new Set<PerfNote>();
+  for (const n of initialPlayable) {
+    for (const cStartTime of chorusStartTimes) {
+      const bpm = bars[n.bar]?.bpm ?? 120;
+      const secPerBeat = 60 / bpm;
+      const muteStart = cStartTime - secPerBeat; // 1 beat before drop
+      const muteEnd = cStartTime;
+      if (n.time >= muteStart && n.time < muteEnd) {
+        const tInfo = trackInfoMap[n.trackId];
+        if (tInfo?.role !== 'drums' && tInfo?.role !== 'voice') {
+          mutedNotes.add(n);
+        }
+      }
+    }
+  }
+  if (mutedNotes.size > 0) {
+    filteredPlayable = initialPlayable.filter(n => !mutedNotes.has(n));
+  }
+
+  // 3. Cymbal Swells (preceding Chorus or Drop)
+  const drumTracks = tracks.filter(t => t.role === 'drums');
+  bars.forEach((b, barIdx) => {
+    const nextB = bars[barIdx + 1];
+    const nextKind = nextB ? String(regionByIdForTuning.get(nextB.regionId)?.kind ?? '').toLowerCase() : '';
+    const isNextChorusOrDrop = nextKind.includes('chorus') || nextKind.includes('drop');
+    if (isNextChorusOrDrop && nextB) {
+      const secPerBeat = 60 / b.bpm;
+      const barDur = 4 * secPerBeat;
+      const swellStart = b.start + barDur - 2 * secPerBeat; // last 2 beats of section
+      for (const dTr of drumTracks) {
+        for (let step = 0; step < 8; step++) {
+          const swellTime = swellStart + step * (2 * secPerBeat / 8);
+          const velocity = Math.round(20 + (step / 7) * 95);
+          filteredPlayable.push({
+            time: swellTime,
+            dur: 0.15,
+            midi: 49, // Crash Cymbal
+            vel: velocity,
+            trackId: dTr.id,
+            bar: barIdx,
+            articulation: 'swell',
+          });
+        }
+      }
+    }
+  });
+
+  // 4. Automated Reverb Throws
+  for (let i = 0; i < filteredPlayable.length; i++) {
+    const n = filteredPlayable[i];
+    const tInfo = trackInfoMap[n.trackId];
+    if (tInfo?.role === 'lead' || tInfo?.role === 'melody') {
+      const nextN = filteredPlayable.find((x, xi) => xi > i && x.trackId === n.trackId);
+      const bpm = bars[n.bar]?.bpm ?? 120;
+      const secPerBeat = 60 / bpm;
+      const restDurationSec = nextN ? (nextN.time - (n.time + n.dur)) : 999;
+      if (restDurationSec >= 2.0 * secPerBeat) {
+        const throwTime = n.time + n.dur - 0.05;
+        ccs.push({ time: throwTime, trackId: n.trackId, cc: 91, value: 110 });
+        ccs.push({ time: throwTime + secPerBeat, trackId: n.trackId, cc: 91, value: 40 });
+      }
+    }
+  }
+
+  const playable = filteredPlayable;
 
   // =========================================================================
   // POST-PROCESSING PASS: SIDECHAIN COMPRESSION & FREQUENCY SEPARATION / EQ CARVING
@@ -1648,7 +1939,6 @@ export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
   // The live sink already did this independently; carrying the frequency here
   // makes offline export identical instead of silently reverting to 12-TET.
   const finalStyle = resolveStyle({ genreId: sheet.worldId, styleId: sheet.styleId ?? getCanonicalStyle(sheet.worldId).id });
-  const regionByIdForTuning = new Map(sheet.regions.map(r => [r.id, r]));
   for (const n of playable) {
     const bar = bars[n.bar];
     const region = bar ? regionByIdForTuning.get(bar.regionId) : undefined;
@@ -1657,7 +1947,23 @@ export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
     const tuning = resolveTuningSystem(tuningId);
     const tonicChord = region?.chords?.[0];
     const tonicPc = tonicChord ? ((parseChord(tonicChord).rootPc ?? 0) as number) : 0;
-    n.frequencyHz = tuning.getFrequencyHz(n.midi, tonicPc);
+    
+    let chordSymbol = region?.chords?.[0] ?? 'C';
+    if (sheet.measures[n.bar]?.chord) {
+      chordSymbol = sheet.measures[n.bar].chord;
+    }
+    const chord = parseChord(chordSymbol);
+    const tInfo = trackInfoMap[n.trackId];
+
+    n.frequencyHz = tuning.getFrequencyHz(n.midi, tonicPc, {
+      instrumentId: tInfo?.instrumentId,
+      styleId: resolved.id,
+      genreId: sheet.worldId,
+      activeChordSymbol: chordSymbol,
+      activeChordPc: chord.rootPc,
+      activeChordIntervals: chord.intervals,
+      articulation: n.articulation,
+    });
   }
 
   const rawPerf: Performance = {

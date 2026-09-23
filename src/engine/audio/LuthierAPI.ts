@@ -1,3 +1,5 @@
+import { INSTRUMENTS_BY_ID } from '../../data/instruments';
+
 /**
  * THE PLUGGABLE LUTHIER API
  * =========================
@@ -47,11 +49,15 @@ export interface LuthierPhysicalParameters {
   /** Number of string courses in unison/octaves (e.g. 2 for 12-string guitar, mandolin, tres, bouzouki) */
   courses?: number;
   /** Physical body construction architecture */
-  bodyConstruction?: 'wood-box' | 'gourd' | 'skin-faced' | 'board' | 'solid-electric';
+  bodyConstruction?: 'wood-box' | 'gourd' | 'skin-faced' | 'board' | 'solid-electric' | 'metal-shell' | 'brass-tube';
   /** Exciter/plucking physics */
-  excitationType?: 'plectrum' | 'nail' | 'fingerpad' | 'hard-pick' | 'hammer';
+  excitationType?: 'plectrum' | 'nail' | 'fingerpad' | 'hard-pick' | 'hammer' | 'stick' | 'mallet' | 'breath' | 'bow';
   /** Sympathetic drone / resonant string bank */
   sympatheticStrings?: boolean;
+  /** Transient sharpness of the nail or stick attack */
+  transientSharpness?: number;
+  /** Custom damping coefficient */
+  damping?: number;
 }
 
 
@@ -141,8 +147,9 @@ export const LUTHIER_INSTRUMENT_MAP: Record<string, LuthierPhysicalParameters> =
     materialDensity: 0.5,
     tension: 0.65,
     bodyResonanceVolume: 11.0,
-    decayTimeFactor: 2.2,
-    harmonicRichness: 0.65,
+    decayTimeFactor: 1.15,
+    harmonicRichness: 0.88,
+    transientSharpness: 0.94,
     courses: 1,
     bodyConstruction: 'wood-box',
     excitationType: 'nail',
@@ -301,7 +308,7 @@ export const LUTHIER_INSTRUMENT_MAP: Record<string, LuthierPhysicalParameters> =
   jinghu: { category: 'continuous_bowed_friction', materialDensity: 0.8, tension: 0.92, bodyResonanceVolume: 0.5, decayTimeFactor: 0.8, harmonicRichness: 0.9 },
 
   // 4. Bellows & Free-Reed Model
-  bandoneon: { category: 'bellows_free_reed', materialDensity: 0.8, tension: 0.7, bodyResonanceVolume: 10.0, decayTimeFactor: 1.0, harmonicRichness: 0.9 },
+  bandoneon: { category: 'bellows_free_reed', materialDensity: 0.8, tension: 0.7, bodyResonanceVolume: 10.0, decayTimeFactor: 2.2, harmonicRichness: 0.94, transientSharpness: 0.72 },
   accordion: { category: 'bellows_free_reed', materialDensity: 0.75, tension: 0.75, bodyResonanceVolume: 12.0, decayTimeFactor: 1.0, harmonicRichness: 0.85 },
   harmonica: { category: 'bellows_free_reed', materialDensity: 0.85, tension: 0.8, bodyResonanceVolume: 0.5, decayTimeFactor: 0.8, harmonicRichness: 0.95 },
   shō: { category: 'bellows_free_reed', materialDensity: 0.6, tension: 0.6, bodyResonanceVolume: 1.0, decayTimeFactor: 1.5, harmonicRichness: 0.7 },
@@ -332,9 +339,9 @@ export const LUTHIER_INSTRUMENT_MAP: Record<string, LuthierPhysicalParameters> =
   bassoon: { category: 'aerophone_lip_tension', materialDensity: 0.8, tension: 0.6, bodyResonanceVolume: 9.0, decayTimeFactor: 0.9, harmonicRichness: 0.55 },
   'english-horn': { category: 'aerophone_lip_tension', materialDensity: 0.75, tension: 0.75, bodyResonanceVolume: 2.5, decayTimeFactor: 0.55, harmonicRichness: 0.7 },
   hichiriki: { category: 'aerophone_lip_tension', materialDensity: 0.8, tension: 0.9, bodyResonanceVolume: 0.6, decayTimeFactor: 0.4, harmonicRichness: 0.92 },
-  trumpet: { category: 'aerophone_lip_tension', materialDensity: 0.9, tension: 0.85, bodyResonanceVolume: 1.5, decayTimeFactor: 0.6, harmonicRichness: 0.88 },
+  trumpet: { category: 'aerophone_lip_tension', materialDensity: 0.9, tension: 0.85, bodyResonanceVolume: 1.5, decayTimeFactor: 0.6, harmonicRichness: 0.88, transientSharpness: 0.95 },
   'muted-trumpet': { category: 'aerophone_lip_tension', materialDensity: 0.9, tension: 0.88, bodyResonanceVolume: 0.7, decayTimeFactor: 0.4, harmonicRichness: 0.7 },
-  trombone: { category: 'aerophone_lip_tension', materialDensity: 0.9, tension: 0.75, bodyResonanceVolume: 4.5, decayTimeFactor: 0.8, harmonicRichness: 0.85 },
+  trombone: { category: 'aerophone_lip_tension', materialDensity: 0.9, tension: 0.75, bodyResonanceVolume: 4.5, decayTimeFactor: 0.8, harmonicRichness: 0.85, transientSharpness: 0.95 },
   tuba: { category: 'aerophone_lip_tension', materialDensity: 0.95, tension: 0.6, bodyResonanceVolume: 30.0, decayTimeFactor: 1.4, harmonicRichness: 0.6 },
   'french-horn': { category: 'aerophone_lip_tension', materialDensity: 0.85, tension: 0.65, bodyResonanceVolume: 12.0, decayTimeFactor: 1.1, harmonicRichness: 0.7 },
   'horn-section': { category: 'aerophone_lip_tension', materialDensity: 0.85, tension: 0.8, bodyResonanceVolume: 8.0, decayTimeFactor: 0.7, harmonicRichness: 0.85 },
@@ -400,6 +407,10 @@ export const LUTHIER_INSTRUMENT_MAP: Record<string, LuthierPhysicalParameters> =
  * Resolves physical Luthier model parameters for any given instrument ID.
  */
 export function getLuthierModelForInstrument(instrumentId: string): LuthierPhysicalParameters {
+  const def = INSTRUMENTS_BY_ID[instrumentId];
+  if (def?.luthierPhysics) {
+    return def.luthierPhysics;
+  }
   if (LUTHIER_INSTRUMENT_MAP[instrumentId]) {
     return LUTHIER_INSTRUMENT_MAP[instrumentId];
   }

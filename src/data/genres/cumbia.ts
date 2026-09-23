@@ -340,7 +340,7 @@ export const CUMBIA_WORLD: GenreWorld = {
         "bass",
         "guiro",
         "drums",
-        "voice"
+        "synth"
       ],
       "preferredMeters": [
         "2/4"

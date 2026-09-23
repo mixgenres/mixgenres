@@ -20,7 +20,7 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
         "sub-bass",
         "synth",
         "sampler",
-        "voice"
+        "synth"
       ],
       "preferredMeters": [
         "4/4"
@@ -100,7 +100,7 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
         "drums",
         "sub-bass",
         "electric-guitar",
-        "voice"
+        "synth"
       ],
       "preferredMeters": [
         "4/4"
@@ -179,7 +179,7 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
         "drums",
         "sub-bass",
         "synth",
-        "voice"
+        "synth"
       ],
       "preferredMeters": [
         "4/4"
@@ -258,7 +258,7 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
         "bass",
         "sampler",
         "organ",
-        "voice"
+        "synth"
       ],
       "preferredMeters": [
         "4/4"
@@ -418,7 +418,7 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
         "drums",
         "synth",
         "sampler",
-        "voice"
+        "synth"
       ],
       "preferredMeters": [
         "4/4"
@@ -497,7 +497,7 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
         "drums",
         "synth",
         "turntable",
-        "voice"
+        "synth"
       ],
       "preferredMeters": [
         "4/4"
@@ -681,7 +681,7 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
     "harmony": [
       "short offbeat stabs"
     ],
-    "voice": [
+    "synth": [
       "syncopated reggaetón phrasing"
     ]
   },
@@ -1872,7 +1872,7 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
       "worldId": "reggaeton-dembow",
       "styleIds": ["reggaeton-modern"],
       "name": "Dembow Vocal Pickup",
-      "family": "Voice",
+      "family": "synth",
       "category": "phrasePattern",
       "description": "Short pickup into the next bar,",
       "tags": [
@@ -1887,12 +1887,12 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
         "song"
       ],
       "roles": [
-        "voice"
+        "synth"
       ],
 
       "approaches": ["phrase"],
       "instruments": [
-        "voice"
+        "synth"
       ],
       "meter": "4/4",
       "cycleLength": 1,

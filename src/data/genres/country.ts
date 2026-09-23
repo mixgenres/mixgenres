@@ -353,7 +353,7 @@ export const COUNTRY_WORLD: GenreWorld = {
         "steel-guitar",
         "bass",
         "drums",
-        "voice"
+        "steel-guitar"
       ],
       "preferredMeters": [
         "4/4"
@@ -2270,18 +2270,18 @@ export const COUNTRY_WORLD: GenreWorld = {
         "phrase"
       ],
       "roles": [
-        "voice"
+        "steel-guitar"
       ],
 
       "approaches": ["phrase"],
       "instruments": [
-        "voice"
+        "steel-guitar"
       ],
       "compatibleRoles": [
-        "voice"
+        "steel-guitar"
       ],
       "compatibleInstruments": [
-        "voice"
+        "steel-guitar"
       ],
       "canCrossRole": true,
       "meter": "4/4",
@@ -2450,18 +2450,18 @@ export const COUNTRY_WORLD: GenreWorld = {
         "phrase"
       ],
       "roles": [
-        "voice"
+        "steel-guitar"
       ],
 
       "approaches": ["phrase"],
       "instruments": [
-        "voice"
+        "steel-guitar"
       ],
       "compatibleRoles": [
-        "voice"
+        "steel-guitar"
       ],
       "compatibleInstruments": [
-        "voice"
+        "steel-guitar"
       ],
       "canCrossRole": true,
       "meter": "4/4",
@@ -3406,7 +3406,7 @@ export const COUNTRY_WORLD: GenreWorld = {
       "enabled": true
     },
     {
-      "id": "country-voice-phrasing",
+      "id": "country--phrasing",
       "worldId": "country",
       "styleIds": ["country-honky-tonk"],
       "name": "Country Vocal Phrasing",
@@ -3415,7 +3415,7 @@ export const COUNTRY_WORLD: GenreWorld = {
       "description": "Storytelling verse vocal placement with room",
       "tags": [
         "country",
-        "voice",
+        "steel-guitar",
         "vocal-phrasing",
         "catalog-v2"
       ],
@@ -3424,19 +3424,19 @@ export const COUNTRY_WORLD: GenreWorld = {
         "phrase"
       ],
       "roles": [
-        "voice"
+        "steel-guitar"
       ],
 
       "approaches": ["phrase"],
       "instruments": [
-        "voice"
+        "steel-guitar"
       ],
       "compatibleRoles": [
-        "voice",
+        "steel-guitar",
         "lead"
       ],
       "compatibleInstruments": [
-        "voice"
+        "steel-guitar"
       ],
       "meter": "4/4",
       "cycleLength": 1,
@@ -3483,8 +3483,8 @@ export const COUNTRY_WORLD: GenreWorld = {
 
       "variants": [
         {
-          "id": "country-voice-phrasing-v-voice-alt",
-          "parentPatternId": "country-voice-phrasing",
+          "id": "country--phrasing-v--alt",
+          "parentPatternId": "country--phrasing",
           "name": "Country Vocal Phrasing — alternate phrasing",
           "variationType": "phraseStart",
           "probability": 0.2,
@@ -3523,8 +3523,8 @@ export const COUNTRY_WORLD: GenreWorld = {
           ]
         },
         {
-          "id": "country-voice-phrasing-v-final-accent",
-          "parentPatternId": "country-voice-phrasing",
+          "id": "country--phrasing-v-final-accent",
+          "parentPatternId": "country--phrasing",
           "name": "Country Vocal Phrasing — accent shift",
           "variationType": "accentShift",
           "probability": 0.18,
@@ -3566,7 +3566,7 @@ export const COUNTRY_WORLD: GenreWorld = {
       "provenance": "GenreDAW catalog rebuild: dedicated vocal phrasing coverage for Country.",
       "authenticityTags": [
         "country",
-        "voice"
+        "steel-guitar"
       ],
       "danceTags": [
         "listening"

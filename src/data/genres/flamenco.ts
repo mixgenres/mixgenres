@@ -16,7 +16,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
       "description": "Deep • 12-beat • Phrygian\nThe foundation",
       "characteristicInstruments": [
         "spanish-guitar",
-        "voice",
+        "flute",
         "palmas",
         "cajon",
         "hand-percussion"
@@ -98,7 +98,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
       "description": "Fast • 12-beat • Contratiempo\nPlayful, explosive,",
       "characteristicInstruments": [
         "spanish-guitar",
-        "voice",
+        "flute",
         "palmas",
         "cajon",
         "hand-percussion"
@@ -180,7 +180,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
       "description": "Bright • 12-beat • Major\nCadiz sparkle,",
       "characteristicInstruments": [
         "spanish-guitar",
-        "voice",
+        "flute",
         "palmas",
         "cajon",
         "hand-percussion"
@@ -230,7 +230,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
       "description": "Grounded • 4-beat • Phrygian\nHeavy pulse,",
       "characteristicInstruments": [
         "spanish-guitar",
-        "voice",
+        "flute",
         "palmas",
         "cajon",
         "bass"
@@ -306,7 +306,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
       "description": "Dark • Asymmetric • Cante jondo\nRaw,",
       "characteristicInstruments": [
         "spanish-guitar",
-        "voice",
+        "flute",
         "palmas",
         "hand-percussion",
         "drums"
@@ -355,7 +355,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
       "description": "Slow • 4-beat • Modal\nTangos stretched",
       "characteristicInstruments": [
         "spanish-guitar",
-        "voice",
+        "flute",
         "palmas",
         "cajon",
         "hand-percussion"
@@ -403,7 +403,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
       "description": "Folk-rooted • 3-beat • Expressive\nCoplas, melody",
       "characteristicInstruments": [
         "spanish-guitar",
-        "voice",
+        "flute",
         "palmas",
         "hand-percussion",
         "drums"
@@ -453,7 +453,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
         "cajon",
         "palmas",
         "bass",
-        "voice"
+        "flute"
       ],
       "preferredMeters": [
         "4/4"
@@ -967,12 +967,12 @@ export const FLAMENCO_WORLD: GenreWorld = {
       "roles": [
         "melody",
         "lead",
-        "voice"
+        "flute"
       ],
 
       "approaches": ["phrase"],
       "instruments": [
-        "voice",
+        "flute",
         "guitar"
       ],
       "canCrossRole": true,
@@ -1128,45 +1128,27 @@ export const FLAMENCO_WORLD: GenreWorld = {
       "subdivisions": 16,
       "onsetGrid": [
         0,
-        2,
+        1.5,
         3,
         4,
-        6,
-        7,
-        8,
-        10,
-        11,
-        12,
-        14,
-        15
+        5.5,
+        7
       ],
       "accentProfile": [
-        1,
-        0.5,
-        0.7,
         0.95,
-        0.5,
-        0.7,
-        1,
-        0.5,
-        0.7,
-        0.9,
-        0.5,
-        0.7
+        0.4,
+        0.85,
+        0.95,
+        0.4,
+        0.85
       ],
       "velocityProfile": [
         0.95,
-        0.5,
-        0.7,
-        0.9,
-        0.5,
-        0.7,
-        0.95,
-        0.5,
-        0.7,
+        0.4,
         0.85,
-        0.5,
-        0.7
+        0.95,
+        0.4,
+        0.85
       ],
       "articulations": [
         "pulgar-apoyando",
@@ -2134,18 +2116,18 @@ export const FLAMENCO_WORLD: GenreWorld = {
         "phrase"
       ],
       "roles": [
-        "voice"
+        "flute"
       ],
 
       "approaches": ["phrase"],
       "instruments": [
-        "voice"
+        "flute"
       ],
       "compatibleRoles": [
-        "voice"
+        "flute"
       ],
       "compatibleInstruments": [
-        "voice"
+        "flute"
       ],
       "canCrossRole": true,
       "meter": "4/4",
@@ -2309,18 +2291,18 @@ export const FLAMENCO_WORLD: GenreWorld = {
         "phrase"
       ],
       "roles": [
-        "voice"
+        "flute"
       ],
 
       "approaches": ["phrase"],
       "instruments": [
-        "voice"
+        "flute"
       ],
       "compatibleRoles": [
-        "voice"
+        "flute"
       ],
       "compatibleInstruments": [
-        "voice"
+        "flute"
       ],
       "canCrossRole": true,
       "meter": "4/4",

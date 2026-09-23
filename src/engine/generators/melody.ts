@@ -358,6 +358,10 @@ export interface MelodyContext {
   energy?: 1 | 2 | 3 | 4 | 5;
   /** Track previous leap distance for cantabile recovery */
   wasLeap?: boolean;
+  /** Upcoming chord for target anticipation */
+  nextChord?: ParsedChord;
+  /** Solo progress ratio (0..1) for register climaxing */
+  progress?: number;
 }
 
 type ImprovisationStage = 'state' | 'rest' | 'repeat-transpose' | 'rapid-run';
@@ -424,6 +428,13 @@ export function melodyGate(c: MelodyContext): boolean {
   const energy = c.energy ?? 3;
   const energyThreshold = energy <= 2 ? 0.25 : (energy >= 4 ? -0.15 : 0);
 
+  // Progressive Density Unfolding (Prompt 14)
+  let progressBonus = 0;
+  if (c.sectionKind?.toLowerCase() === 'verse' && c.progress !== undefined) {
+    progressBonus = c.progress * 0.25;
+  }
+  const effectiveIntensity = Math.min(1.0, c.intensity + progressBonus);
+
   const grammar = soloGrammar(c);
   if (grammar) {
     const phraseBars = grammar.phraseBars ?? c.motif.phraseBars ?? 4;
@@ -444,9 +455,9 @@ export function melodyGate(c: MelodyContext): boolean {
       return phrasePos > c.motif.span / c.beatsPerBar - 1.5 || rand01(c.seed) > 0.9;
     case 'free':
     case 'solo':
-      return rand01(c.seed ^ 0x9f) > Math.max(0.05, 0.22 - c.intensity * 0.12 + energyThreshold);
+      return rand01(c.seed ^ 0x9f) > Math.max(0.05, 0.22 - effectiveIntensity * 0.12 + energyThreshold);
     case 'lift':
-      return nearMotif(c, 0.8) || rand01(c.seed ^ 0x13) > Math.max(0.1, 0.5 - c.intensity * 0.2 + energyThreshold);
+      return nearMotif(c, 0.8) || rand01(c.seed ^ 0x13) > Math.max(0.1, 0.5 - effectiveIntensity * 0.2 + energyThreshold);
     case 'answer':
       return nearMotif(c, 0.8) || rand01(c.seed ^ 0x71) > Math.max(0.1, 0.6 + energyThreshold);
     case 'call-response':
@@ -519,7 +530,22 @@ export function melodyNote(c: MelodyContext): { note: number | number[]; isLeap:
   // Scale resolution
   const grammar = soloGrammar(c);
   let scale = c.pitchSet?.length ? c.pitchSet : c.key.pcs;
-  if (!c.pitchSet?.length && c.styleId) {
+  
+  const isRaga = /raga|indian|hindustani|carnatic/i.test(c.styleId || c.genreId || '');
+  const isBagpipe = /bagpipe/i.test(c.profile.id || '');
+
+  if (isBagpipe) {
+    // Force continuous Mixolydian scale relative to Key Tonic Pc (Prompt 16)
+    scale = [0, 2, 4, 5, 7, 9, 10].map(iv => (c.key.tonicPc + iv) % 12);
+  } else if (isRaga) {
+    // Raga Ascending/Descending (Arohana/Avarohana) Rules (Prompt 16)
+    const isRising = c.previous ? (c.previous < c.profile.centre + 6) : true;
+    if (isRising) {
+      scale = [0, 2, 4, 7, 9].map(iv => (c.key.tonicPc + iv) % 12);
+    } else {
+      scale = [11, 9, 7, 5, 4, 2, 0].map(iv => (c.key.tonicPc + iv) % 12);
+    }
+  } else if (!c.pitchSet?.length && c.styleId) {
     try {
       const resolved = resolveStyle({ styleId: c.styleId! });
       const mode = grammar?.scaleMode ?? resolved.melody?.scaleMode;
@@ -541,14 +567,52 @@ export function melodyNote(c: MelodyContext): { note: number | number[]; isLeap:
 
   let target = nearestPc(pc, c.previous || c.profile.centre) + octaveShift;
 
-  // Chord-Tone Targeting on strong beats
+  // Maqam Melodic Constraints (Prompt 16)
+  const isArabic = /arabic|maqam|rast|bayati|middle-east/i.test(c.styleId || c.genreId || '');
+  if (isArabic && c.previous) {
+    const leap = Math.abs(target - c.previous);
+    if (leap > 4) {
+      const stepDirection = Math.sign(target - c.previous);
+      target = c.previous + stepDirection * (1 + Math.round(rand01(c.seed ^ 0x3ac1)));
+    }
+  }
+
+  // Target Note Anticipation (Prompt 11)
+  let targetChord = c.chord;
+  const isAndOfFour = c.beatInBar >= 3.4 && c.beatInBar < 3.9;
+  if (isAndOfFour && c.nextChord) {
+    targetChord = c.nextChord;
+  }
+
+  // Chord-Tone vs. Passing-Tone Rules (Prompt 11)
+  let isDownbeat = Math.abs(c.beatInBar - Math.round(c.beatInBar)) < 0.08;
   const isStrongBeat = Math.abs(c.beatInBar - Math.round(c.beatInBar)) < 0.12 && (Math.round(c.beatInBar) % 2 === 0);
   const onChordChange = c.beatInBar < 0.3;
-  const shouldTargetChord = c.snapToChord !== false && (c.chordToneTargeting !== false) && (isStrongBeat || onChordChange);
+  let shouldTargetChord = c.snapToChord !== false && (c.chordToneTargeting !== false) && (isStrongBeat || onChordChange);
 
-  if (shouldTargetChord || (grammar && isBeatOne(c))) {
+  if (isBagpipe) {
+    isDownbeat = false;
+    shouldTargetChord = false;
+  }
+
+  if (isDownbeat) {
+    const chordPcs = targetChord.intervals.map(iv => pcOf(targetChord.rootPc + iv));
+    if (chordPcs.length > 0) {
+      let bestNote = target;
+      let minDistance = Infinity;
+      for (const cp of chordPcs) {
+        const cand = nearestPc(cp, target);
+        const dist = Math.abs(cand - target);
+        if (dist < minDistance) {
+          minDistance = dist;
+          bestNote = cand;
+        }
+      }
+      target = bestNote;
+    }
+  } else if (shouldTargetChord || (grammar && isBeatOne(c))) {
     const strategy = grammar?.targetToneStrategy ?? 'chord-tone-on-beat-1';
-    const desired = chordTargetForStrategy(c, strategy, target);
+    const desired = chordTargetForStrategy({ ...c, chord: targetChord }, strategy, target);
     const desiredDist = Math.abs(desired - target);
     if (desiredDist <= 4 || onChordChange || isBeatOne(c)) target = desired;
 
@@ -556,6 +620,15 @@ export function melodyNote(c: MelodyContext): { note: number | number[]; isLeap:
     // target, approach it from a semitone below rather than wandering randomly.
     if (grammar && /enclosure/i.test(strategy + ' ' + grammar.scaleMode) && c.beatInBar > 0 && c.beatInBar < 1.0 && rand01(c.seed ^ 0xace1) > 0.35) {
       target = desired - 1;
+    }
+  }
+
+  // Register Climaxing (Prompt 11): 75% peak for Solos
+  if (c.sectionKind?.toLowerCase() === 'solo' && c.progress !== undefined) {
+    const climaxFactor = 1.0 - Math.min(1.0, Math.abs(c.progress - 0.75) / 0.15); // sharp peak around 0.75
+    if (climaxFactor > 0) {
+      const climaxPitch = c.profile.high - 3;
+      target = Math.round(target * (1 - climaxFactor) + climaxPitch * climaxFactor);
     }
   }
 
@@ -684,6 +757,61 @@ export function generateStyleOrnaments(
       durBeats: 0.07,
       velocityMult: 0.42 + i * 0.06,
     }));
+    return out;
+  }
+
+  // Bebop Enclosure (Prompt 11)
+  if ((vocab.has('enclosure') || vocab.has('bebop') || /enclosure/.test(art)) && isStrongBeat) {
+    if (roll > 0.35) {
+      out.push({
+        midi: foldToRange(targetMidi + 1, profile),
+        timeOffsetBeats: -0.16,
+        durBeats: 0.06,
+        velocityMult: 0.40,
+      });
+      out.push({
+        midi: foldToRange(targetMidi - 1, profile),
+        timeOffsetBeats: -0.08,
+        durBeats: 0.05,
+        velocityMult: 0.45,
+      });
+    }
+    return out;
+  }
+
+  // Celtic Cuts and Rolls (Prompt 12)
+  const isCelticInstrument = /whistle|fiddle|bagpipe|uilleann|flute/i.test(profile.id || '');
+  if (isCelticInstrument && isStrongBeat) {
+    if (roll > 0.5) {
+      // 5-note roll: target, target+2, target, target-1, target
+      out.push({ midi: foldToRange(targetMidi + 2, profile), timeOffsetBeats: -0.16, durBeats: 0.04, velocityMult: 0.35 });
+      out.push({ midi: targetMidi, timeOffsetBeats: -0.12, durBeats: 0.04, velocityMult: 0.40 });
+      out.push({ midi: foldToRange(targetMidi - 1, profile), timeOffsetBeats: -0.08, durBeats: 0.04, velocityMult: 0.30 });
+      out.push({ midi: targetMidi, timeOffsetBeats: -0.04, durBeats: 0.04, velocityMult: 0.45 });
+    } else {
+      // Cut: a rapid flick to a higher pitch (target + 3)
+      out.push({
+        midi: foldToRange(targetMidi + 3, profile),
+        timeOffsetBeats: -0.08,
+        durBeats: 0.04,
+        velocityMult: 0.40,
+      });
+    }
+    return out;
+  }
+
+  // Tango Látigo (Whip Glissando) (Prompt 12)
+  const isStrings = /strings|violin|cello|viola/i.test(profile.id || '');
+  const isTango = vocab.has('latigo') || vocab.has('arrastre') || /latigo|tango/i.test(art || '');
+  if (isStrings && isTango && roll > 0.6) {
+    for (let i = 0; i < 4; i++) {
+      out.push({
+        midi: foldToRange(targetMidi - 12 + i * 4, profile),
+        timeOffsetBeats: -0.20 + i * 0.05,
+        durBeats: 0.04,
+        velocityMult: 0.35 + i * 0.15,
+      });
+    }
     return out;
   }
 

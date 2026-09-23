@@ -14,6 +14,7 @@ export type SustainClass =
   | 'percussive';
 
 export interface VoiceProfile {
+  id?: string;
   sustain: SustainClass;
   role: GrooveRole;
   /** the midi note this instrument likes to centre its part around */
@@ -31,15 +32,17 @@ export interface VoiceProfile {
   ring: number;
   /** optional micro-voice timing smear in ms for ensemble instruments */
   ensembleSmearMs?: number;
+  /** allows note decay & reverberation tails to cross section boundaries naturally */
+  letRingAcrossSections?: boolean;
 }
 
 const FAMILY_DEFAULTS: Record<string, Partial<VoiceProfile>> = {
-  'bellows-and-keys': { sustain: 'sustained', centre: 60, low: 41, high: 84, pan: -0.12, trim: -1, space: 0.28, ring: 2 },
+  'bellows-and-keys': { sustain: 'sustained', centre: 60, low: 41, high: 84, pan: -0.12, trim: -1, space: 0.28, ring: 2, letRingAcrossSections: true },
   plucked:            { sustain: 'decaying',  centre: 57, low: 40, high: 84, pan: 0.18,  trim: 0,  space: 0.24, ring: 2.5 },
-  bowed:              { sustain: 'sustained', centre: 64, low: 48, high: 88, pan: -0.24, trim: -2, space: 0.42, ring: 4 },
+  bowed:              { sustain: 'sustained', centre: 64, low: 48, high: 88, pan: -0.24, trim: -2, space: 0.42, ring: 4, letRingAcrossSections: true },
   winds:              { sustain: 'blown',     centre: 69, low: 55, high: 92, pan: 0.26,  trim: -2, space: 0.34, ring: 3 },
   brass:              { sustain: 'blown',     centre: 67, low: 52, high: 88, pan: 0.3,   trim: -1, space: 0.3,  ring: 2.5 },
-  voice:              { sustain: 'sustained', centre: 64, low: 50, high: 81, pan: 0,     trim: -3, space: 0.4,  ring: 4 },
+  voice:              { sustain: 'sustained', centre: 64, low: 50, high: 81, pan: 0,     trim: -3, space: 0.4,  ring: 4, letRingAcrossSections: true },
   'hand-drums':       { sustain: 'percussive', centre: 60, low: 0, high: 127, pan: 0.3,  trim: -1, space: 0.18, ring: 0.5 },
   'metal-and-wood':   { sustain: 'percussive', centre: 60, low: 0, high: 127, pan: -0.34, trim: -3, space: 0.22, ring: 0.5 },
   kit:                { sustain: 'percussive', centre: 60, low: 0, high: 127, pan: 0,    trim: 0,  space: 0.14, ring: 0.5 },
@@ -48,13 +51,13 @@ const FAMILY_DEFAULTS: Record<string, Partial<VoiceProfile>> = {
 
 /** Per-instrument overrides where the family default is plainly wrong. */
 const OVERRIDES: Record<string, Partial<VoiceProfile>> = {
-  piano:            { centre: 60, low: 33, high: 88, pan: -0.08, trim: 0, ring: 3, space: 0.22 },
-  rhodes:           { centre: 58, low: 36, high: 84, pan: -0.16, ring: 3.5, space: 0.3 },
-  'fm-ep':          { centre: 58, low: 36, high: 84, pan: -0.16, ring: 3, space: 0.28 },
+  piano:            { centre: 60, low: 33, high: 88, pan: -0.08, trim: 0, ring: 3, space: 0.22, letRingAcrossSections: true },
+  rhodes:           { centre: 58, low: 36, high: 84, pan: -0.16, ring: 3.5, space: 0.3, letRingAcrossSections: true },
+  'fm-ep':          { centre: 58, low: 36, high: 84, pan: -0.16, ring: 3, space: 0.28, letRingAcrossSections: true },
   clavinet:         { sustain: 'short', centre: 55, low: 40, high: 79, pan: 0.3, ring: 0.6, space: 0.14 },
   harpsichord:      { sustain: 'decaying', centre: 60, ring: 1.2 },
-  organ:            { sustain: 'sustained', centre: 58, low: 36, high: 84, pan: 0.22, space: 0.2, trim: -3 },
-  'rock-organ':     { sustain: 'sustained', centre: 58, pan: 0.28, space: 0.22, trim: -3 },
+  organ:            { sustain: 'sustained', centre: 58, low: 36, high: 84, pan: 0.22, space: 0.2, trim: -3, letRingAcrossSections: true },
+  'rock-organ':     { sustain: 'sustained', centre: 58, pan: 0.28, space: 0.22, trim: -3, letRingAcrossSections: true },
   bandoneon:        { sustain: 'sustained', centre: 58, low: 41, high: 81, pan: -0.1, space: 0.3, trim: -1 },
   accordion:        { sustain: 'sustained', centre: 60, pan: 0.2, space: 0.26, trim: -2 },
   concertina:       { sustain: 'sustained', centre: 64, low: 48, high: 88, pan: 0.12, space: 0.3, trim: -2 },
@@ -67,7 +70,7 @@ const OVERRIDES: Record<string, Partial<VoiceProfile>> = {
   bones:             { sustain: 'percussive', centre: 76, low: 60, high: 90, pan: 0.34, trim: -4, space: 0.14, ring: 0.35 },
 
   guitar:           { centre: 55, low: 40, high: 76, pan: 0.22, ring: 2.2 },
-  'spanish-guitar': { centre: 55, low: 40, high: 76, pan: 0.22, ring: 2.6, space: 0.26 },
+  'spanish-guitar': { centre: 55, low: 40, high: 76, pan: 0.22, ring: 1.2, space: 0.26 },
   'steel-guitar':   { centre: 55, low: 40, high: 78, pan: 0.28, ring: 2.4 },
   'electric-guitar':{ centre: 55, low: 40, high: 78, pan: 0.34, ring: 2.0, space: 0.2 },
   'jazz-guitar':    { centre: 55, low: 40, high: 76, pan: 0.3, ring: 2.0, space: 0.22 },
@@ -167,7 +170,7 @@ const OVERRIDES: Record<string, Partial<VoiceProfile>> = {
   guiro:    { pan: -0.44, trim: -5, space: 0.14 },
   cabasa:   { pan: 0.46, trim: -6, space: 0.12 },
   tambourine: { pan: -0.4, trim: -5, space: 0.16 },
-  palmas:   { pan: 0.2, trim: -2, space: 0.2 },
+  palmas:   { pan: 0.2, trim: -2, space: 0.2, ensembleSmearMs: 18 },
   castanets:{ pan: -0.46, trim: -5, space: 0.14 },
   woodblock:{ pan: -0.4, trim: -5, space: 0.12 },
   surdo:    { pan: 0, trim: 0, space: 0.12 },
@@ -188,21 +191,28 @@ const BASE: VoiceProfile = {
 const cache = new LRUMap<string, VoiceProfile>(500, 'voiceProfileCache');
 registerCache(cache);
 
-export function voiceProfile(instrumentId: string): VoiceProfile {
-  const hit = cache.get(instrumentId);
+export function voiceProfile(instrumentId: string, genreId?: string): VoiceProfile {
+  const cacheKey = genreId ? `${instrumentId}-${genreId}` : instrumentId;
+  const hit = cache.get(cacheKey);
   if (hit) return hit;
 
   const def: InstrumentDef | undefined = INSTRUMENTS_BY_ID[instrumentId];
   const fam = def ? FAMILY_DEFAULTS[def.family] ?? {} : {};
   const over = OVERRIDES[instrumentId] ?? {};
-  const merged: VoiceProfile = { ...BASE, ...fam, ...over };
+  const embedded = def?.acousticProfile ? def.acousticProfile : {};
+  const merged: VoiceProfile = { ...BASE, ...fam, ...over, ...embedded, id: instrumentId };
+
+  if (genreId && /metal|grunge/i.test(genreId) && /guitar/i.test(instrumentId)) {
+    // Drop-D tuning: adjust lowest allowable pitch to D2 (MIDI 38)
+    merged.low = 38;
+  }
 
   if (def) {
     if (def.voicing === 'bass') merged.role = 'bass';
     else if (def.voicing === 'unpitched') merged.role = merged.role === 'comp' ? 'perc' : merged.role;
     else if (def.voicing === 'single' && merged.role === 'comp') merged.role = 'lead';
   }
-  cache.set(instrumentId, merged);
+  cache.set(cacheKey, merged);
   return merged;
 }
 

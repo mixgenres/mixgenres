@@ -5,6 +5,7 @@ import type { Performance, PerfNote, PerfCC } from '../sequencing/perform';
 import { getLuthierModelForInstrument } from './LuthierAPI';
 import { resolveDialect, performanceModeForContext } from '../theory/dialects';
 import { createMasterChain } from './mixer';
+import { contractForGenre } from '../../data/styles/contracts';
 import {
   defaultTrackParams,
   modelForInstrument,
@@ -136,18 +137,41 @@ export async function renderPerformanceToMp3(
     numOutputChannels: 2,
   });
 
+  let mixCharacter: import('../../data/styles/contracts').MixCharacter | undefined;
+  if (options.worldId) {
+    try {
+      mixCharacter = contractForGenre(options.worldId)?.timbreSpace?.mixCharacter;
+    } catch {
+      /* ignore */
+    }
+  }
+
   async function syncGraph() {
     const trackSignals: {
       left: any;
       right: any;
+      trackId?: string;
+      instrumentId?: string;
     }[] = [];
 
     for (const [trackId, params] of trackParamsMap.entries()) {
       const voices = trackVoicesMap.get(trackId) ?? [];
-      trackSignals.push(renderTrack(trackId, voices, params));
+      const sig = renderTrack(trackId, voices, params);
+      trackSignals.push({
+        left: sig.left,
+        right: sig.right,
+        trackId,
+        instrumentId: params.instrumentId,
+      });
     }
 
-    const masterSig = renderMaster(trackSignals, { highPass: 20, volume: 1.0 });
+    const masterSig = renderMaster(trackSignals, {
+      highPass: 20,
+      volume: 1.0,
+      mixCharacter,
+      genreId: options.worldId,
+      bpm: perf.bars[0]?.bpm ?? 120,
+    });
     await core.render(masterSig.left, masterSig.right);
   }
 
@@ -230,6 +254,13 @@ export async function renderPerformanceToMp3(
           (voice as any).triggerSeq = ++eventSeq;
           voice.velocity = velScaled;
           voice.gate = 1;
+          
+          // Copy envelope overrides
+          voice.attack = (event.note as any).attack;
+          voice.decay = (event.note as any).decay;
+          voice.sustain = (event.note as any).sustain;
+          voice.release = (event.note as any).release;
+          
           graphDirty = true;
         } else if (event.kind === 'off') {
           const roundedMidi = Math.round(event.midi);
@@ -317,7 +348,7 @@ export async function renderPerformanceToMp3(
   const source = offlineCtx.createBufferSource();
   source.buffer = sourceBuffer;
 
-  const offlineChain = createMasterChain(offlineCtx);
+  const offlineChain = createMasterChain(offlineCtx, mixCharacter, options.worldId);
   source.connect(offlineChain.input);
   source.start(0);
 

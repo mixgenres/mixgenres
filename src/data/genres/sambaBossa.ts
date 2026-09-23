@@ -179,7 +179,7 @@ export const SAMBA_BOSSA_WORLD: GenreWorld = {
         "pandeiro",
         "tantan",
         "repinique",
-        "voice"
+        "synth"
       ],
       "preferredMeters": [
         "2/4"
@@ -258,7 +258,7 @@ export const SAMBA_BOSSA_WORLD: GenreWorld = {
         "timbales",
         "repinique",
         "brass",
-        "voice"
+        "synth"
       ],
       "preferredMeters": [
         "4/4",
@@ -362,7 +362,7 @@ export const SAMBA_BOSSA_WORLD: GenreWorld = {
     "bass": [
       "syncopated samba/bossa bass"
     ],
-    "voice": [
+    "synth": [
       "intimate phrasing"
     ]
   },

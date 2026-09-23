@@ -325,7 +325,7 @@ export function realizePerformanceCell(params: RealizeCellParams): PerformanceCe
   const def = INSTRUMENTS_BY_ID[t.instrumentId];
   const prof = voiceProfile(t.instrumentId);
   const isDrum = !!def?.kit || !!def?.drum;
-  const canAnticipate = prof.role === 'bass' || prof.role === 'comp' || prof.role === 'stab';
+  let canAnticipate = prof.role === 'bass' || prof.role === 'comp' || prof.role === 'stab';
   const phraseBars = motif.phraseBars ?? 4;
   const bars = structure.bars;
 
@@ -348,6 +348,14 @@ export function realizePerformanceCell(params: RealizeCellParams): PerformanceCe
   const mem = createInitialPhraseMemory();
   const sectionStyle = getResolvedSectionStyle(sheet, region);
   const grammar = getPerformanceGrammar(sectionStyle, prof.role);
+
+  const isSalsaTimba = /salsa|timba/i.test(region.styleId || '') || /salsa|timba/i.test(sectionStyle.primaryGenre || '');
+  if (isSalsaTimba) {
+    const is32 = /3-2/i.test(sectionStyle.rhythm?.timelineClave ?? '');
+    if (!is32) {
+      canAnticipate = false; // in 2-3 clave, disable anticipation so chord changes are played on-time
+    }
+  }
 
   const regionMeasures = measures.filter(m => m.regionId === region.id);
 
@@ -661,12 +669,20 @@ export function realizePerformanceCell(params: RealizeCellParams): PerformanceCe
     const durBeats = Math.max(0.25, (a.durationSteps ?? 1) / (a.stepsPerBar ?? 16) * bt.beatsPerBar);
     const durSeconds = durBeats * secPerBeat;
 
+    const resolvedStyle = getResolvedSectionStyle(sheet, region);
+    const tuningId = resolvedStyle.harmony?.tuningSystem || resolvedStyle.contract.tuningSystem || '12-tet';
+    const tuningSystem = resolveTuningSystem(tuningId);
+
     for (let vi = 0; vi < midiValues.length; vi++) {
       const midi = midiValues[vi];
+      const tonicPc = (parsedChord.rootPc ?? 0) as number;
+      const freqHz = tuningSystem.getFrequencyHz(midi, tonicPc);
+
       notes.push({
         time: baseTime,
         dur: durSeconds,
         midi,
+        frequencyHz: freqHz,
         vel,
         trackId: t.id,
         bar: a.bar,

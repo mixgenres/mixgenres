@@ -100,7 +100,7 @@ export const ZOUK_WORLD: GenreWorld = {
         "bass",
         "drums",
         "electric-guitar",
-        "voice"
+        "synth"
       ],
       "preferredMeters": [
         "4/4"
@@ -180,7 +180,7 @@ export const ZOUK_WORLD: GenreWorld = {
         "drums",
         "sub-bass",
         "piano",
-        "voice"
+        "synth"
       ],
       "preferredMeters": [
         "4/4"
@@ -260,7 +260,7 @@ export const ZOUK_WORLD: GenreWorld = {
         "sub-bass",
         "drums",
         "sampler",
-        "voice"
+        "synth"
       ],
       "preferredMeters": [
         "4/4"
@@ -1648,18 +1648,18 @@ export const ZOUK_WORLD: GenreWorld = {
         "phrase"
       ],
       "roles": [
-        "voice"
+        "synth"
       ],
 
       "approaches": ["phrase"],
       "instruments": [
-        "voice"
+        "synth"
       ],
       "compatibleRoles": [
-        "voice"
+        "synth"
       ],
       "compatibleInstruments": [
-        "voice"
+        "synth"
       ],
       "canCrossRole": true,
       "meter": "4/4",
@@ -1813,18 +1813,18 @@ export const ZOUK_WORLD: GenreWorld = {
         "phrase"
       ],
       "roles": [
-        "voice"
+        "synth"
       ],
 
       "approaches": ["phrase"],
       "instruments": [
-        "voice"
+        "synth"
       ],
       "compatibleRoles": [
-        "voice"
+        "synth"
       ],
       "compatibleInstruments": [
-        "voice"
+        "synth"
       ],
       "canCrossRole": true,
       "meter": "4/4",
@@ -3208,7 +3208,7 @@ export const ZOUK_WORLD: GenreWorld = {
       "enabled": true
     },
     {
-      "id": "zouk-voice-phrasing",
+      "id": "zouk--phrasing",
       "worldId": "zouk",
       "styleIds": ["zouk-beton"],
       "name": "Zouk Vocal Phrasing",
@@ -3217,7 +3217,7 @@ export const ZOUK_WORLD: GenreWorld = {
       "description": "Breathy lead-vocal placement that leaves space",
       "tags": [
         "zouk",
-        "voice",
+        "synth",
         "vocal-phrasing",
         "catalog-v2"
       ],
@@ -3226,19 +3226,19 @@ export const ZOUK_WORLD: GenreWorld = {
         "phrase"
       ],
       "roles": [
-        "voice"
+        "synth"
       ],
 
       "approaches": ["phrase"],
       "instruments": [
-        "voice"
+        "synth"
       ],
       "compatibleRoles": [
-        "voice",
+        "synth",
         "lead"
       ],
       "compatibleInstruments": [
-        "voice"
+        "synth"
       ],
       "meter": "4/4",
       "cycleLength": 1,
@@ -3288,8 +3288,8 @@ export const ZOUK_WORLD: GenreWorld = {
 
       "variants": [
         {
-          "id": "zouk-voice-phrasing-v-voice-alt",
-          "parentPatternId": "zouk-voice-phrasing",
+          "id": "zouk--phrasing-v--alt",
+          "parentPatternId": "zouk--phrasing",
           "name": "Zouk Vocal Phrasing — alternate phrasing",
           "variationType": "phraseStart",
           "probability": 0.2,
@@ -3328,8 +3328,8 @@ export const ZOUK_WORLD: GenreWorld = {
           ]
         },
         {
-          "id": "zouk-voice-phrasing-v-final-accent",
-          "parentPatternId": "zouk-voice-phrasing",
+          "id": "zouk--phrasing-v-final-accent",
+          "parentPatternId": "zouk--phrasing",
           "name": "Zouk Vocal Phrasing — accent shift",
           "variationType": "accentShift",
           "probability": 0.18,
@@ -3371,7 +3371,7 @@ export const ZOUK_WORLD: GenreWorld = {
       "provenance": "GenreDAW catalog rebuild: dedicated vocal phrasing coverage for Zouk.",
       "authenticityTags": [
         "zouk",
-        "voice"
+        "synth"
       ],
       "danceTags": [
         "listening"

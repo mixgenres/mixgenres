@@ -1,4 +1,4 @@
-import type { InstrumentDef, InstrumentFamily, InstrumentTechniqueProfile } from './types';
+import type { InstrumentDef, InstrumentFamily, InstrumentTechniqueProfile, TransitionMechanics, EnvironmentalReactivity, SpatialRadiation } from './types';
 import { bandoneon } from './definitions/bandoneon';
 import { accordion } from './definitions/accordion';
 import { piano } from './definitions/piano';
@@ -379,9 +379,39 @@ function enrichInstrumentPhysics(d: InstrumentDef): InstrumentDef {
   const isLipReed = id.includes('trumpet') || id.includes('trombone') || id.includes('horn') || id === 'tuba';
   const isStruckAcousticString = id === 'piano' || id === 'dulcimer' || id === 'celeste';
 
+  const bodyConstruction = d.bodyConstruction ?? (d.family === 'plucked'
+    ? (id.includes('electric') || id.includes('303') || id.includes('bass') ? 'solid-electric' : 'wood-box')
+    : undefined);
+
+  const drum = d.drum ?? (d.voicing === 'unpitched' && !d.kit ? { low: 36, mid: 38, high: 42 } : undefined);
+
+  const transitionMechanics: TransitionMechanics = d.transitionMechanics ?? {
+    legatoModes: isString ? ['hammer-on', 'pull-off', 'slide'] : isWind ? ['lip-slur', 'valve-cross'] : ['glissando'],
+    stringSlideFrictionNoise: isString ? 0.15 : 0,
+    valveActuationTimeMs: isWind ? 12 : 0,
+    mechanicalKeyClickLevel: isFreeReed || isWind ? 0.08 : 0.02,
+    portamentoCurve: 'continuous-linear',
+  };
+
+  const environmentalReactivity: EnvironmentalReactivity = d.environmentalReactivity ?? {
+    tuningTemperatureCoefficientCents: isLipReed ? 0.8 : isString ? -0.5 : 0.1,
+    randomTuningDriftCents: 1.2,
+    harmonicSplitProbability: isLipReed || isWind ? 0.02 : 0,
+  };
+
+  const spatialRadiation: SpatialRadiation = d.spatialRadiation ?? {
+    radiationPattern: isPerc ? 'omnidirectional' : 'cardioid',
+    directionalCutoffHz: 2500,
+    defaultMicrophoneArray: {
+      technique: 'XY',
+      distanceMeters: 1.2,
+      offAxisDegrees: 15,
+    },
+  };
+
   const model = isStruckAcousticString ? 'struck-string'
     : isString ? (d.family === 'bowed' ? 'bowed-string' : 'plucked-string')
-    : isPerc ? (d.bodyConstruction === 'skin-faced' ? 'membrane' : 'metal-impact')
+    : isPerc ? ((d.bodyConstruction ?? bodyConstruction) === 'skin-faced' ? 'membrane' : 'metal-impact')
     : isFreeReed || isWoodwindReed ? 'blown-reed'
     : isLipReed ? 'lip-reed'
     : (isWind || id.includes('organ')) ? 'blown-air'
@@ -395,10 +425,10 @@ function enrichInstrumentPhysics(d: InstrumentDef): InstrumentDef {
     inharmonicity: isString ? 0.22 : undefined,
     bodyResonance: isString || isStruckAcousticString ? 0.72 : 0.4,
     airResonance: (isWind || isFreeReed) ? 0.7 : undefined,
-    membraneTension: isPerc && d.bodyConstruction === 'skin-faced' ? 0.62 : undefined,
-    membraneDamping: isPerc && d.bodyConstruction === 'skin-faced' ? 0.38 : undefined,
-    pickupPosition: d.family === 'plucked' && (id.includes('electric') || d.bodyConstruction === 'solid-electric') ? 0.42 : undefined,
-    pickupDistance: d.family === 'plucked' && (id.includes('electric') || d.bodyConstruction === 'solid-electric') ? 0.3 : undefined,
+    membraneTension: isPerc && (d.bodyConstruction ?? bodyConstruction) === 'skin-faced' ? 0.62 : undefined,
+    membraneDamping: isPerc && (d.bodyConstruction ?? bodyConstruction) === 'skin-faced' ? 0.38 : undefined,
+    pickupPosition: d.family === 'plucked' && (id.includes('electric') || (d.bodyConstruction ?? bodyConstruction) === 'solid-electric') ? 0.42 : undefined,
+    pickupDistance: d.family === 'plucked' && (id.includes('electric') || (d.bodyConstruction ?? bodyConstruction) === 'solid-electric') ? 0.3 : undefined,
     nonlinearDrive: id.includes('distortion') || id.includes('overdrive') || id.includes('acid') ? 0.72 : 0.08,
     saturation: id.includes('tape') || id.includes('echo') ? 0.48 : 0.12,
     pluckPosition: isString && d.family === 'plucked' ? 0.24 : undefined,
@@ -410,14 +440,23 @@ function enrichInstrumentPhysics(d: InstrumentDef): InstrumentDef {
   };
   const cleanParameters = Object.fromEntries(Object.entries(parameters).filter(([, v]) => v !== undefined)) as Record<string, number>;
   const articulations = d.techniques.articulations;
-  return { ...d, physicalModel: d.physicalModel ?? {
-    model, parameters: cleanParameters,
-    signalChain: d.family === 'electronic' ? ['preamp', 'filter', 'compressor', 'delay', 'reverb'] : ['preamp', 'eq', 'compressor', 'reverb'],
-    synthesisNotes: ['Use velocity as excitation energy, not only loudness.', 'Preserve articulation-specific transients and release tails.', 'Apply style profile before humanization; never randomize idiomatic accents.']
-  }, articulationModels: d.articulationModels ?? articulations.map(a => ({
-    id: a, method: a, synthesis: 'hybrid' as const,
-    parameters: { intensity: 0.65, durationScale: 1, noiseMix: a.includes('ghost') || a.includes('breath') ? 0.3 : 0.08 }
-  })) };
+  return {
+    ...d,
+    bodyConstruction: d.bodyConstruction ?? bodyConstruction,
+    drum: d.drum ?? drum,
+    transitionMechanics,
+    environmentalReactivity,
+    spatialRadiation,
+    physicalModel: d.physicalModel ?? {
+      model, parameters: cleanParameters,
+      signalChain: d.family === 'electronic' ? ['preamp', 'filter', 'compressor', 'delay', 'reverb'] : ['preamp', 'eq', 'compressor', 'reverb'],
+      synthesisNotes: ['Use velocity as excitation energy, not only loudness.', 'Preserve articulation-specific transients and release tails.', 'Apply style profile before humanization; never randomize idiomatic accents.']
+    },
+    articulationModels: d.articulationModels ?? articulations.map(a => ({
+      id: a, method: a, synthesis: 'hybrid' as const,
+      parameters: { intensity: 0.65, durationScale: 1, noiseMix: a.includes('ghost') || a.includes('breath') ? 0.3 : 0.08 }
+    }))
+  };
 }
 
 export const ENRICHED_INSTRUMENT_CATALOG = INSTRUMENT_CATALOG.map(enrichInstrumentPhysics);
@@ -530,36 +569,41 @@ export function cleanInstrumentName(name: string): string {
 
 /**
  * Instruments a world tends to reach for first, by world id.
- *
- * Keys must be live genre ids. Entries for removed or renamed genres are dead
- * configuration that reads as support for a genre the catalog no longer has;
- * `validate.ts` fails the build if any appear.
+ * Maps to canonical 32 genre baseline instrumentation.
  */
 export const WORLD_INSTRUMENT_HINTS: Record<string, string[]> = {
-  // The first five are the default demo: a compact, identity-carrying ensemble.
-  // Remaining instruments stay available through the picker for fuller arrangements.
-  tango: ['bandoneon', 'piano', 'upright-bass', 'violin', 'cello'],
-  salsa: ['piano', 'bass', 'congas', 'timbales', 'trumpet'],
-  timba: ['piano', 'bass', 'timbales', 'congas', 'trombone'],
-  // Flamenco core ensemble only. Palo-specific extras (castanets, flute, bass)
-  // belong to individual styles rather than the genre-wide starter pack.
-  flamenco: ['spanish-guitar', 'voice', 'palmas', 'cajon', 'zapateado'],
-  jazz: ['piano', 'upright-bass', 'brush-kit', 'tenor-sax', 'jazz-guitar'],
-  blues: ['electric-guitar', 'bass', 'drums', 'piano', 'harmonica'],
-  rock: ['overdrive-guitar', 'bass', 'drums', 'electric-guitar', 'organ'],
-  zouk: ['sub-bass', 'drums', 'rhodes', 'electric-guitar', 'warm-pad'],
-  kizomba: ['sub-bass', 'drums', 'rhodes', 'electric-guitar', 'warm-pad'],
-  funk: ['slap-bass', 'drums', 'clavinet', 'electric-guitar', 'horn-section'],
-  metal: ['distortion-guitar', 'overdrive-guitar', 'bass', 'drums', 'guitar-harmonics'],
-  bachata: ['requinto', 'guitar', 'bass', 'bongos', 'guiro'],
-  folk: ['guitar', 'fiddle', 'upright-bass', 'bodhran', 'mandolin'],
-  'hip-hop': ['drums', 'sub-bass', 'piano', 'turntable', 'warm-pad'],
-  electronic: ['drums', 'bass-lead', 'warm-pad', 'saw-lead', 'polysynth'],
-  country: ['steel-guitar', 'upright-bass', 'brush-kit', 'fiddle', 'banjo'],
-  swing: ['upright-bass', 'drums', 'piano', 'tenor-sax', 'jazz-guitar'],
   afrobeats: ['sub-bass', 'log-drum', 'electric-guitar', 'shaker', 'tenor-sax'],
-  cumbia: ['bass', 'tambora', 'accordion', 'guitar', 'guacharaca'],
+  bachata: ['requinto', 'guitar', 'bass', 'bongos', 'guiro'],
+  blues: ['electric-guitar', 'bass', 'drums', 'piano', 'harmonica'],
+  brazilian: ['spanish-guitar', 'surdo', 'pandeiro', 'cavaquinho', 'cuica'],
+  country: ['steel-guitar', 'upright-bass', 'brush-kit', 'fiddle', 'banjo'],
+  cumbia: ['bass', 'accordion', 'guacharaca', 'tambora', 'guitar'],
+  disco: ['bass', 'electric-guitar', 'drums', 'piano', 'horn-section'],
+  electronic: ['drums', 'bass-lead', 'warm-pad', 'saw-lead', 'polysynth'],
+  folk: ['guitar', 'fiddle', 'upright-bass', 'bodhran', 'mandolin'],
+  funk: ['slap-bass', 'electric-guitar', 'clavinet', 'drums', 'horn-section'],
+  gospel: ['piano', 'organ', 'bass', 'drums', 'electric-guitar'],
+  'hip-hop': ['drums', 'sub-bass', 'piano', 'turntable', 'warm-pad'],
+  house: ['drums', 'sub-bass', 'rhodes', 'saw-lead', 'synth'],
+  jazz: ['upright-bass', 'ride', 'piano', 'trumpet', 'tenor-sax'],
+  kizomba: ['sub-bass', 'drums', 'rhodes', 'electric-guitar', 'warm-pad'],
+  tango: ['bandoneon', 'piano', 'upright-bass', 'violin', 'cello'],
+  flamenco: ['spanish-guitar', 'cajon', 'palmas', 'zapateado', 'flute'],
+  metal: ['distortion-guitar', 'overdrive-guitar', 'bass', 'drums', 'guitar-harmonics'],
+  'r-and-b': ['bass', 'electric-guitar', 'rhodes', 'drums', 'warm-pad'],
+  reggae: ['sub-bass', 'organ', 'electric-guitar', 'drums', 'horn-section'],
+  reggaeton: ['sub-bass', 'drums', 'synth', 'electric-guitar', 'maracas'],
+  rock: ['overdrive-guitar', 'bass', 'drums', 'electric-guitar', 'organ'],
+  salsa: ['piano', 'congas', 'bass', 'timbales', 'trumpet'],
   ska: ['bass', 'drums', 'electric-guitar', 'organ', 'trumpet'],
+  soul: ['bass', 'electric-guitar', 'organ', 'drums', 'horn-section'],
+  swing: ['upright-bass', 'drums', 'piano', 'tenor-sax', 'jazz-guitar'],
+  timba: ['piano', 'bass', 'timbales', 'congas', 'trombone'],
+  zouk: ['sub-bass', 'drums', 'rhodes', 'electric-guitar', 'warm-pad'],
+  'drum-and-bass': ['drums', 'sub-bass', 'synth', 'warm-pad', 'saw-lead'],
+  industrial: ['drums', 'distortion-guitar', 'sub-bass', 'synth', 'acid-303'],
+  'punk-hardcore': ['overdrive-guitar', 'distortion-guitar', 'bass', 'drums', 'electric-guitar'],
+  'uk-bass': ['sub-bass', 'drums', 'acid-303', 'synth', 'warm-pad'],
 };
 
 

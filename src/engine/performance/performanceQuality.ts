@@ -61,10 +61,19 @@ export function polishPerformance(perf: Performance, options: PerformanceQuality
       if (gap > 0) {
         const curNote = list[i];
         const artic = String(curNote.articulation || '').toLowerCase();
+        const inst = (info[curNote.trackId]?.instrumentId || curNote.trackId).toLowerCase();
+        const r = (info[curNote.trackId]?.role || '').toLowerCase();
+
+        const isCymbalOrCrash = curNote.drum && (curNote.midi === 49 || curNote.midi === 57 || curNote.midi === 51 || curNote.midi === 52 || curNote.midi === 55);
+        const isRingableInstrument = isCymbalOrCrash || /crash|cymbal|pad|strings|piano|harp|organ|slow-strings|bowed|synth_pad/i.test(inst) || r === 'pad' || r === 'strings';
+
         const hasGlideLegato = /slide|portamento|glissando|legato|arrastre|slur|bind|bend/.test(artic);
         if (hasGlideLegato) {
           // Allow duration to overlap subsequent note by 18ms for smooth DSP glides
           curNote.dur = Math.max(curNote.dur, gap + 0.018);
+        } else if (isRingableInstrument) {
+          // Let ring across boundaries naturally; do not force curNote.dur = gap - 0.004
+          curNote.dur = Math.max(curNote.dur, minDur);
         } else {
           curNote.dur = Math.min(curNote.dur, Math.max(minDur, gap - 0.004));
         }

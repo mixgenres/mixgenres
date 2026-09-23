@@ -577,7 +577,7 @@ export const FUNK_WORLD: GenreWorld = {
         "drums",
         "sub-bass",
         "sampler",
-        "voice",
+        "tenor-sax",
         "synth"
       ],
       "preferredMeters": [
@@ -2623,18 +2623,18 @@ export const FUNK_WORLD: GenreWorld = {
         "phrase"
       ],
       "roles": [
-        "voice"
+        "tenor-sax"
       ],
 
       "approaches": ["phrase"],
       "instruments": [
-        "voice"
+        "tenor-sax"
       ],
       "compatibleRoles": [
-        "voice"
+        "tenor-sax"
       ],
       "compatibleInstruments": [
-        "voice"
+        "tenor-sax"
       ],
       "canCrossRole": true,
       "meter": "4/4",
@@ -2806,18 +2806,18 @@ export const FUNK_WORLD: GenreWorld = {
         "phrase"
       ],
       "roles": [
-        "voice"
+        "tenor-sax"
       ],
 
       "approaches": ["phrase"],
       "instruments": [
-        "voice"
+        "tenor-sax"
       ],
       "compatibleRoles": [
-        "voice"
+        "tenor-sax"
       ],
       "compatibleInstruments": [
-        "voice"
+        "tenor-sax"
       ],
       "canCrossRole": true,
       "meter": "4/4",
@@ -3371,7 +3371,7 @@ export const FUNK_WORLD: GenreWorld = {
       "enabled": true
     },
     {
-      "id": "funk-voice-phrasing",
+      "id": "funk--phrasing",
       "worldId": "funk",
       "styleIds": ["funk-pfunk-neworleans"],
       "name": "Funk Vocal Phrasing",
@@ -3380,7 +3380,7 @@ export const FUNK_WORLD: GenreWorld = {
       "description": "Rhythmic vocal hook template that uses",
       "tags": [
         "funk",
-        "voice",
+        "tenor-sax",
         "vocal-phrasing",
         "catalog-v2"
       ],
@@ -3389,19 +3389,19 @@ export const FUNK_WORLD: GenreWorld = {
         "phrase"
       ],
       "roles": [
-        "voice"
+        "tenor-sax"
       ],
 
       "approaches": ["phrase"],
       "instruments": [
-        "voice"
+        "tenor-sax"
       ],
       "compatibleRoles": [
-        "voice",
+        "tenor-sax",
         "lead"
       ],
       "compatibleInstruments": [
-        "voice"
+        "tenor-sax"
       ],
       "meter": "4/4",
       "cycleLength": 1,
@@ -3451,8 +3451,8 @@ export const FUNK_WORLD: GenreWorld = {
 
       "variants": [
         {
-          "id": "funk-voice-phrasing-v-voice-alt",
-          "parentPatternId": "funk-voice-phrasing",
+          "id": "funk--phrasing-v--alt",
+          "parentPatternId": "funk--phrasing",
           "name": "Funk Vocal Phrasing — alternate phrasing",
           "variationType": "phraseStart",
           "probability": 0.2,
@@ -3491,8 +3491,8 @@ export const FUNK_WORLD: GenreWorld = {
           ]
         },
         {
-          "id": "funk-voice-phrasing-v-final-accent",
-          "parentPatternId": "funk-voice-phrasing",
+          "id": "funk--phrasing-v-final-accent",
+          "parentPatternId": "funk--phrasing",
           "name": "Funk Vocal Phrasing — accent shift",
           "variationType": "accentShift",
           "probability": 0.18,
@@ -3534,7 +3534,7 @@ export const FUNK_WORLD: GenreWorld = {
       "provenance": "GenreDAW catalog rebuild: dedicated vocal phrasing coverage for Funk.",
       "authenticityTags": [
         "funk",
-        "voice"
+        "tenor-sax"
       ],
       "danceTags": [
         "listening"

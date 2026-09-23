@@ -1,5 +1,5 @@
 import React, { useDeferredValue, useEffect, useMemo, useRef, useState } from 'react';
-import { Dices, Trash2, Pencil } from 'lucide-react';
+import { Dices, Trash2, Pencil, Sparkles } from 'lucide-react';
 import './index.css';
 
 import { Glyph, PlayIcon, PauseIcon } from './ui/Glyph';
@@ -1081,21 +1081,41 @@ export default function App() {
                         const next = current === 'auto' ? 'on' : current === 'on' ? 'off' : 'auto';
                         edit(s => setTrackSpotlight(s, t.id, next));
                       }}
-                      className="text-[10px] font-mono cursor-pointer transition-opacity hover:opacity-100 px-1.5 py-0.5"
+                      className="w-6 h-6 transition-all cursor-pointer flex items-center justify-center shrink-0 relative rounded-[2px]"
                       style={{
-                        opacity: spotlightIsActive(t) ? 0.95 : 0.55,
-                        color: spotlightIsActive(t) ? 'var(--ink)' : 'var(--ink)',
-                        background: spotlightIsActive(t) ? 'var(--tone)' : 'transparent',
-                        boxShadow: 'inset 0 0 0 1px color-mix(in srgb, var(--ink) 22%, transparent)',
+                        opacity: t.spotlight === 'off' ? 0.35 : spotlightIsActive(t) ? 1 : 0.5,
+                        background: t.spotlight === 'on' ? 'var(--ink)' : 'transparent',
+                        color: t.spotlight === 'on' ? 'var(--ground)' : 'var(--ink)',
+                        boxShadow: 'inset 0 0 0 1px color-mix(in srgb, var(--ink) 20%, transparent)',
                       }}
                       title={
-                        t.spotlight === 'auto'
-                          ? `Spotlight: Auto (${spotlightIsActive(t) ? 'active' : 'off'} from ${sectionStyle?.name ?? 'style'} defaults)`
-                          : `Spotlight: ${t.spotlight}. Click to cycle Auto → On → Off`
+                        t.spotlight === 'on'
+                          ? `Spotlight: On (Click to set Off)`
+                          : t.spotlight === 'off'
+                          ? `Spotlight: Off (Click to set Auto)`
+                          : `Spotlight: Auto (${spotlightIsActive(t) ? 'active' : 'inactive'} in ${sectionStyle?.name ?? 'style'}). Click to set On`
                       }
                       aria-label={`Spotlight ${t.name}: ${t.spotlight ?? 'auto'}`}
                     >
-                      Spotlight · {t.spotlight === 'on' ? 'On' : t.spotlight === 'off' ? 'Off' : 'Auto'}
+                      <Sparkles
+                        size={12.5}
+                        fill={t.spotlight === 'on' ? 'currentColor' : spotlightIsActive(t) ? 'currentColor' : 'none'}
+                        strokeWidth={1.75}
+                      />
+                      {(t.spotlight === 'auto' || !t.spotlight) && (
+                        <span
+                          className="absolute -top-1 -right-1 font-mono font-bold leading-none select-none rounded-[1px]"
+                          style={{
+                            fontSize: '7px',
+                            padding: '1px 1.5px',
+                            background: 'var(--tone)',
+                            color: 'var(--ink)',
+                            boxShadow: '0 0 0 1px var(--ground)',
+                          }}
+                        >
+                          a
+                        </span>
+                      )}
                     </button>
                     <button
                       onClick={() => setPatternFor(t.id)}

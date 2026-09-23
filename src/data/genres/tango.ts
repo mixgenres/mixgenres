@@ -20,7 +20,7 @@ export const TANGO_WORLD: GenreWorld = {
         "violin",
         "piano",
         "upright-bass",
-        "voice"
+        "bandoneon"
       ],
       "preferredMeters": [
         "4/4",
@@ -231,7 +231,7 @@ export const TANGO_WORLD: GenreWorld = {
         "bandoneon",
         "piano",
         "upright-bass",
-        "voice"
+        "bandoneon"
       ],
       "preferredMeters": [
         "3/4"
@@ -481,6 +481,12 @@ export const TANGO_WORLD: GenreWorld = {
         4,
         8,
         12
+      ],
+      "durationGrid": [
+        0.25,
+        0.25,
+        0.25,
+        0.25
       ],
       "accentProfile": [
         0.95,
@@ -765,19 +771,22 @@ export const TANGO_WORLD: GenreWorld = {
         0,
         2,
         8,
-        12
+        12,
+        14
       ],
       "accentProfile": [
         0.6,
         1,
         0.85,
-        0.8
+        0.8,
+        0.2
       ],
       "velocityProfile": [
         0.65,
         0.95,
         0.8,
-        0.75
+        0.75,
+        0.25
       ],
       "articulations": [
         "staccato-accent"
@@ -2004,18 +2013,18 @@ export const TANGO_WORLD: GenreWorld = {
         "phrase"
       ],
       "roles": [
-        "voice"
+        "bandoneon"
       ],
 
       "approaches": ["phrase"],
       "instruments": [
-        "voice"
+        "bandoneon"
       ],
       "compatibleRoles": [
-        "voice"
+        "bandoneon"
       ],
       "compatibleInstruments": [
-        "voice"
+        "bandoneon"
       ],
       "canCrossRole": true,
       "meter": "4/4",
@@ -2178,7 +2187,7 @@ export const TANGO_WORLD: GenreWorld = {
         "phrase"
       ],
       "roles": [
-        "voice",
+        "bandoneon",
         "lead"
       ],
 
@@ -2189,7 +2198,7 @@ export const TANGO_WORLD: GenreWorld = {
         "sax"
       ],
       "compatibleRoles": [
-        "voice",
+        "bandoneon",
         "lead"
       ],
       "compatibleInstruments": [

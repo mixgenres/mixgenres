@@ -181,7 +181,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
         "synth",
         "drums",
         "sub-bass",
-        "voice"
+        "synth"
       ],
       "preferredMeters": [
         "4/4",
@@ -252,7 +252,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
         "drums",
         "synth",
         "sampler",
-        "voice"
+        "synth"
       ],
       "preferredMeters": [
         "4/4"
@@ -413,7 +413,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
         "drums",
         "bass",
         "electric-guitar",
-        "voice"
+        "synth"
       ],
       "preferredMeters": [
         "4/4"
@@ -563,7 +563,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
         "synth",
         "sub-bass",
         "sampler",
-        "voice"
+        "synth"
       ],
       "preferredMeters": [
         "4/4"
@@ -2631,18 +2631,18 @@ export const ELECTRONIC_WORLD: GenreWorld = {
         "phrase"
       ],
       "roles": [
-        "voice"
+        "synth"
       ],
 
       "approaches": ["phrase"],
       "instruments": [
-        "voice"
+        "synth"
       ],
       "compatibleRoles": [
-        "voice"
+        "synth"
       ],
       "compatibleInstruments": [
-        "voice"
+        "synth"
       ],
       "canCrossRole": true,
       "meter": "4/4",
@@ -2806,7 +2806,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
         "phrase"
       ],
       "roles": [
-        "voice",
+        "synth",
         "lead"
       ],
 
@@ -2816,7 +2816,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
         "bass"
       ],
       "compatibleRoles": [
-        "voice",
+        "synth",
         "lead"
       ],
       "compatibleInstruments": [

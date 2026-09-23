@@ -339,7 +339,7 @@ const SPECS: ArticulationSpec[] = [
     uses: ['extra-notes', 'velocity'],
     fidelity: 'approximate',
     caveat: 'The performance layer realizes the finger sequence as separate attacks; the Faust guitar model changes its excitation/timbre for the rasgueado/abanico gesture.',
-    reiteration: { count: 5, distribution: 'front', decay: 0.92 },
+    reiteration: { count: 5, distribution: 'accelerate', decay: 0.92 },
     velocityScale: 1.08,
     instrumentFamilies: ['plucked'],
   },

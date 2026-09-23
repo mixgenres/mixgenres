@@ -105,7 +105,7 @@ export const BLUES_WORLD: GenreWorld = {
       "description": "Raw • Acoustic • Bottleneck\nSlide guitar",
       "characteristicInstruments": [
         "acoustic-guitar",
-        "voice",
+        "harmonica",
         "harmonica",
         "foot-stomp",
         "slide-guitar"
@@ -181,7 +181,7 @@ export const BLUES_WORLD: GenreWorld = {
         "bass",
         "drums",
         "piano",
-        "voice"
+        "harmonica"
       ],
       "preferredMeters": [
         "4/4"
@@ -266,7 +266,7 @@ export const BLUES_WORLD: GenreWorld = {
       "description": "Bouncy • Ragtime • Fingerpicked\nSyncopated acoustic",
       "characteristicInstruments": [
         "acoustic-guitar",
-        "voice",
+        "harmonica",
         "washboard",
         "harmonica",
         "upright-bass"
@@ -436,7 +436,7 @@ export const BLUES_WORLD: GenreWorld = {
         "electric-guitar",
         "drums",
         "bass",
-        "voice",
+        "harmonica",
         "hand-percussion"
       ],
       "preferredMeters": [
@@ -517,7 +517,7 @@ export const BLUES_WORLD: GenreWorld = {
         "harmonica",
         "bass",
         "drums",
-        "voice"
+        "harmonica"
       ],
       "preferredMeters": [
         "4/4"
@@ -2587,18 +2587,18 @@ export const BLUES_WORLD: GenreWorld = {
         "phrase"
       ],
       "roles": [
-        "voice"
+        "harmonica"
       ],
 
       "approaches": ["phrase"],
       "instruments": [
-        "voice"
+        "harmonica"
       ],
       "compatibleRoles": [
-        "voice"
+        "harmonica"
       ],
       "compatibleInstruments": [
-        "voice"
+        "harmonica"
       ],
       "canCrossRole": true,
       "meter": "4/4",
@@ -2763,18 +2763,18 @@ export const BLUES_WORLD: GenreWorld = {
         "phrase"
       ],
       "roles": [
-        "voice"
+        "harmonica"
       ],
 
       "approaches": ["phrase"],
       "instruments": [
-        "voice"
+        "harmonica"
       ],
       "compatibleRoles": [
-        "voice"
+        "harmonica"
       ],
       "compatibleInstruments": [
-        "voice"
+        "harmonica"
       ],
       "canCrossRole": true,
       "meter": "4/4",
@@ -3329,7 +3329,7 @@ export const BLUES_WORLD: GenreWorld = {
       "enabled": true
     },
     {
-      "id": "blues-voice-phrasing",
+      "id": "blues--phrasing",
       "worldId": "blues",
       "styleIds": ["blues-delta"],
       "name": "Blues Vocal Phrasing",
@@ -3338,7 +3338,7 @@ export const BLUES_WORLD: GenreWorld = {
       "description": "12-bar vocal phrase placement with call-and-response",
       "tags": [
         "blues",
-        "voice",
+        "harmonica",
         "vocal-phrasing",
         "catalog-v2"
       ],
@@ -3347,19 +3347,19 @@ export const BLUES_WORLD: GenreWorld = {
         "phrase"
       ],
       "roles": [
-        "voice"
+        "harmonica"
       ],
 
       "approaches": ["phrase"],
       "instruments": [
-        "voice"
+        "harmonica"
       ],
       "compatibleRoles": [
-        "voice",
+        "harmonica",
         "lead"
       ],
       "compatibleInstruments": [
-        "voice"
+        "harmonica"
       ],
       "meter": "4/4",
       "cycleLength": 1,
@@ -3410,8 +3410,8 @@ export const BLUES_WORLD: GenreWorld = {
 
       "variants": [
         {
-          "id": "blues-voice-phrasing-v-voice-alt",
-          "parentPatternId": "blues-voice-phrasing",
+          "id": "blues--phrasing-v--alt",
+          "parentPatternId": "blues--phrasing",
           "name": "Blues Vocal Phrasing — alternate phrasing",
           "variationType": "phraseStart",
           "probability": 0.2,
@@ -3450,8 +3450,8 @@ export const BLUES_WORLD: GenreWorld = {
           ]
         },
         {
-          "id": "blues-voice-phrasing-v-final-accent",
-          "parentPatternId": "blues-voice-phrasing",
+          "id": "blues--phrasing-v-final-accent",
+          "parentPatternId": "blues--phrasing",
           "name": "Blues Vocal Phrasing — accent shift",
           "variationType": "accentShift",
           "probability": 0.18,
@@ -3493,7 +3493,7 @@ export const BLUES_WORLD: GenreWorld = {
       "provenance": "GenreDAW catalog rebuild: dedicated vocal phrasing coverage for Blues.",
       "authenticityTags": [
         "blues",
-        "voice"
+        "harmonica"
       ],
       "danceTags": [
         "listening"

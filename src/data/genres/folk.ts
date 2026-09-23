@@ -18,7 +18,7 @@ export const FOLK_WORLD: GenreWorld = {
       "characteristicInstruments": [
         "acoustic-guitar",
         "banjo",
-        "voice",
+        "acoustic-guitar",
         "piano",
         "drums"
       ],
@@ -101,7 +101,7 @@ export const FOLK_WORLD: GenreWorld = {
         "banjo",
         "fiddle",
         "acoustic-guitar",
-        "voice",
+        "acoustic-guitar",
         "hand-percussion"
       ],
       "preferredMeters": [
@@ -181,7 +181,7 @@ export const FOLK_WORLD: GenreWorld = {
       "characteristicInstruments": [
         "acoustic-guitar",
         "harmonica",
-        "voice",
+        "acoustic-guitar",
         "hand-percussion",
         "drums"
       ],
@@ -341,7 +341,7 @@ export const FOLK_WORLD: GenreWorld = {
       "characteristicInstruments": [
         "acoustic-guitar",
         "piano",
-        "voice",
+        "acoustic-guitar",
         "drums",
         "bass"
       ],
@@ -507,7 +507,7 @@ export const FOLK_WORLD: GenreWorld = {
       "description": "Pure • Modal • Fingerstyle\nRefined preservation",
       "characteristicInstruments": [
         "acoustic-guitar",
-        "voice",
+        "acoustic-guitar",
         "fiddle",
         "harmonium",
         "flute"
@@ -701,7 +701,7 @@ export const FOLK_WORLD: GenreWorld = {
       "old-time fiddle drones",
       "melodic breaks"
     ],
-    "voice": [
+    "acoustic-guitar": [
       "narrative delivery",
       "high lonesome vocal harmony"
     ]
@@ -2296,10 +2296,10 @@ export const FOLK_WORLD: GenreWorld = {
       "enabled": true
     },
     {
-      "id": "folk-roster-voice",
+      "id": "folk-roster-",
       "worldId": "folk",
       "styleIds": ["folk-singer-songwriter"],
-      "name": "Folk voice part",
+      "name": "Folk  part",
       "family": "Banjo Roll",
       "category": "rolePattern",
       "description": "A default-roster coverage pattern that gives",
@@ -2314,18 +2314,18 @@ export const FOLK_WORLD: GenreWorld = {
         "phrase"
       ],
       "roles": [
-        "voice"
+        "acoustic-guitar"
       ],
 
       "approaches": ["phrase"],
       "instruments": [
-        "voice"
+        "acoustic-guitar"
       ],
       "compatibleRoles": [
-        "voice"
+        "acoustic-guitar"
       ],
       "compatibleInstruments": [
-        "voice"
+        "acoustic-guitar"
       ],
       "canCrossRole": true,
       "meter": "6/8",
@@ -2465,18 +2465,18 @@ export const FOLK_WORLD: GenreWorld = {
         "phrase"
       ],
       "roles": [
-        "voice"
+        "acoustic-guitar"
       ],
 
       "approaches": ["phrase"],
       "instruments": [
-        "voice"
+        "acoustic-guitar"
       ],
       "compatibleRoles": [
-        "voice"
+        "acoustic-guitar"
       ],
       "compatibleInstruments": [
-        "voice"
+        "acoustic-guitar"
       ],
       "canCrossRole": true,
       "meter": "4/4",

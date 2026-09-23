@@ -19,7 +19,7 @@ export const METAL_WORLD: GenreWorld = {
         "electric-guitar",
         "bass",
         "drums",
-        "voice",
+        "overdrive-guitar",
         "hand-percussion"
       ],
       "preferredMeters": [
@@ -108,7 +108,7 @@ export const METAL_WORLD: GenreWorld = {
         "electric-guitar",
         "bass",
         "drums",
-        "voice",
+        "overdrive-guitar",
         "hand-percussion"
       ],
       "preferredMeters": [
@@ -187,7 +187,7 @@ export const METAL_WORLD: GenreWorld = {
         "electric-guitar",
         "bass",
         "drums",
-        "voice",
+        "overdrive-guitar",
         "hand-percussion"
       ],
       "preferredMeters": [
@@ -267,7 +267,7 @@ export const METAL_WORLD: GenreWorld = {
         "electric-guitar",
         "drums",
         "bass",
-        "voice",
+        "overdrive-guitar",
         "synth"
       ],
       "preferredMeters": [
@@ -347,7 +347,7 @@ export const METAL_WORLD: GenreWorld = {
         "drums",
         "bass",
         "synth",
-        "voice"
+        "overdrive-guitar"
       ],
       "preferredMeters": [
         "4/4"
@@ -425,7 +425,7 @@ export const METAL_WORLD: GenreWorld = {
         "electric-guitar",
         "bass",
         "drums",
-        "voice",
+        "overdrive-guitar",
         "hand-percussion"
       ],
       "preferredMeters": [
@@ -504,7 +504,7 @@ export const METAL_WORLD: GenreWorld = {
         "electric-guitar",
         "bass",
         "drums",
-        "voice",
+        "overdrive-guitar",
         "hand-percussion"
       ],
       "preferredMeters": [
@@ -575,7 +575,7 @@ export const METAL_WORLD: GenreWorld = {
         "bass",
         "drums",
         "synth",
-        "voice"
+        "overdrive-guitar"
       ],
       "preferredMeters": [
         "7/8",
@@ -2385,18 +2385,18 @@ export const METAL_WORLD: GenreWorld = {
         "phrase"
       ],
       "roles": [
-        "voice"
+        "overdrive-guitar"
       ],
 
       "approaches": ["phrase"],
       "instruments": [
-        "voice"
+        "overdrive-guitar"
       ],
       "compatibleRoles": [
-        "voice"
+        "overdrive-guitar"
       ],
       "compatibleInstruments": [
-        "voice"
+        "overdrive-guitar"
       ],
       "canCrossRole": true,
       "meter": "4/4",
@@ -2549,18 +2549,18 @@ export const METAL_WORLD: GenreWorld = {
         "phrase"
       ],
       "roles": [
-        "voice"
+        "overdrive-guitar"
       ],
 
       "approaches": ["phrase"],
       "instruments": [
-        "voice"
+        "overdrive-guitar"
       ],
       "compatibleRoles": [
-        "voice"
+        "overdrive-guitar"
       ],
       "compatibleInstruments": [
-        "voice"
+        "overdrive-guitar"
       ],
       "canCrossRole": true,
       "meter": "4/4",
@@ -3735,7 +3735,7 @@ export const METAL_WORLD: GenreWorld = {
       "enabled": true
     },
     {
-      "id": "metal-voice-phrasing",
+      "id": "metal--phrasing",
       "worldId": "metal",
       "styleIds": ["metal-heavy-metal"],
       "name": "Metal Vocal Phrasing",
@@ -3744,7 +3744,7 @@ export const METAL_WORLD: GenreWorld = {
       "description": "Screamed/clean vocal onset template with accented",
       "tags": [
         "metal",
-        "voice",
+        "overdrive-guitar",
         "vocal-phrasing",
         "catalog-v2"
       ],
@@ -3753,19 +3753,19 @@ export const METAL_WORLD: GenreWorld = {
         "phrase"
       ],
       "roles": [
-        "voice"
+        "overdrive-guitar"
       ],
 
       "approaches": ["phrase"],
       "instruments": [
-        "voice"
+        "overdrive-guitar"
       ],
       "compatibleRoles": [
-        "voice",
+        "overdrive-guitar",
         "lead"
       ],
       "compatibleInstruments": [
-        "voice"
+        "overdrive-guitar"
       ],
       "meter": "4/4",
       "cycleLength": 1,
@@ -3812,8 +3812,8 @@ export const METAL_WORLD: GenreWorld = {
 
       "variants": [
         {
-          "id": "metal-voice-phrasing-v-voice-alt",
-          "parentPatternId": "metal-voice-phrasing",
+          "id": "metal--phrasing-v--alt",
+          "parentPatternId": "metal--phrasing",
           "name": "Metal Vocal Phrasing — alternate phrasing",
           "variationType": "phraseStart",
           "probability": 0.2,
@@ -3852,8 +3852,8 @@ export const METAL_WORLD: GenreWorld = {
           ]
         },
         {
-          "id": "metal-voice-phrasing-v-final-accent",
-          "parentPatternId": "metal-voice-phrasing",
+          "id": "metal--phrasing-v-final-accent",
+          "parentPatternId": "metal--phrasing",
           "name": "Metal Vocal Phrasing — accent shift",
           "variationType": "accentShift",
           "probability": 0.18,
@@ -3895,7 +3895,7 @@ export const METAL_WORLD: GenreWorld = {
       "provenance": "GenreDAW catalog rebuild: dedicated vocal phrasing coverage for Metal.",
       "authenticityTags": [
         "metal",
-        "voice"
+        "overdrive-guitar"
       ],
       "danceTags": [
         "listening"

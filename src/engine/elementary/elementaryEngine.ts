@@ -1,6 +1,8 @@
 import { el } from '@elemaudio/core';
 import { getLuthierModelForInstrument, type LuthierPhysicalParameters } from '../audio/LuthierAPI';
 import { seedOf, randNorm } from '../generators/groove';
+import type { MixCharacter } from '../../data/styles/contracts';
+import { calculateSidechainDepth, calculateDrumKnock, calculateAcousticCrosstalk } from '../audio/mixer';
 type Node = any;
 /**
 Physical Karplus-Strong waveguide string loop.
@@ -78,6 +80,10 @@ contactPoint?: number;
 mass?: number;
 frequencyHz?: number;
 retriggerId?: number;
+attack?: number;
+decay?: number;
+sustain?: number;
+release?: number;
 }
 export interface TrackParams {
 brightness: number;
@@ -103,14 +109,14 @@ performanceMode?: PerformanceMode;
 bendGlideMs?: number;
 instrumentId?: string;
 courses?: number;
-bodyConstruction?: 'wood-box' | 'gourd' | 'skin-faced' | 'board' | 'solid-electric';
-excitationType?: 'plectrum' | 'nail' | 'fingerpad' | 'hard-pick' | 'hammer';
+bodyConstruction?: 'wood-box' | 'gourd' | 'skin-faced' | 'board' | 'solid-electric' | 'metal-shell' | 'brass-tube';
+excitationType?: 'plectrum' | 'nail' | 'fingerpad' | 'hard-pick' | 'hammer' | 'stick' | 'mallet' | 'breath' | 'bow';
 sympatheticStrings?: boolean;
 }
 export interface PluckedPreset {
 courses: number;
-bodyConstruction: 'wood-box' | 'gourd' | 'skin-faced' | 'board' | 'solid-electric';
-excitationType: 'plectrum' | 'nail' | 'fingerpad' | 'hard-pick' | 'hammer';
+bodyConstruction: 'wood-box' | 'gourd' | 'skin-faced' | 'board' | 'solid-electric' | 'metal-shell' | 'brass-tube';
+excitationType: 'plectrum' | 'nail' | 'fingerpad' | 'hard-pick' | 'hammer' | 'stick' | 'mallet' | 'breath' | 'bow';
 sympatheticStrings?: boolean;
 }
 export const EXACT_PLUCKED_PRESETS: Record<string, PluckedPreset> = {
@@ -584,10 +590,11 @@ const decayTime = Math.max(0.05, params.decay);
 const model = params.performanceMode === 'programmed-electronic' ? 9 : Math.round(params.model);
 const action = voice.actionType ?? (params.bodyTap > 0.5 ? 'golpe' : 'pluck');
 const isMuted = action === 'mute' || params.mute > 0.4;
-const attack = 0.0008 + (1 - b) * 0.01;
-const release = isMuted ? 0.012 : 0.03 + decayTime * 0.25;
-const sustain = isMuted ? 0.05 : 0.35 + 0.3 * params.body;
-const env = el.adsr(attack, decayTime * (isMuted ? 0.1 : 0.3), sustain, release, gateSignal);
+const attack = voice.attack !== undefined ? voice.attack : (0.0008 + (1 - b) * 0.01);
+const release = voice.release !== undefined ? voice.release : (isMuted ? 0.012 : 0.03 + decayTime * 0.25);
+const sustain = voice.sustain !== undefined ? voice.sustain : (isMuted ? 0.05 : 0.35 + 0.3 * params.body);
+const envDecay = voice.decay !== undefined ? voice.decay : (decayTime * (isMuted ? 0.1 : 0.3));
+const env = el.adsr(attack, envDecay, sustain, release, gateSignal);
 let rawAudio: Node;
 if (action === 'golpe' || action === 'tap') {
 const bodyPunch = el.mul(el.cycle(110), el.adsr(0.0005, 0.02, 0, 0.01, gateSignal));
@@ -1195,43 +1202,179 @@ left: el.tanh(left),
 right: el.tanh(right),
 };
 }
-export function renderMaster(
-trackSignals: { left: Node; right: Node }[],
-params: MasterParams = defaultMasterParams()
-): { left: Node; right: Node } {
-let leftSum: Node;
-let rightSum: Node;
-if (trackSignals.length === 0) {
-leftSum = el.const({ value: 0 });
-rightSum = el.const({ value: 0 });
-} else if (trackSignals.length === 1) {
-leftSum = trackSignals[0].left;
-rightSum = trackSignals[0].right;
-} else {
-leftSum = el.add(...trackSignals.map(t => t.left));
-rightSum = el.add(...trackSignals.map(t => t.right));
+export interface CategorizedTrackSignal {
+  left: Node;
+  right: Node;
+  role?: string;
+  instrumentId?: string;
+  trackId?: string;
+  category?: 'drums' | 'sub' | 'inst';
 }
-const trackCount = Math.max(1, trackSignals.length);
-const headroomTrim = Math.min(1.0, 1.8 / Math.sqrt(trackCount));
-const hpFreq = Math.max(15, params.highPass ?? 20);
-const hpLeft = el.highpass(hpFreq, 0.707, el.mul(el.const({ value: headroomTrim }), leftSum));
-const hpRight = el.highpass(hpFreq, 0.707, el.mul(el.const({ value: headroomTrim }), rightSum));
-const satLeft = el.tanh(hpLeft);
-const satRight = el.tanh(hpRight);
-const vol = Math.max(0, Math.min(2.0, params.volume ?? 1.0));
-const finalLeft = el.mul(el.const({ value: vol }), satLeft);
-const finalRight = el.mul(el.const({ value: vol }), satRight);
-return { left: finalLeft, right: finalRight };
+
+export interface CategorizedTrackSignals {
+  drums?: { left: Node; right: Node }[];
+  sub?: { left: Node; right: Node }[];
+  inst?: { left: Node; right: Node }[];
 }
+
+export function determineBusCategory(
+  role?: string,
+  instrumentId?: string
+): 'drums' | 'sub' | 'inst' {
+  const r = (role || '').toLowerCase();
+  const inst = (instrumentId || '').toLowerCase();
+
+  if (r === 'bass' || /bass|bajo|contrabajo|tuba|sousaphone|sub-bass|log-drum/i.test(inst)) {
+    return 'sub';
+  }
+  if (
+    r === 'drums' ||
+    r === 'percussion' ||
+    /drum|kick|snare|hats|cajon|conga|bongo|timbal|pandeiro|shaker|guiro|cabasa|maracas|surdo|bodhran|taiko|paigu|tam-tam|percussion|perc/i.test(
+      inst
+    )
+  ) {
+    return 'drums';
+  }
+  return 'inst';
+}
+
 export interface MasterParams {
-highPass?: number;
-volume?: number;
-performanceMode?: PerformanceMode;
+  highPass?: number;
+  volume?: number;
+  performanceMode?: PerformanceMode;
+  mixCharacter?: MixCharacter;
+  sidechainDepth?: number;
+  drumKnock?: number;
+  acousticCrosstalk?: number;
+  genreId?: string;
+  bpm?: number;
 }
+
 export function defaultMasterParams(): MasterParams {
-return {
-highPass: 20,
-volume: 1.0,
-performanceMode: 'acoustic-ensemble',
-};
+  return {
+    highPass: 20,
+    volume: 1.0,
+    performanceMode: 'acoustic-ensemble',
+  };
+}
+
+export function renderMaster(
+  trackSignals: CategorizedTrackSignal[] | CategorizedTrackSignals,
+  params: MasterParams = defaultMasterParams()
+): { left: Node; right: Node } {
+  let drumSignals: { left: Node; right: Node }[] = [];
+  let subSignals: { left: Node; right: Node }[] = [];
+  let instSignals: { left: Node; right: Node }[] = [];
+
+  if (Array.isArray(trackSignals)) {
+    for (const sig of trackSignals) {
+      const cat = sig.category ?? determineBusCategory(sig.role, sig.instrumentId);
+      if (cat === 'drums') drumSignals.push(sig);
+      else if (cat === 'sub') subSignals.push(sig);
+      else instSignals.push(sig);
+    }
+  } else {
+    drumSignals = trackSignals.drums ?? [];
+    subSignals = trackSignals.sub ?? [];
+    instSignals = trackSignals.inst ?? [];
+  }
+
+  const zero = el.const({ value: 0 });
+
+  // 1. Drum Bus Summing & Saturation ("Knock")
+  const drumLeftRaw = drumSignals.length > 0 ? (drumSignals.length === 1 ? drumSignals[0].left : el.add(...drumSignals.map(s => s.left))) : zero;
+  const drumRightRaw = drumSignals.length > 0 ? (drumSignals.length === 1 ? drumSignals[0].right : el.add(...drumSignals.map(s => s.right))) : zero;
+
+  const char = params.mixCharacter;
+  const sidechainDepth = params.sidechainDepth ?? calculateSidechainDepth(char);
+  const drumKnock = params.drumKnock ?? calculateDrumKnock(char);
+  const isSalsa = /salsa/i.test(params.genreId || '');
+  const crosstalkAmount = isSalsa ? 0.0 : (params.acousticCrosstalk ?? calculateAcousticCrosstalk(char));
+
+  const drumDrive = 1.0 + drumKnock * 1.5;
+  const saturatedDrumL = el.tanh(el.mul(el.const({ value: drumDrive }), drumLeftRaw));
+  const saturatedDrumR = el.tanh(el.mul(el.const({ value: drumDrive }), drumRightRaw));
+
+  // 2. Sub / Bass Bus Summing & Sidechain Ducking
+  const subLeftRaw = subSignals.length > 0 ? (subSignals.length === 1 ? subSignals[0].left : el.add(...subSignals.map(s => s.left))) : zero;
+  const subRightRaw = subSignals.length > 0 ? (subSignals.length === 1 ? subSignals[0].right : el.add(...subSignals.map(s => s.right))) : zero;
+
+  // Envelope follower on drum kick frequency range (30Hz - 110Hz) with tempo-scaled release
+  const bpm = params.bpm ?? 120;
+  const releaseSec = (60 / bpm) * 0.25; // 16th note sync
+  const kickMono = el.lowpass(110, 1.0, el.add(drumLeftRaw, drumRightRaw));
+  const kickEnv = el.env(0.005, releaseSec, kickMono);
+
+  const genreId = params.genreId ?? '';
+  const isElectronic = /house|techno|dnb|bass|dubstep|garage|edm|electro|afrobeats|club/i.test(genreId);
+
+  let duckedSubL: Node;
+  let duckedSubR: Node;
+
+  if (isElectronic) {
+    // Deep rhythmic pump for electronic/club genres
+    const subDuckingMultiplier = el.sub(1.0, el.mul(el.const({ value: sidechainDepth * 0.95 }), kickEnv));
+    duckedSubL = el.mul(subLeftRaw, subDuckingMultiplier);
+    duckedSubR = el.mul(subRightRaw, subDuckingMultiplier);
+  } else {
+    // Transparent shelf dip (depth 0.2) below 150Hz for acoustic genres
+    const subDuckingMultiplier = el.sub(1.0, el.mul(el.const({ value: 0.2 * 0.85 }), kickEnv));
+
+    const subLLow = el.lowpass(150, 0.707, subLeftRaw);
+    const subLHigh = el.sub(subLeftRaw, subLLow); // Perfect reconstruction high-pass
+    duckedSubL = el.add(el.mul(subLLow, subDuckingMultiplier), subLHigh);
+
+    const subRLow = el.lowpass(150, 0.707, subRightRaw);
+    const subRHigh = el.sub(subRightRaw, subRLow);
+    duckedSubR = el.add(el.mul(subRLow, subDuckingMultiplier), subRHigh);
+  }
+
+  // 3. Instrumental Bus Summing
+  const instLeftRaw = instSignals.length > 0 ? (instSignals.length === 1 ? instSignals[0].left : el.add(...instSignals.map(s => s.left))) : zero;
+  const instRightRaw = instSignals.length > 0 ? (instSignals.length === 1 ? instSignals[0].right : el.add(...instSignals.map(s => s.right))) : zero;
+
+  // 4. Acoustic Cross-Bleed (12ms micro-delay low-passed + Haas widening)
+  let finalDrumL = saturatedDrumL;
+  let finalDrumR = saturatedDrumR;
+  let finalInstL = instLeftRaw;
+  let finalInstR = instRightRaw;
+
+  if (crosstalkAmount > 0.001) {
+    // 12ms delay (529 samples) filtered below 4500Hz
+    const rawBleedL = el.lowpass(4500, 0.5, el.delay({ key: 'bleed:i2dL', size: 44100 }, el.const({ value: 529 }), el.const({ value: 0 }), instLeftRaw));
+    const rawBleedR = el.lowpass(4500, 0.5, el.delay({ key: 'bleed:i2dR', size: 44100 }, el.const({ value: 529 }), el.const({ value: 0 }), instRightRaw));
+
+    // Haas stereo widening (Left 2ms/88 samples, Right 15ms/661 samples)
+    const bleedInstToDrumL = el.delay({ key: 'haas:bleedL', size: 44100 }, el.const({ value: 88 }), el.const({ value: 0 }), rawBleedL);
+    const bleedInstToDrumR = el.delay({ key: 'haas:bleedR', size: 44100 }, el.const({ value: 661 }), el.const({ value: 0 }), rawBleedR);
+
+    const bleedDrumToInstL = el.lowpass(4500, 0.5, el.delay({ key: 'bleed:d2iL', size: 44100 }, el.const({ value: 529 }), el.const({ value: 0 }), saturatedDrumL));
+    const bleedDrumToInstR = el.lowpass(4500, 0.5, el.delay({ key: 'bleed:d2iR', size: 44100 }, el.const({ value: 529 }), el.const({ value: 0 }), saturatedDrumR));
+
+    finalDrumL = el.add(saturatedDrumL, el.mul(el.const({ value: crosstalkAmount }), bleedInstToDrumL));
+    finalDrumR = el.add(saturatedDrumR, el.mul(el.const({ value: crosstalkAmount }), bleedInstToDrumR));
+    finalInstL = el.add(instLeftRaw, el.mul(el.const({ value: crosstalkAmount }), bleedDrumToInstL));
+    finalInstR = el.add(instRightRaw, el.mul(el.const({ value: crosstalkAmount }), bleedDrumToInstR));
+  }
+
+  // 5. Final Bus Summing & Headroom Trim
+  const masterLeftSum = el.add(finalDrumL, el.add(duckedSubL, finalInstL));
+  const masterRightSum = el.add(finalDrumR, el.add(duckedSubR, finalInstR));
+
+  const totalTrackCount = Math.max(1, drumSignals.length + subSignals.length + instSignals.length);
+  const headroomTrim = Math.min(1.0, 1.8 / Math.sqrt(totalTrackCount));
+  const hpFreq = Math.max(15, params.highPass ?? 20);
+
+  const hpLeft = el.highpass(hpFreq, 0.707, el.mul(el.const({ value: headroomTrim }), masterLeftSum));
+  const hpRight = el.highpass(hpFreq, 0.707, el.mul(el.const({ value: headroomTrim }), masterRightSum));
+
+  const satLeft = el.tanh(hpLeft);
+  const satRight = el.tanh(hpRight);
+
+  const vol = Math.max(0, Math.min(2.0, params.volume ?? 1.0));
+  const finalLeft = el.mul(el.const({ value: vol }), satLeft);
+  const finalRight = el.mul(el.const({ value: vol }), satRight);
+
+  return { left: finalLeft, right: finalRight };
 }

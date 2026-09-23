@@ -94,7 +94,7 @@ export const SWING_WORLD: GenreWorld = {
         "violin",
         "upright-bass",
         "clarinet",
-        "voice"
+        "alto-sax"
       ],
       "preferredMeters": [
         "4/4"
@@ -1573,18 +1573,18 @@ export const SWING_WORLD: GenreWorld = {
         "phrase"
       ],
       "roles": [
-        "voice"
+        "alto-sax"
       ],
 
       "approaches": ["phrase"],
       "instruments": [
-        "voice"
+        "alto-sax"
       ],
       "compatibleRoles": [
-        "voice"
+        "alto-sax"
       ],
       "compatibleInstruments": [
-        "voice"
+        "alto-sax"
       ],
       "canCrossRole": true,
       "meter": "4/4",
@@ -1745,7 +1745,7 @@ export const SWING_WORLD: GenreWorld = {
         "phrase"
       ],
       "roles": [
-        "voice",
+        "alto-sax",
         "lead"
       ],
 
@@ -1756,7 +1756,7 @@ export const SWING_WORLD: GenreWorld = {
         "piano"
       ],
       "compatibleRoles": [
-        "voice",
+        "alto-sax",
         "lead"
       ],
       "compatibleInstruments": [
@@ -2928,7 +2928,7 @@ export const SWING_WORLD: GenreWorld = {
       "enabled": true
     },
     {
-      "id": "swing-voice-phrasing",
+      "id": "swing--phrasing",
       "worldId": "swing",
       "styleIds": ["swing-big-band"],
       "name": "Swing Vocal Phrasing",
@@ -2937,7 +2937,7 @@ export const SWING_WORLD: GenreWorld = {
       "description": "Dedicated vocal phrasing space for Swing,",
       "tags": [
         "swing",
-        "voice",
+        "alto-sax",
         "vocal-phrasing",
         "catalog-v2"
       ],
@@ -2946,19 +2946,19 @@ export const SWING_WORLD: GenreWorld = {
         "phrase"
       ],
       "roles": [
-        "voice"
+        "alto-sax"
       ],
 
       "approaches": ["phrase"],
       "instruments": [
-        "voice"
+        "alto-sax"
       ],
       "compatibleRoles": [
-        "voice",
+        "alto-sax",
         "lead"
       ],
       "compatibleInstruments": [
-        "voice"
+        "alto-sax"
       ],
       "meter": "4/4",
       "cycleLength": 1,
@@ -3005,8 +3005,8 @@ export const SWING_WORLD: GenreWorld = {
 
       "variants": [
         {
-          "id": "swing-voice-phrasing-v1",
-          "parentPatternId": "swing-voice-phrasing",
+          "id": "swing--phrasing-v1",
+          "parentPatternId": "swing--phrasing",
           "name": "Swing Vocal Phrasing — sparse",
           "variationType": "sparse",
           "probability": 0.22,
@@ -3031,8 +3031,8 @@ export const SWING_WORLD: GenreWorld = {
           ]
         },
         {
-          "id": "swing-voice-phrasing-v2",
-          "parentPatternId": "swing-voice-phrasing",
+          "id": "swing--phrasing-v2",
+          "parentPatternId": "swing--phrasing",
           "name": "Swing Vocal Phrasing — accent shift",
           "variationType": "accentShift",
           "probability": 0.18,
@@ -3066,7 +3066,7 @@ export const SWING_WORLD: GenreWorld = {
       "provenance": "GenreDAW catalog rebuild: vocal coverage for Swing.",
       "authenticityTags": [
         "swing",
-        "voice"
+        "alto-sax"
       ],
       "danceTags": [
         "listening"

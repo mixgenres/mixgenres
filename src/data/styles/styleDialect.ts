@@ -64,8 +64,7 @@ function instrumentRole(instrumentId: string): Role | string {
   const n = instrumentId.toLowerCase();
   if (/bass|guitarron/.test(n)) return 'bass';
   if (/drum|guiro|güiro|bongo|conga|timbale|shaker|guacharaca|palma|bombo|dikanza|percussion|tambor/.test(n)) return 'percussion';
-  if (/voice|choir/.test(n)) return 'voice';
-  if (/flute|violin|bandoneon|trumpet|horn|sax|guitar|accordion|tres|requinto|mandolin|fiddle/.test(n)) return 'melody';
+  if (/flute|violin|bandoneon|trumpet|horn|sax|guitar|accordion|tres|requinto|mandolin|fiddle|voice|choir/.test(n)) return 'melody';
   return 'harmony';
 }
 

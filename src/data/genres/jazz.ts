@@ -319,7 +319,7 @@ export const JAZZ_WORLD: GenreWorld = {
         "violin",
         "upright-bass",
         "clarinet",
-        "voice"
+        "tenor-sax"
       ],
       "preferredMeters": [
         "4/4"
@@ -2312,18 +2312,18 @@ export const JAZZ_WORLD: GenreWorld = {
         "phrase"
       ],
       "roles": [
-        "voice"
+        "tenor-sax"
       ],
 
       "approaches": ["phrase"],
       "instruments": [
-        "voice"
+        "tenor-sax"
       ],
       "compatibleRoles": [
-        "voice"
+        "tenor-sax"
       ],
       "compatibleInstruments": [
-        "voice"
+        "tenor-sax"
       ],
       "canCrossRole": true,
       "meter": "4/4",

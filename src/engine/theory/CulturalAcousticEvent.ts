@@ -91,6 +91,11 @@ export interface CulturalAcousticEvent {
   duration?: number;
   /** Optional technique modifier */
   techniqueModifier?: string;
+  /** Envelope overrides for physical modeling */
+  attack?: number;
+  decay?: number;
+  sustain?: number;
+  release?: number;
 }
 
 export interface SocioAcousticContext {

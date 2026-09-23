@@ -1901,18 +1901,18 @@ export const TIMBA_WORLD: GenreWorld = {
         "phrase"
       ],
       "roles": [
-        "voice"
+        "synth"
       ],
 
       "approaches": ["phrase"],
       "instruments": [
-        "voice"
+        "synth"
       ],
       "compatibleRoles": [
-        "voice"
+        "synth"
       ],
       "compatibleInstruments": [
-        "voice"
+        "synth"
       ],
       "canCrossRole": true,
       "meter": "4/4",
@@ -2077,18 +2077,18 @@ export const TIMBA_WORLD: GenreWorld = {
         "phrase"
       ],
       "roles": [
-        "voice"
+        "synth"
       ],
 
       "approaches": ["phrase"],
       "instruments": [
-        "voice"
+        "synth"
       ],
       "compatibleRoles": [
-        "voice"
+        "synth"
       ],
       "compatibleInstruments": [
-        "voice"
+        "synth"
       ],
       "canCrossRole": true,
       "meter": "4/4",
@@ -2851,7 +2851,7 @@ export const TIMBA_WORLD: GenreWorld = {
       "enabled": true
     },
     {
-      "id": "timba-voice-phrasing",
+      "id": "timba--phrasing",
       "worldId": "timba",
       "styleIds": ["timba-havana-modern"],
       "name": "Timba Vocal Phrasing",
@@ -2860,7 +2860,7 @@ export const TIMBA_WORLD: GenreWorld = {
       "description": "Coro and sonero phrasing template shaped",
       "tags": [
         "timba",
-        "voice",
+        "synth",
         "vocal-phrasing",
         "catalog-v2"
       ],
@@ -2869,19 +2869,19 @@ export const TIMBA_WORLD: GenreWorld = {
         "phrase"
       ],
       "roles": [
-        "voice"
+        "synth"
       ],
 
       "approaches": ["phrase"],
       "instruments": [
-        "voice"
+        "synth"
       ],
       "compatibleRoles": [
-        "voice",
+        "synth",
         "lead"
       ],
       "compatibleInstruments": [
-        "voice"
+        "synth"
       ],
       "meter": "4/4",
       "cycleLength": 1,
@@ -2932,8 +2932,8 @@ export const TIMBA_WORLD: GenreWorld = {
 
       "variants": [
         {
-          "id": "timba-voice-phrasing-v-voice-alt",
-          "parentPatternId": "timba-voice-phrasing",
+          "id": "timba--phrasing-v--alt",
+          "parentPatternId": "timba--phrasing",
           "name": "Timba Vocal Phrasing — alternate phrasing",
           "variationType": "phraseStart",
           "probability": 0.2,
@@ -2972,8 +2972,8 @@ export const TIMBA_WORLD: GenreWorld = {
           ]
         },
         {
-          "id": "timba-voice-phrasing-v-final-accent",
-          "parentPatternId": "timba-voice-phrasing",
+          "id": "timba--phrasing-v-final-accent",
+          "parentPatternId": "timba--phrasing",
           "name": "Timba Vocal Phrasing — accent shift",
           "variationType": "accentShift",
           "probability": 0.18,
@@ -3015,7 +3015,7 @@ export const TIMBA_WORLD: GenreWorld = {
       "provenance": "GenreDAW catalog rebuild: dedicated vocal phrasing coverage for Timba.",
       "authenticityTags": [
         "timba",
-        "voice"
+        "synth"
       ],
       "danceTags": [
         "listening"

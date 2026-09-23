@@ -168,64 +168,65 @@ function fillStartBeat(c: KitContext): number | null {
 
 function fillHit(c: KitContext, beat: number, from: number): KitVoicing {
   const span = Math.max(0.5, c.beatsPerBar - from);
-  const through = Math.min(1, (beat - from) / span);
+  const through = Math.min(1, Math.max(0, (beat - from) / span));
+  // Exponential / power crescendo towards beat 1 of the next bar
+  const crescendoGain = 0.45 + Math.pow(through, 1.4) * 0.72;
 
   // Identify our index in the fill
   const fillOnsets = c.barOnsets.filter(b => b >= from);
   const fillIndex = fillOnsets.indexOf(beat) >= 0 ? fillOnsets.indexOf(beat) : 0;
+  const isFinalHitInBar = fillIndex === fillOnsets.length - 1 || beat >= c.beatsPerBar - 0.28;
 
   const isElectronic = c.flavour === 'electronic';
 
   if (isElectronic) {
-    // Electronic rudiments: 32nd note hi-hat rolls or snare risers
     const isSnareRoll = (c.seed & 1) === 0;
     if (isSnareRoll) {
-      // Snare riser: Snare getting progressively louder
       const snareKey = GM.snareElectric;
       return {
         key: snareKey,
         limb: 'snare',
-        gain: 0.5 + through * 0.5,
+        gain: isFinalHitInBar ? 1.15 : crescendoGain,
+        flamMs: isFinalHitInBar ? 18 : undefined,
       };
     } else {
-      // Hi-hat roll / 32nd notes
       return {
         key: GM.hatClosed,
         limb: 'hat',
-        gain: 0.6 + (fillIndex % 2 === 0 ? 0.3 : 0),
+        gain: isFinalHitInBar ? 1.1 : crescendoGain + (fillIndex % 2 === 0 ? 0.15 : 0),
       };
     }
   } else {
-    // Acoustic & Brush rudiments:
-    // Return combinations of [snare, kick, kick], [snare, tom, tom], or [flam, ghost, ghost]
+    // Acoustic & Brush rudiments mathematically building into the downbeat
     const rudimentSeed = (c.seed ^ 0x3b1c) % 3;
+    if (isFinalHitInBar) {
+      // Final fill onset before beat 1: flam crescendo hit directly pulling into the crash
+      return { key: GM.snare, limb: 'snare', gain: 1.18, flamMs: 22 };
+    }
     if (rudimentSeed === 0) {
-      // Combination: [snare, kick, kick]
       const stepInCell = fillIndex % 3;
       if (stepInCell === 0) {
-        return { key: GM.snare, limb: 'snare', gain: 0.95 };
+        return { key: GM.snare, limb: 'snare', gain: crescendoGain * 1.05 };
       } else {
-        return { key: GM.kick, limb: 'kick', gain: 0.85 };
+        return { key: GM.kick, limb: 'kick', gain: crescendoGain * 0.9 };
       }
     } else if (rudimentSeed === 1) {
-      // Combination: [snare, tom, tom]
       const stepInCell = fillIndex % 3;
       if (stepInCell === 0) {
-        return { key: GM.snare, limb: 'snare', gain: 0.9 };
+        return { key: GM.snare, limb: 'snare', gain: crescendoGain * 1.0 };
       } else if (stepInCell === 1) {
-        return { key: GM.tomHigh, limb: 'tom', gain: 0.85 };
+        return { key: GM.tomHigh, limb: 'tom', gain: crescendoGain * 0.95 };
       } else {
-        return { key: GM.tomMid, limb: 'tom', gain: 0.82 };
+        return { key: GM.tomMid, limb: 'tom', gain: crescendoGain * 0.92 };
       }
     } else {
-      // Combination: [flam, ghost, ghost]
       const stepInCell = fillIndex % 3;
       if (stepInCell === 0) {
-        return { key: GM.snare, limb: 'snare', gain: 1.0, flamMs: 15 };
+        return { key: GM.snare, limb: 'snare', gain: crescendoGain * 1.1, flamMs: 15 };
       } else if (stepInCell === 1) {
-        return { key: GM.snare, limb: 'ghost', gain: 0.35 };
+        return { key: GM.snare, limb: 'ghost', gain: Math.min(0.45, crescendoGain * 0.5) };
       } else {
-        return { key: GM.snare, limb: 'ghost', gain: 0.32 };
+        return { key: GM.snare, limb: 'ghost', gain: Math.min(0.42, crescendoGain * 0.45) };
       }
     }
   }

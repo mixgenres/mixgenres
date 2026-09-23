@@ -202,10 +202,19 @@ export function applyFeel(g: GrooveProfile, input: FeelInput): FeelOutput {
     ? (input.authoredMs ?? 0)
     : (g.lean + (g.roleLean[input.role] ?? 0) + (g.pocket?.[slot] ?? 0) + roleMs + (input.anticipated ? g.anticipationMs : 0)) * scale + (input.authoredMs ?? 0);
 
+  let currentHumanizeMs = g.humanizeMs;
+  if (g.id?.includes('tango')) {
+    if (input.role === 'comp' || input.role === 'bass') {
+      currentHumanizeMs = 2;
+    } else if (input.role === 'lead') {
+      currentHumanizeMs = 12;
+    }
+  }
+
   // A human ensemble does not independently jitter every player. There is a
   // shared breath/pocket plus a much smaller player-specific deviation. This
   // keeps the band coherent while avoiding quantized machine-gun alignment.
-  const ensemble = input.authoredTimingOnly ? 0 : noise1D(input.beatInBar / 2, input.ensembleSeed ?? input.seed) * g.humanizeMs * 0.38;
+  const ensemble = input.authoredTimingOnly ? 0 : noise1D(input.beatInBar / 2, input.ensembleSeed ?? input.seed) * currentHumanizeMs * 0.38;
   let finalMs = ms + ensemble;
   // 3. Limit timing drift for styles whose phrasing depends on fixed placement.
   const tightness =
@@ -217,7 +226,7 @@ export function applyFeel(g: GrooveProfile, input: FeelInput): FeelOutput {
 
   // Use low-frequency Cosine-Interpolated noise to modulate timing and velocity curves over bars
   const smoothDrift = noise1D(input.beatInBar / 4 + (input.seed % 100), 101) * 2.0;
-  finalMs += smoothDrift * g.humanizeMs * tightness * intensityTighten * humanizeScale;
+  finalMs += smoothDrift * currentHumanizeMs * tightness * intensityTighten * humanizeScale;
 
   // 4. dynamics: metric hierarchy is disabled for authored traditional phrasing;
   // the pattern's own accent profile should carry the musical hierarchy.

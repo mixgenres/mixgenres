@@ -66,7 +66,7 @@ export class BandWorkletNode {
       try {
         const contract = contractForGenre(worldId);
         if (contract?.timbreSpace?.mixCharacter) {
-          this.masterChain.setMixCharacter(contract.timbreSpace.mixCharacter);
+          this.masterChain.setMixCharacter(contract.timbreSpace.mixCharacter, worldId);
         }
       } catch {
         // world not yet defined or invalid id
@@ -97,7 +97,7 @@ export class BandWorkletNode {
         initialMixChar = contractForGenre(this.activeWorldId)?.timbreSpace?.mixCharacter;
       } catch {}
     }
-    this.masterChain = createMasterChain(context, initialMixChar);
+    this.masterChain = createMasterChain(context, initialMixChar, this.activeWorldId);
     this.masterChain.setVolume(volume);
     this.audioNode.connect(this.masterChain.input);
 
@@ -250,6 +250,8 @@ export class BandWorkletNode {
     const trackSignals: {
       left: any;
       right: any;
+      trackId?: string;
+      instrumentId?: string;
     }[] = [];
 
     for (const [trackId, params] of this.trackParamsMap.entries()) {
@@ -261,22 +263,42 @@ export class BandWorkletNode {
       const fp = this.computeTrackFingerprint(trackId, isSilenced, params, voices);
       const cached = this.trackSignalsCache.get(trackId);
 
+      let sig: { left: any; right: any };
       if (cached && cached.fingerprint === fp) {
-        trackSignals.push(cached.signal);
+        sig = cached.signal;
       } else {
-        let trackSig: { left: any; right: any };
         if (isSilenced) {
           const zero = el.const({ value: 0 });
-          trackSig = { left: zero, right: zero };
+          sig = { left: zero, right: zero };
         } else {
-          trackSig = renderTrack(trackId, voices, params);
+          sig = renderTrack(trackId, voices, params);
         }
-        this.trackSignalsCache.set(trackId, { fingerprint: fp, signal: trackSig });
-        trackSignals.push(trackSig);
+        this.trackSignalsCache.set(trackId, { fingerprint: fp, signal: sig });
+      }
+      trackSignals.push({
+        left: sig.left,
+        right: sig.right,
+        trackId,
+        instrumentId: params.instrumentId,
+      });
+    }
+
+    let mixCharacter: import('../../data/styles/contracts').MixCharacter | undefined;
+    if (this.activeWorldId) {
+      try {
+        mixCharacter = contractForGenre(this.activeWorldId)?.timbreSpace?.mixCharacter;
+      } catch {
+        /* ignore missing contract */
       }
     }
 
-    const masterSig = renderMaster(trackSignals, { highPass: 20, volume: this.masterVolume });
+    const masterSig = renderMaster(trackSignals, {
+      highPass: 20,
+      volume: this.masterVolume,
+      mixCharacter,
+      genreId: this.activeWorldId,
+      bpm: 120,
+    });
     this.core.render(masterSig.left, masterSig.right).catch(err => {
       console.warn('[Elementary] Render error:', err);
     });
@@ -394,6 +416,12 @@ export class BandWorkletNode {
     (voice as any).triggerSeq = ++this.voiceSeq;
     voice.velocity = velScaled;
     voice.gate = 1;
+    
+    // Copy envelope overrides
+    voice.attack = event.attack;
+    voice.decay = event.decay;
+    voice.sustain = event.sustain;
+    voice.release = event.release;
 
     this.markDirty(trackId);
     if (!deferSync) this.requestSync();

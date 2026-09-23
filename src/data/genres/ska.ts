@@ -179,7 +179,7 @@ export const SKA_WORLD: GenreWorld = {
         "brass",
         "bass",
         "drums",
-        "voice"
+        "synth"
       ],
       "preferredMeters": [
         "4/4"
@@ -280,7 +280,7 @@ export const SKA_WORLD: GenreWorld = {
     "drums": [
       "ska drive"
     ],
-    "voice": [
+    "synth": [
       "call-and-response"
     ]
   },

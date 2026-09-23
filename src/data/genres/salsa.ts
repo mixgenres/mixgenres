@@ -2348,18 +2348,18 @@ export const SALSA_WORLD: GenreWorld = {
         "phrase"
       ],
       "roles": [
-        "voice"
+        "trumpet"
       ],
 
       "approaches": ["phrase"],
       "instruments": [
-        "voice"
+        "trumpet"
       ],
       "compatibleRoles": [
-        "voice"
+        "trumpet"
       ],
       "compatibleInstruments": [
-        "voice"
+        "trumpet"
       ],
       "canCrossRole": true,
       "meter": "4/4",
@@ -2513,18 +2513,18 @@ export const SALSA_WORLD: GenreWorld = {
         "phrase"
       ],
       "roles": [
-        "voice"
+        "trumpet"
       ],
 
       "approaches": ["phrase"],
       "instruments": [
-        "voice"
+        "trumpet"
       ],
       "compatibleRoles": [
-        "voice"
+        "trumpet"
       ],
       "compatibleInstruments": [
-        "voice"
+        "trumpet"
       ],
       "canCrossRole": true,
       "meter": "4/4",
@@ -3276,7 +3276,7 @@ export const SALSA_WORLD: GenreWorld = {
       "enabled": true
     },
     {
-      "id": "salsa-voice-phrasing",
+      "id": "salsa--phrasing",
       "worldId": "salsa",
       "styleIds": ["salsa-son-montuno"],
       "name": "Salsa Vocal Phrasing",
@@ -3285,7 +3285,7 @@ export const SALSA_WORLD: GenreWorld = {
       "description": "Coro response phrasing sits between clave-driven",
       "tags": [
         "salsa",
-        "voice",
+        "trumpet",
         "vocal-phrasing",
         "catalog-v2"
       ],
@@ -3294,19 +3294,19 @@ export const SALSA_WORLD: GenreWorld = {
         "phrase"
       ],
       "roles": [
-        "voice"
+        "trumpet"
       ],
 
       "approaches": ["phrase"],
       "instruments": [
-        "voice"
+        "trumpet"
       ],
       "compatibleRoles": [
-        "voice",
+        "trumpet",
         "lead"
       ],
       "compatibleInstruments": [
-        "voice"
+        "trumpet"
       ],
       "meter": "4/4",
       "cycleLength": 1,
@@ -3357,8 +3357,8 @@ export const SALSA_WORLD: GenreWorld = {
 
       "variants": [
         {
-          "id": "salsa-voice-phrasing-v-voice-alt",
-          "parentPatternId": "salsa-voice-phrasing",
+          "id": "salsa--phrasing-v--alt",
+          "parentPatternId": "salsa--phrasing",
           "name": "Salsa Vocal Phrasing — alternate phrasing",
           "variationType": "phraseStart",
           "probability": 0.2,
@@ -3397,8 +3397,8 @@ export const SALSA_WORLD: GenreWorld = {
           ]
         },
         {
-          "id": "salsa-voice-phrasing-v-final-accent",
-          "parentPatternId": "salsa-voice-phrasing",
+          "id": "salsa--phrasing-v-final-accent",
+          "parentPatternId": "salsa--phrasing",
           "name": "Salsa Vocal Phrasing — accent shift",
           "variationType": "accentShift",
           "probability": 0.18,
@@ -3440,7 +3440,7 @@ export const SALSA_WORLD: GenreWorld = {
       "provenance": "GenreDAW catalog rebuild: dedicated vocal phrasing coverage for Salsa.",
       "authenticityTags": [
         "salsa",
-        "voice"
+        "trumpet"
       ],
       "danceTags": [
         "listening"

@@ -91,11 +91,40 @@ function contextualArticulation(
   isStructural: boolean,
   grammar: PerformanceGrammar,
   role: string,
+  instrumentId?: string,
+  sectionKind?: string,
 ): string | undefined {
-  if (!authored) return authored;
+  if (authored) return authored;
   const vocab = grammar.articulationVocabulary?.[role] ?? [];
-  // Into a cadence, an instrument leans harder into a drag/weight articulation
-  // if the genre's vocabulary offers one, rather than repeating the same tag.
+  const inst = (instrumentId || '').toLowerCase();
+  const kind = (sectionKind || '').toLowerCase();
+
+  // Culturally Grounded Articulations
+  // 1. Tango bass patterns trigger arrastre slide
+  if ((inst.includes('upright') || inst.includes('contrabajo') || role === 'bass') && (vocab.includes('arrastre') || inst.includes('tango') || kind.includes('tango'))) {
+    if (isCadenceBar || !isStructural) return 'arrastre';
+  }
+  // 2. Bachata patterns dictate apagado right-hand palm mute
+  if ((inst.includes('requinto') || inst.includes('bachata') || inst.includes('guitar')) && (vocab.includes('apagado') || inst.includes('requinto'))) {
+    if (!isStructural) return 'apagado';
+  }
+  // 3. Reggae Hammond patterns execute syncopated double-handed bubble
+  if ((inst.includes('organ') || inst.includes('hammond')) && (vocab.includes('bubble') || vocab.includes('staccato') || inst.includes('reggae'))) {
+    if (!isStructural) return 'bubble';
+  }
+  // 4. Flamenco patterns trigger rasgueado or golpe
+  if (inst.includes('spanish-guitar') || inst.includes('flamenco') || inst.includes('cajon')) {
+    if (vocab.includes('rasgueado') && isStructural) return 'rasgueado';
+    if (vocab.includes('golpe')) return 'golpe';
+  }
+  // 5. Salsa patterns trigger montuno / tumbao
+  if (inst.includes('piano') && (vocab.includes('montuno') || inst.includes('salsa') || inst.includes('timba'))) {
+    return 'montuno';
+  }
+  if (inst.includes('conga') && (vocab.includes('tumbao') || inst.includes('salsa') || inst.includes('timba'))) {
+    return 'tumbao';
+  }
+
   if (isCadenceBar && vocab.includes('pesante') && !isStructural) return 'pesante';
   if (isCadenceBar && vocab.includes('arrastre')) return 'arrastre';
   return authored;
@@ -361,7 +390,7 @@ export function interpretPattern(options: InterpretPatternOptions): Interpretati
       pitchIntent,
       structural: isStructural,
       hitType: o.hitType,
-      articulation: contextualArticulation(activeVariant?.articulation, isCadenceBar, isStructural, grammar, role),
+      articulation: contextualArticulation(activeVariant?.articulation, isCadenceBar, isStructural, grammar, role, instrumentId, sectionKind),
       onsetIndex: o.originalIdx,
       registerOffset,
     });

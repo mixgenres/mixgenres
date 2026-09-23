@@ -130,25 +130,17 @@ export function advancePhraseDevelopment(
     return 'establish';
   }
 
-  // Natural 4-phrase musical development arc (Establish -> Reinforce -> Vary/Answer -> Cadence/Turnaround)
-  const arcCycle = memory.repetitionCount % 4;
-  if (arcCycle === 1) {
-    // 2nd iteration: Reinforce/repeat with subtle nuance
-    memory.developmentStage = 'repeat';
-    return 'repeat';
-  } else if (arcCycle === 2) {
-    // 3rd iteration: Vary or answer
-    const roll = rand01(seedOf(seedKey, memory.phraseIndex, memory.repetitionCount, 'dev-stage-3'));
-    const isAnswer = roll < (probs.answerProbability / (probs.answerProbability + probs.variationProbability + 0.01));
-    memory.developmentStage = isAnswer ? 'answer' : 'vary';
-    return memory.developmentStage;
-  } else if (arcCycle === 3) {
-    // 4th iteration: Transition / Fill / Cadence leading to next phrase
-    const roll = rand01(seedOf(seedKey, memory.phraseIndex, memory.repetitionCount, 'dev-stage-4'));
-    if (roll < 0.6) {
-      memory.developmentStage = 'transition';
-      return 'transition';
-    }
+  // A-A'-B classical phrasing model: A (establish) -> A' (vary with slight rhythmic shift) -> B (completely new run resolution)
+  const aabCycle = memory.repetitionCount % 3;
+  if (aabCycle === 0) {
+    memory.developmentStage = 'establish';
+    return 'establish';
+  } else if (aabCycle === 1) {
+    memory.developmentStage = 'vary';
+    return 'vary';
+  } else {
+    memory.developmentStage = 'transition';
+    return 'transition';
   }
 
   // Seeded transition evaluation using probability distribution

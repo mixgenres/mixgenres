@@ -96,7 +96,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
         "drums",
         "synth",
         "sampler",
-        "voice"
+        "synth"
       ],
       "preferredMeters": [
         "4/4"
@@ -254,7 +254,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
         "drums",
         "synth",
         "piano",
-        "voice"
+        "synth"
       ],
       "preferredMeters": [
         "4/4"
@@ -334,7 +334,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
         "bass",
         "drums",
         "electric-guitar",
-        "voice"
+        "synth"
       ],
       "preferredMeters": [
         "4/4"
@@ -414,7 +414,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
         "drums",
         "sub-bass",
         "synth",
-        "voice"
+        "synth"
       ],
       "preferredMeters": [
         "4/4",
@@ -487,7 +487,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
         "sampler",
         "sub-bass",
         "drums",
-        "voice"
+        "synth"
       ],
       "preferredMeters": [
         "4/4"
@@ -2866,18 +2866,18 @@ export const HIP_HOP_WORLD: GenreWorld = {
         "phrase"
       ],
       "roles": [
-        "voice"
+        "synth"
       ],
 
       "approaches": ["phrase"],
       "instruments": [
-        "voice"
+        "synth"
       ],
       "compatibleRoles": [
-        "voice"
+        "synth"
       ],
       "compatibleInstruments": [
-        "voice"
+        "synth"
       ],
       "canCrossRole": true,
       "meter": "4/4",
@@ -3224,7 +3224,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
       "enabled": true
     },
     {
-      "id": "hip-hop-voice-phrasing",
+      "id": "hip-hop--phrasing",
       "worldId": "hip-hop",
       "styleIds": ["hip-hop-boom-bap"],
       "name": "Rap Cadence & Hook",
@@ -3233,7 +3233,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
       "description": "Rap cadence and hook placement with",
       "tags": [
         "hip-hop",
-        "voice",
+        "synth",
         "vocal-phrasing",
         "catalog-v2",
         "sample-loop"
@@ -3243,18 +3243,18 @@ export const HIP_HOP_WORLD: GenreWorld = {
         "phrase"
       ],
       "roles": [
-        "voice"
+        "synth"
       ],
 
       "approaches": ["phrase"],
       "instruments": [
-        "voice"
+        "synth"
       ],
       "compatibleRoles": [
-        "voice"
+        "synth"
       ],
       "compatibleInstruments": [
-        "voice"
+        "synth"
       ],
       "meter": "4/4",
       "cycleLength": 1,
@@ -3304,8 +3304,8 @@ export const HIP_HOP_WORLD: GenreWorld = {
 
       "variants": [
         {
-          "id": "hip-hop-voice-phrasing-v1",
-          "parentPatternId": "hip-hop-voice-phrasing",
+          "id": "hip-hop--phrasing-v1",
+          "parentPatternId": "hip-hop--phrasing",
           "name": "Rap Cadence & Hook — sparse",
           "variationType": "sparse",
           "probability": 0.22,
@@ -3330,8 +3330,8 @@ export const HIP_HOP_WORLD: GenreWorld = {
           ]
         },
         {
-          "id": "hip-hop-voice-phrasing-v2",
-          "parentPatternId": "hip-hop-voice-phrasing",
+          "id": "hip-hop--phrasing-v2",
+          "parentPatternId": "hip-hop--phrasing",
           "name": "Rap Cadence & Hook — accent shift",
           "variationType": "accentShift",
           "probability": 0.18,
@@ -3365,7 +3365,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
       "provenance": "GenreDAW catalog rebuild: dedicated vocal phrasing coverage for Global Urban Beat.",
       "authenticityTags": [
         "hip-hop",
-        "voice"
+        "synth"
       ],
       "danceTags": [
         "listening"

@@ -1,77 +1,121 @@
 import type { InstrumentDef } from '../types';
 
 export const tabla: InstrumentDef = {
-  "id": "tabla",
-  "name": "Tabla",
-  "family": "hand-drums",
-  "voicing": "unpitched",
-  "drum": {
-    "low": 60,
-    "mid": 62,
-    "high": 64
+  id: "tabla",
+  name: "Indian Tabla Pair",
+  family: "hand-drums",
+  voicing: "unpitched",
+  drum: {
+    low: 60,
+    mid: 62,
+    high: 64
   },
-  "bodyConstruction": "skin-faced",
-  "note": "Indian paired drums: carved rosewood Dayan (treble) and brass/clay Bayan (bass), with multilayered goat skins and iron-soot Syahi paste providing sliding vocal bass and bell-like tones",
-  "physicalModel": {
-    "model": "membrane",
-    "parameters": {
-      "membraneTension": 0.78,
-      "membraneDamping": 0.28,
-      "transientSharpness": 0.85,
-      "bodyResonance": 0.9
+  bodyConstruction: "skin-faced",
+  note: "North Indian classical hand drum pair consisting of wooden Dayān (treble drum with black Syāhī paste) and metal Bayān (bass drum with pitch bends)",
+  acousticProfile: {
+    sustain: "percussive",
+    role: "percussion",
+    centre: 60,
+    low: 58,
+    high: 65,
+    pan: 0.2,
+    trim: -1,
+    space: 0.22,
+    ring: 1.1
+  },
+  luthierPhysics: {
+    category: "membrane_tension_2d",
+    materialDensity: 0.8,
+    tension: 0.75,
+    bodyResonanceVolume: 6.0,
+    decayTimeFactor: 1.1,
+    harmonicRichness: 0.85,
+    excitationType: "fingerpad"
+  },
+  kitComponents: [
+    {
+      id: "dayan-na",
+      name: "Dāyāñ Na / Tīn (Rim Ringing Tone)",
+      midi: 64,
+      physicalType: "membrane",
+      tuningHz: 261.63, // Tonic C4
+      decayTimeSec: 0.8,
+      damping: 0.2,
+      strikeZones: ["edge"],
+      defaultPan: 0.25,
+      gainTrimDb: 0,
+      synthesisNotes: "Pure resonant ringing bell-like fundamental on Dayān edge"
     },
-    "signalChain": [
-      "preamp",
-      "eq",
-      "compressor",
-      "reverb"
-    ],
-    "synthesisNotes": [
-      "Syahi black spot dampens non-harmonic modes, creating pure harmonic bell-like overtones on Dayan.",
-      "Base of left palm slides across Bayan head while striking to create continuous pitch-bending bass vocal wahs.",
-      "Bol mnemonic system (Dha, Dhin, Ge, Na, Tin, Ta) precisely governs finger contact methods."
-    ]
+    {
+      id: "dayan-tun",
+      name: "Dāyāñ Tuñ (Center Open Resonant)",
+      midi: 62,
+      physicalType: "membrane",
+      tuningHz: 261.63,
+      decayTimeSec: 1.2,
+      damping: 0.15,
+      strikeZones: ["open"],
+      defaultPan: 0.25,
+      gainTrimDb: 0.5
+    },
+    {
+      id: "dayan-ti-ke",
+      name: "Dāyāñ Ṭi / Ke (Syāhī Center Muted Tap)",
+      midi: 63,
+      physicalType: "membrane",
+      tuningHz: 320,
+      decayTimeSec: 0.08,
+      damping: 0.9,
+      strikeZones: ["closed"],
+      defaultPan: 0.25,
+      gainTrimDb: -3,
+      synthesisNotes: "Muted dry slap on central iron-dust paste patch"
+    },
+    {
+      id: "bayan-ghe",
+      name: "Bāyāñ Ge / Ghe (Bass Resonance)",
+      midi: 60,
+      physicalType: "membrane",
+      tuningHz: 110, // A2 fundamental
+      decayTimeSec: 1.0,
+      damping: 0.25,
+      strikeZones: ["bass", "open"],
+      defaultPan: -0.15,
+      gainTrimDb: 1,
+      synthesisNotes: "Resonant metal kettle bass drum tone"
+    },
+    {
+      id: "bayan-meend",
+      name: "Bāyāñ Meend (Wrist Pressure Pitch Bend)",
+      midi: 61,
+      physicalType: "membrane",
+      tuningHz: 130,
+      decayTimeSec: 0.9,
+      damping: 0.3,
+      strikeZones: ["bass"],
+      defaultPan: -0.15,
+      gainTrimDb: 1,
+      synthesisNotes: "Wrist palm sliding across skin to swoop low bass pitch upward"
+    }
+  ],
+  performanceArticulations: {
+    bend: {
+      maxSemitones: 4,
+      speedMs: 150,
+      curve: "s-curve"
+    },
+    slap: {
+      transientSharpness: 0.92,
+      dampingFactor: 0.7
+    }
   },
-  "techniques": {
-    "articulations": [
-      "accent",
-      "open",
-      "staccato",
-      "slap",
-      "ghost",
-      "roll"
-    ],
-    "techniqueMethods": [
-      "Na/Ta: high ringing harmonic stroke on the outer rim of Dayan",
-      "Tin: open resonant center stroke on Dayan outside syahi",
-      "Ge/Ghe: open sliding bass stroke on Bayan with wrist pitch modulation",
-      "Ke/Ka: flat hand slapping damping on Bayan",
-      "Tirakita: lightning fast split-finger roll across Dayan syahi"
-    ],
-    "playingStyles": [
-      "hindustani",
-      "qawwali",
-      "ghazal",
-      "fusion",
-      "world-percussion"
-    ],
-    "genreTechniques": {
-      "hindustani": [
-        "accent",
-        "open",
-        "staccato",
-        "roll"
-      ],
-      "qawwali": [
-        "accent",
-        "open",
-        "slap"
-      ],
-      "fusion": [
-        "open",
-        "accent",
-        "roll"
-      ]
+  techniques: {
+    articulations: ["accent", "open", "slap", "staccato", "bend", "meend"],
+    techniqueMethods: ["dayan syahi center strike", "bayan wrist pressure pitch swoop", "ti-re-ki-te fast finger rolls"],
+    playingStyles: ["hindustani-classical", "fusion", "world", "ambient"],
+    genreTechniques: {
+      "hindustani-classical": ["open", "meend", "accent", "staccato"],
+      fusion: ["open", "meend", "slap"]
     }
   }
 };

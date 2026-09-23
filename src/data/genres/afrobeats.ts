@@ -458,7 +458,7 @@ export const AFROBEATS_WORLD: GenreWorld = {
         "acoustic-guitar",
         "hand-percussion",
         "bass",
-        "voice",
+        "synth",
         "drums"
       ],
       "preferredMeters": [
@@ -535,7 +535,7 @@ export const AFROBEATS_WORLD: GenreWorld = {
         "bass",
         "drums",
         "acoustic-guitar",
-        "voice"
+        "synth"
       ],
       "preferredMeters": [
         "4/4"
@@ -1725,18 +1725,18 @@ export const AFROBEATS_WORLD: GenreWorld = {
         "phrase"
       ],
       "roles": [
-        "voice"
+        "synth"
       ],
 
       "approaches": ["phrase"],
       "instruments": [
-        "voice"
+        "synth"
       ],
       "compatibleRoles": [
-        "voice"
+        "synth"
       ],
       "compatibleInstruments": [
-        "voice"
+        "synth"
       ],
       "canCrossRole": true,
       "meter": "4/4",
@@ -3799,7 +3799,7 @@ export const AFROBEATS_WORLD: GenreWorld = {
       "enabled": true
     },
     {
-      "id": "afrobeats-voice-phrasing",
+      "id": "afrobeats--phrasing",
       "worldId": "afrobeats",
       "styleIds": ["afrobeats-afro-pop"],
       "name": "Afrobeats Vocal Phrasing",
@@ -3808,7 +3808,7 @@ export const AFROBEATS_WORLD: GenreWorld = {
       "description": "Hook-driven vocal placement designed around syncopated",
       "tags": [
         "afrobeats",
-        "voice",
+        "synth",
         "vocal-phrasing",
         "catalog-v2"
       ],
@@ -3817,19 +3817,19 @@ export const AFROBEATS_WORLD: GenreWorld = {
         "phrase"
       ],
       "roles": [
-        "voice"
+        "synth"
       ],
 
       "approaches": ["phrase"],
       "instruments": [
-        "voice"
+        "synth"
       ],
       "compatibleRoles": [
-        "voice",
+        "synth",
         "lead"
       ],
       "compatibleInstruments": [
-        "voice"
+        "synth"
       ],
       "meter": "4/4",
       "cycleLength": 1,
@@ -3879,8 +3879,8 @@ export const AFROBEATS_WORLD: GenreWorld = {
 
       "variants": [
         {
-          "id": "afrobeats-voice-phrasing-v-voice-alt",
-          "parentPatternId": "afrobeats-voice-phrasing",
+          "id": "afrobeats--phrasing-v--alt",
+          "parentPatternId": "afrobeats--phrasing",
           "name": "Afrobeats Vocal Phrasing — alternate phrasing",
           "variationType": "phraseStart",
           "probability": 0.2,
@@ -3919,8 +3919,8 @@ export const AFROBEATS_WORLD: GenreWorld = {
           ]
         },
         {
-          "id": "afrobeats-voice-phrasing-v-final-accent",
-          "parentPatternId": "afrobeats-voice-phrasing",
+          "id": "afrobeats--phrasing-v-final-accent",
+          "parentPatternId": "afrobeats--phrasing",
           "name": "Afrobeats Vocal Phrasing — accent shift",
           "variationType": "accentShift",
           "probability": 0.18,
@@ -3962,7 +3962,7 @@ export const AFROBEATS_WORLD: GenreWorld = {
       "provenance": "GenreDAW catalog rebuild: dedicated vocal phrasing coverage for Afrobeats.",
       "authenticityTags": [
         "afrobeats",
-        "voice"
+        "synth"
       ],
       "danceTags": [
         "listening"

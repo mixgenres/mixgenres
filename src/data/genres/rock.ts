@@ -19,7 +19,7 @@ export const ROCK_WORLD: GenreWorld = {
         "electric-guitar",
         "bass",
         "drums",
-        "voice",
+        "electric-guitar",
         "hand-percussion"
       ],
       "preferredMeters": [
@@ -105,7 +105,7 @@ export const ROCK_WORLD: GenreWorld = {
         "electric-guitar",
         "bass",
         "drums",
-        "voice",
+        "electric-guitar",
         "hand-percussion"
       ],
       "preferredMeters": [
@@ -206,7 +206,7 @@ export const ROCK_WORLD: GenreWorld = {
       ],
       "coreConcepts": [
         "epic multi-movement conceptual song structures",
-        "Mellotron string and flute choirs and Hammond organs",
+        "Mellotron string and flute s and Hammond organs",
         "unusual time signatures and classical counterpoint",
         "philosophical and fantastical lyrics"
       ],
@@ -217,7 +217,7 @@ export const ROCK_WORLD: GenreWorld = {
         "listening"
       ],
       "tuningSystem": "12-tet",
-      "signatureCell": "Haunting Mellotron string choir swelling behind soaring Gilmour-esque melodic guitar bend",
+      "signatureCell": "Haunting Mellotron string  swelling behind soaring Gilmour-esque melodic guitar bend",
       "grooveMechanics": {
         "swingPercentage": 50,
         "anticipationOffsetSteps": 0,
@@ -269,7 +269,7 @@ export const ROCK_WORLD: GenreWorld = {
         "electric-guitar",
         "bass",
         "drums",
-        "voice",
+        "electric-guitar",
         "hand-percussion"
       ],
       "preferredMeters": [
@@ -349,7 +349,7 @@ export const ROCK_WORLD: GenreWorld = {
         "electric-guitar",
         "bass",
         "drums",
-        "voice",
+        "electric-guitar",
         "hand-percussion"
       ],
       "preferredMeters": [
@@ -430,7 +430,7 @@ export const ROCK_WORLD: GenreWorld = {
         "organ",
         "bass",
         "drums",
-        "voice"
+        "electric-guitar"
       ],
       "preferredMeters": [
         "4/4",
@@ -592,7 +592,7 @@ export const ROCK_WORLD: GenreWorld = {
         "bass",
         "drums",
         "synth",
-        "voice"
+        "electric-guitar"
       ],
       "preferredMeters": [
         "4/4"
@@ -2573,10 +2573,10 @@ export const ROCK_WORLD: GenreWorld = {
       "articulations": ["accented"]
     },
     {
-      "id": "rock-roster-voice",
+      "id": "rock-roster-",
       "worldId": "rock",
       "styleIds": ["rock-hard-rock"],
-      "name": "Rock voice part",
+      "name": "Rock  part",
       "family": "Build",
       "category": "rolePattern",
       "description": "A default-roster coverage pattern that gives",
@@ -2591,18 +2591,18 @@ export const ROCK_WORLD: GenreWorld = {
         "phrase"
       ],
       "roles": [
-        "voice"
+        "electric-guitar"
       ],
 
       "approaches": ["phrase"],
       "instruments": [
-        "voice"
+        "electric-guitar"
       ],
       "compatibleRoles": [
-        "voice"
+        "electric-guitar"
       ],
       "compatibleInstruments": [
-        "voice"
+        "electric-guitar"
       ],
       "canCrossRole": true,
       "meter": "4/4",
@@ -2743,18 +2743,18 @@ export const ROCK_WORLD: GenreWorld = {
         "phrase"
       ],
       "roles": [
-        "voice"
+        "electric-guitar"
       ],
 
       "approaches": ["phrase"],
       "instruments": [
-        "voice"
+        "electric-guitar"
       ],
       "compatibleRoles": [
-        "voice"
+        "electric-guitar"
       ],
       "compatibleInstruments": [
-        "voice"
+        "electric-guitar"
       ],
       "canCrossRole": true,
       "meter": "4/4",
