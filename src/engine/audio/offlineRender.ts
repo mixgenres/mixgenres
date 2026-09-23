@@ -35,6 +35,13 @@ export async function renderPerformanceToMp3(
     trackInstruments: Map<string, string>;
     worldId?: string;
     styleId?: string;
+    mixState?: {
+      volume?: Record<string, number>;
+      pan?: Record<string, number>;
+      muted?: Record<string, boolean>;
+      solo?: Record<string, boolean>;
+      spotlight?: Record<string, string>;
+    };
   },
   onProgress?: (frac: number) => void,
 ): Promise<Blob> {
@@ -67,6 +74,14 @@ export async function renderPerformanceToMp3(
       if (dialect.decayMultiplier !== undefined) params.decay *= dialect.decayMultiplier;
       if (dialect.bendGlideMs !== undefined) params.bendGlideMs = dialect.bendGlideMs;
     }
+    if (options.mixState) {
+      if (options.mixState.volume?.[trackId] !== undefined) {
+        params.volume = options.mixState.volume[trackId];
+      }
+      if (options.mixState.pan?.[trackId] !== undefined) {
+        params.pan = options.mixState.pan[trackId];
+      }
+    }
     trackParamsMap.set(trackId, params);
     const preallocatedVoices: VoiceState[] = [];
     for (let vIdx = 0; vIdx < 32; vIdx++) {
@@ -81,9 +96,15 @@ export async function renderPerformanceToMp3(
     trackVoicesMap.set(trackId, preallocatedVoices);
   }
 
+  const hasSolo = options.mixState?.solo && Object.values(options.mixState.solo).some(Boolean);
+
   const events: RenderEvent[] = [];
   for (const note of perf.notes) {
     if (selected && !selected.has(note.trackId)) continue;
+    if (options.mixState) {
+      if (hasSolo && !options.mixState.solo?.[note.trackId]) continue;
+      if (!hasSolo && options.mixState.muted?.[note.trackId]) continue;
+    }
     const start = Math.max(0, Math.round(note.time * sampleRate));
     const end = Math.min(totalSamples, Math.round((note.time + note.dur) * sampleRate));
     events.push({ sample: start, kind: 'on', note });

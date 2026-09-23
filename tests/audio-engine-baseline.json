@@ -1,172 +1,172 @@
 {
   "version": "1.0.0",
-  "generatedAt": "2026-09-23T00:46:53.579Z",
+  "generatedAt": "2026-09-23T10:37:43.687Z",
   "instruments": {
     "guitar": {
-      "lufs": -26.19,
-      "spectralCentroid": 2665.2,
-      "decayTime20dB": 0.293,
+      "lufs": -28.25,
+      "spectralCentroid": 3163.3,
+      "decayTime20dB": 0.22,
       "lrCorrelation": 1
     },
     "spanish-guitar": {
-      "lufs": -27.02,
-      "spectralCentroid": 3738.5,
-      "decayTime20dB": 0.172,
+      "lufs": -35.53,
+      "spectralCentroid": 4601.5,
+      "decayTime20dB": 0.111,
       "lrCorrelation": 1
     },
     "12-string-guitar": {
-      "lufs": -26.89,
-      "spectralCentroid": 4246.5,
-      "decayTime20dB": 0.217,
+      "lufs": -37.98,
+      "spectralCentroid": 4507.5,
+      "decayTime20dB": 0.11,
       "lrCorrelation": 1
     },
     "sitar": {
-      "lufs": -26.85,
-      "spectralCentroid": 3471.9,
-      "decayTime20dB": 0.229,
+      "lufs": -37.29,
+      "spectralCentroid": 5303.9,
+      "decayTime20dB": 0.107,
       "lrCorrelation": 1
     },
     "koto": {
-      "lufs": -26.27,
-      "spectralCentroid": 2527.1,
-      "decayTime20dB": 0.358,
+      "lufs": -29.65,
+      "spectralCentroid": 2691.1,
+      "decayTime20dB": 0.303,
       "lrCorrelation": 1
     },
     "electric-guitar": {
-      "lufs": -26.91,
-      "spectralCentroid": 3744.3,
-      "decayTime20dB": 0.232,
+      "lufs": -31.87,
+      "spectralCentroid": 5048.1,
+      "decayTime20dB": 0.133,
       "lrCorrelation": 1
     },
     "distortion-guitar": {
-      "lufs": -26.6,
-      "spectralCentroid": 3499.3,
-      "decayTime20dB": 0.516,
+      "lufs": -30.85,
+      "spectralCentroid": 4375.7,
+      "decayTime20dB": 0.305,
       "lrCorrelation": 1
     },
     "bass": {
-      "lufs": -27.3,
-      "spectralCentroid": 1945.3,
-      "decayTime20dB": 0.835,
+      "lufs": -27.9,
+      "spectralCentroid": 1966.9,
+      "decayTime20dB": 0.849,
       "lrCorrelation": 1
     },
     "upright-bass": {
-      "lufs": -27.16,
-      "spectralCentroid": 1789.8,
-      "decayTime20dB": 0.74,
+      "lufs": -28.44,
+      "spectralCentroid": 1808.9,
+      "decayTime20dB": 0.743,
       "lrCorrelation": 1
     },
     "congas": {
-      "lufs": -27.03,
-      "spectralCentroid": 2025.6,
-      "decayTime20dB": 0.076,
+      "lufs": -27.3,
+      "spectralCentroid": 1888.4,
+      "decayTime20dB": 0.089,
       "lrCorrelation": 1
     },
     "taiko": {
-      "lufs": -26.3,
-      "spectralCentroid": 1983.9,
-      "decayTime20dB": 0.481,
+      "lufs": -26.61,
+      "spectralCentroid": 2157.2,
+      "decayTime20dB": 0.478,
       "lrCorrelation": 1
     },
     "snare": {
-      "lufs": -26.31,
-      "spectralCentroid": 1452.2,
-      "decayTime20dB": 0.043,
+      "lufs": -29.06,
+      "spectralCentroid": 1405.2,
+      "decayTime20dB": 0.035,
       "lrCorrelation": 1
     },
     "shaker": {
-      "lufs": -27.64,
-      "spectralCentroid": 11996.9,
-      "decayTime20dB": 0.015,
+      "lufs": -30.8,
+      "spectralCentroid": 11888.5,
+      "decayTime20dB": 0.016,
       "lrCorrelation": 1
     },
     "cowbell": {
-      "lufs": -25.5,
-      "spectralCentroid": 894.1,
-      "decayTime20dB": 0.034,
+      "lufs": -27.9,
+      "spectralCentroid": 877.6,
+      "decayTime20dB": 0.028,
       "lrCorrelation": 1
     },
     "violin": {
-      "lufs": -26.99,
-      "spectralCentroid": 3449.8,
-      "decayTime20dB": 0.161,
+      "lufs": -33.6,
+      "spectralCentroid": 3307.3,
+      "decayTime20dB": 0.156,
       "lrCorrelation": 1
     },
     "cello": {
-      "lufs": -27.07,
-      "spectralCentroid": 3373.6,
-      "decayTime20dB": 0.21,
+      "lufs": -34.7,
+      "spectralCentroid": 3165.8,
+      "decayTime20dB": 0.202,
       "lrCorrelation": 1
     },
     "flute": {
-      "lufs": -28.47,
-      "spectralCentroid": 8222.8,
-      "decayTime20dB": 0.721,
-      "lrCorrelation": 1
-    },
-    "piccolo": {
-      "lufs": -27.73,
-      "spectralCentroid": 7198,
+      "lufs": -27.74,
+      "spectralCentroid": 7941.9,
       "decayTime20dB": 0.713,
       "lrCorrelation": 1
     },
+    "piccolo": {
+      "lufs": -29.48,
+      "spectralCentroid": 7058.3,
+      "decayTime20dB": 0.728,
+      "lrCorrelation": 1
+    },
     "tenor-sax": {
-      "lufs": -28.39,
-      "spectralCentroid": 1545.3,
+      "lufs": -28.29,
+      "spectralCentroid": 1693.8,
       "decayTime20dB": 0.699,
       "lrCorrelation": 1
     },
     "oboe": {
-      "lufs": -28.05,
-      "spectralCentroid": 1995.5,
-      "decayTime20dB": 0.7,
+      "lufs": -27.99,
+      "spectralCentroid": 2020.7,
+      "decayTime20dB": 0.702,
       "lrCorrelation": 1
     },
     "trumpet": {
-      "lufs": -27.98,
-      "spectralCentroid": 2006,
-      "decayTime20dB": 0.71,
+      "lufs": -27.94,
+      "spectralCentroid": 2116.4,
+      "decayTime20dB": 0.711,
       "lrCorrelation": 1
     },
     "accordion": {
-      "lufs": -28.26,
-      "spectralCentroid": 2494,
+      "lufs": -28.42,
+      "spectralCentroid": 2492.7,
       "decayTime20dB": 0.742,
       "lrCorrelation": 1
     },
     "piano": {
-      "lufs": -27.1,
-      "spectralCentroid": 3215.3,
-      "decayTime20dB": 0.424,
+      "lufs": -33.86,
+      "spectralCentroid": 3524,
+      "decayTime20dB": 0.359,
       "lrCorrelation": 1
     },
     "rhodes": {
-      "lufs": -27.5,
-      "spectralCentroid": 1325.3,
+      "lufs": -27.62,
+      "spectralCentroid": 1326.9,
       "decayTime20dB": 0.867,
       "lrCorrelation": 1
     },
     "clavinet": {
-      "lufs": -26.77,
-      "spectralCentroid": 4076.1,
-      "decayTime20dB": 0.123,
+      "lufs": -35.07,
+      "spectralCentroid": 3547.3,
+      "decayTime20dB": 0.122,
       "lrCorrelation": 1
     },
     "marimba": {
-      "lufs": -26.47,
-      "spectralCentroid": 1292,
-      "decayTime20dB": 0.174,
+      "lufs": -26.79,
+      "spectralCentroid": 1303.6,
+      "decayTime20dB": 0.178,
       "lrCorrelation": 1
     },
     "synth": {
-      "lufs": -27.6,
-      "spectralCentroid": 3745.3,
-      "decayTime20dB": 0.809,
+      "lufs": -31.9,
+      "spectralCentroid": 3110.1,
+      "decayTime20dB": 0.83,
       "lrCorrelation": 1
     }
   },
   "masterChain": {
-    "compressedPeak": 0.599,
+    "compressedPeak": 0.481,
     "reverbEnergyRatio": 0
   }
 }

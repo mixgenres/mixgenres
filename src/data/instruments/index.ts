@@ -424,7 +424,7 @@ export const ENRICHED_INSTRUMENT_CATALOG = INSTRUMENT_CATALOG.map(enrichInstrume
 
 export const INSTRUMENTS_BY_ID: Record<string, InstrumentDef> = Object.fromEntries(ENRICHED_INSTRUMENT_CATALOG.map(i => [i.id, i]));
 INSTRUMENTS_BY_ID['nylon-guitar'] = INSTRUMENTS_BY_ID['guitar'];
-INSTRUMENTS_BY_ID['steel_drums'] = INSTRUMENTS_BY_ID['steel-drums'];
+INSTRUMENTS_BY_ID['steel-drums'] = INSTRUMENTS_BY_ID['steel_drums'];
 INSTRUMENTS_BY_ID['slide_guitar'] = INSTRUMENTS_BY_ID['slide-guitar'];
 INSTRUMENTS_BY_ID['12_string_guitar'] = INSTRUMENTS_BY_ID['12-string-guitar'];
 INSTRUMENTS_BY_ID['sho'] = INSTRUMENTS_BY_ID['shō'];

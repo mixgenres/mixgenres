@@ -45,6 +45,11 @@ export interface TransportSink {
   allNotesOff(): void;
   softNotesOff?(): void;
   processPendingEvents?(): void;
+  setTrackVolume?(trackId: string | number, volume: number, time?: number): void;
+  setTrackMute?(trackId: string | number, muted: boolean, time?: number): void;
+  setTrackPan?(trackId: string | number, pan: number, time?: number): void;
+  setTrackSolo?(trackId: string | number, solo: boolean, time?: number): void;
+  setTrackSpotlight?(trackId: string | number, mode: string, time?: number): void;
 }
 
 export interface TransportCallbacks {
@@ -101,6 +106,61 @@ export class Transport {
       }
       this.locate(pos);
     }
+  }
+
+  /**
+   * Partial transport update: if currently playing section was not modified,
+   * updates the performance and adjusts the cursors without notes-off or relocation.
+   */
+  patchPerformance(perf: Performance, changedRegionIds?: string[]) {
+    if (!this.running || !this.perf) {
+      this.setPerformance(perf);
+      return;
+    }
+    const currentPos = this.position();
+    const currentRegion = this.perf.bars.find(b => currentPos >= b.start && currentPos < b.end)?.regionId;
+    const isPlayingInChangedRegion = changedRegionIds && currentRegion
+      ? changedRegionIds.includes(currentRegion)
+      : false;
+
+    this.perf = perf;
+    if (isPlayingInChangedRegion) {
+      if (typeof this.sink.softNotesOff === 'function') {
+        this.sink.softNotesOff();
+      } else {
+        this.sink.allNotesOff();
+      }
+      this.locate(currentPos);
+    } else {
+      this.noteCursor = this.findCursor(currentPos);
+      const ccs = this.perf.ccs ?? [];
+      let ci = 0;
+      while (ci < ccs.length && ccs[ci].time <= currentPos) {
+        ci++;
+      }
+      this.ccCursor = ci;
+    }
+  }
+
+  // Live mix controls (Tier 3 -> Sink direct path)
+  setTrackVolume(trackId: string | number, volume: number) {
+    this.sink.setTrackVolume?.(trackId, volume, this.sink.now());
+  }
+
+  setTrackMute(trackId: string | number, muted: boolean) {
+    this.sink.setTrackMute?.(trackId, muted, this.sink.now());
+  }
+
+  setTrackPan(trackId: string | number, pan: number) {
+    this.sink.setTrackPan?.(trackId, pan, this.sink.now());
+  }
+
+  setTrackSolo(trackId: string | number, solo: boolean) {
+    this.sink.setTrackSolo?.(trackId, solo, this.sink.now());
+  }
+
+  setTrackSpotlight(trackId: string | number, mode: string) {
+    this.sink.setTrackSpotlight?.(trackId, mode, this.sink.now());
   }
 
   position(): number {

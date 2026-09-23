@@ -1,7 +1,7 @@
 import type { InstrumentDef } from '../types';
 
 export const sampler: InstrumentDef = {
-  id: 'sampler', name: 'Sampler', family: 'electronic', voicing: 'unpitched',
+  id: 'sampler', name: 'Sampler', family: 'electronic', voicing: 'single',
   note: 'sample playback; transient-preserving one-shots and looped phrases',
   techniques: {
     articulations: ['accent', 'staccato', 'ghost', 'roll'],

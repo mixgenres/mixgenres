@@ -650,6 +650,18 @@ function mergeArticulations(p: MusicalPattern, v?: PatternVariant): string[] {
   return out;
 }
 
+// Tier 1 Arrangement Cell Cache
+interface CachedArrangementCell {
+  fingerprint: string;
+  detailsByBar: (Measure['patternDetailsByTrack'][string] | undefined)[];
+}
+
+const arrangementCellDetailsCache = new Map<string, CachedArrangementCell>();
+
+export function clearArrangementCellDetailsCache(): void {
+  arrangementCellDetailsCache.clear();
+}
+
 /* --- measures are derived, never hand-maintained -------------------------- */
 export function rebuild(sheet: Sheet): Sheet {
   // Chords are a hard engine invariant. Validate before creating measures so
@@ -725,34 +737,55 @@ export function rebuild(sheet: Sheet): Sheet {
     ...persistentPhrasePatternCache.entries(),
     ...Object.entries(sheet.phrasePatternCache ?? {}),
   ]);
+
   const measures: Measure[] = [];
   for (const r of regions) {
     const chords = r.chords?.length ? r.chords : ['Am'];
     const bars = r.end - r.start;
-    for (let i = 0; i < bars; i++) {
-      const index = r.start + i;
-      const chord = chords[i % chords.length];
-      const details: Measure['patternDetailsByTrack'] = {};
-      const byTrack = sheet.arrangement[r.id] ?? {};
-      const usedPatterns = new Set<string>();
-      for (const track of sheet.tracks) {
-        const basePatternId = byTrack[track.id];
-        if (!basePatternId || basePatternId === 'silent') continue;
+    const byTrack = sheet.arrangement[r.id] ?? {};
+    const interaction = arrangementContext[r.id];
 
-        // The arrangement chooses the section's identity, but not every bar's
-        // exact realization. Musicians normally develop a part over a 4-bar
-        // phrase: establish it, vary it, then close/lead into the next phrase.
-        // Every 4 bars we may select a closely related pattern from the same
-        // genre/instrument vocabulary instead of photocopying one cell across
-        // the whole region.
-        const isRhythm = ['bass', 'drums', 'comp'].includes(track.role);
+    // Compute or retrieve cached pattern details for each track in this region
+    const trackBarDetails = new Map<string, (Measure['patternDetailsByTrack'][string] | undefined)[]>();
+
+    for (const track of sheet.tracks) {
+      const basePatternId = byTrack[track.id];
+      if (!basePatternId || basePatternId === 'silent') {
+        trackBarDetails.set(track.id, new Array(bars).fill(undefined));
+        continue;
+      }
+
+      const contextualEnergy = interaction?.energyByTrack[track.id];
+      const useContextualEnergy = !!interaction?.spotlightedTrackIds.length &&
+        (interaction.interactionModel === 'homophonic' || interaction.interactionModel === 'interlock' ||
+          interaction.interactionModel === 'unison' || interaction.interactionModel === 'counterpoint');
+      const energy = useContextualEnergy ? contextualEnergy : undefined;
+      const partEnergy: SectionEnergy = energy === undefined
+        ? clampEnergy(energies[r.id]?.[track.id] ?? energyOf(r))
+        : clampEnergy(energy);
+
+      const cellKey = `${r.id}:${track.id}`;
+      const cellFp = `${r.id}:${track.id}:${track.instrumentId}:${r.genre ?? sheet.worldId}:${getSectionStyleId(sheet, r)}:${bars}:${r.kind}:${r.formKey}:${chords.join(',')}:${basePatternId}:${partEnergy}:${dials.adventure}:${dials.development}:${sheet.generationSeed ?? 0}:${JSON.stringify(sheet.partLens?.[r.id]?.[track.id] ?? '')}:${interaction?.spotlightedTrackIds?.includes(track.id)}:${interaction?.energyByTrack?.[track.id] ?? ''}`;
+
+      const cached = arrangementCellDetailsCache.get(cellKey);
+      if (cached && cached.fingerprint === cellFp && cached.detailsByBar.length === bars) {
+        trackBarDetails.set(track.id, cached.detailsByBar);
+        continue;
+      }
+
+      // Compute fresh bar details for this cell
+      const detailsByBar: (Measure['patternDetailsByTrack'][string] | undefined)[] = [];
+      const isRhythm = ['bass', 'drums', 'comp'].includes(track.role);
+
+      for (let i = 0; i < bars; i++) {
+        const index = r.start + i;
         const phrase = Math.floor(i / phraseSpanBars(getResolvedSectionStyle(sheet, r).contract.cycleLength));
         let patternId = basePatternId;
         if (phrase > 0) {
           const cacheKey = `${basePatternId}:${r.genre ?? sheet.worldId}:${track.id}:${r.id}:${phrase}`;
-          const cached = phrasePatternCache.get(cacheKey);
-          if (cached !== undefined) {
-            patternId = cached;
+          const cachedPat = phrasePatternCache.get(cacheKey);
+          if (cachedPat !== undefined) {
+            patternId = cachedPat;
           } else {
             const base = PATTERNS_BY_ID[basePatternId];
             const resolvedForPatterns = getResolvedSectionStyle(sheet, r);
@@ -770,21 +803,17 @@ export function rebuild(sheet: Sheet): Sheet {
               })
               .map(p => {
                 let score = affinity(p.id, track as Voice, r.genre ?? sheet.worldId, getSectionStyleId(sheet, r), dials.adventure);
-                // When exploring development across phrases, reward family/category coherence over exact base repeat
                 if (p.id === basePatternId) score += 4;
                 else score += 14;
                 if (base && p.family === base.family) score += 12;
                 if (base && p.category === base.category) score += 6;
                 if (p.sectionUsage?.includes(r.kind as any)) score += 5;
                 if (p.phrasePosition?.includes((i % phraseSpanBars(getResolvedSectionStyle(sheet, r).contract.cycleLength)) === 0 ? 'start' : 'middle')) score += 2;
-                if (usedPatterns.has(p.id)) score -= 8;
                 return { p, score: score + hash(`${basePatternId}:${p.id}:${r.id}`, phrase) * 3 };
               })
               .filter(x => x.score > 20)
               .sort((a,b) => b.score-a.score);
-            // Development decides both whether the part moves at all and how
-            // far it may move. At 0 the cell is photocopied, which is exactly
-            // what a hypnotic vamp or a montuno wants.
+
             const devHashKey = isRhythm ? `develop:rhythm:${r.id}` : `develop:${track.id}:${r.id}`;
             const pickHashKey = isRhythm ? `rhythm:${r.id}` : `${track.id}:${r.id}`;
             const moves = hash(devHashKey, phrase) < dials.development;
@@ -797,33 +826,26 @@ export function rebuild(sheet: Sheet): Sheet {
             persistentPhrasePatternCache.set(cacheKey, patternId);
           }
         }
-        usedPatterns.add(patternId);
+
         const p = PATTERNS_BY_ID[patternId];
-        if (!p) continue;
+        if (!p) {
+          detailsByBar.push(undefined);
+          continue;
+        }
 
         const cycleBars = phraseSpanBars(getResolvedSectionStyle(sheet, r).contract.cycleLength);
         const atPhraseStart = i % cycleBars === 0;
         const atPhraseEnd = (i + 1) % cycleBars === 0;
         const hasCadenceVariant = (p.variants ?? []).some(v => ['cadence', 'fill', 'phraseEnd'].includes(v.variationType));
         const hasTransitionVariant = (p.variants ?? []).some(v => ['transition', 'phraseStart'].includes(v.variationType));
-        // Add a boundary gesture when the style provides one.
         const phraseRole = atPhraseEnd ? 'cadence' as const
           : atPhraseStart ? 'transition' as const
           : 'body' as const;
-        const interaction = arrangementContext[r.id];
-        const contextualEnergy = interaction?.energyByTrack[track.id];
-        const useContextualEnergy = !!interaction?.spotlightedTrackIds.length &&
-          (interaction.interactionModel === 'homophonic' || interaction.interactionModel === 'interlock' ||
-            interaction.interactionModel === 'unison' || interaction.interactionModel === 'counterpoint');
-        const energy = useContextualEnergy ? contextualEnergy : undefined;
-        const partEnergy: SectionEnergy = energy === undefined
-          ? clampEnergy(energies[r.id]?.[track.id] ?? energyOf(r))
-          : clampEnergy(energy);
+
         const variantSeed = isRhythm ? `rhythm:${r.id}:${index}` : `${patternId}:${r.id}:${index}`;
         let v = choosePatternVariant(
           p.variants, phraseRole, variantSeed, partEnergy, dials.development,
         );
-        // Use a light synthesized transition only when no authored variant exists.
         const styleIdForRegion = getSectionStyleId(sheet, r);
         if (!v && phraseRole === 'cadence' && !hasCadenceVariant) {
           v = synthesizeBoundaryVariant(p, 'cadence', `${patternId}:${r.id}:${index}`, styleIdForRegion);
@@ -832,8 +854,6 @@ export function rebuild(sheet: Sheet): Sheet {
         }
 
         const rawOnsets = v?.onsetGrid ?? p.onsetGrid;
-        // Preserve the authored cycle length; do not infer it from a sparse
-        // variant. This keeps 2-bar/4-bar patterns genuinely multi-bar.
         const sub = p.subdivisions || 16;
         const patternCycleBars = Math.max(1, p.cycleLength || Math.ceil(sub / 16));
         const rawAccents = v?.accentProfile ?? p.accentProfile;
@@ -844,25 +864,11 @@ export function rebuild(sheet: Sheet): Sheet {
           ? candidateHitTypes
           : undefined;
 
-        // The 16-step view is for the glyphs only. Playback reads `perf`,
-        // which keeps the pattern on its own grid so a 12-step shuffle stays
-        // a shuffle instead of being rounded into straight sixteenths.
-        //
-        // Bar-in-cycle must be measured against the pattern's own authored
-        // cycle (patternCycleBars), not the musical phrase span (cycleBars,
-        // padded up to >=4 bars for arrangement/variation decisions above).
-        // Slicing against the phrase span chopped every pattern into
-        // 1/cycleBars-sized fragments and scattered them across bars that
-        // never repeat the loop, which is what made playback sound sparse
-        // and unrelated to the authored pattern.
         const bar = toBar(rawOnsets, rawAccents, rawDurations, sub, i % patternCycleBars);
         const perf = sliceBarNative(
           rawOnsets, rawAccents, rawDurations, rawMicro, rawHitTypes, sub, patternCycleBars, i % patternCycleBars,
         );
 
-        // If the user gave this part a cell from another world, that choice is
-        // also a choice of accent. Record the lens here so the performance
-        // compiler phrases the part the way the cell's home world would.
         const explicitLens = sheet.partLens?.[r.id]?.[track.id];
         const inferredLens = inferLensFromPattern(p, r.genre ?? sheet.worldId, dials.adventure);
         const lens = explicitLens && explicitLens.weight > 0
@@ -871,7 +877,7 @@ export function rebuild(sheet: Sheet): Sheet {
             ? undefined
             : inferredLens;
 
-        details[track.id] = {
+        detailsByBar.push({
           patternId: p.id,
           styleId: getSectionStyleId(sheet, r),
           variantId: v?.id,
@@ -884,7 +890,26 @@ export function rebuild(sheet: Sheet): Sheet {
           lens,
           partEnergy,
           perf,
-        } as any;
+        } as any);
+      }
+
+      arrangementCellDetailsCache.set(cellKey, {
+        fingerprint: cellFp,
+        detailsByBar,
+      });
+      trackBarDetails.set(track.id, detailsByBar);
+    }
+
+    // Assemble measures for this region from the track bar details
+    for (let i = 0; i < bars; i++) {
+      const index = r.start + i;
+      const chord = chords[i % chords.length];
+      const details: Measure['patternDetailsByTrack'] = {};
+      for (const track of sheet.tracks) {
+        const d = trackBarDetails.get(track.id)?.[i];
+        if (d) {
+          details[track.id] = d;
+        }
       }
       measures.push({
         id: `m${index}`,

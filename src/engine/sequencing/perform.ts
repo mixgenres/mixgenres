@@ -179,7 +179,7 @@ interface VoiceMemory {
   lastBar?: number;
 }
 
-function thinForSustain(
+export function thinForSustain(
   prof: VoiceProfile,
   attacks: { beatInBar: number; accent: number }[],
   beatsPerBar: number,
@@ -230,7 +230,7 @@ interface Attack {
   registerOffset?: number;
 }
 
-function authoredKitVoicing(hitType: string, accent: number): KitVoicing {
+export function authoredKitVoicing(hitType: string, accent: number): KitVoicing {
   const gain = Math.max(0.2, Math.min(1.2, 0.72 + accent * 0.34));
   switch (hitType) {
     case 'kick': return { key: GM.kick, limb: 'kick', gain };
@@ -310,13 +310,13 @@ export function buildTransitionEvents(sheet: Sheet): Map<number, TransitionEvent
 }
 
 /** True when the next section is heavier than this one. */
-function isBuildSection(regions: Region[], region: Region): boolean {
+export function isBuildSection(regions: Region[], region: Region): boolean {
   const i = regions.findIndex(r => r.id === region.id);
   const next = regions[i + 1];
   return !!next && energyOf(next) > energyOf(region);
 }
 
-function spotlightLeadRubatoOffset(spotlit: boolean, role: string, cyclePosition: number, cycleLength: number, secPerBeat: number, seed: number): number {
+export function spotlightLeadRubatoOffset(spotlit: boolean, role: string, cyclePosition: number, cycleLength: number, secPerBeat: number, seed: number): number {
   if (!spotlit || role !== 'lead') return 0;
   // Small, deterministic timing breath independent of groove.ts pocket.
   const phase = ((cyclePosition % Math.max(1, cycleLength)) + Math.max(1, cycleLength)) % Math.max(1, cycleLength);

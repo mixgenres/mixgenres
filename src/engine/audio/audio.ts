@@ -210,6 +210,21 @@ export function createSink(): TransportSink {
     processPendingEvents() {
       if (bandWorklet) bandWorklet.processPendingEvents();
     },
+    setTrackVolume(trackId, volume, time) {
+      if (bandWorklet) bandWorklet.setTrackVolume(String(trackId), volume, time);
+    },
+    setTrackMute(trackId, muted, time) {
+      if (bandWorklet) bandWorklet.setTrackMute(String(trackId), muted, time);
+    },
+    setTrackPan(trackId, pan, time) {
+      if (bandWorklet) bandWorklet.setTrackPan(String(trackId), pan, time);
+    },
+    setTrackSolo(trackId, solo, time) {
+      if (bandWorklet) bandWorklet.setTrackSolo(String(trackId), solo, time);
+    },
+    setTrackSpotlight(trackId, mode, time) {
+      if (bandWorklet) bandWorklet.setTrackSpotlight(String(trackId), mode, time);
+    },
   };
 }
 
@@ -298,6 +313,7 @@ export async function renderSongToMp3(
       trackInstruments,
       worldId: options.worldId || activeWorldId,
       styleId: options.styleId || activeStyleId,
+      mixState: options.mixState,
     },
     progressCb
   );

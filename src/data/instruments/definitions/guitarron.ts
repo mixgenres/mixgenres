@@ -1,50 +1,43 @@
 import type { InstrumentDef } from '../types';
 
 export const guitarron: InstrumentDef = {
-  "id": "guitarron",
-  "name": "Guitarrón",
-  "family": "plucked",
-  "program": 32,
-  "octave": -12,
-  "voicing": "bass",
-  "courses": 1,
-  "bodyConstruction": "wood-box",
-  "excitationType": "fingerpad",
-  "note": "Deep-bodied Mexican fretless bass guitar played in octaves with powerful acoustic punch",
-  "techniques": {
-    "articulations": [
+  id: 'guitarron',
+  name: 'Guitarrón',
+  family: 'plucked',
+  program: 32,
+  voicing: 'bass',
+  courses: 1,
+  bodyConstruction: 'wood-box',
+  excitationType: 'fingerpad',
+  note: 'Large acoustic bass guitar from Mexico used in mariachi and folk music',
+  techniques: {
+    articulations: [
       "accent",
       "staccato",
       "legato",
-      "tenuto",
-      "ghost"
+      "ghost",
+      "palm-mute",
+      "tenuto"
     ],
-    "techniqueMethods": [
-      "two-finger simultaneous octave pluck (jalao)",
-      "thumb and index finger pinch",
-      "wooden body resonance thump",
-      "fretless microtonal intonation"
+    techniqueMethods: [
+      "double-octave pluck",
+      "thumb pad attack",
+      "acoustic body resonance"
     ],
-    "playingStyles": [
+    playingStyles: [
       "mariachi",
-      "ranchera",
-      "son-mexicano",
-      "huapango"
+      "folk",
+      "latin"
     ],
-    "genreTechniques": {
+    genreTechniques: {
       "mariachi": [
         "accent",
         "staccato",
         "tenuto"
       ],
-      "ranchera": [
-        "accent",
-        "tenuto",
-        "ghost"
-      ],
-      "son-mexicano": [
-        "accent",
-        "staccato"
+      "latin": [
+        "staccato",
+        "accent"
       ]
     }
   }

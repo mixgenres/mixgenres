@@ -1,4 +1,5 @@
 import WebRenderer from '@elemaudio/web-renderer';
+import { el } from '@elemaudio/core';
 import type { LuthierPhysicalParameters } from './LuthierAPI';
 import type { MasterChain } from './mixer';
 import { createMasterChain } from './mixer';
@@ -16,15 +17,14 @@ import {
 
 import { resolveDialect, performanceModeForContext } from '../theory/dialects';
 
-interface ScheduledQueueItem {
-  atTime: number;
-  type: 'on' | 'off' | 'bend' | 'cc';
-  trackId: string;
-  event?: CulturalAcousticEvent;
-  midi?: number;
-  value?: number;
-  targetMidi?: number;
-  cc?: number;
+export function getPolyphonyForTrack(instrumentId: string, role?: string): number {
+  const r = (role || '').toLowerCase();
+  const inst = (instrumentId || '').toLowerCase();
+  if (r === 'bass' || /bass|tuba|sousaphone/i.test(inst)) return 4;
+  if (r === 'lead' || r === 'voice' || r === 'melody' || /sax|flute|trumpet|violin|whistle|oboe|clarinet/i.test(inst)) return 4;
+  if (r === 'drums' || /drums|kick|snare|hats|cajon|timbales|conga|bongo/i.test(inst)) return 12;
+  if (r === 'comp' || r === 'pad' || /piano|rhodes|clav|guitar|harp|strings|organ|synth/i.test(inst)) return 8;
+  return 8;
 }
 
 /**
@@ -48,6 +48,15 @@ export class BandWorkletNode {
   private masterVolume = 1.0;
   private trackParamsMap = new Map<string, TrackParams>();
   private trackVoicesMap = new Map<string, VoiceState[]>();
+
+  // Tier 4: Live mix state and per-track signal caching
+  private trackMutedMap = new Map<string, boolean>();
+  private trackSoloMap = new Map<string, boolean>();
+  private trackVolumes = new Map<string, number>();
+  private trackPans = new Map<string, number>();
+  private trackSignalsCache = new Map<string, { fingerprint: string; signal: { left: any; right: any } }>();
+  private dirtyTracks = new Set<string>();
+  private syncScheduled = false;
 
   setWorldAndStyle(worldId: string, styleId?: string) {
     this.activeWorldId = worldId;
@@ -86,8 +95,79 @@ export class BandWorkletNode {
     this.syncGraph();
   }
 
+  // Live mix methods (Tier 3 -> Tier 4 live dispatch)
+  setTrackVolume(trackId: string, volume: number, atTime?: number) {
+    this.schedule(() => {
+      this.trackVolumes.set(trackId, volume);
+      const params = this.trackParamsMap.get(trackId);
+      if (params) {
+        params.volume = volume;
+      }
+      this.markDirty(trackId);
+      this.requestSync();
+    }, atTime);
+  }
+
+  setTrackMute(trackId: string, muted: boolean, atTime?: number) {
+    this.schedule(() => {
+      this.trackMutedMap.set(trackId, muted);
+      this.markDirty(trackId);
+      this.requestSync();
+    }, atTime);
+  }
+
+  setTrackSolo(trackId: string, solo: boolean, atTime?: number) {
+    this.schedule(() => {
+      this.trackSoloMap.set(trackId, solo);
+      // Solo change affects audition of all tracks
+      for (const tId of this.trackParamsMap.keys()) {
+        this.markDirty(tId);
+      }
+      this.requestSync();
+    }, atTime);
+  }
+
+  setTrackPan(trackId: string, pan: number, atTime?: number) {
+    this.schedule(() => {
+      this.trackPans.set(trackId, pan);
+      const params = this.trackParamsMap.get(trackId);
+      if (params) {
+        params.pan = pan;
+      }
+      this.markDirty(trackId);
+      this.requestSync();
+    }, atTime);
+  }
+
+  setTrackSpotlight(trackId: string, mode: string, atTime?: number) {
+    this.schedule(() => {
+      // Spotlight ducking overlay marks track and accompaniment dirty
+      this.markDirty(trackId);
+      this.requestSync();
+    }, atTime);
+  }
+
+  private markDirty(trackId: string) {
+    this.dirtyTracks.add(trackId);
+  }
+
+  private requestSync() {
+    if (this.syncScheduled) return;
+    this.syncScheduled = true;
+    if (typeof requestAnimationFrame !== 'undefined') {
+      requestAnimationFrame(() => this.flushSync());
+    } else {
+      setTimeout(() => this.flushSync(), 0);
+    }
+  }
+
+  public flushSync() {
+    this.syncScheduled = false;
+    this.syncGraph();
+  }
+
   /**
-   * Pre-allocates all tracks in the track params and voices maps.
+   * Pre-allocates all tracks in the track params and voices maps with right-sized polyphony.
    */
   async prepareTracks(instrumentsMap: Map<string, string>) {
     for (const [trackId, instrumentId] of instrumentsMap.entries()) {
@@ -116,8 +196,9 @@ export class BandWorkletNode {
         }
         this.trackParamsMap.set(trackId, params);
 
+        const voiceCount = getPolyphonyForTrack(instrumentId);
         const preallocatedVoices: VoiceState[] = [];
-        for (let vIdx = 0; vIdx < BandWorkletNode.MAX_POLYPHONY; vIdx++) {
+        for (let vIdx = 0; vIdx < voiceCount; vIdx++) {
           preallocatedVoices.push({
             id: `live-${trackId}-v${vIdx}`,
             gate: 0,
@@ -127,29 +208,63 @@ export class BandWorkletNode {
           });
         }
         this.trackVoicesMap.set(trackId, preallocatedVoices);
+        this.markDirty(trackId);
       }
     }
     this.syncGraph();
   }
 
+  private computeTrackFingerprint(trackId: string, isSilenced: boolean, params: TrackParams, voices: VoiceState[]): string {
+    if (isSilenced) return `${trackId}:silenced`;
+    let voiceStateSum = '';
+    for (let i = 0; i < voices.length; i++) {
+      const v = voices[i];
+      if (v.gate === 1) {
+        voiceStateSum += `|${i}:${v.note}:${(v.velocity * 100).toFixed(0)}:${(v.frequencyHz ?? 0).toFixed(1)}:${v.retriggerId || 0}`;
+      }
+    }
+    return `${trackId}:${(params.volume * 100).toFixed(0)}:${(params.pan * 100).toFixed(0)}:${(params.brightness * 100).toFixed(0)}:${(params.decay * 10).toFixed(0)}:${(params.articulation * 100).toFixed(0)}:${voiceStateSum}`;
+  }
+
   private syncGraph() {
     if (!this.core) return;
 
+    const hasAnySolo = Array.from(this.trackSoloMap.values()).some(Boolean);
     const trackSignals: {
       left: any;
       right: any;
     }[] = [];
 
     for (const [trackId, params] of this.trackParamsMap.entries()) {
+      const isMuted = !!this.trackMutedMap.get(trackId);
+      const isSoloed = !!this.trackSoloMap.get(trackId);
+      const isSilenced = isMuted || (hasAnySolo && !isSoloed);
+
       const voices = this.trackVoicesMap.get(trackId) ?? [];
-      const trackSig = renderTrack(trackId, voices, params);
-      trackSignals.push(trackSig);
+      const fp = this.computeTrackFingerprint(trackId, isSilenced, params, voices);
+      const cached = this.trackSignalsCache.get(trackId);
+
+      if (cached && cached.fingerprint === fp) {
+        trackSignals.push(cached.signal);
+      } else {
+        let trackSig: { left: any; right: any };
+        if (isSilenced) {
+          const zero = el.const({ value: 0 });
+          trackSig = { left: zero, right: zero };
+        } else {
+          trackSig = renderTrack(trackId, voices, params);
+        }
+        this.trackSignalsCache.set(trackId, { fingerprint: fp, signal: trackSig });
+        trackSignals.push(trackSig);
+      }
     }
 
     const masterSig = renderMaster(trackSignals, { highPass: 20, volume: this.masterVolume });
     this.core.render(masterSig.left, masterSig.right).catch(err => {
       console.warn('[Elementary] Render error:', err);
     });
+
+    this.dirtyTracks.clear();
   }
 
   private schedule(fn: () => void, atTime?: number) {
@@ -168,7 +283,6 @@ export class BandWorkletNode {
 
   processPendingEvents() {
     // Kept for interface compatibility with transport.ts
-    // Timing and queueing are now handled by precise setTimeout scheduling
   }
 
   postEvent(event: CulturalAcousticEvent, atTime?: number) {
@@ -232,7 +346,8 @@ export class BandWorkletNode {
     let voices = this.trackVoicesMap.get(trackId);
     if (!voices) {
       voices = [];
-      for (let vIdx = 0; vIdx < BandWorkletNode.MAX_POLYPHONY; vIdx++) {
+      const voiceCount = getPolyphonyForTrack(instrumentId);
+      for (let vIdx = 0; vIdx < voiceCount; vIdx++) {
         voices.push({
           id: `live-${trackId}-v${vIdx}`,
           gate: 0,
@@ -263,7 +378,8 @@ export class BandWorkletNode {
     voice.velocity = velScaled;
     voice.gate = 1;
 
-    if (!deferSync) this.syncGraph();
+    this.markDirty(trackId);
+    if (!deferSync) this.requestSync();
   }
 
   postRelease(trackId: string, midi: number, atTime?: number) {
@@ -285,7 +401,10 @@ export class BandWorkletNode {
       }
     }
 
-    if (activeVoices.length > 0 && !deferSync) this.syncGraph();
+    if (activeVoices.length > 0) {
+      this.markDirty(trackId);
+      if (!deferSync) this.requestSync();
+    }
   }
 
   postCC(trackId: string, cc: number, value: number, atTime?: number) {
@@ -317,7 +436,8 @@ export class BandWorkletNode {
     else if (cc === 24) params.pressure = norm;
     else if (cc === 25) params.resonance = norm;
 
-    if (!deferSync) this.syncGraph();
+    this.markDirty(trackId);
+    if (!deferSync) this.requestSync();
   }
 
   postBend(trackId: string, value: number, targetMidi?: number, atTime?: number) {
@@ -353,7 +473,8 @@ export class BandWorkletNode {
     (targetVoice as any).baseFrequencyHz = base;
     targetVoice.frequencyHz = base * bendRatio;
 
-    if (!deferSync) this.syncGraph();
+    this.markDirty(trackId);
+    if (!deferSync) this.requestSync();
   }
 
   softNotesOff() {
@@ -378,6 +499,8 @@ export class BandWorkletNode {
     this.syncGraph();
     this.trackVoicesMap.clear();
     this.trackParamsMap.clear();
+    this.trackSignalsCache.clear();
+    this.dirtyTracks.clear();
   }
 
   dispose() {

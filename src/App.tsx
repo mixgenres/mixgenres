@@ -28,7 +28,7 @@ import {
 } from './engine/audio/audio';
 import { ENERGY_LABELS } from './engine/metadata/energy';
 import { normaliseDials } from './engine/metadata/dials';
-import { compile } from './engine/sequencing/perform';
+import { tieredCompile } from './engine/sequencing/tieredEngine';
 import { Transport } from './engine/sequencing/transport';
 import { PATTERNS_BY_ID, cleanPatternName } from './data/genres';
 
@@ -149,6 +149,13 @@ export default function App() {
           selectedTrackIds,
           worldId: songRef.current.worldId,
           styleId: songRef.current.styleId,
+          mixState: {
+            volume: Object.fromEntries(songRef.current.tracks.map(t => [t.id, (t as any).volume ?? 1])),
+            pan: Object.fromEntries(songRef.current.tracks.map(t => [t.id, (t as any).pan ?? 0.5])),
+            muted: Object.fromEntries(songRef.current.tracks.map(t => [t.id, !!t.muted])),
+            solo: Object.fromEntries(songRef.current.tracks.map(t => [t.id, !!(t as any).solo])),
+            spotlight: Object.fromEntries(songRef.current.tracks.map(t => [t.id, (t as any).spotlight ?? 'off'])),
+          },
         },
         (frac) => {
           if (!bounceCancelledRef.current) setBounceProgress(frac);
@@ -270,23 +277,36 @@ export default function App() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [bar]);
 
-  /* ---- the performance is compiled, not triggered step by step ----------
-     Every edit recompiles the whole song into a list of events with absolute
-     times, which the transport then schedules ahead of the clock. That is what
-     lets a note sit 11ms behind the beat on purpose, lets a pad sustain into
-     the next chord, and lets a bar know what the bar after it is doing. */
-  // Compile at low priority: the UI updates and paints with the new song first,
-  // and the (tens of ms) recompile happens in a follow-up render.
+  /* ---- what we are looking at ------------------------------------------ */
+  const playingRegion = song.measures[bar]?.regionId ?? song.regions[0]?.id;
+  const focusId = pickedRegion ?? playingRegion;
+  const focusIndex = Math.max(0, song.regions.findIndex(r => r.id === focusId));
+  const region = song.regions[focusIndex] ?? song.regions[0];
+  const chords = region?.chords ?? ['Am'];
+  const chordHere = song.measures[bar]?.chord ?? chords[0];
+  const live = region?.id === playingRegion;
+  // One name for the focused part, used everywhere it shows up in text.
+  const partName = region ? (region.formLabel ?? region.name ?? String(region.kind)) : '';
+  const sectionStyle = region ? getResolvedSectionStyle(song, region) : null;
+  const spotlightDefaults = sectionStyle?.form?.defaultSpotlights ?? {};
+  const defaultSpotlightRoles = spotlightDefaults[String(region?.formKey ?? region?.kind)] ?? [];
+
+  /* ---- tiered performance compilation ----------------------------------
+     Cost scales with the scope of the edit, not song length.
+     Tier 0 (Structure), Tier 1 (Arrangement), and Tier 2 (Performance)
+     cells are cached and only invalidated when their specific inputs change. */
   const deferredSong = useDeferredValue(song);
-  // `compile` reads the dials off the sheet itself; passing them explicitly
-  // here would let the two disagree whenever a dial changes without a rebuild.
-  const perf = useMemo(() => compile(deferredSong), [deferredSong]);
+  const perf = useMemo(() => {
+    return tieredCompile(deferredSong, {
+      focusedRegionId: focusId,
+    });
+  }, [deferredSong, focusId]);
   const perfRef = useRef(perf);
   perfRef.current = perf;
 
   useEffect(() => {
-    transportRef.current?.setPerformance(perf);
-  }, [perf]);
+    transportRef.current?.patchPerformance(perf, [focusId]);
+  }, [perf, focusId]);
 
   // The audio engine resolves a physical model per note from the instrument
   // id, but the transport only ever hands it a bare track id — keep it in
@@ -353,19 +373,6 @@ export default function App() {
     };
   }, [playing]);
 
-  /* ---- what we are looking at ------------------------------------------ */
-  const playingRegion = song.measures[bar]?.regionId ?? song.regions[0]?.id;
-  const focusId = pickedRegion ?? playingRegion;
-  const focusIndex = Math.max(0, song.regions.findIndex(r => r.id === focusId));
-  const region = song.regions[focusIndex] ?? song.regions[0];
-  const chords = region?.chords ?? ['Am'];
-  const chordHere = song.measures[bar]?.chord ?? chords[0];
-  const live = region?.id === playingRegion;
-  // One name for the focused part, used everywhere it shows up in text.
-  const partName = region ? (region.formLabel ?? region.name ?? String(region.kind)) : '';
-  const sectionStyle = region ? getResolvedSectionStyle(song, region) : null;
-  const spotlightDefaults = sectionStyle?.form?.defaultSpotlights ?? {};
-  const defaultSpotlightRoles = spotlightDefaults[String(region?.formKey ?? region?.kind)] ?? [];
   // Accepts a plain Track: the sheet's tracks always carry an instrumentId at
   // runtime, but the stored type keeps it optional for older saved songs.
   const spotlightIsActive = (track: Pick<Voice, 'spotlight' | 'role'>) =>
@@ -403,7 +410,29 @@ export default function App() {
   const effectivePlayback = getEffectiveBpm(song, activeRegionForTempo?.id);
   const songFeel = FEELS.find(f => f.id === (song.tempoShift ?? 'as-written')) ?? FEELS[3];
 
-  const edit = (fn: (s: SongSheet) => SongSheet) => setSong(s => fn(s));
+  const edit = (
+    fn: (s: SongSheet) => SongSheet,
+    scope?: { tier: 0 | 1 | 2; regions?: string[] } | { tier: 3; tracks?: string[] } | { tier: 'none' }
+  ) => {
+    setSong(s => {
+      const next = fn(s);
+      if (scope && scope.tier === 3) {
+        if (transportRef.current && scope.tracks) {
+          for (const trackId of scope.tracks) {
+            const t = next.tracks.find(tr => tr.id === trackId);
+            if (t) {
+              transportRef.current.setTrackVolume(t.id, (t as any).volume ?? 0.85);
+              transportRef.current.setTrackMute(t.id, !!t.muted);
+              transportRef.current.setTrackPan(t.id, (t as any).pan ?? 0.5);
+              transportRef.current.setTrackSolo(t.id, !!(t as any).solo);
+              transportRef.current.setTrackSpotlight(t.id, (t as any).spotlight ?? 'auto');
+            }
+          }
+        }
+      }
+      return next;
+    });
+  };
   const playheadPercent = Math.min(100, Math.max(0, ((bar * 16 + step) / (totalBars * 16)) * 100));
 
   return (

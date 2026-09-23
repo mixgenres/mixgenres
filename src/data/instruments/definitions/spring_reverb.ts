@@ -2,6 +2,7 @@ import type { InstrumentDef } from '../types';
 
 export const spring_reverb: InstrumentDef = {
   id: 'spring-reverb', name: 'Spring reverb', family: 'electronic', voicing: 'unpitched',
+  drum: { low: 36, mid: 38, high: 42 },
   note: 'spring tank reverb; boingy metallic decay',
   techniques: {
     articulations: ['accent', 'staccato', 'ghost', 'roll'],
