@@ -39,7 +39,8 @@ export class BandWorkletNode {
   private audioNode!: AudioNode;
   private voiceSeq = 0;
   private masterChain?: MasterChain;
-  private pendingQueue: ScheduledQueueItem[] = [];
+
+  private timerIds = new Set<number>();
 
   public activeWorldId = 'flamenco';
   public activeStyleId = '';
@@ -56,7 +57,7 @@ export class BandWorkletNode {
   async initialize(context: AudioContext, volume = 1): Promise<AudioNode> {
     this.ctx = context;
     if (this.ctx.state === 'suspended') {
-      this.ctx.resume().catch(() => {});
+      this.ctx.resume().catch(() => { });
     }
 
     this.core = new WebRenderer();
@@ -151,55 +152,32 @@ export class BandWorkletNode {
     });
   }
 
+  private schedule(fn: () => void, atTime?: number) {
+    const now = this.ctx?.currentTime ?? 0;
+    const delay = Math.max(0, (atTime ?? now) - now);
+    if (delay <= 0.005) {
+      fn();
+    } else {
+      const id = window.setTimeout(() => {
+        this.timerIds.delete(id);
+        fn();
+      }, delay * 1000);
+      this.timerIds.add(id);
+    }
+  }
+
   processPendingEvents() {
-    if (!this.ctx) return;
-    const now = this.ctx.currentTime;
-    const horizon = now + 0.005;
-
-    let dirty = false;
-    const due: ScheduledQueueItem[] = [];
-    const remaining: ScheduledQueueItem[] = [];
-
-    for (const item of this.pendingQueue) {
-      if (item.atTime <= horizon) due.push(item);
-      else remaining.push(item);
-    }
-
-    if (due.length === 0) return;
-    this.pendingQueue = remaining;
-
-    for (const item of due) {
-      if (item.type === 'on' && item.event) {
-        this.executeNoteOn(item.event, true);
-        dirty = true;
-      } else if (item.type === 'off' && item.midi !== undefined) {
-        this.executeNoteOff(item.trackId, item.midi, true);
-        dirty = true;
-      } else if (item.type === 'bend' && item.value !== undefined) {
-        this.executeBend(item.trackId, item.value, item.targetMidi, true);
-        dirty = true;
-      } else if (item.type === 'cc' && item.cc !== undefined && item.value !== undefined) {
-        this.executeCC(item.trackId, item.cc, item.value, true);
-        dirty = true;
-      }
-    }
-
-    if (dirty) {
-      this.syncGraph();
-    }
+    // Kept for interface compatibility with transport.ts
+    // Timing and queueing are now handled by precise setTimeout scheduling
   }
 
   postEvent(event: CulturalAcousticEvent, atTime?: number) {
     if (this.ctx && this.ctx.state === 'suspended') {
-      this.ctx.resume().catch(() => {});
+      this.ctx.resume().catch(() => { });
     }
-
-    const now = this.ctx?.currentTime ?? 0;
-    if (!atTime || atTime <= now + 0.005) {
+    this.schedule(() => {
       this.executeNoteOn(event);
-    } else {
-      this.pendingQueue.push({ atTime, type: 'on', trackId: event.trackId, event });
-    }
+    }, atTime);
   }
 
   private executeNoteOn(event: CulturalAcousticEvent, deferSync = false) {
@@ -266,18 +244,15 @@ export class BandWorkletNode {
       this.trackVoicesMap.set(trackId, voices);
     }
 
-    let voice = voices.find(v => v.note === noteMidi && v.gate === 1)
-      || voices.find(v => v.gate === 0)
-      || voices.reduce((oldest, current) => {
-          const oSeq = (oldest as any).triggerSeq ?? 0;
-          const cSeq = (current as any).triggerSeq ?? 0;
-          return cSeq < oSeq ? current : oldest;
-        }, voices[0]);
+    // Round-robin voice allocation: always pick the oldest triggered voice
+    let voice = voices.reduce((oldest, current) => {
+      const oSeq = (oldest as any).triggerSeq ?? 0;
+      const cSeq = (current as any).triggerSeq ?? 0;
+      return cSeq < oSeq ? current : oldest;
+    }, voices[0]);
 
     if (voice.gate === 1) {
       voice.retriggerId = (voice.retriggerId || 0) + 1;
-      voice.gate = 0;
-      this.syncGraph();
     }
 
     voice.note = noteMidi;
@@ -292,37 +267,31 @@ export class BandWorkletNode {
   }
 
   postRelease(trackId: string, midi: number, atTime?: number) {
-    const now = this.ctx?.currentTime ?? 0;
-    if (!atTime || atTime <= now + 0.005) {
+    this.schedule(() => {
       this.executeNoteOff(trackId, midi);
-    } else {
-      this.pendingQueue.push({ atTime, type: 'off', trackId, midi });
-    }
+    }, atTime);
   }
 
   private executeNoteOff(trackId: string, midi: number, deferSync = false) {
     const voices = this.trackVoicesMap.get(trackId);
     if (!voices) return;
 
-    // Find active voice matching this MIDI pitch (with 0.5 tolerance for microtonal jitter)
     const roundedMidi = Math.round(midi);
-    const voice = voices.find(v => (v.note === midi || Math.round(v.note) === roundedMidi) && v.gate === 1);
-    if (voice) {
+    const activeVoices = voices.filter(v => (v.note === midi || Math.round(v.note) === roundedMidi) && v.gate === 1);
+    for (const voice of activeVoices) {
       voice.gate = 0;
       if ((voice as any).baseFrequencyHz) {
         voice.frequencyHz = (voice as any).baseFrequencyHz;
       }
-      if (!deferSync) this.syncGraph();
     }
+
+    if (activeVoices.length > 0 && !deferSync) this.syncGraph();
   }
 
   postCC(trackId: string, cc: number, value: number, atTime?: number) {
-    const now = this.ctx?.currentTime ?? 0;
-    if (!atTime || atTime <= now + 0.005) {
+    this.schedule(() => {
       this.executeCC(trackId, cc, value);
-    } else {
-      this.pendingQueue.push({ atTime, type: 'cc', trackId, cc, value });
-    }
+    }, atTime);
   }
 
   private executeCC(trackId: string, cc: number, value: number, deferSync = false) {
@@ -352,12 +321,9 @@ export class BandWorkletNode {
   }
 
   postBend(trackId: string, value: number, targetMidi?: number, atTime?: number) {
-    const now = this.ctx?.currentTime ?? 0;
-    if (!atTime || atTime <= now + 0.005) {
+    this.schedule(() => {
       this.executeBend(trackId, value, targetMidi);
-    } else {
-      this.pendingQueue.push({ atTime, type: 'bend', trackId, value, targetMidi });
-    }
+    }, atTime);
   }
 
   private executeBend(trackId: string, value: number, targetMidi?: number, deferSync = false) {
@@ -391,7 +357,9 @@ export class BandWorkletNode {
   }
 
   softNotesOff() {
-    this.pendingQueue = [];
+    for (const id of this.timerIds) window.clearTimeout(id);
+    this.timerIds.clear();
+
     for (const voices of this.trackVoicesMap.values()) {
       for (const v of voices) {
         if (v.gate === 1) v.gate = 0;
@@ -401,7 +369,9 @@ export class BandWorkletNode {
   }
 
   clear() {
-    this.pendingQueue = [];
+    for (const id of this.timerIds) window.clearTimeout(id);
+    this.timerIds.clear();
+
     for (const voices of this.trackVoicesMap.values()) {
       for (const v of voices) v.gate = 0;
     }
@@ -412,7 +382,7 @@ export class BandWorkletNode {
 
   dispose() {
     this.clear();
-    try { this.audioNode?.disconnect(); } catch {}
+    try { this.audioNode?.disconnect(); } catch { }
     this.masterChain?.dispose();
     this.masterChain = undefined;
   }

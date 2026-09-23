@@ -191,13 +191,12 @@ export async function renderPerformanceToMp3(
           params.articulation = articulationNorm;
           params.decay = Math.max(0.1, Math.min(8.0, event.note.dur));
 
-          let voice = voices.find(v => v.note === noteMidi && v.gate === 1)
-            || voices.find(v => v.gate === 0)
-            || voices.reduce((oldest, current) => {
-                const oSeq = (oldest as any).triggerSeq ?? 0;
-                const cSeq = (current as any).triggerSeq ?? 0;
-                return cSeq < oSeq ? current : oldest;
-              }, voices[0]);
+          // Round-robin allocation fixes the dropped/stuttering retriggered notes
+          let voice = voices.reduce((oldest, current) => {
+            const oSeq = (oldest as any).triggerSeq ?? 0;
+            const cSeq = (current as any).triggerSeq ?? 0;
+            return cSeq < oSeq ? current : oldest;
+          }, voices[0]);
 
           if (voice.gate === 1) {
             voice.retriggerId = (voice.retriggerId || 0) + 1;
@@ -212,8 +211,9 @@ export async function renderPerformanceToMp3(
           voice.gate = 1;
           graphDirty = true;
         } else if (event.kind === 'off') {
-          const voice = voices.find(v => v.note === event.midi && v.gate === 1);
-          if (voice) {
+          const roundedMidi = Math.round(event.midi);
+          const activeVoices = voices.filter(v => (v.note === event.midi || Math.round(v.note) === roundedMidi) && v.gate === 1);
+          for (const voice of activeVoices) {
             voice.gate = 0;
             if ((voice as any).baseFrequencyHz) {
               voice.frequencyHz = (voice as any).baseFrequencyHz;
