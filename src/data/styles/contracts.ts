@@ -337,7 +337,7 @@ for (const [id, override] of Object.entries(CULTURAL_OVERRIDES)) {
 export const GENRE_CONTRACTS: Record<string, WorldContract> = G;
 
 const STYLE_PATCHES: Record<string, Partial<WorldContract>> = {
-  'bachata-urbana': { groove:{...G.bachata.groove,lean:-2,roleLean:{...G.bachata.groove.roleLean,bass:-10}}, bass:{...G.bachata.bass,style:'sub',rhythmJob:'syncopated urban bass under guitar pattern'}, form:['intro','verso','coro','mambo','puente','cierre'] },
+  'bachata-bachata-urbana': { groove:{...G.bachata.groove,lean:-2,roleLean:{...G.bachata.groove.roleLean,bass:-10}}, bass:{...G.bachata.bass,style:'sub',rhythmJob:'syncopated urban bass under guitar pattern'}, form:['intro','verso','coro','mambo','puente','cierre'] },
   'bachata-sensual': { groove:{...G.bachata.groove,lean:4,roleLean:{...G.bachata.groove.roleLean,lead:9}}, bass:{...G.bachata.bass,style:'sub'}, form:['intro','verso','pre-coro','coro','break','coro','cierre'], timbreSpace:{...G.bachata.timbreSpace,room:'studio',production:'soft transients, intimate vocal space'} },
   'bachata-bachata-moderna': { groove:{...G.bachata.groove,lean:0,roleLean:{...G.bachata.groove.roleLean,comp:4}}, form:['intro','verso','coro','mambo','solo','coro','cierre'] },
   'bachata-bolero-bachata': { groove:{...G.bachata.groove,lean:5,roleLean:{...G.bachata.groove.roleLean,lead:10}}, bass:{...G.bachata.bass,style:'rootFifth'}, form:['intro','verso','coro','puente','coda'], timbreSpace:{...G.bachata.timbreSpace,room:'hall',production:'lyrical bolero phrasing'} },
@@ -367,10 +367,7 @@ const STYLE_PATCHES: Record<string, Partial<WorldContract>> = {
 
   'timba-timba-funk': { groove:{...G.timba.groove,lean:-5,roleLean:{...G.timba.groove.roleLean,bass:-18}}, bass:{...G.timba.bass,style:'riff'}, form:['intro','verso','coro','marcha','gear','cierre'] },
   'timba-timba-despelote': { groove:{...G.timba.groove,lean:-4,dynamicRange:1.4}, form:['intro','coro','marcha','despelote','break','cierre'] },
-  'timba-son-timbeado': { groove:{...G.timba.groove,lean:-1,roleLean:{...G.timba.groove.roleLean,comp:-5}}, bass:{...G.timba.bass,style:'tumbao'}, form:['intro','son','montuno','coro','cierre'] },
   'timba-timba-rumbeada': { groove:{...G.timba.groove,lean:0,roleLean:{...G.timba.groove.roleLean,perc:-5}}, form:['intro','coro','rumba','gear','cierre'] },
-  'timba-son-cubano': { groove:{...G.timba.groove,lean:1,roleLean:{...G.timba.groove.roleLean,bass:-11}}, form:['intro','son','montuno','solo','cierre'] },
-  'timba-descarga': { groove:{...G.timba.groove,lean:-2}, form:['intro','montuno','solo','trade','break','montuno','cierre'] },
 
   'industrial-ebm': { groove:{...G.industrial.groove,lean:-2}, bass:{...G.industrial.bass,style:'octave'}, pulseModel:'machine-grid', form:['intro','sequence','break','sequence','outro'] },
   'industrial-industrial-rock': { groove:{...G.industrial.groove,lean:-1}, bass:{...G.industrial.bass,style:'riff'}, timbreSpace:{...G.industrial.timbreSpace,room:'room',production:'industrial rock guitars + machine percussion'} },
@@ -397,7 +394,6 @@ const STYLE_PATCHES: Record<string, Partial<WorldContract>> = {
   'tango-tango-nuevo': { pulseModel:'additive', meter:'4/4', subdivision:16, timeline:'3+3+2 phrase grouping', form:['intro','A','B','3+3+2 variation','coda'] },
   'tango-milonga': { meter:'2/4', subdivision:8, pulseModel:'metric-hierarchical', timeline:'milonga 3+3+2 cell' },
   'tango-tango-vals': { meter:'3/4', subdivision:12, pulseModel:'metric-hierarchical', timeline:'none', form:['intro','A','B','A','coda'] },
-  'tango-yumba': { pulseModel:'metric-hierarchical', timeline:'yumba accent cycle', form:['intro','marcato','cantabile','yumba','cierre'] },
   'salsa-mambo-on-2': { timeline:'son clave 2-3 with on-2 accent organization', groove:{...G.salsa.groove,lean:-2,roleLean:{...G.salsa.groove.roleLean,comp:-9,stab:-7}} },
   'salsa-salsa-dura': { groove:{...G.salsa.groove,dynamicRange:1.32,humanizeMs:4}, form:['intro','verso','montuno','mambo','descarga','cierre'] },
   'salsa-salsa-romantica': { groove:{...G.salsa.groove,lean:1,roleLean:{...G.salsa.groove.roleLean,lead:6}}, form:['intro','verso','coro','montuno','puente','cierre'] },

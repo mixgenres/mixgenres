@@ -298,30 +298,30 @@ export function patternStyleFit(
   const stylePatternIds = resolved.patterns ?? {};
   const daring = Math.max(0, Math.min(1, adventure));
 
-  // Author-stated prohibitions are absolute.
-  if (stylePatternIds.avoid?.includes(pattern.id)) return Number.NEGATIVE_INFINITY;
+  let penalty = 0;
+  if (stylePatternIds.avoid?.includes(pattern.id)) penalty -= 80;
   if (pattern.tags?.some(tag => resolved.rules?.forbid?.some(r => r.tag === tag || r.tag === `tag:${tag}`))) {
-    return Number.NEGATIVE_INFINITY;
+    penalty -= 80;
   }
 
   // Filter styleIds to only those that actually exist in our registry.
   // Stale styleIds from catalog rebuilds should be treated as unowned/unscoped fallback material
   // rather than a "sibling style" mismatch which would veto the pattern.
   const ids = new Set((pattern.styleIds ?? []).filter(id => !!getStyle(id)));
-  if (ids.has(styleId)) return 100;
-  if (stylePatternIds.require?.includes(pattern.id)) return 90;
-  if (stylePatternIds.preferred?.includes(pattern.id)) return 70;
+  if (ids.has(styleId)) return 100 + penalty;
+  if (stylePatternIds.require?.includes(pattern.id)) return 90 + penalty;
+  if (stylePatternIds.preferred?.includes(pattern.id)) return 70 + penalty;
 
-  // Owned by a sibling style: the strongest form of "not from here".
+  // Owned by a sibling style: soft preference penalty, never a hard veto in an exploratory engine.
   if (ids.size > 0 && !ids.has(styleId)) {
-    return daring < 0.05 ? Number.NEGATIVE_INFINITY : -60 + daring * 78;
+    return -40 + daring * 50 + penalty;
   }
   // Outside the style's curated set but unowned.
   if (stylePatternIds.allowed?.length && !stylePatternIds.allowed.includes(pattern.id)) {
-    return daring < 0.05 ? Number.NEGATIVE_INFINITY : -35 + daring * 52;
+    return -20 + daring * 35 + penalty;
   }
   // Unscoped material: ordinary fallback.
-  return 0;
+  return penalty;
 }
 
 /** Resolve the behavioral approach from the target world's contract. */
@@ -349,40 +349,28 @@ export function affinity(
   const p = PATTERNS_BY_ID[patternId];
   if (!p) return Number.NEGATIVE_INFINITY;
 
-  if (styleId) {
-    const sFit = patternStyleFit(p, styleId, worldId, adventure);
-    if (!Number.isFinite(sFit)) return Number.NEGATIVE_INFINITY;
-  }
+  const sFit = styleId ? patternStyleFit(p, styleId, worldId, adventure) : 0;
 
   const kinds = new Set(instrumentPatternKinds(voice.instrumentId));
   const explicitTargets = new Set([...(p.instruments ?? []).map(String), ...(p.compatibleInstruments ?? []).map(String)]);
   const instrumentMatch = [...explicitTargets].some(k => kinds.has(k));
   const explicitMismatch = explicitTargets.size > 0 && !instrumentMatch;
   const roleMatch = p.roles.some(r => r === voice.role || p.compatibleRoles?.includes(voice.role as any) || kinds.has(r));
-  // A vocal lane is not a generic harmony/melody keyboard lane. Keep voice
-  // tracks on explicitly vocal material unless the catalog author opts into
-  // cross-role use. This prevents accompaniment cells from becoming fake
-  // vocal lines.
   const vocalMismatch = kinds.has('voice') && !p.roles.includes('voice' as any) && !p.canCrossRole;
-  if (vocalMismatch) return Number.NEGATIVE_INFINITY;
 
-  // A cross-world cell is not wrong, it is a decision. The penalty shrinks as
-  // the adventure dial opens; the blend engine then gives it the right accent.
   const daring = Math.max(0, Math.min(1, adventure));
-  let score = p.worldId === worldId ? 50 : -45 + daring * 62;
-  // An authored pattern that names concrete instruments is not a generic suggestion.
-  // Do not apply it to an unrelated track just because the role happens to match.
+  let score = p.worldId === worldId ? 50 : -30 + daring * 50;
+
   const behavioralFit = approachFit(p, approachForVoice(voice, worldId, styleId));
-  if (explicitMismatch && !p.canCrossRole && behavioralFit < 12) return Number.NEGATIVE_INFINITY;
+  if (vocalMismatch) score -= 50;
+  if (explicitMismatch && !p.canCrossRole && behavioralFit < 12) score -= 40;
   if (instrumentMatch) score += 30;
-  else if (explicitMismatch) score -= 45;
+  else if (explicitMismatch) score -= 25;
   if (roleMatch) score += 14;
   else if (p.roles.length) score -= 10;
-  // Behavioral approach is the primary cross-instrument signal. Instrument identity
-  // remains a compatibility hint, but no longer determines the musical behavior.
-  
+
   if (styleId) {
-    score += patternStyleFit(p, styleId, worldId, adventure);
+    score += sFit;
   }
 
   // Pattern weight is a tie-breaker among otherwise compatible cells.
@@ -601,11 +589,9 @@ export function suggestPattern(
   // world, then to neighbouring worlds the style explicitly cross-links to.
   const curated = resolved?.patterns?.allowed?.length ? resolved.patterns.allowed : undefined;
   const worldWide = (PATTERNS_BY_WORLD[worldId] || []).map(p => p.id);
-  const guestWorlds = adventure >= 0.6 ? guestWorldIdsFor(worldId) : [];
+  const guestWorlds = guestWorldIdsFor(worldId);
   const guestIds = guestWorlds.flatMap(g => (PATTERNS_BY_WORLD[g] || []).map(p => p.id));
-  const candidateIds = adventure < 0.25 && curated
-    ? curated
-    : Array.from(new Set([...(curated ?? []), ...worldWide, ...guestIds]));
+  const candidateIds = Array.from(new Set([...(curated ?? []), ...worldWide, ...guestIds, ...Object.keys(PATTERNS_BY_ID)]));
   const scored = candidateIds
     .map(id => PATTERNS_BY_ID[id])
     .filter((p): p is MusicalPattern => !!p && p.enabled !== false)
@@ -613,7 +599,7 @@ export function suggestPattern(
       let n = affinity(p.id, voice, worldId, styleId, adventure);
       const behavioralFit = approachFit(p, approach);
       if (approach && behavioralFit > 0) n += behavioralFit;
-      if (!Number.isFinite(n)) return { id: p.id, n: Number.NEGATIVE_INFINITY };
+      if (!Number.isFinite(n)) return { id: p.id, n: -999 };
       if (p.id === DEFAULT_PATTERN_PREFERENCES[worldId]?.[voice.instrumentId]) n += 8;
       if (styleId && p.styleIds?.includes(styleId)) n += 30;
       if (resolved?.contract.timelineRequired && resolved.contract.timelineGrid.length) {
@@ -622,11 +608,6 @@ export function suggestPattern(
         n += overlap * 18;
         if (overlap < 0.2 && p.category !== 'melody' && p.category !== 'texture') n -= 20;
       }
-      // Section role is a musical constraint, not a tiny tie-breaker. A
-      // chorus, intro, solo, bridge or coda should select material authored
-      // for that job whenever the catalogue provides it. The previous +8
-      // bonus was routinely overwhelmed by style/instrument affinity, which
-      // caused every section to inherit the same four-bar cell.
       if (sectionKind) {
         const usesSection = !!patternSection && p.sectionUsage?.some(u => canonicalPatternSection(u) === patternSection);
         if (usesSection) n += 32;
@@ -637,22 +618,16 @@ export function suggestPattern(
         else if (partEnergy === 1 && p.category === 'fill') n -= 15;
         else if (p.supportedEnergy?.length) n -= 6;
       } else if (want && p.supportedEnergy?.includes(want)) n += 2;
-      // Keep fills and cadences below the main groove in ordinary sections.
       if (sectionKind && ['verse', 'pre-chorus', 'bridge'].includes(sectionKind) && ['fill', 'cadence', 'sectionPattern'].includes(p.category)) n -= 12;
       if (taken?.has(p.id)) n -= 6;
       return { id: p.id, n: n + hash(`${p.id}:${sectionKind ?? 'body'}`, salt) * 3 };
     })
     .sort((a, b) => b.n - a.n);
 
-  // Do not always take rank #1. Real musicians have a vocabulary within a
-  // role; deterministic selection from a narrow high-quality window gives
-  // repeated sections a family resemblance without photocopying the same cell
-  // into every section. The window is deliberately narrow so this is not a
-  // random-genre generator.
-  const viable = scored.filter(x => x.n > 0);
+  const viable = scored.filter(x => x.n > -150);
   if (!viable.length) return scored[0]?.id;
   const best = viable[0].n;
-  const window = viable.filter(x => x.n >= best - 18).slice(0, 8);
+  const window = viable.filter(x => x.n >= best - 25).slice(0, 10);
   return window[Math.floor(hash(`pick:${worldId}:${voice.instrumentId}:${sectionKind ?? 'body'}`, salt) * window.length)]?.id
     ?? window[0].id;
 }
@@ -860,9 +835,17 @@ export function rebuild(sheet: Sheet): Sheet {
         // The 16-step view is for the glyphs only. Playback reads `perf`,
         // which keeps the pattern on its own grid so a 12-step shuffle stays
         // a shuffle instead of being rounded into straight sixteenths.
-        const bar = toBar(rawOnsets, rawAccents, rawDurations, sub, i % cycleBars);
+        //
+        // Bar-in-cycle must be measured against the pattern's own authored
+        // cycle (patternCycleBars), not the musical phrase span (cycleBars,
+        // padded up to >=4 bars for arrangement/variation decisions above).
+        // Slicing against the phrase span chopped every pattern into
+        // 1/cycleBars-sized fragments and scattered them across bars that
+        // never repeat the loop, which is what made playback sound sparse
+        // and unrelated to the authored pattern.
+        const bar = toBar(rawOnsets, rawAccents, rawDurations, sub, i % patternCycleBars);
         const perf = sliceBarNative(
-          rawOnsets, rawAccents, rawDurations, rawMicro, rawHitTypes, sub, cycleBars, i % cycleBars,
+          rawOnsets, rawAccents, rawDurations, rawMicro, rawHitTypes, sub, patternCycleBars, i % patternCycleBars,
         );
 
         // If the user gave this part a cell from another world, that choice is
@@ -1236,17 +1219,18 @@ function patternCandidatesForVoice(
   const allowedIds = resolvedForPatterns?.patterns?.allowed?.length ? new Set(resolvedForPatterns.patterns.allowed) : undefined;
   const approach = approachForVoice(voice, worldId, styleId);
   const daring = Math.max(0, Math.min(1, adventure));
-  const pool = daring >= 0.6
-    ? [...(PATTERNS_BY_WORLD[worldId] || []), ...guestWorldIdsFor(worldId).flatMap(g => PATTERNS_BY_WORLD[g] || [])]
-    : (PATTERNS_BY_WORLD[worldId] || []);
+  const pool = Array.from(new Set([
+    ...(PATTERNS_BY_WORLD[worldId] || []),
+    ...guestWorldIdsFor(worldId).flatMap(g => PATTERNS_BY_WORLD[g] || []),
+    ...Object.values(PATTERNS_BY_ID)
+  ]));
   return pool
-    .filter(p => daring >= 0.25 || !allowedIds || allowedIds.has(p.id))
     .filter(p => p.enabled !== false)
     .map(p => {
       let n = affinity(p.id, voice, worldId, styleId, daring);
       const behavioralFit = approachFit(p, approach);
       if (approach && behavioralFit > 0) n += behavioralFit;
-      if (!Number.isFinite(n)) return { p, score: Number.NEGATIVE_INFINITY };
+      if (!Number.isFinite(n)) return { p, score: -999 };
       if (p.sectionUsage?.includes(sectionKind as any)) n += 11;
       if (partEnergy) {
         if (p.supportedEnergy?.includes(partEnergy)) n += 15;
@@ -1263,7 +1247,7 @@ function patternCandidatesForVoice(
       if (['verse', 'pre-chorus', 'bridge'].includes(sectionKind) && ['fill', 'cadence', 'sectionPattern'].includes(p.category)) n -= 15;
       return { p, score: n };
     })
-    .filter(x => x.score > 0)
+    .filter(x => x.score > -200)
     .sort((a, b) => b.score - a.score);
 }
 

@@ -39,9 +39,6 @@ export const CURATED_STYLE_NAMES: Record<string, string[]> = {
   'uk-bass': ['UK Garage','2-Step','Grime','Dubstep','Future Garage','Bassline','Breaks'],
 };
 
-/** Source-world aliases keep musical definitions reusable. */
-export const PROTECTED_GENRES = new Set<string>();
-
 const SOURCE_STYLE_OVERRIDES: Record<string, Record<string, string>> = {
   tango: {
     'Tango Tradicional':'Tango Tradicional', 'Guardia Vieja':'Tango Tradicional', 'Troilo':'Tango Tradicional', 'Pugliese':'Tango Tradicional',
@@ -296,5 +293,5 @@ export function assembleStylePatterns(styles: SongStyle[], patterns: MusicalPatt
     p.description = shortText(p.description);
     p.variants = (p.variants ?? []).map(v => ({ ...v, description: v.description ? shortText(v.description) : v.description }));
   }
-  return patterns.filter(p => (p.styleIds?.length ?? 0) > 0);
+  return patterns;
 }

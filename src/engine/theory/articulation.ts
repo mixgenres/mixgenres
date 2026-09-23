@@ -134,7 +134,7 @@ const SPECS: ArticulationSpec[] = [
     aliases: [
       'staccato', 'seco', 'picado', 'short', 'muted', 'staccato-chop', 'percussive-strike', 'short', 'detached', 'punteado', 'stacc',
       'pick', 'picked', 'flatpick', 'bright-pluck', 'pop-pluck', 'percussive-finger', 'percussive-scratch', 'plectrum', 'plucked', 'fingerstyle', 'slap', 'martillo', 'cáscara', 'cascara', 'golpe seco',
-      'gated', 'down-pick', 'down-picking', 'alternate-picking', 'tamborim', 'bachi', 'alternate-pluck', 'upstroke', 'offbeat chop', 'skank', 'taconeo', 'heel-toe', 'slap-tap', 'staccato-octaves',
+      'gated', 'down-pick', 'down-picking', 'alternate-picking', 'tamborim', 'bachi', 'alternate-pluck', 'upstroke', 'offbeat chop', 'skank', 'taconeo', 'heel-toe', 'slap-tap', 'staccato-octaves', 'distorted',
     ],
     uses: ['note-length', 'velocity'],
     fidelity: 'faithful',
@@ -298,7 +298,7 @@ const SPECS: ArticulationSpec[] = [
   {
     id: 'portamento',
     family: 'pitch-gesture',
-    aliases: ['portamento', 'slide', 'glissando', 'gliss', 'hua yin', 'warm-sub-slide'],
+    aliases: ['portamento', 'slide', 'glissando', 'gliss', 'hua yin', 'warm-sub-slide', 'glide'],
     uses: ['note-length'],
     fidelity: 'faithful',
     durationScale: 1.15,
@@ -440,7 +440,7 @@ const SPECS: ArticulationSpec[] = [
   {
     id: 'brushed',
     family: 'timbre',
-    aliases: ['brush', 'brushed', 'sweep', 'escobilla', 'brushes', 'brush-up', 'scrape', 'brush-sweep', 'brush-tap'],
+    aliases: ['brush', 'brushed', 'sweep', 'escobilla', 'brushes', 'brush-up', 'scrape', 'brush-sweep', 'brush-tap', 'guacharaca'],
     uses: ['preset-swap', 'velocity'],
     fidelity: 'approximate',
     caveat: 'Brush textures rely on the kit having brush samples; otherwise a soft rim/hat stands in.',
@@ -460,7 +460,7 @@ const SPECS: ArticulationSpec[] = [
   {
     id: 'low-tone',
     family: 'timbre',
-    aliases: ['bass', 'bass tone', 'bajo', 'low tone', 'heel', 'surdo-open', 'abierto-open'],
+    aliases: ['bass', 'bass tone', 'bajo', 'low tone', 'heel', 'surdo-open', 'abierto-open', 'sub', 'sub-bass'],
     uses: ['velocity', 'note-length'],
     fidelity: 'faithful',
     // The low open stroke on a hand drum: the drum's own `low` key, struck
