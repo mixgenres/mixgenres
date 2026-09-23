@@ -86,7 +86,7 @@ export const DIALS: DialDef[] = [
     intent: 'Which musical universe this lives in.',
     kind: 'choice',
     default: 'tango',
-    consumers: ['resolveStyle', 'contractForGenre', 'PATTERNS_BY_WORLD', 'mixer.roomForStyle'],
+    consumers: ['resolveStyle', 'contractForGenre', 'PATTERNS_BY_WORLD', 'performanceResolver'],
     interpretation: 'literal',
   },
   {
@@ -174,16 +174,6 @@ export const DIALS: DialDef[] = [
     default: 0.55,
     consumers: ['articulation.realizeArticulation'],
     interpretation: 'contract',
-  },
-  {
-    id: 'room',
-    label: 'Room',
-    scope: 'song',
-    intent: 'The space the whole mix sits in.',
-    kind: 'choice',
-    default: 'auto',
-    consumers: ['faust/faustEngine.createFaustMasterNode', 'perform CC91/CC93'],
-    interpretation: 'literal',
   },
   {
     id: 'energy',
@@ -311,7 +301,6 @@ export interface SongDials {
   adventure: number;
   development: number;
   expression: number;
-  roomId?: string;
 }
 
 export const DEFAULT_SONG_DIALS: SongDials = {
@@ -331,7 +320,6 @@ export function normaliseDials(input: Partial<SongDials> | undefined): SongDials
     adventure: clamp01(input?.adventure, DEFAULT_SONG_DIALS.adventure),
     development: clamp01(input?.development, DEFAULT_SONG_DIALS.development),
     expression: clamp01(input?.expression, DEFAULT_SONG_DIALS.expression),
-    roomId: input?.roomId,
   };
 }
 

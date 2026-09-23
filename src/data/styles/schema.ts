@@ -81,11 +81,17 @@ export interface RhythmGrammar {
   grooveMechanics?: GrooveMechanics;
 }
 
-export interface PerformanceGrammar {
-  bluesRockLeadMinorThirdBend?: boolean;
-  dropPortamento?: boolean;
-  spotlightLeadRubato?: boolean;
-}
+import type {
+  PerformanceGrammar,
+  PhraseDevelopmentProbabilities,
+  MicrotimingPolicy,
+} from '../../engine/performance/performanceGrammar';
+
+export type {
+  PerformanceGrammar,
+  PhraseDevelopmentProbabilities,
+  MicrotimingPolicy,
+};
 
 export interface MelodyGrammar {
   scaleMode: string;
@@ -140,8 +146,8 @@ export interface SoundProfile {
   instrumentPalette: Weighted<string>[];
   articulations?: Record<string, string>;
   fxChains?: Record<string, SoundFxPreset>;
-  reverbDelay?: { room: string; decay?: number; wet?: number };
-  masterProfile: { roomId: string; pocket?: number; lift?: number };
+  reverbDelay?: { decay?: number; wet?: number };
+  masterProfile: { pocket?: number; lift?: number };
 }
 
 export interface GestureRule {

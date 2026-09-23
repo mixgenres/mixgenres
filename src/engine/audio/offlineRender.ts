@@ -4,7 +4,7 @@ import OfflineRenderer from '@elemaudio/offline-renderer';
 import type { Performance, PerfNote, PerfCC } from '../sequencing/perform';
 import { getLuthierModelForInstrument } from './LuthierAPI';
 import { resolveDialect, performanceModeForContext } from '../theory/dialects';
-import { ROOMS, roomFor, createMasterChain } from './mixer';
+import { createMasterChain } from './mixer';
 import {
   defaultTrackParams,
   modelForInstrument,
@@ -14,7 +14,6 @@ import {
   midiToFreq,
   type TrackParams,
   type VoiceState,
-  type RoomParams,
 } from '../elementary/elementaryEngine';
 
 const Mp3EncoderClass: any =
@@ -34,7 +33,6 @@ export async function renderPerformanceToMp3(
   options: {
     selectedTrackIds?: string[];
     trackInstruments: Map<string, string>;
-    roomId: string;
     worldId?: string;
     styleId?: string;
   },
@@ -73,19 +71,6 @@ export async function renderPerformanceToMp3(
     trackVoicesMap.set(trackId, []);
   }
 
-  const room = (options.roomId ? ROOMS.find(r => r.id === options.roomId) : null)
-    || (options.worldId ? roomFor(options.worldId) : null)
-    || ROOMS[1];
-  const roomParams: RoomParams = {
-    warmth: room.warmth,
-    presence: room.presence,
-    air: room.air,
-    highPass: room.highPass,
-    space: room.space,
-    volume: 1.0,
-    roomId: room.id,
-  };
-
   const events: RenderEvent[] = [];
   for (const note of perf.notes) {
     if (selected && !selected.has(note.trackId)) continue;
@@ -97,87 +82,106 @@ export async function renderPerformanceToMp3(
       events.push({ sample: Math.max(0, start + Math.round(bend.offset * sampleRate)), kind: 'bend', trackId: note.trackId, value: bend.value });
     }
     if (note.pitchBend?.length) {
-      events.push({ sample: end, kind: 'bend', trackId: note.trackId, value: 8192 });
+      const lastBend = note.pitchBend[note.pitchBend.length - 1];
+      const unbendSample = Math.max(0, start + Math.round((lastBend.offset + 0.05) * sampleRate));
+      if (unbendSample < end) {
+        events.push({ sample: unbendSample, kind: 'bend', trackId: note.trackId, value: 8192 });
+      }
     }
   }
+
   for (const cc of perf.ccs) {
-    if (!selected || selected.has(cc.trackId)) {
-      events.push({ sample: Math.max(0, Math.round(cc.time * sampleRate)), kind: 'cc', cc });
-    }
+    if (selected && !selected.has(cc.trackId)) continue;
+    const sample = Math.max(0, Math.min(totalSamples, Math.round(cc.time * sampleRate)));
+    events.push({ sample, kind: 'cc', cc });
   }
+
   events.sort((a, b) => a.sample - b.sample);
 
   const core = new OfflineRenderer();
-  await core.initialize({ numInputChannels: 0, numOutputChannels: 2 });
+  await core.initialize({
+    sampleRate,
+    numInputChannels: 0,
+    numOutputChannels: 2,
+  });
 
-  const left = new Float32Array(totalSamples);
-  const right = new Float32Array(totalSamples);
-  let eventIndex = 0;
+  async function syncGraph() {
+    const trackSignals: {
+      left: any;
+      right: any;
+    }[] = [];
 
-  const syncGraph = async () => {
-    const trackSignals: { left: any; right: any }[] = [];
-    for (const [tid, params] of trackParamsMap.entries()) {
-      const voices = trackVoicesMap.get(tid) ?? [];
-      trackSignals.push(renderTrack(tid, voices, params));
+    for (const [trackId, params] of trackParamsMap.entries()) {
+      const voices = trackVoicesMap.get(trackId) ?? [];
+      trackSignals.push(renderTrack(trackId, voices, params));
     }
-    const masterSig = renderMaster(trackSignals, roomParams);
+
+    const masterSig = renderMaster(trackSignals, { highPass: 20, volume: 1.0 });
     await core.render(masterSig.left, masterSig.right);
-  };
+  }
 
   await syncGraph();
 
   const BLOCK_SIZE = 512;
+  const left = new Float32Array(totalSamples);
+  const right = new Float32Array(totalSamples);
   const outBlock = [new Float32Array(BLOCK_SIZE), new Float32Array(BLOCK_SIZE)];
+
+  let eventIdx = 0;
   let cursor = 0;
 
   while (cursor < totalSamples) {
+    const blockEnd = Math.min(cursor + BLOCK_SIZE, totalSamples);
     let graphDirty = false;
 
-    while (eventIndex < events.length && events[eventIndex].sample <= cursor) {
-      const event = events[eventIndex++];
-      const trackId = event.kind === 'on' ? event.note.trackId : event.kind === 'cc' ? event.cc.trackId : event.trackId;
-      const params = trackParamsMap.get(trackId);
-      const voices = trackVoicesMap.get(trackId);
+    while (eventIdx < events.length && events[eventIdx].sample < blockEnd) {
+      const event = events[eventIdx++];
+      const eventTrackId = event.kind === 'on' ? event.note.trackId : event.kind === 'cc' ? event.cc.trackId : event.trackId;
+      const params = trackParamsMap.get(eventTrackId);
+      const voices = trackVoicesMap.get(eventTrackId);
 
       if (params && voices) {
         if (event.kind === 'on') {
-          const midi = event.note.midi;
-          const velocity = Math.max(0.05, Math.min(1, event.note.vel / 127));
-          const art = event.note.articulation?.toLowerCase() ?? '';
-          let actionType: any = 'pluck';
-          if (art.includes('arco') || art.includes('bowed')) actionType = 'bow_drag';
-          else if (art.includes('rasgue') || art.includes('abanico')) actionType = 'abanico';
-          else if (art.includes('golpe') || art.includes('tap')) actionType = 'golpe';
-          else if (art.includes('slap')) actionType = 'slap';
-          else if (art.includes('mute')) actionType = 'mute';
+          const noteMidi = event.note.midi;
+          const isElectronic = /synth|808|909|acid|sub-bass|kizomba|tarraxo|trap|house/.test((params.instrumentId || '').toLowerCase());
+          const effectiveModelForGain = isElectronic ? 9 : params.model;
+          const baseGain = makeupGainFor(effectiveModelForGain, params.instrumentId);
 
-          const baseFreq = event.note.frequencyHz ?? midiToFreq(midi);
-          let voice = voices.find(v => v.note === midi && v.gate === 1);
-          if (voice) {
-            voice.velocity = velocity;
-            voice.gate = 1;
-            voice.actionType = actionType;
-            voice.technique = event.note.articulation;
-            voice.frequencyHz = baseFreq;
-            (voice as any).baseFrequencyHz = baseFreq;
-          } else {
-            let freeVoice = voices.find(v => v.gate === 0);
-            if (!freeVoice) {
-              if (voices.length >= 8) {
-                freeVoice = voices[0];
-              } else {
-                freeVoice = { note: midi, velocity, gate: 1, id: `${trackId}_${midi}` };
-                voices.push(freeVoice);
-              }
+          const hitType = event.note.articulation;
+          let hitGainMultiplier = 1.0;
+          if (hitType === 'accent') hitGainMultiplier = 1.25;
+          else if (hitType === 'ghost') hitGainMultiplier = 0.45;
+          else if (hitType === 'snare' || hitType === 'rim' || hitType === 'slap') hitGainMultiplier = 1.1;
+
+          const velScaled = Math.max(0.01, Math.min(1.0, event.note.vel / 127)) * hitGainMultiplier;
+          params.volume = Math.max(0.01, Math.min(35, velScaled * baseGain));
+
+          const articulationNorm = event.note.articulation === 'staccato' ? 0.9 : event.note.articulation === 'legato' ? 0.1 : 0.4;
+          params.articulation = articulationNorm;
+          params.decay = Math.max(0.1, Math.min(8.0, event.note.dur));
+
+          let voice = voices.find(v => v.note === noteMidi);
+          if (!voice) {
+            if (voices.length >= 8) {
+              voice = voices.find(v => v.gate === 0) || voices[0];
+            } else {
+              voice = {
+                id: `offline-${eventTrackId}-${voices.length}`,
+                gate: 0,
+                frequencyHz: event.note.frequencyHz ?? midiToFreq(noteMidi),
+                note: noteMidi,
+                velocity: velScaled,
+              };
+              voices.push(voice);
             }
-            freeVoice.note = midi;
-            freeVoice.velocity = velocity;
-            freeVoice.gate = 1;
-            freeVoice.actionType = actionType;
-            freeVoice.technique = event.note.articulation;
-            freeVoice.frequencyHz = baseFreq;
-            (freeVoice as any).baseFrequencyHz = baseFreq;
           }
+
+          voice.note = noteMidi;
+          const targetFreq = event.note.frequencyHz ?? midiToFreq(noteMidi);
+          voice.frequencyHz = targetFreq;
+          (voice as any).baseFrequencyHz = targetFreq;
+          voice.velocity = velScaled;
+          voice.gate = 1;
           graphDirty = true;
         } else if (event.kind === 'off') {
           const voice = voices.find(v => v.note === event.midi && v.gate === 1);
@@ -191,11 +195,11 @@ export async function renderPerformanceToMp3(
         } else if (event.kind === 'bend') {
           const semitones = ((event.value - 8192) / 8192) * 2;
           const bendRatio = Math.pow(2, semitones / 12);
-          for (const v of voices) {
-            if (v.gate === 1) {
-              const base = (v as any).baseFrequencyHz ?? v.frequencyHz ?? midiToFreq(v.note);
-              (v as any).baseFrequencyHz = base;
-              v.frequencyHz = base * bendRatio;
+          for (const voice of voices) {
+            if (voice.gate === 1) {
+              const base = (voice as any).baseFrequencyHz ?? voice.frequencyHz ?? midiToFreq(voice.note);
+              (voice as any).baseFrequencyHz = base;
+              voice.frequencyHz = base * bendRatio;
               graphDirty = true;
             }
           }
@@ -270,7 +274,7 @@ export async function renderPerformanceToMp3(
   const source = offlineCtx.createBufferSource();
   source.buffer = sourceBuffer;
 
-  const offlineChain = createMasterChain(offlineCtx, room);
+  const offlineChain = createMasterChain(offlineCtx);
   source.connect(offlineChain.input);
   source.start(0);
 
@@ -284,7 +288,6 @@ export async function renderPerformanceToMp3(
   const renderedLeft = rendered.getChannelData(0);
   const renderedRight = rendered.numberOfChannels > 1 ? rendered.getChannelData(1) : renderedLeft;
 
-  // Measure peak level across rendered audio to avoid digital overs/clipping
   let maxPeak = 0;
   for (let i = 0; i < length; i++) {
     const absL = Math.abs(renderedLeft[i]);
@@ -292,10 +295,8 @@ export async function renderPerformanceToMp3(
     if (absL > maxPeak) maxPeak = absL;
     if (absR > maxPeak) maxPeak = absR;
   }
-  // Target -0.3 dBFS true peak ceiling (0.965)
   const normScalar = maxPeak > 0.965 ? 0.965 / maxPeak : 1.0;
 
-  // Keep a short fade-in/out (5–10 ms) purely to avoid a sample-0 click
   const fadeInSamples = Math.min(length, Math.round(sampleRate * 0.008));
   const fadeOutSamples = Math.min(length, Math.round(sampleRate * 0.008));
 

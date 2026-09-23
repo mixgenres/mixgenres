@@ -409,28 +409,23 @@ export function getBowedResonanceProfile(instrumentId: string, bodyParam: number
   };
 };
 
-export interface RoomParams {
-  warmth: number;
-  presence: number;
-  air: number;
-  highPass: number;
-  space: number;
-  volume: number;
-  roomId?: string;
+export interface MasterParams {
+  highPass?: number;
+  volume?: number;
   performanceMode?: PerformanceMode;
 }
 
-export function defaultRoomParams(): RoomParams {
+export function defaultMasterParams(): MasterParams {
   return {
-    warmth: 0.5,
-    presence: 0.5,
-    air: 0.5,
-    highPass: 40,
-    space: 0.3,
+    highPass: 20,
     volume: 1.0,
     performanceMode: 'acoustic-ensemble',
   };
 }
+
+/** Backwards-compatible alias during transition */
+export type RoomParams = MasterParams;
+export const defaultRoomParams = defaultMasterParams;
 
 export function modelForInstrument(instrumentId: string, luthier?: LuthierPhysicalParameters): number {
   const id = instrumentId.toLowerCase();
@@ -1550,7 +1545,8 @@ export function renderTrack(
   params: TrackParams
 ): { left: Node; right: Node } {
   if (voices.length === 0) {
-    return { left: el.const({ value: 0 }), right: el.const({ value: 0 }) };
+    const zero = el.const({ value: 0 });
+    return { left: zero, right: zero };
   }
 
   const voiceNodes = voices.map((v, idx) => renderVoice(trackId, idx, v, params));
@@ -1561,80 +1557,26 @@ export function renderTrack(
   const leftGain = Math.cos(pan * Math.PI * 0.5);
   const rightGain = Math.sin(pan * Math.PI * 0.5);
 
+  const left = el.mul(el.const({ value: leftGain }), trackVol);
+  const right = el.mul(el.const({ value: rightGain }), trackVol);
+
   return {
-    left: el.mul(el.const({ value: leftGain }), trackVol),
-    right: el.mul(el.const({ value: rightGain }), trackVol),
+    left,
+    right,
   };
 }
 
-interface ReverbProfile {
-  combsL: number[];
-  combsR: number[];
-  feedback: number;
-  dampFreq: number;
-  allpasses: [number, number][];
-  wetScale: number;
-}
-
-const REVERB_PROFILES: Record<string, ReverbProfile> = {
-  hall: {
-    combsL: [1117, 1361, 1553, 1787],
-    combsR: [1187, 1429, 1619, 1867],
-    feedback: 0.80,
-    dampFreq: 4400,
-    allpasses: [[223, 0.65], [109, 0.62], [53, 0.58]],
-    wetScale: 0.32,
-  },
-  club: {
-    combsL: [647, 787, 919, 1061],
-    combsR: [691, 829, 971, 1109],
-    feedback: 0.68,
-    dampFreq: 3400,
-    allpasses: [[149, 0.6], [71, 0.58]],
-    wetScale: 0.22,
-  },
-  studio: {
-    combsL: [431, 547, 661, 769],
-    combsR: [467, 587, 701, 811],
-    feedback: 0.56,
-    dampFreq: 5000,
-    allpasses: [[113, 0.55], [47, 0.52]],
-    wetScale: 0.16,
-  },
-  room: {
-    combsL: [883, 1063, 1229, 1453],
-    combsR: [929, 1109, 1283, 1499],
-    feedback: 0.72,
-    dampFreq: 4000,
-    allpasses: [[173, 0.6], [83, 0.58]],
-    wetScale: 0.24,
-  },
-  tape: {
-    combsL: [757, 941, 1123, 1307],
-    combsR: [809, 991, 1171, 1361],
-    feedback: 0.65,
-    dampFreq: 2200,
-    allpasses: [[131, 0.58], [67, 0.55]],
-    wetScale: 0.18,
-  },
-  raw: {
-    combsL: [331, 419, 521, 613],
-    combsR: [353, 443, 547, 641],
-    feedback: 0.30,
-    dampFreq: 2800,
-    allpasses: [[79, 0.45], [37, 0.40]],
-    wetScale: 0.04,
-  },
-};
-
 /**
- * Render Master Room & Mix Bus Chain
- * Schroeder/Moorer algorithmic reverb network with prime feedback delays,
- * high-frequency damping, and series allpass diffusion on a parallel send.
+ * Render Master Mix Bus Chain
+ * Direct stereo summation with gentle high-pass DC/sub-rumble filtering and master level.
+ * No room simulation or artificial reverb.
  */
 export function renderMaster(
-  trackSignals: { left: Node; right: Node }[],
-  room: RoomParams
+  trackSignals: {
+    left: Node;
+    right: Node;
+  }[],
+  params: MasterParams = defaultMasterParams()
 ): { left: Node; right: Node } {
   let leftSum: Node;
   let rightSum: Node;
@@ -1650,42 +1592,13 @@ export function renderMaster(
     rightSum = el.add(...trackSignals.map(t => t.right));
   }
 
-  const hpFreq = Math.max(10, room.highPass);
+  const hpFreq = Math.max(15, params.highPass ?? 20);
   const hpLeft = el.highpass(hpFreq, 0.707, leftSum);
   const hpRight = el.highpass(hpFreq, 0.707, rightSum);
 
-  const roomId = (room.roomId || 'studio').toLowerCase();
-  const profile = REVERB_PROFILES[roomId] || REVERB_PROFILES.room;
-  const wetGain = Math.max(0, Math.min(0.4, (room.space ?? 0.3) * profile.wetScale));
-
-  let finalLeft = hpLeft;
-  let finalRight = hpRight;
-
-  if (wetGain > 0.005) {
-    const makeCombs = (input: Node, delays: number[], dampFreq: number, fb: number) => {
-      const dampedInput = el.lowpass(dampFreq, 0.707, input);
-      const branches = delays.map(d => el.delay({ size: 4096 }, el.const({ value: d }), el.const({ value: fb }), dampedInput));
-      return branches.length === 1 ? branches[0] : el.mul(el.const({ value: 1 / branches.length }), el.add(...branches));
-    };
-
-    const diffuse = (input: Node, allpasses: [number, number][]) => {
-      let sig = input;
-      for (const [apDelay, apGain] of allpasses) {
-        const delayed = el.delay({ size: 1024 }, el.const({ value: apDelay }), el.const({ value: apGain }), sig);
-        sig = el.sub(delayed, el.mul(el.const({ value: apGain }), sig));
-      }
-      return sig;
-    };
-
-    const combL = makeCombs(hpLeft, profile.combsL, profile.dampFreq, profile.feedback);
-    const combR = makeCombs(hpRight, profile.combsR, profile.dampFreq, profile.feedback);
-
-    const revL = diffuse(combL, profile.allpasses);
-    const revR = diffuse(combR, profile.allpasses);
-
-    finalLeft = el.add(hpLeft, el.mul(el.const({ value: wetGain }), revL));
-    finalRight = el.add(hpRight, el.mul(el.const({ value: wetGain }), revR));
-  }
+  const vol = Math.max(0, Math.min(2.0, params.volume ?? 1.0));
+  const finalLeft = el.mul(el.const({ value: vol }), hpLeft);
+  const finalRight = el.mul(el.const({ value: vol }), hpRight);
 
   return { left: finalLeft, right: finalRight };
 }

@@ -10,7 +10,6 @@ import { CHORD_PALETTE, CHORD_MOODS, CHORD_MOOD_ORDER, ChordMood, JAZZ_CHORD_LIB
 import { parseChord } from '../engine/theory/theory';
 import { formSummary } from '../data/genreForms';
 import { grooveSummary } from '../engine/generators/groove';
-import { ROOMS, roomFor } from '../engine/audio/mixer';
 import type { SectionEnergy } from '../types';
 import { ENERGY_LABELS } from '../engine/metadata/energy';
 
@@ -1313,11 +1312,9 @@ export function DownloadSheet({
   open: boolean;
   onClose: () => void;
   song: any;
-  onBounceMp3?: (selectedTrackIds: string[], roomId: string) => void;
+  onBounceMp3?: (selectedTrackIds: string[]) => void;
 }) {
   const [selectedTracks, setSelectedTracks] = useState<Record<string, boolean>>({});
-  const defaultRoomId = song?.roomId ?? (song?.worldId ? roomFor(song.worldId).id : 'studio');
-  const [exportRoomId, setExportRoomId] = useState<string>(defaultRoomId);
 
   // Initialize selected tracks when dialog opens or tracks change
   useEffect(() => {
@@ -1327,9 +1324,8 @@ export function DownloadSheet({
         initial[t.id] = !t.muted;
       });
       setSelectedTracks(initial);
-      setExportRoomId(song?.roomId ?? (song?.worldId ? roomFor(song.worldId).id : 'studio'));
     }
-  }, [open, song?.tracks, song?.roomId, song?.worldId]);
+  }, [open, song?.tracks]);
 
   const activeTrackCount = Object.values(selectedTracks).filter(Boolean).length;
 
@@ -1346,38 +1342,12 @@ export function DownloadSheet({
       const selectedTrackIds = song.tracks
         .filter((t: any) => selectedTracks[t.id])
         .map((t: any) => t.id);
-      onBounceMp3(selectedTrackIds, exportRoomId);
+      onBounceMp3(selectedTrackIds);
     }
   };
 
   return (
     <Sheet open={open} onClose={onClose} title="Download">
-      <div className="mb-4">
-        <div className="micro font-semibold mb-2">Mastering Room Space</div>
-        <div className="grid grid-cols-2 gap-1.5">
-          {ROOMS.map(r => {
-            const active = r.id === exportRoomId;
-            return (
-              <button
-                key={r.id}
-                type="button"
-                onClick={() => setExportRoomId(r.id)}
-                className="py-2 px-2.5 text-left transition-all cursor-pointer rounded-[3px]"
-                style={{
-                  background: active ? 'var(--ink)' : 'var(--tone)',
-                  color: active ? 'var(--ground)' : 'var(--ink)',
-                  boxShadow: active ? 'none' : 'inset 0 0 0 1px color-mix(in srgb, var(--ink) 20%, transparent)',
-                }}
-              >
-                <div className="font-bold text-xs">{r.name}</div>
-                <div className="text-[10px] micro opacity-75 mt-0.5" style={{ lineHeight: 1.25 }}>
-                  {r.description}
-                </div>
-              </button>
-            );
-          })}
-        </div>
-      </div>
 
       <div className="mb-5">
         <div className="flex items-center justify-between mb-2">
@@ -1514,9 +1484,9 @@ function describe(v: number, marks: [string, string, string]): string {
 }
 
 export function PerformanceSheet({
-  open, onClose, worldId, pocket, lift, roomId,
+  open, onClose, worldId, pocket, lift,
   adventure, development, expression,
-  onSetPocket, onSetLift, onSetRoom,
+  onSetPocket, onSetLift,
   onSetAdventure, onSetDevelopment, onSetExpression,
 }: {
   open: boolean;
@@ -1524,19 +1494,16 @@ export function PerformanceSheet({
   worldId: string;
   pocket: number;
   lift: number;
-  roomId: string;
   adventure: number;
   development: number;
   expression: number;
   onSetPocket: (v: number) => void;
   onSetLift: (v: number) => void;
-  onSetRoom: (id: string) => void;
   onSetAdventure: (v: number) => void;
   onSetDevelopment: (v: number) => void;
   onSetExpression: (v: number) => void;
 }) {
   const groove = grooveSummary(worldId);
-  const defaultRoom = roomFor(worldId);
 
   return (
     <Sheet open={open} onClose={onClose} title="Performance">
@@ -1590,36 +1557,6 @@ export function PerformanceSheet({
         onChange={onSetAdventure}
         marks={['strict', 'idiomatic', 'open']}
       />
-
-      <div className="micro mb-2 font-semibold">Space</div>
-      <div className="grid grid-cols-2 gap-2 mb-2">
-        {ROOMS.map(r => {
-          const active = r.id === roomId;
-          return (
-            <button
-              key={r.id}
-              type="button"
-              onClick={() => onSetRoom(r.id)}
-              className="py-3 px-3.5 text-left transition-all cursor-pointer rounded-[3px]"
-              style={{
-                background: active ? 'var(--ink)' : 'var(--tone)',
-                color: active ? 'var(--ground)' : 'var(--ink)',
-                boxShadow: active ? 'none' : 'inset 0 0 0 1px color-mix(in srgb, var(--ink) 20%, transparent)',
-              }}
-            >
-              <div className="font-bold text-sm">
-                {r.name}
-                {r.id === defaultRoom.id && (
-                  <span className="micro opacity-60 ml-1" style={{ fontSize: 9 }}>· usual</span>
-                )}
-              </div>
-              <div className="text-[11px] micro opacity-75 mt-0.5" style={{ lineHeight: 1.35 }}>
-                {r.description}
-              </div>
-            </button>
-          );
-        })}
-      </div>
     </Sheet>
   );
 }

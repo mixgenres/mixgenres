@@ -69,8 +69,6 @@ export interface Sheet extends Song {
    * explicitly pins the part to the host style, suppressing inference.
    */
   partLens?: Record<string, Record<string, GuestLens>>;
-  /** the room the whole mix sits in; defaults to the world's usual one */
-  roomId?: string;
   /** Per-section interaction state propagated by rebuild into performance compilation. */
   arrangementContext?: Record<string, ArrangementContext>;
 }
@@ -1995,7 +1993,6 @@ export function makeSheet(
 
   const effectiveBpm = runtime.getTempo(0.5);
   const effectiveMeter = runtime.getMeter() || dominantMeter(genreId);
-  const roomId = resolved.sound?.masterProfile?.roomId ?? resolved.contract.timbreSpace.room;
 
   return rebuild({
     id: 'sheet', title: TITLES[genreId] ?? 'Untitled',
@@ -2008,7 +2005,6 @@ export function makeSheet(
     styleId: resolved.id,
     styleInfluences: appliedInfluences,
     styleOverrides: appliedOverrides,
-    roomId,
     ...dials,
   });
 }

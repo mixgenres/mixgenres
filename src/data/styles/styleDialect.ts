@@ -190,7 +190,7 @@ export function applyStyleDialect(style: SongStyle, index: number): SongStyle {
   style.sound = {
     ...(style.sound ?? {}),
     instrumentPalette: base.instruments.map(value => ({value,w:1})),
-    masterProfile: { ...(style.sound?.masterProfile ?? {roomId:'room'}), pocket: .5, lift: .5 },
+    masterProfile: { ...(style.sound?.masterProfile ?? {}), pocket: .5, lift: .5 },
   };
   return style;
 }

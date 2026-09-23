@@ -5,8 +5,6 @@
  */
 
 import { BandWorkletNode } from './BandWorklet';
-import { roomFor, ROOMS } from './mixer';
-import type { RoomPreset } from './mixer';
 import { previewCulturalRules, culturalPitchSet, shoCluster, celticOpenHarmony } from '../generators/cultural';
 import { parseChord, noteName as theoryNoteName, midiOf } from '../theory/theory';
 import { voiceProfile, foldToRange } from '../theory/instrumentProfile';
@@ -17,8 +15,6 @@ import type { Performance } from '../sequencing/perform';
 
 let ctx: AudioContext | null = null;
 let bandWorklet: BandWorkletNode | null = null;
-
-let currentRoom: RoomPreset = ROOMS[1];
 
 /** trackId -> instrumentId, so the sink can resolve a physical model per note
  *  even though the transport only ever hands it a bare trackId. Populated by
@@ -71,7 +67,7 @@ export async function ensureSynth(): Promise<BandWorkletNode> {
       }
 
       const node = new BandWorkletNode();
-      await node.initialize(ctx, currentRoom, 1);
+      await node.initialize(ctx, 1);
       bandWorklet = node;
       await node.prepareTracks(trackInstruments);
       return node;
@@ -269,36 +265,6 @@ export function setMasterVolume(value: number) {
   void bandWorklet?.setVolume(value);
 }
 
-export function setRoom(worldIdOrRoom: string | RoomPreset) {
-  const next = typeof worldIdOrRoom === 'string'
-    ? (ROOMS.find(r => r.id === worldIdOrRoom) ?? roomFor(worldIdOrRoom))
-    : worldIdOrRoom;
-  currentRoom = next;
-  void bandWorklet?.setRoom(next);
-
-  if (typeof window !== 'undefined') {
-    (window as any).__MIXGENRES_CURRENT_ROOM__ = next;
-    if (import.meta.env.DEV || (window as any).__MIXGENRES_DEBUG__) {
-      console.log(`[MasterChain] Active Room: ${next.name} (${next.id})`);
-      console.table({
-        id: next.id,
-        highPass: `${next.highPass} Hz`,
-        lowShelf: `${next.lowShelf} dB`,
-        presence: `${next.presence} dB`,
-        air: `${next.air} dB`,
-        glue: next.glue,
-        warmth: next.warmth,
-        width: next.width,
-        space: next.space,
-      });
-    }
-  }
-}
-
-export function getRoom(): RoomPreset {
-  return currentRoom;
-}
-
 import { renderPerformanceToMp3 } from './offlineRender';
 
 export async function renderSongToMp3(
@@ -319,7 +285,6 @@ export async function renderSongToMp3(
     {
       selectedTrackIds: options.selectedTrackIds,
       trackInstruments,
-      roomId: options.roomId || getRoom().id,
       worldId: options.worldId || activeWorldId,
       styleId: options.styleId || activeStyleId,
     },

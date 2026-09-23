@@ -24,9 +24,8 @@ import {
 } from './engine/generators/arrange';
 import {
   startAudio, stopAudio, setMasterVolume, renderSongToMp3,
-  createSink, setRoom, setTrackInstruments, setActiveWorld,
+  createSink, setTrackInstruments, setActiveWorld,
 } from './engine/audio/audio';
-import { roomFor } from './engine/audio/mixer';
 import { ENERGY_LABELS } from './engine/metadata/energy';
 import { normaliseDials } from './engine/metadata/dials';
 import { compile } from './engine/sequencing/perform';
@@ -85,7 +84,7 @@ export default function App() {
   // One normalised read of the song-level dials, so every consumer sees the
   // same clamped values and an older saved song simply inherits the defaults.
   const songDials = useMemo(() => normaliseDials(song), [
-    song.pocket, song.lift, song.adventure, song.development, song.expression, song.roomId,
+    song.pocket, song.lift, song.adventure, song.development, song.expression,
   ]);
 
   const currentResolvedStyle = useMemo(() => {
@@ -137,17 +136,15 @@ export default function App() {
    * Renders the current song straight from its compiled event list to an
    * MP3, without playing it out loud or touching the transport at all.
    */
-  const handleBounceMp3 = async (selectedTrackIds: string[], exportRoomId?: string) => {
+  const handleBounceMp3 = async (selectedTrackIds: string[]) => {
     bounceCancelledRef.current = false;
     setIsBouncing(true);
     setBounceProgress(0);
-    const chosenRoomId = exportRoomId || songRef.current.roomId || roomFor(songRef.current.worldId).id;
     try {
       const blob = await renderSongToMp3(
         perfRef.current,
         {
           selectedTrackIds,
-          roomId: chosenRoomId,
           worldId: songRef.current.worldId,
           styleId: songRef.current.styleId,
         },
@@ -181,12 +178,6 @@ export default function App() {
 
   const plate = plateFor(song.worldId);
   useEffect(() => { applyPlate(plate); }, [plate]);
-
-  // each world is mixed in the room it belongs in, unless the user picked one
-  const activeRoomId = song.roomId ?? roomFor(song.worldId).id;
-  useEffect(() => { setRoom(activeRoomId); }, [activeRoomId]);
-
-
 
   const totalBars = song.durationMeasures || 1;
 
@@ -1479,13 +1470,11 @@ export default function App() {
         worldId={song.worldId}
         pocket={songDials.pocket}
         lift={songDials.lift}
-        roomId={activeRoomId}
         adventure={songDials.adventure}
         development={songDials.development}
         expression={songDials.expression}
         onSetPocket={v => edit(s => setSongDial(s, 'pocket', v))}
         onSetLift={v => edit(s => setSongDial(s, 'lift', v))}
-        onSetRoom={id => setSong(s => ({ ...s, roomId: id }))}
         onSetAdventure={v => edit(s => setSongDial(s, 'adventure', v))}
         onSetDevelopment={v => edit(s => setSongDial(s, 'development', v))}
         onSetExpression={v => edit(s => setSongDial(s, 'expression', v))}
@@ -1552,9 +1541,9 @@ export default function App() {
           open={downloadOpen}
           onClose={() => setDownloadOpen(false)}
           song={song}
-          onBounceMp3={(selectedTrackIds, exportRoomId) => {
+          onBounceMp3={(selectedTrackIds) => {
             setDownloadOpen(false);
-            handleBounceMp3(selectedTrackIds, exportRoomId);
+            handleBounceMp3(selectedTrackIds);
           }}
         />
       )}

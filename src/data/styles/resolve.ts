@@ -45,7 +45,7 @@ function completeStyle(style: SongStyle): CompleteStyle {
     rhythm: { ...style.rhythm, meter: style.rhythm?.meter ?? '4/4', tempoRange: style.rhythm?.tempoRange ?? [80, 140], defaultBpm: style.rhythm?.defaultBpm ?? 110, feel: style.rhythm?.feel ?? 'style-native', swingPercentage: style.rhythm?.swingPercentage ?? 50, anticipationOffsetSteps: style.rhythm?.anticipationOffsetSteps ?? 0, microtimingFeel: style.rhythm?.microtimingFeel ?? 'straight', humanizeJitterMs: style.rhythm?.humanizeJitterMs ?? 8 },
     melody: { ...style.melody, scaleMode: style.melody?.scaleMode ?? 'major' },
     arrangement: { ...style.arrangement, ensemble: style.arrangement?.ensemble ?? [] },
-    sound: { ...style.sound, instrumentPalette: style.sound?.instrumentPalette ?? [], masterProfile: { roomId: style.sound?.masterProfile?.roomId ?? 'room', ...(style.sound?.masterProfile ?? {}) } },
+    sound: { ...style.sound, instrumentPalette: style.sound?.instrumentPalette ?? [], masterProfile: { pocket: style.sound?.masterProfile?.pocket ?? 0.5, lift: style.sound?.masterProfile?.lift ?? 0.5, ...(style.sound?.masterProfile ?? {}) } },
     gestures: { ...(style.gestures ?? {}) },
     rules: { require: [], forbid: [], ...(style.rules ?? {}) },
   };
@@ -384,7 +384,6 @@ export function resolveStyle(opts: ResolveStyleOptions): ResolvedStyle {
             }
             if (w >= 0.5 && infStyle.sound.masterProfile) {
               merged.sound.masterProfile = {
-                roomId: infStyle.sound.masterProfile.roomId,
                 pocket: lerp(merged.sound.masterProfile.pocket ?? 0.5, infStyle.sound.masterProfile.pocket ?? 0.5, w),
                 lift: lerp(merged.sound.masterProfile.lift ?? 0.5, infStyle.sound.masterProfile.lift ?? 0.5, w),
               };

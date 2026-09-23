@@ -10,7 +10,9 @@ import { voiceChord, styleFor } from '../theory/voicing';
 import { bassNote, bassStyleForStyle, BassStyle, bassPitchBend } from '../generators/bass';
 import { makeMotif, melodyGate, melodyNote, treatmentFor, Motif, MelodyTreatment, melodyPitchBend, generateStyleOrnaments } from '../generators/melody';
 import { GM, kitVoicing, handPercVoicing, flavourForStyle, usesRideStyle, KitVoicing } from '../generators/drums';
-import { roomForStyle } from '../audio/mixer';
+import { interpretPattern } from '../performance/performanceInterpreter';
+import { createInitialPhraseMemory, advancePhraseDevelopment, type PerformancePhraseMemory } from '../performance/phraseMemory';
+import { getPerformanceGrammar } from '../performance/performanceGrammar';
 import { decide, shapeOf, ArrangementDecision, SectionShape } from '../generators/arrangement';
 import type { TransitionType, TransitionEvent } from './grid';
 import { beatsPerBarOf, culturalCyclePosition, type NativeSlice, type RhythmicContext } from './grid';
@@ -222,6 +224,8 @@ interface Attack {
   hitType?: string;
   patternId?: string;
   styleId?: string;
+  performanceKind?: string;
+  pitchIntent?: string;
 }
 
 function authoredKitVoicing(hitType: string, accent: number): KitVoicing {
@@ -345,6 +349,11 @@ export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
   const attacksByTrack = new Map<string, Attack[]>();
   for (const t of tracks) attacksByTrack.set(t.id, []);
 
+  const trackPhraseMemories = new Map<string, PerformancePhraseMemory>();
+  for (const t of tracks) {
+    trackPhraseMemories.set(t.id, createInitialPhraseMemory());
+  }
+
   sheet.measures.forEach((m: Measure, barIndex: number) => {
     const bt = bars[barIndex];
     if (!bt) return;
@@ -357,6 +366,98 @@ export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
       if (!d) continue;
       const def = INSTRUMENTS_BY_ID[t.instrumentId];
       if (!def) continue;
+
+      const prof = voiceProfile(t.instrumentId);
+      const canAnticipate =
+        prof.role === 'bass' || prof.role === 'comp' || prof.role === 'stab';
+      const list = attacksByTrack.get(t.id)!;
+
+      const rawPattern = d.patternId ? PATTERNS_BY_ID[d.patternId] : undefined;
+      const transition = transitionEvents.get(barIndex);
+      const isDrum = !!def.kit || !!def.drum;
+
+      const mem = trackPhraseMemories.get(t.id)!;
+      const phraseBars = 4;
+      const regionStart = region ? region.start : 0;
+      const barInPhrase = ((barIndex - regionStart) % phraseBars + phraseBars) % phraseBars;
+      const phraseIndex = Math.floor((barIndex - regionStart) / phraseBars);
+      const isPhraseStart = barInPhrase === 0;
+      const isPhraseEnd = barInPhrase === phraseBars - 1;
+      const isCadenceBar = isPhraseEnd || (nextMeasure && nextMeasure.regionId !== m.regionId);
+
+      const sectionStyle = region
+        ? getResolvedSectionStyle(sheet, region)
+        : resolveStyle({ genreId: sheet.worldId, styleId: getCanonicalStyle(sheet.worldId).id });
+      const grammar = getPerformanceGrammar(sectionStyle, prof.role);
+
+      advancePhraseDevelopment(
+        mem,
+        phraseIndex,
+        grammar.phraseDevelopment,
+        isCadenceBar,
+        seedOf(t.id, barIndex, 'dev-advance')
+      );
+
+      // If we have an authored pattern and it's not overridden by a drum fill,
+      // run the culturally grounded performance interpreter!
+      if (rawPattern && (!transition || transition.type !== 'fill' || !isDrum)) {
+        const currentParsedChord = parseChord(m.chord);
+        const nextParsedChord = nextMeasure ? parseChord(nextMeasure.chord) : undefined;
+        const partEnergy = (d as any).partEnergy ?? 3;
+
+        const result = interpretPattern({
+          trackId: t.id,
+          role: prof.role,
+          instrumentId: t.instrumentId,
+          pattern: rawPattern,
+          grammar,
+          chord: currentParsedChord,
+          nextChord: nextParsedChord,
+          sectionEnergy: partEnergy,
+          beatsPerBar: bt.beatsPerBar,
+          barIndex,
+          barInPhrase,
+          phraseBars,
+          isPhraseStart,
+          isPhraseEnd,
+          isCadenceBar,
+          memory: mem,
+          developmentDial: dials.development,
+          expressionDial: dials.expression,
+          seed: seedOf(t.id, barIndex, 'pattern-interpret'),
+        });
+
+        for (let i = 0; i < result.attacks.length; i++) {
+          const ia = result.attacks[i];
+          const beatInBar = ia.beat;
+          const lastHalfBeat = beatInBar >= bt.beatsPerBar - 0.51;
+          const chordChanges = !!nextMeasure && nextMeasure.chord !== m.chord;
+          const anticipated = canAnticipate && (ia.kind === 'anticipation' || (lastHalfBeat && chordChanges));
+          list.push({
+            trackId: t.id,
+            bar: barIndex,
+            beatInBar,
+            accent: ia.accent,
+            durationSteps: ia.durationSteps,
+            stepsPerBar: rawPattern.subdivisions || 16,
+            authoredMs: 0,
+            articulation: ia.articulation || d.articulation,
+            articulations: (d as any).articulations,
+            lens: (d as any).lens,
+            partEnergy: (d as any).partEnergy,
+            onsetIndex: ia.onsetIndex ?? i,
+            chordSymbol: anticipated ? nextMeasure!.chord : m.chord,
+            anticipated,
+            hitType: ia.hitType || (rawPattern.hitGrid ? rawPattern.hitGrid[ia.onsetIndex ?? i] : undefined),
+            styleId: (d as any).styleId,
+            patternId: (d as any).patternId,
+            performanceKind: ia.kind,
+            pitchIntent: ia.pitchIntent,
+          });
+        }
+        continue;
+      }
+
       const perf = (d as any).perf as NativeSlice | undefined;
       let onsets = perf?.onsets ?? d.onsetGrid ?? [];
       if (!onsets.length) continue;
@@ -366,12 +467,6 @@ export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
       let micro = perf?.microtiming ?? [];
       let hitTypes = perf?.hitTypes ?? [];
 
-      // Lookahead transitions can replace a drum bar with catalog-authored
-      // fill material. This happens before attacks are staged, so the authored
-      // pattern genuinely replaces the ordinary groove rather than merely
-      // adding a procedural fill on top.
-      const transition = transitionEvents.get(barIndex);
-      const isDrum = !!def.kit || !!def.drum;
       if (transition?.type === 'fill' && transition.patternId && isDrum) {
         const fill = PATTERNS_BY_ID[transition.patternId];
         if (fill) {
@@ -384,23 +479,12 @@ export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
         }
       }
 
-      const prof = voiceProfile(t.instrumentId);
-      const canAnticipate =
-        prof.role === 'bass' || prof.role === 'comp' || prof.role === 'stab';
-
-      const list = attacksByTrack.get(t.id)!;
       const staged = onsets.map((step, i) => ({
         beatInBar: (step / stepsPerBar) * bt.beatsPerBar,
         accent: accents[i] ?? 0.78,
       }));
-      // a melody instrument is thinned by the melody gate, which knows about
-      // phrasing; running it through the pad thinner first turned a fiddle
-      // into a string pad
       const melodicVoice = def.voicing === 'single' && prof.role !== 'bass' && prof.role !== 'pad';
       const percussiveVoice = !!def.kit || !!def.drum;
-      // Pattern-authored drums/percussion are already sparsity-controlled by the
-      // pattern itself. Applying melodic/pad sustain thinning here deletes the
-      // offbeat hits that define styles such as dembow, ska, and cumbia.
       const keep = melodicVoice || percussiveVoice
         ? staged.map(() => true)
         : thinForSustain(prof, staged, bt.beatsPerBar, intensityOf(region));
@@ -424,7 +508,6 @@ export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
           lens: (d as any).lens,
           partEnergy: (d as any).partEnergy,
           onsetIndex: i,
-          // an anticipation belongs harmonically to the bar it is announcing
           chordSymbol: anticipated ? nextMeasure!.chord : m.chord,
           anticipated,
           hitType: hitTypes[i] || undefined,
@@ -1178,9 +1261,7 @@ export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
     }
   }
 
-  /* ---- 4. track setup: physical parameters, level, position, space ---- */
-  const finalStyle = resolveStyle({ genreId: sheet.worldId, styleId: sheet.styleId ?? getCanonicalStyle(sheet.worldId).id });
-  const room = roomForStyle(finalStyle);
+  /* ---- 4. track setup: physical parameters, level, position ---- */
   for (const t of tracks) {
     if (t.muted) continue;
     const def = INSTRUMENTS_BY_ID[t.instrumentId];
@@ -1191,9 +1272,6 @@ export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
     const level = Math.max(0, Math.min(1, (t.muted ? 0 : t.volume) * trim));
     ccs.push({ time: 0, trackId: t.id, cc: 7, value: Math.round(Math.pow(level, 0.6) * 127) });
     ccs.push({ time: 0, trackId: t.id, cc: 10, value: Math.round((prof.pan * 0.5 + 0.5) * 127) });
-    const wet = Math.max(0, Math.min(1, prof.space * room.space));
-    ccs.push({ time: 0, trackId: t.id, cc: 91, value: Math.round(wet * 127) });
-    ccs.push({ time: 0, trackId: t.id, cc: 93, value: Math.round(wet * 40) });
     ccs.push({ time: 0, trackId: t.id, cc: 74, value: 64 });
     ccs.push({ time: 0, trackId: t.id, cc: 11, value: 127 });
     ccs.push({ time: 0, trackId: t.id, cc: 6, value: 2 });
@@ -1210,10 +1288,6 @@ export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
       if (!firstBar) continue;
       const at = Math.max(0, firstBar.start - 0.03);
       ccs.push({ time: at, trackId: t.id, cc: 74, value: Math.round(d.brightness) });
-      ccs.push({
-        time: at, trackId: t.id, cc: 91,
-        value: Math.round(Math.max(0, Math.min(127, prof.space * room.space * d.wet * 127))),
-      });
 
       const lastBar = bars[Math.max(r.start, r.end - 1)];
       if (lastBar && r.end - r.start >= 4) {
@@ -1303,6 +1377,7 @@ export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
   // Resolve culturally-authored tuning once the final notes are known.
   // The live sink already did this independently; carrying the frequency here
   // makes offline export identical instead of silently reverting to 12-TET.
+  const finalStyle = resolveStyle({ genreId: sheet.worldId, styleId: sheet.styleId ?? getCanonicalStyle(sheet.worldId).id });
   const regionByIdForTuning = new Map(sheet.regions.map(r => [r.id, r]));
   for (const n of playable) {
     const bar = bars[n.bar];

@@ -81,6 +81,16 @@ export interface CulturalAcousticEvent {
   luthier?: LuthierPhysicalParameters;
   /** Active genre ID for applying dynamic style distortion and physical shaping */
   worldId?: string;
+  /** Optional MIDI pitch */
+  midi?: number;
+  /** Optional frequency in Hz */
+  frequencyHz?: number;
+  /** Optional velocity (0-127) */
+  velocity?: number;
+  /** Optional duration in seconds */
+  duration?: number;
+  /** Optional technique modifier */
+  techniqueModifier?: string;
 }
 
 export interface SocioAcousticContext {

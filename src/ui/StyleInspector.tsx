@@ -196,7 +196,7 @@ export function StyleInspector({ song, onClose }: StyleInspectorProps) {
         {section === 'sound' && (
           <div className="space-y-2">
             <div className="p-2 rounded bg-black/5 dark:bg-white/5 space-y-1">
-              <div>Room Preset: <span className="font-bold">{resolved.sound.masterProfile?.roomId ?? 'genre default'}</span></div>
+              <div>Performance Mode: <span className="font-bold">{resolved.contract.performanceMode ?? 'acoustic-ensemble'}</span></div>
               <div>Pocket: <span className="font-bold">{resolved.sound.masterProfile?.pocket ?? 0.5}</span></div>
               <div>Dynamic Lift: <span className="font-bold">{resolved.sound.masterProfile?.lift ?? 0.5}</span></div>
             </div>

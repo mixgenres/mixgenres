@@ -1,29 +1,24 @@
 import WebRenderer from '@elemaudio/web-renderer';
 import type { LuthierPhysicalParameters } from './LuthierAPI';
-import type { RoomPreset, MasterChain } from './mixer';
-import { ROOMS, createMasterChain } from './mixer';
+import type { MasterChain } from './mixer';
+import { createMasterChain } from './mixer';
 import { CulturalAcousticEvent } from '../theory/CulturalAcousticEvent';
 import {
   defaultTrackParams,
-  defaultRoomParams,
   modelForInstrument,
   makeupGainFor,
   renderTrack,
   renderMaster,
-  styleFlavorForGenre,
   midiToFreq,
   type TrackParams,
   type VoiceState,
-  type RoomParams,
 } from '../elementary/elementaryEngine';
 
 import { resolveDialect, performanceModeForContext } from '../theory/dialects';
 
 /**
  * Elementary Audio live engine.
- *
- * Replaces Faust with Elementary Audio graph rendering.
- * WebRenderer reconciles declaratively generated audio signal graphs.
+ * Natural acoustic/electronic physical model summation with conservative mastering.
  */
 export class BandWorkletNode {
   public static readonly MAX_POLYPHONY = 8;
@@ -37,7 +32,7 @@ export class BandWorkletNode {
   public activeWorldId = 'flamenco';
   public activeStyleId = '';
 
-  private roomParams: RoomParams = defaultRoomParams();
+  private masterVolume = 1.0;
   private trackParamsMap = new Map<string, TrackParams>();
   private trackVoicesMap = new Map<string, VoiceState[]>();
 
@@ -46,14 +41,14 @@ export class BandWorkletNode {
     this.activeStyleId = styleId || '';
   }
 
-  async initialize(context: AudioContext, room: RoomPreset = ROOMS[1], volume = 1): Promise<AudioNode> {
+  async initialize(context: AudioContext, volume = 1): Promise<AudioNode> {
     this.ctx = context;
     if (this.ctx.state === 'suspended') {
       this.ctx.resume().catch(() => {});
     }
 
     this.core = new WebRenderer();
-    
+
     this.audioNode = await this.core.initialize(context, {
       numberOfInputs: 0,
       numberOfOutputs: 1,
@@ -63,61 +58,50 @@ export class BandWorkletNode {
     if (this.masterChain) {
       this.masterChain.dispose();
     }
-    this.masterChain = createMasterChain(context, room);
+    this.masterChain = createMasterChain(context);
     this.masterChain.setVolume(volume);
     this.audioNode.connect(this.masterChain.input);
 
-    this.updateRoomParams(room, volume);
+    this.masterVolume = volume;
     this.syncGraph();
     return this.masterChain.output;
   }
 
-  private updateRoomParams(room: RoomPreset, volume = 1) {
-    this.roomParams = {
-      warmth: room.warmth,
-      presence: room.presence,
-      air: room.air,
-      highPass: room.highPass,
-      space: room.space,
-      volume,
-      roomId: room.id,
-    };
-  }
-
-  async setRoom(room: RoomPreset, volume = 1) {
-    this.updateRoomParams(room, volume);
-    this.masterChain?.setRoom(room);
-    this.masterChain?.setVolume(volume);
-    this.syncGraph();
-  }
-
   async setVolume(value: number) {
-    this.roomParams.volume = Math.max(0, Math.min(2, value));
+    this.masterVolume = Math.max(0, Math.min(2, value));
     this.masterChain?.setVolume(value);
     this.syncGraph();
   }
 
-  async prepareTracks(instruments: Map<string, string>) {
-    for (const [trackId, instrumentId] of instruments) {
-      const luthier = (await import('./LuthierAPI')).getLuthierModelForInstrument(instrumentId);
-      const model = modelForInstrument(instrumentId, luthier);
+  /**
+   * Pre-allocates all tracks in the track params and voices maps.
+   */
+  async prepareTracks(instrumentsMap: Map<string, string>) {
+    for (const [trackId, instrumentId] of instrumentsMap.entries()) {
       if (!this.trackParamsMap.has(trackId)) {
-        const p = defaultTrackParams(instrumentId, luthier, model);
+        const dummyLuthier: LuthierPhysicalParameters = {
+          category: 'electro_acoustic_algorithmic',
+          materialDensity: 0.5,
+          tension: 0.5,
+          bodyResonanceVolume: 10,
+          decayTimeFactor: 2,
+          harmonicRichness: 0.7,
+        };
+        const model = modelForInstrument(instrumentId, dummyLuthier);
+        const params = defaultTrackParams(instrumentId, dummyLuthier, model);
+        params.performanceMode = performanceModeForContext(this.activeWorldId, this.activeStyleId);
         const dialect = resolveDialect(instrumentId, this.activeWorldId, this.activeStyleId);
-        p.performanceMode = performanceModeForContext(this.activeWorldId, this.activeStyleId);
         if (dialect) {
-          p.dialect = dialect.id;
-          p.performanceMode = dialect.performanceMode;
-          if (dialect.pluckPositionOverride !== undefined) p.pluckPosition = dialect.pluckPositionOverride;
-          if (dialect.bowPressureOverride !== undefined) p.bowPressure = dialect.bowPressureOverride;
-          if (dialect.contactPointOverride !== undefined) p.contact = dialect.contactPointOverride;
-          if (dialect.brightnessMultiplier !== undefined) p.brightness *= dialect.brightnessMultiplier;
-          if (dialect.decayMultiplier !== undefined) p.decay *= dialect.decayMultiplier;
-          if (dialect.bendGlideMs !== undefined) p.bendGlideMs = dialect.bendGlideMs;
+          params.dialect = dialect.id;
+          params.performanceMode = dialect.performanceMode;
+          if (dialect.pluckPositionOverride !== undefined) params.pluckPosition = dialect.pluckPositionOverride;
+          if (dialect.bowPressureOverride !== undefined) params.bowPressure = dialect.bowPressureOverride;
+          if (dialect.contactPointOverride !== undefined) params.contact = dialect.contactPointOverride;
+          if (dialect.brightnessMultiplier !== undefined) params.brightness *= dialect.brightnessMultiplier;
+          if (dialect.decayMultiplier !== undefined) params.decay *= dialect.decayMultiplier;
+          if (dialect.bendGlideMs !== undefined) params.bendGlideMs = dialect.bendGlideMs;
         }
-        this.trackParamsMap.set(trackId, p);
-      }
-      if (!this.trackVoicesMap.has(trackId)) {
+        this.trackParamsMap.set(trackId, params);
         this.trackVoicesMap.set(trackId, []);
       }
     }
@@ -127,7 +111,10 @@ export class BandWorkletNode {
   private syncGraph() {
     if (!this.core) return;
 
-    const trackSignals: { left: any; right: any }[] = [];
+    const trackSignals: {
+      left: any;
+      right: any;
+    }[] = [];
 
     for (const [trackId, params] of this.trackParamsMap.entries()) {
       const voices = this.trackVoicesMap.get(trackId) ?? [];
@@ -135,7 +122,7 @@ export class BandWorkletNode {
       trackSignals.push(trackSig);
     }
 
-    const masterSig = renderMaster(trackSignals, this.roomParams);
+    const masterSig = renderMaster(trackSignals, { highPass: 20, volume: this.masterVolume });
     this.core.render(masterSig.left, masterSig.right).catch(err => {
       console.warn('[Elementary] Render error:', err);
     });
@@ -186,69 +173,71 @@ export class BandWorkletNode {
       }
       this.trackParamsMap.set(trackId, p);
     }
-    if (!this.trackVoicesMap.has(trackId)) {
-      this.trackVoicesMap.set(trackId, []);
+
+    const params = this.trackParamsMap.get(trackId)!;
+    const noteMidi = event.midi ?? 60;
+    const isElectronic = /synth|808|909|acid|sub-bass|kizomba|tarraxo|trap|house/.test((params.instrumentId || '').toLowerCase());
+    const effectiveModelForGain = isElectronic ? 9 : params.model;
+    const baseGain = makeupGainFor(effectiveModelForGain, params.instrumentId);
+
+    const hitType = event.techniqueModifier;
+    let hitGainMultiplier = 1.0;
+    if (hitType === 'accent') hitGainMultiplier = 1.25;
+    else if (hitType === 'ghost') hitGainMultiplier = 0.45;
+    else if (hitType === 'snare' || hitType === 'rim' || hitType === 'slap') hitGainMultiplier = 1.1;
+
+    const velScaled = Math.max(0.01, Math.min(1.0, (event.velocity ?? 90) / 127)) * hitGainMultiplier;
+    params.volume = Math.max(0.01, Math.min(35, velScaled * baseGain));
+
+    const articulationNorm = event.techniqueModifier === 'staccato' ? 0.9 : event.techniqueModifier === 'legato' ? 0.1 : 0.4;
+    params.articulation = articulationNorm;
+    params.decay = Math.max(0.1, Math.min(8.0, event.duration || 0.5));
+
+    let voices = this.trackVoicesMap.get(trackId);
+    if (!voices) {
+      voices = [];
+      this.trackVoicesMap.set(trackId, voices);
     }
 
-    const exactMidi = 69 + 12 * Math.log2(Math.max(16, event.tuning.baseFrequencyHz) / 440);
-    const midi = Math.round(exactMidi);
-    const velocity = Math.max(0.05, Math.min(1, event.action?.force ?? 0.75));
-
-    const voices = this.trackVoicesMap.get(trackId)!;
-    let voice = voices.find(v => v.note === midi && v.gate === 1);
-
-    if (voice) {
-      voice.velocity = velocity;
-      voice.gate = 1;
-      voice.actionType = event.action?.type as any;
-      voice.technique = event.action?.technique;
-      voice.contactPoint = event.action?.contactPoint;
-      voice.mass = event.action?.mass;
-      voice.frequencyHz = event.tuning.baseFrequencyHz;
-      (voice as any).baseFrequencyHz = event.tuning.baseFrequencyHz;
-    } else {
-      let freeVoice = voices.find(v => v.gate === 0);
-      if (!freeVoice) {
-        if (voices.length >= BandWorkletNode.MAX_POLYPHONY) {
-          freeVoice = voices[0];
-        } else {
-          freeVoice = { note: midi, velocity, gate: 1, id: `${trackId}_${midi}` };
-          voices.push(freeVoice);
-        }
+    let voice = voices.find(v => v.note === noteMidi);
+    if (!voice) {
+      if (voices.length >= BandWorkletNode.MAX_POLYPHONY) {
+        voice = voices.find(v => v.gate === 0) || voices[0];
+      } else {
+        voice = {
+          id: `live-${trackId}-${voices.length}`,
+          gate: 0,
+          frequencyHz: event.frequencyHz ?? event.tuning?.baseFrequencyHz ?? midiToFreq(noteMidi),
+          note: noteMidi,
+          velocity: velScaled,
+        };
+        voices.push(voice);
       }
-      freeVoice.note = midi;
-      freeVoice.velocity = velocity;
-      freeVoice.gate = 1;
-      freeVoice.actionType = event.action?.type as any;
-      freeVoice.technique = event.action?.technique;
-      freeVoice.contactPoint = event.action?.contactPoint;
-      freeVoice.mass = event.action?.mass;
-      freeVoice.frequencyHz = event.tuning.baseFrequencyHz;
-      (freeVoice as any).baseFrequencyHz = event.tuning.baseFrequencyHz;
     }
+
+    voice.note = noteMidi;
+    const targetFreq = event.frequencyHz ?? midiToFreq(noteMidi);
+    voice.frequencyHz = targetFreq;
+    (voice as any).baseFrequencyHz = targetFreq;
+    voice.velocity = velScaled;
+    voice.gate = 1;
 
     this.syncGraph();
   }
 
-  postRelease(id: string, atTime?: number) {
+  postRelease(trackId: string, midi: number, atTime?: number) {
     const now = this.ctx?.currentTime ?? 0;
     const delayMs = atTime && atTime > now + 0.002 ? (atTime - now) * 1000 : 0;
 
     if (delayMs > 2) {
-      const tid = window.setTimeout(() => this.executeNoteOff(id), delayMs);
+      const tid = window.setTimeout(() => this.executeNoteOff(trackId, midi), delayMs);
       this.scheduledTimeouts.push(tid);
     } else {
-      this.executeNoteOff(id);
+      this.executeNoteOff(trackId, midi);
     }
   }
 
-  private executeNoteOff(id: string) {
-    const split = id.lastIndexOf('_');
-    if (split < 0) return;
-    const trackId = id.slice(0, split);
-    const midi = Number(id.slice(split + 1));
-    if (!Number.isFinite(midi)) return;
-
+  private executeNoteOff(trackId: string, midi: number) {
     const voices = this.trackVoicesMap.get(trackId);
     if (!voices) return;
 
@@ -267,10 +256,6 @@ export class BandWorkletNode {
     if (!params) return;
 
     const norm = value / 127;
-    // The performance compiler emits normal mixer controls as MIDI CCs. These
-    // must reach the actual track parameters; otherwise every track stays at
-    // the same default gain and center pan, flattening the ensemble into a
-    // single undifferentiated wall of sound.
     if (cc === 7 || cc === 11) {
       const isElectronic = /synth|808|909|acid|sub-bass|kizomba|tarraxo|trap|house/.test((params.instrumentId || '').toLowerCase());
       const effectiveModelForGain = isElectronic ? 9 : params.model;
@@ -308,7 +293,6 @@ export class BandWorkletNode {
     const voices = this.trackVoicesMap.get(trackId);
     if (!voices || voices.length === 0) return;
 
-    // MIDI pitch bend standard: 8192 is center, ±2 semitone range
     const semitones = ((value - 8192) / 8192) * 2;
     const bendRatio = Math.pow(2, semitones / 12);
 

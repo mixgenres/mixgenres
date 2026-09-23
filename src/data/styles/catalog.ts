@@ -115,7 +115,7 @@ function cloneStyle(base: SongStyle, genreId: string, name: string, id: string):
     r.defaultBpm = Math.max(55, (r.defaultBpm ?? 100) - 8);
     r.microtimingFeel = 'laid-back';
     r.humanizeJitterMs = Math.min(16, (r.humanizeJitterMs ?? 8) + 2);
-    sfx.masterProfile = { ...(sfx.masterProfile ?? { roomId:'room' }), pocket:0.62, lift:0.42 };
+    sfx.masterProfile = { ...(sfx.masterProfile ?? {}), pocket:0.62, lift:0.42 };
   }
   if (hard) {
     r.defaultBpm = Math.min(220, (r.defaultBpm ?? 120) + 18);
@@ -123,7 +123,7 @@ function cloneStyle(base: SongStyle, genreId: string, name: string, id: string):
     r.swingPercentage = 50;
     h.chordVocabulary = Array.from(new Set([...(h.chordVocabulary ?? []), 'power-chord','tritone']));
     m.contourArchetypes = ['repeated riff','descending attack','register burst'];
-    sfx.masterProfile = { ...(sfx.masterProfile ?? { roomId:'studio' }), pocket:0.35, lift:0.75 };
+    sfx.masterProfile = { ...(sfx.masterProfile ?? {}), pocket:0.35, lift:0.75 };
   }
   if (complex) {
     r.anticipationOffsetSteps = (r.anticipationOffsetSteps ?? 0) - 1;
@@ -134,7 +134,7 @@ function cloneStyle(base: SongStyle, genreId: string, name: string, id: string):
   if (machine) {
     r.humanizeJitterMs = Math.min(r.humanizeJitterMs ?? 8, 4);
     r.swingPercentage = 50;
-    sfx.masterProfile = { ...(sfx.masterProfile ?? { roomId:'club' }), pocket:0.35, lift:0.68 };
+    sfx.masterProfile = { ...(sfx.masterProfile ?? {}), pocket:0.35, lift:0.68 };
   }
   if (traditional) {
     r.humanizeJitterMs = Math.max(r.humanizeJitterMs ?? 8, 6);

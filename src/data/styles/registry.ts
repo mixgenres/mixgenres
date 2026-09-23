@@ -118,7 +118,7 @@ function styleFromSeed(worldId: string, seed: any, index: number): SongStyle {
     },
     sound:{
       instrumentPalette:instruments.map(value => ({value: String(value), w: 1})),
-      masterProfile:{roomId:contract.timbreSpace.room,pocket:0.5,lift:0.5},
+      masterProfile:{pocket:0.5,lift:0.5},
     },
     patterns:{require:[],preferred:[],allowed:[],avoid:[]}, gestures:{}, rules:{
       require:contract.timelineRequired ? [{tag:'timeline-lock',description:contract.timeline}] : [],
