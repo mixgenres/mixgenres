@@ -17,9 +17,16 @@
   --hand: "Caveat", "Barlow", cursive;
 }
 
-* { -webkit-tap-highlight-color: transparent; }
+* {
+  -webkit-tap-highlight-color: transparent;
+}
 
-html, body, #root { height: 100%; }
+html,
+body,
+#root {
+  height: 100%;
+  min-height: 100dvh;
+}
 
 body {
   margin: 0;
@@ -48,24 +55,59 @@ body::before {
 }
 
 @layer base {
-  button { font: inherit; color: inherit; background: none; border: none; padding: 0; cursor: pointer; }
+  button {
+    font: inherit;
+    color: inherit;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+  }
 }
 
-:focus-visible { outline: 2px solid var(--signal); outline-offset: 2px; }
+:focus-visible {
+  outline: 2px solid var(--signal);
+  outline-offset: 2px;
+}
 
-.slab { font-family: var(--slab); font-weight: 400; letter-spacing: -0.01em; }
-.hand { font-family: var(--hand); }
+.slab {
+  font-family: var(--slab);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+.hand {
+  font-family: var(--hand);
+}
 
 /* micro-labels: small and quiet, but sentence case — never shouted */
-.micro { font-size: 11.5px; letter-spacing: 0.01em; opacity: 0.55; }
+.micro {
+  font-size: 11.5px;
+  letter-spacing: 0.01em;
+  opacity: 0.55;
+}
 
-.rule { background: color-mix(in srgb, var(--ink) 18%, transparent); }
+.rule {
+  background: color-mix(in srgb, var(--ink) 18%, transparent);
+}
 
-.hide-scrollbar::-webkit-scrollbar { display: none; }
-.hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
 
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 .genre-tile {
@@ -128,8 +170,15 @@ body::before {
   text-align: left;
   border-top: 1px solid color-mix(in srgb, var(--ink) 14%, transparent);
 }
-.option-row:first-child { border-top: none; }
-.option-row-label { font-size: 13.5px; font-weight: 700; }
+
+.option-row:first-child {
+  border-top: none;
+}
+
+.option-row-label {
+  font-size: 13.5px;
+  font-weight: 700;
+}
 
 /* .btn-cta — the one dark, high-emphasis action in a given sheet */
 .btn-cta {

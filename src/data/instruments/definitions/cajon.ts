@@ -4,13 +4,17 @@ export const cajon: InstrumentDef = {
   id: "cajon",
   name: "Cajón (Flamenco / Afro-Peruvian)",
   family: "hand-drums",
-  voicing: "unpitched",
   drum: {
     low: 36,
     mid: 38,
     high: 42
   },
+  voicing: "unpitched",
   bodyConstruction: "wood-box",
+  excitationType: "fingerpad",
+  elementaryModel: 4,
+  makeupGain: 1.967,
+  polyphony: 12,
   note: "Wooden box drum with internal guitar string snares or wire tension, played with hands for deep bass thump and high snare slap",
   acousticProfile: {
     sustain: "percussive",
@@ -27,7 +31,7 @@ export const cajon: InstrumentDef = {
     category: "membrane_tension_2d",
     materialDensity: 0.6,
     tension: 0.7,
-    bodyResonanceVolume: 20.0,
+    bodyResonanceVolume: 20,
     decayTimeFactor: 0.5,
     harmonicRichness: 0.6,
     faustProfile: "flamenco-cajon",
@@ -99,7 +103,7 @@ export const cajon: InstrumentDef = {
     golpe: {
       bodyTapPitchHz: 190,
       transientDecayMs: 35,
-      gainDb: 2.0
+      gainDb: 2
     }
   },
   techniques: {

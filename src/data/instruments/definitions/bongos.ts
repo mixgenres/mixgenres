@@ -4,13 +4,17 @@ export const bongos: InstrumentDef = {
   id: "bongos",
   name: "Bongos",
   family: "hand-drums",
-  voicing: "unpitched",
   drum: {
     low: 61,
     mid: 60,
     high: 62
   },
+  voicing: "unpitched",
   bodyConstruction: "skin-faced",
+  excitationType: "fingerpad",
+  elementaryModel: 4,
+  makeupGain: 4.433,
+  polyphony: 12,
   note: "Small Afro-Cuban paired high-pitched wooden hand drums (Macho 7-inch, Hembra 8.5-inch) playing the driving martillo pattern",
   acousticProfile: {
     sustain: "percussive",
@@ -27,7 +31,7 @@ export const bongos: InstrumentDef = {
     category: "membrane_tension_2d",
     materialDensity: 0.75,
     tension: 0.9,
-    bodyResonanceVolume: 3.0,
+    bodyResonanceVolume: 3,
     decayTimeFactor: 0.4,
     harmonicRichness: 0.8,
     excitationType: "fingerpad"

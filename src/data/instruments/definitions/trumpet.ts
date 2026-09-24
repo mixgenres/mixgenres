@@ -8,6 +8,9 @@ export const trumpet: InstrumentDef = {
   voicing: "single",
   bodyConstruction: "metal-shell",
   excitationType: "breath",
+  elementaryModel: 15,
+  makeupGain: 0.55,
+  polyphony: 4,
   note: "Bb brass trumpet providing piercing mambo brass stabs, screaming lead lines, and warm cup-muted ballad tones",
   acousticProfile: {
     sustain: "blown",
@@ -30,9 +33,33 @@ export const trumpet: InstrumentDef = {
     airResonanceHz: 466,
     excitationType: "breath"
   },
+  formantProfile: {
+    f1: {
+      freq: 1200,
+      q: 2,
+      gain: 0.75
+    },
+    f2: {
+      freq: 2600,
+      q: 2.4,
+      gain: 0.5
+    },
+    f3: {
+      freq: 4600,
+      q: 2,
+      gain: 0.25
+    },
+    tongueType: "lip-slap",
+    tongueFreq: 2400
+  },
   tuningAndMechanics: {
     tuningName: "Bb Trumpet Range",
-    keyRange: { lowNote: "F#3", highNote: "D6", lowMidi: 54, highMidi: 86 }
+    keyRange: {
+      lowNote: "F#3",
+      highNote: "D6",
+      lowMidi: 54,
+      highMidi: 86
+    }
   },
   performanceArticulations: {
     bend: {
@@ -52,8 +79,23 @@ export const trumpet: InstrumentDef = {
     }
   },
   techniques: {
-    articulations: ["accent", "staccato", "legato", "tenuto", "growl", "doit", "fall", "shake", "cup-mute"],
-    techniqueMethods: ["lip buzzing lip-trills", "half-valve pitch bends", "plunger mute wah-wah", "double tonguing"],
+    articulations: [
+      "accent",
+      "staccato",
+      "legato",
+      "tenuto",
+      "growl",
+      "doit",
+      "fall",
+      "shake",
+      "cup-mute"
+    ],
+    techniqueMethods: [
+      "lip buzzing lip-trills",
+      "half-valve pitch bends",
+      "plunger mute wah-wah",
+      "double tonguing"
+    ],
     playingStyles: ["salsa", "jazz", "mambo", "mariachi", "funk", "ska"],
     genreTechniques: {
       salsa: ["accent", "staccato", "fall", "shake"],

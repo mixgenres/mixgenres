@@ -8,6 +8,10 @@ export const piano: InstrumentDef = {
   voicing: "chord",
   bodyConstruction: "wood-box",
   excitationType: "hammer",
+  sympatheticStrings: true,
+  elementaryModel: 11,
+  makeupGain: 3.54,
+  polyphony: 8,
   note: "Concert grand piano with felt hammers striking steel strings over a spruce soundboard, providing dynamic montunos, comping, and solos",
   acousticProfile: {
     sustain: "decaying",
@@ -18,13 +22,13 @@ export const piano: InstrumentDef = {
     pan: -0.08,
     trim: 0,
     space: 0.22,
-    ring: 3.0
+    ring: 3
   },
   luthierPhysics: {
     category: "resonator_struck_metal_wood",
     materialDensity: 0.88,
     tension: 0.9,
-    bodyResonanceVolume: 350.0,
+    bodyResonanceVolume: 350,
     decayTimeFactor: 3.5,
     harmonicRichness: 0.78,
     soundboardResonanceHz: 120,
@@ -35,7 +39,12 @@ export const piano: InstrumentDef = {
   tuningAndMechanics: {
     tuningName: "88-Key Concert Grand Piano A440 Equal Temperament",
     frets: 88,
-    keyRange: { lowNote: "A0", highNote: "C8", lowMidi: 21, highMidi: 108 }
+    keyRange: {
+      lowNote: "A0",
+      highNote: "C8",
+      lowMidi: 21,
+      highMidi: 108
+    }
   },
   performanceArticulations: {
     pizzicato: {
@@ -44,8 +53,20 @@ export const piano: InstrumentDef = {
     }
   },
   techniques: {
-    articulations: ["accent", "staccato", "legato", "tenuto", "sostenuto", "montuno", "octave-stabs"],
-    techniqueMethods: ["sustain pedal resonance", "octave octave bass coupling", "syncopated salsa montuno two-hand interlocking"],
+    articulations: [
+      "accent",
+      "staccato",
+      "legato",
+      "tenuto",
+      "sostenuto",
+      "montuno",
+      "octave-stabs"
+    ],
+    techniqueMethods: [
+      "sustain pedal resonance",
+      "octave octave bass coupling",
+      "syncopated salsa montuno two-hand interlocking"
+    ],
     playingStyles: ["classical", "jazz", "salsa", "pop", "rock", "gospel", "bossa-nova"],
     genreTechniques: {
       salsa: ["montuno", "accent", "staccato", "octave-stabs"],

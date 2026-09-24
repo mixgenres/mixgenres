@@ -34,11 +34,12 @@ export interface LuthierPhysicsProfile {
   bodyConstruction?: 'wood-box' | 'gourd' | 'skin-faced' | 'board' | 'solid-electric' | 'metal-shell' | 'brass-tube';
   excitationType?: 'plectrum' | 'nail' | 'fingerpad' | 'hard-pick' | 'hammer' | 'stick' | 'mallet' | 'breath' | 'bow';
   sympatheticStrings?: boolean;
+  damping?: number;
 }
 
 export interface AcousticProfile {
   sustain: 'decaying' | 'sustained' | 'blown' | 'short' | 'percussive';
-  role?: 'bass' | 'harmony' | 'melody' | 'rhythm' | 'pad' | 'percussion' | 'lead';
+  role?: 'bass' | 'harmony' | 'melody' | 'rhythm' | 'pad' | 'percussion' | 'lead' | 'comp' | 'perc';
   centre: number;
   low: number;
   high: number;
@@ -47,6 +48,30 @@ export interface AcousticProfile {
   space: number;
   ring: number;
   ensembleSmearMs?: number;
+  letRingAcrossSections?: boolean;
+}
+
+export interface FormantBand {
+  freq: number;
+  q: number;
+  gain: number;
+}
+
+export interface AcousticFormantProfile {
+  f1: FormantBand;
+  f2: FormantBand;
+  f3?: FormantBand;
+  tongueType: 'chiff' | 'reed-tongue' | 'lip-slap' | 'soft-puff';
+  tongueFreq: number;
+}
+
+export interface BowedResonanceProfile {
+  bodyFreq: number;
+  bodyQ: number;
+  bodyGain: number;
+  bridgeHillFreq: number;
+  bridgeHillQ: number;
+  bridgeHillGain: number;
 }
 
 export interface InstrumentKitComponent {
@@ -410,6 +435,11 @@ export interface InstrumentDef {
 
   acousticProfile?: AcousticProfile;
   luthierPhysics?: LuthierPhysicsProfile;
+  elementaryModel?: number;
+  makeupGain?: number;
+  polyphony?: number;
+  formantProfile?: AcousticFormantProfile;
+  bowedResonance?: BowedResonanceProfile;
   tuningAndMechanics?: TuningAndMechanics;
   kitComponents?: InstrumentKitComponent[];
   performanceArticulations?: PhysicalPerformanceArticulations;

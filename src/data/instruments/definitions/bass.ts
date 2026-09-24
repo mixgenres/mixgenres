@@ -8,6 +8,9 @@ export const bass: InstrumentDef = {
   voicing: "bass",
   bodyConstruction: "solid-electric",
   excitationType: "fingerpad",
+  elementaryModel: 3,
+  makeupGain: 1,
+  polyphony: 4,
   note: "Solid-body electric bass guitar driving low-end fundamental groove across funk, rock, pop, and Latin music",
   acousticProfile: {
     sustain: "decaying",
@@ -24,7 +27,7 @@ export const bass: InstrumentDef = {
     category: "strum_friction_pluck",
     materialDensity: 0.8,
     tension: 0.82,
-    bodyResonanceVolume: 8.0,
+    bodyResonanceVolume: 8,
     decayTimeFactor: 2.6,
     harmonicRichness: 0.75,
     faustProfile: "electric-bass",
@@ -37,10 +40,30 @@ export const bass: InstrumentDef = {
     tuningName: "EADG Electric Bass Standard",
     frets: 20,
     openStrings: [
-      { name: "E1", note: "E1", midi: 28, frequencyHz: 41.20 },
-      { name: "A1", note: "A1", midi: 33, frequencyHz: 55.00 },
-      { name: "D2", note: "D2", midi: 38, frequencyHz: 73.42 },
-      { name: "G2", note: "G2", midi: 43, frequencyHz: 98.00 }
+      {
+        name: "E1",
+        note: "E1",
+        midi: 28,
+        frequencyHz: 41.2
+      },
+      {
+        name: "A1",
+        note: "A1",
+        midi: 33,
+        frequencyHz: 55
+      },
+      {
+        name: "D2",
+        note: "D2",
+        midi: 38,
+        frequencyHz: 73.42
+      },
+      {
+        name: "G2",
+        note: "G2",
+        midi: 43,
+        frequencyHz: 98
+      }
     ]
   },
   performanceArticulations: {

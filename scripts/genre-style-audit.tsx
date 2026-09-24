@@ -173,6 +173,7 @@ function analyzeStyle(genreId: string, styleId: string, doRender: boolean): Styl
       genreId, styleId, styleName: styleId, bpm: 0, meter: '', sections: [],
       trackCount: 0, noteCount: 0, duration: 0, ensembleInstruments: [], trackInstruments: [],
       ensembleUnused: [], emptyTracks: [], patternsAllowed: 0, patternsUsedCount: 0, patternsUnusedIds: [],
+      patternsUsedIds: [], crossStylePatterns: [],
       tracks: [], renderError: null, renderMs: null, compileError: String(e?.stack ?? e),
     };
   }

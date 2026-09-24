@@ -6,8 +6,12 @@ export const electric_guitar: InstrumentDef = {
   family: "plucked",
   program: 27,
   voicing: "chord",
+  courses: 1,
   bodyConstruction: "solid-electric",
   excitationType: "hard-pick",
+  elementaryModel: 21,
+  makeupGain: 0.551,
+  polyphony: 8,
   note: "Solid-body electric guitar with magnetic dual humbuckers or single-coil pickups, delivering clean chnk, funk rhythm, and biting leads",
   acousticProfile: {
     sustain: "decaying",
@@ -18,13 +22,13 @@ export const electric_guitar: InstrumentDef = {
     pan: 0.34,
     trim: 2,
     space: 0.2,
-    ring: 2.0
+    ring: 2
   },
   luthierPhysics: {
     category: "strum_friction_pluck",
     materialDensity: 0.7,
     tension: 0.8,
-    bodyResonanceVolume: 5.0,
+    bodyResonanceVolume: 5,
     decayTimeFactor: 2.8,
     harmonicRichness: 0.82,
     pickupBlend: 0.5,
@@ -37,12 +41,42 @@ export const electric_guitar: InstrumentDef = {
     courses: 1,
     frets: 22,
     openStrings: [
-      { name: "E2", note: "E2", midi: 40, frequencyHz: 82.41 },
-      { name: "A2", note: "A2", midi: 45, frequencyHz: 110.00 },
-      { name: "D3", note: "D3", midi: 50, frequencyHz: 146.83 },
-      { name: "G3", note: "G3", midi: 55, frequencyHz: 196.00 },
-      { name: "B3", note: "B3", midi: 59, frequencyHz: 246.94 },
-      { name: "E4", note: "E4", midi: 64, frequencyHz: 329.63 }
+      {
+        name: "E2",
+        note: "E2",
+        midi: 40,
+        frequencyHz: 82.41
+      },
+      {
+        name: "A2",
+        note: "A2",
+        midi: 45,
+        frequencyHz: 110
+      },
+      {
+        name: "D3",
+        note: "D3",
+        midi: 50,
+        frequencyHz: 146.83
+      },
+      {
+        name: "G3",
+        note: "G3",
+        midi: 55,
+        frequencyHz: 196
+      },
+      {
+        name: "B3",
+        note: "B3",
+        midi: 59,
+        frequencyHz: 246.94
+      },
+      {
+        name: "E4",
+        note: "E4",
+        midi: 64,
+        frequencyHz: 329.63
+      }
     ]
   },
   performanceArticulations: {
@@ -63,8 +97,24 @@ export const electric_guitar: InstrumentDef = {
     }
   },
   techniques: {
-    articulations: ["accent", "staccato", "legato", "palm-mute", "bend", "vibrato", "slide", "harmonic"],
-    techniqueMethods: ["alternate-picking", "palm-muting", "string-bending", "hammer-on", "pull-off", "slide"],
+    articulations: [
+      "accent",
+      "staccato",
+      "legato",
+      "palm-mute",
+      "bend",
+      "vibrato",
+      "slide",
+      "harmonic"
+    ],
+    techniqueMethods: [
+      "alternate-picking",
+      "palm-muting",
+      "string-bending",
+      "hammer-on",
+      "pull-off",
+      "slide"
+    ],
     playingStyles: ["rock", "funk", "pop", "blues", "rnb", "reggae", "jazz"],
     genreTechniques: {
       funk: ["staccato", "palm-mute", "accent"],

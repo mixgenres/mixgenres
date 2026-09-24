@@ -9,6 +9,9 @@ export const acoustic_guitar: InstrumentDef = {
   courses: 1,
   bodyConstruction: "wood-box",
   excitationType: "hard-pick",
+  elementaryModel: 0,
+  makeupGain: 4.053,
+  polyphony: 8,
   note: "Steel-string dreadnought acoustic guitar with solid Sitka spruce top and phosphor bronze strings delivering crisp projection",
   acousticProfile: {
     sustain: "decaying",
@@ -25,7 +28,7 @@ export const acoustic_guitar: InstrumentDef = {
     category: "strum_friction_pluck",
     materialDensity: 0.7,
     tension: 0.85,
-    bodyResonanceVolume: 16.0,
+    bodyResonanceVolume: 16,
     decayTimeFactor: 2.5,
     harmonicRichness: 0.82,
     soundboardResonanceHz: 180,
@@ -38,12 +41,42 @@ export const acoustic_guitar: InstrumentDef = {
     courses: 1,
     frets: 20,
     openStrings: [
-      { name: "E2", note: "E2", midi: 40, frequencyHz: 82.41 },
-      { name: "A2", note: "A2", midi: 45, frequencyHz: 110.00 },
-      { name: "D3", note: "D3", midi: 50, frequencyHz: 146.83 },
-      { name: "G3", note: "G3", midi: 55, frequencyHz: 196.00 },
-      { name: "B3", note: "B3", midi: 59, frequencyHz: 246.94 },
-      { name: "E4", note: "E4", midi: 64, frequencyHz: 329.63 }
+      {
+        name: "E2",
+        note: "E2",
+        midi: 40,
+        frequencyHz: 82.41
+      },
+      {
+        name: "A2",
+        note: "A2",
+        midi: 45,
+        frequencyHz: 110
+      },
+      {
+        name: "D3",
+        note: "D3",
+        midi: 50,
+        frequencyHz: 146.83
+      },
+      {
+        name: "G3",
+        note: "G3",
+        midi: 55,
+        frequencyHz: 196
+      },
+      {
+        name: "B3",
+        note: "B3",
+        midi: 59,
+        frequencyHz: 246.94
+      },
+      {
+        name: "E4",
+        note: "E4",
+        midi: 64,
+        frequencyHz: 329.63
+      }
     ]
   },
   performanceArticulations: {
@@ -56,6 +89,31 @@ export const acoustic_guitar: InstrumentDef = {
       maxSemitones: 2,
       speedMs: 120,
       curve: "s-curve"
+    }
+  },
+  techniques: {
+    articulations: [
+      "accent",
+      "staccato",
+      "legato",
+      "palm-mute",
+      "tenuto",
+      "ghost",
+      "harmonic",
+      "slide"
+    ],
+    techniqueMethods: [
+      "down-up flatpick strumming patterns",
+      "Travis fingerpicking thumb-bass separation",
+      "bridge palm muting",
+      "hammer-on and pull-off legato runs"
+    ],
+    playingStyles: ["folk", "country", "pop", "bluegrass", "rock", "indie", "americana"],
+    genreTechniques: {
+      folk: ["legato", "tenuto", "accent"],
+      bluegrass: ["accent", "staccato", "slide"],
+      country: ["palm-mute", "accent", "staccato"],
+      pop: ["accent", "tenuto", "palm-mute"]
     }
   },
   physicalModel: {
@@ -74,16 +132,5 @@ export const acoustic_guitar: InstrumentDef = {
       "Flatpicking near bridge delivers biting brightness; picking near soundhole yields deep woody warmth.",
       "Palm muting near bridge dampens fundamental decay while preserving crisp transients."
     ]
-  },
-  techniques: {
-    articulations: ["accent", "staccato", "legato", "palm-mute", "tenuto", "ghost", "harmonic", "slide"],
-    techniqueMethods: ["down-up flatpick strumming patterns", "Travis fingerpicking thumb-bass separation", "bridge palm muting", "hammer-on and pull-off legato runs"],
-    playingStyles: ["folk", "country", "pop", "bluegrass", "rock", "indie", "americana"],
-    genreTechniques: {
-      folk: ["legato", "tenuto", "accent"],
-      bluegrass: ["accent", "staccato", "slide"],
-      country: ["palm-mute", "accent", "staccato"],
-      pop: ["accent", "tenuto", "palm-mute"]
-    }
   }
 };

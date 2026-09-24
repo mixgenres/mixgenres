@@ -1,6 +1,35 @@
 import type { InstrumentDef } from '../types';
 
-export const sho: InstrumentDef = { id: 'shō', name: 'Sho', family: 'bellows-and-keys', program: 16, voicing: 'chord', note: 'Sustained Japanese reed-organ cluster',
+export const sho: InstrumentDef = {
+  id: "shō",
+  name: "Sho",
+  family: "bellows-and-keys",
+  program: 16,
+  voicing: "chord",
+  elementaryModel: 10,
+  makeupGain: 0.638,
+  polyphony: 8,
+  note: "Sustained Japanese reed-organ cluster",
+  acousticProfile: {
+    sustain: "sustained",
+    role: "pad",
+    centre: 60,
+    low: 40,
+    high: 82,
+    pan: 0,
+    trim: -7,
+    space: 0.55,
+    ring: 8,
+    letRingAcrossSections: true
+  },
+  luthierPhysics: {
+    category: "bellows_free_reed",
+    materialDensity: 0.6,
+    tension: 0.6,
+    bodyResonanceVolume: 1,
+    decayTimeFactor: 1.5,
+    harmonicRichness: 0.7
+  },
   techniques: {
     articulations: ["accent", "staccato", "legato", "tenuto"],
     techniqueMethods: ["velocity-shaped attack", "fingered chord voicing", "register coupling"],

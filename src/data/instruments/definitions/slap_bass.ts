@@ -8,6 +8,9 @@ export const slap_bass: InstrumentDef = {
   voicing: "bass",
   bodyConstruction: "solid-electric",
   excitationType: "hard-pick",
+  elementaryModel: 3,
+  makeupGain: 1,
+  polyphony: 4,
   note: "Funk slap bass technique combining thumb bone strikes against fretboard metal and index finger popping snap",
   acousticProfile: {
     sustain: "short",
@@ -24,7 +27,7 @@ export const slap_bass: InstrumentDef = {
     category: "strum_friction_pluck",
     materialDensity: 0.85,
     tension: 0.88,
-    bodyResonanceVolume: 6.0,
+    bodyResonanceVolume: 6,
     decayTimeFactor: 1.2,
     harmonicRichness: 0.92,
     faustProfile: "electric-bass",
@@ -37,10 +40,30 @@ export const slap_bass: InstrumentDef = {
     tuningName: "EADG Standard Slap Bass",
     frets: 24,
     openStrings: [
-      { name: "E1", note: "E1", midi: 28, frequencyHz: 41.20 },
-      { name: "A1", note: "A1", midi: 33, frequencyHz: 55.00 },
-      { name: "D2", note: "D2", midi: 38, frequencyHz: 73.42 },
-      { name: "G2", note: "G2", midi: 43, frequencyHz: 98.00 }
+      {
+        name: "E1",
+        note: "E1",
+        midi: 28,
+        frequencyHz: 41.2
+      },
+      {
+        name: "A1",
+        note: "A1",
+        midi: 33,
+        frequencyHz: 55
+      },
+      {
+        name: "D2",
+        note: "D2",
+        midi: 38,
+        frequencyHz: 73.42
+      },
+      {
+        name: "G2",
+        note: "G2",
+        midi: 43,
+        frequencyHz: 98
+      }
     ]
   },
   performanceArticulations: {
@@ -58,7 +81,12 @@ export const slap_bass: InstrumentDef = {
   },
   techniques: {
     articulations: ["accent", "staccato", "slap", "ghost", "pop", "hammer-on", "slide"],
-    techniqueMethods: ["thumb slap bone strike", "index finger pop snap", "left hand fret muting", "double thumbing"],
+    techniqueMethods: [
+      "thumb slap bone strike",
+      "index finger pop snap",
+      "left hand fret muting",
+      "double thumbing"
+    ],
     playingStyles: ["funk", "disco", "fusion", "pop", "rock"],
     genreTechniques: {
       funk: ["slap", "pop", "ghost", "staccato"],

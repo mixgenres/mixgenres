@@ -1,6 +1,34 @@
 import type { InstrumentDef } from '../types';
 
-export const pizz_strings: InstrumentDef = { id: 'pizz-strings', name: 'Pizzicato strings', family: 'bowed', program: 45, voicing: 'chord',
+export const pizz_strings: InstrumentDef = {
+  id: "pizz-strings",
+  name: "Pizzicato strings",
+  family: "bowed",
+  program: 45,
+  voicing: "chord",
+  elementaryModel: 6,
+  makeupGain: 5.496,
+  polyphony: 8,
+  acousticProfile: {
+    sustain: "short",
+    role: "comp",
+    centre: 62,
+    low: 48,
+    high: 88,
+    pan: -0.26,
+    trim: -3,
+    space: 0.3,
+    ring: 0.6,
+    letRingAcrossSections: true
+  },
+  luthierPhysics: {
+    category: "continuous_bowed_friction",
+    materialDensity: 0.5,
+    tension: 0.7,
+    bodyResonanceVolume: 45,
+    decayTimeFactor: 0.9,
+    harmonicRichness: 0.65
+  },
   techniques: {
     articulations: ["accent", "legato", "portato", "tremolo", "pizzicato"],
     techniqueMethods: ["arco", "detaché", "legato bow", "pizzicato"],

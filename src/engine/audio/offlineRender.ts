@@ -1,3 +1,4 @@
+import { INSTRUMENTS_BY_ID } from '../../data/instruments';
 import * as lamejsModule from '@breezystack/lamejs';
 import { Mp3Encoder } from '@breezystack/lamejs';
 import OfflineRenderer from '@elemaudio/offline-renderer';
@@ -60,8 +61,9 @@ export async function renderPerformanceToMp3(
 
   for (const trackId of trackIds) {
     const instrumentId = options.trackInstruments.get(trackId) || trackId;
-    const luthier = getLuthierModelForInstrument(instrumentId);
-    const model = modelForInstrument(instrumentId, luthier);
+    const instDef = INSTRUMENTS_BY_ID[instrumentId];
+    const luthier = instDef?.luthierPhysics ?? getLuthierModelForInstrument(instrumentId);
+    const model = instDef?.elementaryModel ?? modelForInstrument(instrumentId, luthier);
     const params = defaultTrackParams(instrumentId, luthier, model);
     params.performanceMode = performanceModeForContext(options.worldId ?? '', options.styleId ?? '');
     const dialect = resolveDialect(instrumentId, options.worldId ?? '', options.styleId ?? '');
@@ -84,8 +86,9 @@ export async function renderPerformanceToMp3(
       }
     }
     trackParamsMap.set(trackId, params);
+    const voiceCount = Math.max(2, Math.min(16, instDef?.polyphony ?? (params.model === 4 ? 12 : params.model === 3 ? 4 : 8)));
     const preallocatedVoices: VoiceState[] = [];
-    for (let vIdx = 0; vIdx < 32; vIdx++) {
+    for (let vIdx = 0; vIdx < voiceCount; vIdx++) {
       preallocatedVoices.push({
         id: `offline-${trackId}-v${vIdx}`,
         gate: 0,
@@ -93,8 +96,7 @@ export async function renderPerformanceToMp3(
         note: 60,
         velocity: 0,
       });
-    }
-    trackVoicesMap.set(trackId, preallocatedVoices);
+    }    trackVoicesMap.set(trackId, preallocatedVoices);
   }
 
   const hasSolo = options.mixState?.solo && Object.values(options.mixState.solo).some(Boolean);
@@ -130,11 +132,14 @@ export async function renderPerformanceToMp3(
 
   events.sort((a, b) => a.sample - b.sample);
 
+  const BLOCK_SIZE = 64;
+
   const core = new OfflineRenderer();
   await core.initialize({
     sampleRate,
     numInputChannels: 0,
     numOutputChannels: 2,
+    blockSize: BLOCK_SIZE,
   });
 
   let mixCharacter: import('../../data/styles/contracts').MixCharacter | undefined;
@@ -177,40 +182,21 @@ export async function renderPerformanceToMp3(
 
   await syncGraph();
 
-  const BLOCK_SIZE = 512;
+  core.gc();
+
   const left = new Float32Array(totalSamples);
   const right = new Float32Array(totalSamples);
-  const outBlock = [new Float32Array(BLOCK_SIZE), new Float32Array(BLOCK_SIZE)];
+  const stepBlock = [new Float32Array(BLOCK_SIZE), new Float32Array(BLOCK_SIZE)];
 
   let eventIdx = 0;
   let cursor = 0;
   let eventSeq = 0;
 
   while (cursor < totalSamples) {
-    const nextEventSample = eventIdx < events.length ? events[eventIdx].sample : totalSamples;
-    const targetSample = Math.min(nextEventSample, totalSamples);
-
-    while (cursor < targetSample) {
-      const chunkSize = Math.min(BLOCK_SIZE, targetSample - cursor);
-      const stepBlock = [new Float32Array(chunkSize), new Float32Array(chunkSize)];
-      core.process([], stepBlock);
-
-      for (let i = 0; i < chunkSize; i++) {
-        left[cursor + i] = stepBlock[0][i] || 0;
-        right[cursor + i] = stepBlock[1][i] || 0;
-      }
-
-      cursor += chunkSize;
-
-      if (onProgress && cursor % (BLOCK_SIZE * 32) === 0) {
-        onProgress(0.05 + (cursor / totalSamples) * 0.62);
-      }
-    }
-
-    if (cursor >= totalSamples) break;
-
+    const nextBlockLimit = cursor + BLOCK_SIZE;
     let graphDirty = false;
-    while (eventIdx < events.length && events[eventIdx].sample <= cursor) {
+
+    while (eventIdx < events.length && events[eventIdx].sample < nextBlockLimit) {
       const event = events[eventIdx++];
       const eventTrackId = event.kind === 'on' ? event.note.trackId : event.kind === 'cc' ? event.cc.trackId : event.trackId;
       const params = trackParamsMap.get(eventTrackId);
@@ -219,9 +205,10 @@ export async function renderPerformanceToMp3(
       if (params && voices) {
         if (event.kind === 'on') {
           const noteMidi = event.note.midi;
-          const isElectronic = /synth|808|909|acid|sub-bass|kizomba|tarraxo|trap|house/.test((params.instrumentId || '').toLowerCase());
+          const instDef = INSTRUMENTS_BY_ID[params.instrumentId || ''];
+          const isElectronic = instDef?.family === 'electronic' || instDef?.elementaryModel === 9 || /synth|808|909|acid|sub-bass|kizomba|tarraxo|trap|house/.test((params.instrumentId || '').toLowerCase());
           const effectiveModelForGain = isElectronic ? 9 : params.model;
-          const baseGain = makeupGainFor(effectiveModelForGain, params.instrumentId);
+          const baseGain = instDef?.makeupGain ?? makeupGainFor(effectiveModelForGain, params.instrumentId);
 
           const hitType = event.note.articulation;
           let hitGainMultiplier = 1.0;
@@ -254,13 +241,13 @@ export async function renderPerformanceToMp3(
           (voice as any).triggerSeq = ++eventSeq;
           voice.velocity = velScaled;
           voice.gate = 1;
-          
+
           // Copy envelope overrides
           voice.attack = (event.note as any).attack;
           voice.decay = (event.note as any).decay;
           voice.sustain = (event.note as any).sustain;
           voice.release = (event.note as any).release;
-          
+
           graphDirty = true;
         } else if (event.kind === 'off') {
           const roundedMidi = Math.round(event.midi);
@@ -294,9 +281,10 @@ export async function renderPerformanceToMp3(
         } else if (event.kind === 'cc') {
           const norm = event.cc.value / 127;
           if (event.cc.cc === 7 || event.cc.cc === 11) {
-            const isElectronic = /synth|808|909|acid|sub-bass|kizomba|tarraxo|trap|house/.test((params.instrumentId || '').toLowerCase());
+            const instDef = INSTRUMENTS_BY_ID[params.instrumentId || ''];
+            const isElectronic = instDef?.family === 'electronic' || instDef?.elementaryModel === 9 || /synth|808|909|acid|sub-bass|kizomba|tarraxo|trap|house/.test((params.instrumentId || '').toLowerCase());
             const effectiveModelForGain = isElectronic ? 9 : params.model;
-            const baseGain = makeupGainFor(effectiveModelForGain, params.instrumentId);
+            const baseGain = instDef?.makeupGain ?? makeupGainFor(effectiveModelForGain, params.instrumentId);
             params.volume = Math.max(0.01, Math.min(35, norm * baseGain));
           }
           else if (event.cc.cc === 10) params.pan = norm;
@@ -317,8 +305,25 @@ export async function renderPerformanceToMp3(
 
     if (graphDirty) {
       await syncGraph();
+      core.gc();
+    }
+
+    core.process([], stepBlock);
+
+    const frames = Math.min(BLOCK_SIZE, totalSamples - cursor);
+    for (let i = 0; i < frames; i++) {
+      left[cursor + i] = stepBlock[0][i] || 0;
+      right[cursor + i] = stepBlock[1][i] || 0;
+    }
+
+    cursor += frames;
+
+    if (onProgress && cursor % (BLOCK_SIZE * 256) === 0) {
+      onProgress(0.05 + (cursor / totalSamples) * 0.62);
     }
   }
+
+  core.gc();
 
   if (onProgress) onProgress(0.70);
 
@@ -334,12 +339,7 @@ export async function renderPerformanceToMp3(
     const nodeWebAudio = await import(/* @vite-ignore */ pkg);
     CtxClass = nodeWebAudio.OfflineAudioContext as unknown as typeof OfflineAudioContext;
   }
-
-  const offlineCtx: OfflineAudioContext = new CtxClass({
-    numberOfChannels: 2,
-    length,
-    sampleRate,
-  });
+  const offlineCtx: OfflineAudioContext = new CtxClass(2, length, sampleRate);
 
   const sourceBuffer = offlineCtx.createBuffer(2, length, sampleRate);
   sourceBuffer.getChannelData(0).set(left);

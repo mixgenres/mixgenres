@@ -4,13 +4,17 @@ export const timbales: InstrumentDef = {
   id: "timbales",
   name: "Timbales",
   family: "hand-drums",
-  voicing: "unpitched",
   drum: {
     low: 65,
     mid: 66,
     high: 67
   },
+  voicing: "unpitched",
   bodyConstruction: "skin-faced",
+  excitationType: "stick",
+  elementaryModel: 4,
+  makeupGain: 2.125,
+  polyphony: 12,
   note: "Single-headed metal shell drums (Macho 13-inch, Hembra 14-inch) played with wooden dowels for explosive cáscara shell tapping and mambo bell riffs",
   acousticProfile: {
     sustain: "percussive",
@@ -27,7 +31,7 @@ export const timbales: InstrumentDef = {
     category: "membrane_tension_2d",
     materialDensity: 0.9,
     tension: 0.95,
-    bodyResonanceVolume: 8.0,
+    bodyResonanceVolume: 8,
     decayTimeFactor: 0.7,
     harmonicRichness: 0.9,
     bodyConstruction: "metal-shell",
@@ -101,8 +105,13 @@ export const timbales: InstrumentDef = {
     }
   ],
   performanceArticulations: {
-    choke: { dampReleaseMs: 20 },
-    slap: { transientSharpness: 0.95, dampingFactor: 0.3 }
+    choke: {
+      dampReleaseMs: 20
+    },
+    slap: {
+      transientSharpness: 0.95,
+      dampingFactor: 0.3
+    }
   },
   techniques: {
     articulations: ["accent", "open", "staccato", "rimshot", "roll", "choke"],

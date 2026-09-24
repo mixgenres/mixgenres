@@ -4,13 +4,17 @@ export const tabla: InstrumentDef = {
   id: "tabla",
   name: "Indian Tabla Pair",
   family: "hand-drums",
-  voicing: "unpitched",
   drum: {
     low: 60,
     mid: 62,
     high: 64
   },
+  voicing: "unpitched",
   bodyConstruction: "skin-faced",
+  excitationType: "fingerpad",
+  elementaryModel: 4,
+  makeupGain: 1.47,
+  polyphony: 8,
   note: "North Indian classical hand drum pair consisting of wooden Dayān (treble drum with black Syāhī paste) and metal Bayān (bass drum with pitch bends)",
   acousticProfile: {
     sustain: "percussive",
@@ -27,7 +31,7 @@ export const tabla: InstrumentDef = {
     category: "membrane_tension_2d",
     materialDensity: 0.8,
     tension: 0.75,
-    bodyResonanceVolume: 6.0,
+    bodyResonanceVolume: 6,
     decayTimeFactor: 1.1,
     harmonicRichness: 0.85,
     excitationType: "fingerpad"
@@ -38,7 +42,7 @@ export const tabla: InstrumentDef = {
       name: "Dāyāñ Na / Tīn (Rim Ringing Tone)",
       midi: 64,
       physicalType: "membrane",
-      tuningHz: 261.63, // Tonic C4
+      tuningHz: 261.63,
       decayTimeSec: 0.8,
       damping: 0.2,
       strikeZones: ["edge"],
@@ -76,8 +80,8 @@ export const tabla: InstrumentDef = {
       name: "Bāyāñ Ge / Ghe (Bass Resonance)",
       midi: 60,
       physicalType: "membrane",
-      tuningHz: 110, // A2 fundamental
-      decayTimeSec: 1.0,
+      tuningHz: 110,
+      decayTimeSec: 1,
       damping: 0.25,
       strikeZones: ["bass", "open"],
       defaultPan: -0.15,
@@ -111,7 +115,11 @@ export const tabla: InstrumentDef = {
   },
   techniques: {
     articulations: ["accent", "open", "slap", "staccato", "bend", "meend"],
-    techniqueMethods: ["dayan syahi center strike", "bayan wrist pressure pitch swoop", "ti-re-ki-te fast finger rolls"],
+    techniqueMethods: [
+      "dayan syahi center strike",
+      "bayan wrist pressure pitch swoop",
+      "ti-re-ki-te fast finger rolls"
+    ],
     playingStyles: ["hindustani-classical", "fusion", "world", "ambient"],
     genreTechniques: {
       "hindustani-classical": ["open", "meend", "accent", "staccato"],

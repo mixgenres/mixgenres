@@ -1,3 +1,4 @@
+import { INSTRUMENTS_BY_ID } from '../../data/instruments';
 import { el } from '@elemaudio/core';
 import { getLuthierModelForInstrument, type LuthierPhysicalParameters } from '../audio/LuthierAPI';
 import { seedOf, randNorm } from '../generators/groove';
@@ -119,44 +120,19 @@ bodyConstruction: 'wood-box' | 'gourd' | 'skin-faced' | 'board' | 'solid-electri
 excitationType: 'plectrum' | 'nail' | 'fingerpad' | 'hard-pick' | 'hammer' | 'stick' | 'mallet' | 'breath' | 'bow';
 sympatheticStrings?: boolean;
 }
-export const EXACT_PLUCKED_PRESETS: Record<string, PluckedPreset> = {
-guitar: { courses: 1, bodyConstruction: 'wood-box', excitationType: 'fingerpad' },
-'spanish-guitar': { courses: 1, bodyConstruction: 'wood-box', excitationType: 'nail' },
-'acoustic-guitar': { courses: 1, bodyConstruction: 'wood-box', excitationType: 'fingerpad' },
-'steel-guitar': { courses: 1, bodyConstruction: 'wood-box', excitationType: 'hard-pick' },
-'12-string-guitar': { courses: 2, bodyConstruction: 'wood-box', excitationType: 'hard-pick' },
-'12-string': { courses: 2, bodyConstruction: 'wood-box', excitationType: 'hard-pick' },
-'electric-guitar': { courses: 1, bodyConstruction: 'solid-electric', excitationType: 'hard-pick' },
-'jazz-guitar': { courses: 1, bodyConstruction: 'wood-box', excitationType: 'fingerpad' },
-'distortion-guitar': { courses: 1, bodyConstruction: 'solid-electric', excitationType: 'hard-pick' },
-'overdrive-guitar': { courses: 1, bodyConstruction: 'solid-electric', excitationType: 'hard-pick' },
-'muted-guitar': { courses: 1, bodyConstruction: 'solid-electric', excitationType: 'hard-pick' },
-'guitar-harmonics': { courses: 1, bodyConstruction: 'wood-box', excitationType: 'nail' },
-requinto: { courses: 1, bodyConstruction: 'wood-box', excitationType: 'plectrum' },
-tres: { courses: 2, bodyConstruction: 'wood-box', excitationType: 'plectrum' },
-cuatro: { courses: 1, bodyConstruction: 'wood-box', excitationType: 'nail' },
-cavaquinho: { courses: 1, bodyConstruction: 'wood-box', excitationType: 'plectrum' },
-charango: { courses: 2, bodyConstruction: 'wood-box', excitationType: 'nail' },
-oud: { courses: 2, bodyConstruction: 'wood-box', excitationType: 'plectrum' },
-bouzouki: { courses: 2, bodyConstruction: 'wood-box', excitationType: 'plectrum' },
-harp: { courses: 1, bodyConstruction: 'wood-box', excitationType: 'fingerpad' },
-'celtic-harp': { courses: 1, bodyConstruction: 'wood-box', excitationType: 'fingerpad' },
-'orchestral-harp': { courses: 1, bodyConstruction: 'wood-box', excitationType: 'fingerpad' },
-guitarron: { courses: 1, bodyConstruction: 'wood-box', excitationType: 'fingerpad' },
-mandolin: { courses: 2, bodyConstruction: 'wood-box', excitationType: 'plectrum' },
-banjo: { courses: 1, bodyConstruction: 'skin-faced', excitationType: 'hard-pick' },
-sitar: { courses: 1, bodyConstruction: 'gourd', excitationType: 'plectrum', sympatheticStrings: true },
-sarangi: { courses: 1, bodyConstruction: 'skin-faced', excitationType: 'nail', sympatheticStrings: true },
-shamisen: { courses: 1, bodyConstruction: 'skin-faced', excitationType: 'plectrum' },
-kora: { courses: 1, bodyConstruction: 'gourd', excitationType: 'fingerpad' },
-berimbau: { courses: 1, bodyConstruction: 'gourd', excitationType: 'hard-pick' },
-guqin: { courses: 1, bodyConstruction: 'board', excitationType: 'fingerpad' },
-pipa: { courses: 1, bodyConstruction: 'wood-box', excitationType: 'nail' },
-guzheng: { courses: 1, bodyConstruction: 'board', excitationType: 'nail' },
-jarana: { courses: 2, bodyConstruction: 'wood-box', excitationType: 'nail' },
-koto: { courses: 1, bodyConstruction: 'board', excitationType: 'fingerpad' },
-kalimba: { courses: 1, bodyConstruction: 'wood-box', excitationType: 'fingerpad' },
-dulcimer: { courses: 2, bodyConstruction: 'board', excitationType: 'hammer' },
+export const EXACT_PLUCKED_PRESETS: Record<string, PluckedPreset> = {};
+for (const [id, def] of Object.entries(INSTRUMENTS_BY_ID)) {
+  if (def.family === 'plucked' || def.courses || def.bodyConstruction || def.excitationType) {
+    EXACT_PLUCKED_PRESETS[id] = {
+      courses: def.courses ?? def.luthierPhysics?.courses ?? 1,
+      bodyConstruction: def.bodyConstruction ?? def.luthierPhysics?.bodyConstruction ?? 'wood-box',
+      excitationType: def.excitationType ?? def.luthierPhysics?.excitationType ?? 'fingerpad',
+      sympatheticStrings: def.sympatheticStrings ?? def.luthierPhysics?.sympatheticStrings ?? false,
+    };
+  }
+}
+if (EXACT_PLUCKED_PRESETS['12-string-guitar']) {
+  EXACT_PLUCKED_PRESETS['12-string'] = EXACT_PLUCKED_PRESETS['12-string-guitar'];
 };
 export interface FormantBand {
 freq: number;
@@ -170,40 +146,16 @@ f3?: FormantBand;
 tongueType: 'chiff' | 'reed-tongue' | 'lip-slap' | 'soft-puff';
 tongueFreq: number;
 }
-export const WIND_BRASS_REED_FORMANTS: Record<string, AcousticFormantProfile> = {
-flute: { f1: { freq: 800, q: 2.8, gain: 0.8 }, f2: { freq: 2200, q: 2.5, gain: 0.35 }, f3: { freq: 4500, q: 2.0, gain: 0.15 }, tongueType: 'chiff', tongueFreq: 2400 },
-piccolo: { f1: { freq: 1750, q: 3.2, gain: 0.85 }, f2: { freq: 3800, q: 2.8, gain: 0.4 }, f3: { freq: 7200, q: 2.2, gain: 0.2 }, tongueType: 'chiff', tongueFreq: 4200 },
-'pan-flute': { f1: { freq: 650, q: 3.5, gain: 0.9 }, f2: { freq: 1400, q: 3.0, gain: 0.3 }, f3: { freq: 3000, q: 2.2, gain: 0.15 }, tongueType: 'soft-puff', tongueFreq: 1800 },
-quena: { f1: { freq: 920, q: 3.4, gain: 0.85 }, f2: { freq: 2450, q: 3.0, gain: 0.4 }, f3: { freq: 4800, q: 2.2, gain: 0.18 }, tongueType: 'chiff', tongueFreq: 2600 },
-shakuhachi: { f1: { freq: 720, q: 4.0, gain: 0.9 }, f2: { freq: 1650, q: 3.2, gain: 0.35 }, f3: { freq: 3400, q: 2.5, gain: 0.2 }, tongueType: 'chiff', tongueFreq: 2100 },
-xiao: { f1: { freq: 580, q: 3.0, gain: 0.8 }, f2: { freq: 1480, q: 2.6, gain: 0.3 }, f3: { freq: 3100, q: 2.0, gain: 0.12 }, tongueType: 'soft-puff', tongueFreq: 1600 },
-dizi: { f1: { freq: 1150, q: 3.8, gain: 0.85 }, f2: { freq: 2750, q: 3.5, gain: 0.45 }, f3: { freq: 5400, q: 2.8, gain: 0.25 }, tongueType: 'chiff', tongueFreq: 3200 },
-'tin-whistle': { f1: { freq: 1350, q: 3.2, gain: 0.85 }, f2: { freq: 3100, q: 2.8, gain: 0.4 }, f3: { freq: 5900, q: 2.2, gain: 0.2 }, tongueType: 'chiff', tongueFreq: 3600 },
-'low-whistle': { f1: { freq: 520, q: 2.8, gain: 0.8 }, f2: { freq: 1280, q: 2.5, gain: 0.32 }, f3: { freq: 2750, q: 2.0, gain: 0.15 }, tongueType: 'chiff', tongueFreq: 1900 },
-recorder: { f1: { freq: 980, q: 3.0, gain: 0.8 }, f2: { freq: 2150, q: 2.5, gain: 0.35 }, f3: { freq: 4300, q: 2.0, gain: 0.15 }, tongueType: 'chiff', tongueFreq: 2300 },
-ocarina: { f1: { freq: 840, q: 4.5, gain: 0.95 }, f2: { freq: 1680, q: 4.0, gain: 0.25 }, tongueType: 'soft-puff', tongueFreq: 1500 },
-'soprano-sax': { f1: { freq: 1050, q: 2.2, gain: 0.75 }, f2: { freq: 2700, q: 2.0, gain: 0.55 }, f3: { freq: 4800, q: 1.8, gain: 0.25 }, tongueType: 'reed-tongue', tongueFreq: 2800 },
-'alto-sax': { f1: { freq: 820, q: 2.0, gain: 0.75 }, f2: { freq: 2100, q: 2.2, gain: 0.55 }, f3: { freq: 3800, q: 1.8, gain: 0.22 }, tongueType: 'reed-tongue', tongueFreq: 2200 },
-'tenor-sax': { f1: { freq: 580, q: 2.0, gain: 0.75 }, f2: { freq: 1550, q: 2.2, gain: 0.55 }, f3: { freq: 3100, q: 1.6, gain: 0.2 }, tongueType: 'reed-tongue', tongueFreq: 1800 },
-'bari-sax': { f1: { freq: 380, q: 1.8, gain: 0.8 }, f2: { freq: 1050, q: 2.0, gain: 0.5 }, f3: { freq: 2300, q: 1.5, gain: 0.2 }, tongueType: 'reed-tongue', tongueFreq: 1400 },
-clarinet: { f1: { freq: 1450, q: 3.2, gain: 0.7 }, f2: { freq: 2950, q: 2.6, gain: 0.45 }, f3: { freq: 4900, q: 2.0, gain: 0.2 }, tongueType: 'reed-tongue', tongueFreq: 2400 },
-oboe: { f1: { freq: 1100, q: 4.8, gain: 0.85 }, f2: { freq: 2850, q: 4.2, gain: 0.65 }, f3: { freq: 4300, q: 3.0, gain: 0.3 }, tongueType: 'reed-tongue', tongueFreq: 3000 },
-'english-horn': { f1: { freq: 780, q: 4.2, gain: 0.8 }, f2: { freq: 2150, q: 3.6, gain: 0.55 }, f3: { freq: 3500, q: 2.6, gain: 0.25 }, tongueType: 'reed-tongue', tongueFreq: 2200 },
-bassoon: { f1: { freq: 440, q: 3.8, gain: 0.85 }, f2: { freq: 1120, q: 3.2, gain: 0.5 }, f3: { freq: 2250, q: 2.4, gain: 0.22 }, tongueType: 'reed-tongue', tongueFreq: 1500 },
-bagpipes: { f1: { freq: 1250, q: 5.2, gain: 0.85 }, f2: { freq: 2650, q: 4.5, gain: 0.6 }, f3: { freq: 4600, q: 3.5, gain: 0.35 }, tongueType: 'reed-tongue', tongueFreq: 3100 },
-'uilleann-pipes': { f1: { freq: 1180, q: 4.8, gain: 0.85 }, f2: { freq: 2500, q: 4.2, gain: 0.55 }, f3: { freq: 4400, q: 3.2, gain: 0.3 }, tongueType: 'reed-tongue', tongueFreq: 2900 },
-hichiriki: { f1: { freq: 1350, q: 5.4, gain: 0.9 }, f2: { freq: 2820, q: 4.8, gain: 0.65 }, f3: { freq: 4950, q: 3.8, gain: 0.35 }, tongueType: 'reed-tongue', tongueFreq: 3200 },
-harmonica: { f1: { freq: 1550, q: 2.8, gain: 0.75 }, f2: { freq: 3350, q: 2.2, gain: 0.45 }, tongueType: 'reed-tongue', tongueFreq: 2500 },
-trumpet: { f1: { freq: 1200, q: 2.0, gain: 0.75 }, f2: { freq: 2600, q: 2.4, gain: 0.5 }, f3: { freq: 4600, q: 2.0, gain: 0.25 }, tongueType: 'lip-slap', tongueFreq: 2400 },
-'muted-trumpet': { f1: { freq: 1850, q: 4.5, gain: 0.85 }, f2: { freq: 3750, q: 3.8, gain: 0.6 }, f3: { freq: 6200, q: 3.0, gain: 0.35 }, tongueType: 'lip-slap', tongueFreq: 3500 },
-trombone: { f1: { freq: 620, q: 1.8, gain: 0.8 }, f2: { freq: 1480, q: 2.2, gain: 0.5 }, f3: { freq: 2750, q: 1.8, gain: 0.25 }, tongueType: 'lip-slap', tongueFreq: 1700 },
-'french-horn': { f1: { freq: 470, q: 2.4, gain: 0.85 }, f2: { freq: 1080, q: 2.6, gain: 0.45 }, f3: { freq: 2050, q: 2.0, gain: 0.2 }, tongueType: 'lip-slap', tongueFreq: 1200 },
-tuba: { f1: { freq: 250, q: 2.2, gain: 0.9 }, f2: { freq: 630, q: 2.4, gain: 0.45 }, f3: { freq: 1250, q: 1.8, gain: 0.2 }, tongueType: 'lip-slap', tongueFreq: 800 },
-'horn-section': { f1: { freq: 850, q: 1.6, gain: 0.8 }, f2: { freq: 1950, q: 1.9, gain: 0.5 }, f3: { freq: 3600, q: 1.7, gain: 0.25 }, tongueType: 'lip-slap', tongueFreq: 2000 },
-brass: { f1: { freq: 850, q: 1.6, gain: 0.8 }, f2: { freq: 1950, q: 1.9, gain: 0.5 }, f3: { freq: 3600, q: 1.7, gain: 0.25 }, tongueType: 'lip-slap', tongueFreq: 2000 },
+export const WIND_BRASS_REED_FORMANTS: Record<string, AcousticFormantProfile> = {};
+for (const [id, def] of Object.entries(INSTRUMENTS_BY_ID)) {
+  if (def.formantProfile) {
+    WIND_BRASS_REED_FORMANTS[id] = def.formantProfile;
+  }
 };
 export function getFormantProfileForInstrument(instrumentId: string, model: number): AcousticFormantProfile {
   const idLower = instrumentId.toLowerCase().replace(/_/g, '-');
+  const def = INSTRUMENTS_BY_ID[instrumentId] || INSTRUMENTS_BY_ID[idLower];
+  if (def?.formantProfile) return def.formantProfile;
   const exact = WIND_BRASS_REED_FORMANTS[idLower];
   if (exact) return exact;
 
@@ -245,21 +197,20 @@ bridgeHillFreq: number;
 bridgeHillQ: number;
 bridgeHillGain: number;
 }
-export const BOWED_RESONANCES: Record<string, BowedResonanceProfile> = {
-violin: { bodyFreq: 460, bodyQ: 2.2, bodyGain: 0.45, bridgeHillFreq: 2800, bridgeHillQ: 2.8, bridgeHillGain: 0.40 },
-fiddle: { bodyFreq: 480, bodyQ: 2.0, bodyGain: 0.45, bridgeHillFreq: 3000, bridgeHillQ: 2.6, bridgeHillGain: 0.45 },
-viola: { bodyFreq: 340, bodyQ: 2.2, bodyGain: 0.50, bridgeHillFreq: 2000, bridgeHillQ: 2.5, bridgeHillGain: 0.35 },
-cello: { bodyFreq: 180, bodyQ: 2.5, bodyGain: 0.55, bridgeHillFreq: 1350, bridgeHillQ: 2.2, bridgeHillGain: 0.30 },
-contrabajo: { bodyFreq: 95, bodyQ: 2.8, bodyGain: 0.60, bridgeHillFreq: 850, bridgeHillQ: 2.0, bridgeHillGain: 0.25 },
-'double-bass': { bodyFreq: 95, bodyQ: 2.8, bodyGain: 0.60, bridgeHillFreq: 850, bridgeHillQ: 2.0, bridgeHillGain: 0.25 },
-erhu: { bodyFreq: 520, bodyQ: 3.2, bodyGain: 0.40, bridgeHillFreq: 2700, bridgeHillQ: 3.0, bridgeHillGain: 0.50 },
-jinghu: { bodyFreq: 680, bodyQ: 3.5, bodyGain: 0.35, bridgeHillFreq: 3300, bridgeHillQ: 3.2, bridgeHillGain: 0.55 },
-strings: { bodyFreq: 380, bodyQ: 1.8, bodyGain: 0.45, bridgeHillFreq: 2400, bridgeHillQ: 2.0, bridgeHillGain: 0.35 },
-'slow-strings': { bodyFreq: 350, bodyQ: 1.6, bodyGain: 0.45, bridgeHillFreq: 2200, bridgeHillQ: 1.8, bridgeHillGain: 0.30 },
-'tremolo-strings': { bodyFreq: 400, bodyQ: 1.8, bodyGain: 0.45, bridgeHillFreq: 2500, bridgeHillQ: 2.0, bridgeHillGain: 0.35 },
+export const BOWED_RESONANCES: Record<string, BowedResonanceProfile> = {};
+for (const [id, def] of Object.entries(INSTRUMENTS_BY_ID)) {
+  if (def.bowedResonance) {
+    BOWED_RESONANCES[id] = def.bowedResonance;
+  }
+}
+if (INSTRUMENTS_BY_ID['upright-bass']?.bowedResonance) {
+  BOWED_RESONANCES['contrabajo'] = INSTRUMENTS_BY_ID['upright-bass'].bowedResonance;
+  BOWED_RESONANCES['double-bass'] = INSTRUMENTS_BY_ID['upright-bass'].bowedResonance;
 };
 export function getBowedResonanceProfile(instrumentId: string, bodyParam: number): BowedResonanceProfile {
 const idLower = instrumentId.toLowerCase();
+const def = INSTRUMENTS_BY_ID[instrumentId] || INSTRUMENTS_BY_ID[idLower];
+if (def?.bowedResonance) return def.bowedResonance;
 const exact = BOWED_RESONANCES[idLower];
 if (exact) return exact;
 const bodyFreq = 100 + (1 - bodyParam) * 450;
@@ -275,6 +226,8 @@ bridgeHillGain: 0.35,
 }
 export function modelForInstrument(instrumentId: string, luthier?: LuthierPhysicalParameters): number {
 const id = instrumentId.toLowerCase();
+const def = INSTRUMENTS_BY_ID[instrumentId] || INSTRUMENTS_BY_ID[id];
+if (def?.elementaryModel !== undefined) return def.elementaryModel;
 if (luthier?.faustProfile) {
 switch (luthier.faustProfile) {
 case 'spanish-guitar': return 0;
@@ -360,165 +313,23 @@ export const GAIN_BY_MODEL: Record<number, number> = {
 25: 0.395,
 26: 0.478,
 };
-export const GAIN_BY_INSTRUMENT: Partial<Record<string, number>> = {
-'congas': 1.988,
-'bongos': 4.433,
-'zabumba': 0.830,
-'bombo': 0.632,
-'bata': 1.474,
-'cajon': 1.967,
-'timbales': 2.125,
-'surdo': 0.609,
-'pandeiro': 3.250,
-'tamborim': 6.115,
-'darbuka': 2.468,
-'tabla': 1.470,
-'log-drum': 1.275,
-'cumbia-drum': 0.980,
-'bombo-andino': 0.646,
-'tambora': 0.914,
-'tambor-alegre': 1.387,
-'bombo-leguero': 0.614,
-'paigu': 1.817,
-'taiko': 0.486,
-'drums': 0.980,
-'brush-kit': 1.640,
-'kick': 1.705,
-'snare': 5.899,
-'shaker': 20.309,
-'maracas': 21.906,
-'cabasa': 23.629,
-'guiro': 18.716,
-'guacharaca': 17.749,
-'tambourine': 6.986,
-'castanets': 26.921,
-'bones': 24.603,
-'woodblock': 21.768,
-'triangle': 1.278,
-'palmas': 23.900,
-'zapateado': 22.173,
-'ride': 2.826,
-'hats': 23.440,
-'cowbell': 6.402,
-'agogo': 4.642,
-'claves': 19.691,
-'kane': 0.944,
-'gongs': 0.646,
-'guitar': 4.282,
-'spanish-guitar': 3.013,
-'acoustic-guitar': 4.053,
-'steel-guitar': 2.971,
-'12-string-guitar': 3.384,
-'requinto': 3.916,
-'jarana': 3.757,
-'guqin': 4.128,
-'pipa': 3.248,
-'guzheng': 3.147,
-'tres': 4.396,
-'cuatro': 3.172,
-'cavaquinho': 4.328,
-'charango': 3.916,
-'oud': 3.979,
-'bouzouki': 4.173,
-'guitarron': 3.577,
-'mandolin': 4.662,
-'banjo': 3.029,
-'vihuela': 4.781,
-'sitar': 2.575,
-'shamisen': 3.613,
-'kora': 2.789,
-'berimbau': 3.316,
-'koto': 3.289,
-'harp': 3.356,
-'celtic-harp': 3.467,
-'orchestral-harp': 3.338,
-'dulcimer': 5.584,
-'electric-guitar': 0.551,
-'jazz-guitar': 1.813,
-'distortion-guitar': 0.270,
-'overdrive-guitar': 0.395,
-'muted-guitar': 7.116,
-'guitar-harmonics': 0.478,
-'upright-bass': 7.372,
-'double-bass': 0.727,
-'acoustic-bass': 7.429,
-'sub-bass': 0.436,
-'piano': 3.540,
-'clavinet': 9.706,
-'harpsichord': 1.997,
-'rhodes': 0.330,
-'fm-ep': 0.326,
-'organ': 0.219,
-'rock-organ': 0.224,
-'vibraphone': 0.664,
-'music-box': 1.357,
-'xylophone': 2.853,
-'tubular-bells': 0.650,
-'violin': 6.557,
-'viola': 6.310,
-'cello': 5.137,
-'strings': 4.912,
-'slow-strings': 4.989,
-'tremolo-strings': 4.967,
-'pizz-strings': 5.496,
-'fiddle': 6.667,
-'erhu': 6.768,
-'jinghu': 7.468,
-'bandoneon': 0.565,
-'accordion': 0.544,
-'harmonica': 0.707,
-'shō': 0.638,
-'melodica': 0.697,
-'concertina': 0.630,
-'flute': 18.558,
-'tin-whistle': 14.570,
-'low-whistle': 20.402,
-'piccolo': 14.420,
-'recorder': 13.982,
-'ocarina': 21.239,
-'quena': 19.438,
-'pan-flute': 19.777,
-'shakuhachi': 18.535,
-'xiao': 20.006,
-'dizi': 19.215,
-'ryuteki': 20.194,
-'bagpipes': 0.639,
-'uilleann-pipes': 0.707,
-'clarinet': 0.750,
-'soprano-sax': 0.757,
-'alto-sax': 0.723,
-'tenor-sax': 0.669,
-'bari-sax': 0.626,
-'oboe': 0.778,
-'english-horn': 0.537,
-'hichiriki': 16.367,
-'trumpet': 0.550,
-'muted-trumpet': 0.571,
-'trombone': 0.501,
-'french-horn': 0.416,
-'horn-section': 0.467,
-'brass': 0.478,
-'synth': 0.390,
-'acid-303': 0.446,
-'voice': 0.375,
-'choir': 0.331,
-'backing-vocals': 0.354,
-'crystal': 0.663,
-'synth-brass': 0.401,
-'noise-sweep': 0.300,
-'dub-echo': 0.248,
-'turntable': 0.471,
-'saw-lead': 0.391,
-'square-lead': 0.404,
-'warm-pad': 0.233,
-'synth-strings': 0.255,
-'polysynth': 0.282,
-'halo-pad': 0.236,
-'sweep-pad': 0.237,
+export const GAIN_BY_INSTRUMENT: Partial<Record<string, number>> = {};
+for (const [id, def] of Object.entries(INSTRUMENTS_BY_ID)) {
+  if (typeof def.makeupGain === 'number') {
+    GAIN_BY_INSTRUMENT[id] = def.makeupGain;
+  }
+}
+if (INSTRUMENTS_BY_ID['upright-bass']?.makeupGain !== undefined) {
+  GAIN_BY_INSTRUMENT['double-bass'] = INSTRUMENTS_BY_ID['upright-bass'].makeupGain;
 };
 export function makeupGainFor(modelNum: number, instrumentId?: string): number {
 if (instrumentId) {
-const override = GAIN_BY_INSTRUMENT[instrumentId.toLowerCase()];
+const idLower = instrumentId.toLowerCase();
+const def = INSTRUMENTS_BY_ID[instrumentId] || INSTRUMENTS_BY_ID[idLower];
+if (typeof def?.makeupGain === 'number') {
+return def.makeupGain;
+}
+const override = GAIN_BY_INSTRUMENT[idLower];
 if (typeof override === 'number') {
 return override;
 }

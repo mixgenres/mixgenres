@@ -4,13 +4,17 @@ export const bata: InstrumentDef = {
   id: "bata",
   name: "Afro-Cuban Batá Drum Trio",
   family: "hand-drums",
-  voicing: "unpitched",
   drum: {
     low: 60,
     mid: 62,
     high: 64
   },
+  voicing: "unpitched",
   bodyConstruction: "skin-faced",
+  excitationType: "fingerpad",
+  elementaryModel: 4,
+  makeupGain: 1.474,
+  polyphony: 8,
   note: "Sacred hour-glass shaped double-headed Afro-Cuban drums (Iyá mother drum, Itótele, Okónkolo) with Enú (large head) and Chachá (small head)",
   acousticProfile: {
     sustain: "percussive",
@@ -27,7 +31,7 @@ export const bata: InstrumentDef = {
     category: "membrane_tension_2d",
     materialDensity: 0.85,
     tension: 0.8,
-    bodyResonanceVolume: 15.0,
+    bodyResonanceVolume: 15,
     decayTimeFactor: 0.8,
     harmonicRichness: 0.75,
     excitationType: "fingerpad"
@@ -89,7 +93,11 @@ export const bata: InstrumentDef = {
   },
   techniques: {
     articulations: ["accent", "open", "staccato", "slap", "chachá"],
-    techniqueMethods: ["two-handed enu/chacha conversations", "sacred toque ostinatos", "muffled hand presses"],
+    techniqueMethods: [
+      "two-handed enu/chacha conversations",
+      "sacred toque ostinatos",
+      "muffled hand presses"
+    ],
     playingStyles: ["santeria", "rumba", "latin-jazz", "world"],
     genreTechniques: {
       santeria: ["open", "chachá", "accent", "staccato"]

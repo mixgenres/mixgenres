@@ -4,13 +4,18 @@ export const drums: InstrumentDef = {
   id: "drums",
   name: "Standard Drum Kit",
   family: "kit",
-  kit: true,
-  voicing: "unpitched",
   drum: {
     low: 36,
     mid: 38,
     high: 42
   },
+  kit: true,
+  voicing: "unpitched",
+  bodyConstruction: "wood-box",
+  excitationType: "stick",
+  elementaryModel: 4,
+  makeupGain: 0.98,
+  polyphony: 12,
   note: "Studio acoustic drum kit featuring punchy 22-inch maple kick, crisp 14-inch maple snare with 20-strand snare wires, rack/floor toms, and hammered B20 bronze cymbals",
   acousticProfile: {
     sustain: "percussive",
@@ -27,7 +32,7 @@ export const drums: InstrumentDef = {
     category: "membrane_tension_2d",
     materialDensity: 0.85,
     tension: 0.75,
-    bodyResonanceVolume: 25.0,
+    bodyResonanceVolume: 25,
     decayTimeFactor: 0.9,
     harmonicRichness: 0.7,
     bodyConstruction: "wood-box",
@@ -207,7 +212,7 @@ export const drums: InstrumentDef = {
       midi: 53,
       physicalType: "metal",
       tuningHz: 920,
-      decayTimeSec: 3.0,
+      decayTimeSec: 3,
       damping: 0.05,
       defaultPan: 0.3,
       gainTrimDb: -1
@@ -221,26 +226,6 @@ export const drums: InstrumentDef = {
       transientSharpness: 0.92,
       dampingFactor: 0.35
     }
-  },
-  physicalModel: {
-    model: "membrane",
-    parameters: {
-      membraneTension: 0.65,
-      membraneDamping: 0.35,
-      transientSharpness: 0.92,
-      bodyResonance: 0.75
-    },
-    signalChain: [
-      "preamp",
-      "eq",
-      "compressor",
-      "reverb"
-    ],
-    synthesisNotes: [
-      "Kick combines low fundamental sub thump (55-65 Hz) with crisp beater click (3-4 kHz).",
-      "Snare couples top head acoustic crack with bottom snare wire sizzling buzz.",
-      "Hi-hats and cymbals deliver shimmering metallic stick definition and wash."
-    ]
   },
   techniques: {
     articulations: [
@@ -260,20 +245,27 @@ export const drums: InstrumentDef = {
       "hi-hat foot pressure modulation from tight closed tick to sizzle open wash",
       "bass drum heel-up punch with beater buried in head"
     ],
-    playingStyles: [
-      "rock",
-      "funk",
-      "pop",
-      "hip-hop",
-      "blues",
-      "rnb",
-      "metal"
-    ],
+    playingStyles: ["rock", "funk", "pop", "hip-hop", "blues", "rnb", "metal"],
     genreTechniques: {
       rock: ["accent", "rimshot", "open", "staccato"],
       funk: ["ghost", "accent", "rimshot", "staccato"],
       pop: ["accent", "staccato", "open"],
       "hip-hop": ["accent", "ghost", "rimshot"]
     }
+  },
+  physicalModel: {
+    model: "membrane",
+    parameters: {
+      membraneTension: 0.65,
+      membraneDamping: 0.35,
+      transientSharpness: 0.92,
+      bodyResonance: 0.75
+    },
+    signalChain: ["preamp", "eq", "compressor", "reverb"],
+    synthesisNotes: [
+      "Kick combines low fundamental sub thump (55-65 Hz) with crisp beater click (3-4 kHz).",
+      "Snare couples top head acoustic crack with bottom snare wire sizzling buzz.",
+      "Hi-hats and cymbals deliver shimmering metallic stick definition and wash."
+    ]
   }
 };

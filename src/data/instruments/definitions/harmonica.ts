@@ -8,6 +8,9 @@ export const harmonica: InstrumentDef = {
   voicing: "single",
   bodyConstruction: "wood-box",
   excitationType: "breath",
+  elementaryModel: 10,
+  makeupGain: 0.707,
+  polyphony: 4,
   note: "10-hole diatonic blues harp with brass reeds, draw reed bending, tongue-blocking, and hand wah",
   acousticProfile: {
     sustain: "blown",
@@ -25,14 +28,33 @@ export const harmonica: InstrumentDef = {
     materialDensity: 0.75,
     tension: 0.8,
     bodyResonanceVolume: 0.5,
-    decayTimeFactor: 1.0,
+    decayTimeFactor: 1,
     harmonicRichness: 0.88,
     airResonanceHz: 440,
     excitationType: "breath"
   },
+  formantProfile: {
+    f1: {
+      freq: 1550,
+      q: 2.8,
+      gain: 0.75
+    },
+    f2: {
+      freq: 3350,
+      q: 2.2,
+      gain: 0.45
+    },
+    tongueType: "reed-tongue",
+    tongueFreq: 2500
+  },
   tuningAndMechanics: {
     tuningName: "Richter Diatonic 10-Hole Harmonica",
-    keyRange: { lowNote: "C4", highNote: "C7", lowMidi: 60, highMidi: 96 }
+    keyRange: {
+      lowNote: "C4",
+      highNote: "C7",
+      lowMidi: 60,
+      highMidi: 96
+    }
   },
   performanceArticulations: {
     bend: {
@@ -41,14 +63,20 @@ export const harmonica: InstrumentDef = {
       curve: "s-curve"
     },
     vibrato: {
-      rateHz: 6.0,
+      rateHz: 6,
       depthCents: 35,
       onsetDelayMs: 180
     }
   },
   techniques: {
     articulations: ["accent", "staccato", "legato", "bend", "vibrato", "ghost", "tenuto", "trill"],
-    techniqueMethods: ["draw reed bending", "tongue-blocking percussive slaps", "cupped hand acoustic wah", "throat vibrato", "flutter tonguing"],
+    techniqueMethods: [
+      "draw reed bending",
+      "tongue-blocking percussive slaps",
+      "cupped hand acoustic wah",
+      "throat vibrato",
+      "flutter tonguing"
+    ],
     playingStyles: ["blues", "folk", "country", "rock", "chicago-blues"],
     genreTechniques: {
       blues: ["bend", "vibrato", "accent", "ghost"],

@@ -1,13 +1,42 @@
 import type { InstrumentDef } from '../types';
 
 export const tantan: InstrumentDef = {
-  id: 'tantan', name: 'Tantan', family: 'hand-drums', voicing: 'unpitched',
-  drum: { low: 41, mid: 43, high: 45 },
-  note: 'Brazilian pagode bass drum; low open tone and damped syncopated strokes',
+  id: "tantan",
+  name: "Tantan",
+  family: "hand-drums",
+  drum: {
+    low: 41,
+    mid: 43,
+    high: 45
+  },
+  voicing: "unpitched",
+  elementaryModel: 0,
+  makeupGain: 4.282,
+  polyphony: 8,
+  note: "Brazilian pagode bass drum; low open tone and damped syncopated strokes",
+  acousticProfile: {
+    sustain: "percussive",
+    role: "perc",
+    centre: 60,
+    low: 0,
+    high: 127,
+    pan: 0.3,
+    trim: -1,
+    space: 0.18,
+    ring: 0.5
+  },
+  luthierPhysics: {
+    category: "membrane_tension_2d",
+    materialDensity: 0.8,
+    tension: 0.8,
+    bodyResonanceVolume: 20,
+    decayTimeFactor: 0.8,
+    harmonicRichness: 0.6
+  },
   techniques: {
-    articulations: ['accent', 'staccato', 'ghost', 'roll'],
-    techniqueMethods: ['style-specific attack', 'velocity shaping', 'muting/damping'],
-    playingStyles: ['genre-native performance'],
+    articulations: ["accent", "staccato", "ghost", "roll"],
+    techniqueMethods: ["style-specific attack", "velocity shaping", "muting/damping"],
+    playingStyles: ["genre-native performance"],
     genreTechniques: {}
   }
 };

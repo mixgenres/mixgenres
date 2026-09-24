@@ -4,13 +4,17 @@ export const congas: InstrumentDef = {
   id: "congas",
   name: "Congas (Tumbadoras)",
   family: "hand-drums",
-  voicing: "unpitched",
   drum: {
     low: 64,
     mid: 62,
     high: 60
   },
+  voicing: "unpitched",
   bodyConstruction: "skin-faced",
+  excitationType: "fingerpad",
+  elementaryModel: 4,
+  makeupGain: 1.988,
+  polyphony: 12,
   note: "Afro-Cuban paired staved wooden barrel hand drums (Quinto, Conga, Tumba) with thick mule or steer skin heads, driving the complex marcha tumbao",
   acousticProfile: {
     sustain: "percussive",
@@ -27,7 +31,7 @@ export const congas: InstrumentDef = {
     category: "membrane_tension_2d",
     materialDensity: 0.8,
     tension: 0.85,
-    bodyResonanceVolume: 12.0,
+    bodyResonanceVolume: 12,
     decayTimeFactor: 0.6,
     harmonicRichness: 0.7,
     bodyConstruction: "wood-box",
@@ -127,6 +131,29 @@ export const congas: InstrumentDef = {
       decayTimeSec: 0.1
     }
   },
+  techniques: {
+    articulations: ["accent", "open", "staccato", "slap", "ghost"],
+    techniqueMethods: [
+      "open tone (tono abierto) with full fingers bouncing off rim",
+      "muffled slap (slap tapao) fingers cup into head holding contact",
+      "open slap (slap abierto) explosive high harmonic pop",
+      "heel-toe palm rocking motion (manoteo)",
+      "bass tone with full palm centered on head"
+    ],
+    playingStyles: [
+      "salsa",
+      "son-cubano",
+      "rumba-guaguanco",
+      "latin-jazz",
+      "cumbia",
+      "cha-cha-cha"
+    ],
+    genreTechniques: {
+      salsa: ["open", "slap", "accent", "ghost"],
+      cumbia: ["open", "accent", "ghost"],
+      "latin-jazz": ["slap", "open", "ghost", "accent"]
+    }
+  },
   physicalModel: {
     model: "membrane",
     parameters: {
@@ -141,21 +168,5 @@ export const congas: InstrumentDef = {
       "Slap (seco / tapao) cups fingers against center for explosive crack transient.",
       "Manoteo (heel-toe rocking palm motion) creates continuous 8th-note momentum."
     ]
-  },
-  techniques: {
-    articulations: ["accent", "open", "staccato", "slap", "ghost"],
-    techniqueMethods: [
-      "open tone (tono abierto) with full fingers bouncing off rim",
-      "muffled slap (slap tapao) fingers cup into head holding contact",
-      "open slap (slap abierto) explosive high harmonic pop",
-      "heel-toe palm rocking motion (manoteo)",
-      "bass tone with full palm centered on head"
-    ],
-    playingStyles: ["salsa", "son-cubano", "rumba-guaguanco", "latin-jazz", "cumbia", "cha-cha-cha"],
-    genreTechniques: {
-      salsa: ["open", "slap", "accent", "ghost"],
-      cumbia: ["open", "accent", "ghost"],
-      "latin-jazz": ["slap", "open", "ghost", "accent"]
-    }
   }
 };

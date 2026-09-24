@@ -1,17 +1,20 @@
 import type { InstrumentDef } from '../types';
 
 export const upright_bass: InstrumentDef = {
-  id: 'upright-bass',
-  name: 'Upright Double Bass',
-  family: 'plucked',
+  id: "upright-bass",
+  name: "Upright Double Bass",
+  family: "plucked",
   program: 32,
-  voicing: 'bass',
-  bodyConstruction: 'wood-box',
-  excitationType: 'fingerpad',
-  note: 'Acoustic 3/4 spruce/maple double bass delivering deep woody resonance, pizzicato growl, tango arrastre slides, and walking basslines',
+  voicing: "bass",
+  bodyConstruction: "wood-box",
+  excitationType: "fingerpad",
+  elementaryModel: 3,
+  makeupGain: 7.372,
+  polyphony: 4,
+  note: "Acoustic 3/4 spruce/maple double bass delivering deep woody resonance, pizzicato growl, tango arrastre slides, and walking basslines",
   acousticProfile: {
-    sustain: 'decaying',
-    role: 'bass',
+    sustain: "decaying",
+    role: "bass",
     centre: 40,
     low: 28,
     high: 57,
@@ -21,26 +24,46 @@ export const upright_bass: InstrumentDef = {
     ring: 1.4
   },
   luthierPhysics: {
-    category: 'strum_friction_pluck',
+    category: "strum_friction_pluck",
     materialDensity: 0.85,
     tension: 0.8,
-    bodyResonanceVolume: 180.0,
+    bodyResonanceVolume: 180,
     decayTimeFactor: 2.2,
     harmonicRichness: 0.65,
-    faustProfile: 'double-bass',
+    faustProfile: "double-bass",
     soundboardResonanceHz: 65,
     airResonanceHz: 42,
-    excitationType: 'fingerpad',
-    bodyConstruction: 'wood-box'
+    excitationType: "fingerpad",
+    bodyConstruction: "wood-box"
   },
   tuningAndMechanics: {
-    tuningName: 'EADG Standard Bass',
+    tuningName: "EADG Standard Bass",
     frets: 0,
     openStrings: [
-      { name: 'E1', note: 'E1', midi: 28, frequencyHz: 41.20 },
-      { name: 'A1', note: 'A1', midi: 33, frequencyHz: 55.00 },
-      { name: 'D2', note: 'D2', midi: 38, frequencyHz: 73.42 },
-      { name: 'G2', note: 'G2', midi: 43, frequencyHz: 98.00 }
+      {
+        name: "E1",
+        note: "E1",
+        midi: 28,
+        frequencyHz: 41.2
+      },
+      {
+        name: "A1",
+        note: "A1",
+        midi: 33,
+        frequencyHz: 55
+      },
+      {
+        name: "D2",
+        note: "D2",
+        midi: 38,
+        frequencyHz: 73.42
+      },
+      {
+        name: "G2",
+        note: "G2",
+        midi: 43,
+        frequencyHz: 98
+      }
     ]
   },
   performanceArticulations: {
@@ -63,12 +86,29 @@ export const upright_bass: InstrumentDef = {
     bend: {
       maxSemitones: 2,
       speedMs: 130,
-      curve: 'exponential'
+      curve: "exponential"
     }
   },
   techniques: {
-    articulations: ["accent", "staccato", "legato", "ghost", "pizzicato", "harmonic", "arco", "arrastre", "slap"],
-    techniqueMethods: ["pizzicato", "arco", "walking", "one-finger pull", "arrastre drag", "slap-pop"],
+    articulations: [
+      "accent",
+      "staccato",
+      "legato",
+      "ghost",
+      "pizzicato",
+      "harmonic",
+      "arco",
+      "arrastre",
+      "slap"
+    ],
+    techniqueMethods: [
+      "pizzicato",
+      "arco",
+      "walking",
+      "one-finger pull",
+      "arrastre drag",
+      "slap-pop"
+    ],
     playingStyles: ["jazz", "tango", "folk", "bluegrass", "rockabilly", "bossa-nova"],
     genreTechniques: {
       jazz: ["pizzicato", "legato", "ghost", "accent"],

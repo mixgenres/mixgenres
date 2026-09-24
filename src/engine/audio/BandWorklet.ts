@@ -1,3 +1,4 @@
+import { INSTRUMENTS_BY_ID } from '../../data/instruments';
 import WebRenderer from '@elemaudio/web-renderer';
 import { el } from '@elemaudio/core';
 import type { LuthierPhysicalParameters } from './LuthierAPI';
@@ -19,8 +20,11 @@ import { resolveDialect, performanceModeForContext } from '../theory/dialects';
 import { contractForGenre } from '../../data/styles/contracts';
 
 export function getPolyphonyForTrack(instrumentId: string, role?: string): number {
+  const idLower = (instrumentId || '').toLowerCase();
+  const def = INSTRUMENTS_BY_ID[instrumentId] || INSTRUMENTS_BY_ID[idLower];
+  if (typeof def?.polyphony === 'number') return def.polyphony;
   const r = (role || '').toLowerCase();
-  const inst = (instrumentId || '').toLowerCase();
+  const inst = idLower;
   if (r === 'bass' || /bass|tuba|sousaphone/i.test(inst)) return 4;
   if (r === 'lead' || r === 'voice' || r === 'melody' || /sax|flute|trumpet|violin|whistle|oboe|clarinet/i.test(inst)) return 4;
   if (r === 'drums' || /drums|kick|snare|hats|cajon|timbales|conga|bongo/i.test(inst)) return 12;
@@ -189,7 +193,8 @@ export class BandWorkletNode {
   async prepareTracks(instrumentsMap: Map<string, string>) {
     for (const [trackId, instrumentId] of instrumentsMap.entries()) {
       if (!this.trackParamsMap.has(trackId)) {
-        const dummyLuthier: LuthierPhysicalParameters = {
+        const instDef = INSTRUMENTS_BY_ID[instrumentId];
+        const instLuthier: LuthierPhysicalParameters = instDef?.luthierPhysics ?? {
           category: 'electro_acoustic_algorithmic',
           materialDensity: 0.5,
           tension: 0.5,
@@ -197,8 +202,8 @@ export class BandWorkletNode {
           decayTimeFactor: 2,
           harmonicRichness: 0.7,
         };
-        const model = modelForInstrument(instrumentId, dummyLuthier);
-        const params = defaultTrackParams(instrumentId, dummyLuthier, model);
+        const model = instDef?.elementaryModel ?? modelForInstrument(instrumentId, instLuthier);
+        const params = defaultTrackParams(instrumentId, instLuthier, model);
         params.performanceMode = performanceModeForContext(this.activeWorldId, this.activeStyleId);
         const dialect = resolveDialect(instrumentId, this.activeWorldId, this.activeStyleId);
         if (dialect) {
@@ -336,7 +341,8 @@ export class BandWorkletNode {
   private executeNoteOn(event: CulturalAcousticEvent, deferSync = false) {
     const trackId = event.trackId;
     const instrumentId = event.luthierObjectId || trackId;
-    const luthier = (event.luthier ?? {
+    const instDef = INSTRUMENTS_BY_ID[instrumentId];
+    const luthier = (event.luthier ?? instDef?.luthierPhysics ?? {
       category: 'electro_acoustic_algorithmic',
       materialDensity: 0.5,
       tension: 0.5,

@@ -9,6 +9,9 @@ export const cavaquinho: InstrumentDef = {
   courses: 1,
   bodyConstruction: "wood-box",
   excitationType: "plectrum",
+  elementaryModel: 0,
+  makeupGain: 4.328,
+  polyphony: 8,
   note: "Small 4 steel-string Portuguese/Brazilian chordophone (D4-G4-B4-D5) driving fast samba palhetada rhythm and choro counterpoint",
   acousticProfile: {
     sustain: "decaying",
@@ -38,17 +41,37 @@ export const cavaquinho: InstrumentDef = {
     courses: 1,
     frets: 17,
     openStrings: [
-      { name: "D4", note: "D4", midi: 62, frequencyHz: 293.66 },
-      { name: "G4", note: "G4", midi: 67, frequencyHz: 392.00 },
-      { name: "B4", note: "B4", midi: 71, frequencyHz: 493.88 },
-      { name: "D5", note: "D5", midi: 74, frequencyHz: 587.33 }
+      {
+        name: "D4",
+        note: "D4",
+        midi: 62,
+        frequencyHz: 293.66
+      },
+      {
+        name: "G4",
+        note: "G4",
+        midi: 67,
+        frequencyHz: 392
+      },
+      {
+        name: "B4",
+        note: "B4",
+        midi: 71,
+        frequencyHz: 493.88
+      },
+      {
+        name: "D5",
+        note: "D5",
+        midi: 74,
+        frequencyHz: 587.33
+      }
     ]
   },
   performanceArticulations: {
     rasgueado: {
       burstNotes: 4,
       spreadMs: 22,
-      directionPattern: ['down', 'up', 'down', 'up'],
+      directionPattern: ["down", "up", "down", "up"],
       nailTransientSharpness: 0.96
     },
     mute: {
@@ -59,7 +82,11 @@ export const cavaquinho: InstrumentDef = {
   },
   techniques: {
     articulations: ["accent", "staccato", "legato", "palhetada", "palm-mute"],
-    techniqueMethods: ["samba palhetada 16th strumming", "choro counterpoint picking", "left hand dampening"],
+    techniqueMethods: [
+      "samba palhetada 16th strumming",
+      "choro counterpoint picking",
+      "left hand dampening"
+    ],
     playingStyles: ["samba", "choro", "pagode", "forro", "mpb"],
     genreTechniques: {
       samba: ["palhetada", "accent", "staccato"],

@@ -9,6 +9,9 @@ export const tres: InstrumentDef = {
   courses: 3,
   bodyConstruction: "wood-box",
   excitationType: "plectrum",
+  elementaryModel: 0,
+  makeupGain: 4.396,
+  polyphony: 8,
   note: "Cuban 3 double-course guitar (G4/G3 octave, C4/C4 unison, E4/E3 octave) creating metallic biting guajeos",
   acousticProfile: {
     sustain: "decaying",
@@ -25,7 +28,7 @@ export const tres: InstrumentDef = {
     category: "strum_friction_pluck",
     materialDensity: 0.72,
     tension: 0.85,
-    bodyResonanceVolume: 9.0,
+    bodyResonanceVolume: 9,
     decayTimeFactor: 1.8,
     harmonicRichness: 0.8,
     faustProfile: "tres",
@@ -40,16 +43,31 @@ export const tres: InstrumentDef = {
     courses: 3,
     frets: 19,
     openStrings: [
-      { name: "3rd Course (Low G)", note: "G3/G4", midi: 55, frequencyHz: 196.00 },
-      { name: "2nd Course (Mid C)", note: "C4/C4", midi: 60, frequencyHz: 261.63 },
-      { name: "1st Course (High E)", note: "E3/E4", midi: 64, frequencyHz: 329.63 }
+      {
+        name: "3rd Course (Low G)",
+        note: "G3/G4",
+        midi: 55,
+        frequencyHz: 196
+      },
+      {
+        name: "2nd Course (Mid C)",
+        note: "C4/C4",
+        midi: 60,
+        frequencyHz: 261.63
+      },
+      {
+        name: "1st Course (High E)",
+        note: "E3/E4",
+        midi: 64,
+        frequencyHz: 329.63
+      }
     ]
   },
   performanceArticulations: {
     rasgueado: {
       burstNotes: 3,
       spreadMs: 20,
-      directionPattern: ['down', 'up', 'down'],
+      directionPattern: ["down", "up", "down"],
       nailTransientSharpness: 0.95
     },
     golpe: {
