@@ -75,7 +75,34 @@ note: number;
 velocity: number;
 gate: number;
 id: string;
-actionType?: 'strike' | 'pluck' | 'bow_drag' | 'abanico' | 'rasgueado' | 'tap' | 'golpe' | 'arrastre' | 'slap' | 'mute' | 'legato' | 'slur' | 'staccato' | 'tongue' | 'accent';
+actionType?:
+  | 'strike'
+  | 'pluck'
+  | 'bow_drag'
+  | 'abanico'
+  | 'rasgueado'
+  | 'tap'
+  | 'golpe'
+  | 'arrastre'
+  | 'slap'
+  | 'mute'
+  | 'legato'
+  | 'slur'
+  | 'staccato'
+  | 'tongue'
+  | 'accent'
+  | 'apagado'
+  | 'palm_mute'
+  | 'hand_slap'
+  | 'hand_mute'
+  | 'hand_open'
+  | 'palma'
+  | 'heel-toe'
+  | 'cuica-friction'
+  | 'friction_mod'
+  | 'growl'
+  | 'flutter_tongue'
+  | string;
 technique?: string;
 contactPoint?: number;
 mass?: number;
@@ -400,11 +427,16 @@ const b = Math.max(0, Math.min(1, params.brightness * velBoost));
 const decayTime = Math.max(0.05, params.decay);
 const model = params.performanceMode === 'programmed-electronic' ? 9 : Math.round(params.model);
 const action = voice.actionType ?? (params.bodyTap > 0.5 ? 'golpe' : 'pluck');
-const isMuted = action === 'mute' || params.mute > 0.4;
-const attack = voice.attack !== undefined ? voice.attack : (0.0008 + (1 - b) * 0.01);
-const release = voice.release !== undefined ? voice.release : (isMuted ? 0.012 : 0.03 + decayTime * 0.25);
-const sustain = voice.sustain !== undefined ? voice.sustain : (isMuted ? 0.05 : 0.35 + 0.3 * params.body);
-const envDecay = voice.decay !== undefined ? voice.decay : (decayTime * (isMuted ? 0.1 : 0.3));
+const isPalmMuted = action === 'mute' || action === 'apagado' || action === 'palm_mute' || params.mute > 0.4;
+const isHandSlap = action === 'hand_slap' || action === 'slap';
+const isHandMute = action === 'hand_mute' || action === 'palma' || action === 'heel-toe';
+const isCuicaFriction = action === 'cuica-friction' || action === 'friction_mod' || /cuica/.test((params.instrumentId ?? '').toLowerCase());
+const isGrowl = action === 'growl' || action === 'flutter_tongue';
+
+const attack = voice.attack !== undefined ? voice.attack : (isPalmMuted ? 0.0003 : 0.0008 + (1 - b) * 0.01);
+const release = voice.release !== undefined ? voice.release : (isPalmMuted ? 0.025 : isHandMute ? 0.04 : 0.03 + decayTime * 0.25);
+const sustain = voice.sustain !== undefined ? voice.sustain : (isPalmMuted ? 0.02 : isHandMute ? 0.05 : 0.35 + 0.3 * params.body);
+const envDecay = voice.decay !== undefined ? voice.decay : (decayTime * (isPalmMuted ? 0.08 : isHandMute ? 0.12 : 0.3));
 const env = el.adsr(attack, envDecay, sustain, release, gateSignal);
 let rawAudio: Node;
 if (action === 'golpe' || action === 'tap') {
@@ -574,9 +606,15 @@ case 5: {
   const v21 = Math.max(0.72, Math.min(1.28, 1.0 + randNorm(hitSeed ^ 0x3333) * 0.12));
   const v02 = Math.max(0.70, Math.min(1.30, 1.0 + randNorm(hitSeed ^ 0x4444) * 0.12));
 
-  const shellDecay = decayTime * (0.35 + 0.5 * params.body);
-  const pitchEnvDepth = 0.38 + b * 0.22;
-  const pitchEnv = el.adsr(0.0002, 0.022 + params.body * 0.015, 0, 0.008, gateSignal);
+  const shellDecay = isHandSlap
+    ? Math.max(0.04, decayTime * 0.18)
+    : isHandMute
+    ? Math.max(0.03, decayTime * 0.12)
+    : decayTime * (0.35 + 0.5 * params.body);
+
+  const pitchEnvDepth = isCuicaFriction ? 0.58 : (0.38 + b * 0.22);
+  const pitchEnvTime = isCuicaFriction ? 0.08 : (0.022 + params.body * 0.015);
+  const pitchEnv = el.adsr(0.0002, pitchEnvTime, 0, 0.008, gateSignal);
   const dynamicF0 = el.mul(f0, el.add(1.0, el.mul(pitchEnvDepth, pitchEnv)));
 
   const m01 = el.mul(v01, el.mul(el.cycle(dynamicF0), el.adsr(0.0005, shellDecay, 0, 0.04 + shellDecay * 0.1, gateSignal)));
@@ -595,11 +633,11 @@ case 5: {
     highModes = el.add(m12, m22);
   }
 
-  const isRim = voice.contactPoint ? voice.contactPoint < 0.25 : false;
-  const noiseTilt = 1800 + randNorm(hitSeed ^ 0x7777) * 250;
+  const isRim = isHandSlap || (voice.contactPoint ? voice.contactPoint < 0.25 : false);
+  const noiseTilt = (isHandSlap ? 2400 : 1800) + randNorm(hitSeed ^ 0x7777) * 250;
   const snapNoise = el.mul(
-    isRim ? 0.65 : 0.2,
-    el.mul(el.highpass(noiseTilt, 1.2, el.noise()), el.adsr(0.0002, 0.012, 0, 0.005, gateSignal))
+    isRim ? 0.75 : 0.2,
+    el.mul(el.highpass(noiseTilt, 1.2, el.noise()), el.adsr(0.0002, isHandSlap ? 0.008 : 0.012, 0, 0.005, gateSignal))
   );
 
   const membraneSum = el.add(el.add(m01, el.add(m11, el.add(m21, m02))), el.add(highModes, snapNoise));
@@ -608,7 +646,8 @@ case 5: {
   const shellCavityDecay = shellDecay * (0.8 + params.body * 0.5);
   const shellBurst = el.mul(0.22, el.mul(el.svf({ mode: 'bandpass' }, shellFreq, 2.2, membraneSum), el.adsr(0.001, shellCavityDecay, 0, 0.05, gateSignal)));
 
-  rawAudio = el.add(membraneSum, shellBurst);
+  const rawSum = el.add(membraneSum, shellBurst);
+  rawAudio = isHandMute ? el.lowpass(Math.min(19000, 650 + b * 400), 1.0, rawSum) : rawSum;
   break;
 }
 case 17: {
@@ -736,7 +775,9 @@ case 15: {
     el.mul(0.70, bore),
     el.add(el.mul(0.40 * profile.f1.gain, f1), el.mul((0.35 + b * 0.45) * profile.f2.gain, f2))
   );
-  rawAudio = el.mul(0.65, el.tanh(el.mul(1.2 + params.drive * 1.4, el.add(mixed, lipTransient))));
+  const growlMod = isGrowl ? el.add(0.8, el.mul(0.25, el.cycle(32))) : el.const({ value: 1.0 });
+  const rawTone = el.mul(growlMod, el.add(mixed, lipTransient));
+  rawAudio = el.mul(0.65, el.tanh(el.mul(isGrowl ? 2.4 : 1.2 + params.drive * 1.4, rawTone)));
   break;
 }
 case 16: {
@@ -769,7 +810,9 @@ case 16: {
     el.mul(0.65, bore),
     el.add(el.mul(0.45 * profile.f1.gain, f1), el.mul(0.40 * profile.f2.gain, f2))
   );
-  rawAudio = el.mul(0.75, el.tanh(el.add(acousticTone, tongueTransient)));
+  const growlMod = isGrowl ? el.add(0.8, el.mul(0.25, el.cycle(32))) : el.const({ value: 1.0 });
+  const rawTone = el.mul(growlMod, el.add(acousticTone, tongueTransient));
+  rawAudio = el.mul(0.75, el.tanh(el.mul(isGrowl ? 1.8 : 1.0, rawTone)));
   break;
 }
 case 11: {

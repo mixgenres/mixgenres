@@ -417,7 +417,24 @@ export interface InstrumentTechniqueProfile {
   articulationMetadata?: Record<string, { onsetShape?: string; envelope?: string; velocityCurve?: string; pitchBehavior?: string; noiseComponent?: number; }>;
 }
 
-export interface InstrumentDef {
+export interface InstrumentDefinition {
+  id: string;
+  name: string;
+  category?: string;
+  family?: InstrumentFamily;
+  timbreProfile?: {
+    brightness: number;
+    warmth: number;
+    transientSharpness: number;
+    sustainAmount: number;
+  };
+  supportedArticulations?: string[];
+  defaultArticulation?: string;
+  range?: { minNote: number; maxNote: number };
+  [key: string]: any;
+}
+
+export interface InstrumentDef extends Partial<InstrumentDefinition> {
   id: string;
   name: string;
   family: InstrumentFamily;

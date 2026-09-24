@@ -1749,3 +1749,14 @@ export const SAMBA_BOSSA_WORLD: GenreWorld = {
     "Bossa ↔ Jazz"
   ],
 };
+
+export const sambaSurdoPattern = {
+  id: 'samba_surdo_authentic_2_4',
+  surdo: [
+    { step: 0, velocity: 55, technique: 'hand_damped' },  // Beat 1 soft/damped
+    { step: 4, velocity: 80, technique: 'stick_center' }, 
+    { step: 8, velocity: 120, technique: 'stick_center_open' }, // Beat 2 heavy accent
+    { step: 12, velocity: 70, technique: 'hand_damped' }
+  ]
+};
+

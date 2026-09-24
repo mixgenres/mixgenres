@@ -3,7 +3,17 @@ import type { InstrumentDef } from '../types';
 export const timbales: InstrumentDef = {
   id: "timbales",
   name: "Timbales",
+  category: "percussion",
   family: "hand-drums",
+  timbreProfile: {
+    brightness: 0.9,
+    warmth: 0.2,
+    transientSharpness: 0.95,
+    sustainAmount: 0.25,
+  },
+  supportedArticulations: ["cask_cascara", "open_rim", "press_roll", "abierto"],
+  defaultArticulation: "cask_cascara",
+  range: { minNote: 55, maxNote: 75 },
   drum: {
     low: 65,
     mid: 66,

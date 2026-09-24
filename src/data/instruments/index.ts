@@ -166,6 +166,8 @@ import { polysynth } from './definitions/polysynth';
 import { halo_pad } from './definitions/halo_pad';
 import { sweep_pad } from './definitions/sweep_pad';
 
+import { electric_bass_finger, electricBassFinger } from './definitions/electric_bass_finger';
+import { shekere, Shekere } from './definitions/shekere';
 import { cuica } from './definitions/cuica';
 import { dikanza } from './definitions/dikanza';
 import { drone } from './definitions/drone';
@@ -182,6 +184,8 @@ import { washboard } from './definitions/washboard';
 export type { InstrumentDef, InstrumentFamily, DrumVoice, InstrumentTechniqueProfile } from './types';
 
 export const INSTRUMENT_CATALOG: InstrumentDef[] = [
+  electric_bass_finger,
+  shekere,
   cuica,
   dikanza,
   drone,

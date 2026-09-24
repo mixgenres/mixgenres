@@ -2305,3 +2305,14 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
     "Reggaetón ↔ Salsa / Bachata"
   ],
 };
+
+export const dembowKickSnarePattern = {
+  id: 'dembow_core_syncopated',
+  kick:  [1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0], // Four-on-the-floor downbeats
+  snare: [0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 0], // Off-beat syncopation (dots 4, 7, 12, 15)
+  hihat: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+  microTimingOffsetsMs: {
+    snare: [0, 0, 0, 12, 0, 0, 8, 0, 0, 0, 0, 12, 0, 0, 8, 0], // Authentic push feel
+  }
+};
+

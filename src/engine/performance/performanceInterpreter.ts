@@ -105,24 +105,38 @@ function contextualArticulation(
     if (isCadenceBar || !isStructural) return 'arrastre';
   }
   // 2. Bachata patterns dictate apagado right-hand palm mute
-  if ((inst.includes('requinto') || inst.includes('bachata') || inst.includes('guitar')) && (vocab.includes('apagado') || inst.includes('requinto'))) {
+  if ((inst.includes('requinto') || inst.includes('bachata') || inst.includes('guitar')) && (vocab.includes('apagado') || vocab.includes('palm-mute') || inst.includes('requinto'))) {
     if (!isStructural) return 'apagado';
   }
   // 3. Reggae Hammond patterns execute syncopated double-handed bubble
   if ((inst.includes('organ') || inst.includes('hammond')) && (vocab.includes('bubble') || vocab.includes('staccato') || inst.includes('reggae'))) {
     if (!isStructural) return 'bubble';
   }
-  // 4. Flamenco patterns trigger rasgueado or golpe
+  // 4. Flamenco patterns trigger rasgueado or golpe or alzapua
   if (inst.includes('spanish-guitar') || inst.includes('flamenco') || inst.includes('cajon')) {
+    if (vocab.includes('alzapua') && !isStructural) return 'alzapua';
     if (vocab.includes('rasgueado') && isStructural) return 'rasgueado';
     if (vocab.includes('golpe')) return 'golpe';
   }
-  // 5. Salsa patterns trigger montuno / tumbao
+  // 5. Salsa and Timba patterns trigger montuno / tumbao strokes
   if (inst.includes('piano') && (vocab.includes('montuno') || inst.includes('salsa') || inst.includes('timba'))) {
     return 'montuno';
   }
-  if (inst.includes('conga') && (vocab.includes('tumbao') || inst.includes('salsa') || inst.includes('timba'))) {
+  if (inst.includes('conga') || inst.includes('tumbao')) {
     return 'tumbao';
+  }
+  // 6. Samba percussion triggers friction modulation (Cuíca / Pandeiro)
+  if (inst.includes('cuica') || inst.includes('pandeiro') || vocab.includes('cuica-friction') || vocab.includes('friction_mod')) {
+    return 'cuica-friction';
+  }
+  // 7. Wind / Brass growl & falls
+  if (role === 'lead' || role === 'horns' || inst.includes('sax') || inst.includes('trumpet') || inst.includes('trombone') || inst.includes('horn')) {
+    if (isCadenceBar && (vocab.includes('fall') || vocab.includes('fall_off') || vocab.includes('doit'))) {
+      return vocab.includes('doit') ? 'doit' : 'fall';
+    }
+    if (vocab.includes('growl') || vocab.includes('flutter_tongue')) {
+      return 'growl';
+    }
   }
 
   if (isCadenceBar && vocab.includes('pesante') && !isStructural) return 'pesante';
@@ -378,7 +392,30 @@ export function interpretPattern(options: InterpretPatternOptions): Interpretati
       }
     }
 
-    const calculatedVelocity = Math.max(20, Math.min(127, Math.round(o.accent * 100 * velocityMultiplier)));
+    let contextualArt = contextualArticulation(activeVariant?.articulation, isCadenceBar, isStructural, grammar, role, instrumentId, sectionKind);
+    let calculatedVelocity = Math.max(20, Math.min(127, Math.round(o.accent * 100 * velocityMultiplier)));
+
+    // Conga Tumbao Distinct Stroke Techniques:
+    // Heel-Toe (Palma-Dedo): Low velocity (20-45), muted high frequencies
+    // Open Tone (Abierto): Mid-high velocity (70-95), full resonance sustain
+    // Slap (Seco): High velocity (100-127), sharp transient, high-pass filtered tail
+    const isCongaOrLatinPerc = /conga|tumbao|bata|quinto|tumba/.test((instrumentId || '').toLowerCase()) || role === 'percussion';
+    if (isCongaOrLatinPerc) {
+      const stepInBar = o.step % 16;
+      if (stepInBar === 4 || stepInBar === 12 || (o.accent > 0.88 && (stepInBar === 4 || stepInBar === 12))) {
+        // Seco / Slap stroke on beat 2 or 4
+        contextualArt = 'hand_slap';
+        calculatedVelocity = Math.max(100, Math.min(127, Math.round(calculatedVelocity * 1.15)));
+      } else if (stepInBar === 6 || stepInBar === 7 || stepInBar === 14 || stepInBar === 15) {
+        // Abierto / Open tone stroke on syncopated upbeats
+        contextualArt = 'hand_open';
+        calculatedVelocity = Math.max(70, Math.min(95, Math.round(calculatedVelocity * 0.95)));
+      } else {
+        // Palma-Dedo / Heel-Toe muted stroke
+        contextualArt = 'hand_mute';
+        calculatedVelocity = Math.max(20, Math.min(45, Math.round(calculatedVelocity * 0.4)));
+      }
+    }
 
     attacks.push({
       beat,
@@ -390,11 +427,34 @@ export function interpretPattern(options: InterpretPatternOptions): Interpretati
       pitchIntent,
       structural: isStructural,
       hitType: o.hitType,
-      articulation: contextualArticulation(activeVariant?.articulation, isCadenceBar, isStructural, grammar, role, instrumentId, sectionKind),
+      articulation: contextualArt,
       onsetIndex: o.originalIdx,
       registerOffset,
     });
     authoredCount++;
+  }
+
+  // Inject subtle acoustic artifacts (fret noise, breath sound, key click)
+  const isAcousticStringOrWind = /guitar|bass|requinto|flute|sax|trumpet|horn|woodwind/.test((instrumentId || '').toLowerCase());
+  if (isAcousticStringOrWind && attacks.length > 1 && expressionDial > 0.3) {
+    const artifactRoll = rand01(seedOf(seed, barIndex, 'acoustic-noise-artifact'));
+    if (artifactRoll < 0.28) {
+      const targetAtk = attacks[attacks.length - 1];
+      const noiseOffset = Math.min(beatsPerBar - 0.1, targetAtk.beat + 0.35);
+      attacks.push({
+        beat: noiseOffset,
+        durationSteps: 0.5,
+        accent: 0.25,
+        velocity: Math.round(18 + rand01(seedOf(seed, barIndex, 'noise-vel')) * 20),
+        source: 'derived',
+        kind: 'written',
+        pitchIntent: 'written',
+        structural: false,
+        hitType: 'ghost',
+        articulation: 'ghost',
+      });
+      derivedCount++;
+    }
   }
 
   // Cadence/phrase-end fallback: ensure phrase boundaries feel intentional even when no authored variant exists

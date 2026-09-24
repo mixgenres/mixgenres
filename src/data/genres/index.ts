@@ -177,3 +177,6 @@ const PATTERN_FEELS: Record<string, PatternFeel[]> = {
   'jazz-walking-bass': ['hypnotic'], 'elec-offbeat-hats': ['hypnotic'], 'hiphop-trap-hats': ['rolling'],
 };
 export function feelsForPattern(id: string): PatternFeel[] { return PATTERN_FEELS[id] ?? []; }
+
+export * from './salsaTimba';
+export * from './flamencoBulerias';

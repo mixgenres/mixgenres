@@ -3,14 +3,24 @@ import type { InstrumentDef } from '../types';
 export const cuica: InstrumentDef = {
   id: "cuica",
   name: "Cuíca",
+  category: "percussion",
   family: "hand-drums",
+  timbreProfile: {
+    brightness: 0.7,
+    warmth: 0.4,
+    transientSharpness: 0.8,
+    sustainAmount: 0.3,
+  },
+  supportedArticulations: ["friction_high", "friction_low", "damped", "friction_mod", "cuica-friction"],
+  defaultArticulation: "friction_high",
+  range: { minNote: 60, maxNote: 72 },
   drum: {
     low: 53,
     mid: 54,
     high: 55
   },
   voicing: "unpitched",
-  elementaryModel: 0,
+  elementaryModel: 4,
   makeupGain: 4.282,
   polyphony: 8,
   note: "Brazilian friction drum; internal bamboo cane rubbed with moist cloth producing singing, expressive pitch glissandi",
