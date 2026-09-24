@@ -1266,21 +1266,27 @@ export default function App() {
       {/* ---- sheets ------------------------------------------------------- */}
 
       {isBouncing && (
-        <div className="fixed inset-0 bg-white/80 z-[100] flex flex-col items-center justify-center p-6 backdrop-blur-sm">
-          <div className="text-xl font-bold mb-4 animate-pulse">Exporting MP3…</div>
-          <div className="w-full max-w-md h-2 bg-black/10 rounded-full overflow-hidden">
-            <div 
-              className="h-full bg-black transition-all duration-300"
-              style={{ width: `${Math.round((bounceProgress ?? 0) * 100)}%` }}
-            />
-          </div>
+        <div className="fixed inset-0 bg-white/85 z-[100] flex flex-col items-center justify-center p-6 backdrop-blur-sm text-center">
+          <div className="w-10 h-10 border-3 border-black/15 border-t-black rounded-full animate-spin mb-4" />
+          <div className="text-xl font-bold mb-2">Creating your MP3…</div>
+          <p className="text-sm opacity-60 max-w-xs leading-relaxed mb-2">
+            Please stand by while your song renders…
+          </p>
+          {bounceProgress !== null && (
+            <div className="w-48 h-1.5 bg-black/10 rounded-full overflow-hidden mt-2 mb-1">
+              <div
+                className="h-full bg-black transition-all duration-150"
+                style={{ width: `${Math.round((bounceProgress ?? 0) * 100)}%` }}
+              />
+            </div>
+          )}
           <button 
             onClick={() => {
               bounceCancelledRef.current = true;
               setIsBouncing(false);
               setBounceProgress(null);
             }}
-            className="btn-pill mt-8 cursor-pointer transition-opacity hover:opacity-80"
+            className="btn-pill mt-6 cursor-pointer transition-opacity hover:opacity-80"
             style={{
               background: 'transparent',
               color: 'var(--ink)',
