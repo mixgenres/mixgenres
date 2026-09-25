@@ -29,8 +29,8 @@ export const music_box: InstrumentDef = {
     harmonicRichness: 0.5
   },
   techniques: {
-    articulations: ["accent", "ghost", "roll", "staccato"],
-    techniqueMethods: ["open hit", "damped hit", "roll", "scrape/shake"],
-    playingStyles: ["folk", "world", "dance"]
+    articulations: ["accent", "staccato", "legato"],
+    techniqueMethods: ["pin-pluck transient", "mechanism-limited note sustain", "register-sensitive phrasing"],
+    playingStyles: ["music-box", "folk", "cinematic", "world"]
   }
 };

@@ -34,9 +34,9 @@ export const tantan: InstrumentDef = {
     harmonicRichness: 0.6
   },
   techniques: {
-    articulations: ["accent", "staccato", "ghost", "roll"],
-    techniqueMethods: ["style-specific attack", "velocity shaping", "muting/damping"],
-    playingStyles: ["genre-native performance"],
+    articulations: ["low-tone", "open", "ghost", "accent", "roll"],
+    techniqueMethods: ["open low tone", "damped syncopation", "muted finger/hand stroke", "pagode bass punctuation"],
+    playingStyles: ["pagode", "samba", "partido-alto", "genre-native performance"],
     genreTechniques: {}
   }
 };

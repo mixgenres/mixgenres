@@ -34,14 +34,14 @@ export const cabasa: InstrumentDef = {
     harmonicRichness: 0.9
   },
   techniques: {
-    articulations: ["accent", "staccato", "ghost", "roll"],
+    articulations: ["accent", "ghost", "roll", "staccato", "brushed"],
     techniqueMethods: [
       "hand twisting beads against cylinder",
       "forward and backward hand shaking",
       "crisp rhythmic subdivisions",
       "accented palm slap catches"
     ],
-    playingStyles: ["bossa", "samba", "latin-jazz", "pop", "fusion"],
+    playingStyles: ["bossa", "samba", "salsa", "son-cubano", "latin-jazz", "cumbia", "pop", "fusion"],
     genreTechniques: {
       bossa: ["accent", "ghost", "staccato"],
       samba: ["accent", "roll", "staccato"],

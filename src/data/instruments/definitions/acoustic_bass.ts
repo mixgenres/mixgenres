@@ -36,7 +36,7 @@ export const acoustic_bass: InstrumentDef = {
     genreAdaptable: true
   },
   techniques: {
-    articulations: ["accent", "staccato", "legato", "ghost", "palm-mute", "tenuto", "harmonic"],
+    articulations: ["accent", "staccato", "legato", "ghost", "palm-mute", "tenuto", "harmonic", "pizzicato", "arco", "slap"],
     techniqueMethods: [
       "acoustic thumb pluck",
       "two-finger pad attack",

@@ -31,7 +31,7 @@ export const turntable: InstrumentDef = {
     articulationCapabilities: ["staccato", "accent", "scratch"]
   },
   techniques: {
-    articulations: ["accent", "staccato", "legato", "slide"],
+    articulations: ["accent", "staccato", "scratch"],
     techniqueMethods: ["velocity programming", "filter motion", "pitch slide"],
     playingStyles: ["electronic", "pop", "dance"]
   }

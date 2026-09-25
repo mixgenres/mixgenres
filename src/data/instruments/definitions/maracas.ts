@@ -34,7 +34,7 @@ export const maracas: InstrumentDef = {
   },
   techniques: {
     articulations: ["accent", "ghost", "roll", "staccato"],
-    techniqueMethods: ["open hit", "damped hit", "roll", "scrape/shake"],
-    playingStyles: ["folk", "world", "dance"]
+    techniqueMethods: ["forward-back shake", "reverse shake", "controlled ghost subdivision", "accented thrust"],
+    playingStyles: ["salsa", "son-cubano", "merengue", "cumbia", "bomba", "latin"]
   }
 };

@@ -1,7 +1,8 @@
 import type { ResolvedStyle } from '../../data/styles/schema';
 
 import { rand01 } from './groove';
-import type { DrumVoice } from '../../data/instruments';
+import { INSTRUMENTS_BY_ID, type DrumVoice } from '../../data/instruments';
+import { findKitComponent, type RhythmicIntent } from '../performance/musicSemantics';
 import type { TransitionEvent } from '../sequencing/grid';
 
 export const GM = {
@@ -22,6 +23,8 @@ export interface KitVoicing {
   limb: KitLimb;
   gain: number;
   flamMs?: number;
+  /** Authored stroke/effect id forwarded to the physical renderer when a kit has named components. */
+  articulation?: string;
 }
 
 export interface KitContext {
@@ -232,40 +235,104 @@ function fillHit(c: KitContext, beat: number, from: number): KitVoicing {
   }
 }
 
+export interface HandPercContext {
+  instrumentId?: string;
+  styleId?: string;
+  beatInBar?: number;
+  beatsPerBar?: number;
+  onsetIndex?: number;
+  barInPhrase?: number;
+}
+
 export function handPercVoicing(
   drum: DrumVoice,
   accent: number,
   intensity: number,
   seed: number,
   hitType?: string,
+  context: HandPercContext = {},
 ): KitVoicing {
-  // Authored stroke names are preserved for hand percussion. SoundFonts expose
-  // different keys per instrument, so the dialect chooses the closest available
-  // low/mid/high articulation rather than pretending every instrument is a kit.
+  // Authored stroke names are preserved for hand percussion. Prefer the
+  // instrument's own kit component over a copied GM/MIDI number. This is the
+  // key distinction between a conga heel, a bongo finger tap, a timbale cáscara,
+  // a tabla dayan stroke, etc.
   if (hitType) {
     const h = hitType.toLowerCase();
-    if (h === 'heel' || h.includes('heel')) {
-      return { key: drum.low !== undefined ? 61 : 61, limb: 'ghost', gain: 0.42 * (0.8 + accent * 0.3) };
+    const intent: RhythmicIntent = /heel/.test(h) ? 'ghost'
+      : /toe|tap/.test(h) ? 'offbeat'
+      : /bell|campana/.test(h) ? 'bell'
+      : /rim|cascara|edge/.test(h) ? 'rim'
+      : /slap|tapao|quinto|macho-slap/.test(h) ? 'slap'
+      : /open|abierto/.test(h) ? 'open'
+      : /low|bass|tumba|bayan-ghe/.test(h) ? 'low'
+      : /roll|buzz|redoble/.test(h) ? 'roll'
+      : /scrape|guacharaca/.test(h) ? 'scrape'
+      : 'backbeat';
+    const component = context.instrumentId ? findKitComponent(context.instrumentId, intent) : undefined;
+    if (component) {
+      const limb: KitLimb = intent === 'rim' || intent === 'bell' || intent === 'offbeat' ? 'rim'
+        : intent === 'low' ? 'kick'
+        : intent === 'ghost' ? 'ghost'
+        : 'snare';
+      const gain = intent === 'ghost' ? 0.40 + accent * 0.16 : 0.68 + accent * 0.30;
+      return { key: component.midi, limb, gain: Math.min(1.18, gain), flamMs: intent === 'slap' && accent > 0.84 ? 8 : undefined, articulation: component.id };
     }
-    if (h === 'toe' || h.includes('toe')) {
-      return { key: drum.low !== undefined ? 61 : 61, limb: 'hat', gain: 0.52 * (0.8 + accent * 0.3) };
-    }
-    if (h === 'slap-tapao' || h.includes('tapao') || h.includes('muted-slap')) {
-      return { key: 63, limb: 'snare', gain: 0.68 + accent * 0.25 };
-    }
-    if (h === 'quinto-slap' || h === 'macho-slap') {
-      return { key: 60, limb: 'snare', gain: 0.95 + accent * 0.2, flamMs: 8 };
-    }
-    if (h === 'conga-open' || h === 'hembra-open') {
-      return { key: 62, limb: 'snare', gain: 0.88 + accent * 0.22 };
-    }
-    if (h === 'tumba-open') {
-      return { key: 64, limb: 'snare', gain: 0.92 + accent * 0.22 };
-    }
-    if (/open|slap|rim|campana|paila|shell/.test(h)) return { key: drum.high, limb: 'snare', gain: Math.min(1.05, 0.84 + accent * 0.2) };
-    if (/muff|mute|bass|low|ghost|soft/.test(h)) return { key: drum.low, limb: 'ghost', gain: Math.max(0.28, 0.48 + accent * 0.25) };
-    if (/mid|tone|stroke|martillo|casca/.test(h)) return { key: drum.mid, limb: 'hat', gain: 0.68 + accent * 0.2 };
+
+    // For instruments without authored multi-component kits, honor the stroke
+    // semantically using the instrument's own low/mid/high physical keys.
+    if (intent === 'low' || intent === 'ghost') return { key: drum.low, limb: 'ghost', gain: intent === 'ghost' ? 0.42 : 0.62 };
+    if (intent === 'rim' || intent === 'bell' || intent === 'slap' || intent === 'open') return { key: drum.high, limb: 'snare', gain: Math.min(1.05, 0.82 + accent * 0.2) };
+    return { key: drum.mid, limb: 'hat', gain: 0.66 + accent * 0.2 };
   }
+  // When a pattern does not name a stroke, use the instrument's physical
+  // vocabulary rather than collapsing the whole hand-drum family onto one MIDI key.
+  // The selectors are deliberately coarse: they shape the part without pretending
+  // to encode every regional hand technique.
+  const instrumentId = context.instrumentId ?? '';
+  const inst = instrumentId.toLowerCase();
+  const style = (context.styleId ?? '').toLowerCase();
+  const kit = INSTRUMENTS_BY_ID[instrumentId]?.kitComponents ?? [];
+  const componentFor = (pattern: RegExp): { midi: number; id: string } | undefined => {
+    const component = kit.find(c => pattern.test(c.id) || pattern.test(c.name.toLowerCase()));
+    return component ? { midi: component.midi, id: component.id } : undefined;
+  };
+  const componentKey = (pattern: RegExp, fallback: number): number => componentFor(pattern)?.midi ?? fallback;
+  const componentId = (pattern: RegExp): string | undefined => componentFor(pattern)?.id;
+  const beat = context.beatInBar ?? 0;
+  const onset = context.onsetIndex ?? 0;
+  const phraseBar = context.barInPhrase ?? 0;
+  const beats = context.beatsPerBar ?? 4;
+  const latinHandStyle = /salsa|timba|son|rumba|bachata|cumbia|latin/i.test(style);
+
+  if (!hitType && inst.includes('conga') && latinHandStyle) {
+    const frac = ((beat % 1) + 1) % 1;
+    if (accent >= 0.9) return { key: componentKey(/quinto.*slap/, 60), limb: 'snare', gain: 0.98, articulation: componentId(/quinto.*slap/) }; // quinto-style slap
+    if (Math.abs(frac - 0.5) < 0.08) return { key: componentKey(/slap-tapao|muted.*slap|tapao/, 63), limb: 'snare', gain: 0.66 + accent * 0.2, articulation: componentId(/slap-tapao|muted.*slap|tapao/) }; // tapao / muted slap
+    if (Math.abs(beat - Math.round(beat)) < 0.1 && Math.round(beat) % 2 === 0) return { key: componentKey(/tumba.*open|low.*tone/, 64), limb: 'snare', gain: 0.78 + accent * 0.18, articulation: componentId(/tumba.*open|low.*tone/) }; // low open tone
+    return { key: (onset + phraseBar) % 3 === 0 ? componentKey(/heel/, 61) : componentKey(/conga-open|open.*tone/, 62), limb: 'ghost', gain: accent < 0.55 ? 0.38 : 0.58 + accent * 0.14, articulation: (onset + phraseBar) % 3 === 0 ? componentId(/heel/) : componentId(/conga-open|open.*tone/) }; // heel/toe/open blend
+  }
+
+  if (!hitType && inst.includes('timbale') && latinHandStyle) {
+    const isOffbeat = Math.abs((beat % 1 + 1) % 1 - 0.5) < 0.11;
+    const chorusBell = intensity > 0.72 && phraseBar >= 2 && onset % 4 === 0;
+    if (chorusBell) return { key: componentKey(/mambo.*bell/, 67), limb: 'rim', gain: 0.9 + accent * 0.16, articulation: componentId(/mambo.*bell/) }; // bell color in higher-energy passages
+    if (isOffbeat || accent < 0.58) return { key: componentKey(/cascara/, 68), limb: 'rim', gain: 0.56 + accent * 0.22, articulation: componentId(/cascara/) }; // cáscara shell tap
+    return { key: onset % 2 === 0 ? componentKey(/macho.*open/, 66) : componentKey(/hembra.*open/, 65), limb: 'snare', gain: 0.72 + accent * 0.2, articulation: onset % 2 === 0 ? componentId(/macho.*open/) : componentId(/hembra.*open/) }; // macho/hembra head color
+  }
+
+  if (!hitType && inst.includes('bongo') && latinHandStyle) {
+    if (accent >= 0.88) return { key: componentKey(/macho.*slap/, 60), limb: 'snare', gain: 0.92 + accent * 0.12, articulation: componentId(/macho.*slap/) };
+    if (onset % 3 === 0) return { key: componentKey(/hembra.*open/, 61), limb: 'hat', gain: 0.66 + accent * 0.16, articulation: componentId(/hembra.*open/) };
+    return { key: componentKey(/finger.*tap|martillo/, 62), limb: 'ghost', gain: accent < 0.5 ? 0.34 : 0.52 + accent * 0.12, articulation: componentId(/finger.*tap|martillo/) };
+  }
+
+  if (!hitType && inst.includes('cajon')) {
+    const backbeat = beats >= 4 && (Math.abs(beat - 1) < 0.1 || Math.abs(beat - 3) < 0.1);
+    if (accent >= 0.86 || backbeat) return { key: componentKey(/cajon.*slap/, 38), limb: 'snare', gain: 0.82 + accent * 0.2, articulation: componentId(/cajon.*slap/) };
+    if (Math.abs(beat) < 0.12 || onset % 4 === 0) return { key: componentKey(/cajon.*bass/, 36), limb: 'kick', gain: 0.78 + accent * 0.18, articulation: componentId(/cajon.*bass/) };
+    return { key: componentKey(/cajon.*tip/, 42), limb: 'ghost', gain: 0.36 + accent * 0.16, articulation: componentId(/cajon.*tip/) };
+  }
+
   if (accent >= 0.88) return { key: drum.high, limb: 'snare', gain: 1.0 };
   if (accent <= 0.48) {
     return { key: drum.low, limb: 'ghost', gain: 0.34 + rand01(seed) * 0.14 };

@@ -31,7 +31,7 @@ export const square_lead: InstrumentDef = {
     articulationCapabilities: ["staccato", "legato", "portamento", "vibrato"]
   },
   techniques: {
-    articulations: ["accent", "staccato", "legato", "slide"],
+    articulations: ["accent", "staccato", "legato", "portamento", "vibrato"],
     techniqueMethods: ["velocity programming", "filter motion", "pitch slide"],
     playingStyles: ["electronic", "pop", "dance"]
   }

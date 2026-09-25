@@ -37,6 +37,28 @@ export function applyEnsembleInteraction(
   const kickNotes = notes.filter(n => roleOf(n) === 'drums' || /kick|bombo|tambor_grave|bass_drum/i.test(instrumentOf(n)));
   const kickTimes = kickNotes.map(k => k.time);
 
+  // 1b. Inter-Band Listening & Cross-Track Interactions (Base Layer Computations)
+  // Compute drum fills and vocal belts across tracks
+  const drumFillTimes = notes.filter(n => roleOf(n) === 'drums' && (n.articulation === 'fill' || /fill/i.test(n.articulation || ''))).map(n => n.time);
+  const vocalBeltNotes = notes.filter(n => (roleOf(n) === 'lead' || roleOf(n) === 'vocals' || /voice|vocal/i.test(instrumentOf(n))) && (n.vel / 127) > 0.85 && n.dur > 1.2);
+  const vocalBeltTimes = vocalBeltNotes.map(n => n.time);
+
+  // Apply inter-band adjustments
+  for (const note of notes) {
+    const role = roleOf(note);
+    // Bassist gives the drummer space during drum fills
+    if ((role === 'bass' || /bass|bajo|contrabajo/i.test(instrumentOf(note))) && drumFillTimes.some(t => Math.abs(t - note.time) < 0.4)) {
+      note.vel = Math.max(1, Math.round(note.vel * 0.85));
+      if (note.dur < 0.25) {
+        note.vel = 1; // Muted / silenced
+      }
+    }
+    // Comping instruments duck and darken during vocal belts / peaks
+    if ((role === 'chords' || role === 'comp' || role === 'harmony') && vocalBeltTimes.some(t => Math.abs(t - note.time) < 0.4)) {
+      note.vel = Math.max(1, Math.round(note.vel * 0.7));
+    }
+  }
+
   // 2. Lock Bass Onsets to Kick Transients
   if (kickTimes.length > 0 && params.rhythmicLockingStrength > 0) {
     const bassNotes = notes.filter(n => roleOf(n) === 'bass' || /bass|bajo|contrabajo|tuba|sousaphone/i.test(instrumentOf(n)));

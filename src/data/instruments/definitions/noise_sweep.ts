@@ -30,7 +30,7 @@ export const noise_sweep: InstrumentDef = {
     harmonicRichness: 0.95
   },
   techniques: {
-    articulations: ["accent", "staccato", "legato", "slide"],
+    articulations: ["legato", "crescendo", "diminuendo", "slide"],
     techniqueMethods: ["velocity programming", "filter motion", "pitch slide"],
     playingStyles: ["electronic", "pop", "dance"]
   }

@@ -12,6 +12,7 @@ import { INSTRUMENTS_BY_ID, genreTechniquesForInstrument } from '../../data/inst
 import { getLuthierModelForInstrument } from './LuthierAPI';
 import type { TransportSink } from '../sequencing/transport';
 import type { Performance } from '../sequencing/perform';
+import InstrumentRenderer from '../InstrumentRenderer.js';
 
 let ctx: AudioContext | null = null;
 let bandWorklet: BandWorkletNode | null = null;
@@ -142,6 +143,13 @@ export function createSink(): TransportSink {
       const effectiveArticulation = authoredArticulation || styleTechnique;
       if (effectiveArticulation) {
         const artLow = effectiveArticulation.toLowerCase();
+        if (artLow.includes('ponticello')) {
+          luthier = { ...luthier, harmonicRichness: Math.min(1, luthier.harmonicRichness + 0.12), decayTimeFactor: luthier.decayTimeFactor * 0.94 };
+        } else if (artLow.includes('tasto')) {
+          luthier = { ...luthier, harmonicRichness: Math.max(0, luthier.harmonicRichness - 0.10), decayTimeFactor: luthier.decayTimeFactor * 1.05 };
+        } else if (artLow.includes('mwah-growl')) {
+          luthier = { ...luthier, harmonicRichness: Math.min(1, luthier.harmonicRichness + 0.07) };
+        }
         if (isBowed) {
           if (artLow.includes('pizzicato') || artLow.includes('pizz')) {
             luthier = { ...luthier, category: 'strum_friction_pluck' };
@@ -152,9 +160,23 @@ export function createSink(): TransportSink {
             actionType = 'bow_drag';
           }
         } else {
-          if (artLow.includes('arco') || artLow.includes('bowed')) {
+          if (/conga-heel|macho-thumb|dayan-ti-ke|cajon-tip/.test(artLow)) {
+            actionType = 'tap';
+          } else if (/conga-toe|macho-finger-tap|dayan-na|dayan-tun|bayan-ghe|iya-enu|iya-chacha|itotele-enu|okonkolo-chacha/.test(artLow)) {
+            actionType = 'tap';
+          } else if (artLow.includes('arco') || artLow.includes('bowed')) {
             luthier = { ...luthier, category: 'continuous_bowed_friction' };
             actionType = 'bow_drag';
+          } else if (artLow.includes('cup-mute') || artLow.includes('stopped') || artLow.includes('heel') || artLow.includes('palm-mute')) {
+            actionType = 'mute';
+          } else if (artLow.includes('shake')) {
+            actionType = 'tremolo';
+          } else if (artLow.includes('rimshot') || artLow.includes('cascara') || artLow.includes('rim')) {
+            actionType = 'tap';
+          } else if (artLow.includes('conga-open') || artLow.includes('tumba-open') || artLow.includes('open')) {
+            actionType = 'strike';
+          } else if (artLow.includes('heel') || artLow.includes('toe')) {
+            actionType = 'tap';
           } else if (artLow.includes('pizzicato') || artLow.includes('plucked') || artLow.includes('slap-bass') || artLow.includes('pizz')) {
             luthier = { ...luthier, category: 'strum_friction_pluck' };
             actionType = 'pluck';
@@ -162,6 +184,9 @@ export function createSink(): TransportSink {
             actionType = 'abanico';
           } else if (artLow.includes('golpe') || artLow.includes('chicharra') || artLow.includes('tap')) {
             actionType = artLow.includes('tap') ? 'tap' : 'golpe';
+          } else if (artLow.includes('scratch')) {
+            // Turntable scratch is represented as a compact bidirectional pitch gesture.
+            actionType = 'arrastre';
           } else if (artLow.includes('arrastre') || artLow.includes('drag')) {
             actionType = 'arrastre';
           } else if (artLow.includes('slap') || artLow.includes('pop')) {
@@ -224,8 +249,20 @@ export function createSink(): TransportSink {
       const role = instDef?.acousticProfile?.role || 'comp';
       const roleGain = getRoleGainLinear(role, activeWorldId || 'default');
 
-      const contactPoint = Math.max(0.05, Math.min(0.95, dialect?.contactPointOverride ?? (0.5 - (vel01 - 0.5) * 0.3 + (Math.random() - 0.5) * 0.12)));
-      const mass = Math.max(0.1, Math.min(0.95, 0.35 + vel01 * 0.5 + (Math.random() - 0.5) * 0.1));
+      const artForContact = effectiveArticulation?.toLowerCase() ?? '';
+      const rimLike = /rimshot|cascara|side-stick|rim/.test(artForContact);
+      const bellLike = /bell|campana|ride-bell/.test(artForContact);
+      const handStrokeContact = artForContact.includes('heel') ? 0.34
+        : /toe|finger-tap|tip/.test(artForContact) ? 0.68
+        : /thumb|tumba-open|conga-open|macho-open|hembra-open|bayan-ghe|iya-enu/.test(artForContact) ? 0.52
+        : undefined;
+      const baseContact = handStrokeContact ?? (rimLike ? 0.84 : (bellLike ? 0.9 : 0.5));
+      const baseMass = artForContact.includes('heel') ? 0.26
+        : /slap|quinto-slap|macho-slap|tapao/.test(artForContact) ? 0.58
+        : handStrokeContact !== undefined ? 0.34
+        : (rimLike || bellLike ? 0.52 : 0.35);
+      const contactPoint = Math.max(0.05, Math.min(0.95, dialect?.contactPointOverride ?? (baseContact - (vel01 - 0.5) * 0.18 + (Math.random() - 0.5) * 0.08)));
+      const mass = Math.max(0.1, Math.min(0.95, baseMass + vel01 * 0.42 + (Math.random() - 0.5) * 0.08));
 
       bandWorklet.postEvent({
         id: voiceId(trackId, midi),
@@ -251,6 +288,9 @@ export function createSink(): TransportSink {
       // Releases sustain-capable voices (bowed/reed/wind/held synth); a
       // no-op for decaying/percussive voices, which just ring out.
       if (bandWorklet) bandWorklet.postRelease(String(trackId), midi, time);
+      const instId = trackInstruments.get(String(trackId)) || 'guitar';
+      const renderer = new InstrumentRenderer(instId, ctx);
+      renderer.scheduleNoteOffNoise({ pitch: midi, velocity: 0.8 }, time, renderer.getAcousticProfile(instId), ctx);
     },
     pitchBend(trackId, value, time) {
       if (bandWorklet) bandWorklet.postBend(String(trackId), value, time);

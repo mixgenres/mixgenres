@@ -29,7 +29,7 @@ import {
   intensityOf,
 } from './perform';
 import { inferKey, parseChord, type KeyInfo } from '../theory/theory';
-import { makeMotif, type Motif } from '../generators/melody';
+import { makeMotif, melodyNote, treatmentFor, type Motif } from '../generators/melody';
 import { seedOf } from '../generators/groove';
 import { shapeScalarOf } from '../metadata/energy';
 import { applyEnsembleInteraction } from '../performance/ensembleInteraction';
@@ -38,6 +38,7 @@ import { PATTERNS_BY_ID } from '../../data/genres';
 import { INSTRUMENTS_BY_ID } from '../../data/instruments';
 import { voiceProfile } from '../theory/instrumentProfile';
 import { resolveStyle } from '../../data/styles/resolve';
+import { translateRhythmToInstrument } from '../performance/musicSemantics';
 import { getCanonicalStyle } from '../../data/styles/registry';
 import { resolveTuningSystem } from '../theory/tuning';
 import { getPerformanceGrammar } from '../performance/performanceGrammar';
@@ -289,6 +290,7 @@ export function realizePerformanceCell(params: RealizeCellParams): PerformanceCe
     region,
     track: t,
     measures,
+    key,
     motif,
     transitionEvents,
   } = params;
@@ -610,11 +612,37 @@ export function realizePerformanceCell(params: RealizeCellParams): PerformanceCe
     const baseTime = bt.start + a.beatInBar * secPerBeat;
     const chord = a.chordSymbol ?? measures[a.bar]?.chord ?? 'Am';
     const parsedChord = parseChord(chord);
+    const resolvedStyle = getResolvedSectionStyle(sheet, region);
+    const tuningId = resolvedStyle.harmony?.tuningSystem || resolvedStyle.contract.tuningSystem || '12-tet';
+    const tuningSystem = resolveTuningSystem(tuningId);
+    const nextMeasureForNote = measures[a.bar + 1];
 
-    // Dynamic pitch selection per role
+    // Dynamic pitch selection per role. The fallback compiler used to collapse
+    // nearly every single-note instrument to the chord root. Give it the same
+    // phrase-aware line vocabulary as the main performance path.
     let midiValues: number[] = [];
+    let translatedArticulation: string | undefined;
+    let translatedHitType = a.hitType;
+    const rhythmTranslation = (a.hitType || a.articulation)
+      ? translateRhythmToInstrument({
+          instrumentId: t.instrumentId,
+          sourceHitType: a.hitType,
+          sourceArticulation: a.articulation,
+          accent: a.accent,
+          beatInBar: a.beatInBar,
+          beatsPerBar: bt.beatsPerBar,
+          styleId: a.styleId,
+          genreId: resolvedStyle.primaryGenre,
+          seed: seedOf(t.id, a.bar, a.onsetIndex, 'tier2-rhythm'),
+        })
+      : undefined;
+    if (rhythmTranslation) {
+      translatedArticulation = rhythmTranslation.articulation;
+      translatedHitType = rhythmTranslation.hitType || translatedHitType;
+    }
+
     if (def.kit || def.drum) {
-      const hit = a.hitType || 'snare';
+      const hit = translatedHitType || 'snare';
       const mVal = hit === 'kick' ? (def.drum?.low ?? 36)
         : hit === 'hat' ? (def.drum?.high ?? 42)
         : hit === 'snare' ? (def.drum?.mid ?? 38)
@@ -622,22 +650,63 @@ export function realizePerformanceCell(params: RealizeCellParams): PerformanceCe
       midiValues = [mVal];
     } else if (isBass) {
       const rootMidi = 36 + ((parsedChord.rootPc ?? 0) % 12);
-      midiValues = [rootMidi];
+      const fifthMidi = rootMidi + 7;
+      const chordThird = parsedChord.intervals.find(iv => iv === 3 || iv === 4);
+      const beatStrong = Math.abs(a.beatInBar - Math.round(a.beatInBar)) < 0.08 && Math.round(a.beatInBar) % 2 === 0;
+      const nextChord = nextMeasureForNote ? parseChord(nextMeasureForNote.chord) : undefined;
+      if (a.anticipated && nextChord) {
+        midiValues = [36 + ((nextChord.rootPc ?? 0) % 12)];
+      } else if (beatStrong) {
+        midiValues = [rootMidi];
+      } else if (a.pitchIntent === 'fifth' || (!a.pitchIntent && a.accent > 0.78)) {
+        midiValues = [fifthMidi];
+      } else if (chordThird !== undefined && (a.pitchIntent === 'chord-tone' || a.onsetIndex % 3 === 1)) {
+        midiValues = [rootMidi + chordThird];
+      } else if (a.pitchIntent === 'octave') {
+        midiValues = [rootMidi + 12];
+      } else if (nextChord && Math.abs((nextChord.rootPc ?? 0) - (parsedChord.rootPc ?? 0)) > 0 && a.beatInBar >= bt.beatsPerBar - 0.8) {
+        const nextRoot = 36 + ((nextChord.rootPc ?? 0) % 12);
+        const direction = Math.sign(nextRoot - rootMidi) || 1;
+        midiValues = [rootMidi + Math.max(-2, Math.min(2, nextRoot - rootMidi - direction))];
+      } else {
+        midiValues = [rootMidi];
+      }
     } else if (def.voicing === 'single') {
-      const rootMidi = 60 + ((parsedChord.rootPc ?? 0) % 12);
-      midiValues = [rootMidi];
+      const beatPhase = a.beatInBar;
+      const treatment = treatmentFor(String(region.kind ?? 'verse'), Math.max(0, Math.min(1, intensityOf(region))), a.styleId || region.styleId, resolvedStyle.primaryGenre);
+      const melodic = melodyNote({
+        motif,
+        key,
+        chord: parsedChord,
+        profile: prof,
+        treatment,
+        barInPhrase: ((a.bar - region.start) % phraseBars + phraseBars) % phraseBars,
+        beatInBar: beatPhase,
+        beatsPerBar: bt.beatsPerBar,
+        layer: 0,
+        intensity: Math.max(0, Math.min(1, intensityOf(region))),
+        previous: notes.length ? notes[notes.length - 1].midi : prof.centre,
+        seed: seedOf(t.id, a.bar, a.onsetIndex, 'tier2-melody'),
+        styleId: a.styleId || region.styleId,
+        genreId: resolvedStyle.primaryGenre,
+        sectionKind: region.kind,
+        pitchSet: undefined,
+        tonicPc: key.tonicPc,
+        snapToChord: true,
+        chordToneTargeting: true,
+        nextChord: nextMeasureForNote ? parseChord(nextMeasureForNote.chord) : undefined,
+        phraseStage: undefined,
+      });
+      midiValues = Array.isArray(melodic.note) ? melodic.note : [melodic.note];
     } else {
       const root = 48 + ((parsedChord.rootPc ?? 0) % 12);
-      midiValues = parsedChord.intervals.map(iv => root + iv);
+      const intervals = parsedChord.intervals.length > 4 ? parsedChord.intervals.slice(0, 4) : parsedChord.intervals;
+      midiValues = intervals.map(iv => root + iv);
     }
 
     const vel = Math.max(1, Math.min(127, Math.round(90 * a.accent)));
     const durBeats = Math.max(0.25, (a.durationSteps ?? 1) / (a.stepsPerBar ?? 16) * bt.beatsPerBar);
     const durSeconds = durBeats * secPerBeat;
-
-    const resolvedStyle = getResolvedSectionStyle(sheet, region);
-    const tuningId = resolvedStyle.harmony?.tuningSystem || resolvedStyle.contract.tuningSystem || '12-tet';
-    const tuningSystem = resolveTuningSystem(tuningId);
 
     for (let vi = 0; vi < midiValues.length; vi++) {
       const midi = midiValues[vi];

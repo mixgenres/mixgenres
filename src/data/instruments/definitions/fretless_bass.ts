@@ -36,7 +36,7 @@ export const fretless_bass: InstrumentDef = {
     genreAdaptable: true
   },
   techniques: {
-    articulations: ["accent", "legato", "vibrato", "slide", "portamento", "tenuto", "ghost"],
+    articulations: ["accent", "legato", "vibrato", "slide", "portamento", "tenuto", "ghost", "mwah-growl", "fingerstyle"],
     techniqueMethods: [
       "finger pad acoustic pull",
       "vocal vibrato across fingerboard",

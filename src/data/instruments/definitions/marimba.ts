@@ -29,8 +29,8 @@ export const marimba: InstrumentDef = {
     harmonicRichness: 0.5
   },
   techniques: {
-    articulations: ["accent", "ghost", "roll", "staccato"],
-    techniqueMethods: ["open hit", "damped hit", "roll", "scrape/shake"],
-    playingStyles: ["folk", "world", "dance"]
+    articulations: ["accent", "staccato", "legato", "roll"],
+    techniqueMethods: ["soft mallet attack", "hard mallet attack", "damped release", "alternating or double-stroke roll"],
+    playingStyles: ["classical", "contemporary", "latin", "jazz", "world"]
   }
 };

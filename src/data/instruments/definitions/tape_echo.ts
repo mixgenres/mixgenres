@@ -29,9 +29,9 @@ export const tape_echo: InstrumentDef = {
     harmonicRichness: 0.8
   },
   techniques: {
-    articulations: ["accent", "staccato", "ghost", "roll"],
-    techniqueMethods: ["style-specific attack", "velocity shaping", "muting/damping"],
-    playingStyles: ["genre-native performance"],
+    articulations: [],
+    techniqueMethods: ["delay-time setting", "feedback control", "wow/flutter and saturation"],
+    playingStyles: ["dub", "rockabilly", "surf", "ambient", "studio effect"],
     genreTechniques: {}
   }
 };

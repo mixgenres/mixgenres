@@ -34,9 +34,9 @@ export const repinique: InstrumentDef = {
     harmonicRichness: 0.85
   },
   techniques: {
-    articulations: ["accent", "staccato", "ghost", "roll"],
-    techniqueMethods: ["style-specific attack", "velocity shaping", "muting/damping"],
-    playingStyles: ["genre-native performance"],
+    articulations: ["accent", "open", "ghost", "rimshot", "roll"],
+    techniqueMethods: ["open head call", "rim attack", "ghosted support stroke", "rearticulated roll"],
+    playingStyles: ["samba-regional", "samba-enredo", "pagode", "genre-native performance"],
     genreTechniques: {}
   }
 };

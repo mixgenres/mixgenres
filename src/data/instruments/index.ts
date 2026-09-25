@@ -1,3 +1,4 @@
+import { buildInstrumentDSPProfile } from './physicalDspProfile';
 import type { InstrumentDef, InstrumentFamily, InstrumentTechniqueProfile, TransitionMechanics, EnvironmentalReactivity, SpatialRadiation } from './types';
 import { bandoneon } from './definitions/bandoneon';
 import { accordion } from './definitions/accordion';
@@ -380,10 +381,13 @@ function enrichInstrumentPhysics(d: InstrumentDef): InstrumentDef {
   const isStruckAcousticString = id === 'piano' || id === 'dulcimer' || id === 'celeste';
 
   const bodyConstruction = d.bodyConstruction ?? (d.family === 'plucked'
-    ? (id.includes('electric') || id.includes('303') || id.includes('bass') ? 'solid-electric' : 'wood-box')
+    ? (/electric|overdrive|distortion|pick-bass|slap-bass|sub-bass/i.test(id) ? 'solid-electric' : 'wood-box')
     : undefined);
 
-  const drum = d.drum ?? (d.voicing === 'unpitched' && !d.kit ? { low: 36, mid: 38, high: 42 } : undefined);
+  // Never invent a generic GM drum kit for arbitrary unpitched/effect objects.
+  // Only actual percussion families may receive the low/mid/high fallback.
+  const isPercussionFamily = d.family === 'hand-drums' || d.family === 'metal-and-wood' || d.family === 'body-percussion' || d.family === 'kit';
+  const drum = d.drum ?? (d.voicing === 'unpitched' && isPercussionFamily ? { low: 36, mid: 38, high: 42 } : undefined);
 
   const transitionMechanics: TransitionMechanics = d.transitionMechanics ?? {
     legatoModes: isString ? ['hammer-on', 'pull-off', 'slide'] : isWind ? ['lip-slur', 'valve-cross'] : ['glissando'],
@@ -442,6 +446,7 @@ function enrichInstrumentPhysics(d: InstrumentDef): InstrumentDef {
   const articulations = d.techniques.articulations;
   return {
     ...d,
+    dspProfile: d.dspProfile ?? buildInstrumentDSPProfile(d),
     bodyConstruction: d.bodyConstruction ?? bodyConstruction,
     drum: d.drum ?? drum,
     transitionMechanics,

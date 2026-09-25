@@ -30,7 +30,7 @@ export const synth_strings: InstrumentDef = {
     articulationCapabilities: ["legato", "tremolo", "crescendo"]
   },
   techniques: {
-    articulations: ["accent", "staccato", "legato", "slide"],
+    articulations: ["accent", "staccato", "legato", "tremolo", "crescendo"],
     techniqueMethods: ["velocity programming", "filter motion", "pitch slide"],
     playingStyles: ["electronic", "pop", "dance"]
   }

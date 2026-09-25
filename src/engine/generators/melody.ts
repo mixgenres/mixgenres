@@ -3,6 +3,7 @@ import { VoiceProfile, foldToRange } from '../theory/instrumentProfile';
 import type { RhythmicContext } from '../sequencing/grid';
 import { rand01 } from './groove';
 import { resolveStyle } from '../../data/styles';
+import { pitchApproachFor } from '../performance/musicSemantics';
 
 export interface MotifNote {
   /** Position in beats from the start of the phrase */
@@ -360,6 +361,8 @@ export interface MelodyContext {
   wasLeap?: boolean;
   /** Upcoming chord for target anticipation */
   nextChord?: ParsedChord;
+  /** Phrase-development state inherited from the performance interpreter. */
+  phraseStage?: 'establish' | 'repeat' | 'vary' | 'answer' | 'transition' | 'ending' | 'rest' | 'cadence';
   /** Solo progress ratio (0..1) for register climaxing */
   progress?: number;
 }
@@ -435,6 +438,19 @@ export function melodyGate(c: MelodyContext): boolean {
   }
   const effectiveIntensity = Math.min(1.0, c.intensity + progressBonus);
 
+  // Phrase memory should affect melodic density too, not only the backing pattern.
+  // A repeated phrase stays recognizable, while a vary/answer/transition phrase gets
+  // more room to connect or deliberately leave space.
+  if (c.phraseStage === 'repeat' && !nearMotif(c, 0.72)) {
+    return rand01(c.seed ^ 0x51a7) > 0.72;
+  }
+  if (c.phraseStage === 'answer' && !nearMotif(c, 0.72)) {
+    return rand01(c.seed ^ 0x51a8) > 0.48;
+  }
+  if (c.phraseStage === 'rest') {
+    return c.beatInBar >= c.beatsPerBar - 0.5 && rand01(c.seed ^ 0x51a9) > 0.9;
+  }
+
   const grammar = soloGrammar(c);
   if (grammar) {
     const phraseBars = grammar.phraseBars ?? c.motif.phraseBars ?? 4;
@@ -471,6 +487,39 @@ export function melodyGate(c: MelodyContext): boolean {
 function nearMotif(c: MelodyContext, tolerance: number): boolean {
   const pos = c.barInPhrase * c.beatsPerBar + c.beatInBar;
   return c.motif.notes.some(n => Math.abs(n.pos - pos) <= tolerance);
+}
+
+function nextMotifNote(c: MelodyContext, pos: number): MotifNote | undefined {
+  for (const n of c.motif.notes) {
+    if (n.pos > pos + 0.16) return n;
+  }
+  return undefined;
+}
+
+function degreeForLine(c: MelodyContext, degree: number): number {
+  let d = degree;
+  if (c.treatment === 'lift') d += 2;
+  else if (c.treatment === 'answer') d = 4 - d;
+  if (c.layer === 1) d = c.heterophonic ? d : d - 2;
+  else if (c.layer >= 2) d += 4;
+  return d;
+}
+
+function scaleStepToward(reference: number, target: number, scale: number[]): number {
+  const direction = Math.sign(target - reference);
+  if (!direction || !scale.length) return reference;
+  const candidates: number[] = [];
+  for (let octave = -2; octave <= 2; octave++) {
+    for (const pc of scale) candidates.push(pc + 12 * octave);
+  }
+  const ordered = candidates
+    .filter(n => direction > 0 ? n > reference + 0.01 : n < reference - 0.01)
+    .sort((a, b) => Math.abs(a - reference) - Math.abs(b - reference));
+  const step = ordered[0];
+  if (step === undefined) return reference;
+  // Passing motion should feel connected, not force an octave leap of its own.
+  if (Math.abs(step - reference) > 5) return reference;
+  return step;
 }
 
 export function melodyNote(c: MelodyContext): { note: number | number[]; isLeap: boolean; rapidRun?: boolean; rapidRunScalePcs?: number[] } {
@@ -538,13 +587,11 @@ export function melodyNote(c: MelodyContext): { note: number | number[]; isLeap:
     // Force continuous Mixolydian scale relative to Key Tonic Pc (Prompt 16)
     scale = [0, 2, 4, 5, 7, 9, 10].map(iv => (c.key.tonicPc + iv) % 12);
   } else if (isRaga) {
-    // Raga Ascending/Descending (Arohana/Avarohana) Rules (Prompt 16)
-    const isRising = c.previous ? (c.previous < c.profile.centre + 6) : true;
-    if (isRising) {
-      scale = [0, 2, 4, 7, 9].map(iv => (c.key.tonicPc + iv) % 12);
-    } else {
-      scale = [11, 9, 7, 5, 4, 2, 0].map(iv => (c.key.tonicPc + iv) % 12);
-    }
+    // Do not invent a universal "raga scale". The authored cultural pitch set,
+    // style pitch intervals, or tuning system must supply the actual raga material.
+    // With none available, stay with the piece's explicit key rather than claiming
+    // a generic Indian scale is culturally representative.
+    scale = c.pitchSet?.length ? c.pitchSet : c.key.pcs;
   } else if (!c.pitchSet?.length && c.styleId) {
     try {
       const resolved = resolveStyle({ styleId: c.styleId! });
@@ -553,6 +600,8 @@ export function melodyNote(c: MelodyContext): { note: number | number[]; isLeap:
         scale = scalePcsForMode(grammar.scaleMode, c.key.tonicPc);
       } else if (resolved.melody?.pitchIntervals?.length) {
         scale = resolved.melody.pitchIntervals.map(iv => (c.key.tonicPc + iv) % 12);
+      } else if (resolved.contract.pitchIntervals?.length) {
+        scale = resolved.contract.pitchIntervals.map(iv => (c.key.tonicPc + iv) % 12);
       } else if (mode) {
         scale = scalePcsForMode(mode, c.key.tonicPc);
       }
@@ -585,18 +634,36 @@ export function melodyNote(c: MelodyContext): { note: number | number[]; isLeap:
   }
 
   // Chord-Tone vs. Passing-Tone Rules (Prompt 11)
+  const approach = pitchApproachFor({
+    instrumentId: c.profile.id ?? '',
+    role: c.profile.role,
+    styleId: c.styleId,
+    genreId: c.genreId,
+  });
   let isDownbeat = Math.abs(c.beatInBar - Math.round(c.beatInBar)) < 0.08;
   const isStrongBeat = Math.abs(c.beatInBar - Math.round(c.beatInBar)) < 0.12 && (Math.round(c.beatInBar) % 2 === 0);
   const onChordChange = c.beatInBar < 0.3;
   let shouldTargetChord = c.snapToChord !== false && (c.chordToneTargeting !== false) && (isStrongBeat || onChordChange);
 
-  if (isBagpipe) {
+  // Keep the pitch strategy explicit instead of letting every style collapse into
+  // generic chord-tone snapping. Tonal lines privilege roots/bass motion; modal
+  // and raga lines preserve their authored pitch vocabulary; diatonic lines use
+  // chord tones structurally but scale motion between them; mixed/chromatic lines
+  // are allowed controlled approach tones on weak beats.
+  if (approach === 'tonal') shouldTargetChord = false;
+  if (approach === 'modal' || isBagpipe || approach === 'raga') {
     isDownbeat = false;
     shouldTargetChord = false;
   }
 
   if (isDownbeat) {
-    const chordPcs = targetChord.intervals.map(iv => pcOf(targetChord.rootPc + iv));
+    if (approach === 'tonal') {
+      const rootTargetPc = targetChord.rootPc ?? target;
+      target = nearestPc(pcOf(rootTargetPc), target);
+    }
+    const chordPcs = approach === 'tonal'
+      ? [pcOf(targetChord.rootPc ?? target)]
+      : targetChord.intervals.map(iv => pcOf(targetChord.rootPc + iv));
     if (chordPcs.length > 0) {
       let bestNote = target;
       let minDistance = Infinity;
@@ -620,6 +687,48 @@ export function melodyNote(c: MelodyContext): { note: number | number[]; isLeap:
     // target, approach it from a semitone below rather than wandering randomly.
     if (grammar && /enclosure/i.test(strategy + ' ' + grammar.scaleMode) && c.beatInBar > 0 && c.beatInBar < 1.0 && rand01(c.seed ^ 0xace1) > 0.35) {
       target = desired - 1;
+    }
+  }
+
+  if (approach === 'chordal' && !isDownbeat && c.chord.intervals.length && rand01(c.seed ^ 0x4c27) > 0.58) {
+    const chordPcs = targetChord.intervals.map(iv => pcOf(targetChord.rootPc + iv));
+    if (chordPcs.length) {
+      target = nearestPc(chordPcs[Math.floor(rand01(c.seed ^ 0x7a12) * chordPcs.length) % chordPcs.length], target);
+    }
+  }
+
+  // Turn sparse note attacks into a line: on the way between authored motif anchors,
+  // choose the next scale step toward the upcoming anchor rather than re-selecting the
+  // nearest chord/root independently on every onset. Strong beats still carry the
+  // harmonic responsibility, while weak beats become connective motion.
+  const nextMotif = nextMotifNote(c, pos);
+  const betweenAnchors = c.previous !== undefined && nextMotif && best > 0.22;
+  if (betweenAnchors && !isDownbeat) {
+    const nextDegree = degreeForLine(c, nextMotif!.degree);
+    const nextIdx = ((nextDegree % scale.length) + scale.length) % scale.length;
+    const nextPc = scale[nextIdx];
+    const nextTarget = nearestPc(nextPc, target);
+    const connective = scaleStepToward(c.previous!, nextTarget, scale);
+    const preferConnection = c.phraseStage === 'transition' || c.phraseStage === 'vary' || rand01(c.seed ^ 0x5a21) > 0.22;
+    if (preferConnection && connective !== c.previous) {
+      target = connective;
+    }
+
+    // The richer line vocabulary is deliberately role/style dependent:
+    // chromatic approach is a choice, not the universal default. Jazz/blues,
+    // tango and some groove idioms can use a single semitone approach into an
+    // established target; modal/raga material stays within its authored pitch set.
+    if ((approach === 'chromatic' || approach === 'mixed') && target !== nextTarget) {
+      const chromaticAllowed = approach === 'chromatic'
+        || rand01(c.seed ^ 0x71d2) > 0.64;
+      const targetForApproach = nextTarget;
+      if (chromaticAllowed && Math.abs(targetForApproach - c.previous!) >= 2) {
+        const direction = Math.sign(targetForApproach - c.previous!);
+        const chromatic = targetForApproach - direction;
+        // Only use the chromatic neighbor on weak beats; the harmonic target
+        // remains responsible for the structural beat that follows.
+        if (!isStrongBeat && !isDownbeat) target = chromatic;
+      }
     }
   }
 
@@ -679,10 +788,33 @@ export interface PitchBendPoint { offset: number; value: number; }
 /** Genre-native expressive pitch idioms. Values use MIDI's 14-bit bend range. */
 export function melodyPitchBend(c: {
   midi: number; context: RhythmicContext; profile: VoiceProfile; genreId?: string; role: string;
-  chord: ParsedChord; key: KeyInfo; seed: number;
+  chord: ParsedChord; key: KeyInfo; seed: number; previousMidi?: number; durationSec?: number;
 }): PitchBendPoint[] | undefined {
   const genre = (c.genreId ?? '').toLowerCase();
   const isBluesRock = /blues|rock/.test(genre);
+  const inst = (c.profile.id ?? '').toLowerCase();
+  const isBlownLine = c.profile.sustain === 'blown' && /trumpet|trombone|sax|horn|clarinet|oboe|flute|whistle|pipe|voice/.test(inst);
+  const expressiveGenres = /jazz|swing|salsa|timba|ska|funk|gospel|blues|mariachi|soul|afrobeats/.test(genre);
+
+  // Blown players often shape the arrival instead of dropping a perfectly centered
+  // pitch onto the grid. Keep the gesture small: this is lip/air expression, not
+  // a physics simulator, and it only activates in styles/instruments where the
+  // source material already describes that vocabulary.
+  if (isBlownLine && expressiveGenres && c.previousMidi !== undefined) {
+    const interval = c.midi - c.previousMidi;
+    const absInterval = Math.abs(interval);
+    const roll = rand01(c.seed ^ 0x4b72);
+    if (absInterval >= 2 && absInterval <= 7 && roll > 0.48) {
+      const direction = Math.sign(interval);
+      const semitoneDip = Math.min(0.62, 0.18 + absInterval * 0.055);
+      const bend = Math.round(8192 - direction * semitoneDip * 4096);
+      const glide = Math.min(0.12, Math.max(0.045, (c.durationSec ?? 0.25) * 0.22));
+      return [
+        { offset: 0, value: bend },
+        { offset: glide, value: 8192 },
+      ];
+    }
+  }
   const transition = c.context.transition;
   if (transition?.type === 'drop-out' || transition?.type === 'corte') {
     const bend = 8192 - 1500;
@@ -712,6 +844,7 @@ export interface StyleOrnamentNote {
   timeOffsetBeats: number;
   durBeats: number;
   velocityMult: number;
+  articulation?: string;
 }
 
 /** Generate style-idiomatic ornament notes (grace notes, arrastres, turns, mordents, rolls, blues slurs) */
@@ -725,11 +858,15 @@ export function generateStyleOrnaments(
   profile: VoiceProfile,
   seed: number,
   rapidRun = false,
+  previousMidi?: number,
+  genreId?: string,
 ): StyleOrnamentNote[] {
   if (!ornamentVocab || ornamentVocab.length === 0) return [];
   const out: StyleOrnamentNote[] = [];
   const art = (articulation ?? '').toLowerCase();
   const vocab = new Set(ornamentVocab.map(v => v.toLowerCase()));
+  const inst = (profile.id ?? '').toLowerCase();
+  const genre = (genreId ?? '').toLowerCase();
 
   const roll = rand01(seed ^ 0xfe41);
   const isStrongBeat = Math.abs(targetBeat - Math.round(targetBeat)) < 0.12 && (Math.round(targetBeat) % 2 === 0);
@@ -756,8 +893,43 @@ export function generateStyleOrnaments(
       timeOffsetBeats: -0.30 + i * 0.10,
       durBeats: 0.07,
       velocityMult: 0.42 + i * 0.06,
+      articulation: /sax|trumpet|trombone|horn|flute|clarinet|oboe|whistle|pipe/i.test(inst) ? 'legato' : 'staccato',
     }));
     return out;
+  }
+
+  // Wind/brass passing gestures: a small chromatic or scale-neighbor lead-in
+  // gives the player somewhere to travel between phrase anchors instead of
+  // making every note an isolated attack. The genre gate keeps this out of
+  // traditions whose line ornament vocabulary does not call for it.
+  const isBlownLine = profile.sustain === 'blown' && /trumpet|trombone|sax|horn|clarinet|oboe|flute|whistle|pipe/.test(inst);
+  const gestureAllowed = /jazz|swing|salsa|timba|ska|funk|gospel|blues|mariachi|soul|afrobeats/.test(genre) ||
+    /bend|scoop|portamento|slide|fall|doit|legato/.test(Array.from(vocab).join(' '));
+  if (isBlownLine && gestureAllowed && previousMidi !== undefined && targetBeat > 0.3) {
+    const distance = targetMidi - previousMidi;
+    const absDistance = Math.abs(distance);
+    if (absDistance >= 3 && absDistance <= 8 && roll > 0.32) {
+      const direction = Math.sign(distance);
+      const midpoint = previousMidi + direction * Math.max(1, Math.min(absDistance - 1, Math.round(absDistance / 2)));
+      out.push({
+        midi: foldToRange(midpoint, profile),
+        timeOffsetBeats: -0.12,
+        durBeats: 0.055,
+        velocityMult: 0.36,
+        articulation: 'legato',
+      });
+      if (absDistance >= 6 && roll > 0.66) {
+        const nearTarget = targetMidi - direction * 1;
+        out.push({
+          midi: foldToRange(nearTarget, profile),
+          timeOffsetBeats: -0.055,
+          durBeats: 0.045,
+          velocityMult: 0.42,
+          articulation: 'legato',
+        });
+      }
+      return out;
+    }
   }
 
   // Bebop Enclosure (Prompt 11)
@@ -768,12 +940,14 @@ export function generateStyleOrnaments(
         timeOffsetBeats: -0.16,
         durBeats: 0.06,
         velocityMult: 0.40,
+        articulation: 'staccato',
       });
       out.push({
         midi: foldToRange(targetMidi - 1, profile),
         timeOffsetBeats: -0.08,
         durBeats: 0.05,
         velocityMult: 0.45,
+        articulation: 'staccato',
       });
     }
     return out;
@@ -784,10 +958,10 @@ export function generateStyleOrnaments(
   if (isCelticInstrument && isStrongBeat) {
     if (roll > 0.5) {
       // 5-note roll: target, target+2, target, target-1, target
-      out.push({ midi: foldToRange(targetMidi + 2, profile), timeOffsetBeats: -0.16, durBeats: 0.04, velocityMult: 0.35 });
-      out.push({ midi: targetMidi, timeOffsetBeats: -0.12, durBeats: 0.04, velocityMult: 0.40 });
-      out.push({ midi: foldToRange(targetMidi - 1, profile), timeOffsetBeats: -0.08, durBeats: 0.04, velocityMult: 0.30 });
-      out.push({ midi: targetMidi, timeOffsetBeats: -0.04, durBeats: 0.04, velocityMult: 0.45 });
+      out.push({ midi: foldToRange(targetMidi + 2, profile), timeOffsetBeats: -0.16, durBeats: 0.04, velocityMult: 0.35, articulation: 'roll' });
+      out.push({ midi: targetMidi, timeOffsetBeats: -0.12, durBeats: 0.04, velocityMult: 0.40, articulation: 'roll' });
+      out.push({ midi: foldToRange(targetMidi - 1, profile), timeOffsetBeats: -0.08, durBeats: 0.04, velocityMult: 0.30, articulation: 'roll' });
+      out.push({ midi: targetMidi, timeOffsetBeats: -0.04, durBeats: 0.04, velocityMult: 0.45, articulation: 'roll' });
     } else {
       // Cut: a rapid flick to a higher pitch (target + 3)
       out.push({
@@ -795,6 +969,7 @@ export function generateStyleOrnaments(
         timeOffsetBeats: -0.08,
         durBeats: 0.04,
         velocityMult: 0.40,
+        articulation: 'grace',
       });
     }
     return out;
@@ -810,6 +985,7 @@ export function generateStyleOrnaments(
         timeOffsetBeats: -0.20 + i * 0.05,
         durBeats: 0.04,
         velocityMult: 0.35 + i * 0.15,
+        articulation: 'latigo',
       });
     }
     return out;
@@ -824,6 +1000,7 @@ export function generateStyleOrnaments(
         timeOffsetBeats: -0.12,
         durBeats: 0.06,
         velocityMult: 0.45,
+        articulation: 'arrastre',
       });
     }
     return out;
@@ -838,6 +1015,7 @@ export function generateStyleOrnaments(
         timeOffsetBeats: -0.08,
         durBeats: 0.04,
         velocityMult: 0.40,
+        articulation: 'grace',
       });
     }
     return out;
@@ -851,12 +1029,14 @@ export function generateStyleOrnaments(
       timeOffsetBeats: -0.10,
       durBeats: 0.045,
       velocityMult: 0.35,
+      articulation: 'mordent',
     });
     out.push({
       midi: targetMidi,
       timeOffsetBeats: -0.05,
       durBeats: 0.04,
       velocityMult: 0.45,
+      articulation: 'mordent',
     });
     return out;
   }
@@ -865,9 +1045,9 @@ export function generateStyleOrnaments(
   if ((vocab.has('turn') || /turn/.test(art)) && roll > 0.6) {
     const upper = targetMidi + 2;
     const lower = targetMidi - 2;
-    out.push({ midi: foldToRange(upper, profile), timeOffsetBeats: -0.14, durBeats: 0.04, velocityMult: 0.32 });
-    out.push({ midi: targetMidi, timeOffsetBeats: -0.09, durBeats: 0.04, velocityMult: 0.38 });
-    out.push({ midi: foldToRange(lower, profile), timeOffsetBeats: -0.045, durBeats: 0.04, velocityMult: 0.30 });
+    out.push({ midi: foldToRange(upper, profile), timeOffsetBeats: -0.14, durBeats: 0.04, velocityMult: 0.32, articulation: 'grace' });
+    out.push({ midi: targetMidi, timeOffsetBeats: -0.09, durBeats: 0.04, velocityMult: 0.38, articulation: 'grace' });
+    out.push({ midi: foldToRange(lower, profile), timeOffsetBeats: -0.045, durBeats: 0.04, velocityMult: 0.30, articulation: 'grace' });
     return out;
   }
 

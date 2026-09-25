@@ -4,6 +4,7 @@ import { getLuthierModelForInstrument, type LuthierPhysicalParameters } from '..
 import { seedOf, randNorm } from '../generators/groove';
 import type { MixCharacter } from '../../data/styles/contracts';
 import { calculateSidechainDepth, calculateDrumKnock } from '../audio/mixer';
+import type { InstrumentDSPProfile } from '../../data/instruments/physicalDspProfile';
 type Node = any;
 /**
 Physical Karplus-Strong waveguide string loop.
@@ -443,6 +444,8 @@ const rawDecayTime = Math.max(0.05, params.decay);
 const muteDamping = Math.max(0.08, 1 - 0.88 * params.mute);
 const decayTime = rawDecayTime * muteDamping;
 const model = params.performanceMode === 'programmed-electronic' ? 9 : Math.round(params.model);
+const instrumentDef = params.instrumentId ? INSTRUMENTS_BY_ID[params.instrumentId] : undefined;
+const dspProfile: InstrumentDSPProfile | undefined = instrumentDef?.dspProfile;
 const action = voice.actionType ?? (params.bodyTap > 0.5 ? 'golpe' : 'pluck');
 const isMuted = action === 'mute' || params.mute > 0.4;
 
@@ -460,7 +463,10 @@ const attackSignal = el.const({ key: `${pk}_attack`, value: attack });
 const decaySignal = el.const({ key: `${pk}_decay`, value: envDecay });
 const sustainSignal = el.const({ key: `${pk}_sustain`, value: sustain });
 const releaseSignal = el.const({ key: `${pk}_release`, value: release });
-const env = el.adsr(attackSignal, decaySignal, sustainSignal, releaseSignal, gateSignal);
+let env = el.adsr(attackSignal, decaySignal, sustainSignal, releaseSignal, gateSignal);
+if (dspProfile?.excitationDynamics.continuousReservoir?.articulationNeverSilences) {
+  env = el.adsr(0.002, 0.018, 1.0, Math.max(0.018, release * 0.35), gateSignal);
+}
 let rawAudio: Node;
 if (action === 'golpe' || action === 'tap' || action === 'golpe-caja') {
   const bodyPunch = el.mul(el.cycle(110), el.adsr(0.0005, 0.02, 0, 0.01, gateSignal));
@@ -920,7 +926,8 @@ case 7: {
   const safeDynamicFreqSignal = el.min(el.const({ value: 19000 }), el.max(el.const({ value: 20 }), dynamicFreqSignal));
 
   const breath = el.mul(0.12 * (1 - params.pressure) * breathDev, el.noise());
-  const exciterEnv = el.adsr(0.015, 0.06, 0.70, 0.05, gateSignal);
+  const isReservoir = Boolean(dspProfile?.excitationDynamics.continuousReservoir?.articulationNeverSilences);
+  const exciterEnv = isReservoir ? el.const({ value: 1 }) : el.adsr(0.015, 0.06, 0.70, 0.05, gateSignal);
   const phasor = el.syncphasor(safeDynamicFreqSignal, gateSignal);
   // Flute is closer to a sine/triangle, raw saw is too harsh
   const coreTone = el.add(
@@ -1150,25 +1157,68 @@ case 14: {
   break;
 }
 case 10: {
-  // Triple-reed "Musette" / thick Bandoneón tuning
-  const f1 = freqSignal;
-  const f2 = el.mul(freqSignal, 1.0045); // + ~7 cents
-  const f3 = el.mul(freqSignal, 0.9955); // - ~7 cents
-  const reed1 = el.blepsaw(f1);
-  const reed2 = el.blepsaw(f2);
-  const reed3 = el.blepsaw(f3);
-  const reedSum = el.add(el.mul(0.4, reed1), el.add(el.mul(0.3, reed2), el.mul(0.3, reed3)));
+  const idLower = (params.instrumentId ?? '').toLowerCase();
+  const isBandoneon = idLower === 'bandoneon';
+  const isConcertina = idLower === 'concertina';
+  const isAccordion = idLower === 'accordion';
 
-  // Cassotto tone chamber filter (Bandoneón / Accordion):
-  // 900Hz, Q=1.5 bandpass imparts a vocal, weeping acoustic resonance rather than a raw synth buzz
-  const cassotto = el.svf({ mode: 'bandpass' }, 900, 1.5, reedSum);
-  const shapedReeds = el.add(el.mul(0.65, cassotto), el.mul(0.35, reedSum));
+  // Free reeds are pressure-driven, not generic subtractive oscillators.
+  // Bandoneón specifically uses dry 8' + 4' banks: no musette detuning.
+  const eightFoot = el.blepsaw(freqSignal);
+  const fourFoot = el.blepsaw(el.mul(freqSignal, 2));
+  const sixteenFoot = el.blepsaw(el.mul(freqSignal, 0.5));
+  const registerText = `${voice.technique ?? ''} ${voice.hitType ?? ''} ${voice.articulation ?? ''}`.toLowerCase();
+  const musetteRegister = isAccordion && registerText.includes('musette');
+  const dryRegister = isAccordion && (registerText.includes('dry') || registerText.includes('master') || registerText.includes('clarinet'));
+  const reedCore = isBandoneon
+    ? el.add(el.mul(0.72, eightFoot), el.mul(0.28, fourFoot))
+    : isConcertina
+      ? el.add(el.mul(0.76, eightFoot), el.mul(0.24, fourFoot))
+      : isAccordion && musetteRegister
+        ? el.add(el.mul(0.31, el.blepsaw(el.mul(freqSignal, 0.986))), el.mul(0.38, eightFoot), el.mul(0.31, el.blepsaw(el.mul(freqSignal, 1.014))))
+        : isAccordion && dryRegister
+          ? el.add(el.mul(0.20, sixteenFoot), el.mul(0.58, eightFoot), el.mul(0.22, fourFoot))
+          : isAccordion
+            ? el.add(el.mul(0.34, sixteenFoot), el.mul(0.56, eightFoot), el.mul(0.10, fourFoot))
+            : el.add(el.mul(0.72, eightFoot), el.mul(0.28, fourFoot));
 
-  // Bellows breath/noise layer that swells dynamically with the note gate
-  const bellowsNoise = el.mul(el.pinknoise(), el.mul(gateSignal, 0.1));
-  const toneWithBellows = el.add(shapedReeds, bellowsNoise);
+  const reservoir = dspProfile?.excitationDynamics.continuousReservoir;
+  const bellows = dspProfile?.excitationDynamics.bisonoricAsymmetry;
+  const bellowsClosing = /cerrar|closing|close|push|pushing/.test(`${action} ${(voice.hitType ?? '')}`.toLowerCase());
+  const pressure = reservoir?.pressure ?? params.pressure;
+  const directionBias = bellows
+    ? (bellowsClosing ? bellows.closing.pressure : bellows.opening.pressure)
+    : 1;
+  const directionFormant = bellows ? (bellowsClosing ? 1 + bellows.closing.formantShift : 1 + bellows.opening.formantShift) : 1;
 
-  rawAudio = el.lowpass(Math.min(19000, 800 + b * 4200), 1.1, toneWithBellows);
+  const reedPressure = el.mul(
+    reedCore,
+    el.add(el.const({ value: 0.70 + pressure * 0.42 }), el.mul(el.const({ value: 0.18 * directionBias }), velSignal))
+  );
+
+  const chamberFreq = (isBandoneon ? 820 : isAccordion ? 860 : 1050) * directionFormant;
+  const chamberQ = isBandoneon ? 2.2 : 1.7;
+  const chamber = el.svf({ mode: 'bandpass' }, chamberFreq, chamberQ, reedPressure);
+  const secondChamber = el.svf({ mode: 'bandpass' }, chamberFreq * 2.03, 2.0, reedPressure);
+
+  const flowNoise = el.mul(
+    el.lowpass(4200 + b * 2200, 0.8, el.pinknoise()),
+    el.mul(0.045 + (dspProfile?.mechanicalArtifacts.bellowsNoise ?? 0) * 0.16, gateSignal)
+  );
+
+  let bellowsImpact: any = el.const({ value: 0 });
+  if (isBandoneon) {
+    const knee = dspProfile?.excitationDynamics.kneeDropImpact;
+    const kneeEnv = el.adsr(0.0002, (knee?.decayMs ?? 18) / 1000, 0, 0.004, gateSignal);
+    const kneeNoise = el.highpass(1800 + b * 2500, 0.8, el.noise());
+    bellowsImpact = el.mul((knee?.gain ?? 0.8) * (0.35 + velBoost * 0.7), el.mul(kneeNoise, kneeEnv));
+  }
+
+  rawAudio = el.lowpass(
+    Math.min(19000, (isBandoneon ? 5200 : 4200) + b * 5200),
+    1.0,
+    el.add(el.mul(0.58, reedPressure), el.add(el.mul(0.42, chamber), el.add(el.mul(0.10, secondChamber), el.add(flowNoise, bellowsImpact))))
+  );
   break;
 }
 case 8: {
@@ -1208,11 +1258,12 @@ default: {
 
   let impulse: Node;
   if (isRasgueado) {
-    const b1 = el.adsr(0.0003, 0.006, 0, 0.003, gateSignal);
-    const b2 = el.adsr(0.003, 0.006, 0, 0.003, gateSignal);
-    const b3 = el.adsr(0.006, 0.006, 0, 0.003, gateSignal);
+    const burstCount = 5;
+    const bursts = Array.from({ length: burstCount }, (_, i) =>
+      el.adsr(0.0003 + i * 0.003, 0.0055, 0, 0.0025, gateSignal)
+    );
     const rasgNoise = el.add(el.mul(0.6, broadbandPluck), el.mul(0.4, el.noise()));
-    impulse = el.mul(rasgNoise, el.add(b1, el.add(b2, b3)));
+    impulse = el.mul(rasgNoise, bursts.reduce((acc, burst) => el.add(acc, burst), el.const({ value: 0 })));
   } else if (excitation === 'hard-pick') {
     const burstEnv = el.adsr(0.0002, 0.0035, 0, 0.002, gateSignal);
     const burstNoise = el.add(el.mul(0.65, broadbandPluck), el.mul(0.35, el.svf({ mode: 'bandpass' }, 2200, 1.2, el.noise())));
@@ -1279,6 +1330,7 @@ default: {
   // Sitar / Shamisen / Tambura "Jawari" Buzz Bridge:
   // Flat bridge causes string to buzz hard on attack and gradually settle into purer sustain
   const instId = (params.instrumentId ?? '').toLowerCase();
+  const physical = dspProfile?.physicalDetails;
   const hasJawari = /sitar|shamisen|tambura/.test(instId);
   if (hasJawari) {
     // Sitar/Shamisen bridge buzz: highly non-linear, bright spectral multiplier
@@ -1318,6 +1370,45 @@ default: {
     bodyOut = el.add(stringSignal, el.add(el.mul(0.35, airRes), el.add(el.mul(0.25, woodRes), el.mul(0.15, topRes))));
   }
 
+  // Instrument-specific resonator mechanisms. These are intentionally keyed to the physical
+  // mechanism, not merely the instrument family, so obscure instruments do not collapse into
+  // a generic guitar/zither/drum/wind preset.
+  if (physical) {
+    const sys = physical.system;
+    const r = physical.response;
+    if (sys === 'long-zither') {
+      const ji = el.svf({ mode: 'bandpass' }, 980 + safeFreqSignal * 0.55, 5.2, stringSignal);
+      const board = el.svf({ mode: 'bandpass' }, 165, 2.8, stringSignal);
+      const tsume = el.mul(0.08 + r.contactHardness * 0.10, el.mul(el.highpass(3200, 1.1, el.noise()), collisionEnv));
+      bodyOut = el.add(bodyOut, el.mul(r.bodyCoupling * 0.18, board), el.mul(0.10, ji), tsume);
+    } else if (sys === 'bridge-less-long-zither') {
+      const softBody = el.svf({ mode: 'bandpass' }, 120, 1.8, stringSignal);
+      const floatingHarmonic = el.svf({ mode: 'bandpass' }, safeFreqSignal * 2, 7.0, stringSignal);
+      bodyOut = el.add(el.mul(0.82, bodyOut), el.mul(r.bodyCoupling * 0.16, softBody), el.mul(0.12, floatingHarmonic));
+    } else if (sys === 'multi-string-bridge-zither') {
+      const bridge = el.svf({ mode: 'bandpass' }, 1150, 3.8, stringSignal);
+      const afterlength = el.svf({ mode: 'bandpass' }, safeFreqSignal * 1.5, 18, stringSignal);
+      bodyOut = el.add(bodyOut, el.mul(0.12 + r.bodyCoupling * 0.08, bridge), el.mul(0.10, afterlength));
+    } else if (sys === 'fretted-lute') {
+      const fretClick = el.mul(0.06 + r.contactHardness * 0.06, el.mul(el.highpass(2600, 1.2, el.noise()), collisionEnv));
+      bodyOut = el.add(bodyOut, fretClick);
+    } else if (sys === 'unfretted-skin-lute') {
+      const skinRing = el.svf({ mode: 'bandpass' }, 520, 4.2, stringSignal);
+      bodyOut = el.add(bodyOut, el.mul(0.18, skinRing));
+    } else if (sys === 'fretted-lute-with-sympathetics') {
+      const jawari = el.svf({ mode: 'bandpass' }, Math.min(9000, safeFreqSignal * 3.8), 8.0, stringSignal);
+      bodyOut = el.add(bodyOut, el.mul(r.nonlinearTransfer * 0.28, jawari));
+    } else if (sys === 'five-string-plucked-membrane-resonator') {
+      const head = el.svf({ mode: 'bandpass' }, 900, 5.5, stringSignal);
+      const rim = el.svf({ mode: 'bandpass' }, 1850, 2.6, stringSignal);
+      bodyOut = el.add(bodyOut, el.mul(0.22, head), el.mul(0.08, rim));
+    } else if (sys === 'single-string-bowed-flexible-bow') {
+      const gourdOpen = el.svf({ mode: 'bandpass' }, 420, 2.8, stringSignal);
+      const stick = el.mul(0.08, el.mul(el.highpass(1800, 1.0, el.noise()), collisionEnv));
+      bodyOut = el.add(bodyOut, el.mul(0.25 + params.mute * 0.15, gourdOpen), stick);
+    }
+  }
+
   let finalAcoustic = bodyOut;
   if (hasSympathetic) {
     const droneBase = 146.83; 
@@ -1335,6 +1426,147 @@ default: {
   rawAudio = el.lowpass(filterCutoff, 1.0, finalAcoustic);
   break;
 }}
+// Instrument-specific physical coupling layer. This is deliberately applied after the family model:
+// the model supplies the excitation, while the profile supplies material, body, mechanics and style behavior.
+if (dspProfile) {
+  const x = dspProfile.excitationDynamics;
+  const c = dspProfile.coupledResonators;
+  const a = dspProfile.mechanicalArtifacts;
+  const ap = dspProfile.articulationPhysics;
+  const dialect = params.dialect ? dspProfile.genreDialects[params.dialect.toLowerCase()] : undefined;
+  const physical = dspProfile.physicalDetails;
+  const dialectAttack = dialect?.attack ?? 1;
+  const dialectBrightness = dialect?.brightness ?? 1;
+  const dialectDamping = dialect?.damping ?? 0;
+  const directionText = `${action} ${(voice.hitType ?? '')}`.toLowerCase();
+  const bisonoric = dspProfile?.excitationDynamics.bisonoricAsymmetry;
+  const directionPhysicalGain = bisonoric
+    ? (/cerrar|closing|close|push|pushing|down/.test(directionText) ? bisonoric.closing.pressure : bisonoric.opening.pressure)
+    : 1;
+  const modeSignals: Node[] = [];
+  for (let i = 0; i < Math.min(4, c.bodyModes.length); i++) {
+    const m = c.bodyModes[i];
+    modeSignals.push(el.mul(
+      m.gain * (0.72 + (physical?.response.bodyCoupling ?? 0.5) * 0.48),
+      el.svf({ mode: 'bandpass' }, Math.min(19000, Math.max(30, freq * m.ratio * (1 + (physical?.response.inharmonicity ?? 0) * i * 0.006))), Math.max(0.6, m.q * (0.72 + (physical?.response.resonatorQ ?? 0.5) * 0.42)), rawAudio)
+    ));
+  }
+  if (c.soundboard) {
+    const sb = c.soundboard;
+    const thudEnv = el.adsr(0.0003, 0.018 + sb.coupling * 0.03, 0, 0.012, gateSignal);
+    const thud = el.mul(sb.thudGain * (0.5 + params.body), el.mul(el.svf({ mode: 'bandpass' }, sb.thudHz, 1.7, el.pinknoise()), thudEnv));
+    modeSignals.push(thud);
+  }
+  if (c.membrane2D) {
+    const m = c.membrane2D;
+    const center = ap.strikeZoneLocation === 'center' || action === 'heel' || action === 'toe';
+    const edge = ap.strikeZoneLocation === 'edge' || ap.strikeZoneLocation === 'rim' || action === 'rim';
+    const radialFreq = Math.max(45, freq * (1 + (center ? 0 : 0.045 * m.radial)));
+    const circularFreq = Math.max(80, freq * (edge ? 1.65 : 1.25 + m.circular * 0.3));
+    const radial = el.mul(m.tension * (center ? 0.34 : 0.20) * (1 - 0.18 * m.damping), el.svf({ mode: 'bandpass' }, Math.min(18000, radialFreq), 3.5, rawAudio));
+    const circular = el.mul(m.strikeZoneSensitivity * (edge ? 0.34 : 0.12) * (1 - 0.12 * m.damping), el.svf({ mode: 'bandpass' }, Math.min(18000, circularFreq), 2.4, rawAudio));
+    modeSignals.push(radial, circular);
+  }
+  if (c.sympathetic) {
+    const s = c.sympathetic;
+    const sympatheticNodes = s.ratios.slice(0, 6).map((ratio, i) =>
+      el.mul(s.coupling * (1 - i * 0.10) * (s.decayScale ?? 1), el.svf({ mode: 'bandpass' }, Math.min(18000, Math.max(30, freq * ratio)), s.q, rawAudio))
+    );
+    modeSignals.push(...sympatheticNodes);
+  }
+
+  // Physical attack artifacts are velocity-coupled and therefore cannot be represented by a fixed ADSR attack alone.
+  const collisionEnv = el.adsr(0.0001, Math.max(0.0015, 0.004 + (1 - x.hardness) * 0.008), 0, 0.002, gateSignal);
+  if (x.attackCollision > 0.05) {
+    const collision = el.mul(
+      x.attackCollision * (0.70 + (physical?.response.contactHardness ?? 0.5) * 0.52) * dialectAttack * directionPhysicalGain * (0.08 + 0.16 * velBoost),
+      el.mul(el.highpass(1200 + x.spectralSpread * 4200, 0.9, el.noise()), collisionEnv)
+    );
+    modeSignals.push(collision);
+  }
+  if (a.airHiss > 0.02) {
+    const hiss = el.mul(a.airHiss * (0.03 + 0.10 * params.pressure), el.mul(el.highpass(3000, 0.8, el.noise()), el.mul(gateSignal, 0.65)));
+    modeSignals.push(hiss);
+  }
+  if (a.pickZing > 0.02) {
+    const zing = el.mul(a.pickZing * 0.10, el.mul(el.svf({ mode: 'bandpass' }, 4800 + b * 2600, 3.2, el.noise()), collisionEnv));
+    modeSignals.push(zing);
+  }
+  if (a.stringSqueak > 0.02 && (action === 'slide' || action === 'legato' || action === 'slur')) {
+    modeSignals.push(el.mul(a.stringSqueak * 0.12, el.mul(el.highpass(2500, 1.0, el.noise()), collisionEnv)));
+  }
+  if (a.keyThud > 0.02 || a.valveClick > 0.02 || (a.keyworkClick ?? 0) > 0.02 || (a.palletClick ?? 0) > 0.02) {
+    const mechanical = el.mul((a.keyThud + a.valveClick + (a.keyworkClick ?? 0) + (a.palletClick ?? 0)) * 0.10, el.mul(el.svf({ mode: 'bandpass' }, 1100 + b * 900, 2.4, el.noise()), collisionEnv));
+    modeSignals.push(mechanical);
+  }
+  if ((a.slideNoise ?? 0) > 0.02) {
+    const slide = el.mul((a.slideNoise ?? 0) * 0.08, el.mul(el.highpass(1800, 1.0, el.pinknoise()), collisionEnv));
+    modeSignals.push(slide);
+  }
+  if ((a.reedChatter ?? 0) > 0.02) {
+    const reed = el.mul((a.reedChatter ?? 0) * 0.06, el.mul(el.highpass(2400, 1.0, el.noise()), collisionEnv));
+    modeSignals.push(reed);
+  }
+  if ((a.bellowsFold ?? 0) > 0.02) {
+    const fold = el.mul((a.bellowsFold ?? 0) * 0.05, el.mul(el.lowpass(1800, 0.9, el.pinknoise()), el.mul(gateSignal, 0.7)));
+    modeSignals.push(fold);
+  }
+  if ((a.bowRosin ?? 0) > 0.02 && (action === 'bow_drag' || action === 'legato' || action === 'slur')) {
+    const rosin = el.mul((a.bowRosin ?? 0) * 0.06, el.mul(el.highpass(1500, 1.1, el.pinknoise()), collisionEnv));
+    modeSignals.push(rosin);
+  }
+  if ((a.hammerClick ?? 0) > 0.02) {
+    const click = el.mul((a.hammerClick ?? 0) * 0.08, el.mul(el.highpass(2800, 1.0, el.noise()), collisionEnv));
+    modeSignals.push(click);
+  }
+  if ((a.membraneFingerNoise ?? 0) > 0.02 && (action === 'tap' || action === 'slap' || action === 'strike' || action === 'staccato')) {
+    const finger = el.mul((a.membraneFingerNoise ?? 0) * 0.07, el.mul(el.highpass(2200, 1.0, el.noise()), collisionEnv));
+    modeSignals.push(finger);
+  }
+  if ((a.seedRattle ?? 0) > 0.02) {
+    const rattle = el.mul((a.seedRattle ?? 0) * 0.06, el.mul(el.highpass(1800, 0.8, el.noise()), el.mul(gateSignal, 0.8)));
+    modeSignals.push(rattle);
+  }
+  if ((a.fippleNoise ?? 0) > 0.02) {
+    const fipple = el.mul((a.fippleNoise ?? 0) * 0.06, el.mul(el.highpass(2600, 0.9, el.noise()), collisionEnv));
+    modeSignals.push(fipple);
+  }
+  if ((a.muteContact ?? 0) > 0.02) {
+    const muteContact = el.mul((a.muteContact ?? 0) * 0.06, el.mul(el.lowpass(1400, 0.9, el.noise()), collisionEnv));
+    modeSignals.push(muteContact);
+  }
+  if (a.bodyKnock > 0.02 || a.handContact > 0.02) {
+    const knock = el.mul((a.bodyKnock + a.handContact) * 0.08, el.mul(el.svf({ mode: 'bandpass' }, c.soundboard?.thudHz ?? 120, 1.4, el.pinknoise()), collisionEnv));
+    modeSignals.push(knock);
+  }
+  if (a.rimImpact > 0.02) {
+    const rim = el.mul(a.rimImpact * (0.05 + 0.08 * velBoost), el.mul(el.highpass(1700 + x.spectralSpread * 1800, 1.2, el.noise()), collisionEnv));
+    modeSignals.push(rim);
+  }
+  if (a.damperNoise > 0.02 && (action === 'mute' || action === 'staccato' || action === 'release')) {
+    const damper = el.mul(a.damperNoise * 0.07, el.mul(el.lowpass(2200, 1.0, el.noise()), collisionEnv));
+    modeSignals.push(damper);
+  }
+  if (c.bridge?.buzz > 0.25) {
+    const bridgeEnv = el.adsr(0.001, Math.max(0.02, c.bridge.settlingMs / 1000), 0.10, 0.04, gateSignal);
+    const buzz = el.mul(c.bridge.buzz * 0.12, el.mul(el.highpass(2600, 2.2, el.noise()), bridgeEnv));
+    modeSignals.push(buzz);
+  }
+  if (modeSignals.length) {
+    rawAudio = el.add(rawAudio, ...modeSignals);
+  }
+  const drive = 1 + (x.nonlinearDrive + (physical?.response.nonlinearTransfer ?? 0) * 0.18) * (0.4 + 1.2 * velBoost) + Math.max(0, (dialectAttack - 1) * 0.12);
+  rawAudio = el.tanh(el.mul(drive, rawAudio));
+  if (dialectBrightness !== 1) {
+    const dialectCutoff = Math.min(19000, Math.max(900, (1800 + b * 9500) * dialectBrightness));
+    rawAudio = el.lowpass(dialectCutoff, 1.0, rawAudio);
+  }
+  if (dialectDamping !== 0) {
+    const dampingCutoff = Math.min(19000, Math.max(700, 12000 * (1 - dialectDamping)));
+    rawAudio = el.lowpass(dampingCutoff, 1.0, rawAudio);
+  }
+}
+
 const releaseGate = el.sub(1, gateSignal);
 const damperThump = (model === 11 || model === 19 || model === 20)
 ? el.mul(0.14, el.mul(el.lowpass(400, 1.2, el.noise()), el.adsr(0.0002, 0.018, 0, 0.008, releaseGate)))

@@ -33,8 +33,8 @@ export const woodblock: InstrumentDef = {
     harmonicRichness: 0.35
   },
   techniques: {
-    articulations: ["accent", "ghost", "roll", "staccato"],
-    techniqueMethods: ["open hit", "damped hit", "roll", "scrape/shake"],
-    playingStyles: ["folk", "world", "dance"]
+    articulations: ["accent", "staccato"],
+    techniqueMethods: ["hard center strike", "damped edge touch", "alternating pitch-block ostinato"],
+    playingStyles: ["folk", "ensemble-percussion", "orchestral", "latin"]
   }
 };

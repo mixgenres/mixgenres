@@ -107,7 +107,7 @@ export const cajon: InstrumentDef = {
     }
   },
   techniques: {
-    articulations: ["accent", "staccato", "slap", "ghost", "golpe", "roll"],
+    articulations: ["accent", "low-tone", "slap", "ghost", "golpe", "brushed", "roll", "tip", "staccato"],
     techniqueMethods: [
       "center palm bass thump",
       "corner finger snare slap",

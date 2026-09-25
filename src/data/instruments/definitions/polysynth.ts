@@ -30,7 +30,7 @@ export const polysynth: InstrumentDef = {
     articulationCapabilities: ["staccato", "legato", "portamento"]
   },
   techniques: {
-    articulations: ["accent", "staccato", "legato", "slide"],
+    articulations: ["accent", "staccato", "legato", "portamento"],
     techniqueMethods: ["velocity programming", "filter motion", "pitch slide"],
     playingStyles: ["electronic", "pop", "dance"]
   }

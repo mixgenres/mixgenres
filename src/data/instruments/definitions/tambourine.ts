@@ -34,7 +34,7 @@ export const tambourine: InstrumentDef = {
   },
   techniques: {
     articulations: ["accent", "ghost", "roll", "staccato"],
-    techniqueMethods: ["open hit", "damped hit", "roll", "scrape/shake"],
-    playingStyles: ["folk", "world", "dance"]
+    techniqueMethods: ["jingle shake", "thumb roll", "head or frame strike", "damped shake"],
+    playingStyles: ["march", "folk", "rock", "pop", "flamenco", "latin"]
   }
 };

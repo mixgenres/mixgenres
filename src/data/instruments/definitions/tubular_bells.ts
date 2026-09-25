@@ -29,8 +29,8 @@ export const tubular_bells: InstrumentDef = {
     harmonicRichness: 0.8
   },
   techniques: {
-    articulations: ["accent", "ghost", "roll", "staccato"],
-    techniqueMethods: ["open hit", "damped hit", "roll", "scrape/shake"],
-    playingStyles: ["folk", "world", "dance"]
+    articulations: ["accent", "staccato", "legato"],
+    techniqueMethods: ["felt mallet strike", "controlled damping", "ringing decay management"],
+    playingStyles: ["orchestral", "cinematic", "ceremonial", "ambient"]
   }
 };

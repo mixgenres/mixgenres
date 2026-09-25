@@ -35,8 +35,8 @@ export const palmas: InstrumentDef = {
     harmonicRichness: 0.5
   },
   techniques: {
-    articulations: ["accent", "ghost", "roll", "staccato"],
-    techniqueMethods: ["open hit", "damped hit", "roll", "scrape/shake"],
-    playingStyles: ["folk", "world", "dance"]
+    articulations: ["accent", "ghost", "staccato", "open"],
+    techniqueMethods: ["palmas sordas", "palmas fuertes", "base and second-voice patterns", "flamenco compas accents"],
+    playingStyles: ["flamenco", "bulerias", "solea", "tangos", "rumba", "cantiñas", "sevillanas"]
   }
 };

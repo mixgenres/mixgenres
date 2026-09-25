@@ -9,6 +9,8 @@ import type {
 import { rand01, seedOf } from '../generators/groove';
 import type { ParsedChord } from '../theory/theory';
 import { resolveCrossInstrumentArticulation, applyGenreArticulationInfluence } from '../theory/articulation';
+import { INSTRUMENTS_BY_ID } from '../../data/instruments';
+import { resolveInstrumentArticulation, translateRhythmToInstrument } from './musicSemantics';
 
 export function applyArticulationDynamics(_baseVelocity: number, articulation: string): number {
   switch (articulation) {
@@ -33,24 +35,23 @@ export function applyArticulationDynamics(_baseVelocity: number, articulation: s
 function getTargetInstrumentFamily(instrumentId?: string, role?: string): string {
   const inst = (instrumentId || '').toLowerCase();
   const r = (role || '').toLowerCase();
-  if (inst.includes('piano') || inst.includes('rhodes') || inst.includes('clavinet') || inst.includes('organ') || inst.includes('harpsichord') || inst.includes('celeste') || r === 'piano' || r === 'keyboard') {
-    return 'piano';
+  const def = instrumentId ? INSTRUMENTS_BY_ID[instrumentId] : undefined;
+  if (def) {
+    if (def.family === 'hand-drums' || def.family === 'metal-and-wood' || def.family === 'body-percussion' || def.family === 'kit') return 'percussion';
+    if (def.family === 'electronic') return 'synth';
+    if (def.family === 'plucked' || def.family === 'plucked-string') return /bass|bajo|contrabajo|guitarron/i.test(inst) || r === 'bass' ? 'bass' : 'guitar';
+    if (def.family === 'bowed') return 'strings';
+    if (def.family === 'brass') return 'brass';
+    if (def.family === 'winds' || def.family === 'free-reed') return 'winds';
+    if (def.family === 'bellows-and-keys') return 'piano';
   }
-  if (inst.includes('synth') || inst.includes('lead') || inst.includes('pad') || inst.includes('303') || inst.includes('polysynth') || inst.includes('saw')) {
-    return 'synth';
-  }
-  if (inst.includes('guitar') || inst.includes('tres') || inst.includes('cuatro') || inst.includes('cavaquinho') || inst.includes('requinto') || inst.includes('banjo') || inst.includes('mandolin') || inst.includes('oud') || inst.includes('sitar') || inst.includes('ukulele')) {
-    return 'guitar';
-  }
-  if (inst.includes('bass') || r === 'bass') {
-    return 'bass';
-  }
-  if (inst.includes('violin') || inst.includes('viola') || inst.includes('cello') || inst.includes('strings') || inst.includes('fiddle') || inst.includes('erhu') || r === 'strings') {
-    return 'strings';
-  }
-  if (inst.includes('trumpet') || inst.includes('trombone') || inst.includes('sax') || inst.includes('horn') || inst.includes('brass') || inst.includes('tuba') || inst.includes('flute') || inst.includes('clarinet') || inst.includes('oboe') || inst.includes('pipe') || r === 'brass' || r === 'woodwinds') {
-    return 'brass';
-  }
+  if (inst.includes('piano') || inst.includes('rhodes') || inst.includes('clavinet') || inst.includes('organ') || inst.includes('harpsichord') || inst.includes('celeste') || r === 'piano' || r === 'keyboard') return 'piano';
+  if (inst.includes('synth') || inst.includes('lead') || inst.includes('pad') || inst.includes('303') || inst.includes('polysynth') || inst.includes('saw')) return 'synth';
+  if (inst.includes('guitar') || inst.includes('tres') || inst.includes('cuatro') || inst.includes('cavaquinho') || inst.includes('requinto') || inst.includes('banjo') || inst.includes('mandolin') || inst.includes('oud') || inst.includes('sitar') || inst.includes('ukulele')) return 'guitar';
+  if (inst.includes('bass') || r === 'bass') return 'bass';
+  if (inst.includes('violin') || inst.includes('viola') || inst.includes('cello') || inst.includes('strings') || inst.includes('fiddle') || inst.includes('erhu') || r === 'strings') return 'strings';
+  if (inst.includes('trumpet') || inst.includes('trombone') || inst.includes('sax') || inst.includes('horn') || inst.includes('brass') || inst.includes('tuba')) return 'brass';
+  if (inst.includes('flute') || inst.includes('clarinet') || inst.includes('oboe') || inst.includes('pipe') || r === 'woodwinds') return 'winds';
   return 'piano';
 }
 
@@ -468,7 +469,27 @@ export function interpretPattern(options: InterpretPatternOptions): Interpretati
       isPhraseEnd
     );
     const genreArticulation = rawArticulation ? applyGenreArticulationInfluence(rawArticulation, genreContext) : undefined;
-    const fusedArticulation = genreArticulation ? resolveCrossInstrumentArticulation(genreArticulation, targetFamily) : undefined;
+    const shouldTranslateRhythm = Boolean(o.hitType || genreArticulation || /^(bass|comp|harmony|stab|percussion|perc|drums?)$/.test(role));
+    const rhythmTranslation = shouldTranslateRhythm
+      ? translateRhythmToInstrument({
+          instrumentId,
+          sourceHitType: o.hitType,
+          sourceArticulation: genreArticulation,
+          accent: o.accent,
+          beatInBar: beat,
+          beatsPerBar,
+          styleId: grammar.styleId,
+          genreId: genreContext,
+          seed: seedOf(seed, barIndex, i, 'rhythm-translation'),
+        })
+      : { intent: 'offbeat' as const };
+    const translatedCandidate = rhythmTranslation.articulation
+      || (genreArticulation ? resolveCrossInstrumentArticulation(genreArticulation, targetFamily) : undefined);
+    const supportedArticulation = translatedCandidate
+      ? resolveInstrumentArticulation(instrumentId, translatedCandidate)?.id
+      : undefined;
+    const fusedArticulation = supportedArticulation;
+    const translatedHitType = rhythmTranslation.hitType || o.hitType;
     const dynamicOffset = fusedArticulation ? applyArticulationDynamics(calculatedVelocity, fusedArticulation) : 0;
     const finalVelocity = Math.max(1, Math.min(127, calculatedVelocity + dynamicOffset));
 
@@ -481,7 +502,7 @@ export function interpretPattern(options: InterpretPatternOptions): Interpretati
       kind: baseKind,
       pitchIntent,
       structural: isStructural,
-      hitType: o.hitType,
+      hitType: translatedHitType,
       articulation: fusedArticulation,
       onsetIndex: o.originalIdx,
       registerOffset,

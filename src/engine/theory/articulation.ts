@@ -133,9 +133,9 @@ const SPECS: ArticulationSpec[] = [
     id: 'staccato',
     family: 'duration',
     aliases: [
-      'staccato', 'seco', 'picado', 'short', 'muted', 'staccato-chop', 'percussive-strike', 'short', 'detached', 'punteado', 'stacc',
-      'pick', 'picked', 'flatpick', 'bright-pluck', 'pop-pluck', 'percussive-finger', 'percussive-scratch', 'plectrum', 'plucked', 'fingerstyle', 'slap', 'martillo', 'cáscara', 'cascara', 'golpe seco',
-      'gated', 'down-pick', 'down-picking', 'alternate-picking', 'tamborim', 'bachi', 'alternate-pluck', 'upstroke', 'offbeat chop', 'skank', 'taconeo', 'heel-toe', 'slap-tap', 'staccato-octaves', 'distorted',
+      'staccato', 'seco', 'short', 'staccato-chop', 'percussive-strike', 'detached', 'punteado', 'stacc',
+      'percussive-finger', 'percussive-scratch', 'golpe seco',
+      'tamborim', 'bachi', 'taconeo', 'staccato-octaves', 'distorted',
     ],
     uses: ['note-length', 'velocity'],
     fidelity: 'faithful',
@@ -155,7 +155,7 @@ const SPECS: ArticulationSpec[] = [
   {
     id: 'tenuto',
     family: 'duration',
-    aliases: ['tenuto', 'sostenuto', 'held', 'full value'],
+    aliases: ['tenuto', 'held', 'full value'],
     uses: ['note-length'],
     fidelity: 'faithful',
     durationScale: 1.0,
@@ -164,7 +164,7 @@ const SPECS: ArticulationSpec[] = [
   {
     id: 'legato',
     family: 'duration',
-    aliases: ['legato', 'ligado', 'slur', 'breath', 'phrase-end', 'smooth', 'cantabile', 'espressivo', 'sustain', 'sustained', 'drone', 'bellows phrasing'],
+    aliases: ['legato', 'ligado', 'slur', 'phrase-end', 'smooth', 'cantabile', 'espressivo', 'sustain', 'sustained', 'drone', 'bellows phrasing'],
     uses: ['note-length'],
     fidelity: 'faithful',
     durationScale: 1.35,
@@ -180,11 +180,313 @@ const SPECS: ArticulationSpec[] = [
     gapFill: 0.7,
   },
 
+
+  /* --- explicit instrument techniques ---------------------------------- */
+  {
+    id: 'pick',
+    family: 'attack',
+    aliases: ['pick', 'picked', 'plectrum', 'flatpick', 'down-pick', 'down-picking', 'alternate-picking'],
+    uses: ['velocity'],
+    fidelity: 'faithful',
+    velocityScale: 1.04,
+    instrumentFamilies: ['plucked'],
+  },
+  {
+    id: 'fingerstyle',
+    family: 'attack',
+    aliases: ['fingerstyle', 'finger-picked', 'fingerpick', 'bright-pluck'],
+    uses: ['velocity'],
+    fidelity: 'faithful',
+    instrumentFamilies: ['plucked'],
+  },
+  {
+    id: 'tirando',
+    name: 'Tirando (Free Stroke)',
+    family: 'attack',
+    aliases: ['tirando', 'free stroke', 'free-stroke'],
+    uses: ['velocity', 'note-length'],
+    fidelity: 'faithful',
+    durationScale: 0.92,
+    velocityScale: 1.0,
+    instrumentFamilies: ['plucked'],
+  },
+  {
+    id: 'apoyando',
+    name: 'Apoyando (Rest Stroke)',
+    family: 'attack',
+    aliases: ['apoyando', 'rest stroke', 'rest-stroke', 'support stroke'],
+    uses: ['velocity', 'note-length'],
+    fidelity: 'faithful',
+    durationScale: 0.82,
+    velocityScale: 1.06,
+    instrumentFamilies: ['plucked'],
+  },
+  {
+    id: 'upstroke',
+    family: 'attack',
+    aliases: ['upstroke', 'up-pick', 'up-picking', 'offbeat chop', 'skank'],
+    uses: ['velocity', 'onset-offset'],
+    fidelity: 'faithful',
+    onsetMs: 3,
+    instrumentFamilies: ['plucked'],
+  },
+  {
+    id: 'slide',
+    family: 'pitch-gesture',
+    aliases: ['slide', 'glissando', 'gliss', 'fret-slide', 'steel-slide', 'portamento-slide'],
+    uses: ['pitch-bend'],
+    fidelity: 'faithful',
+    bend: [{ at: 0, semitones: -0.8 }, { at: 0.35, semitones: 0 }],
+  },
+  {
+    id: 'breath',
+    family: 'timbre',
+    aliases: ['breath', 'air', 'breathy', 'breath-noise'],
+    uses: ['cc-automation', 'velocity'],
+    fidelity: 'faithful',
+    cc: [{ cc: 2, points: [{ at: 0, value: 58 }, { at: 0.35, value: 82 }, { at: 1, value: 60 }] }],
+    instrumentFamilies: ['winds', 'brass', 'free-reed'],
+  },
+  {
+    id: 'cup-mute',
+    family: 'timbre',
+    aliases: ['cup-mute', 'cup mute', 'muted cup'],
+    uses: ['preset-swap', 'velocity'],
+    fidelity: 'approximate',
+    presetTag: 'cup-mute',
+    velocityScale: 0.94,
+    durationScale: 0.78,
+    instrumentFamilies: ['brass'],
+  },
+  {
+    id: 'shake',
+    family: 'reiteration',
+    aliases: ['shake', 'lip-shake', 'brass-shake'],
+    uses: ['extra-notes'],
+    fidelity: 'approximate',
+    reiteration: { count: 5, distribution: 'accelerate', decay: 0.92, pitchCycle: [0, 1, 0, 1] },
+    instrumentFamilies: ['brass'],
+  },
+  {
+    id: 'scratch',
+    name: 'DJ scratch',
+    family: 'pitch-gesture',
+    aliases: ['scratch', 'vinyl-scratch', 'turntable-scratch'],
+    uses: ['pitch-bend', 'velocity'],
+    fidelity: 'approximate',
+    bend: [
+      { at: 0, semitones: 0 },
+      { at: 0.25, semitones: 3.5 },
+      { at: 0.5, semitones: -2.5 },
+      { at: 0.75, semitones: 2 },
+      { at: 1, semitones: 0 },
+    ],
+    velocityScale: 1.08,
+    instrumentFamilies: ['electronic'],
+  },
+  {
+    id: 'ponticello',
+    name: 'Ponticello / bridge-position color',
+    family: 'timbre',
+    aliases: ['ponticello', 'sul-ponticello'],
+    uses: ['preset-swap', 'velocity'],
+    fidelity: 'approximate',
+    presetTag: 'ponticello',
+    velocityScale: 1.04,
+    instrumentFamilies: ['plucked', 'bowed'],
+  },
+  {
+    id: 'tasto',
+    name: 'Tasto / fingerboard-position color',
+    family: 'timbre',
+    aliases: ['tasto', 'sul-tasto'],
+    uses: ['preset-swap', 'velocity'],
+    fidelity: 'approximate',
+    presetTag: 'tasto',
+    velocityScale: 0.92,
+    instrumentFamilies: ['plucked', 'bowed'],
+  },
+  {
+    id: 'mwah-growl',
+    name: 'Fretless mwah',
+    family: 'timbre',
+    aliases: ['mwah-growl', 'mwah', 'fretless-growl'],
+    uses: ['velocity', 'note-length'],
+    fidelity: 'faithful',
+    velocityScale: 1.06,
+    durationScale: 0.92,
+    instrumentFamilies: ['plucked'],
+  },
+  {
+    id: 'spiccato',
+    family: 'attack',
+    aliases: ['spiccato', 'spicc.', 'saltato'],
+    uses: ['velocity', 'note-length'],
+    fidelity: 'faithful',
+    durationScale: 0.45,
+    velocityScale: 1.04,
+    instrumentFamilies: ['bowed'],
+  },
+  {
+    id: 'sostenuto',
+    family: 'duration',
+    aliases: ['sostenuto', 'sost.', 'sustained-key'],
+    uses: ['note-length'],
+    fidelity: 'faithful',
+    durationScale: 1.25,
+    gapFill: 1,
+    instrumentFamilies: ['bellows-and-keys'],
+  },
+  {
+    id: 'picado',
+    name: 'Picado (Alternating Rest-Stroke Line)',
+    family: 'attack',
+    aliases: ['picado', 'picado alternado', 'picado line'],
+    uses: ['velocity', 'note-length', 'onset-offset'],
+    fidelity: 'faithful',
+    durationScale: 0.5,
+    gapFill: 0.28,
+    velocityScale: 1.04,
+    onsetMs: 1.5,
+    instrumentFamilies: ['plucked'],
+  },
+  {
+    id: 'octave-stabs',
+    family: 'attack',
+    aliases: ['octave-stabs', 'octave stab', 'octave-stab'],
+    uses: ['extra-notes', 'velocity'],
+    fidelity: 'faithful',
+    grace: { offsets: [12], leadBeats: 0, velocity: 0.95 },
+    velocityScale: 1.12,
+    instrumentFamilies: ['bellows-and-keys'],
+  },
+  {
+    id: 'rimshot',
+    family: 'attack',
+    aliases: ['rimshot', 'rim-shot', 'side-stick', 'rim'],
+    uses: ['velocity', 'note-length'],
+    fidelity: 'faithful',
+    velocityScale: 1.06,
+    durationScale: 0.38,
+    instrumentFamilies: ['kit', 'metal-and-wood', 'hand-drums'],
+  },
+  {
+    id: 'slap',
+    family: 'attack',
+    aliases: ['slap', 'slap stroke', 'open slap', 'thumb slap', 'muffled slap', 'cajon-agudo', 'cajón-agudo'],
+    uses: ['velocity', 'note-length'],
+    fidelity: 'faithful',
+    velocityScale: 1.18,
+    durationScale: 0.5,
+    instrumentFamilies: ['plucked', 'hand-drums', 'body-percussion'],
+  },
+  {
+    id: 'heel',
+    family: 'attack',
+    aliases: ['heel', 'heel stroke', 'heel-touch'],
+    uses: ['velocity', 'note-length'],
+    fidelity: 'faithful',
+    velocityScale: 0.5,
+    durationScale: 0.3,
+    instrumentFamilies: ['hand-drums'],
+  },
+  {
+    id: 'slap-tapao',
+    family: 'attack',
+    aliases: ['slap-tapao', 'tapao', 'muted-slap', 'tapao-slap'],
+    uses: ['velocity', 'note-length'],
+    fidelity: 'faithful',
+    velocityScale: 0.78,
+    durationScale: 0.3,
+    instrumentFamilies: ['hand-drums'],
+  },
+  {
+    id: 'quinto-slap',
+    family: 'attack',
+    aliases: ['quinto-slap', 'quinto slap', 'macho-slap'],
+    uses: ['velocity', 'note-length'],
+    fidelity: 'faithful',
+    velocityScale: 1.14,
+    durationScale: 0.28,
+    instrumentFamilies: ['hand-drums'],
+  },
+  {
+    id: 'conga-open',
+    family: 'timbre',
+    aliases: ['conga-open', 'conga open', 'hembra-open'],
+    uses: ['velocity', 'note-length'],
+    fidelity: 'faithful',
+    durationScale: 0.85,
+    instrumentFamilies: ['hand-drums'],
+  },
+  {
+    id: 'tumba-open',
+    family: 'timbre',
+    aliases: ['tumba-open', 'tumba open'],
+    uses: ['velocity', 'note-length'],
+    fidelity: 'faithful',
+    durationScale: 0.95,
+    instrumentFamilies: ['hand-drums'],
+  },
+  {
+    id: 'guajeo',
+    name: 'Guajeo',
+    family: 'reiteration',
+    aliases: ['guajeo', 'piano-guajeo', 'tres-guajeo'],
+    uses: ['velocity', 'note-length'],
+    fidelity: 'faithful',
+    durationScale: 0.7,
+    velocityScale: 1.02,
+    instrumentFamilies: ['bellows-and-keys', 'plucked'],
+  },
+  {
+    id: 'martillo',
+    family: 'reiteration',
+    aliases: ['martillo', 'martillo-strum', 'tres-martillo'],
+    uses: ['extra-notes', 'velocity'],
+    fidelity: 'faithful',
+    reiteration: { count: 2, distribution: 'front', decay: 0.94 },
+    instrumentFamilies: ['plucked'],
+  },
+  {
+    id: 'golpe-caja',
+    family: 'timbre',
+    aliases: ['golpe-caja', 'bandoneon-golpe', 'case-tap'],
+    uses: ['velocity', 'preset-swap'],
+    fidelity: 'approximate',
+    durationScale: 0.3,
+    velocityScale: 1.05,
+    presetTag: 'percussive-effect',
+    instrumentFamilies: ['bellows-and-keys'],
+  },
+  {
+    id: 'chacha',
+    family: 'attack',
+    aliases: ['chachá', 'chacha', 'bata-chacha'],
+    uses: ['velocity', 'note-length'],
+    fidelity: 'faithful',
+    velocityScale: 0.75,
+    durationScale: 0.45,
+    instrumentFamilies: ['hand-drums'],
+  },
+
   /* --- attack ----------------------------------------------------------- */
+  {
+    id: 'martellato',
+    name: 'Martellato (Hammered Attack)',
+    family: 'attack',
+    aliases: ['martellato', 'martellato attack', 'hammered attack'],
+    uses: ['velocity', 'note-length'],
+    fidelity: 'faithful',
+    velocityScale: 1.18,
+    durationScale: 0.78,
+    gapFill: 0.62,
+    instrumentFamilies: ['bellows-and-keys', 'brass', 'winds', 'bowed'],
+  },
   {
     id: 'accent',
     family: 'attack',
-    aliases: ['accent', 'accented', 'accented-arrival', 'marcato-light', 'martellato', 'palmas-fuertes', 'staccato-accent', 'horn-stab', 'stab', '>', 'stab', 'campana', 'ride', 'bell', 'rim', 'rimshot', 'paila', 'palmas-claras', 'cascara-side-stick', 'clave-strike', 'stabs'],
+    aliases: ['accent', 'accented', 'accented-arrival', 'marcato-light', 'palmas-fuertes', 'palmas-claras', 'staccato-accent', 'horn-stab', 'stab', '>', 'stabs'],
     uses: ['velocity'],
     fidelity: 'faithful',
     velocityScale: 1.22,
@@ -266,7 +568,7 @@ const SPECS: ArticulationSpec[] = [
   {
     id: 'scoop',
     family: 'pitch-gesture',
-    aliases: ['scoop', 'doit-up', 'lift-in', 'fall-off', 'subito-piano'],
+    aliases: ['scoop', 'doit-up', 'lift-in'],
     uses: ['pitch-bend'],
     fidelity: 'faithful',
     bend: [
@@ -277,7 +579,7 @@ const SPECS: ArticulationSpec[] = [
   {
     id: 'fall',
     family: 'pitch-gesture',
-    aliases: ['fall', 'drop', 'doit-down', 'caida', 'fall-off', 'subito-piano'],
+    aliases: ['fall', 'drop', 'doit-down', 'caida', 'fall-off'],
     uses: ['pitch-bend'],
     fidelity: 'faithful',
     bend: [
@@ -312,7 +614,7 @@ const SPECS: ArticulationSpec[] = [
   {
     id: 'portamento',
     family: 'pitch-gesture',
-    aliases: ['portamento', 'slide', 'glissando', 'gliss', 'hua yin', 'warm-sub-slide', 'glide'],
+    aliases: ['portamento', 'hua yin', 'warm-sub-slide', 'glide'],
     uses: ['note-length'],
     fidelity: 'faithful',
     durationScale: 1.15,
@@ -372,7 +674,7 @@ const SPECS: ArticulationSpec[] = [
   {
     id: 'trill',
     family: 'reiteration',
-    aliases: ['trill', 'tr', 'shake'],
+    aliases: ['trill', 'tr'],
     uses: ['extra-notes'],
     fidelity: 'faithful',
     reiteration: { count: 8, distribution: 'even', decay: 0.95, pitchCycle: [0, 2] },
@@ -426,7 +728,7 @@ const SPECS: ArticulationSpec[] = [
   {
     id: 'pizzicato',
     family: 'timbre',
-    aliases: ['pizzicato', 'pizz', 'plucked', 'tenuto-pizz', 'sustained-pizz', 'sustained-pizz'],
+    aliases: ['pizzicato', 'pizz', 'tenuto-pizz', 'sustained-pizz'],
     uses: ['preset-swap', 'note-length'],
     fidelity: 'faithful',
     presetTag: 'pizzicato',
@@ -435,7 +737,7 @@ const SPECS: ArticulationSpec[] = [
   {
     id: 'arco',
     family: 'timbre',
-    aliases: ['arco', 'bowed', 'detaché', 'detache', 'spiccato', 'sul-ponticello', 'sul-tasto'],
+    aliases: ['arco', 'bowed', 'detaché', 'detache'],
     uses: ['preset-swap', 'note-length'],
     fidelity: 'faithful',
     presetTag: 'arco',
@@ -514,13 +816,13 @@ const SPECS: ArticulationSpec[] = [
     id: 'golpe',
     name: 'Golpe',
     family: 'timbre',
-    aliases: ['golpe', 'Flamenco Golpe Tap', 'golpe-caja', 'tap-plate', 'body-tap', 'golpe-tap', 'golpe/corte', 'zapateado'],
+    aliases: ['golpe', 'Flamenco Golpe Tap', 'tap-plate', 'body-tap', 'golpe-tap', 'golpe/corte', 'zapateado'],
     uses: ['velocity', 'preset-swap'],
     fidelity: 'approximate',
     durationScale: 0.3,
     velocityScale: 1.1,
     presetTag: 'percussive-effect',
-    instrumentFamilies: ['plucked', 'bowed', 'bellows-and-keys'],
+    instrumentFamilies: ['plucked', 'bowed', 'bellows-and-keys', 'hand-drums'],
   },
   {
     id: 'bellows-slap',
@@ -557,14 +859,14 @@ const SPECS: ArticulationSpec[] = [
   {
     id: 'low-tone',
     family: 'timbre',
-    aliases: ['bass', 'bass tone', 'bajo', 'low tone', 'heel', 'surdo-open', 'abierto-open', 'sub', 'sub-bass'],
+    aliases: ['bass tone', 'bajo', 'low tone', 'surdo-open', 'abierto-open', 'sub', 'sub-bass', 'cajon-grave', 'cajón-grave'],
     uses: ['velocity', 'note-length'],
     fidelity: 'faithful',
     // The low open stroke on a hand drum: the drum's own `low` key, struck
     // fully rather than damped. Not the bass *role*, which is a track job.
     velocityScale: 0.88,
     durationScale: 1.15,
-    instrumentFamilies: ['hand-drums', 'metal-and-wood'],
+    instrumentFamilies: ['hand-drums', 'metal-and-wood', 'body-percussion', 'kit'],
   },
   {
     id: 'open',
@@ -613,7 +915,7 @@ const SPECS: ArticulationSpec[] = [
     id: 'montuno',
     name: 'Montuno',
     family: 'reiteration',
-    aliases: ['montuno', 'Piano Montuno Pattern', 'guajeo', 'piano-montuno', 'tumbao-piano'],
+    aliases: ['montuno', 'Piano Montuno Pattern', 'piano-montuno', 'tumbao-piano'],
     uses: ['note-length', 'velocity'],
     fidelity: 'faithful',
     durationScale: 0.85,
@@ -662,9 +964,19 @@ const SPECS: ArticulationSpec[] = [
     instrumentFamilies: ['plucked'],
   },
   {
+    id: 'pull-off',
+    family: 'pitch-gesture',
+    aliases: ['pull-off', 'pull off', 'pulloff'],
+    uses: ['velocity', 'note-length'],
+    fidelity: 'faithful',
+    velocityScale: 0.84,
+    durationScale: 1.05,
+    instrumentFamilies: ['plucked'],
+  },
+  {
     id: 'hammer-on',
     family: 'pitch-gesture',
-    aliases: ['hammer-on', 'hammer', 'pull-off', 'slur-hammer'],
+    aliases: ['hammer-on', 'hammer', 'slur-hammer'],
     uses: ['velocity', 'note-length'],
     fidelity: 'faithful',
     velocityScale: 0.88,
@@ -699,7 +1011,7 @@ const SPECS: ArticulationSpec[] = [
     fidelity: 'faithful',
     velocityScale: 1.18,
     durationScale: 0.9,
-    instrumentFamilies: ['winds'],
+    instrumentFamilies: ['winds', 'brass'],
   },
   {
     id: 'altissimo',
@@ -711,23 +1023,24 @@ const SPECS: ArticulationSpec[] = [
     instrumentFamilies: ['winds'],
   },
   {
+    id: 'cascara',
+    name: 'Cáscara (Shell/Rim Stick Pattern)',
+    family: 'timbre',
+    aliases: ['cascara', 'cáscara', 'shell tap', 'shell-stick'],
+    uses: ['velocity', 'note-length'],
+    fidelity: 'faithful',
+    durationScale: 0.42,
+    velocityScale: 0.72,
+    instrumentFamilies: ['hand-drums'],
+  },
+  {
     id: 'toe',
     family: 'attack',
-    aliases: ['toe', 'heel-toe', 'toe-touch', 'tap'],
+    aliases: ['toe', 'tip', 'heel-toe', 'toe-touch', 'tap'],
     uses: ['velocity', 'note-length'],
     fidelity: 'faithful',
     velocityScale: 0.48,
     durationScale: 0.35,
-    instrumentFamilies: ['hand-drums'],
-  },
-  {
-    id: 'chacha',
-    family: 'attack',
-    aliases: ['chachá', 'chacha', 'bata-chacha'],
-    uses: ['velocity', 'note-length'],
-    fidelity: 'faithful',
-    velocityScale: 0.75,
-    durationScale: 0.45,
     instrumentFamilies: ['hand-drums'],
   },
   {
@@ -738,7 +1051,7 @@ const SPECS: ArticulationSpec[] = [
     fidelity: 'faithful',
     durationScale: 0.18,
     gapFill: 0.15,
-    instrumentFamilies: ['metal-and-wood', 'hand-drums'],
+    instrumentFamilies: ['metal-and-wood', 'hand-drums', 'kit'],
   },
   {
     id: 'meend',
@@ -858,6 +1171,19 @@ export const ARTICULATION_FUSION_MAP: Record<string, Record<string, string>> = {
     'growl': 'sul-ponticello-heavy',
     'pitch-bend': 'portamento',
   },
+  percussion: {
+    'rasgueado': 'roll',
+    'alzapúa': 'roll',
+    'alzapua': 'roll',
+    'tremolo': 'roll',
+    'pizzicato': 'staccato',
+    'spiccato': 'staccato',
+    'palm-mute': 'ghost',
+    'ghost-note': 'ghost',
+    'slap': 'slap',
+    'pop': 'accent',
+    'growl': 'roll',
+  },
   brass: {
     'rasgueado': 'rip',
     'golpe': 'tongue-slap',
@@ -893,15 +1219,25 @@ export function applyGenreArticulationInfluence(articulation: string, genre: str
 
 export function resolveCrossInstrumentArticulation(articulation: string, targetFamily: string): string {
   if (!articulation) return 'normal';
-  const familyKey = (targetFamily || '').toLowerCase();
+  const raw = (targetFamily || '').toLowerCase();
+  const familyKey = {
+    'plucked-string': 'guitar',
+    'hand-drums': 'percussion',
+    'metal-and-wood': 'percussion',
+    'body-percussion': 'percussion',
+    'kit': 'percussion',
+    'winds': 'brass',
+    'free-reed': 'piano',
+    'bellows-and-keys': 'piano',
+  }[raw] ?? raw;
   const familyMap = ARTICULATION_FUSION_MAP[familyKey];
   return (familyMap && familyMap[articulation]) ? familyMap[articulation] : articulation;
 }
 
 /**
  * Resolve a free-text articulation name from a catalog or style grammar.
- * Catalogs are authored by humans in many languages, so this falls back to a
- * substring scan before giving up.
+ * Catalogs can contain descriptive phrases, but matching remains boundary-safe
+ * so one technique name cannot accidentally resolve to a different one.
  */
 export function resolveArticulation(name: string | undefined): ArticulationSpec | undefined {
   if (!name) return undefined;
@@ -909,8 +1245,18 @@ export function resolveArticulation(name: string | undefined): ArticulationSpec 
   if (!key) return undefined;
   const direct = ALIAS_INDEX.get(key);
   if (direct) return direct;
+  // Catalogs often pass descriptive strings (e.g. 'snare rimshot'), but a raw
+  // substring match is unsafe: 'shaker' must not resolve to 'shake', and
+  // 'slide-note' must not silently become the wrong pitch gesture. Normalize
+  // separators and only accept whole-token/whole-phrase matches.
+  const normalizedKey = key.replace(/[._/]+/g, ' ').replace(/[-]+/g, ' ').replace(/\s+/g, ' ').trim();
   for (const [alias, spec] of ALIAS_INDEX) {
-    if (alias.length >= 4 && key.includes(alias)) return spec;
+    if (alias.length < 4) continue;
+    const normalizedAlias = alias.replace(/[._/]+/g, ' ').replace(/[-]+/g, ' ').replace(/\s+/g, ' ').trim();
+    if (!normalizedAlias) continue;
+    if (new RegExp(`(?:^|\\s)${normalizedAlias.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}(?:$|\\s)`, 'i').test(normalizedKey)) {
+      return spec;
+    }
   }
   return undefined;
 }

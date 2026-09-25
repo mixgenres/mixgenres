@@ -31,7 +31,7 @@ export const synth_brass: InstrumentDef = {
     genreAdaptable: true
   },
   techniques: {
-    articulations: ["accent", "staccato", "legato", "slide"],
+    articulations: ["accent", "staccato", "legato", "slide", "crescendo"],
     techniqueMethods: ["velocity programming", "filter motion", "pitch slide"],
     playingStyles: ["electronic", "pop", "dance"]
   }

@@ -34,9 +34,9 @@ export const washboard: InstrumentDef = {
     harmonicRichness: 0.8
   },
   techniques: {
-    articulations: ["accent", "staccato", "ghost", "roll"],
-    techniqueMethods: ["style-specific attack", "velocity shaping", "muting/damping"],
-    playingStyles: ["genre-native performance"],
+    articulations: ["accent", "ghost", "brushed", "staccato"],
+    techniqueMethods: ["thimble or brush scrape", "short up/down wash", "accented scrape catch", "continuous subdivision texture"],
+    playingStyles: ["zydeco", "blues", "jug-band", "country", "roots", "genre-native performance"],
     genreTechniques: {}
   }
 };

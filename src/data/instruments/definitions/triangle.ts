@@ -33,8 +33,8 @@ export const triangle: InstrumentDef = {
     harmonicRichness: 0.95
   },
   techniques: {
-    articulations: ["accent", "ghost", "roll", "staccato"],
-    techniqueMethods: ["open hit", "damped hit", "roll", "scrape/shake"],
-    playingStyles: ["folk", "world", "dance"]
+    articulations: ["accent", "staccato", "choke"],
+    techniqueMethods: ["beater strike", "edge damping", "hand choke", "tremolo articulation"],
+    playingStyles: ["orchestral", "march", "folk", "ambient"]
   }
 };

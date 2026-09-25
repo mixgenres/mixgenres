@@ -384,9 +384,10 @@ export async function renderPerformanceToMp3(
 
             const hitType = event.note.articulation;
             let hitGainMultiplier = 1.0;
-            if (hitType === 'accent') hitGainMultiplier = 1.25;
-            else if (hitType === 'ghost') hitGainMultiplier = 0.45;
-            else if (hitType === 'snare' || hitType === 'rim' || hitType === 'slap') hitGainMultiplier = 1.1;
+            if (hitType === 'accent' || hitType === 'sforzando' || hitType === 'marcato') hitGainMultiplier = 1.25;
+            else if (hitType === 'ghost' || hitType === 'heel' || hitType === 'toe') hitGainMultiplier = 0.45;
+            else if (hitType === 'rimshot' || hitType === 'slap' || hitType === 'quinto-slap') hitGainMultiplier = 1.1;
+            else if (hitType === 'conga-open' || hitType === 'tumba-open') hitGainMultiplier = 1.04;
 
             const role = instDef?.acousticProfile?.role || 'comp';
             const roleGain = params.roleGain ?? getRoleGainLinear(role, options.styleId || 'default');

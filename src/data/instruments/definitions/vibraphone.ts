@@ -30,8 +30,8 @@ export const vibraphone: InstrumentDef = {
     harmonicRichness: 0.5
   },
   techniques: {
-    articulations: ["accent", "ghost", "roll", "staccato"],
-    techniqueMethods: ["open hit", "damped hit", "roll", "scrape/shake"],
-    playingStyles: ["folk", "world", "dance"]
+    articulations: ["accent", "staccato", "legato", "roll"],
+    techniqueMethods: ["hard and soft mallet attack", "pedal sustain control", "damped note release", "motor-driven tremolo"],
+    playingStyles: ["jazz", "bebop", "ballad", "city-pop", "latin-jazz"]
   }
 };

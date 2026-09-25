@@ -30,7 +30,7 @@ export const warm_pad: InstrumentDef = {
     articulationCapabilities: ["legato", "crescendo", "diminuendo"]
   },
   techniques: {
-    articulations: ["accent", "staccato", "legato", "slide"],
+    articulations: ["accent", "legato", "crescendo", "diminuendo"],
     techniqueMethods: ["velocity programming", "filter motion", "pitch slide"],
     playingStyles: ["electronic", "pop", "dance"]
   }

@@ -34,7 +34,7 @@ export const shaker: InstrumentDef = {
   },
   techniques: {
     articulations: ["accent", "ghost", "roll", "staccato"],
-    techniqueMethods: ["open hit", "damped hit", "roll", "scrape/shake"],
-    playingStyles: ["folk", "world", "dance"]
+    techniqueMethods: ["forward-back shake", "reverse shake", "subdivision control", "accented thrust"],
+    playingStyles: ["pop", "bossa", "samba", "afro-cuban", "funk", "folk"]
   }
 };

@@ -29,8 +29,8 @@ export const xylophone: InstrumentDef = {
     harmonicRichness: 0.4
   },
   techniques: {
-    articulations: ["accent", "ghost", "roll", "staccato"],
-    techniqueMethods: ["open hit", "damped hit", "roll", "scrape/shake"],
-    playingStyles: ["folk", "world", "dance"]
+    articulations: ["accent", "staccato", "roll"],
+    techniqueMethods: ["hard mallet attack", "damped note release", "alternating mallet roll"],
+    playingStyles: ["orchestral", "march", "folk", "jazz", "world"]
   }
 };

@@ -29,8 +29,8 @@ export const sampler: InstrumentDef = {
     harmonicRichness: 0.75
   },
   techniques: {
-    articulations: ["accent", "staccato", "ghost", "roll"],
-    techniqueMethods: ["style-specific attack", "velocity shaping", "muting/damping"],
+    articulations: ["accent", "staccato", "legato"],
+    techniqueMethods: ["sample-selection attack", "one-shot transient shaping", "looped sustain and release"],
     playingStyles: ["genre-native performance"],
     genreTechniques: {}
   }

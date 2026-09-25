@@ -33,8 +33,8 @@ export const ride: InstrumentDef = {
     harmonicRichness: 0.85
   },
   techniques: {
-    articulations: ["accent", "ghost", "roll", "staccato"],
-    techniqueMethods: ["open hit", "damped hit", "roll", "scrape/shake"],
-    playingStyles: ["folk", "world", "dance"]
+    articulations: ["accent", "staccato", "choke"],
+    techniqueMethods: ["tip-on-bow attack", "bell ping", "shoulder crash accent", "hand choke"],
+    playingStyles: ["jazz", "rock", "pop", "funk", "orchestral"]
   }
 };

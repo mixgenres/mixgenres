@@ -29,9 +29,9 @@ export const spring_reverb: InstrumentDef = {
     harmonicRichness: 0.65
   },
   techniques: {
-    articulations: ["accent", "staccato", "ghost", "roll"],
-    techniqueMethods: ["style-specific attack", "velocity shaping", "muting/damping"],
-    playingStyles: ["genre-native performance"],
+    articulations: [],
+    techniqueMethods: ["feedback level", "decay and tone control", "spring excitation response"],
+    playingStyles: ["dub", "surf", "ambient", "rock", "studio effect"],
     genreTechniques: {}
   }
 };

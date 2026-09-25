@@ -23,11 +23,13 @@ import { getCanonicalStyle } from '../../data/styles/registry';
 import { blendPartStyle, type BlendReport } from '../generators/blend';
 import { activityFor, clampEnergy, energyOf, shapeScalarOf } from '../metadata/energy';
 import { resolveArticulationStack, realizeArticulation, type ArticulationSpec } from '../theory/articulation';
+import { resolveSupportedArticulationStack, resolveInstrumentArticulation } from '../performance/musicSemantics';
 import type { GuestLens } from '../../types';
 
 import { applyEnsembleInteraction } from '../performance/ensembleInteraction';
 import { polishPerformance } from '../performance/performanceQuality';
 import { resolveTuningSystem } from '../theory/tuning';
+import { generateTiming, compileTracks } from '../ArrangementEngine.js';
 
 /* --- event model ---------------------------------------------------------- */
 
@@ -1047,7 +1049,17 @@ export function compile(sheet: Sheet, _opts: CompileOptions = {}): Performance {
             transition: rhythmicContext.transition,
           });
         } else {
-          kv = handPercVoicing(def.drum!, a.accent, intensity, seedOf(t.id, a.bar, a.onsetIndex, 'perc'), a.hitType);
+          kv = handPercVoicing(
+            def.drum!, a.accent, intensity, seedOf(t.id, a.bar, a.onsetIndex, 'perc'), a.hitType,
+            {
+              instrumentId: t.instrumentId,
+              styleId: resolvedStyle.id,
+              beatInBar: a.beatInBar,
+              beatsPerBar: bt.beatsPerBar,
+              onsetIndex: a.onsetIndex,
+              barInPhrase,
+            },
+          );
         }
 
         if (kv.gain <= 0) continue;
@@ -1058,12 +1070,13 @@ export function compile(sheet: Sheet, _opts: CompileOptions = {}): Performance {
         )));
         const kitDur = kv.limb === 'crash' || kv.limb === 'openHat' || kv.limb === 'ride'
           ? Math.min(dur * 3, 1.2) : Math.min(dur, 0.25);
+        const renderedDrumArticulation = kv.articulation || a.hitType || a.articulation;
 
         if (kv.flamMs) {
           notes.push({
             time: time - kv.flamMs / 1000, dur: 0.06, midi: kv.key,
             vel: Math.max(4, Math.round(kvVel * 0.45)),
-            trackId: t.id, bar: a.bar, drum: true, articulation: a.hitType || a.articulation,
+            trackId: t.id, bar: a.bar, drum: true, articulation: renderedDrumArticulation,
           });
         }
         notes.push({ 
@@ -1074,7 +1087,7 @@ export function compile(sheet: Sheet, _opts: CompileOptions = {}): Performance {
           trackId: t.id, 
           bar: a.bar, 
           drum: true, 
-          articulation: a.hitType || a.articulation 
+          articulation: renderedDrumArticulation 
         });
         continue;
       }
@@ -1154,6 +1167,7 @@ export function compile(sheet: Sheet, _opts: CompileOptions = {}): Performance {
           heterophonic: resolved.melody?.heterophonic,
           wasLeap: (mem as any).wasLeap,
           nextChord,
+          phraseStage: trackPhraseMemories.get(t.id)?.developmentStage,
           progress,
         });
         rapidRun = !!shouldRapidRun;
@@ -1247,7 +1261,7 @@ export function compile(sheet: Sheet, _opts: CompileOptions = {}): Performance {
         ?? resolvedStyle.contract.articulationGrammar[String(t.role)]
         ?? resolvedStyle.contract.articulationGrammar.ensemble
         ?? [];
-      const specs: ArticulationSpec[] = resolveArticulationStack([
+      const requestedArticulations = [
         grammarArticulations[0],
         ...(a.articulations ?? []),
         a.articulation,
@@ -1255,7 +1269,8 @@ export function compile(sheet: Sheet, _opts: CompileOptions = {}): Performance {
         // run are ordinary articulations now, not a parallel code path.
         ...(culture ? (resolvedStyle.melody?.ornamentVocabulary ?? []).slice(0, 1) : []),
         rapidRun ? 'rapid-run' : undefined,
-      ]);
+      ];
+      const specs: ArticulationSpec[] = resolveSupportedArticulationStack(t.instrumentId, requestedArticulations);
 
       const activePitchSet = culture
         ? culturalPitchSet(culture, culturalTonicPc)
@@ -1295,7 +1310,28 @@ export function compile(sheet: Sheet, _opts: CompileOptions = {}): Performance {
         let voiceTime = time + rollMs / 1000;
 
         // Ornaments belong to the voice that carries the line
-        const voiceSpecs = vi === 0 ? specs : specs.filter(x => x.family === 'duration' || x.family === 'attack');
+        let voiceSpecs = vi === 0 ? [...specs] : specs.filter(x => x.family === 'duration' || x.family === 'attack');
+
+        // A little touch vocabulary goes into the performance layer only when the
+        // pattern did not author a specific technique. This keeps culturally authored
+        // articulations authoritative while letting generic guitar/bass lines breathe
+        // with real-world muted, picked and popped attacks.
+        if (vi === 0 && !a.articulation && !(a.articulations?.length)) {
+          const lowId = t.instrumentId.toLowerCase();
+          const genre = `${resolvedStyle.id} ${resolvedStyle.primaryGenre}`.toLowerCase();
+          const isChordString = isPlucked && /guitar|tres|cuatro|cavaquinho|charango|banjo|mandolin|ukulele|lute|sitar|pipa|guzheng/.test(lowId);
+          const isBassString = isBass && /bass|bajo|contrabajo|fretless/.test(lowId);
+          let touch: string | undefined;
+          if (isChordString && /rock|funk|pop|reggae|ska|indie|disco|rnb/.test(genre)) {
+            touch = a.accent < 0.5 ? 'palm-mute' : (a.accent > 0.9 ? 'pick' : undefined);
+          } else if (isBassString && /funk|rock|pop|disco|rnb|gospel/.test(genre)) {
+            touch = a.accent < 0.48 ? 'palm-mute' : (a.accent > 0.92 ? 'pop' : undefined);
+          }
+          if (touch) {
+            const touchSpec = resolveInstrumentArticulation(t.instrumentId, touch);
+            if (touchSpec) voiceSpecs = [...voiceSpecs, touchSpec];
+          }
+        }
 
         // Logarithmic Velocity Curve & Upstroke Wrist Mechanics
         let velocityTarget = Math.max(6, Math.min(127, Math.round(vel * (vi > 0 && vi < pitches.length - 1 ? 0.88 : 1))));
@@ -1360,7 +1396,7 @@ export function compile(sheet: Sheet, _opts: CompileOptions = {}): Performance {
           const ornaments = generateStyleOrnaments(
             midi, a.beatInBar, a.patternId, a.articulation,
             resolvedStyle.melody?.ornamentVocabulary,
-            activePitchSet, prof, seedOf(t.id, a.bar, a.onsetIndex, 'ornament'), rapidRun
+            activePitchSet, prof, seedOf(t.id, a.bar, a.onsetIndex, 'ornament'), rapidRun, prevNoteMidi, resolvedStyle.primaryGenre
           );
           ornaments.forEach(orn => {
              const ornTime = voiceTime + (orn.timeOffsetBeats * secPerBeat);
@@ -1370,7 +1406,7 @@ export function compile(sheet: Sheet, _opts: CompileOptions = {}): Performance {
                  midi: orn.midi,
                  vel: Math.max(1, Math.round(vel * orn.velocityMult)),
                  trackId: t.id, bar: a.bar,
-                 articulation: 'ornament'
+                 articulation: orn.articulation || a.articulation || 'grace'
              });
           });
         }
@@ -1413,7 +1449,7 @@ export function compile(sheet: Sheet, _opts: CompileOptions = {}): Performance {
           ? (isBass
             ? bassPitchBend({ midi, context: rhythmicContext, profile: prof, genreId: resolvedStyle.primaryGenre, role: t.role, seed: seedOf(t.id, a.bar, a.onsetIndex, 'bend') })
             : (isMelodic
-              ? melodyPitchBend({ midi, context: rhythmicContext, profile: prof, genreId: resolvedStyle.primaryGenre, role: t.role, chord, key, seed: seedOf(t.id, a.bar, a.onsetIndex, 'bend') })
+              ? melodyPitchBend({ midi, context: rhythmicContext, profile: prof, genreId: resolvedStyle.primaryGenre, role: t.role, chord, key, seed: seedOf(t.id, a.bar, a.onsetIndex, 'bend'), previousMidi: prevNoteMidi, durationSec: computedDur })
               : undefined))
           : undefined;
 
@@ -1428,11 +1464,24 @@ export function compile(sheet: Sheet, _opts: CompileOptions = {}): Performance {
           }
         }
 
-        // Woodwinds & Brass CC2 breath and filter cutoff (CC74) control
+        // Woodwind/brass breath is a phrase, not a single on-switch. A tiny
+        // inhale -> body -> release contour gives blown lines changing air pressure
+        // without pretending to simulate the whole instrument.
         if (isWindOrBrass) {
-          const breathVal = Math.round(42 + velocityTarget * 0.65);
-          ccs.push({ time: voiceTime, trackId: t.id, cc: 2, value: breathVal });
-          ccs.push({ time: voiceTime, trackId: t.id, cc: 74, value: breathVal });
+          const startBreath = Math.round(38 + velocityTarget * 0.62);
+          const expressiveLift = Math.round(6 + Math.max(0, midi - prof.centre) * 0.25);
+          ccs.push({ time: voiceTime, trackId: t.id, cc: 2, value: startBreath });
+          ccs.push({ time: voiceTime, trackId: t.id, cc: 74, value: startBreath });
+          if (computedDur > 0.12) {
+            const swellAt = voiceTime + Math.min(computedDur * 0.42, 0.16);
+            const swell = Math.max(0, Math.min(127, startBreath + expressiveLift));
+            ccs.push({ time: swellAt, trackId: t.id, cc: 2, value: swell });
+            ccs.push({ time: swellAt, trackId: t.id, cc: 74, value: Math.min(127, swell + 3) });
+            const releaseAt = voiceTime + Math.max(0.03, computedDur - Math.min(0.07, computedDur * 0.18));
+            const release = Math.max(18, Math.round(swell * 0.78));
+            ccs.push({ time: releaseAt, trackId: t.id, cc: 2, value: release });
+            ccs.push({ time: releaseAt, trackId: t.id, cc: 74, value: Math.max(12, release - 4) });
+          }
         }
 
         // Acoustic & World Percussion round robin and pitch drift
@@ -1467,7 +1516,7 @@ export function compile(sheet: Sheet, _opts: CompileOptions = {}): Performance {
               pitchBend: n.pitchBend ?? slideBend ?? (ni === 0 ? idiomBend : undefined),
               vel: Math.max(1, Math.round(n.velocity * 0.95)),
               trackId: t.id, bar: a.bar,
-              articulation: voiceSpecs[0]?.id || a.articulation,
+              articulation: ([...voiceSpecs].reverse().find(s => s.id)?.id || a.articulation),
             });
             
             // Right voice: detuned sharp
@@ -1478,7 +1527,7 @@ export function compile(sheet: Sheet, _opts: CompileOptions = {}): Performance {
               pitchBend: n.pitchBend ?? slideBend ?? (ni === 0 ? idiomBend : undefined),
               vel: Math.max(1, Math.round(n.velocity * 0.95)),
               trackId: t.id, bar: a.bar,
-              articulation: voiceSpecs[0]?.id || a.articulation,
+              articulation: ([...voiceSpecs].reverse().find(s => s.id)?.id || a.articulation),
             });
             
             // Pan left and right
@@ -1494,7 +1543,15 @@ export function compile(sheet: Sheet, _opts: CompileOptions = {}): Performance {
               ccs.push({ time: n.time + n.durSeconds - 0.01, trackId: t.id, cc: 11, value: 127 });
             }
 
-            let finalArticulation = voiceSpecs[0]?.id || a.articulation;
+            let finalArticulation = [...voiceSpecs].reverse().find(s => s.id)?.id || a.articulation;
+            const instLow = t.instrumentId.toLowerCase();
+            const isStringComp = isPlucked && /guitar|tres|cuatro|cavaquinho|charango|banjo|mandolin|ukulele|lute|sitar|pipa|harp|guzheng/.test(instLow);
+            const isBassTouch = isBass && /bass|bajo|contrabajo|fretless/.test(instLow);
+            if (!finalArticulation && vi === 0 && isStringComp) {
+              finalArticulation = a.accent < 0.52 ? 'ghost' : (a.accent > 0.86 ? 'pick' : 'pluck');
+            } else if (!finalArticulation && vi === 0 && isBassTouch && a.accent < 0.55) {
+              finalArticulation = 'palm-mute';
+            }
             const isViolin = t.instrumentId === 'violin' || t.instrumentId?.includes('string');
             if (resolvedStyle.id?.includes('tango') && isViolin && Math.abs(a.beatInBar - 3.5) < 0.1) {
               finalArticulation = 'chicharra';
@@ -1736,7 +1793,52 @@ export function compile(sheet: Sheet, _opts: CompileOptions = {}): Performance {
     }
   }
 
-  const playable = filteredPlayable;
+  // Map ArrangementEngine base layer computations (microalignments, groove map, band interactions)
+  const trackGroups = tracks.map(t => ({
+    id: t.id,
+    role: t.role,
+    notes: filteredPlayable
+      .filter(n => n.trackId === t.id)
+      .map(n => ({
+        ...n,
+        quantizedTime: n.time,
+        time: n.time,
+        duration: n.dur,
+        velocity: n.vel / 127,
+        measure: n.bar,
+        isFill: n.articulation === 'fill',
+      })),
+  }));
+
+  const compiledTracks = compileTracks(trackGroups, sheet.worldId);
+  const compiledNotesMap = new Map<string, Array<any>>();
+  compiledTracks.forEach((ct: any) => {
+    compiledNotesMap.set(ct.id, ct.notes || []);
+  });
+
+  const baseLayerNotes = filteredPlayable.filter(n => {
+    const trackNotes = compiledNotesMap.get(n.trackId);
+    if (!trackNotes) return true;
+    const match = trackNotes.find((tn: any) => Math.abs(tn.time - n.time) < 0.001);
+    return !(match && match.muted);
+  });
+
+  const processedNotes = generateTiming(
+    baseLayerNotes.map(n => ({
+      ...n,
+      quantizedTime: n.time,
+      measure: n.bar,
+      velocity: n.vel / 127,
+    })),
+    sheet.worldId
+  );
+
+  const playable = processedNotes.map((pn: any) => ({
+    ...pn,
+    time: pn.time ?? pn.quantizedTime,
+    vel: Math.max(1, Math.min(127, Math.round((pn.velocity ?? 1.0) * 127))),
+    articulation: pn.articulation || pn.articulation,
+  }));
 
   // =========================================================================
   // POST-PROCESSING PASS: SIDECHAIN COMPRESSION & FREQUENCY SEPARATION / EQ CARVING

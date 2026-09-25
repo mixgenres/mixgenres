@@ -34,8 +34,8 @@ export const zapateado: InstrumentDef = {
     harmonicRichness: 0.4
   },
   techniques: {
-    articulations: ["accent", "ghost", "roll", "staccato"],
-    techniqueMethods: ["open hit", "damped hit", "roll", "scrape/shake"],
-    playingStyles: ["folk", "world", "dance"]
+    articulations: ["accent", "ghost", "staccato", "golpe"],
+    techniqueMethods: ["planta", "media-planta", "heel-block", "heel-edge", "toe steps"],
+    playingStyles: ["flamenco", "alegrias", "solea", "bulerias", "tangos", "fandangos"]
   }
 };

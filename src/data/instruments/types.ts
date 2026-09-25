@@ -466,6 +466,8 @@ export interface InstrumentDef {
 
   techniques: InstrumentTechniqueProfile;
   physicalModel?: PhysicalModelProfile;
+  /** First-class instrument physics used by the live/offline renderer. */
+  dspProfile?: import('./physicalDspProfile').InstrumentDSPProfile;
   articulationModels?: ArticulationModel[];
   /** Style-level performance constraints and idiomatic patterns. */
   genrePerformanceProfiles?: Record<string, { role: string; articulations: string[]; patternRules: string[]; forbidden?: string[] }>;
