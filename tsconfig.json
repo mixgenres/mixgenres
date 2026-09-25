@@ -22,7 +22,9 @@
     },
     "types": ["vite/client"],
     "allowImportingTsExtensions": true,
-    "noEmit": true
+    "noEmit": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true
   },
   "include": ["src", "scripts", "vite.config.ts"],
   "exclude": ["old", "node_modules", "dist"]

@@ -69,8 +69,6 @@ export interface InterpretPatternOptions {
   transitionDirection?: 'build' | 'drop';
   sectionKind?: string;
   memory: PerformancePhraseMemory;
-  developmentDial: number; // 0..1
-  expressionDial: number;  // 0..1
   seed: number;
   ensembleContext?: EnsembleContext;
   interactions?: InteractionDirective[];
@@ -93,50 +91,67 @@ function contextualArticulation(
   role: string,
   instrumentId?: string,
   sectionKind?: string,
+  beat?: number,
+  stepDuration?: number,
+  seed?: number,
+  isPhraseEnd?: boolean,
 ): string | undefined {
-  if (authored) return authored;
   const vocab = grammar.articulationVocabulary?.[role] ?? [];
   const inst = (instrumentId || '').toLowerCase();
   const kind = (sectionKind || '').toLowerCase();
+  const isTango = inst.includes('tango') || kind.includes('tango') || grammar.worldId?.includes('tango') || grammar.styleId?.includes('tango');
+  const isFlamenco = inst.includes('flamenco') || kind.includes('flamenco') || grammar.worldId?.includes('flamenco') || grammar.styleId?.includes('flamenco');
 
   // Culturally Grounded Articulations
-  // 1. Tango bass patterns trigger arrastre slide
-  if ((inst.includes('upright') || inst.includes('contrabajo') || role === 'bass') && (vocab.includes('arrastre') || inst.includes('tango') || kind.includes('tango'))) {
+  // 1. Tango Bass: On strong downbeats, upgrade accent to strappata (prob 0.15); otherwise arrastre on non-structural or cadence
+  if ((inst.includes('upright') || inst.includes('contrabajo') || role === 'bass') && (vocab.includes('strappata') || vocab.includes('arrastre') || isTango)) {
+    if (isTango && isStructural) {
+      const roll = seed !== undefined ? rand01(seed ^ 0x7a91) : 0;
+      if (roll < 0.15) return 'strappata';
+    }
     if (isCadenceBar || !isStructural) return 'arrastre';
   }
-  // 2. Bachata patterns dictate apagado right-hand palm mute
-  if ((inst.includes('requinto') || inst.includes('bachata') || inst.includes('guitar')) && (vocab.includes('apagado') || vocab.includes('palm-mute') || inst.includes('requinto'))) {
-    if (!isStructural) return 'apagado';
+
+  // 2. Tango Violin: On weak offbeats (e.g. upbeat of 4), upgrade staccato to chicharra
+  if ((inst.includes('violin') || role === 'violin' || role === 'melody' || role === 'lead') && isTango) {
+    const isWeakOffbeat = beat !== undefined && Math.abs(beat % 1 - 0.5) < 0.15;
+    if (isWeakOffbeat || (beat !== undefined && beat >= 3.4 && !isStructural)) {
+      return 'chicharra';
+    }
   }
-  // 3. Reggae Hammond patterns execute syncopated double-handed bubble
-  if ((inst.includes('organ') || inst.includes('hammond')) && (vocab.includes('bubble') || vocab.includes('staccato') || inst.includes('reggae'))) {
-    if (!isStructural) return 'bubble';
+
+  // 3. Tango Piano: On the final beat of a heavy yumba / cadence phrase, upgrade accent to cluster
+  if ((inst.includes('piano') || role === 'piano' || role === 'comp') && isTango) {
+    if ((isCadenceBar || isPhraseEnd || (beat !== undefined && beat >= 3.0)) && (kind.includes('yumba') || isStructural)) {
+      return 'cluster';
+    }
   }
-  // 4. Flamenco patterns trigger rasgueado or golpe or alzapua
-  if (inst.includes('spanish-guitar') || inst.includes('flamenco') || inst.includes('cajon')) {
-    if (vocab.includes('alzapua') && !isStructural) return 'alzapua';
+
+  // 4. Flamenco Spanish Guitar: On fast 16th note bass/comp runs, convert to alzapúa
+  if ((inst.includes('spanish-guitar') || inst.includes('guitar') || role === 'harmony' || role === 'bass') && isFlamenco) {
+    if (stepDuration !== undefined && stepDuration <= 1 && (role === 'bass' || !isStructural)) {
+      return 'alzapua';
+    }
     if (vocab.includes('rasgueado') && isStructural) return 'rasgueado';
     if (vocab.includes('golpe')) return 'golpe';
   }
-  // 5. Salsa and Timba patterns trigger montuno / tumbao strokes
+
+  if (authored) return authored;
+
+  // 5. Bachata patterns dictate apagado right-hand palm mute
+  if ((inst.includes('requinto') || inst.includes('bachata') || inst.includes('guitar')) && (vocab.includes('apagado') || inst.includes('requinto'))) {
+    if (!isStructural) return 'apagado';
+  }
+  // 6. Reggae Hammond patterns execute syncopated double-handed bubble
+  if ((inst.includes('organ') || inst.includes('hammond')) && (vocab.includes('bubble') || vocab.includes('staccato') || inst.includes('reggae'))) {
+    if (!isStructural) return 'bubble';
+  }
+  // 7. Salsa patterns trigger montuno / tumbao
   if (inst.includes('piano') && (vocab.includes('montuno') || inst.includes('salsa') || inst.includes('timba'))) {
     return 'montuno';
   }
-  if (inst.includes('conga') || inst.includes('tumbao')) {
+  if (inst.includes('conga') && (vocab.includes('tumbao') || inst.includes('salsa') || inst.includes('timba'))) {
     return 'tumbao';
-  }
-  // 6. Samba percussion triggers friction modulation (Cuíca / Pandeiro)
-  if (inst.includes('cuica') || inst.includes('pandeiro') || vocab.includes('cuica-friction') || vocab.includes('friction_mod')) {
-    return 'cuica-friction';
-  }
-  // 7. Wind / Brass growl & falls
-  if (role === 'lead' || role === 'horns' || inst.includes('sax') || inst.includes('trumpet') || inst.includes('trombone') || inst.includes('horn')) {
-    if (isCadenceBar && (vocab.includes('fall') || vocab.includes('fall_off') || vocab.includes('doit'))) {
-      return vocab.includes('doit') ? 'doit' : 'fall';
-    }
-    if (vocab.includes('growl') || vocab.includes('flutter_tongue')) {
-      return 'growl';
-    }
   }
 
   if (isCadenceBar && vocab.includes('pesante') && !isStructural) return 'pesante';
@@ -164,18 +179,16 @@ export function interpretPattern(options: InterpretPatternOptions): Interpretati
     beatsPerBar,
     barIndex,
     barInPhrase,
-    phraseBars,
+    phraseBars: _phraseBars,
     isPhraseStart,
     isPhraseEnd,
     isCadenceBar,
     isSectionStart = false,
-    isSectionEnd = false,
+    isSectionEnd: _isSectionEnd = false,
     isTransitionBar = false,
     transitionDirection,
     sectionKind,
     memory,
-    developmentDial,
-    expressionDial,
     seed,
     ensembleContext,
     interactions = [],
@@ -284,7 +297,7 @@ export function interpretPattern(options: InterpretPatternOptions): Interpretati
       activeVariant = pattern.variants.find(v => v.variationType === 'sparse' || v.variationType === 'syncopated');
     } else if (sectionEnergy <= 2) {
       activeVariant = pattern.variants.find(v => v.variationType === 'sparse' || v.variationType === 'breakdown');
-    } else if (sectionEnergy >= 4 && developmentDial > 0.4) {
+    } else if (sectionEnergy >= 4) {
       activeVariant = pattern.variants.find(v => v.variationType === 'dense' || v.variationType === 'syncopated');
     }
   }
@@ -338,7 +351,7 @@ export function interpretPattern(options: InterpretPatternOptions): Interpretati
     const structuralThreshold = isLooseFeel ? 0.92 : 0.82;
     const isStructural = isDownbeat
       ? (isLooseFeel && role !== 'bass' ? o.accent >= 0.88 : true)
-      : (o.accent >= structuralThreshold || grammar.preserveAuthoredRhythm >= 0.95);
+      : (o.accent >= structuralThreshold || (isStrongBeat && o.accent >= 0.78) || grammar.preserveAuthoredRhythm >= 0.95);
 
     // Pitch intent determination
     let pitchIntent: InterpretedAttack['pitchIntent'] = 'written';
@@ -374,7 +387,7 @@ export function interpretPattern(options: InterpretPatternOptions): Interpretati
     let velocityMultiplier = 1.0;
     if (stage === 'repeat') {
       // Subtle micro-dynamics so repetitions don't sound mechanical
-      const dynamicNudge = (rand01(seedOf(seed, barIndex, i, 'dyn-nudge')) - 0.5) * 0.12 * expressionDial;
+      const dynamicNudge = (rand01(seedOf(seed, barIndex, i, 'dyn-nudge')) - 0.5) * 0.06;
       velocityMultiplier += dynamicNudge;
     } else if (stage === 'vary') {
       velocityMultiplier += (o.accent > 0.75 ? 0.08 : -0.06);
@@ -392,30 +405,7 @@ export function interpretPattern(options: InterpretPatternOptions): Interpretati
       }
     }
 
-    let contextualArt = contextualArticulation(activeVariant?.articulation, isCadenceBar, isStructural, grammar, role, instrumentId, sectionKind);
-    let calculatedVelocity = Math.max(20, Math.min(127, Math.round(o.accent * 100 * velocityMultiplier)));
-
-    // Conga Tumbao Distinct Stroke Techniques:
-    // Heel-Toe (Palma-Dedo): Low velocity (20-45), muted high frequencies
-    // Open Tone (Abierto): Mid-high velocity (70-95), full resonance sustain
-    // Slap (Seco): High velocity (100-127), sharp transient, high-pass filtered tail
-    const isCongaOrLatinPerc = /conga|tumbao|bata|quinto|tumba/.test((instrumentId || '').toLowerCase()) || role === 'percussion';
-    if (isCongaOrLatinPerc) {
-      const stepInBar = o.step % 16;
-      if (stepInBar === 4 || stepInBar === 12 || (o.accent > 0.88 && (stepInBar === 4 || stepInBar === 12))) {
-        // Seco / Slap stroke on beat 2 or 4
-        contextualArt = 'hand_slap';
-        calculatedVelocity = Math.max(100, Math.min(127, Math.round(calculatedVelocity * 1.15)));
-      } else if (stepInBar === 6 || stepInBar === 7 || stepInBar === 14 || stepInBar === 15) {
-        // Abierto / Open tone stroke on syncopated upbeats
-        contextualArt = 'hand_open';
-        calculatedVelocity = Math.max(70, Math.min(95, Math.round(calculatedVelocity * 0.95)));
-      } else {
-        // Palma-Dedo / Heel-Toe muted stroke
-        contextualArt = 'hand_mute';
-        calculatedVelocity = Math.max(20, Math.min(45, Math.round(calculatedVelocity * 0.4)));
-      }
-    }
+    const calculatedVelocity = Math.max(20, Math.min(127, Math.round(o.accent * 100 * velocityMultiplier)));
 
     attacks.push({
       beat,
@@ -427,34 +417,23 @@ export function interpretPattern(options: InterpretPatternOptions): Interpretati
       pitchIntent,
       structural: isStructural,
       hitType: o.hitType,
-      articulation: contextualArt,
+      articulation: contextualArticulation(
+        activeVariant?.articulation,
+        isCadenceBar,
+        isStructural,
+        grammar,
+        role,
+        instrumentId,
+        sectionKind,
+        beat,
+        o.duration,
+        seedOf(seed, barIndex, i, 'articulation'),
+        isPhraseEnd
+      ),
       onsetIndex: o.originalIdx,
       registerOffset,
     });
     authoredCount++;
-  }
-
-  // Inject subtle acoustic artifacts (fret noise, breath sound, key click)
-  const isAcousticStringOrWind = /guitar|bass|requinto|flute|sax|trumpet|horn|woodwind/.test((instrumentId || '').toLowerCase());
-  if (isAcousticStringOrWind && attacks.length > 1 && expressionDial > 0.3) {
-    const artifactRoll = rand01(seedOf(seed, barIndex, 'acoustic-noise-artifact'));
-    if (artifactRoll < 0.28) {
-      const targetAtk = attacks[attacks.length - 1];
-      const noiseOffset = Math.min(beatsPerBar - 0.1, targetAtk.beat + 0.35);
-      attacks.push({
-        beat: noiseOffset,
-        durationSteps: 0.5,
-        accent: 0.25,
-        velocity: Math.round(18 + rand01(seedOf(seed, barIndex, 'noise-vel')) * 20),
-        source: 'derived',
-        kind: 'written',
-        pitchIntent: 'written',
-        structural: false,
-        hitType: 'ghost',
-        articulation: 'ghost',
-      });
-      derivedCount++;
-    }
   }
 
   // Cadence/phrase-end fallback: ensure phrase boundaries feel intentional even when no authored variant exists
@@ -492,7 +471,6 @@ export function interpretPattern(options: InterpretPatternOptions): Interpretati
   const isPostDropLead = (role === 'lead' || role === 'melody') && isSectionStart && transitionDirection === 'drop';
   const canSubdivide = !isPostDropLead && grammar.allowDerivedAttacks > 0.15 &&
     (stage === 'vary' || stage === 'transition' || sectionEnergy >= 4) &&
-    developmentDial > 0.35 &&
     !(grammar.forbiddenInterpretations?.includes('dense-subdivision'));
 
   if (canSubdivide && attacks.length > 0 && attacks.length < 10) {
@@ -527,7 +505,7 @@ export function interpretPattern(options: InterpretPatternOptions): Interpretati
   // 7. Cadence / Boundary Fill or Pickup
   if ((isCadenceBar || isPhraseEnd) && grammar.phraseDevelopment?.cadenceProbability) {
     const cadenceRoll = rand01(seedOf(seed, barIndex, 'phrase-cadence'));
-    if (cadenceRoll < (grammar.phraseDevelopment.cadenceProbability * 3 + developmentDial * 0.2)) {
+    if (cadenceRoll < (grammar.phraseDevelopment.cadenceProbability * 3 + 0.09)) {
       const lastAtk = attacks[attacks.length - 1];
       if (lastAtk && lastAtk.beat < beatsPerBar - 0.75) {
         attacks.push({

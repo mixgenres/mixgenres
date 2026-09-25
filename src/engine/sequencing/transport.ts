@@ -78,6 +78,14 @@ export class Transport {
   private looping = true;
   private endFired = false;
 
+  /**
+   * @static
+   * Creates a Web Worker scheduler for lookahead timing.
+   */
+  public static createWorker(): Worker | null {
+    return createSchedulerWorker();
+  }
+
   constructor(sink: TransportSink, cb: TransportCallbacks = {}) {
     this.sink = sink;
     this.cb = cb;
@@ -109,37 +117,22 @@ export class Transport {
   }
 
   /**
-   * Partial transport update: if currently playing section was not modified,
-   * updates the performance and adjusts the cursors without notes-off or relocation.
+   * Transport update: refreshes performance data immediately, cuts scheduled future notes
+   * and resumes cleanly from the current playback position.
    */
-  patchPerformance(perf: Performance, changedRegionIds?: string[]) {
+  patchPerformance(perf: Performance, _changedRegionIds?: string[]) {
     if (!this.running || !this.perf) {
       this.setPerformance(perf);
       return;
     }
     const currentPos = this.position();
-    const currentRegion = this.perf.bars.find(b => currentPos >= b.start && currentPos < b.end)?.regionId;
-    const isPlayingInChangedRegion = changedRegionIds && currentRegion
-      ? changedRegionIds.includes(currentRegion)
-      : false;
-
     this.perf = perf;
-    if (isPlayingInChangedRegion) {
-      if (typeof this.sink.softNotesOff === 'function') {
-        this.sink.softNotesOff();
-      } else {
-        this.sink.allNotesOff();
-      }
-      this.locate(currentPos);
+    if (typeof this.sink.softNotesOff === 'function') {
+      this.sink.softNotesOff();
     } else {
-      this.noteCursor = this.findCursor(currentPos);
-      const ccs = this.perf.ccs ?? [];
-      let ci = 0;
-      while (ci < ccs.length && ccs[ci].time <= currentPos) {
-        ci++;
-      }
-      this.ccCursor = ci;
+      this.sink.allNotesOff();
     }
+    this.locate(currentPos);
   }
 
   // Live mix controls (Tier 3 -> Sink direct path)

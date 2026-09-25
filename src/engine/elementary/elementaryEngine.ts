@@ -3,7 +3,7 @@ import { el } from '@elemaudio/core';
 import { getLuthierModelForInstrument, type LuthierPhysicalParameters } from '../audio/LuthierAPI';
 import { seedOf, randNorm } from '../generators/groove';
 import type { MixCharacter } from '../../data/styles/contracts';
-import { calculateSidechainDepth, calculateDrumKnock, calculateAcousticCrosstalk } from '../audio/mixer';
+import { calculateSidechainDepth, calculateDrumKnock } from '../audio/mixer';
 type Node = any;
 /**
 Physical Karplus-Strong waveguide string loop.
@@ -17,43 +17,84 @@ delaySamples: number | Node,
 feedbackGain: number | Node,
 dampingCutoffHz: number | Node,
 excitation: Node,
-dampingQ = 0.707
+dampingQ: number | Node = 0.707
 ): Node {
-const fbGainNode = typeof feedbackGain === 'number' ? el.const({ value: feedbackGain }) : feedbackGain;
+const pKey = persistentKey || 'damped_string_loop';
+const fbGainNode = typeof feedbackGain === 'number'
+  ? el.const({ key: `${pKey}:fb`, value: feedbackGain })
+  : feedbackGain;
+
+// Ensure delayTime can be safely updated at runtime via el.const or dynamic signal nodes.
+// Clamp delay to [1, 44000] and apply a gentle 3ms pole smoother to eliminate click
+// artifacts when delayTime is modulated or updated via el.const without graph recompilation.
+const rawDelay = typeof delaySamples === 'number'
+  ? el.const({ key: `${pKey}:dt`, value: delaySamples })
+  : delaySamples;
+const clampedDelay = el.min(el.const({ value: 44000 }), el.max(el.const({ value: 1 }), rawDelay));
+const safeDelay = el.smooth(el.tau2pole(0.003), clampedDelay);
+
 // Soften the initial burst to prevent raw metallic comb-filtering
 const dampedExcite = el.lowpass(dampingCutoffHz, dampingQ, excitation);
-// Sample-accurate internal feedback guarantees perfect tuning
+
+// Sample-accurate internal feedback guarantees perfect tuning with persistent key
 const loop = el.delay(
-{ key: persistentKey, size: 44100 },
-delaySamples,
-fbGainNode,
-dampedExcite
+  { key: pKey, size: 44100 },
+  safeDelay,
+  fbGainNode,
+  dampedExcite
 );
 // Post-filter shapes the body resonance and dampens the tail
 return el.lowpass(dampingCutoffHz, dampingQ, loop);
 }
 /**
  * Frequency-compensated feedback gain for a Karplus-Strong style delay loop.
+ * Formulated as signal-math nodes rather than static JS calculations executed once
+ * at render time, so that feedback gain automatically updates whenever the frequency
+ * signal/const changes dynamically at runtime.
+ *
  * Guarantees the loop's T60 decay time (in seconds) is governed by
  * `decaySeconds` regardless of the note's pitch (i.e. regardless of how
  * short the delay line is). Without this, higher notes — which loop far
  * more times per second — decay dramatically faster than low notes purely
  * as an artifact of delay-line length, not string physics.
  */
-export function fbGainForDecay(freqHz: number, decaySeconds: number): number {
-  const loopsPerSecond = Math.max(1, freqHz);
-  const g = Math.exp(-3 * Math.LN10 / (Math.max(0.05, decaySeconds) * loopsPerSecond));
-  return Math.min(0.9995, Math.max(0.5, g)); // safety clamp: never runaway, never mute instantly
+export function fbGainForDecay(
+  freqHz: number | Node,
+  decaySeconds: number | Node,
+): Node {
+  const freqNode = typeof freqHz === 'number'
+    ? el.const({ value: Math.max(1, freqHz) })
+    : el.max(el.const({ value: 1 }), freqHz);
+  const decayNode = typeof decaySeconds === 'number'
+    ? el.const({ value: Math.max(0.05, decaySeconds) })
+    : el.max(el.const({ value: 0.05 }), decaySeconds);
+
+  const exponent = el.div(
+    el.const({ value: -3 * Math.LN10 }),
+    el.mul(decayNode, freqNode)
+  );
+  const g = el.exp(exponent);
+  return el.min(el.const({ value: 0.9995 }), el.max(el.const({ value: 0.5 }), g));
 }
 
 export function compensatedFeedbackGain(
   delaySamples: number | Node,
-  decaySeconds: number,
-  sr = 44100,
+  decaySeconds: number | Node,
+  sr: number | Node = el.sr(),
 ): Node {
-  const loopsPerSecond = el.div(el.const({ value: sr }), el.max(el.const({ value: 1 }), delaySamples));
-  const exponent = el.div(el.const({ value: -3 * Math.LN10 }), el.mul(el.const({ value: Math.max(0.05, decaySeconds) }), loopsPerSecond));
-  return el.pow(el.const({ value: Math.E }), exponent);
+  const srNode = typeof sr === 'number' ? el.const({ value: sr }) : sr;
+  const delayNode = typeof delaySamples === 'number' ? el.const({ value: delaySamples }) : delaySamples;
+  const decayNode = typeof decaySeconds === 'number'
+    ? el.const({ value: Math.max(0.05, decaySeconds) })
+    : el.max(el.const({ value: 0.05 }), decaySeconds);
+
+  const loopsPerSecond = el.div(srNode, el.max(el.const({ value: 1 }), delayNode));
+  const exponent = el.div(
+    el.const({ value: -3 * Math.LN10 }),
+    el.mul(decayNode, loopsPerSecond)
+  );
+  const g = el.exp(exponent);
+  return el.min(el.const({ value: 0.9995 }), el.max(el.const({ value: 0.5 }), g));
 }
 
 export function midiToFreq(note: number): number {
@@ -75,35 +116,10 @@ note: number;
 velocity: number;
 gate: number;
 id: string;
-actionType?:
-  | 'strike'
-  | 'pluck'
-  | 'bow_drag'
-  | 'abanico'
-  | 'rasgueado'
-  | 'tap'
-  | 'golpe'
-  | 'arrastre'
-  | 'slap'
-  | 'mute'
-  | 'legato'
-  | 'slur'
-  | 'staccato'
-  | 'tongue'
-  | 'accent'
-  | 'apagado'
-  | 'palm_mute'
-  | 'hand_slap'
-  | 'hand_mute'
-  | 'hand_open'
-  | 'palma'
-  | 'heel-toe'
-  | 'cuica-friction'
-  | 'friction_mod'
-  | 'growl'
-  | 'flutter_tongue'
-  | string;
+actionType?: 'strike' | 'pluck' | 'bow_drag' | 'abanico' | 'rasgueado' | 'tap' | 'golpe' | 'golpe-caja' | 'chicharra' | 'bellows-slap' | 'strappata' | 'tambor' | 'heel' | 'toe' | 'arrastre' | 'slap' | 'mute' | 'legato' | 'slur' | 'staccato' | 'tongue' | 'accent' | 'pizzicato' | string;
 technique?: string;
+hitType?: string;
+articulation?: string;
 contactPoint?: number;
 mass?: number;
 frequencyHz?: number;
@@ -410,63 +426,97 @@ voiceIndex: number,
 voice: VoiceState,
 params: TrackParams
 ): Node {
-const retrig = voice.retriggerId ?? 0;
-// Dynamic keys for Envelopes to guarantee re-triggers
-const k = `${trackId}:v${voiceIndex}:${retrig}`;
-// Persistent keys for delay buffers so tails aren't wiped
-const pk = `${trackId}:v${voiceIndex}`;
+// Static persistent key for this voice's parameters and internal buffers
+const pk = `track_${trackId}_voice_${voiceIndex}`;
 const rawFreq = (voice as VoiceState & { frequencyHz?: number }).frequencyHz ?? midiToFreq(voice.note || 60);
 const freq = Math.max(20, isNaN(rawFreq) ? 440 : rawFreq);
-const gateSignal = el.const({ key: `${k}:gate`, value: voice.gate });
-const velSignal = el.const({ key: `${k}:vel`, value: voice.velocity * (1 - 0.58 * params.mute) });
+const gateSignal = el.const({ key: `${pk}_gate`, value: voice.gate ?? 0 });
+const velSignal = el.const({ key: `${pk}_vel`, value: (voice.velocity ?? 0) * (1 - 0.58 * params.mute) });
 const glideSec = Math.max(0.005, Math.min(0.2, (params.bendGlideMs ?? 15) / 1000));
-const freqSignal = el.smooth(el.tau2pole(glideSec), el.const({ key: `${k}:freq`, value: freq }));
+const freqSignal = el.smooth(el.tau2pole(glideSec), el.const({ key: `${pk}_freq`, value: freq }));
 const safeFreqSignal = el.max(el.const({ value: 20 }), freqSignal);
-const velBoost = 0.55 + 0.6 * Math.max(0, Math.min(1, voice.velocity));
+const velBoost = 0.55 + 0.6 * Math.max(0, Math.min(1, voice.velocity ?? 0));
 const b = Math.max(0, Math.min(1, params.brightness * velBoost));
-const decayTime = Math.max(0.05, params.decay);
+const rawDecayTime = Math.max(0.05, params.decay);
+const muteDamping = Math.max(0.08, 1 - 0.88 * params.mute);
+const decayTime = rawDecayTime * muteDamping;
 const model = params.performanceMode === 'programmed-electronic' ? 9 : Math.round(params.model);
 const action = voice.actionType ?? (params.bodyTap > 0.5 ? 'golpe' : 'pluck');
-const isPalmMuted = action === 'mute' || action === 'apagado' || action === 'palm_mute' || params.mute > 0.4;
-const isHandSlap = action === 'hand_slap' || action === 'slap';
-const isHandMute = action === 'hand_mute' || action === 'palma' || action === 'heel-toe';
-const isCuicaFriction = action === 'cuica-friction' || action === 'friction_mod' || /cuica/.test((params.instrumentId ?? '').toLowerCase());
-const isGrowl = action === 'growl' || action === 'flutter_tongue';
+const isMuted = action === 'mute' || params.mute > 0.4;
 
-const attack = voice.attack !== undefined ? voice.attack : (isPalmMuted ? 0.0003 : 0.0008 + (1 - b) * 0.01);
-const release = voice.release !== undefined ? voice.release : (isPalmMuted ? 0.025 : isHandMute ? 0.04 : 0.03 + decayTime * 0.25);
-const sustain = voice.sustain !== undefined ? voice.sustain : (isPalmMuted ? 0.02 : isHandMute ? 0.05 : 0.35 + 0.3 * params.body);
-const envDecay = voice.decay !== undefined ? voice.decay : (decayTime * (isPalmMuted ? 0.08 : isHandMute ? 0.12 : 0.3));
-const env = el.adsr(attack, envDecay, sustain, release, gateSignal);
+// Decaying instruments (Karplus-Strong loops, bells, drums) must not be choked by ADSR
+const isDecayingInstrument = model === 0 || model === 1 || model === 2 || model === 3 || model === 4 ||
+  model === 5 || model === 8 || model === 11 || model === 17 || model === 18 || model === 19 ||
+  model === 20 || (model >= 21 && model <= 26);
+
+const attack = voice.attack !== undefined ? voice.attack : (isDecayingInstrument ? 0.0004 : (0.0008 + (1 - b) * 0.01));
+const release = voice.release !== undefined ? voice.release : (isMuted ? 0.012 : (isDecayingInstrument ? 0.045 : 0.06 + decayTime * 0.15));
+const sustain = voice.sustain !== undefined ? voice.sustain : (isDecayingInstrument ? 1.0 : (isMuted ? 0.05 : 0.75 + 0.15 * params.body));
+const envDecay = voice.decay !== undefined ? voice.decay : (isDecayingInstrument ? 12.0 : (decayTime * (isMuted ? 0.1 : 0.4)));
+
+const attackSignal = el.const({ key: `${pk}_attack`, value: attack });
+const decaySignal = el.const({ key: `${pk}_decay`, value: envDecay });
+const sustainSignal = el.const({ key: `${pk}_sustain`, value: sustain });
+const releaseSignal = el.const({ key: `${pk}_release`, value: release });
+const env = el.adsr(attackSignal, decaySignal, sustainSignal, releaseSignal, gateSignal);
 let rawAudio: Node;
-if (action === 'golpe' || action === 'tap') {
-const bodyPunch = el.mul(el.cycle(110), el.adsr(0.0005, 0.02, 0, 0.01, gateSignal));
-const woodClick = el.mul(el.highpass(1400, 1.2, el.noise()), el.adsr(0.0002, 0.008, 0, 0.004, gateSignal));
-rawAudio = el.add(el.mul(0.75, bodyPunch), el.mul(0.25, woodClick));
+if (action === 'golpe' || action === 'tap' || action === 'golpe-caja') {
+  const bodyPunch = el.mul(el.cycle(110), el.adsr(0.0005, 0.02, 0, 0.01, gateSignal));
+  const woodClick = el.mul(el.highpass(1400, 1.2, el.noise()), el.adsr(0.0002, 0.008, 0, 0.004, gateSignal));
+  rawAudio = el.add(el.mul(0.75, bodyPunch), el.mul(0.25, woodClick));
+} else if (action === 'chicharra') {
+  // Scratchy cricket noise behind the bridge (Tango violin)
+  // Highly resonant bandpassed noise modulated by an aggressive 16Hz sawtooth LFO
+  const scrapeNoise = el.svf({ mode: 'bandpass' }, 4200, 6.0, el.pinknoise());
+  const scrapeLfo = el.add(el.const({ value: 0.6 }), el.mul(el.const({ value: 0.4 }), el.blepsaw(el.const({ value: 16 }))));
+  const cricketMod = el.mul(scrapeLfo, scrapeNoise);
+  const chicharraEnv = el.adsr(0.002, 0.15, 0.2, 0.04, gateSignal);
+  // Add a piercing harmonic ring to simulate the short string segment
+  const ring = el.mul(0.15, el.cycle(el.mul(safeFreqSignal, 4.5)));
+  rawAudio = el.mul(chicharraEnv, el.add(cricketMod, ring));
+} else if (action === 'bellows-slap') {
+  // Bandoneón bellows slap: wideband noise filtered at 800Hz with fast 15ms decay
+  const airBurst = el.lowpass(800, 0.9, el.noise());
+  const snapEnv = el.adsr(0.0005, 0.015, 0, 0.005, gateSignal);
+  rawAudio = el.mul(snapEnv, airBurst);
+} else if (action === 'strappata') {
+  // Upright bass strappata: metallic slap + deep 60Hz resonant body thump
+  const metallicSlap = el.mul(
+    el.adsr(0.0003, 0.025, 0, 0.01, gateSignal),
+    el.svf({ mode: 'bandpass' }, 1800, 2.8, el.noise())
+  );
+  const deepThump = el.mul(
+    el.cycle(60),
+    el.adsr(0.0005, 0.08, 0, 0.03, gateSignal)
+  );
+  rawAudio = el.add(el.mul(0.65, metallicSlap), el.mul(0.85, deepThump));
 } else switch (model) {
 case 2: {
   const delayTimeSignal = el.min(el.const({ value: 4000 }), el.max(el.const({ value: 2 }), el.div(el.sr(), safeFreqSignal)));
-  const pickPos = Math.max(0.05, Math.min(0.5, params.pluckPosition));
 
-  const impulse = el.mul(el.noise(), el.adsr(0.0005, 0.008, 0, 0.003, gateSignal));
-  const dampingCutoff = Math.min(19000, Math.max(1800, freq * (3.5 + b * 6.0)));
+  // Rich broadband pitch-relative impulse for solid fundamental
+  const exciteFilter = el.lowpass(el.mul(safeFreqSignal, 4.0), 0.9, el.pinknoise());
+  const impulse = el.mul(el.add(el.mul(0.65, exciteFilter), el.mul(0.35, el.noise())), el.adsr(0.0005, 0.008, 0, 0.003, gateSignal));
+  const dampingCutoff = el.min(el.const({ value: 19000 }), el.max(el.const({ value: 1800 }), el.mul(safeFreqSignal, el.const({ value: 3.5 + b * 6.0 }))));
   const targetDecaySeconds = 0.4 + decayTime * (0.8 + b * 1.6);
-  const fbGain = fbGainForDecay(freq, targetDecaySeconds);
+  const fbGain = fbGainForDecay(safeFreqSignal, targetDecaySeconds);
   const stringLoop = createDampedStringLoop(`${pk}:eg`, delayTimeSignal, fbGain, dampingCutoff, impulse);
 
-  const combOffset = el.max(el.const({ value: 1 }), el.mul(delayTimeSignal, el.const({ value: pickPos })));
-  const combSig = el.sub(stringLoop, el.delay({ key: `${pk}:comb`, size: 44100 }, combOffset, el.const({ value: 0 }), stringLoop));
-
-  const driven = el.tanh(el.mul(el.const({ value: 1 + params.drive * 5 }), combSig));
-  rawAudio = el.lowpass(Math.min(19000, 1200 + b * 5500), 1.2, driven);
+  // Pure fundamental preserved: stringLoop feeds directly into drive stage without phase-cancelling comb filter
+  const driven = el.tanh(el.mul(el.const({ value: 1 + params.drive * 5 }), stringLoop));
+  // Speaker cabinet simulation: 100Hz HPF, 2.5kHz cone bump, 4.8kHz steep LPF
+  const cabHP = el.highpass(100, 0.8, driven);
+  const conePresence = el.svf({ mode: 'bandpass' }, 2500, 1.8, cabHP);
+  const cabOut = el.add(cabHP, el.mul(0.25, conePresence));
+  rawAudio = el.lowpass(Math.min(19000, 4600 + b * 1800), 1.2, cabOut);
   break;
 }
 case 19: {
   const delayTimeSignal = el.min(el.const({ value: 4000 }), el.max(el.const({ value: 2 }), el.div(el.sr(), safeFreqSignal)));
   const impulse = el.mul(el.noise(), el.adsr(0.00025, 0.004, 0, 0.002, gateSignal));
-  const clavCutoff = Math.min(19000, Math.max(2000, freq * (4.0 + b * 5.5)));
+  const clavCutoff = el.min(el.const({ value: 19000 }), el.max(el.const({ value: 2000 }), el.mul(safeFreqSignal, el.const({ value: 4.0 + b * 5.5 }))));
   const targetDecaySeconds = 0.25 + decayTime * (0.4 + b * 0.8);
-  const fbGain = fbGainForDecay(freq, targetDecaySeconds);
+  const fbGain = fbGainForDecay(safeFreqSignal, targetDecaySeconds);
   const stringLoop = createDampedStringLoop(`${pk}:clav`, delayTimeSignal, fbGain, clavCutoff, impulse);
   const pickup = el.svf({ mode: 'bandpass' }, Math.min(19000, 700 + b * 1800), 1.1, stringLoop);
   const click = el.mul(0.18, el.mul(el.highpass(Math.min(19000, 2200), 1.0, el.noise()), el.adsr(0.0001, 0.003, 0, 0.0015, gateSignal)));
@@ -475,17 +525,17 @@ case 19: {
 }
 case 20: {
   const delayTimeSignal = el.min(el.const({ value: 4000 }), el.max(el.const({ value: 2 }), el.div(el.sr(), safeFreqSignal)));
-  const detunedFreqSignal = el.max(el.const({ value: 20 }), el.mul(freqSignal, el.const({ value: 1.003 })));
+  const detunedFreqSignal = el.max(el.const({ value: 20 }), el.mul(safeFreqSignal, el.const({ value: 1.003 })));
   const detunedDelaySignal = el.min(el.const({ value: 4000 }), el.max(el.const({ value: 2 }), el.div(el.sr(), detunedFreqSignal)));
   const pluck = el.mul(el.noise(), el.adsr(0.0001, 0.0025, 0, 0.0015, gateSignal));
-  const harpsiCutoff = Math.min(19000, Math.max(2200, freq * (4.5 + b * 6.5)));
+  const harpsiCutoff = el.min(el.const({ value: 19000 }), el.max(el.const({ value: 2200 }), el.mul(safeFreqSignal, el.const({ value: 4.5 + b * 6.5 }))));
   const targetDecaySeconds1 = 0.35 + decayTime * (0.6 + b * 1.2);
   const targetDecaySeconds2 = targetDecaySeconds1 * 0.92;
-  const fbGain1 = fbGainForDecay(freq, targetDecaySeconds1);
-  const fbGain2 = fbGainForDecay(freq * 1.003, targetDecaySeconds2);
+  const fbGain1 = fbGainForDecay(safeFreqSignal, targetDecaySeconds1);
+  const fbGain2 = fbGainForDecay(detunedFreqSignal, targetDecaySeconds2);
   const string1 = createDampedStringLoop(`${pk}:h1`, delayTimeSignal, fbGain1, harpsiCutoff, pluck);
-  const string2 = createDampedStringLoop(`${pk}:h2`, detunedDelaySignal, fbGain2, harpsiCutoff * 0.98, pluck);
-  const upper = el.mul(0.18, el.cycle(el.mul(freqSignal, 2.0)));
+  const string2 = createDampedStringLoop(`${pk}:h2`, detunedDelaySignal, fbGain2, el.mul(harpsiCutoff, el.const({ value: 0.98 })), pluck);
+  const upper = el.mul(0.18, el.cycle(el.mul(safeFreqSignal, 2.0)));
   const tone = el.add(string1, el.add(el.mul(0.75, string2), upper));
   rawAudio = el.lowpass(Math.min(19000, 1400 + b * 7600), 1.0, tone);
   break;
@@ -508,30 +558,39 @@ case 26: {
     : isJazz
     ? (0.35 + decayTime * 0.9)
     : (0.45 + decayTime * 1.8);
-  const damping = fbGainForDecay(freq, targetDecaySeconds);
+  const damping = fbGainForDecay(safeFreqSignal, targetDecaySeconds);
   const attackTime = isMutedGuitar ? 0.00035 : 0.0007;
-  const impulse = el.mul(el.noise(), el.adsr(attackTime, isMutedGuitar ? 0.004 : 0.008, 0, 0.003, gateSignal));
-  const loopCutoff = Math.min(19000, Math.max(1200, freq * (isJazz ? (2.5 + b * 3.5) : isMutedGuitar ? (2.0 + b * 2.5) : (3.5 + b * 6.5))));
+
+  // Rich broadband pitch-relative impulse preserves fundamental bass energy
+  const exciteFilter = el.lowpass(el.mul(safeFreqSignal, 4.0), 0.9, el.pinknoise());
+  const impulse = el.mul(
+    el.add(el.mul(0.65, exciteFilter), el.mul(0.35, el.noise())),
+    el.adsr(attackTime, isMutedGuitar ? 0.004 : 0.008, 0, 0.003, gateSignal)
+  );
+
+  const mult = isJazz ? (2.5 + b * 3.5) : isMutedGuitar ? (2.0 + b * 2.5) : (3.5 + b * 6.5);
+  const loopCutoff = el.min(el.const({ value: 19000 }), el.max(el.const({ value: 1200 }), el.mul(safeFreqSignal, el.const({ value: mult }))));
   
   const stringLoop = createDampedStringLoop(`${pk}:egf`, delayTimeSignal, damping, loopCutoff, impulse);
 
-  const pickPos = Math.max(0.04, Math.min(0.5, isJazz ? 0.34 : params.pluckPosition));
-  const combOffset = el.max(el.const({ value: 1 }), el.mul(delayTimeSignal, el.const({ value: pickPos })));
-  const combSig = el.sub(
-    stringLoop,
-    el.delay({ key: `${pk}:comb`, size: 44100 }, combOffset, el.const({ value: 0 }), stringLoop)
-  );
-
-  const pickupCut = Math.min(19000, isJazz ? 2200 : isMutedGuitar ? 1700 : isDistortion ? 4200 : isOverdrive ? 5000 : 6000);
   const driveAmount = isDistortion ? 7.5 : isOverdrive ? 4.0 : isHarmonics ? 1.6 : 1.2 + params.drive * 2.0;
+  // Route stringLoop directly to drive saturator to restore full fundamental punch
+  const driven = el.tanh(el.mul(el.const({ value: driveAmount }), stringLoop));
 
-  const driven = el.tanh(el.mul(el.const({ value: driveAmount }), combSig));
-  const pickup = el.lowpass(Math.min(19000, pickupCut + b * (isJazz ? 900 : 2200)), 1.1, driven);
+  // Speaker Cabinet Simulation (Models 21-26):
+  // 1. High-pass around 80Hz - 120Hz to eliminate sub-mud
+  const cabHP = el.highpass(100, 0.8, driven);
+  // 2. Resonant bandpass bump around 2200Hz to simulate speaker cone presence
+  const conePresence = el.svf({ mode: 'bandpass' }, 2200, 1.4, cabHP);
+  const cabWithCone = el.add(cabHP, el.mul(0.35, conePresence));
+  // 3. Steep low-pass filter around 4500Hz - 5500Hz to remove harsh digital fizz
+  const cabCutoff = Math.min(19000, isJazz ? 4200 : 4800 + b * 700);
+  const cabOut = el.lowpass(cabCutoff, 1.2, cabWithCone);
 
-  const harmonic = isHarmonics ? el.mul(0.65, el.cycle(el.mul(freqSignal, 2.0))) : 0;
-  const mutedBody = isMutedGuitar ? el.mul(0.45, el.highpass(900, 1.0, pickup)) : pickup;
+  const harmonic = isHarmonics ? el.mul(0.65, el.cycle(el.mul(safeFreqSignal, 2.0))) : 0;
+  const mutedBody = isMutedGuitar ? el.mul(0.5, el.highpass(500, 1.0, cabOut)) : cabOut;
 
-  rawAudio = el.add(mutedBody, el.add(harmonic, el.mul(isDistortion ? 0.85 : isOverdrive ? 0.9 : isJazz ? 0.82 : 1.0, pickup)));
+  rawAudio = el.add(mutedBody, harmonic);
   break;
 }
 case 3: {
@@ -550,21 +609,36 @@ case 3: {
 
     const delayTimeSignal = el.min(el.const({ value: 4000 }), el.max(el.const({ value: 2 }), el.div(el.sr(), safeFreqSignal)));
 
+    // Full-bodied broadband exciter preserves fundamental sub-energy
+    const exciteFilter = el.lowpass(el.mul(safeFreqSignal, 3.5), 0.9, el.pinknoise());
     let impulse: Node;
     if (isUpright) {
-      impulse = el.mul(el.lowpass(Math.min(19000, 1200), 0.8, el.noise()), el.adsr(0.0015, 0.020, 0, 0.008, gateSignal));
+      impulse = el.mul(
+        el.add(el.mul(0.7, exciteFilter), el.mul(0.3, el.lowpass(Math.min(19000, 1200), 0.8, el.noise()))),
+        el.adsr(0.0015, 0.020, 0, 0.008, gateSignal)
+      );
     } else if (isPick) {
-      impulse = el.mul(el.svf({ mode: 'bandpass' }, Math.min(19000, 2400), 1.4, el.noise()), el.adsr(0.0004, 0.008, 0, 0.003, gateSignal));
+      impulse = el.mul(
+        el.add(el.mul(0.6, exciteFilter), el.mul(0.4, el.svf({ mode: 'bandpass' }, Math.min(19000, 2400), 1.4, el.noise()))),
+        el.adsr(0.0004, 0.008, 0, 0.003, gateSignal)
+      );
     } else if (isSlap) {
-      impulse = el.mul(el.highpass(Math.min(19000, 1800), 1.2, el.noise()), el.adsr(0.0003, 0.006, 0, 0.002, gateSignal));
+      impulse = el.mul(
+        el.add(el.mul(0.5, exciteFilter), el.mul(0.5, el.noise())),
+        el.adsr(0.0003, 0.006, 0, 0.002, gateSignal)
+      );
     } else {
-      impulse = el.mul(el.noise(), el.adsr(0.001, 0.015, 0, 0.005, gateSignal));
+      impulse = el.mul(
+        el.add(el.mul(0.65, exciteFilter), el.mul(0.35, el.noise())),
+        el.adsr(0.001, 0.015, 0, 0.005, gateSignal)
+      );
     }
 
     const slapClick = isSlap ? el.mul(0.5, el.adsr(0.0002, 0.004, 0, 0.002, gateSignal)) : 0;
     const targetDecaySeconds = isUpright ? (0.5 + decayTime * 1.2) : (0.6 + decayTime * 1.8);
-    const damping = fbGainForDecay(freq, targetDecaySeconds);
-    const bassCutoff = Math.min(19000, Math.max(600, freq * (isUpright ? (3.0 + b * 4.0) : (4.0 + b * 6.0))));
+    const damping = fbGainForDecay(safeFreqSignal, targetDecaySeconds);
+    const bassMult = isUpright ? (3.0 + b * 4.0) : (4.0 + b * 6.0);
+    const bassCutoff = el.min(el.const({ value: 19000 }), el.max(el.const({ value: 600 }), el.mul(safeFreqSignal, el.const({ value: bassMult }))));
     const stringLoop = createDampedStringLoop(`${pk}:bass`, delayTimeSignal, damping, bassCutoff, el.add(impulse, slapClick));
 
     if (isUpright) {
@@ -597,65 +671,99 @@ case 3: {
 }
 case 4:
 case 5: {
-  const hitSeed = seedOf(voice.id || 'drum', voice.note, retrig);
+  const hitSeed = seedOf(trackId, voiceIndex, 1234);
   const detuneSemitones = (randNorm(hitSeed ^ 0x1234) * 3.5) / 100;
   const f0 = el.mul(freqSignal, Math.pow(2, detuneSemitones / 12));
 
-  const v01 = Math.max(0.85, Math.min(1.15, 1.0 + randNorm(hitSeed ^ 0x1111) * 0.08));
-  const v11 = Math.max(0.78, Math.min(1.22, 1.0 + randNorm(hitSeed ^ 0x2222) * 0.10));
-  const v21 = Math.max(0.72, Math.min(1.28, 1.0 + randNorm(hitSeed ^ 0x3333) * 0.12));
-  const v02 = Math.max(0.70, Math.min(1.30, 1.0 + randNorm(hitSeed ^ 0x4444) * 0.12));
-
-  const shellDecay = isHandSlap
-    ? Math.max(0.04, decayTime * 0.18)
-    : isHandMute
-    ? Math.max(0.03, decayTime * 0.12)
-    : decayTime * (0.35 + 0.5 * params.body);
-
-  const pitchEnvDepth = isCuicaFriction ? 0.58 : (0.38 + b * 0.22);
-  const pitchEnvTime = isCuicaFriction ? 0.08 : (0.022 + params.body * 0.015);
-  const pitchEnv = el.adsr(0.0002, pitchEnvTime, 0, 0.008, gateSignal);
-  const dynamicF0 = el.mul(f0, el.add(1.0, el.mul(pitchEnvDepth, pitchEnv)));
-
-  const m01 = el.mul(v01, el.mul(el.cycle(dynamicF0), el.adsr(0.0005, shellDecay, 0, 0.04 + shellDecay * 0.1, gateSignal)));
-  const m11 = el.mul(0.45 * v11, el.mul(el.cycle(el.mul(dynamicF0, 1.593)), el.adsr(0.0005, shellDecay * 0.5, 0, 0.02, gateSignal)));
-  const m21 = el.mul(0.25 * v21, el.mul(el.cycle(el.mul(dynamicF0, 2.135)), el.adsr(0.0005, shellDecay * 0.32, 0, 0.015, gateSignal)));
-  const m02 = el.mul(0.18 * v02, el.mul(el.cycle(el.mul(dynamicF0, 2.295)), el.adsr(0.0005, shellDecay * 0.24, 0, 0.01, gateSignal)));
-
   const instId = (params.instrumentId ?? '').toLowerCase();
-  const isHighModeRich = b > 0.52 || /timbal|darbuka|tabla|snare|tamborim|pandeiro|bata|cuica/.test(instId);
-  let highModes: Node = el.const({ value: 0 });
-  if (isHighModeRich) {
-    const v12 = Math.max(0.65, Math.min(1.35, 1.0 + randNorm(hitSeed ^ 0x5555) * 0.15));
-    const v22 = Math.max(0.60, Math.min(1.40, 1.0 + randNorm(hitSeed ^ 0x6666) * 0.15));
-    const m12 = el.mul(0.12 * v12, el.mul(el.cycle(el.mul(dynamicF0, 2.653)), el.adsr(0.0004, shellDecay * 0.18, 0, 0.008, gateSignal)));
-    const m22 = el.mul(0.08 * v22, el.mul(el.cycle(el.mul(dynamicF0, 2.917)), el.adsr(0.0004, shellDecay * 0.14, 0, 0.006, gateSignal)));
-    highModes = el.add(m12, m22);
-  }
+  const construction = params.bodyConstruction ?? 'wood-box';
+  const isMetalShell = construction === 'metal-shell' || /timbal|metal|steel|agogo|bell|snare-metal/.test(instId);
+  const isWoodBox = construction === 'wood-box' || /cajon|cajón|box|slit-drum/.test(instId);
+  const isHeelToe = action === 'heel' || action === 'toe' || /heel|toe/i.test(voice.hitType ?? '');
 
-  const isRim = isHandSlap || (voice.contactPoint ? voice.contactPoint < 0.25 : false);
-  const noiseTilt = (isHandSlap ? 2400 : 1800) + randNorm(hitSeed ^ 0x7777) * 250;
-  const snapNoise = el.mul(
-    isRim ? 0.75 : 0.2,
-    el.mul(el.highpass(noiseTilt, 1.2, el.noise()), el.adsr(0.0002, isHandSlap ? 0.008 : 0.012, 0, 0.005, gateSignal))
+  const isLogDrum = instId.includes('log-drum');
+  const isMeend = action === 'meend' || /meend/i.test(voice.hitType ?? '');
+  const bodyMult = 0.5 + params.body * 2.5;
+
+  // Overhaul Membrane Drums: Pitch-Swept Transient Model
+  // Fast pitch envelope modulates downward for kick/tom punch, OR sweeps upward slowly for Indian Tabla Meend
+  const pitchEnv = el.adsr(
+    isMeend ? 0.15 : 0.001,
+    isMeend ? 0.4 : (isHeelToe ? 0.02 : (0.045 + params.body * 0.02)),
+    0,
+    0.006,
+    gateSignal
   );
 
-  const membraneSum = el.add(el.add(m01, el.add(m11, el.add(m21, m02))), el.add(highModes, snapNoise));
+  const sweepAmount = isMeend ? -0.4 : (isLogDrum ? 0.2 : (isHeelToe ? 0.8 : (isMetalShell ? 1.4 : (isWoodBox ? 2.0 : 2.6 + b * 1.0))));
+  const dynamicF0 = el.mul(f0, el.add(1.0, el.mul(sweepAmount, pitchEnv)));
 
-  const shellFreq = el.mul(f0, 0.58 + params.body * 0.15);
-  const shellCavityDecay = shellDecay * (0.8 + params.body * 0.5);
-  const shellBurst = el.mul(0.22, el.mul(el.svf({ mode: 'bandpass' }, shellFreq, 2.2, membraneSum), el.adsr(0.001, shellCavityDecay, 0, 0.05, gateSignal)));
+  // Drum body amplitude decay (heel/toe palm rocking heavily damps the head)
+  const shellDecay = isHeelToe ? 0.05 : (decayTime * (0.35 + 0.5 * params.body) * (isWoodBox ? 0.75 : 1.0));
+  const shellCavityDecay = isWoodBox ? shellDecay * 1.5 * bodyMult : shellDecay * 0.9 * bodyMult;
+  const bodyAmpEnv = el.adsr(0.0005, shellDecay, 0, 0.03 + shellDecay * 0.1, gateSignal);
+  const fundamentalCycle = el.mul(bodyAmpEnv, el.cycle(dynamicF0));
 
-  const rawSum = el.add(membraneSum, shellBurst);
-  rawAudio = isHandMute ? el.lowpass(Math.min(19000, 650 + b * 400), 1.0, rawSum) : rawSum;
+  // Transient noise burst (crack/snap on attack)
+  const isRim = voice.contactPoint ? voice.contactPoint < 0.25 : false;
+  const noiseTilt = 1800 + randNorm(hitSeed ^ 0x7777) * 250;
+  const snapNoiseGain = isLogDrum ? 0.03 : (isHeelToe ? 0.08 : (isRim ? 0.65 : 0.25));
+  const snapNoise = el.mul(
+    snapNoiseGain,
+    el.mul(el.highpass(noiseTilt, 1.2, el.noise()), el.adsr(0.0002, isHeelToe ? 0.005 : 0.012, 0, 0.004, gateSignal))
+  );
+
+  // Metal shell drums retain a touch of inharmonic ring
+  let metalRing: Node = el.const({ value: 0 });
+  if (isMetalShell && !isHeelToe) {
+    const ringDecay = shellDecay * 0.7;
+    metalRing = el.mul(
+      0.18,
+      el.mul(
+        el.add(el.cycle(el.mul(f0, 2.76)), el.mul(0.7, el.cycle(el.mul(f0, 3.41)))),
+        el.adsr(0.0003, ringDecay, 0, 0.015, gateSignal)
+      )
+    );
+  }
+
+  // Shell burst / body thump (lowered for heel/toe)
+  const shellFreq = isWoodBox ? el.mul(f0, 0.42) : el.mul(f0, 0.58);
+  const shellBurstGain = isLogDrum ? 1.4 : (isHeelToe ? 0.06 : (isWoodBox ? 0.65 * (0.3 + params.body) : 0.25));
+  const shellBurst = el.mul(
+    shellBurstGain,
+    el.mul(
+      el.svf({ mode: 'bandpass' }, shellFreq, isWoodBox ? 1.6 : 2.0, fundamentalCycle),
+      el.adsr(0.001, shellCavityDecay, 0, 0.04, gateSignal)
+    )
+  );
+
+  // Punchy sum: fundamental punch + snap transient + cavity resonance
+  const drumSum = el.add(fundamentalCycle, el.add(snapNoise, el.add(metalRing, shellBurst)));
+  rawAudio = el.tanh(el.mul(el.const({ value: 1.4 + params.drive * 1.5 }), drumSum));
   break;
 }
 case 17: {
-  const hitSeed = seedOf(voice.id || 'shaker', voice.note, retrig);
+  const hitSeed = seedOf(trackId, voiceIndex, 5678);
   const durDev = Math.max(0.8, Math.min(1.25, 1.0 + randNorm(hitSeed ^ 0x8888) * 0.12));
   const freqDev = randNorm(hitSeed ^ 0x9999) * 200;
 
-  const burst = el.mul(el.noise(), el.adsr(0.001, (0.02 + decayTime * 0.06) * durDev, 0, 0.03 + decayTime * 0.08, gateSignal));
+  const baseBurst = el.mul(el.noise(), el.adsr(0.001, (0.02 + decayTime * 0.06) * durDev, 0, 0.03 + decayTime * 0.08, gateSignal));
+  
+  // Guiro / Scraper Ridge Articulation:
+  // If instrument is a scraper (guiro, guacharaca, dikanza, cabasa), modulate amplitude with fast oscillator
+  // where rate is inversely proportional to stroke duration (faster stroke = hits ridges faster)
+  const instId = (params.instrumentId ?? '').toLowerCase();
+  const isScraper = /guiro|guacharaca|dikanza|cabasa/.test(instId);
+  let burst = baseBurst;
+  if (isScraper) {
+    const strokeDur = Math.max(0.03, Math.min(0.8, decayTime * 0.25));
+    const scrapeRate = Math.max(14, Math.min(75, 1.6 / strokeDur));
+    const ridgeOsc = el.cycle(scrapeRate);
+    const ridgeMod = el.add(el.const({ value: 0.55 }), el.mul(el.const({ value: 0.45 }), ridgeOsc));
+    const modulatedNoise = el.mul(ridgeMod, baseBurst);
+    burst = el.add(el.mul(0.65, modulatedNoise), el.mul(0.35, baseBurst));
+  }
+
   const bodyPeak = 1100 + params.body * 2800 + freqDev;
   const shell = el.svf({ mode: 'bandpass' }, bodyPeak, 2.0, burst);
   const brightNoise = el.mul(0.5 + b * 0.5, el.highpass(2400 + b * 4200 + freqDev, 0.9, burst));
@@ -663,54 +771,145 @@ case 17: {
   break;
 }
 case 18: {
-  const hitSeed = seedOf(voice.id || 'clang', voice.note, retrig);
-  const detuneSemitones = (randNorm(hitSeed ^ 0xaaaa) * 4.0) / 100;
-  const f0 = el.mul(freqSignal, Math.pow(2, detuneSemitones / 12));
+  // Dense Phase Modulation (FM) cluster for metal bells/percussion
+  const carrierPhasor = el.syncphasor(safeFreqSignal, gateSignal);
 
-  const v1 = Math.max(0.85, Math.min(1.15, 1.0 + randNorm(hitSeed ^ 0xbbbb) * 0.08));
-  const v2 = Math.max(0.78, Math.min(1.22, 1.0 + randNorm(hitSeed ^ 0xcccc) * 0.10));
-  const v3 = Math.max(0.75, Math.min(1.25, 1.0 + randNorm(hitSeed ^ 0xdddd) * 0.12));
+  // 3 Inharmonic modulator ratios (1.414, 2.718, 4.236)
+  const mod1 = el.sin(el.mul(2 * Math.PI * 1.414, carrierPhasor));
+  const mod2 = el.sin(el.mul(2 * Math.PI * 2.718, carrierPhasor));
+  const mod3 = el.sin(el.mul(2 * Math.PI * 4.236, carrierPhasor));
 
-  const clangDecay = Math.max(0.04, decayTime * 0.28);
-  const p1 = el.mul(v1, el.mul(el.cycle(f0), el.adsr(0.0004, clangDecay, 0, 0.02, gateSignal)));
-  const p2 = el.mul(0.55 * v2, el.mul(el.cycle(el.mul(f0, 2.76)), el.adsr(0.0004, clangDecay * 0.6, 0, 0.015, gateSignal)));
-  const p3 = el.mul(0.32 * v3, el.mul(el.cycle(el.mul(f0, 4.18)), el.adsr(0.0004, clangDecay * 0.4, 0, 0.01, gateSignal)));
-  const clickCutoff = 3500 + randNorm(hitSeed ^ 0xeeee) * 300;
-  const click = el.mul(0.4, el.mul(el.highpass(clickCutoff, 1.0, el.noise()), el.adsr(0.0002, 0.006, 0, 0.004, gateSignal)));
-  rawAudio = el.add(p1, el.add(p2, el.add(p3, click)));
+  // Short exponential decay envelopes for modulation depths
+  const envMod1 = el.adsr(0.0002, 0.045 + decayTime * 0.07, 0, 0.02, gateSignal);
+  const envMod2 = el.adsr(0.0002, 0.025 + decayTime * 0.04, 0, 0.015, gateSignal);
+  const envMod3 = el.adsr(0.0001, 0.012 + decayTime * 0.02, 0, 0.01, gateSignal);
+
+  const modIndex1 = el.mul(el.mul(el.const({ value: 3.4 + b * 2.8 }), velSignal), envMod1);
+  const modIndex2 = el.mul(el.mul(el.const({ value: 2.6 + b * 2.2 }), velSignal), envMod2);
+  const modIndex3 = el.mul(el.mul(el.const({ value: 1.8 + b * 1.6 }), velSignal), envMod3);
+
+  const totalMod = el.add(el.mul(modIndex1, mod1), el.add(el.mul(modIndex2, mod2), el.mul(modIndex3, mod3)));
+  const carrierPhase = el.add(el.mul(2 * Math.PI, carrierPhasor), totalMod);
+
+  // Mix pure sine fundamental with FM bell to ensure hollow woodblocks/cowbells have a solid fundamental clack
+  const bell = el.add(el.mul(0.65, el.sin(el.mul(2 * Math.PI, carrierPhasor))), el.mul(0.35, el.sin(carrierPhase)));
+
+  // Initial strike transient
+  const strikeNoise = el.mul(0.35, el.mul(el.highpass(3800, 1.2, el.noise()), el.adsr(0.0001, 0.006, 0, 0.003, gateSignal)));
+
+  // Pure slightly detuned sine resonance tail
+  const tailPhasor = el.syncphasor(el.mul(safeFreqSignal, 1.002), gateSignal);
+  const tailSine = el.mul(0.38, el.sin(el.mul(2 * Math.PI, tailPhasor)));
+
+  const bellSum = el.add(bell, el.add(strikeNoise, tailSine));
+  const sizzleEnv = el.adsr(0.001, decayTime * 0.6, 0, 0.05, gateSignal);
+  const sizzle = el.mul(el.highpass(6500, 1.0, el.noise()), sizzleEnv);
+  const finalBellSum = el.add(bellSum, el.mul(0.25 + b * 0.25, sizzle));
+  rawAudio = el.lowpass(Math.min(19000, 2400 + b * 8500), 1.0, finalBellSum);
   break;
 }
 case 6: {
-  const isPizz = action === 'pluck' || params.articulation > 0.7;
+  const isPizz = action === 'pluck' || action === 'pizzicato' || action === 'tambor';
   if (isPizz) {
+    const isTambor = action === 'tambor';
     const delayTimeSignal = el.min(el.const({ value: 4000 }), el.max(el.const({ value: 2 }), el.div(el.sr(), safeFreqSignal)));
-    const impulse = el.mul(el.noise(), el.adsr(0.0005, 0.006, 0, 0.003, gateSignal));
-    const pizzCutoff = Math.min(19000, Math.max(1000, freq * (3.0 + b * 5.0)));
-    const targetDecaySeconds = 0.2 + decayTime * (0.4 + b * 0.8);
-    const fbGain = fbGainForDecay(freq, targetDecaySeconds);
+    const impulse = el.mul(el.noise(), el.adsr(0.0005, isTambor ? 0.003 : 0.006, 0, 0.002, gateSignal));
+    const pizzCutoff = isTambor
+      ? el.min(el.const({ value: 1200 }), el.mul(safeFreqSignal, el.const({ value: 1.5 })))
+      : el.min(el.const({ value: 19000 }), el.max(el.const({ value: 1000 }), el.mul(safeFreqSignal, el.const({ value: 3.0 + b * 5.0 }))));
+    const targetDecaySeconds = isTambor ? 0.08 : (0.2 + decayTime * (0.4 + b * 0.8));
+    const fbGain = fbGainForDecay(safeFreqSignal, targetDecaySeconds);
     const stringLoop = createDampedStringLoop(`${pk}:pizz`, delayTimeSignal, fbGain, pizzCutoff, impulse);
-    rawAudio = el.lowpass(Math.min(19000, 800 + b * 4000), 1.1, stringLoop);
-  } else {
-    const noteSeed = seedOf(voice.id || 'voice', voice.note, retrig);
-    const bowDev = Math.max(0.85, Math.min(1.15, 1.0 + randNorm(noteSeed ^ 0x5a5a) * 0.10));
 
-    const osc = el.blepsaw(freqSignal);
-    const bowPressure = Math.max(0.1, params.bowPressure * bowDev);
-    const friction = el.tanh(el.mul(1 + bowPressure * 2.5, osc));
-    const breath = el.mul(0.08 * bowPressure, el.pinknoise());
-    const raw = el.add(friction, breath);
-
+    // Tango Tambor / Box Hit: Add a heavy woody acoustic body thump scaling with instrument size
     const bowedProf = getBowedResonanceProfile(params.instrumentId ?? '', params.body);
-    const bodyRes = el.svf({ mode: 'bandpass' }, Math.min(19000, bowedProf.bodyFreq), bowedProf.bodyQ, raw);
-    const bridgeHill = el.svf({ mode: 'bandpass' }, Math.min(19000, bowedProf.bridgeHillFreq), bowedProf.bridgeHillQ, raw);
-    const shaped = el.add(raw, el.add(el.mul(bowedProf.bodyGain, bodyRes), el.mul(bowedProf.bridgeHillGain, bridgeHill)));
+    const woodKnock = isTambor ? el.mul(
+      el.svf({ mode: 'bandpass' }, bowedProf.bodyFreq, 1.5, el.pinknoise()),
+      el.adsr(0.001, 0.04, 0, 0.01, gateSignal)
+    ) : el.const({ value: 0 });
 
-    rawAudio = el.lowpass(Math.min(19000, 450 + b * 4200), 1.2, shaped);
+    const mutedSnapFilter = isTambor ? 650 : Math.min(19000, 800 + b * 4000);
+    rawAudio = el.add(el.lowpass(mutedSnapFilter, 1.1, stringLoop), el.mul(isTambor ? 3.5 : 0, woodKnock));
+  } else {
+    const isShortStroke = params.articulation > 0.65;
+    const noteSeed = seedOf(trackId, voiceIndex, 3456);
+    const bowDev = Math.max(0.85, Math.min(1.15, 1.0 + randNorm(noteSeed ^ 0x5a5a) * 0.10));
+    // Hard "bite" of rosin grabbing the string for short bow strokes (spiccato / chop)
+    const rosinBiteMultiplier = isShortStroke ? 1.85 : 1.0;
+    const effectiveBowPressure = Math.max(0.1, params.bowPressure * bowDev * rosinBiteMultiplier);
+
+    // Helmholtz stick-slip oscillator with oscillator-level unison detuning for ensemble strings
+    const bowJitter = el.mul(el.const({ value: 0.003 }), el.noise());
+    const jitteredFreq = el.mul(freqSignal, el.add(1.0, bowJitter));
+    const idLower = (params.instrumentId ?? '').toLowerCase();
+    const isEnsemble = /string|orchestra|section|ensemble/.test(idLower);
+    const isFiddle = idLower === 'fiddle';
+    const isCelloBass = /cello|bass|contrabajo/.test(idLower);
+
+    // Fiddle requires much more aggressive rosin scratch for bluegrass/folk "shuffle" bowing
+    const rosinGrit = isFiddle ? 1.8 : 1.0;
+
+    // Dynamic Ensemble Chorusing: Use subtle LFOs to create a true orchestral section spread
+    const osc = isEnsemble
+      ? (() => {
+          const lfo1 = el.cycle(0.6);
+          const lfo2 = el.cycle(0.83);
+          const d1 = el.add(1.0, el.mul(0.002, lfo1));
+          const d2 = el.add(1.0, el.mul(0.0025, lfo2));
+          const s1 = el.blepsaw(el.mul(jitteredFreq, d1));
+          const s2 = el.blepsaw(el.mul(jitteredFreq, d2));
+          const s3 = el.blepsaw(jitteredFreq);
+          const rawSaw = el.mul(0.33, el.add(s1, el.add(s2, s3)));
+          const subO = el.sin(el.mul(2 * Math.PI, el.syncphasor(jitteredFreq, gateSignal)));
+          return el.add(el.mul(0.6, rawSaw), el.mul(0.4, subO));
+        })()
+      : (() => {
+          const rawSaw = el.blepsaw(jitteredFreq);
+          const subO = el.sin(el.mul(2 * Math.PI, el.syncphasor(jitteredFreq, gateSignal)));
+          return el.add(el.mul(0.55, rawSaw), el.mul(0.45, subO));
+        })();
+
+    // Attack envelope: drastically shortened for spiccato/chop, sharp decaying transient
+    const frictionAttackGate = isShortStroke
+      ? el.adsr(0.0003, 0.012, 0, 0.008, gateSignal)
+      : el.adsr(0.001, 0.040, 0.12, 0.025, gateSignal);
+
+    const frictionNoise = el.mul(
+      el.mul(effectiveBowPressure * (isShortStroke ? 0.42 : 0.28) * rosinGrit, frictionAttackGate),
+      el.highpass(isFiddle ? 2500 : 800, 1.0, el.pinknoise())
+    );
+    const rawExcited = el.add(osc, frictionNoise);
+
+    // Non-linear stick-slip saturation
+    // Cello and Bass get an asymmetric bias to simulate heavy, low-end rosin "growl"
+    const asymmetry = isCelloBass ? el.mul(0.15, gateSignal) : el.const({ value: 0 });
+    const stickSlip = el.tanh(el.add(asymmetry, el.mul(el.add(1.0, el.mul(effectiveBowPressure * 2.2, gateSignal)), rawExcited)));
+
+    // Instrument body and bridge resonances
+    const bowedProf = getBowedResonanceProfile(params.instrumentId ?? '', params.body);
+    const bodyRes = el.svf({ mode: 'bandpass' }, Math.min(19000, bowedProf.bodyFreq), bowedProf.bodyQ, stickSlip);
+    const bridgeHill = el.svf({ mode: 'bandpass' }, Math.min(19000, bowedProf.bridgeHillFreq), bowedProf.bridgeHillQ, stickSlip);
+    const shaped = el.add(stickSlip, el.add(el.mul(bowedProf.bodyGain, bodyRes), el.mul(bowedProf.bridgeHillGain, bridgeHill)));
+
+    // Lowpass cutoff dynamically scaled with bowPressure and gateSignal
+    const baseCutoff = (450 + b * 4200) * (isShortStroke ? 1.25 : 1.0);
+    const dynamicCutoff = el.min(
+      el.const({ value: 19000 }),
+      el.max(
+        el.const({ value: 320 }),
+        el.mul(
+          el.const({ value: baseCutoff }),
+          el.add(0.45, el.mul(effectiveBowPressure * 0.85, gateSignal))
+        )
+      )
+    );
+
+    rawAudio = el.lowpass(dynamicCutoff, 1.2, shaped);
   }
   break;
 }
 case 7: {
-  const noteSeed = seedOf(voice.id || 'voice', voice.note, retrig);
+  const noteSeed = seedOf(trackId, voiceIndex, 7890);
   const breathDev = Math.max(0.85, Math.min(1.15, 1.0 + randNorm(noteSeed) * 0.10));
 
   const scoopDepth = 0.04 * (0.5 + params.pressure * 0.5);
@@ -718,13 +917,19 @@ case 7: {
   const dynamicFreqSignal = el.mul(freqSignal, el.sub(1.0, el.mul(scoopDepth, scoopEnv)));
   const safeDynamicFreqSignal = el.min(el.const({ value: 19000 }), el.max(el.const({ value: 20 }), dynamicFreqSignal));
 
-  const breath = el.mul(0.16 * (1 - params.pressure) * breathDev, el.noise());
-  const exciter = el.mul(0.6, el.adsr(0.018, 0.06, 0.65, 0.05, gateSignal));
-  const jetInput = el.add(exciter, breath);
+  const breath = el.mul(0.12 * (1 - params.pressure) * breathDev, el.noise());
+  const exciterEnv = el.adsr(0.015, 0.06, 0.70, 0.05, gateSignal);
+  const phasor = el.syncphasor(safeDynamicFreqSignal, gateSignal);
+  // Flute is closer to a sine/triangle, raw saw is too harsh
+  const coreTone = el.add(
+    el.mul(0.8, el.sin(el.mul(2 * Math.PI, phasor))),
+    el.mul(0.2, el.blepsquare(safeDynamicFreqSignal))
+  );
+  const jetInput = el.add(el.mul(exciterEnv, coreTone), breath);
 
   const isSlur = action === 'legato' || action === 'slur' || action === 'bow_drag' || (params.articulation < 0.25 && action !== 'staccato');
   const isStaccato = action === 'staccato' || action === 'tongue' || action === 'accent' || params.articulation > 0.65;
-  const tongueLevel = isSlur ? 0.03 : (isStaccato ? 0.60 : 0.28);
+  const tongueLevel = isSlur ? 0.03 : (isStaccato ? 0.55 : 0.25);
 
   const profile = getFormantProfileForInstrument(params.instrumentId ?? '', 7);
   const chiffBurst = profile.tongueType === 'soft-puff'
@@ -732,21 +937,21 @@ case 7: {
     : el.svf({ mode: 'bandpass' }, Math.min(19000, profile.tongueFreq), 2.2, el.noise());
   const chiff = el.mul(tongueLevel, el.mul(chiffBurst, el.adsr(0.0004, 0.009, 0, 0.003, gateSignal)));
 
-  const fundamental = el.svf({ mode: 'bandpass' }, safeDynamicFreqSignal, 2.4, jetInput);
-  const overtone = el.svf({ mode: 'bandpass' }, el.min(el.const({ value: 19000 }), el.mul(safeDynamicFreqSignal, el.const({ value: 2 }))), 2.2, jetInput);
-  const formant1 = el.svf({ mode: 'bandpass' }, Math.min(19000, profile.f1.freq), profile.f1.q, jetInput);
-  const formant2 = el.svf({ mode: 'bandpass' }, Math.min(19000, profile.f2.freq), profile.f2.q, jetInput);
-  const airNoise = el.mul(0.18, breath);
-
-  const mixed = el.add(
-    el.add(el.mul(0.80, fundamental), el.mul(0.28, overtone)),
-    el.add(el.mul(0.22 * profile.f1.gain, formant1), el.mul(0.16 * profile.f2.gain, formant2))
+  // Dynamic lowpass swept by envelope & velocity for warm, organic acoustic tube resonance
+  const filterEnv = el.adsr(0.012, 0.08, 0.65, 0.06, gateSignal);
+  const cutoff = el.min(
+    el.const({ value: 18000 }),
+    el.max(
+      el.const({ value: 350 }),
+      el.add(safeDynamicFreqSignal, el.mul(el.const({ value: 2200 + b * 4500 }), el.mul(filterEnv, velSignal)))
+    )
   );
-  rawAudio = el.mul(0.9, el.add(mixed, el.add(airNoise, chiff)));
+  const filtered = el.lowpass(cutoff, 1.1, el.add(jetInput, chiff));
+  rawAudio = el.mul(0.9, el.tanh(el.mul(el.const({ value: 1.2 + params.drive * 1.5 }), filtered)));
   break;
 }
 case 15: {
-  const noteSeed = seedOf(voice.id || 'voice', voice.note, retrig);
+  const noteSeed = seedOf(trackId, voiceIndex, 2345);
   const breathDev = Math.max(0.85, Math.min(1.15, 1.0 + randNorm(noteSeed) * 0.10));
 
   const scoopDepth = 0.045 * (0.5 + params.pressure * 0.5);
@@ -754,10 +959,13 @@ case 15: {
   const dynamicFreqSignal = el.mul(freqSignal, el.sub(1.0, el.mul(scoopDepth, scoopEnv)));
   const safeDynamicFreqSignal = el.min(el.const({ value: 19000 }), el.max(el.const({ value: 20 }), dynamicFreqSignal));
 
-  const lipBuzz = el.blepsquare(safeDynamicFreqSignal);
-  const breathNoise = el.mul(0.05 * (1 - params.pressure) * breathDev, el.noise());
-  const buzzEnv = el.adsr(0.012, 0.05, 0.85, 0.07, gateSignal);
-  const excited = el.mul(buzzEnv, el.add(lipBuzz, breathNoise));
+  // Brass buzz is an asymmetric mix of saw and square to eliminate 'car horn' hollowness
+  const lipBuzz = el.add(
+    el.mul(0.65, el.blepsaw(safeDynamicFreqSignal)), 
+    el.mul(0.35, el.blepsquare(safeDynamicFreqSignal))
+  );
+  const breathNoise = el.mul(0.04 * (1 - params.pressure) * breathDev, el.noise());
+  const excited = el.add(lipBuzz, breathNoise);
 
   const isSlur = action === 'legato' || action === 'slur' || action === 'bow_drag' || (params.articulation < 0.25 && action !== 'staccato');
   const isStaccato = action === 'staccato' || action === 'tongue' || action === 'accent' || params.articulation > 0.65;
@@ -767,21 +975,30 @@ case 15: {
   const lipAttackBurst = el.svf({ mode: 'bandpass' }, Math.min(19000, profile.tongueFreq), 1.8, el.noise());
   const lipTransient = el.mul(tongueLevel, el.mul(lipAttackBurst, el.adsr(0.0003, 0.008, 0, 0.003, gateSignal)));
 
-  const bore = el.svf({ mode: 'bandpass' }, safeDynamicFreqSignal, 3.2, excited);
-  const f1 = el.svf({ mode: 'bandpass' }, Math.min(19000, profile.f1.freq), profile.f1.q, excited);
-  const f2 = el.svf({ mode: 'bandpass' }, Math.min(19000, profile.f2.freq + b * 1200), profile.f2.q, excited);
-
-  const mixed = el.add(
-    el.mul(0.70, bore),
-    el.add(el.mul(0.40 * profile.f1.gain, f1), el.mul((0.35 + b * 0.45) * profile.f2.gain, f2))
+  // Dynamic Lowpass + Saturation replaces thin formant stacks
+  // Cutoff sweeps dynamically based on ADSR envelope AND note velocity: cutoff = baseFreq + envelope * velocity * scalar
+  const hornEnv = el.adsr(0.008, 0.06, 0.75, 0.08, gateSignal);
+  const hornCutoff = el.min(
+    el.const({ value: 18000 }),
+    el.max(
+      el.const({ value: 250 }),
+      el.add(safeDynamicFreqSignal, el.mul(el.const({ value: 3500 + b * 6500 }), el.mul(hornEnv, velSignal)))
+    )
   );
-  const growlMod = isGrowl ? el.add(0.8, el.mul(0.25, el.cycle(32))) : el.const({ value: 1.0 });
-  const rawTone = el.mul(growlMod, el.add(mixed, lipTransient));
-  rawAudio = el.mul(0.65, el.tanh(el.mul(isGrowl ? 2.4 : 1.2 + params.drive * 1.4, rawTone)));
+
+  // Add physical horn body resonances via formant profile
+  const f1 = el.mul(profile.f1.gain, el.svf({ mode: 'bandpass' }, profile.f1.freq, profile.f1.q, excited));
+  const f2 = el.mul(profile.f2.gain, el.svf({ mode: 'bandpass' }, profile.f2.freq, profile.f2.q, excited));
+  const bodyResonance = el.mul(params.body, el.add(f1, f2));
+
+  const filteredHorn = el.lowpass(hornCutoff, 1.2, el.add(excited, el.add(lipTransient, bodyResonance)));
+  // Soft clipper accurately models acoustic wave-steepening in the brass flare
+  const drive = el.add(el.const({ value: 0.9 + params.drive * 1.0 }), el.mul(el.const({ value: 2.2 }), velSignal));
+  rawAudio = el.mul(0.85, el.tanh(el.mul(filteredHorn, drive)));
   break;
 }
 case 16: {
-  const noteSeed = seedOf(voice.id || 'voice', voice.note, retrig);
+  const noteSeed = seedOf(trackId, voiceIndex, 6789);
   const breathDev = Math.max(0.85, Math.min(1.15, 1.0 + randNorm(noteSeed) * 0.10));
 
   const scoopDepth = 0.04 * (0.5 + params.pressure * 0.5);
@@ -789,10 +1006,13 @@ case 16: {
   const dynamicFreqSignal = el.mul(freqSignal, el.sub(1.0, el.mul(scoopDepth, scoopEnv)));
   const safeDynamicFreqSignal = el.min(el.const({ value: 19000 }), el.max(el.const({ value: 20 }), dynamicFreqSignal));
 
-  const reedPulse = el.blepsaw(safeDynamicFreqSignal);
-  const breathNoise = el.mul(0.10 * (1 - params.pressure) * breathDev, el.noise());
-  const reedEnv = el.adsr(0.007, 0.05, 0.78, 0.05, gateSignal);
-  const excited = el.mul(reedEnv, el.add(reedPulse, breathNoise));
+  // Sax/Reed is a rich saw with a slight hollow square characteristic
+  const reedPulse = el.add(
+    el.mul(0.85, el.blepsaw(safeDynamicFreqSignal)),
+    el.mul(0.15, el.blepsquare(safeDynamicFreqSignal))
+  );
+  const breathNoise = el.mul(0.08 * (1 - params.pressure) * breathDev, el.noise());
+  const excited = el.add(reedPulse, breathNoise);
 
   const isSlur = action === 'legato' || action === 'slur' || action === 'bow_drag' || (params.articulation < 0.25 && action !== 'staccato');
   const isStaccato = action === 'staccato' || action === 'tongue' || action === 'accent' || params.articulation > 0.65;
@@ -802,74 +1022,151 @@ case 16: {
   const reedTongueBurst = el.highpass(Math.min(19000, profile.tongueFreq), 1.2, el.noise());
   const tongueTransient = el.mul(tongueLevel, el.mul(reedTongueBurst, el.adsr(0.0002, 0.006, 0, 0.002, gateSignal)));
 
-  const bore = el.svf({ mode: 'bandpass' }, safeDynamicFreqSignal, 3.0, excited);
-  const f1 = el.svf({ mode: 'bandpass' }, Math.min(19000, profile.f1.freq), profile.f1.q, excited);
-  const f2 = el.svf({ mode: 'bandpass' }, Math.min(19000, profile.f2.freq + b * 1000), profile.f2.q, excited);
-
-  const acousticTone = el.add(
-    el.mul(0.65, bore),
-    el.add(el.mul(0.45 * profile.f1.gain, f1), el.mul(0.40 * profile.f2.gain, f2))
+  // Dynamic Lowpass + Saturation for warm, punchy reed tone
+  const reedEnv = el.adsr(0.006, 0.055, 0.72, 0.06, gateSignal);
+  const reedCutoff = el.min(
+    el.const({ value: 18000 }),
+    el.max(
+      el.const({ value: 300 }),
+      el.add(safeDynamicFreqSignal, el.mul(el.const({ value: 3000 + b * 5500 }), el.mul(reedEnv, velSignal)))
+    )
   );
-  const growlMod = isGrowl ? el.add(0.8, el.mul(0.25, el.cycle(32))) : el.const({ value: 1.0 });
-  const rawTone = el.mul(growlMod, el.add(acousticTone, tongueTransient));
-  rawAudio = el.mul(0.75, el.tanh(el.mul(isGrowl ? 1.8 : 1.0, rawTone)));
+
+  // Add physical woody reed body resonances via formant profile
+  const f1 = el.mul(profile.f1.gain, el.svf({ mode: 'bandpass' }, profile.f1.freq, profile.f1.q, excited));
+  const f2 = el.mul(profile.f2.gain, el.svf({ mode: 'bandpass' }, profile.f2.freq, profile.f2.q, excited));
+  const bodyResonance = el.mul(params.body, el.add(f1, f2));
+
+  const filteredReed = el.lowpass(reedCutoff, 1.15, el.add(excited, el.add(tongueTransient, bodyResonance)));
+  const drive = el.add(el.const({ value: 1.3 + params.drive * 1.8 }), el.mul(el.const({ value: 1.5 }), velSignal));
+  rawAudio = el.mul(0.85, el.tanh(el.mul(filteredReed, drive)));
   break;
 }
 case 11: {
-  const hammer = el.mul(el.noise(), el.adsr(0.00015, 0.004 + (1 - b) * 0.004, 0, 0.002, gateSignal));
+  // Velocity-dependent hammer lowpass filter: soft hits = dark thump, hard hits = bright crack
+  const hammerCutoff = el.min(
+    el.const({ value: 18000 }),
+    el.max(
+      el.const({ value: 380 }),
+      el.mul(el.const({ value: 1100 + b * 5200 }), el.add(0.25, el.mul(0.85, velSignal)))
+    )
+  );
+  const hammerFilteredNoise = el.lowpass(hammerCutoff, 0.9, el.noise());
+  const hammer = el.mul(hammerFilteredNoise, el.adsr(0.00015, 0.0035 + (1 - b) * 0.004, 0, 0.002, gateSignal));
+
+  // Piano dual-string unison with subtle natural acoustic chorus (detuning < 0.2%)
   const len1 = el.min(el.const({ value: 4000 }), el.max(el.const({ value: 2 }), el.div(el.sr(), safeFreqSignal)));
-  const len2 = el.min(el.const({ value: 4000 }), el.max(el.const({ value: 2 }), el.div(el.sr(), el.max(el.const({ value: 20 }), el.mul(safeFreqSignal, el.const({ value: 2.001 }))))));
-  const len3 = el.min(el.const({ value: 4000 }), el.max(el.const({ value: 2 }), el.div(el.sr(), el.max(el.const({ value: 20 }), el.mul(safeFreqSignal, el.const({ value: 3.006 }))))));
-  const pianoCutoff = Math.min(19000, Math.max(1600, freq * (3.5 + b * 6.5)));
+  const freq2 = el.max(el.const({ value: 20 }), el.mul(safeFreqSignal, el.const({ value: 1.0018 })));
+  const len2 = el.min(el.const({ value: 4000 }), el.max(el.const({ value: 2 }), el.div(el.sr(), freq2)));
+
+  const pianoCutoff = el.min(el.const({ value: 19000 }), el.max(el.const({ value: 1600 }), el.mul(safeFreqSignal, el.const({ value: 3.5 + b * 6.5 }))));
   const targetDecaySeconds1 = 0.8 + decayTime * (1.2 + b * 2.0);
-  const targetDecaySeconds2 = targetDecaySeconds1 * 0.75;
-  const targetDecaySeconds3 = targetDecaySeconds1 * 0.55;
-  const s1 = createDampedStringLoop(`${pk}:p1`, len1, fbGainForDecay(freq, targetDecaySeconds1), pianoCutoff, hammer);
-  const s2 = createDampedStringLoop(`${pk}:p2`, len2, fbGainForDecay(freq * 2.001, targetDecaySeconds2), pianoCutoff * 0.95, hammer);
-  const s3 = createDampedStringLoop(`${pk}:p3`, len3, fbGainForDecay(freq * 3.006, targetDecaySeconds3), pianoCutoff * 0.9, hammer);
-  const tone = el.add(s1, el.add(el.mul(0.45, s2), el.mul(0.2, s3)));
-  rawAudio = el.lowpass(Math.min(19000, 900 + b * 7000), 1.0, tone);
+  const targetDecaySeconds2 = targetDecaySeconds1 * 0.92;
+
+  const s1 = createDampedStringLoop(`${pk}:p1`, len1, fbGainForDecay(safeFreqSignal, targetDecaySeconds1), pianoCutoff, hammer);
+  const s2 = createDampedStringLoop(`${pk}:p2`, len2, fbGainForDecay(freq2, targetDecaySeconds2), el.mul(pianoCutoff, el.const({ value: 0.96 })), hammer);
+
+  // Clean soundboard coupling without discordant inharmonic detuning (s3 and sInharm stripped)
+  const soundboard = el.add(el.mul(0.55, s1), el.mul(0.45, s2));
+  const rimRes = el.svf({ mode: 'bandpass' }, 130, 2.2, soundboard);
+  const tone = el.add(soundboard, el.mul(0.20, rimRes));
+
+  rawAudio = el.lowpass(Math.min(19000, 1000 + b * 7500), 1.0, tone);
   break;
 }
 case 12: {
-  const morphEnv = el.adsr(0.012, 0.220, 1.0, 0.06, gateSignal);
-  const f1Center = el.add(360, el.mul(morphEnv, 340 + b * 200));
-  const f2Center = el.add(820, el.mul(morphEnv, 580 + b * 320));
-  const safeF1Center = el.min(el.const({ value: 19000 }), el.max(el.const({ value: 20 }), f1Center));
-  const safeF2Center = el.min(el.const({ value: 19000 }), el.max(el.const({ value: 20 }), f2Center));
+  // Subtle human vibrato (5.5 Hz, ~1.2% depth)
+  const vibratoLfo = el.cycle(5.5);
+  const vibratoFreq = el.mul(safeFreqSignal, el.add(1.0, el.mul(el.const({ value: 0.012 }), vibratoLfo)));
 
-  const source = el.blepsaw(freqSignal);
-  const breath = el.mul(0.08 + 0.16 * (1 - params.pressure), el.noise());
-  const vowel = el.add(
-    el.mul(0.70, el.svf({ mode: 'bandpass' }, safeF1Center, 5.0, source)),
-    el.mul(0.45, el.svf({ mode: 'bandpass' }, safeF2Center, 7.0, source)),
-  );
-  rawAudio = el.lowpass(Math.min(19000, 7000), 1.1, el.add(vowel, breath));
+  const source = el.blepsaw(vibratoFreq);
+  const breath = el.mul(0.06 + 0.12 * (1 - params.pressure), el.noise());
+  const excited = el.add(source, breath);
+
+  // 4 Parallel standard 'Ah' vowel formants: F1: 730, F2: 1090, F3: 2440, F4: 3400
+  const f1 = el.mul(1.00, el.svf({ mode: 'bandpass' }, 730, 6.0, excited));
+  const f2 = el.mul(0.75, el.svf({ mode: 'bandpass' }, 1090, 7.0, excited));
+  const f3 = el.mul(0.45, el.svf({ mode: 'bandpass' }, 2440, 8.0, excited));
+  const f4 = el.mul(0.30, el.svf({ mode: 'bandpass' }, 3400, 9.0, excited));
+
+  const choirVowel = el.add(f1, el.add(f2, el.add(f3, f4)));
+  rawAudio = el.lowpass(Math.min(19000, 8500), 1.0, choirVowel);
   break;
 }
 case 13: {
-  const h1 = el.cycle(freqSignal);
-  const h2 = el.cycle(el.mul(freqSignal, 2));
-  const h3 = el.cycle(el.mul(freqSignal, 3));
-  const h4 = el.cycle(el.mul(freqSignal, 4));
-  rawAudio = el.mul(el.adsr(0.008, 0.02, 0.95, 0.08, gateSignal), el.add(h1, el.add(el.mul(0.45, h2), el.add(el.mul(0.2, h3), el.mul(0.1, h4)))));
+  // 6 Tonewheel drawbars
+  const dSub = el.mul(0.65, el.cycle(el.mul(safeFreqSignal, 0.5)));   // 16' (Sub)
+  const dQuint = el.mul(0.50, el.cycle(el.mul(safeFreqSignal, 1.5))); // 5 1/3' (Quint)
+  const dFund = el.mul(0.85, el.cycle(safeFreqSignal));              // 8' (Fund)
+  const d8th = el.mul(0.60, el.cycle(el.mul(safeFreqSignal, 2.0)));  // 4' (8th)
+  const d12th = el.mul(0.40, el.cycle(el.mul(safeFreqSignal, 3.0))); // 2 2/3' (12th)
+  const d15th = el.mul(0.30, el.cycle(el.mul(safeFreqSignal, 4.0))); // 2' (15th)
+  const drawbars = el.add(dSub, el.add(dQuint, el.add(dFund, el.add(d8th, el.add(d12th, d15th)))));
+
+  // Key click: 5ms high-passed noise burst on Note On
+  const keyClick = el.mul(0.24, el.mul(el.highpass(3600, 1.2, el.noise()), el.adsr(0.0001, 0.005, 0, 0.002, gateSignal)));
+  const organRaw = el.add(drawbars, keyClick);
+
+  // Leslie Rotary effect: modulation of delay line (Doppler FM) and amplitude (AM)
+  const rotarySpeed = params.styleFlavor > 0.65 ? 6.0 : 1.2;
+  const rotaryLfo = el.cycle(rotarySpeed);
+  const dopplerDelaySamples = el.add(el.const({ value: 100 }), el.mul(el.const({ value: 30 }), rotaryLfo));
+  const dopplerDelay = el.delay({ key: `${pk}:leslie`, size: 44100 }, dopplerDelaySamples, el.const({ value: 0 }), organRaw);
+  const amMod = el.add(el.const({ value: 0.82 }), el.mul(el.const({ value: 0.18 }), rotaryLfo));
+  const leslieTone = el.mul(amMod, dopplerDelay);
+
+  // Gated organ amp envelope
+  const isBubble = action === 'bubble' || action === 'staccato' || params.articulation > 0.7;
+  const organEnv = el.adsr(0.003, isBubble ? 0.08 : 0.02, isBubble ? 0.0 : 0.95, isBubble ? 0.06 : 0.04, gateSignal);
+  rawAudio = el.mul(organEnv, el.lowpass(Math.min(19000, (isBubble ? 2800 : 4800) + b * 5500), 0.9, leslieTone));
   break;
 }
 case 14: {
-  const tine = el.cycle(freqSignal);
-  const upper = el.mul(0.32, el.cycle(el.mul(freqSignal, 2.01)));
-  const attackNoise = el.mul(0.12, el.mul(el.noise(), el.adsr(0.0003, 0.012, 0, 0.003, gateSignal)));
-  rawAudio = el.lowpass(Math.min(19000, 1100 + b * 6500), 1.2, el.add(tine, el.add(upper, attackNoise)));
+  // 2-operator Phase Modulation (FM) Rhodes / EP model
+  const phasor = el.syncphasor(safeFreqSignal, gateSignal);
+  // Lower FM ratio for a realistic tine bark, plus a pure fundamental sine
+  const mod = el.sin(el.mul(2 * Math.PI * 3.5, phasor));
+  const fundamental = el.sin(el.mul(2 * Math.PI, phasor));
+
+  // Exponential decay envelope for the metallic tine bark
+  const barkEnv = el.adsr(0.0004, 0.06 + decayTime * 0.10, 0.02, 0.03, gateSignal);
+  const modIndex = el.mul(
+    el.mul(el.const({ value: 2.0 + b * 4.0 }), velSignal),
+    barkEnv
+  );
+
+  const carrierPhase = el.add(el.mul(2 * Math.PI, phasor), el.mul(modIndex, mod));
+  const fmBark = el.sin(carrierPhase);
+  // Mix warm fundamental with the FM bark
+  const carrier = el.add(el.mul(0.6, fundamental), el.mul(0.4, fmBark));
+
+  // Subtle tine click on initial hammer contact
+  const tineClick = el.mul(0.14, el.mul(el.highpass(2600, 1.2, el.noise()), el.adsr(0.0001, 0.005, 0, 0.002, gateSignal)));
+  const tone = el.add(carrier, tineClick);
+
+  rawAudio = el.lowpass(Math.min(19000, 1600 + b * 7500), 1.0, tone);
   break;
 }
 case 10: {
+  // Triple-reed "Musette" / thick Bandoneón tuning
   const f1 = freqSignal;
-  const f2 = el.mul(freqSignal, 1.0038);
+  const f2 = el.mul(freqSignal, 1.0045); // + ~7 cents
+  const f3 = el.mul(freqSignal, 0.9955); // - ~7 cents
   const reed1 = el.blepsaw(f1);
   const reed2 = el.blepsaw(f2);
-  const bellowsBreath = el.mul(0.05, el.noise());
-  const reedSum = el.add(el.mul(0.5, reed1), el.add(el.mul(0.5, reed2), bellowsBreath));
-  rawAudio = el.lowpass(800 + b * 4200, 1.1, reedSum);
+  const reed3 = el.blepsaw(f3);
+  const reedSum = el.add(el.mul(0.4, reed1), el.add(el.mul(0.3, reed2), el.mul(0.3, reed3)));
+
+  // Cassotto tone chamber filter (Bandoneón / Accordion):
+  // 900Hz, Q=1.5 bandpass imparts a vocal, weeping acoustic resonance rather than a raw synth buzz
+  const cassotto = el.svf({ mode: 'bandpass' }, 900, 1.5, reedSum);
+  const shapedReeds = el.add(el.mul(0.65, cassotto), el.mul(0.35, reedSum));
+
+  // Bellows breath/noise layer that swells dynamically with the note gate
+  const bellowsNoise = el.mul(el.pinknoise(), el.mul(gateSignal, 0.1));
+  const toneWithBellows = el.add(shapedReeds, bellowsNoise);
+
+  rawAudio = el.lowpass(Math.min(19000, 800 + b * 4200), 1.1, toneWithBellows);
   break;
 }
 case 8: {
@@ -898,81 +1195,96 @@ case 0:
 case 1:
 default: {
   const B = 0.00015;
-  const pickPos = Math.max(0.05, Math.min(0.5, params.pluckPosition));
   const isRasgueado = action === 'abanico' || action === 'rasgueado' || params.articulation > 0.6;
   const excitation = params.excitationType ?? 'fingerpad';
   const construction = params.bodyConstruction ?? 'wood-box';
   const numCourses = params.courses ?? 1;
   const hasSympathetic = Boolean(params.sympatheticStrings);
 
+  // Broadband pink noise pitch-relative filter ensures robust fundamental bass energy
+  const broadbandPluck = el.lowpass(el.mul(safeFreqSignal, 4.0), 0.9, el.pinknoise());
+
   let impulse: Node;
   if (isRasgueado) {
     const b1 = el.adsr(0.0003, 0.006, 0, 0.003, gateSignal);
     const b2 = el.adsr(0.003, 0.006, 0, 0.003, gateSignal);
     const b3 = el.adsr(0.006, 0.006, 0, 0.003, gateSignal);
-    impulse = el.mul(el.noise(), el.add(b1, el.add(b2, b3)));
+    const rasgNoise = el.add(el.mul(0.6, broadbandPluck), el.mul(0.4, el.noise()));
+    impulse = el.mul(rasgNoise, el.add(b1, el.add(b2, b3)));
   } else if (excitation === 'hard-pick') {
     const burstEnv = el.adsr(0.0002, 0.0035, 0, 0.002, gateSignal);
-    const burstNoise = el.highpass(1800, 1.2, el.noise());
+    const burstNoise = el.add(el.mul(0.65, broadbandPluck), el.mul(0.35, el.svf({ mode: 'bandpass' }, 2200, 1.2, el.noise())));
     impulse = el.mul(burstNoise, burstEnv);
   } else if (excitation === 'plectrum') {
     const burstEnv = el.adsr(0.0003, 0.0045, 0, 0.0025, gateSignal);
-    const burstNoise = el.svf({ mode: 'bandpass' }, 2200, 1.3, el.noise());
+    const burstNoise = el.add(el.mul(0.60, broadbandPluck), el.mul(0.40, el.svf({ mode: 'bandpass' }, 1800, 1.3, el.noise())));
     impulse = el.mul(burstNoise, burstEnv);
   } else if (excitation === 'nail') {
     const burstEnv = el.adsr(0.0004, 0.0055, 0, 0.003, gateSignal);
-    const burstNoise = el.highpass(1500, 0.9, el.noise());
+    const burstNoise = el.add(el.mul(0.70, broadbandPluck), el.mul(0.30, el.svf({ mode: 'bandpass' }, 1600, 1.1, el.noise())));
     impulse = el.mul(burstNoise, burstEnv);
   } else if (excitation === 'hammer') {
     const burstEnv = el.adsr(0.0006, 0.007, 0, 0.004, gateSignal);
-    const burstNoise = el.svf({ mode: 'bandpass' }, 850, 1.5, el.noise());
+    const burstNoise = el.add(el.mul(0.75, broadbandPluck), el.mul(0.25, el.svf({ mode: 'bandpass' }, 850, 1.5, el.noise())));
     impulse = el.mul(burstNoise, burstEnv);
   } else {
     const burstEnv = el.adsr(0.0008, 0.009, 0, 0.005, gateSignal);
-    const burstNoise = el.lowpass(1400, 0.8, el.noise());
+    const burstNoise = el.add(el.mul(0.80, broadbandPluck), el.mul(0.20, el.lowpass(1400, 0.8, el.noise())));
     impulse = el.mul(burstNoise, burstEnv);
   }
 
-  const plectrumChoke = el.mul(-0.35, el.mul(el.highpass(1200, 1.4, el.noise()), el.adsr(0.0001, 0.002, 0, 0.001, gateSignal)));
+  const plectrumChoke = el.mul(-0.25, el.mul(el.svf({ mode: 'bandpass' }, 1200, 1.4, el.noise()), el.adsr(0.0001, 0.002, 0, 0.001, gateSignal)));
   impulse = el.add(impulse, plectrumChoke);
 
   let stringSignal: Node;
   const baseDelaySignal = el.min(el.const({ value: 4000 }), el.max(el.const({ value: 2 }), el.div(el.sr(), safeFreqSignal)));
-  const stringCutoff = Math.min(19000, Math.max(1200, freq * (
-    construction === 'board'
-      ? (2.8 + b * 4.5)
-      : construction === 'skin-faced'
-      ? (3.8 + b * 6.5)
-      : (3.2 + b * 6.0)
-  )));
+  const cutoffMult = construction === 'board'
+    ? (2.8 + b * 4.5)
+    : construction === 'skin-faced'
+    ? (3.8 + b * 6.5)
+    : (3.2 + b * 6.0);
+  const stringCutoff = el.min(el.const({ value: 19000 }), el.max(el.const({ value: 1200 }), el.mul(safeFreqSignal, el.const({ value: cutoffMult }))));
 
   const targetDecaySeconds = 0.35 + decayTime * (0.6 + b * 1.5);
-  const d1 = fbGainForDecay(freq, targetDecaySeconds);
+  const d1 = fbGainForDecay(safeFreqSignal, targetDecaySeconds);
 
   if (numCourses > 1) {
     const loop1 = createDampedStringLoop(`${pk}:c1`, baseDelaySignal, d1, stringCutoff, impulse);
 
-    const freqCourse2 = el.mul(freqSignal, 1.00277);
-    const delayCourse2 = el.min(el.const({ value: 4000 }), el.max(el.const({ value: 2 }), el.div(el.sr(), el.max(el.const({ value: 20 }), freqCourse2))));
-    const d2 = fbGainForDecay(freq * 1.00277, targetDecaySeconds * 0.94);
-    const loop2 = createDampedStringLoop(`${pk}:c2`, delayCourse2, d2, stringCutoff * 0.96, impulse);
+    const freqCourse2 = el.max(el.const({ value: 20 }), el.mul(safeFreqSignal, el.const({ value: 1.00277 })));
+    const delayCourse2 = el.min(el.const({ value: 4000 }), el.max(el.const({ value: 2 }), el.div(el.sr(), freqCourse2)));
+    const d2 = fbGainForDecay(freqCourse2, targetDecaySeconds * 0.94);
+    const loop2 = createDampedStringLoop(`${pk}:c2`, delayCourse2, d2, el.mul(stringCutoff, el.const({ value: 0.96 })), impulse);
 
     if (numCourses >= 3) {
-      const freqCourse3 = el.mul(freqSignal, 0.99757);
-      const delayCourse3 = el.min(el.const({ value: 4000 }), el.max(el.const({ value: 2 }), el.div(el.sr(), el.max(el.const({ value: 20 }), freqCourse3))));
-      const d3 = fbGainForDecay(freq * 0.99757, targetDecaySeconds * 0.88);
-      const loop3 = createDampedStringLoop(`${pk}:c3`, delayCourse3, d3, stringCutoff * 0.93, impulse);
+      const freqCourse3 = el.max(el.const({ value: 20 }), el.mul(safeFreqSignal, el.const({ value: 0.99757 })));
+      const delayCourse3 = el.min(el.const({ value: 4000 }), el.max(el.const({ value: 2 }), el.div(el.sr(), freqCourse3)));
+      const d3 = fbGainForDecay(freqCourse3, targetDecaySeconds * 0.88);
+      const loop3 = createDampedStringLoop(`${pk}:c3`, delayCourse3, d3, el.mul(stringCutoff, el.const({ value: 0.93 })), impulse);
       stringSignal = el.mul(0.48, el.add(loop1, el.add(loop2, loop3)));
     } else {
       stringSignal = el.mul(0.62, el.add(loop1, loop2));
     }
   } else {
-    const inharmonicFreq = el.mul(freqSignal, Math.sqrt(1 + B * 4));
-    const inharmonicDelay = el.min(el.const({ value: 4000 }), el.max(el.const({ value: 2 }), el.div(el.sr(), el.max(el.const({ value: 20 }), inharmonicFreq))));
+    const inharmonicFreq = el.max(el.const({ value: 20 }), el.mul(safeFreqSignal, el.const({ value: Math.sqrt(1 + B * 4) })));
+    const inharmonicDelay = el.min(el.const({ value: 4000 }), el.max(el.const({ value: 2 }), el.div(el.sr(), inharmonicFreq)));
     const loop1 = createDampedStringLoop(`${pk}:s1`, baseDelaySignal, d1, stringCutoff, impulse);
-    const d2 = fbGainForDecay(freq * Math.sqrt(1 + B * 4), targetDecaySeconds * 0.85);
-    const loop2 = createDampedStringLoop(`${pk}:s2`, inharmonicDelay, d2, stringCutoff * 0.9, impulse);
+    const d2 = fbGainForDecay(inharmonicFreq, targetDecaySeconds * 0.85);
+    const loop2 = createDampedStringLoop(`${pk}:s2`, inharmonicDelay, d2, el.mul(stringCutoff, el.const({ value: 0.9 })), impulse);
     stringSignal = el.add(loop1, el.mul(0.25, loop2));
+  }
+
+  // Sitar / Shamisen / Tambura "Jawari" Buzz Bridge:
+  // Flat bridge causes string to buzz hard on attack and gradually settle into purer sustain
+  const instId = (params.instrumentId ?? '').toLowerCase();
+  const hasJawari = /sitar|shamisen|tambura/.test(instId);
+  if (hasJawari) {
+    // Sitar/Shamisen bridge buzz: highly non-linear, bright spectral multiplier
+    const jawariEnv = el.adsr(0.001, 0.18 + decayTime * 0.30, 0.15, 0.08, gateSignal);
+    const buzzAmount = el.add(el.const({ value: 1.0 }), el.mul(el.const({ value: 8.5 }), jawariEnv));
+    // Asymmetric wave-folding to generate the bright "twang" harmonics
+    const folded = el.sin(el.mul(stringSignal, buzzAmount));
+    stringSignal = el.add(el.mul(0.5, stringSignal), el.mul(0.5, folded));
   }
 
   let bodyOut: Node;
@@ -1014,22 +1326,19 @@ default: {
     finalAcoustic = el.add(bodyOut, el.mul(0.85, sumTarab));
   }
 
-  const combOffset = el.max(el.const({ value: 1 }), el.mul(baseDelaySignal, el.const({ value: pickPos })));
-  const combSig = el.sub(finalAcoustic, el.delay({ key: `${pk}:comb`, size: 44100 }, combOffset, el.const({ value: 0 }), finalAcoustic));
-
   const filterCutoff = Math.min(19000, construction === 'board'
     ? 700 + b * 4500
     : (construction === 'skin-faced' ? 1200 + b * 7500 : 900 + b * 6800));
-  rawAudio = el.lowpass(filterCutoff, 1.0, combSig);
+  // Pure acoustic resonance preserved without comb-filter phase notch
+  rawAudio = el.lowpass(filterCutoff, 1.0, finalAcoustic);
   break;
 }}
 const releaseGate = el.sub(1, gateSignal);
 const damperThump = (model === 11 || model === 19 || model === 20)
 ? el.mul(0.14, el.mul(el.lowpass(400, 1.2, el.noise()), el.adsr(0.0002, 0.018, 0, 0.008, releaseGate)))
 : 0;
-const roomBloom = (model === 6 || model === 7 || model === 15 || model === 16)
-? el.mul(0.20, el.svf({ mode: 'bandpass' }, 420 + b * 600, 1.6, el.mul(rawAudio, releaseGate)))
-: 0;
+// Remove the resonant squelch artifact on string releases
+const roomBloom = el.const({ value: 0 });
 const finalRawAudio = el.add(rawAudio, el.add(damperThump, roomBloom));
 const gain = el.mul(velSignal, env);
 return el.mul(gain, finalRawAudio);
@@ -1045,12 +1354,12 @@ return { left: zero, right: zero };
 }
 const voiceNodes = voices.map((v, idx) => renderVoice(trackId, idx, v, params));
 const sum = voiceNodes.length === 1 ? voiceNodes[0] : el.add(...voiceNodes);
-const trackVol = el.mul(el.const({ key: `${trackId}:vol`, value: params.volume }), sum);
+const trackVol = el.mul(el.const({ key: `track_${trackId}_vol`, value: params.volume }), sum);
 const pan = Math.max(0, Math.min(1, params.pan));
 const leftGain = Math.cos(pan * Math.PI * 0.5);
 const rightGain = Math.sin(pan * Math.PI * 0.5);
-const left = el.mul(el.const({ value: leftGain }), trackVol);
-const right = el.mul(el.const({ value: rightGain }), trackVol);
+const left = el.mul(el.const({ key: `track_${trackId}_panL`, value: leftGain }), trackVol);
+const right = el.mul(el.const({ key: `track_${trackId}_panR`, value: rightGain }), trackVol);
 return {
 left: el.tanh(left),
 right: el.tanh(right),
@@ -1143,8 +1452,6 @@ export function renderMaster(
   const char = params.mixCharacter;
   const sidechainDepth = params.sidechainDepth ?? calculateSidechainDepth(char);
   const drumKnock = params.drumKnock ?? calculateDrumKnock(char);
-  const isSalsa = /salsa/i.test(params.genreId || '');
-  const crosstalkAmount = isSalsa ? 0.0 : (params.acousticCrosstalk ?? calculateAcousticCrosstalk(char));
 
   const drumDrive = 1.0 + drumKnock * 1.5;
   const saturatedDrumL = el.tanh(el.mul(el.const({ value: drumDrive }), drumLeftRaw));
@@ -1163,58 +1470,19 @@ export function renderMaster(
   const genreId = params.genreId ?? '';
   const isElectronic = /house|techno|dnb|bass|dubstep|garage|edm|electro|afrobeats|club/i.test(genreId);
 
-  let duckedSubL: Node;
-  let duckedSubR: Node;
-
-  if (isElectronic) {
-    // Deep rhythmic pump for electronic/club genres
-    const subDuckingMultiplier = el.sub(1.0, el.mul(el.const({ value: sidechainDepth * 0.95 }), kickEnv));
-    duckedSubL = el.mul(subLeftRaw, subDuckingMultiplier);
-    duckedSubR = el.mul(subRightRaw, subDuckingMultiplier);
-  } else {
-    // Transparent shelf dip (depth 0.2) below 150Hz for acoustic genres
-    const subDuckingMultiplier = el.sub(1.0, el.mul(el.const({ value: 0.2 * 0.85 }), kickEnv));
-
-    const subLLow = el.lowpass(150, 0.707, subLeftRaw);
-    const subLHigh = el.sub(subLeftRaw, subLLow); // Perfect reconstruction high-pass
-    duckedSubL = el.add(el.mul(subLLow, subDuckingMultiplier), subLHigh);
-
-    const subRLow = el.lowpass(150, 0.707, subRightRaw);
-    const subRHigh = el.sub(subRightRaw, subRLow);
-    duckedSubR = el.add(el.mul(subRLow, subDuckingMultiplier), subRHigh);
-  }
+  // Clean, phase-coherent sub ducking: avoids destructive biquad phase splitting
+  const effectiveDuckDepth = isElectronic ? sidechainDepth * 0.95 : 0.22;
+  const subDuckingMultiplier = el.sub(1.0, el.mul(el.const({ value: effectiveDuckDepth }), kickEnv));
+  const duckedSubL = el.mul(subLeftRaw, subDuckingMultiplier);
+  const duckedSubR = el.mul(subRightRaw, subDuckingMultiplier);
 
   // 3. Instrumental Bus Summing
   const instLeftRaw = instSignals.length > 0 ? (instSignals.length === 1 ? instSignals[0].left : el.add(...instSignals.map(s => s.left))) : zero;
   const instRightRaw = instSignals.length > 0 ? (instSignals.length === 1 ? instSignals[0].right : el.add(...instSignals.map(s => s.right))) : zero;
 
-  // 4. Acoustic Cross-Bleed (12ms micro-delay low-passed + Haas widening)
-  let finalDrumL = saturatedDrumL;
-  let finalDrumR = saturatedDrumR;
-  let finalInstL = instLeftRaw;
-  let finalInstR = instRightRaw;
-
-  if (crosstalkAmount > 0.001) {
-    // 12ms delay (529 samples) filtered below 4500Hz
-    const rawBleedL = el.lowpass(4500, 0.5, el.delay({ key: 'bleed:i2dL', size: 44100 }, el.const({ value: 529 }), el.const({ value: 0 }), instLeftRaw));
-    const rawBleedR = el.lowpass(4500, 0.5, el.delay({ key: 'bleed:i2dR', size: 44100 }, el.const({ value: 529 }), el.const({ value: 0 }), instRightRaw));
-
-    // Haas stereo widening (Left 2ms/88 samples, Right 15ms/661 samples)
-    const bleedInstToDrumL = el.delay({ key: 'haas:bleedL', size: 44100 }, el.const({ value: 88 }), el.const({ value: 0 }), rawBleedL);
-    const bleedInstToDrumR = el.delay({ key: 'haas:bleedR', size: 44100 }, el.const({ value: 661 }), el.const({ value: 0 }), rawBleedR);
-
-    const bleedDrumToInstL = el.lowpass(4500, 0.5, el.delay({ key: 'bleed:d2iL', size: 44100 }, el.const({ value: 529 }), el.const({ value: 0 }), saturatedDrumL));
-    const bleedDrumToInstR = el.lowpass(4500, 0.5, el.delay({ key: 'bleed:d2iR', size: 44100 }, el.const({ value: 529 }), el.const({ value: 0 }), saturatedDrumR));
-
-    finalDrumL = el.add(saturatedDrumL, el.mul(el.const({ value: crosstalkAmount }), bleedInstToDrumL));
-    finalDrumR = el.add(saturatedDrumR, el.mul(el.const({ value: crosstalkAmount }), bleedInstToDrumR));
-    finalInstL = el.add(instLeftRaw, el.mul(el.const({ value: crosstalkAmount }), bleedDrumToInstL));
-    finalInstR = el.add(instRightRaw, el.mul(el.const({ value: crosstalkAmount }), bleedDrumToInstR));
-  }
-
-  // 5. Final Bus Summing & Headroom Trim
-  const masterLeftSum = el.add(finalDrumL, el.add(duckedSubL, finalInstL));
-  const masterRightSum = el.add(finalDrumR, el.add(duckedSubR, finalInstR));
+  // 4. Master Summing (Acoustic crosstalk Haas delays stripped for 100% phase coherence & mono compatibility)
+  const masterLeftSum = el.add(saturatedDrumL, el.add(duckedSubL, instLeftRaw));
+  const masterRightSum = el.add(saturatedDrumR, el.add(duckedSubR, instRightRaw));
 
   const totalTrackCount = Math.max(1, drumSignals.length + subSignals.length + instSignals.length);
   const headroomTrim = Math.min(1.0, 1.8 / Math.sqrt(totalTrackCount));

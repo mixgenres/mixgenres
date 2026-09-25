@@ -22,7 +22,6 @@ import { resolveStyle } from '../../data/styles/resolve';
 import { getCanonicalStyle } from '../../data/styles/registry';
 import { blendPartStyle, type BlendReport } from '../generators/blend';
 import { activityFor, clampEnergy, energyOf, shapeScalarOf } from '../metadata/energy';
-import { normaliseDials } from '../metadata/dials';
 import { resolveArticulationStack, realizeArticulation, type ArticulationSpec } from '../theory/articulation';
 import type { GuestLens } from '../../types';
 
@@ -99,14 +98,6 @@ export interface Performance {
 }
 
 export interface CompileOptions {
-  /** 0..1, how exaggerated the genre's feel is. 0.5 is "as intended". */
-  pocket?: number;
-  /** 0..1, how much the arrangement leans on section dynamics */
-  lift?: number;
-  /** master humanization scale, 0..1 */
-  humanize?: number;
-  /** 0..1, how strongly ornaments, bends and swells are realized */
-  expression?: number;
 }
 
 /* --- meter and grid ------------------------------------------------------- */
@@ -260,7 +251,7 @@ function energyForRegion(region: Region): 1 | 2 | 3 | 4 | 5 {
   return energyOf(region);
 }
 
-function authoredTransitionPattern(style: any, worldId: string, type: TransitionType, role: string): any | undefined {
+function authoredTransitionPattern(style: any, worldId: string, _type: TransitionType, role: string): any | undefined {
   if (!style?.contract?.transitionGrammar?.authoredPriority) return undefined;
   const candidates = Object.values(PATTERNS_BY_ID) as any[];
   return candidates
@@ -364,16 +355,10 @@ export function tempoMultiplierAt(
   return 1 + 0.06 * Math.sin(phraseT * Math.PI);
 }
 
-export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
-  const dials = normaliseDials(sheet);
-  const pocketAmount = opts.pocket ?? dials.pocket;
-  const liftAmount = opts.lift ?? dials.lift;
-  const humanScale = opts.humanize ?? 1;
-  const expressionAmount = opts.expression ?? dials.expression;
-
+export function compile(sheet: Sheet, _opts: CompileOptions = {}): Performance {
   const bars = buildBarTimes(sheet);
   const tracks = sheet.tracks as Voice[];
-  const { channelOf, drumChannels } = allocateChannels(tracks);
+  const { channelOf } = allocateChannels(tracks);
   const regionById = new Map(sheet.regions.map(r => [r.id, r]));
 
   const notes: PerfNote[] = [];
@@ -547,8 +532,6 @@ export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
           transitionDirection,
           sectionKind: region?.kind,
           memory: mem,
-          developmentDial: dials.development,
-          expressionDial: dials.expression,
           seed: seedOf(t.id, barIndex, 'pattern-interpret'),
           ensembleContext,
           interactions: trackInteractions,
@@ -751,7 +734,7 @@ export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
     const prof = voiceProfile(t.instrumentId);
     for (const r of sheet.regions) {
       const shape = shapes.get(r.id)!;
-      decisions.set(`${t.id}|${r.id}`, decide(t, prof, shape, liftAmount, bandSize, sheet.arrangementContext?.[r.id]));
+      decisions.set(`${t.id}|${r.id}`, decide(t, prof, shape, bandSize, sheet.arrangementContext?.[r.id]));
     }
   }
 
@@ -846,9 +829,7 @@ export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
       const regionStyleId = sectionStyle.id;
       const g: GrooveProfile = grooveForStyle(resolvedStyle);
       const bassStyle: BassStyle = bassStyleForStyle(resolvedStyle, t.instrumentId, t.role);
-      const intensityRaw = intensityOf(region);
-      // lift 0 flattens every section to the same weight, 1 exaggerates
-      const intensity = 0.55 + (intensityRaw - 0.55) * (0.3 + liftAmount * 1.4);
+      const intensity = intensityOf(region);
 
       const decision = decisions.get(`${t.id}|${bt.regionId}`);
       if (decision && !decision.plays) continue;
@@ -984,12 +965,12 @@ export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
         authoredMs: a.authoredMs,
         anticipated: a.anticipated,
         intensity,
-        pocketAmount: culture?.authoredTimingOnly ? 0 : pocketAmount,
+        pocketAmount: culture?.authoredTimingOnly ? 0 : 0.5,
         authoredTimingOnly: !!culture?.authoredTimingOnly,
       });
 
       const stepKey = `${a.bar}-${Math.round(a.beatInBar * 96)}`;
-      let jitterSec = (feel.offsetMs * humanScale) / 1000;
+      let jitterSec = feel.offsetMs / 1000;
 
       if (t.id === anchorTrackId) {
         anchorJitterMap.set(stepKey, jitterSec);
@@ -1293,7 +1274,6 @@ export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
         t.instrumentId?.includes('guzheng')
       );
       const isUpstroke = a.articulation === 'upstroke' || specs.some(s => s.id === 'upstroke' || s.id === 'up');
-      const isDownstroke = !isUpstroke && (rand01(seedOf(t.id, a.bar, a.onsetIndex, 'strum-direction')) > 0.45);
 
       // Dynamic Strum Delay: Inversely map delay per string to overall chord velocity
       // Velocity 110 yields ~4ms delay per string; velocity 40 yields ~35ms delay per string
@@ -1312,7 +1292,7 @@ export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
             ? (1.6 + rand01(seedOf(t.id, a.bar, a.onsetIndex, vi)) * 2.4)
             : divisiDelayMs);
         }
-        let voiceTime = time + (rollMs * humanScale) / 1000;
+        let voiceTime = time + rollMs / 1000;
 
         // Ornaments belong to the voice that carries the line
         const voiceSpecs = vi === 0 ? specs : specs.filter(x => x.family === 'duration' || x.family === 'attack');
@@ -1366,7 +1346,7 @@ export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
           secPerBeat,
           time: voiceTime,
           pitchSet: activePitchSet,
-          expression: expressionAmount,
+          expression: 0.55,
           context: rhythmicContext,
           seed: seedOf(t.id, a.bar, a.onsetIndex, vi, 'art'),
         });
@@ -1437,27 +1417,6 @@ export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
               : undefined))
           : undefined;
 
-        // Bowed Strings expression swells & vibrato automation
-        const isBowed = prof.sustain === 'sustained' && (prof.role === 'lead' || prof.role === 'comp' || t.instrumentId?.includes('string') || t.instrumentId?.includes('violin') || t.instrumentId?.includes('cello') || t.instrumentId?.includes('strings'));
-        if (isBowed) {
-          const swellTimeSec = 0.28;
-          const swellSteps = 6;
-          for (let stepIdx = 0; stepIdx <= swellSteps; stepIdx++) {
-            const pct = stepIdx / swellSteps;
-            const sCurve = 3 * pct * pct - 2 * pct * pct * pct;
-            const ccVal = Math.round(62 + sCurve * 65);
-            ccs.push({
-              time: voiceTime + pct * swellTimeSec,
-              trackId: t.id,
-              cc: 11,
-              value: ccVal
-            });
-          }
-          ccs.push({ time: voiceTime, trackId: t.id, cc: 1, value: 0 });
-          ccs.push({ time: voiceTime + 0.24, trackId: t.id, cc: 1, value: 0 });
-          ccs.push({ time: voiceTime + 0.62, trackId: t.id, cc: 1, value: 64 });
-        }
-
         // Keyboard pedaling CC64
         const isKeyboard = t.instrumentId?.includes('piano') || t.instrumentId?.includes('rhodes');
         if (isKeyboard && vi === 0) {
@@ -1493,202 +1452,81 @@ export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
           }
         }
 
-        const isEnsemble = !isPercussion && (
-          t.instrumentId?.includes('strings') ||
-          t.instrumentId?.includes('choir') ||
-          t.instrumentId?.includes('horn_section') ||
-          t.instrumentId?.includes('orchestra') ||
-          t.instrumentId?.includes('brass') ||
-          t.instrumentId?.includes('slow_strings') ||
-          t.instrumentId?.includes('synth_strings') ||
-          prof.ensembleSmearMs !== undefined
-        );
-
         realized.notes.forEach((n, ni) => {
-          if (isEnsemble) {
-            // Ensemble Smear: Split note into 3 micro-voices with randomized millisecond offsets & micro-pitch/vel deviations
-            const smearSeed = seedOf(t.id, a.bar, a.onsetIndex, vi, ni, 'smear');
-            const offsets = [
-              0,
-              (rand01(smearSeed ^ 0x1111) - 0.5) * 0.024, // ±12ms
-              (rand01(smearSeed ^ 0x2222) - 0.5) * 0.030  // ±15ms
-            ];
-            const velMults = [
-              1.0,
-              0.90 + rand01(smearSeed ^ 0x3333) * 0.08,
-              0.85 + rand01(smearSeed ^ 0x4444) * 0.08
-            ];
-            const detuneSemitones = [
-              0,
-              (rand01(smearSeed ^ 0x5555) - 0.5) * 0.04, // ±2 cents
-              (rand01(smearSeed ^ 0x6666) - 0.5) * 0.05  // ±2.5 cents
-            ];
-
-            for (let mv = 0; mv < 3; mv++) {
-              notes.push({
-                time: Math.max(0, n.time + offsets[mv]),
-                dur: Math.max(0.05, n.durSeconds * (1.0 + (mv > 0 ? (offsets[mv] * 0.5) : 0))),
-                midi: n.midi + detuneSemitones[mv],
-                pitchBend: n.pitchBend ?? slideBend ?? (ni === 0 ? idiomBend : undefined),
-                vel: Math.max(1, Math.min(127, Math.round(n.velocity * velMults[mv]))),
-                trackId: t.id, bar: a.bar,
-                articulation: voiceSpecs[0]?.id || a.articulation,
-              });
-            }
+          const isHonkyTonk = /honky|old-time|old_time|saloon/i.test(`${resolvedStyle.id} ${resolvedStyle.primaryGenre}`.toLowerCase());
+          const isPiano = t.instrumentId === 'piano';
+          if (isPiano && isHonkyTonk) {
+            const detuneCents = 4 + rand01(seedOf(t.id, a.bar, a.onsetIndex, vi, 'honky')) * 8; // 4 to 12 cents
+            const detuneSemitones = detuneCents / 100;
+            
+            // Left voice: detuned flat
+            notes.push({
+              time: n.time,
+              dur: n.durSeconds,
+              midi: n.midi - detuneSemitones,
+              pitchBend: n.pitchBend ?? slideBend ?? (ni === 0 ? idiomBend : undefined),
+              vel: Math.max(1, Math.round(n.velocity * 0.95)),
+              trackId: t.id, bar: a.bar,
+              articulation: voiceSpecs[0]?.id || a.articulation,
+            });
+            
+            // Right voice: detuned sharp
+            notes.push({
+              time: n.time + 0.002, // slight phase offset
+              dur: n.durSeconds,
+              midi: n.midi + detuneSemitones,
+              pitchBend: n.pitchBend ?? slideBend ?? (ni === 0 ? idiomBend : undefined),
+              vel: Math.max(1, Math.round(n.velocity * 0.95)),
+              trackId: t.id, bar: a.bar,
+              articulation: voiceSpecs[0]?.id || a.articulation,
+            });
+            
+            // Pan left and right
+            ccs.push({ time: n.time, trackId: t.id, cc: 10, value: 20 });
+            ccs.push({ time: n.time + 0.002, trackId: t.id, cc: 10, value: 108 });
           } else {
-            const isHonkyTonk = /honky|old-time|old_time|saloon/i.test(`${resolvedStyle.id} ${resolvedStyle.primaryGenre}`.toLowerCase());
-            const isPiano = t.instrumentId === 'piano';
-            if (isPiano && isHonkyTonk) {
-              const detuneCents = 4 + rand01(seedOf(t.id, a.bar, a.onsetIndex, vi, 'honky')) * 8; // 4 to 12 cents
-              const detuneSemitones = detuneCents / 100;
-              
-              // Left voice: detuned flat
+            let finalVel = n.velocity;
+            const isYumba = voiceSpecs.some(s => s.id === 'yumba' || s.aliases.includes('yumba')) || (resolvedStyle.id?.includes('tango') && (a.beatInBar === 0 || a.beatInBar === 2));
+            if (isYumba && t.instrumentId === 'piano') {
+              finalVel = 127;
+              ccs.push({ time: n.time, trackId: t.id, cc: 11, value: 127 });
+              ccs.push({ time: n.time + 0.04, trackId: t.id, cc: 11, value: 25 });
+              ccs.push({ time: n.time + n.durSeconds - 0.01, trackId: t.id, cc: 11, value: 127 });
+            }
+
+            let finalArticulation = voiceSpecs[0]?.id || a.articulation;
+            const isViolin = t.instrumentId === 'violin' || t.instrumentId?.includes('string');
+            if (resolvedStyle.id?.includes('tango') && isViolin && Math.abs(a.beatInBar - 3.5) < 0.1) {
+              finalArticulation = 'chicharra';
+            }
+
+            notes.push({
+              time: n.time,
+              dur: n.durSeconds,
+              midi: n.midi,
+              pitchBend: n.pitchBend ?? slideBend ?? (ni === 0 ? idiomBend : undefined),
+              vel: finalVel,
+              trackId: t.id, bar: a.bar,
+              articulation: finalArticulation,
+            });
+
+            // Bandoneón Sub-Bass Coupling (zinc reed growl) (Prompt Tango 1)
+            if (t.instrumentId === 'bandoneon' && n.midi < 48) {
               notes.push({
-                time: n.time,
+                time: n.time + 0.003,
                 dur: n.durSeconds,
-                midi: n.midi - detuneSemitones,
+                midi: n.midi + 12,
                 pitchBend: n.pitchBend ?? slideBend ?? (ni === 0 ? idiomBend : undefined),
-                vel: Math.max(1, Math.round(n.velocity * 0.95)),
+                vel: Math.max(1, Math.round(finalVel * 0.4)),
                 trackId: t.id, bar: a.bar,
-                articulation: voiceSpecs[0]?.id || a.articulation,
+                articulation: 'sub-bass-coupling',
               });
-              
-              // Right voice: detuned sharp
-              notes.push({
-                time: n.time + 0.002, // slight phase offset
-                dur: n.durSeconds,
-                midi: n.midi + detuneSemitones,
-                pitchBend: n.pitchBend ?? slideBend ?? (ni === 0 ? idiomBend : undefined),
-                vel: Math.max(1, Math.round(n.velocity * 0.95)),
-                trackId: t.id, bar: a.bar,
-                articulation: voiceSpecs[0]?.id || a.articulation,
-              });
-              
-              // Pan left and right
-              ccs.push({ time: n.time, trackId: t.id, cc: 10, value: 20 });
-              ccs.push({ time: n.time + 0.002, trackId: t.id, cc: 10, value: 108 });
-            } else {
-              let finalVel = n.velocity;
-              const isYumba = voiceSpecs.some(s => s.id === 'yumba' || s.aliases.includes('yumba')) || (resolvedStyle.id?.includes('tango') && (a.beatInBar === 0 || a.beatInBar === 2));
-              if (isYumba && t.instrumentId === 'piano') {
-                finalVel = 127;
-                ccs.push({ time: n.time, trackId: t.id, cc: 11, value: 127 });
-                ccs.push({ time: n.time + 0.04, trackId: t.id, cc: 11, value: 25 });
-                ccs.push({ time: n.time + n.durSeconds - 0.01, trackId: t.id, cc: 11, value: 127 });
-              }
-
-              let finalArticulation = voiceSpecs[0]?.id || a.articulation;
-              const isViolin = t.instrumentId === 'violin' || t.instrumentId?.includes('string');
-              if (resolvedStyle.id?.includes('tango') && isViolin && Math.abs(a.beatInBar - 3.5) < 0.1) {
-                finalArticulation = 'chicharra';
-              }
-
-              notes.push({
-                time: n.time,
-                dur: n.durSeconds,
-                midi: n.midi,
-                pitchBend: n.pitchBend ?? slideBend ?? (ni === 0 ? idiomBend : undefined),
-                vel: finalVel,
-                trackId: t.id, bar: a.bar,
-                articulation: finalArticulation,
-              });
-
-              // Bandoneón Sub-Bass Coupling (zinc reed growl) (Prompt Tango 1)
-              if (t.instrumentId === 'bandoneon' && n.midi < 48) {
-                notes.push({
-                  time: n.time + 0.003,
-                  dur: n.durSeconds,
-                  midi: n.midi + 12,
-                  pitchBend: n.pitchBend ?? slideBend ?? (ni === 0 ? idiomBend : undefined),
-                  vel: Math.max(1, Math.round(finalVel * 0.4)),
-                  trackId: t.id, bar: a.bar,
-                  articulation: 'sub-bass-coupling',
-                });
-              }
-
-              // Sitar, Sarod, Tanpura Sympathetic Resonance (Prompt 16)
-              const isIndian = /sitar|sarod|tanpura/i.test(t.instrumentId || '');
-              if (isIndian) {
-                const sympatheticIntervals = [5, 7, 12, 19];
-                sympatheticIntervals.forEach((iv, index) => {
-                  notes.push({
-                    time: n.time + 0.015 + index * 0.005,
-                    dur: n.durSeconds * 1.5,
-                    midi: foldToRange(n.midi + iv, prof),
-                    pitchBend: n.pitchBend ?? slideBend ?? (ni === 0 ? idiomBend : undefined),
-                    vel: Math.max(1, Math.round(n.velocity * 0.18)),
-                    trackId: t.id, bar: a.bar,
-                    articulation: 'sympathetic',
-                  });
-                });
-              }
-
-              // Piano Damper Pedal Resonance (Prompt 17)
-              const isPianoTrack = t.instrumentId === 'piano' || t.instrumentId?.includes('clav');
-              if (isPianoTrack && n.velocity > 40) {
-                const resMidi1 = foldToRange(n.midi - 12, prof);
-                const resMidi2 = foldToRange(n.midi - 7, prof);
-                notes.push({
-                  time: n.time + 0.005,
-                  dur: n.durSeconds * 1.2,
-                  midi: resMidi1,
-                  vel: Math.max(1, Math.min(11, Math.round(n.velocity * 0.12))),
-                  trackId: t.id, bar: a.bar,
-                  articulation: 'resonance',
-                });
-                notes.push({
-                  time: n.time + 0.010,
-                  dur: n.durSeconds * 1.1,
-                  midi: resMidi2,
-                  vel: Math.max(1, Math.min(11, Math.round(n.velocity * 0.10))),
-                  trackId: t.id, bar: a.bar,
-                  articulation: 'resonance',
-                });
-              }
-
-              // Acoustic Guitar Body Thump (Prompt 17)
-              const isAcousticGuitar = t.instrumentId === 'acoustic-guitar' || t.instrumentId === 'guitar';
-              const isHeavyDownbeat = a.beatInBar === 0 && a.accent > 0.8;
-              if (isAcousticGuitar && isHeavyDownbeat) {
-                notes.push({
-                  time: n.time,
-                  dur: 0.10,
-                  midi: 29, // Low-frequency body thump
-                  vel: Math.round(n.velocity * 0.45),
-                  trackId: t.id, bar: a.bar,
-                  articulation: 'body-thump',
-                });
-              }
             }
           }
         });
 
         for (const cc of realized.ccs) {
           ccs.push({ time: cc.time, trackId: t.id, cc: cc.cc, value: cc.value });
-        }
-
-        // Keyboard & Plucked string mechanical/fret noise releases
-        if ((t.instrumentId === 'piano' || t.instrumentId?.includes('clav')) && rand01(seedOf(t.id, a.bar, a.onsetIndex, vi, 'key-release')) < 0.45) {
-          notes.push({
-            time: voiceTime + computedDur,
-            dur: 0.08,
-            midi: 121,
-            vel: 14,
-            trackId: t.id,
-            bar: a.bar,
-            articulation: 'release-noise'
-          });
-        }
-        if (isPlucked && (t.instrumentId?.includes('guitar') || t.instrumentId?.includes('bass')) && rand01(seedOf(t.id, a.bar, a.onsetIndex, vi, 'fret-noise')) < 0.3) {
-          notes.push({
-            time: voiceTime + computedDur + 0.04,
-            dur: 0.12,
-            midi: 120,
-            vel: 12,
-            trackId: t.id,
-            bar: a.bar,
-            articulation: 'fret-noise'
-          });
         }
       });
     }
@@ -1727,7 +1565,7 @@ export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
         const trimLin = Math.pow(10, prof.trim / 20);
         const base = Math.max(0, Math.min(1, (t.muted ? 0 : t.volume) * trimLin));
         const shape = shapeScalarOf(r);
-        const swell = (isBuildSection(sheet.regions, r) ? 0.12 : -0.03) * liftAmount;
+        const swell = isBuildSection(sheet.regions, r) ? 0.06 : -0.015;
         const span = lastBar.end - firstBar.start;
         const points: [number, number][] = [
           [firstBar.start, base * (1 - swell * 0.5)],
@@ -1977,5 +1815,5 @@ export function compile(sheet: Sheet, opts: CompileOptions = {}): Performance {
     trackInfo: Object.fromEntries(tracks.map(t => [t.id, { instrumentId: t.instrumentId, role: t.role }])),
   };
 
-  return polishPerformance(applyEnsembleInteraction(rawPerf), { timingScale: humanScale, velocityScale: humanScale });
+  return polishPerformance(applyEnsembleInteraction(rawPerf), { timingScale: 1, velocityScale: 1 });
 }

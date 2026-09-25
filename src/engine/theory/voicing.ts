@@ -194,6 +194,263 @@ export function voiceChord(req: VoicingRequest): number[] {
     return [root, root + 7, root + 12].map(n => Math.max(effectiveLow, Math.min(profile.high, n)));
   }
 
+  const instId = (profile.id || '').toLowerCase();
+  const isElectricGuitar = /electric.*guitar|guitar.*electric|clean-electric|distortion|overdrive|tele|strat|jazz-guitar/i.test(instId) ||
+    (/guitar/i.test(instId) && !/acoustic|nylon|classical|folk|12-string|steel-string/i.test(instId));
+  const isAcousticGuitar = /acoustic.*guitar|guitar.*acoustic|steel-string|nylon|12-string|classical.*guitar/i.test(instId) ||
+    (instId === 'guitar' && /folk|country|bluegrass|americana/i.test(styleStr)) ||
+    (/guitar/i.test(instId) && !/electric|clean-electric|distortion|overdrive/i.test(instId));
+  const isPianoOrKeys = /piano|rhodes|organ|keys|keyboard|wurlitzer|clav|fm-ep/i.test(instId);
+
+  // 1. Reggae & Ska "Skank" Voicings
+  // Check if styleStr includes 'reggae', 'dub', or 'ska'
+  const isReggaeOrSka = /reggae|dub|ska/i.test(styleStr);
+  const isSkankRole = profile.role === 'comp' || (profile.role as string) === 'harmony';
+  if (isReggaeOrSka && isSkankRole) {
+    // Force skipRoot = true; use 3 notes maximum (triads or 3-note 7th shells)
+    const third = chord.intervals.find(x => x === 3 || x === 4 || x === 2 || x === 5) ?? 4;
+    const seventh = chord.intervals.find(x => x === 10 || x === 11 || x === 9);
+    const fifth = chord.intervals.find(x => x === 6 || x === 7 || x === 8) ?? 7;
+
+    const candidateIntervals: number[] = [];
+    if (seventh !== undefined) {
+      candidateIntervals.push(third, seventh, fifth);
+    } else {
+      candidateIntervals.push(third, fifth, third + 12);
+    }
+
+    const skankPcs = candidateIntervals.slice(0, 3).map(iv => pcOf(chord.rootPc + iv));
+    const targetRef = previous.length
+      ? Math.max(65, Math.min(81, Math.round(previous.reduce((a, b) => a + b, 0) / previous.length)))
+      : 72;
+
+    let skankNotes = skankPcs.map(pc => {
+      let n = nearestPc(pc, targetRef);
+      while (n < 65) n += 12;
+      while (n > 81) n -= 12;
+      if (n < 65) n += 12;
+      return n;
+    }).sort((a, b) => a - b);
+
+    // Restrict strictly between MIDI 65 and 81
+    skankNotes = skankNotes.map(n => Math.max(65, Math.min(81, n)));
+    return dedupe(skankNotes.slice(0, 3));
+  }
+
+  // 2. Funk Guitar "Top-String" Chops
+  // Check if styleStr includes 'funk' or 'disco' AND instrument is an electric guitar
+  const isFunkOrDisco = /funk|disco/i.test(styleStr);
+  if (isFunkOrDisco && isElectricGuitar) {
+    const allIntervals = [...chord.tensions, ...chord.intervals];
+    let highestTensionIv: number | undefined;
+
+    // Check tensions: 13th > 11th > 9th
+    const t13 = allIntervals.find(iv => iv === 21 || iv === 20 || (iv === 9 && chord.intervals.includes(10)));
+    const t11 = allIntervals.find(iv => iv === 17 || iv === 18 || (iv === 5 && chord.intervals.includes(10)));
+    const t9 = allIntervals.find(iv => iv === 14 || iv === 13 || iv === 15 || iv === 2);
+
+    if (t13 !== undefined) {
+      highestTensionIv = t13 % 12;
+    } else if (t11 !== undefined) {
+      highestTensionIv = t11 % 12;
+    } else if (t9 !== undefined) {
+      highestTensionIv = t9 % 12;
+    } else if (chord.quality === 'dominant' || chord.symbol.includes('7')) {
+      highestTensionIv = 2; // Classic James Brown E9 style tension
+    }
+
+    const third = chord.intervals.find(x => x === 3 || x === 4 || x === 2 || x === 5) ?? 4;
+    const seventh = chord.intervals.find(x => x === 10 || x === 11 || x === 9) ?? 10;
+    const prevTop = previous.length ? previous[previous.length - 1] : 75;
+
+    if (highestTensionIv !== undefined) {
+      const topPc = pcOf(chord.rootPc + highestTensionIv);
+      let topNote = nearestPc(topPc, Math.min(78, Math.max(71, prevTop)));
+      while (topNote < 71) topNote += 12;
+      while (topNote > 79) topNote -= 12;
+      if (topNote < 65) topNote += 12;
+
+      // Omit 5th and root, place 3rd and 7th below topNote
+      const lowerPcs = [pcOf(chord.rootPc + seventh), pcOf(chord.rootPc + third)];
+      if (req.size >= 4 && highestTensionIv !== 2 && (t9 !== undefined || chord.quality === 'dominant')) {
+        lowerPcs.unshift(pcOf(chord.rootPc + 2)); // 9th below 13th/11th
+      }
+
+      const lowerNotes: number[] = [];
+      for (const pc of lowerPcs) {
+        let n = nearestPc(pc, topNote - 4);
+        while (n >= topNote) n -= 12;
+        while (n < 65) n += 12;
+        if (n < topNote) lowerNotes.push(n);
+      }
+
+      let funkVoicing = [topNote, ...lowerNotes].filter(n => n >= 65 && n <= 79).sort((a, b) => a - b);
+      if (funkVoicing.length >= 2 && funkVoicing[funkVoicing.length - 1] === topNote) {
+        return dedupe(funkVoicing.slice(-4));
+      }
+    }
+
+    // Fallback tight 3-note shell in 65-79
+    const shellPcs = [pcOf(chord.rootPc + third), pcOf(chord.rootPc + seventh)];
+    const notes = shellPcs.map(pc => {
+      let n = nearestPc(pc, 72);
+      while (n < 65) n += 12;
+      while (n > 79) n -= 12;
+      return n;
+    }).sort((a, b) => a - b);
+    return dedupe(notes);
+  }
+
+  // 3. Modal Jazz "Quartal" Voicings (Stacked Fourths)
+  // Check if styleStr includes 'modal', 'spiritual', 'hard-bop', 'cool', or 'post-bop' AND instrument is piano/keys
+  const isModalJazz = /modal|spiritual|hard-bop|hard_bop|cool|post-bop|post_bop/i.test(styleStr);
+  const isMinor7 = chord.quality === 'minor' && (chord.intervals.includes(10) || chord.intervals.includes(11) || chord.intervals.includes(9) || chord.symbol.includes('7') || chord.symbol.includes('m') || chord.symbol.includes('min'));
+  const isDom7 = chord.quality === 'dominant' || chord.symbol.includes('7');
+  const isSus = chord.quality === 'suspended' || /sus/i.test(chord.symbol);
+
+  if (isModalJazz && isPianoOrKeys && (isMinor7 || isDom7 || isSus)) {
+    // Pick top note from chord's scale/tensions (e.g. 11th, 9th, root, 5th, b7)
+    const candidateOffsets = chord.tensions.length > 0
+      ? chord.tensions.map(t => t % 12)
+      : (chord.scale.length > 0 ? chord.scale : [5, 2, 0, 10, 7]);
+
+    const preferred = [5, 2, 0, 10, 7].filter(iv => candidateOffsets.includes(iv));
+    const topIv = preferred.length > 0 ? preferred[0] : candidateOffsets[0];
+    const topPc = pcOf(chord.rootPc + topIv);
+
+    const targetTop = previous.length ? previous[previous.length - 1] : (profile.centre + 7);
+    let topNote = nearestPc(topPc, targetTop);
+    while (topNote > profile.high) topNote -= 12;
+    while (topNote < profile.centre) topNote += 12;
+
+    // Stack 2 or 3 notes beneath it in Perfect Fourths (-5 semitones)
+    const quartalCount = req.size >= 4 ? 4 : 3;
+    let quartalStack: number[] = [];
+    for (let i = 0; i < quartalCount; i++) {
+      quartalStack.push(topNote - i * 5);
+    }
+    quartalStack.sort((a, b) => a - b);
+
+    // Fold into instrument range
+    while (quartalStack[0] < profile.low) {
+      quartalStack = quartalStack.map(n => n + 12);
+    }
+    while (quartalStack[quartalStack.length - 1] > profile.high) {
+      quartalStack = quartalStack.map(n => n - 12);
+    }
+
+    return dedupe(quartalStack.map(n => clampRange(n, profile)));
+  }
+
+  // 4. Folk & Country "CAGED" Cowboy Chords
+  // Check if styleStr includes 'folk', 'country', 'bluegrass', or 'americana' AND instrument is an acoustic guitar
+  const isFolkCountry = /folk|country|bluegrass|americana/i.test(styleStr);
+  const hasExtensions = chord.tensions.length > 0 || chord.intervals.some(iv => iv === 10 || iv === 11 || iv === 9 || iv === 14 || iv === 13);
+  const isBasicTriad = (chord.quality === 'major' || chord.quality === 'minor') && !hasExtensions && !chord.isPower;
+
+  if (isFolkCountry && isAcousticGuitar && isBasicTriad) {
+    // Absolute MIDI standard open guitar chord voicings:
+    const OPEN_MAJOR_SHAPES: Record<number, number[]> = {
+      4: [40, 47, 52, 56, 59, 64], // E Major
+      7: [43, 47, 50, 55, 59, 67], // G Major
+      0: [48, 52, 55, 60, 64],     // C Major
+      2: [50, 57, 62, 66],         // D Major
+      9: [45, 52, 57, 61, 64],     // A Major
+    };
+
+    const OPEN_MINOR_SHAPES: Record<number, number[]> = {
+      4: [40, 47, 52, 55, 59, 64], // E Minor
+      9: [45, 52, 57, 60, 64],     // A Minor
+      2: [50, 57, 62, 65],         // D Minor
+      7: [43, 46, 50, 55, 58, 67], // G Minor
+      0: [48, 51, 55, 60, 63],     // C Minor
+    };
+
+    const isMinor = chord.quality === 'minor';
+    const shapeMap = isMinor ? OPEN_MINOR_SHAPES : OPEN_MAJOR_SHAPES;
+    const root = chord.rootPc;
+
+    // If one of the open 5 (C, A, G, E, D), return directly
+    if (shapeMap[root]) {
+      return shapeMap[root].slice();
+    }
+
+    // Transpose fixed shapes up the neck using a virtual capo
+    const basePcs = [0, 2, 4, 7, 9]; // C, D, E, G, A
+    let bestCapo = Infinity;
+    let bestShape: number[] = [];
+
+    for (const basePc of basePcs) {
+      if (!shapeMap[basePc]) continue;
+      const capo = (root - basePc + 12) % 12;
+      if (capo > 0 && capo < bestCapo) {
+        bestCapo = capo;
+        bestShape = shapeMap[basePc];
+      }
+    }
+
+    if (bestShape.length > 0) {
+      return bestShape.map(n => n + bestCapo);
+    }
+  }
+
+  // 5. Neo-Soul / Gospel Top-Down Voicing
+  // Check if styleStr includes 'neo-soul', 'gospel', or 'r-and-b' AND instrument is piano/rhodes/organ
+  const isNeoSoulOrGospel = /neo-soul|neo_soul|gospel|r-and-b|r_and_b|rnb/i.test(styleStr);
+  const isNeoKeys = /piano|rhodes|organ|keys|keyboard|wurlitzer/i.test(profile.id || '');
+
+  if (isNeoSoulOrGospel && isNeoKeys) {
+    // 1. Identify highest tension (9, 11, or 13)
+    const allIntervals = [...chord.tensions, ...chord.intervals];
+    let topTensionIv = 2; // Default to 9th (standard neo-soul colour)
+
+    if (allIntervals.some(iv => iv === 21 || iv === 20 || (iv === 9 && chord.intervals.includes(10)))) {
+      topTensionIv = allIntervals.find(iv => iv === 21 || iv === 20 || iv === 9)! % 12;
+    } else if (allIntervals.some(iv => iv === 17 || iv === 18 || (iv === 5 && chord.intervals.includes(10)))) {
+      topTensionIv = allIntervals.find(iv => iv === 17 || iv === 18 || iv === 5)! % 12;
+    } else if (allIntervals.some(iv => iv === 14 || iv === 13 || iv === 15 || iv === 2 || iv === 1 || iv === 3)) {
+      topTensionIv = allIntervals.find(iv => iv === 14 || iv === 13 || iv === 15 || iv === 2 || iv === 1 || iv === 3)! % 12;
+    }
+
+    // 2. Place highest tension at top of right hand strictly within MIDI 72–80
+    const topPc = pcOf(chord.rootPc + topTensionIv);
+    let topNote = nearestPc(topPc, previous.length ? previous[previous.length - 1] : 76);
+    while (topNote < 72) topNote += 12;
+    while (topNote > 80) topNote -= 12;
+    if (topNote < 72) topNote += 12;
+
+    // 3. Build right hand downward
+    const third = chord.intervals.find(x => x === 3 || x === 4 || x === 2 || x === 5) ?? 4;
+    const seventh = chord.intervals.find(x => x === 10 || x === 11 || x === 9) ?? 10;
+    const fifth = chord.intervals.find(x => x === 6 || x === 7 || x === 8) ?? 7;
+
+    const rhCandidates = [seventh, third, fifth].filter(iv => (iv % 12) !== topTensionIv);
+    const rhNotes: number[] = [topNote];
+    let currLowest = topNote;
+
+    for (const iv of rhCandidates) {
+      const pc = pcOf(chord.rootPc + iv);
+      let n = nearestPc(pc, currLowest - 3);
+      while (n >= currLowest) n -= 12;
+      if (n >= 58) {
+        rhNotes.push(n);
+        currLowest = n;
+      }
+    }
+
+    // 4. Put wide open shell in left hand: Root, 5th, and 10th
+    let lhRoot = nearestPc(chord.rootPc, 40);
+    while (lhRoot < 36) lhRoot += 12;
+    while (lhRoot > 45) lhRoot -= 12;
+
+    const lhFifth = lhRoot + fifth;
+    // 10th = octave + third
+    const lhTenth = lhRoot + 12 + third;
+
+    const neoSoulVoicing = [lhRoot, lhFifth, lhTenth, ...rhNotes].sort((a, b) => a - b);
+    return dedupe(neoSoulVoicing.map(n => clampRange(n, profile)));
+  }
+
   // Dynamic Voicing Expansion for Keyboards (Prompt 9)
   const isKeyboard = /piano|rhodes|fm-ep|clav|organ|synth/i.test(profile.id || '');
   if (isKeyboard && intensity > 0.8) {

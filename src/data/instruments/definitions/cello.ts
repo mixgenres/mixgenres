@@ -7,6 +7,8 @@ export const cello: InstrumentDef = {
   program: 42,
   octave: -12,
   voicing: "single",
+  bodyConstruction: "wood-box",
+  excitationType: "bow",
   elementaryModel: 6,
   makeupGain: 5.137,
   polyphony: 4,

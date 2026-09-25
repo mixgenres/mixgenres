@@ -18,6 +18,14 @@ export class StyleRuntime {
   }
 
   /**
+   * @static
+   * Creates a new StyleRuntime instance from resolved style data.
+   */
+  public static create(resolved: ResolvedStyle): StyleRuntime {
+    return new StyleRuntime(resolved);
+  }
+
+  /**
    * Helper to sample from weighted distribution, filtered by optional condition.
    */
   public pick<T>(path: string, rngOrSeed: (() => number) | number = 0.5, ctx?: Condition): T {

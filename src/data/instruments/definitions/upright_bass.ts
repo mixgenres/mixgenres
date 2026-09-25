@@ -25,11 +25,11 @@ export const upright_bass: InstrumentDef = {
   },
   luthierPhysics: {
     category: "strum_friction_pluck",
-    materialDensity: 0.85,
-    tension: 0.8,
-    bodyResonanceVolume: 180,
-    decayTimeFactor: 2.2,
-    harmonicRichness: 0.65,
+    materialDensity: 0.82,
+    tension: 0.72,
+    bodyResonanceVolume: 220,
+    decayTimeFactor: 2.6,
+    harmonicRichness: 0.75,
     faustProfile: "double-bass",
     soundboardResonanceHz: 65,
     airResonanceHz: 42,
@@ -99,7 +99,9 @@ export const upright_bass: InstrumentDef = {
       "harmonic",
       "arco",
       "arrastre",
-      "slap"
+      "slap",
+      "strappata",
+      "golpe"
     ],
     techniqueMethods: [
       "pizzicato",
@@ -107,12 +109,14 @@ export const upright_bass: InstrumentDef = {
       "walking",
       "one-finger pull",
       "arrastre drag",
-      "slap-pop"
+      "slap-pop",
+      "strappata slap",
+      "golpe body thud"
     ],
     playingStyles: ["jazz", "tango", "folk", "bluegrass", "rockabilly", "bossa-nova"],
     genreTechniques: {
       jazz: ["pizzicato", "legato", "ghost", "accent"],
-      tango: ["arrastre", "staccato", "accent", "pizzicato"],
+      tango: ["arrastre", "strappata", "staccato", "accent", "pizzicato", "golpe"],
       bluegrass: ["slap", "pizzicato", "accent"]
     }
   }

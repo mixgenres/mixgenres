@@ -6,6 +6,8 @@ export const viola: InstrumentDef = {
   family: "bowed",
   program: 41,
   voicing: "single",
+  bodyConstruction: "wood-box",
+  excitationType: "bow",
   elementaryModel: 6,
   makeupGain: 6.31,
   polyphony: 4,

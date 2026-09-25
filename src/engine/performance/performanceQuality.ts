@@ -64,7 +64,7 @@ export function polishPerformance(perf: Performance, options: PerformanceQuality
         const inst = (info[curNote.trackId]?.instrumentId || curNote.trackId).toLowerCase();
         const r = (info[curNote.trackId]?.role || '').toLowerCase();
 
-        const isCymbalOrCrash = curNote.drum && (curNote.midi === 49 || curNote.midi === 57 || curNote.midi === 51 || curNote.midi === 52 || curNote.midi === 55);
+        const isCymbalOrCrash = curNote.drum && (curNote.midi === 49 || curNote.midi === 57 || curNote.midi === 51 || curNote.midi === 52 || curNote.midi === 55 || curNote.midi === 46);
         const isRingableInstrument = isCymbalOrCrash || /crash|cymbal|pad|strings|piano|harp|organ|slow-strings|bowed|synth_pad/i.test(inst) || r === 'pad' || r === 'strings';
 
         const hasGlideLegato = /slide|portamento|glissando|legato|arrastre|slur|bind|bend/.test(artic);

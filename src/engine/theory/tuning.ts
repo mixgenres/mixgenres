@@ -90,7 +90,7 @@ export const TUNING_SYSTEMS: Record<string, TuningSystem> = {
       const cents = this.getCentsOffset(midiNote, tonicPc, options);
       return 440 * Math.pow(2, (midiNote + cents / 100 - 69) / 12);
     },
-    getCentsOffset(midiNote, tonicPc, options) {
+    getCentsOffset(midiNote, _tonicPc, options) {
       return applyTuningConstraints(0, midiNote, options);
     },
   },
@@ -185,7 +185,7 @@ export const TUNING_SYSTEMS: Record<string, TuningSystem> = {
       const cents = this.getCentsOffset(midiNote, tonicPc, options);
       return 440 * Math.pow(2, (midiNote + cents / 100 - 69) / 12);
     },
-    getCentsOffset(midiNote, tonicPc = 0, options) {
+    getCentsOffset(midiNote, _tonicPc = 0, options) {
       const pc = ((midiNote % 12) + 12) % 12;
       const offsets = [0, -10, -8, -6, -10, -2, -12, -4, -12, -8, -4, -10];
       const baseCents = offsets[pc];

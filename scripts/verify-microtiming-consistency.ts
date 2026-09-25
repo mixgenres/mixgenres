@@ -12,6 +12,7 @@ for (const genre of Object.values(GENRE_WORLDS_BY_ID)) {
       const b = resolved.rhythm.microtimingFeel;
       totalChecked++;
       if (a && b && a !== b) {
+        mismatches++;
         console.warn(`[microtiming-drift] ${genre.id}/${styleDef.id}: catalog says "${a}", runtime resolves "${b}"`);
         // We log warnings for display drift
       }
@@ -21,4 +22,4 @@ for (const genre of Object.values(GENRE_WORLDS_BY_ID)) {
   }
 }
 
-console.log(`OK: ${totalChecked} styles checked across ${Object.keys(GENRE_WORLDS_BY_ID).length} genres.`);
+console.log(`OK: ${totalChecked} styles checked (${mismatches} mismatches) across ${Object.keys(GENRE_WORLDS_BY_ID).length} genres.`);

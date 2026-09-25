@@ -15,6 +15,7 @@ export interface InstrumentDialect {
   contactPointOverride?: number;
   decayMultiplier?: number;
   brightnessMultiplier?: number;
+  bodyMultiplier?: number;
   tuningSystemId?: string;
   micProximityPreset?: 'close-mic' | 'room-ambient' | 'direct-box' | 'hall-stage';
   bendGlideMs?: number;
@@ -25,6 +26,50 @@ export interface InstrumentDialect {
 }
 
 export const DIALECTS: Record<string, InstrumentDialect> = {
+  'congas:salsa': {
+    id: 'congas:salsa',
+    instrumentId: 'congas',
+    name: 'Congas (Salsa/Timba)',
+    family: 'percussion',
+    performanceMode: 'acoustic-ensemble',
+    defaultTechnique: 'open',
+    allowedTechniques: ['open', 'slap', 'muff', 'bass'],
+    bodyMultiplier: 1.6, // Huge room resonance
+    brightnessMultiplier: 1.1,
+  },
+  'congas:funk': {
+    id: 'congas:funk',
+    instrumentId: 'congas',
+    name: 'Congas (Funk/Dry)',
+    family: 'percussion',
+    performanceMode: 'acoustic-ensemble',
+    defaultTechnique: 'open',
+    allowedTechniques: ['open', 'slap', 'muff'],
+    bodyMultiplier: 0.35, // Tight, dry studio sound
+    decayMultiplier: 0.6,
+  },
+  'trumpet:salsa': {
+    id: 'trumpet:salsa',
+    instrumentId: 'trumpet',
+    name: 'Trumpet (Salsa Mambo)',
+    family: 'brass',
+    performanceMode: 'acoustic-ensemble',
+    defaultTechnique: 'marcato',
+    allowedTechniques: ['marcato', 'accent', 'staccato', 'fall'],
+    bodyMultiplier: 1.3,
+    brightnessMultiplier: 1.25,
+  },
+  'trumpet:jazz': {
+    id: 'trumpet:jazz',
+    instrumentId: 'trumpet',
+    name: 'Trumpet (Cool Jazz)',
+    family: 'brass',
+    performanceMode: 'acoustic-ensemble',
+    defaultTechnique: 'legato',
+    allowedTechniques: ['legato', 'staccato', 'fall', 'doit'],
+    bodyMultiplier: 0.85,
+    decayMultiplier: 0.9,
+  },
   'double-bass:salsa-tumbao': {
     id: 'double-bass:salsa-tumbao',
     instrumentId: 'contrabajo',
@@ -155,6 +200,27 @@ export const DIALECTS: Record<string, InstrumentDialect> = {
     micProximityPreset: 'close-mic',
     bendGlideMs: 30,
   },
+  'bagpipes:celtic': {
+    id: 'bagpipes:celtic',
+    instrumentId: 'bagpipes',
+    name: 'Highland Bagpipes',
+    family: 'winds',
+    performanceMode: 'acoustic-ensemble',
+    defaultTechnique: 'legato',
+    allowedTechniques: ['legato', 'grace', 'accent'],
+    decayMultiplier: 4.0,
+    micProximityPreset: 'room-ambient',
+  },
+  'cowbell:salsa': {
+    id: 'cowbell:salsa',
+    instrumentId: 'cowbell',
+    name: 'Salsa Cowbell / Claves',
+    family: 'metal-and-wood',
+    performanceMode: 'acoustic-ensemble',
+    defaultTechnique: 'open',
+    allowedTechniques: ['open', 'accent', 'staccato'],
+    brightnessMultiplier: 1.5,
+  },
   'kizomba:electronic-beat': {
     id: 'kizomba:electronic-beat',
     instrumentId: 'kizomba_synth_bass',
@@ -164,6 +230,57 @@ export const DIALECTS: Record<string, InstrumentDialect> = {
     defaultTechnique: 'sub-sweep',
     allowedTechniques: ['sub-sweep', 'punch-stab'],
     micProximityPreset: 'direct-box',
+  },
+  'bass:reggae': {
+    id: 'bass:reggae',
+    instrumentId: 'bass',
+    name: 'Reggae Bass (Deep/Muted)',
+    family: 'bass',
+    performanceMode: 'acoustic-ensemble',
+    defaultTechnique: 'legato',
+    allowedTechniques: ['legato', 'staccato', 'palm-mute'],
+    brightnessMultiplier: 0.35,
+    bodyMultiplier: 2.0,
+    decayMultiplier: 0.85,
+    micProximityPreset: 'direct-box',
+  },
+  'log-drum:afrobeats': {
+    id: 'log-drum:afrobeats',
+    instrumentId: 'log-drum',
+    name: 'Log Drum (Afrobeats/Amapiano)',
+    family: 'percussion',
+    performanceMode: 'programmed-electronic',
+    defaultTechnique: 'open',
+    allowedTechniques: ['open', 'accent', 'ghost'],
+    bodyMultiplier: 2.5,
+    brightnessMultiplier: 0.4,
+    decayMultiplier: 1.2,
+    micProximityPreset: 'close-mic',
+  },
+  'requinto:bachata': {
+    id: 'requinto:bachata',
+    instrumentId: 'requinto',
+    name: 'Requinto (Bachata/Latin)',
+    family: 'guitar',
+    performanceMode: 'acoustic-ensemble',
+    defaultTechnique: 'pluck',
+    allowedTechniques: ['pluck', 'apagado', 'staccato'],
+    brightnessMultiplier: 1.4,
+    bodyMultiplier: 0.6,
+    decayMultiplier: 0.65,
+    micProximityPreset: 'close-mic',
+  },
+  'drums:kizomba': {
+    id: 'drums:kizomba',
+    instrumentId: 'drums',
+    name: 'Zouk/Kizomba Drum Kit',
+    family: 'kit',
+    performanceMode: 'programmed-electronic',
+    defaultTechnique: 'strike',
+    allowedTechniques: ['strike', 'accent', 'ghost'],
+    bodyMultiplier: 1.5,
+    brightnessMultiplier: 0.75,
+    decayMultiplier: 1.1,
   },
 };
 
@@ -252,6 +369,18 @@ export function legacyResolveDialect(
   if (token.includes('salsa') && /(bass|bajo|contrabajo|upright)/.test(instrumentId)) {
     return DIALECTS['double-bass:salsa-tumbao'];
   }
+  if (instrumentId.includes('conga') && (token.includes('salsa') || token.includes('timba') || token.includes('cumbia'))) {
+    return DIALECTS['congas:salsa'];
+  }
+  if (instrumentId.includes('conga') && (token.includes('funk') || token.includes('soul') || token.includes('disco'))) {
+    return DIALECTS['congas:funk'];
+  }
+  if (instrumentId.includes('trumpet') && (token.includes('salsa') || token.includes('timba'))) {
+    return DIALECTS['trumpet:salsa'];
+  }
+  if (instrumentId.includes('trumpet') && token.includes('jazz')) {
+    return DIALECTS['trumpet:jazz'];
+  }
   if (token.includes('tango') && /(bass|bajo|contrabajo|upright)/.test(instrumentId)) {
     return DIALECTS['double-bass:tango-arco'];
   }
@@ -281,6 +410,24 @@ export function legacyResolveDialect(
   }
   if ((token.includes('kizomba') || token.includes('tarraxo') || token.includes('dembow')) && (instrumentId.includes('bass') || instrumentId.includes('synth'))) {
     return DIALECTS['kizomba:electronic-beat'];
+  }
+  if (instrumentId.includes('bass') && (token.includes('reggae') || token.includes('dub') || token.includes('dancehall'))) {
+    return DIALECTS['bass:reggae'];
+  }
+  if (instrumentId.includes('log-drum')) {
+    return DIALECTS['log-drum:afrobeats'];
+  }
+  if (instrumentId.includes('requinto') || token.includes('bachata')) {
+    return DIALECTS['requinto:bachata'];
+  }
+  if (instrumentId.includes('drum') && (token.includes('kizomba') || token.includes('zouk') || token.includes('tarraxo'))) {
+    return DIALECTS['drums:kizomba'];
+  }
+  if (instrumentId.includes('bagpipe') || instrumentId.includes('uilleann')) {
+    return DIALECTS['bagpipes:celtic'];
+  }
+  if (instrumentId.includes('cowbell') || instrumentId.includes('claves') || instrumentId.includes('woodblock')) {
+    return DIALECTS['cowbell:salsa'];
   }
 
   return null;

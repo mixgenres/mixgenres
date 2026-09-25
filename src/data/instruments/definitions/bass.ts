@@ -29,9 +29,9 @@ export const bass: InstrumentDef = {
     tension: 0.82,
     bodyResonanceVolume: 8,
     decayTimeFactor: 2.6,
-    harmonicRichness: 0.75,
+    harmonicRichness: 0.88,
     faustProfile: "electric-bass",
-    fretBuzzAmount: 0.1,
+    fretBuzzAmount: 0.15,
     pickupBlend: 0.35,
     bodyConstruction: "solid-electric",
     excitationType: "fingerpad"

@@ -11,9 +11,8 @@ import { writeFileSync } from 'fs';
 import { makeSheet } from '../src/engine/generators/arrange';
 import { compile } from '../src/engine/sequencing/perform';
 import { renderPerformanceToMp3 } from '../src/engine/audio/offlineRender';
-import { getStylesForGenre, getCanonicalStyle } from '../src/data/styles/registry';
+import { getStylesForGenre } from '../src/data/styles/registry';
 import { GENRE_NAMES } from '../src/data/genres';
-import { INSTRUMENTS_BY_ID } from '../src/data/instruments';
 import { voiceProfile } from '../src/engine/theory/instrumentProfile';
 import { PATTERNS_BY_ID } from '../src/data/genres';
 
@@ -63,14 +62,12 @@ interface StyleReport {
   compileError: string | null;
 }
 
-function analyzeStyle(genreId: string, styleId: string, doRender: boolean): StyleReport {
-  const base: Partial<StyleReport> = { genreId, styleId };
+function analyzeStyle(genreId: string, styleId: string, _doRender: boolean): StyleReport {
   try {
     const sheet = makeSheet({ genreId, styleId });
     const styleObj = getStylesForGenre(genreId).find(s => s.id === styleId);
     const perf = compile(sheet);
 
-    const trackInfo = new Map(sheet.tracks.map(t => [t.id, t]));
     const byTrack = new Map<string, TrackStat>();
     for (const t of sheet.tracks) {
       const prof = voiceProfile(t.instrumentId, genreId);

@@ -15,9 +15,6 @@ import {
   SoundProfile,
   GestureRule,
   RuleRef,
-  StyleProfile,
-  GenreProfile,
-  TimbreEnvelopeOverride,
 } from './schema';
 import { getCanonicalStyle, getStyle } from './registry';
 import { contractForGenre } from './contracts';
@@ -467,33 +464,3 @@ export function resolveStyle(opts: ResolveStyleOptions): ResolvedStyle {
   resolveCache.set(key, result);
   return result;
 }
-
-export function mergeTimbreOverrides(_genre: GenreProfile, overrides: TimbreEnvelopeOverride[]): Record<string, TimbreEnvelopeOverride> {
-  const map: Record<string, TimbreEnvelopeOverride> = {};
-  for (const item of overrides) {
-    map[item.instrumentId] = item;
-  }
-  return map;
-}
-
-export function resolveStyleProfile(style: StyleProfile, genre: GenreProfile): any {
-  return {
-    id: style.id,
-    name: style.name,
-    tempo: style.tempoRange[0] + (style.tempoRange[1] - style.tempoRange[0]) / 2,
-    timbreMap: mergeTimbreOverrides(genre, style.sonicSignature?.timbreOverrides ?? []),
-    articulations: {
-      ...(genre.sharedTechniques ?? {}),
-      ...(style.techniqueOverrides ?? {}),
-    },
-    patterns: {
-      bass: style.patternSelect?.bassPatternId ?? genre.corePatternLibraries?.bassPatterns?.[0] ?? '',
-      rhythm: style.patternSelect?.rhythmPatternId ?? genre.corePatternLibraries?.rhythmPatterns?.[0] ?? '',
-    },
-    timingGrid: {
-      ...(genre.timing ?? {}),
-      grooveOffsets: style.grooveOffsetMap,
-    }
-  };
-}
-

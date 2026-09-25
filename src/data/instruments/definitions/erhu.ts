@@ -7,6 +7,8 @@ export const erhu: InstrumentDef = {
   program: 110,
   octave: 12,
   voicing: "single",
+  bodyConstruction: "skin-faced",
+  excitationType: "bow",
   elementaryModel: 6,
   makeupGain: 6.768,
   polyphony: 4,

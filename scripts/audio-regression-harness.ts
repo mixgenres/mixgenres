@@ -18,7 +18,6 @@ import {
   type VoiceState,
   type MasterParams,
 } from '../src/engine/elementary/elementaryEngine';
-import { createMasterChain } from '../src/engine/audio/mixer';
 
 const SAMPLE_RATE = 44100;
 const DURATION_S = 1.2;
@@ -37,6 +36,28 @@ class BiquadFilter {
     this.b2 = b2 / a0;
     this.a1 = a1 / a0;
     this.a2 = a2 / a0;
+  }
+
+  /**
+   * @static
+   * Factory for Stage 1 K-weighting high-shelving filter.
+   */
+  static createStage1(): BiquadFilter {
+    return new BiquadFilter(
+      1.53512485958697, -2.69169618940638, 1.19839281085285,
+      1.0, -1.69065929318241, 0.73248077421585
+    );
+  }
+
+  /**
+   * @static
+   * Factory for Stage 2 K-weighting high-pass filter.
+   */
+  static createStage2(): BiquadFilter {
+    return new BiquadFilter(
+      1.0, -2.0, 1.0,
+      1.0, -1.99004745483398, 0.99007225036621
+    );
   }
 
   process(x: Float32Array): Float32Array {

@@ -125,7 +125,7 @@ export function kitVoicing(c: KitContext): KitVoicing {
   const nearBackbeat = distanceToBackbeat(b, c.beatsPerBar);
   if (nearBackbeat > 0 && nearBackbeat <= 0.5 && strong < 0.55 && c.intensity > 0.35) {
     if (rand01(c.seed) > 0.42) {
-      return { key: GM.snare, limb: 'ghost', gain: 0.26 + rand01(c.seed ^ 0x11) * 0.12 };
+      return { key: GM.snare, limb: 'ghost', gain: 0.18 + rand01(c.seed ^ 0x11) * 0.10 };
     }
   }
 
@@ -244,6 +244,24 @@ export function handPercVoicing(
   // low/mid/high articulation rather than pretending every instrument is a kit.
   if (hitType) {
     const h = hitType.toLowerCase();
+    if (h === 'heel' || h.includes('heel')) {
+      return { key: drum.low !== undefined ? 61 : 61, limb: 'ghost', gain: 0.42 * (0.8 + accent * 0.3) };
+    }
+    if (h === 'toe' || h.includes('toe')) {
+      return { key: drum.low !== undefined ? 61 : 61, limb: 'hat', gain: 0.52 * (0.8 + accent * 0.3) };
+    }
+    if (h === 'slap-tapao' || h.includes('tapao') || h.includes('muted-slap')) {
+      return { key: 63, limb: 'snare', gain: 0.68 + accent * 0.25 };
+    }
+    if (h === 'quinto-slap' || h === 'macho-slap') {
+      return { key: 60, limb: 'snare', gain: 0.95 + accent * 0.2, flamMs: 8 };
+    }
+    if (h === 'conga-open' || h === 'hembra-open') {
+      return { key: 62, limb: 'snare', gain: 0.88 + accent * 0.22 };
+    }
+    if (h === 'tumba-open') {
+      return { key: 64, limb: 'snare', gain: 0.92 + accent * 0.22 };
+    }
     if (/open|slap|rim|campana|paila|shell/.test(h)) return { key: drum.high, limb: 'snare', gain: Math.min(1.05, 0.84 + accent * 0.2) };
     if (/muff|mute|bass|low|ghost|soft/.test(h)) return { key: drum.low, limb: 'ghost', gain: Math.max(0.28, 0.48 + accent * 0.25) };
     if (/mid|tone|stroke|martillo|casca/.test(h)) return { key: drum.mid, limb: 'hat', gain: 0.68 + accent * 0.2 };
@@ -277,6 +295,7 @@ export function usesRideStyle(style: ResolvedStyle, sectionKind: string, intensi
 }
 
 export function flavourFor(instrumentId: string, worldId: string): KitFlavour {
+  if (instrumentId === 'brush_kit' || instrumentId === 'brush') return 'brush';
   if (['electronic', 'hip-hop', 'house-techno', 'house', 'drum-and-bass', 'reggaeton', 'reggaeton-dembow', 'industrial'].includes(worldId)) return 'electronic';
   if (['jazz', 'swing', 'fusion-ambient'].includes(worldId)) return 'brush';
   if (['folk', 'blues', 'country', 'gospel'].includes(worldId)) return 'roomy';

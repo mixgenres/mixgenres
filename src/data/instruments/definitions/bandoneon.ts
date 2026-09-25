@@ -66,18 +66,21 @@ export const bandoneon: InstrumentDef = {
       "marcato",
       "tremolo",
       "portato",
-      "arrastre"
+      "arrastre",
+      "bellows-slap",
+      "golpe-caja"
     ],
     techniqueMethods: [
       "knee drop marcato impact",
       "bellows opening sigh swell",
       "fast button articulation with air release",
       "arrastre drag into accented downbeat",
-      "percussive bellows slap"
+      "percussive bellows slap",
+      "golpe de caja wooden thud"
     ],
     playingStyles: ["tango", "nuevo-tango", "milonga", "chamame", "folk"],
     genreTechniques: {
-      tango: ["marcato", "accent", "staccato", "tenuto", "arrastre"],
+      tango: ["marcato", "accent", "staccato", "tenuto", "arrastre", "bellows-slap", "golpe-caja"],
       milonga: ["staccato", "accent"],
       "nuevo-tango": ["legato", "tenuto", "marcato"]
     }

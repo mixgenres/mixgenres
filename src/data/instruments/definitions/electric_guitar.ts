@@ -29,9 +29,9 @@ export const electric_guitar: InstrumentDef = {
     materialDensity: 0.7,
     tension: 0.8,
     bodyResonanceVolume: 5,
-    decayTimeFactor: 2.8,
-    harmonicRichness: 0.82,
-    pickupBlend: 0.5,
+    decayTimeFactor: 3.2,
+    harmonicRichness: 0.88,
+    pickupBlend: 0.6,
     fretBuzzAmount: 0.15,
     bodyConstruction: "solid-electric",
     excitationType: "hard-pick"

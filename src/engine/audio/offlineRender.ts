@@ -24,6 +24,93 @@ const Mp3EncoderClass: any =
   (lamejsModule as any).default?.Mp3Encoder ||
   (lamejsModule as any).default;
 
+export interface StemCacheEntry {
+  left: Float32Array;
+  right: Float32Array;
+  startSample: number;
+}
+
+export const stemCache = new Map<string, StemCacheEntry>();
+const MAX_STEM_CACHE_SIZE = 128;
+
+export function clearStemCache(): void {
+  stemCache.clear();
+}
+
+/**
+ * Computes a deterministic hash representing a track's Tier 2 Performance Cell.
+ * Incorporates the track's instrument assignment, static macro parameters,
+ * track-level mix volume/pan, sample rate, and the exact sequence of timed notes & CCs.
+ */
+export function computeTrackStemFingerprint(
+  trackId: string,
+  instrumentId: string,
+  params: TrackParams,
+  trackMixVolume: number,
+  trackNotes: PerfNote[],
+  trackCCs: PerfCC[],
+  sampleRate: number = 44100,
+): string {
+  let h1 = 0x811c9dc5;
+  let h2 = 0x9e3779b9;
+
+  function update(str: string) {
+    for (let i = 0; i < str.length; i++) {
+      const code = str.charCodeAt(i);
+      h1 ^= code;
+      h1 = Math.imul(h1, 0x01000193);
+      h2 ^= code;
+      h2 = Math.imul(h2, 0x27d4eb2d);
+    }
+    h1 ^= 0x7c; // pipe separator
+    h1 = Math.imul(h1, 0x01000193);
+    h2 ^= 0x7c;
+    h2 = Math.imul(h2, 0x27d4eb2d);
+  }
+
+  // 1. Static instrument assignment & macro parameters
+  update(trackId);
+  update(instrumentId);
+  update(String(params.model));
+  update(params.dialect || '');
+  update(params.performanceMode || '');
+  update(params.decay.toFixed(3));
+  update(params.brightness.toFixed(3));
+  update(params.articulation.toFixed(3));
+  update(params.pluckPosition.toFixed(3));
+  update(params.bowPressure.toFixed(3));
+  update(params.contact.toFixed(3));
+  update(params.drive.toFixed(3));
+  update(params.body.toFixed(3));
+  update(params.tension.toFixed(3));
+  update((params.bendGlideMs ?? 0).toFixed(1));
+  update(params.pan.toFixed(3));
+  update(trackMixVolume.toFixed(3));
+  update(String(sampleRate));
+
+  // 2. Exact sequence of timed notes
+  const sortedNotes = trackNotes.slice().sort((a, b) => a.time - b.time || a.midi - b.midi || a.dur - b.dur);
+  update(`notes_${sortedNotes.length}`);
+  for (let i = 0; i < sortedNotes.length; i++) {
+    const n = sortedNotes[i];
+    let s = `${n.time.toFixed(4)},${n.dur.toFixed(4)},${n.midi},${n.vel},${n.articulation || ''},${n.frequencyHz ? n.frequencyHz.toFixed(2) : ''}`;
+    if (n.pitchBend && n.pitchBend.length > 0) {
+      s += ':' + n.pitchBend.map(p => `${p.offset.toFixed(4)}@${p.value}`).join(';');
+    }
+    update(s);
+  }
+
+  // 3. Exact sequence of timed CCs
+  const sortedCCs = trackCCs.slice().sort((a, b) => a.time - b.time || a.cc - b.cc);
+  update(`ccs_${sortedCCs.length}`);
+  for (let i = 0; i < sortedCCs.length; i++) {
+    const c = sortedCCs[i];
+    update(`${c.time.toFixed(4)},${c.cc},${c.value}`);
+  }
+
+  return (h1 >>> 0).toString(16).padStart(8, '0') + (h2 >>> 0).toString(16).padStart(8, '0');
+}
+
 type TrackRenderEvent =
   | { sample: number; kind: 'on'; note: PerfNote }
   | { sample: number; kind: 'off'; midi: number }
@@ -136,6 +223,7 @@ export async function renderPerformanceToMp3(
       if (dialect.contactPointOverride !== undefined) params.contact = dialect.contactPointOverride;
       if (dialect.brightnessMultiplier !== undefined) params.brightness *= dialect.brightnessMultiplier;
       if (dialect.decayMultiplier !== undefined) params.decay *= dialect.decayMultiplier;
+      if (dialect.bodyMultiplier !== undefined) params.body *= dialect.bodyMultiplier;
       if (dialect.bendGlideMs !== undefined) params.bendGlideMs = dialect.bendGlideMs;
     }
 
@@ -174,212 +262,240 @@ export async function renderPerformanceToMp3(
       }
     }
 
-    // Right-size polyphony demand for this track
-    const times: { t: number; d: number }[] = [];
-    for (const n of trackNotes) {
-      times.push({ t: n.time, d: 1 });
-      times.push({ t: n.time + n.dur, d: -1 });
-    }
-    times.sort((a, b) => a.t - b.t || a.d - b.d);
-    let curr = 0;
-    let maxConcurrent = 0;
-    for (const item of times) {
-      curr += item.d;
-      if (curr > maxConcurrent) maxConcurrent = curr;
-    }
-    const defPolyphony = instDef?.polyphony ?? (params.model === 4 ? 8 : params.model === 3 ? 3 : 8);
-    const voiceCount = Math.max(2, Math.min(Math.min(12, defPolyphony), maxConcurrent + 2));
-
-    const voices: VoiceState[] = [];
-    for (let vIdx = 0; vIdx < voiceCount; vIdx++) {
-      voices.push({
-        id: `stem-${trackId}-v${vIdx}`,
-        gate: 0,
-        frequencyHz: 440,
-        note: 60,
-        velocity: 0,
-      });
-    }
-
-    // Build timeline of events relative to trackStartSample
-    const trackEvents: TrackRenderEvent[] = [];
-    for (const note of trackNotes) {
-      const start = Math.round(note.time * sampleRate) - trackStartSample;
-      const end = Math.round((note.time + note.dur) * sampleRate) - trackStartSample;
-      if (start >= 0 && start < trackSamples) {
-        trackEvents.push({ sample: start, kind: 'on', note });
-      }
-      if (end >= 0 && end <= trackSamples) {
-        trackEvents.push({ sample: end, kind: 'off', midi: note.midi });
-      }
-      for (const bend of note.pitchBend ?? []) {
-        const bendSample = Math.round((note.time + bend.offset) * sampleRate) - trackStartSample;
-        if (bendSample >= 0 && bendSample < trackSamples) {
-          trackEvents.push({ sample: bendSample, kind: 'bend', value: bend.value, targetMidi: note.midi });
-        }
-      }
-      if (note.pitchBend?.length) {
-        const lastBend = note.pitchBend[note.pitchBend.length - 1];
-        const unbendSample = Math.round((note.time + lastBend.offset + 0.05) * sampleRate) - trackStartSample;
-        if (unbendSample >= 0 && unbendSample < end && unbendSample < trackSamples) {
-          trackEvents.push({ sample: unbendSample, kind: 'bend', value: 8192, targetMidi: note.midi });
-        }
-      }
-    }
-
-    for (const cc of trackCCs) {
-      const sample = Math.round(cc.time * sampleRate) - trackStartSample;
-      if (sample >= 0 && sample < trackSamples) {
-        trackEvents.push({ sample, kind: 'cc', cc });
-      }
-    }
-
-    trackEvents.sort((a, b) => a.sample - b.sample);
-
-    // Initialize an isolated, lightweight OfflineRenderer for this single track
-    const core = new OfflineRenderer();
-    await core.initialize({
+    // Check aggressive PCM stem cache (Tier 2 Performance Cell fingerprint)
+    const stemFingerprint = computeTrackStemFingerprint(
+      trackId,
+      instrumentId,
+      params,
+      trackMixVolume,
+      trackNotes,
+      trackCCs,
       sampleRate,
-      numInputChannels: 0,
-      numOutputChannels: 2,
-      blockSize: BLOCK_SIZE,
-    });
+    );
 
-    let currentSig = renderTrack(trackId, voices, params);
-    await core.render(currentSig.left, currentSig.right);
+    let stem = stemCache.get(stemFingerprint);
 
-    const trackLeft = new Float32Array(trackSamples);
-    const trackRight = new Float32Array(trackSamples);
-    const stepBlock = [new Float32Array(BLOCK_SIZE), new Float32Array(BLOCK_SIZE)];
+    if (!stem) {
+      // Right-size polyphony demand for this track
+      const times: { t: number; d: number }[] = [];
+      for (const n of trackNotes) {
+        times.push({ t: n.time, d: 1 });
+        times.push({ t: n.time + n.dur, d: -1 });
+      }
+      times.sort((a, b) => a.t - b.t || a.d - b.d);
+      let curr = 0;
+      let maxConcurrent = 0;
+      for (const item of times) {
+        curr += item.d;
+        if (curr > maxConcurrent) maxConcurrent = curr;
+      }
+      const defPolyphony = instDef?.polyphony ?? (params.model === 4 ? 8 : params.model === 3 ? 3 : 8);
+      const voiceCount = Math.max(2, Math.min(Math.min(12, defPolyphony), maxConcurrent + 2));
 
-    let eventIdx = 0;
-    let cursor = 0;
-    let eventSeq = 0;
-    let syncCount = 0;
+      const voices: VoiceState[] = [];
+      for (let vIdx = 0; vIdx < voiceCount; vIdx++) {
+        voices.push({
+          id: `stem-${trackId}-v${vIdx}`,
+          gate: 0,
+          frequencyHz: 440,
+          note: 60,
+          velocity: 0,
+        });
+      }
 
-    while (cursor < trackSamples) {
-      const nextBlockLimit = cursor + BLOCK_SIZE;
-      let graphDirty = false;
-
-      while (eventIdx < trackEvents.length && trackEvents[eventIdx].sample < nextBlockLimit) {
-        const event = trackEvents[eventIdx++];
-        if (event.kind === 'on') {
-          const noteMidi = event.note.midi;
-          const isElectronic =
-            instDef?.family === 'electronic' ||
-            instDef?.elementaryModel === 9 ||
-            /synth|808|909|acid|sub-bass|kizomba|tarraxo|trap|house/.test(
-              (params.instrumentId || '').toLowerCase(),
-            );
-          const effectiveModelForGain = isElectronic ? 9 : params.model;
-          const baseGain = instDef?.makeupGain ?? makeupGainFor(effectiveModelForGain, params.instrumentId);
-
-          const hitType = event.note.articulation;
-          let hitGainMultiplier = 1.0;
-          if (hitType === 'accent') hitGainMultiplier = 1.25;
-          else if (hitType === 'ghost') hitGainMultiplier = 0.45;
-          else if (hitType === 'snare' || hitType === 'rim' || hitType === 'slap') hitGainMultiplier = 1.1;
-
-          const velScaled = Math.max(0.01, Math.min(1.0, event.note.vel / 127)) * hitGainMultiplier;
-          params.volume = Math.max(0.01, Math.min(35, velScaled * baseGain * trackMixVolume));
-
-          const articulationNorm =
-            event.note.articulation === 'staccato' ? 0.9 : event.note.articulation === 'legato' ? 0.1 : 0.4;
-          params.articulation = articulationNorm;
-          params.decay = Math.max(0.1, Math.min(8.0, event.note.dur));
-
-          // Prefer idle voice; if all busy, steal oldest
-          const idleVoices = voices.filter(v => v.gate === 0);
-          let voice: VoiceState;
-          if (idleVoices.length > 0) {
-            voice = idleVoices.reduce((oldest, current) => {
-              const oSeq = (oldest as any).triggerSeq ?? 0;
-              const cSeq = (current as any).triggerSeq ?? 0;
-              return cSeq < oSeq ? current : oldest;
-            }, idleVoices[0]);
-          } else {
-            voice = voices.reduce((oldest, current) => {
-              const oSeq = (oldest as any).triggerSeq ?? 0;
-              const cSeq = (current as any).triggerSeq ?? 0;
-              return cSeq < oSeq ? current : oldest;
-            }, voices[0]);
-            voice.retriggerId = (voice.retriggerId || 0) + 1;
+      // Build timeline of events relative to trackStartSample
+      const trackEvents: TrackRenderEvent[] = [];
+      for (const note of trackNotes) {
+        const start = Math.round(note.time * sampleRate) - trackStartSample;
+        const end = Math.round((note.time + note.dur) * sampleRate) - trackStartSample;
+        if (start >= 0 && start < trackSamples) {
+          trackEvents.push({ sample: start, kind: 'on', note });
+        }
+        if (end >= 0 && end <= trackSamples) {
+          trackEvents.push({ sample: end, kind: 'off', midi: note.midi });
+        }
+        for (const bend of note.pitchBend ?? []) {
+          const bendSample = Math.round((note.time + bend.offset) * sampleRate) - trackStartSample;
+          if (bendSample >= 0 && bendSample < trackSamples) {
+            trackEvents.push({ sample: bendSample, kind: 'bend', value: bend.value, targetMidi: note.midi });
           }
+        }
+        if (note.pitchBend?.length) {
+          const lastBend = note.pitchBend[note.pitchBend.length - 1];
+          const unbendSample = Math.round((note.time + lastBend.offset + 0.05) * sampleRate) - trackStartSample;
+          if (unbendSample >= 0 && unbendSample < end && unbendSample < trackSamples) {
+            trackEvents.push({ sample: unbendSample, kind: 'bend', value: 8192, targetMidi: note.midi });
+          }
+        }
+      }
 
-          voice.note = noteMidi;
-          const targetFreq = Math.max(20, event.note.frequencyHz ?? midiToFreq(noteMidi));
-          voice.frequencyHz = targetFreq;
-          (voice as any).baseFrequencyHz = targetFreq;
-          (voice as any).triggerSeq = ++eventSeq;
-          voice.velocity = velScaled;
-          voice.gate = 1;
+      for (const cc of trackCCs) {
+        const sample = Math.round(cc.time * sampleRate) - trackStartSample;
+        if (sample >= 0 && sample < trackSamples) {
+          trackEvents.push({ sample, kind: 'cc', cc });
+        }
+      }
 
-          voice.attack = (event.note as any).attack;
-          voice.decay = (event.note as any).decay;
-          voice.sustain = (event.note as any).sustain;
-          voice.release = (event.note as any).release;
+      trackEvents.sort((a, b) => a.sample - b.sample);
 
-          graphDirty = true;
-        } else if (event.kind === 'off') {
-          const roundedMidi = Math.round(event.midi);
-          const activeVoices = voices.filter(
-            v => (v.note === event.midi || Math.round(v.note) === roundedMidi) && v.gate === 1,
-          );
-          for (const voice of activeVoices) {
-            voice.gate = 0;
-            if ((voice as any).baseFrequencyHz) {
-              voice.frequencyHz = (voice as any).baseFrequencyHz;
+      // Initialize an isolated, lightweight OfflineRenderer for this single track
+      const core = new OfflineRenderer();
+      await core.initialize({
+        sampleRate,
+        numInputChannels: 0,
+        numOutputChannels: 2,
+        blockSize: BLOCK_SIZE,
+      });
+
+      let currentSig = renderTrack(trackId, voices, params);
+      await core.render(currentSig.left, currentSig.right);
+
+      const trackLeft = new Float32Array(trackSamples);
+      const trackRight = new Float32Array(trackSamples);
+      const stepBlock = [new Float32Array(BLOCK_SIZE), new Float32Array(BLOCK_SIZE)];
+
+      let eventIdx = 0;
+      let cursor = 0;
+      let eventSeq = 0;
+      let syncCount = 0;
+
+      while (cursor < trackSamples) {
+        const nextBlockLimit = cursor + BLOCK_SIZE;
+        let graphDirty = false;
+
+        while (eventIdx < trackEvents.length && trackEvents[eventIdx].sample < nextBlockLimit) {
+          const event = trackEvents[eventIdx++];
+          if (event.kind === 'on') {
+            const noteMidi = event.note.midi;
+            const isElectronic =
+              instDef?.family === 'electronic' ||
+              instDef?.elementaryModel === 9 ||
+              /synth|808|909|acid|sub-bass|kizomba|tarraxo|trap|house/.test(
+                (params.instrumentId || '').toLowerCase(),
+              );
+            const effectiveModelForGain = isElectronic ? 9 : params.model;
+            const baseGain = instDef?.makeupGain ?? makeupGainFor(effectiveModelForGain, params.instrumentId);
+
+            const hitType = event.note.articulation;
+            let hitGainMultiplier = 1.0;
+            if (hitType === 'accent') hitGainMultiplier = 1.25;
+            else if (hitType === 'ghost') hitGainMultiplier = 0.45;
+            else if (hitType === 'snare' || hitType === 'rim' || hitType === 'slap') hitGainMultiplier = 1.1;
+
+            const velScaled = Math.max(0.01, Math.min(1.0, event.note.vel / 127)) * hitGainMultiplier;
+            params.volume = Math.max(0.01, Math.min(35, velScaled * baseGain * trackMixVolume));
+
+            const articulationNorm =
+              event.note.articulation === 'staccato' ? 0.9 : event.note.articulation === 'legato' ? 0.1 : 0.4;
+            params.articulation = articulationNorm;
+
+            // Prefer idle voice; if all busy, steal oldest
+            const idleVoices = voices.filter(v => v.gate === 0);
+            let voice: VoiceState;
+            if (idleVoices.length > 0) {
+              voice = idleVoices.reduce((oldest, current) => {
+                const oSeq = (oldest as any).triggerSeq ?? 0;
+                const cSeq = (current as any).triggerSeq ?? 0;
+                return cSeq < oSeq ? current : oldest;
+              }, idleVoices[0]);
+            } else {
+              voice = voices.reduce((oldest, current) => {
+                const oSeq = (oldest as any).triggerSeq ?? 0;
+                const cSeq = (current as any).triggerSeq ?? 0;
+                return cSeq < oSeq ? current : oldest;
+              }, voices[0]);
+              voice.retriggerId = (voice.retriggerId || 0) + 1;
             }
+
+            voice.note = noteMidi;
+            const targetFreq = Math.max(20, event.note.frequencyHz ?? midiToFreq(noteMidi));
+            voice.frequencyHz = targetFreq;
+            (voice as any).baseFrequencyHz = targetFreq;
+            (voice as any).triggerSeq = ++eventSeq;
+            voice.velocity = velScaled;
+            voice.gate = 1;
+
+            voice.attack = (event.note as any).attack;
+            voice.decay = (event.note as any).decay;
+            voice.sustain = (event.note as any).sustain;
+            voice.release = (event.note as any).release;
+
+            graphDirty = true;
+          } else if (event.kind === 'off') {
+            const roundedMidi = Math.round(event.midi);
+            const activeVoices = voices.filter(
+              v => (v.note === event.midi || Math.round(v.note) === roundedMidi) && v.gate === 1,
+            );
+            for (const voice of activeVoices) {
+              voice.gate = 0;
+              if ((voice as any).baseFrequencyHz) {
+                voice.frequencyHz = (voice as any).baseFrequencyHz;
+              }
+              graphDirty = true;
+            }
+          } else if (event.kind === 'bend') {
+            const activeVoices = voices.filter(v => v.gate === 1);
+            if (activeVoices.length > 0) {
+              const semitones = ((event.value - 8192) / 8192) * 2;
+              const bendRatio = Math.pow(2, semitones / 12);
+              const targetVoice =
+                (event.targetMidi !== undefined
+                  ? activeVoices.find(v => Math.round(v.note) === Math.round(event.targetMidi!))
+                  : undefined) ??
+                activeVoices.reduce((latest, current) => {
+                  const tSeq = (current as any).triggerSeq ?? 0;
+                  const lSeq = (latest as any).triggerSeq ?? 0;
+                  return tSeq >= lSeq ? current : latest;
+                }, activeVoices[0]);
+
+              const base =
+                (targetVoice as any).baseFrequencyHz ?? targetVoice.frequencyHz ?? midiToFreq(targetVoice.note);
+              (targetVoice as any).baseFrequencyHz = base;
+              targetVoice.frequencyHz = base * bendRatio;
+              graphDirty = true;
+            }
+          } else if (event.kind === 'cc') {
+            applyCCToParams(params, event.cc.cc, event.cc.value, instDef, trackMixVolume);
             graphDirty = true;
           }
-        } else if (event.kind === 'bend') {
-          const activeVoices = voices.filter(v => v.gate === 1);
-          if (activeVoices.length > 0) {
-            const semitones = ((event.value - 8192) / 8192) * 2;
-            const bendRatio = Math.pow(2, semitones / 12);
-            const targetVoice =
-              (event.targetMidi !== undefined
-                ? activeVoices.find(v => Math.round(v.note) === Math.round(event.targetMidi!))
-                : undefined) ??
-              activeVoices.reduce((latest, current) => {
-                const tSeq = (current as any).triggerSeq ?? 0;
-                const lSeq = (latest as any).triggerSeq ?? 0;
-                return tSeq >= lSeq ? current : latest;
-              }, activeVoices[0]);
+        }
 
-            const base =
-              (targetVoice as any).baseFrequencyHz ?? targetVoice.frequencyHz ?? midiToFreq(targetVoice.note);
-            (targetVoice as any).baseFrequencyHz = base;
-            targetVoice.frequencyHz = base * bendRatio;
-            graphDirty = true;
+        if (graphDirty) {
+          currentSig = renderTrack(trackId, voices, params);
+          await core.render(currentSig.left, currentSig.right);
+          syncCount++;
+          if (syncCount % 64 === 0) {
+            core.gc();
           }
-        } else if (event.kind === 'cc') {
-          applyCCToParams(params, event.cc.cc, event.cc.value, instDef, trackMixVolume);
-          graphDirty = true;
+        }
+
+        core.process([], stepBlock);
+
+        const frames = Math.min(BLOCK_SIZE, trackSamples - cursor);
+        for (let i = 0; i < frames; i++) {
+          trackLeft[cursor + i] = stepBlock[0][i] || 0;
+          trackRight[cursor + i] = stepBlock[1][i] || 0;
+        }
+
+        cursor += frames;
+      }
+
+      core.reset();
+
+      stem = {
+        left: trackLeft,
+        right: trackRight,
+        startSample: trackStartSample,
+      };
+
+      if (stemCache.size >= MAX_STEM_CACHE_SIZE) {
+        const oldestKey = stemCache.keys().next().value;
+        if (oldestKey !== undefined) {
+          stemCache.delete(oldestKey);
         }
       }
-
-      if (graphDirty) {
-        currentSig = renderTrack(trackId, voices, params);
-        await core.render(currentSig.left, currentSig.right);
-        syncCount++;
-        if (syncCount % 64 === 0) {
-          core.gc();
-        }
-      }
-
-      core.process([], stepBlock);
-
-      const frames = Math.min(BLOCK_SIZE, trackSamples - cursor);
-      for (let i = 0; i < frames; i++) {
-        trackLeft[cursor + i] = stepBlock[0][i] || 0;
-        trackRight[cursor + i] = stepBlock[1][i] || 0;
-      }
-
-      cursor += frames;
+      stemCache.set(stemFingerprint, stem);
     }
-
-    core.reset();
 
     // Accumulate the rendered stem into its target mix bus
     const busCategory = determineBusCategory(instDef?.family, instDef?.id || trackId);
@@ -396,9 +512,11 @@ export async function renderPerformanceToMp3(
       targetR = instBusR;
     }
 
-    for (let i = 0; i < trackSamples; i++) {
-      targetL[trackStartSample + i] += trackLeft[i];
-      targetR[trackStartSample + i] += trackRight[i];
+    const offset = stem.startSample;
+    const copyLen = Math.min(stem.left.length, Math.max(0, totalSamples - offset));
+    for (let i = 0; i < copyLen; i++) {
+      targetL[offset + i] += stem.left[i];
+      targetR[offset + i] += stem.right[i];
     }
 
     if (onProgress) {

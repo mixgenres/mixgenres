@@ -584,11 +584,44 @@ export const TANGO_WORLD: GenreWorld = {
             0.9,
             0.35
           ],
-          "articulation": "pesado, subito-piano",
+          "articulation": "cluster",
+          "hitGrid": [
+            "cluster",
+            "strappata",
+            "cluster",
+            "strappata"
+          ],
           "constraints": [
             "same genre context",
             "use as an alternate voicing/technique"
           ]
+        },
+        {
+          "id": "tango-m4-strappata-arrastre",
+          "parentPatternId": "tango-marcato-4",
+          "name": "Marcato con Strappata y Arrastre",
+          "variationType": "accentShift",
+          "probability": 0.35,
+          "onsetGrid": [
+            0,
+            4,
+            8,
+            12
+          ],
+          "accentProfile": [
+            1,
+            0.85,
+            1,
+            0.9
+          ],
+          "articulation": "strappata",
+          "hitGrid": [
+            "strappata",
+            "arrastre",
+            "strappata",
+            "arrastre"
+          ],
+          "description": "Bass strappata slap on strong beats with arrastre drag on offbeats"
         }
       ],
 
@@ -855,6 +888,36 @@ export const TANGO_WORLD: GenreWorld = {
             2,
             -5
           ]
+        },
+        {
+          "id": "tango-sincopa-percussiva",
+          "parentPatternId": "tango-sincopa",
+          "name": "Síncopa Percussiva (Chicharra y Golpe)",
+          "variationType": "syncopated",
+          "probability": 0.45,
+          "description": "Percussive syncopation with violin chicharra scrape on weak offbeat and bass golpe on strong syncopation",
+          "onsetGrid": [
+            0,
+            2,
+            8,
+            12,
+            14
+          ],
+          "accentProfile": [
+            0.6,
+            1,
+            0.75,
+            0.9,
+            0.95
+          ],
+          "hitGrid": [
+            "arrastre",
+            "golpe",
+            "chicharra",
+            "cluster",
+            "strappata"
+          ],
+          "articulation": "chicharra"
         }
       ],
 

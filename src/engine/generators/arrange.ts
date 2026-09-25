@@ -10,7 +10,6 @@ import type { ApproachSpec } from '../../data/styles/contracts';
 import { suggestedPaletteForGenre } from '../../data/chordPalette';
 import { clampEnergy, energyForFormIntensity, energyOf, formIntensityForEnergy, shapeScalarOf } from '../metadata/energy';
 import { inferLensFromPattern } from './blend';
-import { DEFAULT_SONG_DIALS, normaliseDials, type SongDials } from '../metadata/dials';
 
 export interface Voice extends Track {
   instrumentId: string;
@@ -64,16 +63,6 @@ export interface Sheet extends Song {
   phrasePatternCache?: Record<string, string>;
   tempoShift?: string;
   customProgressions?: (CustomProgression | string[])[];
-  /** 0..1 — how far the genre's feel is pushed. 0.5 is "as the genre intends". */
-  pocket?: number;
-  /** 0..1 — how much louder and fuller the big sections get than the small ones. */
-  lift?: number;
-  /** 0..1 — how far selection may stray from the style's canon. The experiment dial. */
-  adventure?: number;
-  /** 0..1 — how much a part changes across repeats. */
-  development?: number;
-  /** 0..1 — how strongly ornaments, bends and swells are played. */
-  expression?: number;
   /**
    * Per-part playing style. regionId -> trackId -> lens. An entry with weight 0
    * explicitly pins the part to the host style, suppressing inference.
@@ -299,7 +288,7 @@ export function patternStyleFit(
   pattern: MusicalPattern,
   styleId?: string,
   genreId?: string,
-  adventure: number = DEFAULT_SONG_DIALS.adventure,
+  adventure: number = 0.25,
 ): number {
   if (!styleId) return 0;
   const resolved = resolveStyle({ genreId, styleId });
@@ -352,7 +341,7 @@ export function affinity(
   voice: Voice,
   worldId: string,
   styleId?: string,
-  adventure: number = DEFAULT_SONG_DIALS.adventure,
+  adventure: number = 0.25,
 ): number {
   const p = PATTERNS_BY_ID[patternId];
   if (!p) return Number.NEGATIVE_INFINITY;
@@ -534,7 +523,6 @@ function choosePatternVariant(
   phraseRole: 'body' | 'transition' | 'cadence',
   seed: string,
   partEnergy: SectionEnergy = 3,
-  development: number = DEFAULT_SONG_DIALS.development,
 ): PatternVariant | undefined {
   if (!variants?.length) return undefined;
   const eligible = variants.filter(v => {
@@ -562,7 +550,7 @@ function choosePatternVariant(
   };
 
   const totalVariantsWeight = eligible.reduce((sum, v) => sum + variantWeight(v), 0);
-  const dev = Math.max(0, Math.min(1, development));
+  const dev = 0.45;
   const energyBias = partEnergy >= 5 ? 0.35 : partEnergy <= 2 ? 0.15 : 0;
   // A high canonical weight means "keep playing the cell as written".
   // Development lowers it proportionally to variant weights, so the part develops organically.
@@ -588,7 +576,6 @@ export function suggestPattern(
   sectionKind?: string, taken?: Set<string>,
   partEnergy?: SectionEnergy,
   styleId?: string,
-  adventure: number = DEFAULT_SONG_DIALS.adventure,
 ): string | undefined {
   const patternSection = canonicalPatternSection(sectionKind);
   const want = partEnergy ?? (sectionKind ? SECTION_ENERGY_DEFAULT[sectionKind] : undefined);
@@ -605,7 +592,7 @@ export function suggestPattern(
     .map(id => PATTERNS_BY_ID[id])
     .filter((p): p is MusicalPattern => !!p && p.enabled !== false)
     .map(p => {
-      let n = affinity(p.id, voice, worldId, styleId, adventure);
+      let n = affinity(p.id, voice, worldId, styleId);
       const behavioralFit = approachFit(p, approach);
       if (approach && behavioralFit > 0) n += behavioralFit;
       if (!Number.isFinite(n)) return { id: p.id, n: -999 };
@@ -672,7 +659,6 @@ export function rebuild(sheet: Sheet): Sheet {
   for (const region of sheet.regions) {
     if (region.chords?.length) assertValidChordProgression(region.chords, `section ${region.id}`);
   }
-  const dials = normaliseDials(sheet);
 
   // Energy is the authoritative section weight. `intensity` is recomputed from
   // it on every rebuild so the two can never drift apart, and so songs written
@@ -768,7 +754,7 @@ export function rebuild(sheet: Sheet): Sheet {
         : clampEnergy(energy);
 
       const cellKey = `${r.id}:${track.id}`;
-      const cellFp = `${r.id}:${track.id}:${track.instrumentId}:${r.genre ?? sheet.worldId}:${getSectionStyleId(sheet, r)}:${bars}:${r.kind}:${r.formKey}:${chords.join(',')}:${basePatternId}:${partEnergy}:${dials.adventure}:${dials.development}:${sheet.generationSeed ?? 0}:${JSON.stringify(sheet.partLens?.[r.id]?.[track.id] ?? '')}:${interaction?.spotlightedTrackIds?.includes(track.id)}:${interaction?.energyByTrack?.[track.id] ?? ''}`;
+      const cellFp = `${r.id}:${track.id}:${track.instrumentId}:${r.genre ?? sheet.worldId}:${getSectionStyleId(sheet, r)}:${bars}:${r.kind}:${r.formKey}:${chords.join(',')}:${basePatternId}:${partEnergy}:${sheet.generationSeed ?? 0}:${JSON.stringify(sheet.partLens?.[r.id]?.[track.id] ?? '')}:${interaction?.spotlightedTrackIds?.includes(track.id)}:${interaction?.energyByTrack?.[track.id] ?? ''}`;
 
       const cached = arrangementCellDetailsCache.get(cellKey);
       if (cached && cached.fingerprint === cellFp && cached.detailsByBar.length === bars) {
@@ -805,7 +791,7 @@ export function rebuild(sheet: Sheet): Sheet {
                 return ids.length === 0 || ids.includes(styleId) || (baseIds.includes(styleId) && ids.some(id => baseIds.includes(id)));
               })
               .map(p => {
-                let score = affinity(p.id, track as Voice, r.genre ?? sheet.worldId, getSectionStyleId(sheet, r), dials.adventure);
+                let score = affinity(p.id, track as Voice, r.genre ?? sheet.worldId, getSectionStyleId(sheet, r));
                 if (p.id === basePatternId) score += 4;
                 else score += 14;
                 if (base && p.family === base.family) score += 12;
@@ -819,9 +805,9 @@ export function rebuild(sheet: Sheet): Sheet {
 
             const devHashKey = isRhythm ? `develop:rhythm:${r.id}` : `develop:${track.id}:${r.id}`;
             const pickHashKey = isRhythm ? `rhythm:${r.id}` : `${track.id}:${r.id}`;
-            const moves = hash(devHashKey, phrase) < dials.development;
+            const moves = hash(devHashKey, phrase) < 0.45;
             if (candidates.length && moves) {
-              const reach = Math.max(1, Math.round(1 + dials.development * 6));
+              const reach = Math.max(1, Math.round(1 + 0.45 * 6));
               const top = candidates.slice(0, Math.min(reach, candidates.length));
               patternId = top[Math.floor(hash(pickHashKey, phrase) * top.length)].p.id;
             }
@@ -847,7 +833,7 @@ export function rebuild(sheet: Sheet): Sheet {
 
         const variantSeed = isRhythm ? `rhythm:${r.id}:${index}` : `${patternId}:${r.id}:${index}`;
         let v = choosePatternVariant(
-          p.variants, phraseRole, variantSeed, partEnergy, dials.development,
+          p.variants, phraseRole, variantSeed, partEnergy,
         );
         const styleIdForRegion = getSectionStyleId(sheet, r);
         if (!v && phraseRole === 'cadence' && !hasCadenceVariant) {
@@ -873,7 +859,7 @@ export function rebuild(sheet: Sheet): Sheet {
         );
 
         const explicitLens = sheet.partLens?.[r.id]?.[track.id];
-        const inferredLens = inferLensFromPattern(p, r.genre ?? sheet.worldId, dials.adventure);
+        const inferredLens = inferLensFromPattern(p, r.genre ?? sheet.worldId);
         const lens = explicitLens && explicitLens.weight > 0
           ? explicitLens
           : explicitLens
@@ -928,7 +914,6 @@ export function rebuild(sheet: Sheet): Sheet {
 
   return {
     ...sheet,
-    ...dials,
     regions,
     measures,
     durationMeasures: measures.length,
@@ -1252,14 +1237,12 @@ function patternCandidatesForVoice(
   previousPatternId?: string,
   partEnergy?: SectionEnergy,
   styleId?: string,
-  adventure: number = DEFAULT_SONG_DIALS.adventure,
 ) {
   const want = partEnergy ?? SECTION_ENERGY_DEFAULT[sectionKind];
   const previous = previousPatternId ? PATTERNS_BY_ID[previousPatternId] : undefined;
   const resolvedForPatterns = styleId ? resolveStyle({ genreId: worldId, styleId }) : undefined;
   const allowedIds = resolvedForPatterns?.patterns?.allowed?.length ? new Set(resolvedForPatterns.patterns.allowed) : undefined;
   const approach = approachForVoice(voice, worldId, styleId);
-  const daring = Math.max(0, Math.min(1, adventure));
   const pool = Array.from(new Set([
     ...(PATTERNS_BY_WORLD[worldId] || []),
     ...guestWorldIdsFor(worldId).flatMap(g => PATTERNS_BY_WORLD[g] || []),
@@ -1268,11 +1251,15 @@ function patternCandidatesForVoice(
   return pool
     .filter(p => p.enabled !== false)
     .map(p => {
-      let n = affinity(p.id, voice, worldId, styleId, daring);
+      let n = affinity(p.id, voice, worldId, styleId);
       const behavioralFit = approachFit(p, approach);
       if (approach && behavioralFit > 0) n += behavioralFit;
       if (!Number.isFinite(n)) return { p, score: -999 };
       if (p.sectionUsage?.includes(sectionKind as any)) n += 11;
+      if (allowedIds) {
+        if (allowedIds.has(p.id)) n += 20;
+        else n -= 15;
+      }
       if (partEnergy) {
         if (p.supportedEnergy?.includes(partEnergy)) n += 15;
         else if (p.supportedEnergy?.length) n -= 10;
@@ -1728,7 +1715,6 @@ export function setSectionEnergy(sheet: Sheet, regionId: string, energy: Section
           taken,
           next,
           getSectionStyleId(sheet, region),
-          normaliseDials(sheet).adventure,
         );
         if (p) {
           arrangement[regionId] = { ...(arrangement[regionId] ?? {}), [track.id]: p };
@@ -1785,20 +1771,6 @@ export function setPartLens(sheet: Sheet, regionId: string, trackId: string, len
   else delete inner[trackId];
   partLens[regionId] = inner;
   return rebuild({ ...sheet, partLens });
-}
-
-/** Set one of the song-level dials. Values outside 0..1 are clamped, never rejected. */
-export function setSongDial(
-  sheet: Sheet,
-  dial: 'pocket' | 'lift' | 'adventure' | 'development' | 'expression',
-  value: number,
-): Sheet {
-  const dials = normaliseDials({ ...sheet, [dial]: value });
-  // Adventure and development change which material is chosen, so they need a
-  // rebuild. Pocket, lift and expression are read at compile time only.
-  const needsRebuild = dial === 'adventure' || dial === 'development';
-  const next = { ...sheet, ...dials };
-  return needsRebuild ? rebuild(next) : next;
 }
 
 export function silenceAllVoicesInSection(sheet: Sheet, regionId: string): Sheet {
@@ -1946,12 +1918,6 @@ export function makeSheet(
     userOverrides: appliedOverrides,
   });
   const runtime = new StyleRuntime(resolved);
-  // A new sketch starts from the style's own master profile, then the user's
-  // dials take over. The style seeds pocket/lift; the rest start at defaults.
-  const dials: SongDials = normaliseDials({
-    pocket: resolved.sound?.masterProfile?.pocket,
-    lift: resolved.sound?.masterProfile?.lift,
-  });
 
   const formTemplates = runtime.getFormTemplate(42);
   const form = formTemplates && formTemplates.length > 0
@@ -2026,7 +1992,7 @@ export function makeSheet(
       );
       energies[r.id][v.id] = d;
 
-      const p = suggestPattern(v, genreId, ri * 31 + i * 13 + 7, String(r.kind), taken, d, resolved.id, dials.adventure);
+      const p = suggestPattern(v, genreId, ri * 31 + i * 13 + 7, String(r.kind), taken, d, resolved.id);
       if (p) {
         arrangement[r.id][v.id] = p;
         taken.add(p);
@@ -2048,7 +2014,6 @@ export function makeSheet(
     styleId: resolved.id,
     styleInfluences: appliedInfluences,
     styleOverrides: appliedOverrides,
-    ...dials,
   });
 }
 

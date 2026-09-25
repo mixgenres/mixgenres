@@ -128,7 +128,12 @@ export function createSink(): TransportSink {
       const tuningSystem = resolveTuningSystem(dialect?.tuningSystemId || (activeWorldId.includes('maqam') || activeWorldId.includes('middle_east') ? 'maqam-bayati' : activeWorldId.includes('blues') ? 'blues-continuum' : '12-tet'));
       const freqHz = frequencyHz ?? tuningSystem.getFrequencyHz(midi);
 
-      let actionType = dialect?.defaultTechnique || 'strike';
+      const instDef = INSTRUMENTS_BY_ID[instrumentId];
+      const isBowed = instDef?.family === 'bowed' || /violin|fiddle|cello|viola|erhu/i.test(instrumentId);
+      let actionType = isBowed ? 'bow_drag' : (dialect?.defaultTechnique || 'strike');
+      if (isBowed) {
+        luthier = { ...luthier, category: 'continuous_bowed_friction' };
+      }
       const authoredArticulation = articulation?.trim();
       const styleTechnique = !authoredArticulation
         ? genreTechniquesForInstrument(instrumentId, activeStyleId)[0]
@@ -136,28 +141,39 @@ export function createSink(): TransportSink {
       const effectiveArticulation = authoredArticulation || styleTechnique;
       if (effectiveArticulation) {
         const artLow = effectiveArticulation.toLowerCase();
-        if (artLow.includes('arco') || artLow.includes('bowed')) {
-          luthier = { ...luthier, category: 'continuous_bowed_friction' };
-          actionType = 'bow_drag';
-        } else if (artLow.includes('pizzicato') || artLow.includes('plucked') || artLow.includes('slap-bass') || artLow.includes('pizz')) {
-          luthier = { ...luthier, category: 'strum_friction_pluck' };
-          actionType = 'pluck';
-        } else if (artLow.includes('rasgue') || artLow.includes('abanico') || artLow.includes('strum-roll')) {
-          actionType = 'abanico';
-        } else if (artLow.includes('golpe') || artLow.includes('chicharra') || artLow.includes('tap')) {
-          actionType = artLow.includes('tap') ? 'tap' : 'golpe';
-        } else if (artLow.includes('arrastre') || artLow.includes('drag')) {
-          actionType = 'arrastre';
-        } else if (artLow.includes('slap') || artLow.includes('pop')) {
-          actionType = 'slap';
-        } else if (artLow.includes('fingerstyle') || artLow.includes('flatpick') || artLow.includes('pick') || artLow.includes('plectrum') || artLow.includes('pluck')) {
-          actionType = 'pluck';
-        } else if (artLow.includes('tongue') || artLow.includes('tongued') || artLow.includes('cut') || artLow.includes('martellato')) {
-          actionType = 'tongue';
-        } else if (artLow.includes('brush')) {
-          actionType = 'strike';
-        } else if (artLow.includes('mute') || artLow.includes('muff')) {
-          actionType = 'mute';
+        if (isBowed) {
+          if (artLow.includes('pizzicato') || artLow.includes('pizz')) {
+            luthier = { ...luthier, category: 'strum_friction_pluck' };
+            actionType = 'pluck';
+          } else {
+            // A generic staccato, spiccato, legato, or chop on a bowed instrument MUST remain a bow stroke
+            luthier = { ...luthier, category: 'continuous_bowed_friction' };
+            actionType = 'bow_drag';
+          }
+        } else {
+          if (artLow.includes('arco') || artLow.includes('bowed')) {
+            luthier = { ...luthier, category: 'continuous_bowed_friction' };
+            actionType = 'bow_drag';
+          } else if (artLow.includes('pizzicato') || artLow.includes('plucked') || artLow.includes('slap-bass') || artLow.includes('pizz')) {
+            luthier = { ...luthier, category: 'strum_friction_pluck' };
+            actionType = 'pluck';
+          } else if (artLow.includes('rasgue') || artLow.includes('abanico') || artLow.includes('strum-roll')) {
+            actionType = 'abanico';
+          } else if (artLow.includes('golpe') || artLow.includes('chicharra') || artLow.includes('tap')) {
+            actionType = artLow.includes('tap') ? 'tap' : 'golpe';
+          } else if (artLow.includes('arrastre') || artLow.includes('drag')) {
+            actionType = 'arrastre';
+          } else if (artLow.includes('slap') || artLow.includes('pop')) {
+            actionType = 'slap';
+          } else if (artLow.includes('fingerstyle') || artLow.includes('flatpick') || artLow.includes('pick') || artLow.includes('plectrum') || artLow.includes('pluck')) {
+            actionType = 'pluck';
+          } else if (artLow.includes('tongue') || artLow.includes('tongued') || artLow.includes('cut') || artLow.includes('martellato')) {
+            actionType = 'tongue';
+          } else if (artLow.includes('brush')) {
+            actionType = 'strike';
+          } else if (artLow.includes('mute') || artLow.includes('muff')) {
+            actionType = 'mute';
+          }
         }
       }
 

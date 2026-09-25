@@ -1,6 +1,6 @@
 {
-  "name": "Remix mixgenres.github.io",
-  "description": "Imported from GitHub: mixgenres/mixgenres.github.io",
+  "name": "Mix Genres",
+  "description": "Build a song in one of dozens of musical genres, then rework its parts, chords, rhythms and instruments and export it as an MP3. Runs entirely in your browser.",
   "requestFramePermissions": [],
   "majorCapabilities": [
     "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"

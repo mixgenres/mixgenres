@@ -13,29 +13,24 @@
 import type { Sheet, Voice } from '../generators/arrange';
 import { getResolvedSectionStyle } from '../generators/arrange';
 import { shapeOf, type SectionShape } from '../generators/arrangement';
-import { normaliseDials } from '../metadata/dials';
-import type { Region, Track, Measure, SectionEnergy, SpotlightMode } from '../../types';
+import type { Region, Measure, SpotlightMode } from '../../types';
 import type {
   Performance,
   PerfNote,
   PerfCC,
   BarTime,
   CompileOptions,
-  PitchBendPoint,
 } from './perform';
 import {
   buildBarTimes,
   buildTransitionEvents,
-  allocateChannels,
   thinForSustain,
   isBuildSection,
-  authoredKitVoicing,
-  spotlightLeadRubatoOffset,
   intensityOf,
 } from './perform';
 import { inferKey, parseChord, type KeyInfo } from '../theory/theory';
-import { makeMotif, generateStyleOrnaments, type Motif } from '../generators/melody';
-import { seedOf, rand01 } from '../generators/groove';
+import { makeMotif, type Motif } from '../generators/melody';
+import { seedOf } from '../generators/groove';
 import { shapeScalarOf } from '../metadata/energy';
 import { applyEnsembleInteraction } from '../performance/ensembleInteraction';
 import { polishPerformance } from '../performance/performanceQuality';
@@ -50,7 +45,6 @@ import { interpretPattern } from '../performance/performanceInterpreter';
 import {
   createInitialPhraseMemory,
   advancePhraseDevelopment,
-  type PerformancePhraseMemory,
 } from '../performance/phraseMemory';
 
 // ============================================================================
@@ -203,8 +197,6 @@ export function computeArrangementCellFingerprint(
     region.formKey ?? '',
     region.bars ?? (region.end - region.start),
     patternId ?? sheet.arrangement[region.id]?.[track.id] ?? '',
-    sheet.adventure ?? 0.5,
-    sheet.development ?? 0.5,
     sheet.generationSeed ?? 0,
     JSON.stringify(sheet.partLens?.[region.id]?.[track.id] ?? ''),
   ];
@@ -234,18 +226,9 @@ export function putArrangementCell(cell: ArrangementCell): void {
 
 export function computePerformanceCellFingerprint(
   arrFingerprint: string,
-  dials: { pocket: number; lift: number; humanize: number; expression: number },
   effectiveBpm: number,
 ): string {
-  const parts = [
-    arrFingerprint,
-    dials.pocket.toFixed(3),
-    dials.lift.toFixed(3),
-    dials.humanize.toFixed(3),
-    dials.expression.toFixed(3),
-    effectiveBpm,
-  ];
-  return hashString(parts.join(';'));
+  return hashString(`${arrFingerprint};${effectiveBpm}`);
 }
 
 // ============================================================================
@@ -286,19 +269,12 @@ export function syncMixStateWithSheet(mix: MixState, sheet: Sheet): MixState {
 // TIER 2: REALIZE PERFORMANCE CELL (§6.3)
 // ============================================================================
 
-interface VoiceMemory {
-  last: number[];
-  lastNote: number;
-  lastBar?: number;
-}
-
 interface RealizeCellParams {
   sheet: Sheet;
   structure: CompiledStructure;
   region: Region;
   track: Voice;
   measures: Measure[];
-  dials: { pocket: number; lift: number; humanize: number; expression: number; development: number };
   key: KeyInfo;
   motif: Motif;
   melodyLayer: Map<string, number>;
@@ -313,12 +289,8 @@ export function realizePerformanceCell(params: RealizeCellParams): PerformanceCe
     region,
     track: t,
     measures,
-    dials,
-    key,
     motif,
-    melodyLayer,
     transitionEvents,
-    shape,
   } = params;
 
   const cellKey = `${region.id}:${t.id}`;
@@ -480,8 +452,6 @@ export function realizePerformanceCell(params: RealizeCellParams): PerformanceCe
         transitionDirection,
         sectionKind: region.kind,
         memory: mem,
-        developmentDial: dials.development,
-        expressionDial: dials.expression,
         seed: seedOf(t.id, barIndex, 'pattern-interpret'),
         ensembleContext,
         interactions: trackInteractions,
@@ -629,11 +599,7 @@ export function realizePerformanceCell(params: RealizeCellParams): PerformanceCe
   // 3. Sort attacks and realize notes & content CCs
   attacks.sort((a, b) => a.bar - b.bar || a.beatInBar - b.beatInBar);
 
-  const memState: VoiceMemory = { last: [], lastNote: 0, lastBar: -1 };
-  const lastVoiceEndTimes = new Map<string, number>();
   const isBass = prof.role === 'bass';
-  const isMelodic = melodyLayer.has(t.id);
-  const layer = melodyLayer.get(t.id) ?? 0;
 
   for (let i = 0; i < attacks.length; i++) {
     const a = attacks[i];
@@ -689,13 +655,6 @@ export function realizePerformanceCell(params: RealizeCellParams): PerformanceCe
         articulation: a.articulation,
       });
 
-      // Bowed strings expression swell (CC11)
-      if (prof.sustain === 'sustained' && (prof.role === 'lead' || prof.role === 'comp')) {
-        ccs.push({ time: baseTime, trackId: t.id, cc: 11, value: 64 });
-        ccs.push({ time: baseTime + durSeconds * 0.4, trackId: t.id, cc: 11, value: 115 });
-        ccs.push({ time: baseTime + durSeconds * 0.9, trackId: t.id, cc: 11, value: 70 });
-      }
-
       // Keyboard pedaling CC64
       const isKeyboard = t.instrumentId?.includes('piano') || t.instrumentId?.includes('rhodes');
       if (isKeyboard && vi === 0) {
@@ -718,7 +677,7 @@ export function realizePerformanceCell(params: RealizeCellParams): PerformanceCe
   }
 
   const arrFingerprint = computeArrangementCellFingerprint(sheet, region, t);
-  const perfFingerprint = computePerformanceCellFingerprint(arrFingerprint, dials, btForRegion(region, structure));
+  const perfFingerprint = computePerformanceCellFingerprint(arrFingerprint, btForRegion(region, structure));
 
   return {
     key: cellKey,
@@ -845,7 +804,6 @@ export function assembleSong(
   }
 
   // Section automation: brightness & build section swells
-  const liftAmount = sheet.lift ?? 0.5;
   for (const t of tracks) {
     const prof = voiceProfile(t.instrumentId);
     for (const r of sheet.regions) {
@@ -859,7 +817,7 @@ export function assembleSong(
         const trimLin = Math.pow(10, prof.trim / 20);
         const base = Math.max(0, Math.min(1, (t.volume ?? 0.8) * trimLin));
         const shape = shapeScalarOf(r);
-        const swell = (isBuildSection(sheet.regions, r) ? 0.12 : -0.03) * liftAmount;
+        const swell = isBuildSection(sheet.regions, r) ? 0.06 : -0.015;
         const span = lastBar.end - firstBar.start;
         const points: [number, number][] = [
           [firstBar.start, base * (1 - swell * 0.5)],
@@ -921,19 +879,6 @@ export interface TieredCompileOptions extends CompileOptions {
 
 export function tieredCompile(sheet: Sheet, opts: TieredCompileOptions = {}): Performance {
   const structure = compileStructure(sheet);
-  const dials = normaliseDials(sheet);
-  const pocketAmount = opts.pocket ?? dials.pocket;
-  const liftAmount = opts.lift ?? dials.lift;
-  const humanScale = opts.humanize ?? 1;
-  const expressionAmount = opts.expression ?? dials.expression;
-
-  const dialParams = {
-    pocket: pocketAmount,
-    lift: liftAmount,
-    humanize: humanScale,
-    expression: expressionAmount,
-    development: dials.development,
-  };
 
   const tracks = sheet.tracks as Voice[];
   const allChords = sheet.measures.map(m => m.chord);
@@ -980,7 +925,6 @@ export function tieredCompile(sheet: Sheet, opts: TieredCompileOptions = {}): Pe
       const arrFingerprint = computeArrangementCellFingerprint(sheet, region, track);
       const perfFingerprint = computePerformanceCellFingerprint(
         arrFingerprint,
-        dialParams,
         structure.bars[region.start]?.bpm ?? 120
       );
 
@@ -1003,7 +947,6 @@ export function tieredCompile(sheet: Sheet, opts: TieredCompileOptions = {}): Pe
         region,
         track,
         measures: sheet.measures,
-        dials: dialParams,
         key,
         motif,
         melodyLayer,

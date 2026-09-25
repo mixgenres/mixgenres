@@ -132,7 +132,7 @@ export const congas: InstrumentDef = {
     }
   },
   techniques: {
-    articulations: ["accent", "open", "staccato", "slap", "ghost"],
+    articulations: ["accent", "open", "staccato", "slap", "ghost", "heel", "toe", "slap-tapao", "quinto-slap", "conga-open", "tumba-open"],
     techniqueMethods: [
       "open tone (tono abierto) with full fingers bouncing off rim",
       "muffled slap (slap tapao) fingers cup into head holding contact",
@@ -149,7 +149,7 @@ export const congas: InstrumentDef = {
       "cha-cha-cha"
     ],
     genreTechniques: {
-      salsa: ["open", "slap", "accent", "ghost"],
+      salsa: ["open", "slap", "accent", "ghost", "heel", "toe", "slap-tapao", "conga-open", "tumba-open"],
       cumbia: ["open", "accent", "ghost"],
       "latin-jazz": ["slap", "open", "ghost", "accent"]
     }

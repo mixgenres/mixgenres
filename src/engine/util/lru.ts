@@ -9,6 +9,14 @@ export class LRUMap<K, V> {
 
   constructor(public readonly maxSize: number, public readonly name: string = 'unnamed') {}
 
+  /**
+   * @static
+   * Registers a cache in the engine's global dev registry.
+   */
+  public static register(cache: LRUMap<any, any>): void {
+    registerCache(cache);
+  }
+
   get(key: K): V | undefined {
     const v = this.map.get(key);
     if (v !== undefined) {

@@ -225,8 +225,8 @@ export function applyFeel(g: GrooveProfile, input: FeelInput): FeelOutput {
   const humanizeScale = input.authoredTimingOnly ? 0.18 : 1;
 
   // Use low-frequency Cosine-Interpolated noise to modulate timing and velocity curves over bars
-  const smoothDrift = noise1D(input.beatInBar / 4 + (input.seed % 100), 101) * 2.0;
-  finalMs += smoothDrift * currentHumanizeMs * tightness * intensityTighten * humanizeScale;
+  const smoothDrift = noise1D(input.beatInBar / 4 + (input.seed % 100), 101);
+  finalMs += smoothDrift * currentHumanizeMs * tightness * intensityTighten * humanizeScale * 0.5;
 
   // 4. dynamics: metric hierarchy is disabled for authored traditional phrasing;
   // the pattern's own accent profile should carry the musical hierarchy.
@@ -235,8 +235,8 @@ export function applyFeel(g: GrooveProfile, input: FeelInput): FeelOutput {
   const shaped = (1 - g.accentDepth * (1 - metric)) * (0.72 + contractAccent * 0.28);
   const authored = Math.pow(Math.max(0.05, input.accent), g.dynamicRange);
 
-  const smoothVelDrift = noise1D(input.beatInBar / 8 + (input.seed % 100), 202) * 2.0;
-  const velWobble = 1 + smoothVelDrift * g.humanizeVel;
+  const smoothVelDrift = noise1D(input.beatInBar / 8 + (input.seed % 100), 202);
+  const velWobble = 1 + smoothVelDrift * g.humanizeVel * 0.6;
 
   return {
     offsetBeats: swingBeats,

@@ -29,8 +29,8 @@ export const piano: InstrumentDef = {
     materialDensity: 0.88,
     tension: 0.9,
     bodyResonanceVolume: 350,
-    decayTimeFactor: 3.5,
-    harmonicRichness: 0.78,
+    decayTimeFactor: 4.2,
+    harmonicRichness: 0.85,
     soundboardResonanceHz: 120,
     sympatheticStrings: true,
     bodyConstruction: "wood-box",
@@ -60,18 +60,23 @@ export const piano: InstrumentDef = {
       "tenuto",
       "sostenuto",
       "montuno",
-      "octave-stabs"
+      "octave-stabs",
+      "cluster",
+      "chapa"
     ],
     techniqueMethods: [
       "sustain pedal resonance",
       "octave octave bass coupling",
-      "syncopated salsa montuno two-hand interlocking"
+      "syncopated salsa montuno two-hand interlocking",
+      "golpe de cluster palm slap",
+      "chapa metal plate damping"
     ],
-    playingStyles: ["classical", "jazz", "salsa", "pop", "rock", "gospel", "bossa-nova"],
+    playingStyles: ["classical", "jazz", "salsa", "pop", "rock", "gospel", "bossa-nova", "tango"],
     genreTechniques: {
       salsa: ["montuno", "accent", "staccato", "octave-stabs"],
       jazz: ["legato", "accent", "staccato", "tenuto"],
-      classical: ["legato", "sostenuto", "tenuto"]
+      classical: ["legato", "sostenuto", "tenuto"],
+      tango: ["cluster", "chapa", "accent", "staccato"]
     }
   }
 };

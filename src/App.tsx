@@ -1,11 +1,11 @@
-import React, { useDeferredValue, useEffect, useMemo, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Dices, Trash2, Pencil, Sparkles } from 'lucide-react';
 import './index.css';
 
 import { Glyph, PlayIcon, PauseIcon } from './ui/Glyph';
 import { NoteCard, NoteMark } from './ui/Sheet';
 import { noteTags } from './ui/noteTags';
-import { WorldSheet, InstrumentSheet, PatternSheet, SectionSheet, SectionGenreSheet, TempoSheet, DownloadSheet, PerformanceSheet, StartOverModal, RandomizeSheet, ChordSheet } from './ui/sheets';
+import { WorldSheet, InstrumentSheet, PatternSheet, SectionSheet, SectionGenreSheet, TempoSheet, DownloadSheet, StartOverModal, RandomizeSheet, ChordSheet } from './ui/sheets';
 import { StyleSheetModal } from './ui/StyleSheet';
 import { StyleInspector } from './ui/StyleInspector';
 import { plateFor, applyPlate } from './ui/worlds';
@@ -19,7 +19,7 @@ import {
   isVoiceSilentInSection, isVoiceSilentInAll, silenceVoiceInSection, silenceVoiceInAll,
   unsilenceVoiceInSection, unsilenceVoiceInAll, toggleVoiceInSection,
   silenceAllVoicesInSection, unsilenceAllVoicesInSection,
-  setTrackSpotlight, getResolvedSectionStyle, setSongDial, setPartLens,
+  setTrackSpotlight, getResolvedSectionStyle,
   FEELS, getEffectiveBpm, setSectionTempoShift, setSongTempoShift, setSongBpm, setSectionBpm, setSectionEnergy,
 } from './engine/generators/arrange';
 import {
@@ -27,7 +27,6 @@ import {
   createSink, setTrackInstruments, setActiveWorld,
 } from './engine/audio/audio';
 import { ENERGY_LABELS } from './engine/metadata/energy';
-import { normaliseDials } from './engine/metadata/dials';
 import { tieredCompile } from './engine/sequencing/tieredEngine';
 import { Transport } from './engine/sequencing/transport';
 import { PATTERNS_BY_ID, cleanPatternName } from './data/genres';
@@ -45,7 +44,6 @@ export default function App() {
   const [step, setStep] = useState(0);
   const [bar, setBar] = useState(0);
   const [tempoOpen, setTempoOpen] = useState(false);
-  const [performanceOpen, setPerformanceOpen] = useState(false);
   const [downloadOpen, setDownloadOpen] = useState(false);
   const [startOverOpen, setStartOverOpen] = useState(initialData.isNew);
   const [randomizeOpen, setRandomizeOpen] = useState(false);
@@ -80,12 +78,6 @@ export default function App() {
     setToast(msg);
     toastTimerRef.current = window.setTimeout(() => setToast(null), 2500);
   };
-
-  // One normalised read of the song-level dials, so every consumer sees the
-  // same clamped values and an older saved song simply inherits the defaults.
-  const songDials = useMemo(() => normaliseDials(song), [
-    song.pocket, song.lift, song.adventure, song.development, song.expression,
-  ]);
 
   const currentResolvedStyle = useMemo(() => {
     return resolveStyle({
@@ -295,18 +287,17 @@ export default function App() {
      Cost scales with the scope of the edit, not song length.
      Tier 0 (Structure), Tier 1 (Arrangement), and Tier 2 (Performance)
      cells are cached and only invalidated when their specific inputs change. */
-  const deferredSong = useDeferredValue(song);
   const perf = useMemo(() => {
-    return tieredCompile(deferredSong, {
+    return tieredCompile(song, {
       focusedRegionId: focusId,
     });
-  }, [deferredSong, focusId]);
+  }, [song, focusId]);
   const perfRef = useRef(perf);
   perfRef.current = perf;
 
   useEffect(() => {
-    transportRef.current?.patchPerformance(perf, [focusId]);
-  }, [perf, focusId]);
+    transportRef.current?.patchPerformance(perf);
+  }, [perf]);
 
   // The audio engine resolves a physical model per note from the instrument
   // id, but the transport only ever hands it a bare track id — keep it in
@@ -1522,22 +1513,6 @@ export default function App() {
           onClose={() => setShowDevStyle(false)}
         />
       )}
-
-      <PerformanceSheet
-        open={performanceOpen}
-        onClose={() => setPerformanceOpen(false)}
-        worldId={song.worldId}
-        pocket={songDials.pocket}
-        lift={songDials.lift}
-        adventure={songDials.adventure}
-        development={songDials.development}
-        expression={songDials.expression}
-        onSetPocket={v => edit(s => setSongDial(s, 'pocket', v))}
-        onSetLift={v => edit(s => setSongDial(s, 'lift', v))}
-        onSetAdventure={v => edit(s => setSongDial(s, 'adventure', v))}
-        onSetDevelopment={v => edit(s => setSongDial(s, 'development', v))}
-        onSetExpression={v => edit(s => setSongDial(s, 'expression', v))}
-      />
 
       <TempoSheet
         open={tempoOpen}

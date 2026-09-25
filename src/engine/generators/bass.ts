@@ -221,10 +221,10 @@ function approach(c: BassContext, last: number): number {
   const targetMidi = nearestPc(target, last);
   const r = rand01(c.seed);
   let cand: number;
-  if (r > 0.6) cand = targetMidi - 1;
-  else if (r > 0.38) cand = targetMidi + 1;
-  else if (r > 0.18) cand = nearestPc(pcOf(target + 7), last);
-  else cand = nearestPc(pcOf(target + 2), last);
+  // Strict chromatic or diatonic leading tones to avoid muddy harmonic clashes
+  if (r > 0.5) cand = targetMidi - 1;      // Chromatic from below
+  else if (r > 0.25) cand = targetMidi + 1; // Chromatic from above
+  else cand = targetMidi - 2;              // Diatonic whole step below
   return foldToRange(cand, c.profile);
 }
 

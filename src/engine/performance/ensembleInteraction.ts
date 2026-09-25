@@ -52,9 +52,9 @@ export function applyEnsembleInteraction(
         }
       }
 
-      // Lock if within 60ms window
-      if (minDiff <= 0.060) {
-        bNote.time = bNote.time + (nearestKickTime - bNote.time) * params.rhythmicLockingStrength;
+      // Lock if within 30ms window to avoid flattening intentional swing
+      if (minDiff <= 0.030) {
+        bNote.time = bNote.time + (nearestKickTime - bNote.time) * (params.rhythmicLockingStrength * 0.6);
       }
     }
   }
@@ -64,10 +64,10 @@ export function applyEnsembleInteraction(
   const drumNotes = notes.filter(n => roleOf(n) === 'drums');
   const bassNotes = notes.filter(n => roleOf(n) === 'bass');
   for (const b of bassNotes) {
-    const nearestDrum = drumNotes.find(d => Math.abs(d.time - b.time) < 0.05);
+    const nearestDrum = drumNotes.find(d => Math.abs(d.time - b.time) < 0.02);
     if (nearestDrum) {
       const drumDelay = nearestDrum.time - b.time;
-      b.time += drumDelay * 0.8; // inherit 80% of delay
+      b.time += drumDelay * 0.4; // inherit 40% of delay to avoid rubber-banding
     }
   }
 
@@ -186,6 +186,37 @@ export function applyEnsembleInteraction(
       const isDownbeat = Math.abs(beatInBar - Math.round(beatInBar)) < 0.12;
       if (isDownbeat) {
         g2.time += 0.25 * secPerBeat; // Force to offbeats
+      }
+    }
+  }
+
+  // Kizomba / Zouk / Tarraxo Snare Drag
+  if (/kizomba|zouk|tarraxo/i.test(worldId)) {
+    const snares = notes.filter(n => roleOf(n) === 'drums' && (n.midi === 38 || n.midi === 39 || n.midi === 40 || n.midi === 37));
+    for (const s of snares) {
+      s.time += 0.025; // 25ms late snare for heavy sensual swing
+    }
+  }
+
+  // Afrobeats Log-Drum and Kick Ducking
+  if (/afrobeats|amapiano|african/i.test(worldId)) {
+    const logDrums = notes.filter(n => /log-drum/i.test(instrumentOf(n)) || roleOf(n) === 'bass');
+    for (const ld of logDrums) {
+      const simultaneousKick = kickTimes.some(kTime => Math.abs(kTime - ld.time) < 0.05);
+      if (simultaneousKick) {
+        ld.vel = Math.max(10, Math.round(ld.vel * 0.7)); // Duck log drum to let kick punch
+      }
+    }
+  }
+
+  // Bachata Bongo-Güira Tight Lock
+  if (/bachata/i.test(worldId)) {
+    const guiras = notes.filter(n => /guiro|guira/i.test(instrumentOf(n)));
+    const bongos = notes.filter(n => /bongo/i.test(instrumentOf(n)));
+    for (const b of bongos) {
+      const nearGuira = guiras.find(g => Math.abs(g.time - b.time) < 0.03);
+      if (nearGuira) {
+        b.time = nearGuira.time; // Snap bongo to güira for crisp syncopation
       }
     }
   }
@@ -336,6 +367,93 @@ export function applyEnsembleInteraction(
       }
     }
     notes = notes.filter(n => !deletedNotes.has(n));
+  }
+
+  // 13. Tango Percussive Lock: Piano cluster/chapa triggers Bass strappata/golpe simultaneously
+  if (/tango/i.test(worldId)) {
+    const pianoPerNotes = notes.filter(n =>
+      /piano/i.test(instrumentOf(n)) && (n.articulation === 'cluster' || n.articulation === 'chapa')
+    );
+    const bassNotes = notes.filter(n => roleOf(n) === 'bass' || /bass|contrabajo|upright/i.test(instrumentOf(n)));
+    for (const pNote of pianoPerNotes) {
+      const nearBass = bassNotes.find(b => Math.abs(b.time - pNote.time) < 0.04);
+      if (nearBass) {
+        nearBass.time = pNote.time;
+        nearBass.articulation = pNote.articulation === 'cluster' ? 'strappata' : 'golpe';
+        nearBass.vel = Math.max(nearBass.vel, 110);
+      }
+    }
+  }
+
+  // 14. Flamenco Palmas Alignment: Snap palmas to rasgueado guitar burst transients
+  if (/flamenco/i.test(worldId)) {
+    const rasgueadoNotes = notes.filter(n =>
+      /guitar/i.test(instrumentOf(n)) && (n.articulation === 'rasgueado' || n.articulation === 'abanico' || n.articulation === 'alzapua')
+    );
+    const palmasNotes = notes.filter(n => /palmas/i.test(instrumentOf(n)));
+    for (const rNote of rasgueadoNotes) {
+      const nearPalma = palmasNotes.find(p => Math.abs(p.time - rNote.time) < 0.045);
+      if (nearPalma) {
+        nearPalma.time = rNote.time;
+        nearPalma.vel = Math.min(127, Math.round(nearPalma.vel * 1.15));
+      }
+    }
+  }
+
+  // 15. Global Heterophonic Smear (Celtic, Arabic, Chinese, Andean, Folk)
+  // When multiple melodic instruments play the exact same note (unison), slight offset avoids phase cancellation
+  if (/celtic|arabic|maqam|middle-east|chinese|andean|folk/i.test(worldId)) {
+    const melodicNotes = notes.filter(n => roleOf(n) === 'lead' || roleOf(n) === 'melody');
+    const processedUnisons = new Set<PerfNote>();
+    
+    for (let i = 0; i < melodicNotes.length; i++) {
+      const n1 = melodicNotes[i];
+      if (processedUnisons.has(n1)) continue;
+      
+      const unisons = melodicNotes.filter(n2 => 
+        n1.trackId !== n2.trackId && 
+        Math.abs(n1.time - n2.time) < 0.03 &&
+        Math.abs(n1.midi - n2.midi) < 1
+      );
+
+      if (unisons.length > 0) {
+        processedUnisons.add(n1);
+        unisons.forEach((u, idx) => {
+          processedUnisons.add(u);
+          const smearMs = 0.015 + (idx * 0.010) + (Math.random() * 0.010);
+          u.time += smearMs;
+        });
+      }
+    }
+  }
+
+  // 16. Mix Clarity: Aggressively cull ghost notes if local density is too high (prevents mud)
+  for (let i = notes.length - 1; i >= 0; i--) {
+    const n = notes[i];
+    if (n.articulation === 'ghost' || n.vel < 30) {
+      // Check how many notes happen within 200ms of this ghost note
+      const overlapping = notes.filter(o => Math.abs(o.time - n.time) < 0.2).length;
+      if (overlapping > 8) {
+        notes.splice(i, 1);
+      }
+    }
+  }
+
+  // 16. Drummer 'Gasp': Drop the kick drum on beat 4 if a fill is happening, creating tension for the downbeat
+  const drumFills = notes.filter(n => roleOf(n) === 'drums' && (n.articulation === 'fill' || n.vel > 110));
+  if (drumFills.length > 0) {
+    notes = notes.filter(n => {
+      if (/kick|bombo/i.test(instrumentOf(n))) {
+        const bpm = perf.bars[n.bar]?.bpm ?? 120;
+        const secPerBeat = 60 / bpm;
+        const beatInBar = (n.time / secPerBeat) % 4;
+        // If it's late in the bar (beat 3.5+) and a fill is happening nearby
+        if (beatInBar > 3.5 && drumFills.some(f => Math.abs(f.time - n.time) < secPerBeat)) {
+          return false; // Drop this kick to create a gasp
+        }
+      }
+      return true;
+    });
   }
 
   // Re-sort notes chronologically

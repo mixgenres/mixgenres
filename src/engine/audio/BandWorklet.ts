@@ -37,6 +37,9 @@ export function getPolyphonyForTrack(instrumentId: string, role?: string): numbe
  * Natural acoustic/electronic physical model summation with conservative mastering.
  */
 export class BandWorkletNode {
+  /**
+   * @static
+   */
   public static readonly MAX_POLYPHONY = 32;
 
   private ctx!: AudioContext;
@@ -61,7 +64,77 @@ export class BandWorkletNode {
   private trackPans = new Map<string, number>();
   private trackSignalsCache = new Map<string, { fingerprint: string; signal: { left: any; right: any } }>();
   private dirtyTracks = new Set<string>();
-  private syncScheduled = false;
+
+  // Real-time parameter updates without dynamic graph reconstruction
+  private paramHashes = new Map<string, number>();
+  private pendingParamUpdates: Record<string, number> = {};
+  private paramFlushScheduled = false;
+
+  private getHashForKey(key: string): number {
+    let h = this.paramHashes.get(key);
+    if (h === undefined) {
+      h = el.const({ key, value: 0 }).hash;
+      this.paramHashes.set(key, h);
+    }
+    return h;
+  }
+
+  public updateMap(updates: Record<string, number>) {
+    this.applyParamUpdates(updates);
+  }
+
+  private queueParamUpdate(key: string, value: number) {
+    this.pendingParamUpdates[key] = value;
+    if (!this.paramFlushScheduled) {
+      this.paramFlushScheduled = true;
+      if (typeof queueMicrotask !== 'undefined') {
+        queueMicrotask(() => {
+          this.paramFlushScheduled = false;
+          this.flushParamUpdates();
+        });
+      } else {
+        setTimeout(() => {
+          this.paramFlushScheduled = false;
+          this.flushParamUpdates();
+        }, 0);
+      }
+    }
+  }
+
+  public flushParamUpdates() {
+    const keys = Object.keys(this.pendingParamUpdates);
+    if (keys.length === 0) return;
+    const updates = this.pendingParamUpdates;
+    this.pendingParamUpdates = {};
+    this.applyParamUpdates(updates);
+  }
+
+  private applyParamUpdates(updates: Record<string, number>) {
+    const renderer = (this.core as any)?._renderer;
+    if (!renderer || !renderer._delegate) return;
+    const delegate = renderer._delegate;
+
+    delegate.clear();
+    let hasUpdates = false;
+
+    for (const [key, value] of Object.entries(updates)) {
+      const hash = this.getHashForKey(key);
+      if (delegate.nodeMap.has(hash)) {
+        const entry = delegate.nodeMap.get(hash);
+        delegate.setProperty(hash, 'value', value);
+        entry.props['value'] = value;
+        hasUpdates = true;
+      }
+    }
+
+    if (hasUpdates) {
+      delegate.commitUpdates();
+      const instructions = delegate.getPackedInstructions();
+      if (instructions && instructions.length > 0) {
+        renderer._sendMessage(instructions);
+      }
+    }
+  }
 
   setWorldAndStyle(worldId: string, styleId?: string) {
     this.activeWorldId = worldId;
@@ -116,7 +189,7 @@ export class BandWorkletNode {
     this.syncGraph();
   }
 
-  // Live mix methods (Tier 3 -> Tier 4 live dispatch)
+  // Live mix methods (Tier 3 -> Tier 4 live parameter update, no graph reconstruction)
   setTrackVolume(trackId: string, volume: number, atTime?: number) {
     this.schedule(() => {
       this.trackVolumes.set(trackId, volume);
@@ -124,47 +197,58 @@ export class BandWorkletNode {
       if (params) {
         params.volume = volume;
       }
-      this.markDirty(trackId);
-      this.requestSync();
+      const isMuted = !!this.trackMutedMap.get(trackId);
+      const hasAnySolo = Array.from(this.trackSoloMap.values()).some(Boolean);
+      const isSoloed = !!this.trackSoloMap.get(trackId);
+      const effectiveVol = (isMuted || (hasAnySolo && !isSoloed)) ? 0 : volume;
+      this.queueParamUpdate(`track_${trackId}_vol`, effectiveVol);
+      this.flushParamUpdates();
     }, atTime);
   }
 
   setTrackMute(trackId: string, muted: boolean, atTime?: number) {
     this.schedule(() => {
       this.trackMutedMap.set(trackId, muted);
-      this.markDirty(trackId);
-      this.requestSync();
+      this.updateTrackMuteSoloLevels();
     }, atTime);
   }
 
   setTrackSolo(trackId: string, solo: boolean, atTime?: number) {
     this.schedule(() => {
       this.trackSoloMap.set(trackId, solo);
-      // Solo change affects audition of all tracks
-      for (const tId of this.trackParamsMap.keys()) {
-        this.markDirty(tId);
-      }
-      this.requestSync();
+      this.updateTrackMuteSoloLevels();
     }, atTime);
+  }
+
+  private updateTrackMuteSoloLevels() {
+    const hasAnySolo = Array.from(this.trackSoloMap.values()).some(Boolean);
+    for (const [trackId, params] of this.trackParamsMap.entries()) {
+      const isMuted = !!this.trackMutedMap.get(trackId);
+      const isSoloed = !!this.trackSoloMap.get(trackId);
+      const isSilenced = isMuted || (hasAnySolo && !isSoloed);
+      const effectiveVol = isSilenced ? 0 : (params.volume ?? 1);
+      this.queueParamUpdate(`track_${trackId}_vol`, effectiveVol);
+    }
+    this.flushParamUpdates();
   }
 
   setTrackPan(trackId: string, pan: number, atTime?: number) {
     this.schedule(() => {
       this.trackPans.set(trackId, pan);
       const params = this.trackParamsMap.get(trackId);
-      if (params) {
-        params.pan = pan;
-      }
-      this.markDirty(trackId);
-      this.requestSync();
+      if (params) params.pan = pan;
+      const clampedPan = Math.max(0, Math.min(1, pan));
+      const leftGain = Math.cos(clampedPan * Math.PI * 0.5);
+      const rightGain = Math.sin(clampedPan * Math.PI * 0.5);
+      this.queueParamUpdate(`track_${trackId}_panL`, leftGain);
+      this.queueParamUpdate(`track_${trackId}_panR`, rightGain);
+      this.flushParamUpdates();
     }, atTime);
   }
 
-  setTrackSpotlight(trackId: string, mode: string, atTime?: number) {
+  setTrackSpotlight(_trackId: string, _mode: string, atTime?: number) {
     this.schedule(() => {
-      // Spotlight ducking overlay marks track and accompaniment dirty
-      this.markDirty(trackId);
-      this.requestSync();
+      this.updateTrackMuteSoloLevels();
     }, atTime);
   }
 
@@ -172,27 +256,27 @@ export class BandWorkletNode {
     this.dirtyTracks.add(trackId);
   }
 
-  private requestSync() {
-    if (this.syncScheduled) return;
-    this.syncScheduled = true;
-    if (typeof requestAnimationFrame !== 'undefined') {
-      requestAnimationFrame(() => this.flushSync());
-    } else {
-      setTimeout(() => this.flushSync(), 0);
-    }
-  }
-
-  public flushSync() {
-    this.syncScheduled = false;
-    this.syncGraph();
-  }
-
   /**
    * Pre-allocates all tracks in the track params and voices maps with right-sized polyphony.
+   * Calls syncGraph ONLY if an instrument was added, removed, or changed.
    */
   async prepareTracks(instrumentsMap: Map<string, string>) {
+    let graphDirty = false;
+
+    // Clean up tracks that were removed from the song
+    for (const trackId of Array.from(this.trackParamsMap.keys())) {
+      if (!instrumentsMap.has(trackId)) {
+        this.trackParamsMap.delete(trackId);
+        this.trackVoicesMap.delete(trackId);
+        this.trackSignalsCache.delete(trackId);
+        this.dirtyTracks.delete(trackId);
+        graphDirty = true;
+      }
+    }
+
     for (const [trackId, instrumentId] of instrumentsMap.entries()) {
-      if (!this.trackParamsMap.has(trackId)) {
+      const existing = this.trackParamsMap.get(trackId);
+      if (!existing || existing.instrumentId !== instrumentId) {
         const instDef = INSTRUMENTS_BY_ID[instrumentId];
         const instLuthier: LuthierPhysicalParameters = instDef?.luthierPhysics ?? {
           category: 'electro_acoustic_algorithmic',
@@ -214,6 +298,7 @@ export class BandWorkletNode {
           if (dialect.contactPointOverride !== undefined) params.contact = dialect.contactPointOverride;
           if (dialect.brightnessMultiplier !== undefined) params.brightness *= dialect.brightnessMultiplier;
           if (dialect.decayMultiplier !== undefined) params.decay *= dialect.decayMultiplier;
+          if (dialect.bodyMultiplier !== undefined) params.body *= dialect.bodyMultiplier;
           if (dialect.bendGlideMs !== undefined) params.bendGlideMs = dialect.bendGlideMs;
         }
         this.trackParamsMap.set(trackId, params);
@@ -231,27 +316,43 @@ export class BandWorkletNode {
         }
         this.trackVoicesMap.set(trackId, preallocatedVoices);
         this.markDirty(trackId);
+        graphDirty = true;
       }
     }
-    this.syncGraph();
+    if (graphDirty) {
+      this.syncGraph();
+    }
   }
 
-  private computeTrackFingerprint(trackId: string, isSilenced: boolean, params: TrackParams, voices: VoiceState[]): string {
-    if (isSilenced) return `${trackId}:silenced`;
-    let voiceStateSum = '';
-    for (let i = 0; i < voices.length; i++) {
-      const v = voices[i];
-      if (v.gate === 1) {
-        voiceStateSum += `|${i}:${v.note}:${(v.velocity * 100).toFixed(0)}:${(v.frequencyHz ?? 0).toFixed(1)}:${v.retriggerId || 0}`;
-      }
-    }
-    return `${trackId}:${(params.volume * 100).toFixed(0)}:${(params.pan * 100).toFixed(0)}:${(params.brightness * 100).toFixed(0)}:${(params.decay * 10).toFixed(0)}:${(params.articulation * 100).toFixed(0)}:${voiceStateSum}`;
+  /**
+   * Only hashes the track's instrument assignment and static macro parameters.
+   * Completely ignores voice states (gate, note, velocity, frequency).
+   */
+  private computeTrackFingerprint(trackId: string, params: TrackParams): string {
+    return `${trackId}:${params.instrumentId}:${params.model}:${params.dialect || ''}:${params.performanceMode || ''}:${(params.brightness * 100).toFixed(0)}:${(params.decay * 10).toFixed(0)}:${(params.drive * 100).toFixed(0)}:${(params.body * 100).toFixed(0)}:${(params.tension * 100).toFixed(0)}`;
   }
 
   private syncGraph() {
     if (!this.core) return;
 
-    const hasAnySolo = Array.from(this.trackSoloMap.values()).some(Boolean);
+    let anyDirty = false;
+    for (const [trackId, params] of this.trackParamsMap.entries()) {
+      const fp = this.computeTrackFingerprint(trackId, params);
+      const cached = this.trackSignalsCache.get(trackId);
+
+      if (!cached || cached.fingerprint !== fp) {
+        anyDirty = true;
+        const voices = this.trackVoicesMap.get(trackId) ?? [];
+        const sig = renderTrack(trackId, voices, params);
+        this.trackSignalsCache.set(trackId, { fingerprint: fp, signal: sig });
+      }
+    }
+
+    if (!anyDirty && this.trackSignalsCache.size > 0) {
+      this.dirtyTracks.clear();
+      return;
+    }
+
     const trackSignals: {
       left: any;
       right: any;
@@ -260,32 +361,15 @@ export class BandWorkletNode {
     }[] = [];
 
     for (const [trackId, params] of this.trackParamsMap.entries()) {
-      const isMuted = !!this.trackMutedMap.get(trackId);
-      const isSoloed = !!this.trackSoloMap.get(trackId);
-      const isSilenced = isMuted || (hasAnySolo && !isSoloed);
-
-      const voices = this.trackVoicesMap.get(trackId) ?? [];
-      const fp = this.computeTrackFingerprint(trackId, isSilenced, params, voices);
       const cached = this.trackSignalsCache.get(trackId);
-
-      let sig: { left: any; right: any };
-      if (cached && cached.fingerprint === fp) {
-        sig = cached.signal;
-      } else {
-        if (isSilenced) {
-          const zero = el.const({ value: 0 });
-          sig = { left: zero, right: zero };
-        } else {
-          sig = renderTrack(trackId, voices, params);
-        }
-        this.trackSignalsCache.set(trackId, { fingerprint: fp, signal: sig });
+      if (cached) {
+        trackSignals.push({
+          left: cached.signal.left,
+          right: cached.signal.right,
+          trackId,
+          instrumentId: params.instrumentId,
+        });
       }
-      trackSignals.push({
-        left: sig.left,
-        right: sig.right,
-        trackId,
-        instrumentId: params.instrumentId,
-      });
     }
 
     let mixCharacter: import('../../data/styles/contracts').MixCharacter | undefined;
@@ -326,7 +410,7 @@ export class BandWorkletNode {
   }
 
   processPendingEvents() {
-    // Kept for interface compatibility with transport.ts
+    this.flushParamUpdates();
   }
 
   postEvent(event: CulturalAcousticEvent, atTime?: number) {
@@ -338,7 +422,7 @@ export class BandWorkletNode {
     }, atTime);
   }
 
-  private executeNoteOn(event: CulturalAcousticEvent, deferSync = false) {
+  private executeNoteOn(event: CulturalAcousticEvent) {
     const trackId = event.trackId;
     const instrumentId = event.luthierObjectId || trackId;
     const instDef = INSTRUMENTS_BY_ID[instrumentId];
@@ -364,6 +448,7 @@ export class BandWorkletNode {
         if (dialect.contactPointOverride !== undefined) p.contact = dialect.contactPointOverride;
         if (dialect.brightnessMultiplier !== undefined) p.brightness *= dialect.brightnessMultiplier;
         if (dialect.decayMultiplier !== undefined) p.decay *= dialect.decayMultiplier;
+        if (dialect.bodyMultiplier !== undefined) p.body *= dialect.bodyMultiplier;
         if (dialect.bendGlideMs !== undefined) p.bendGlideMs = dialect.bendGlideMs;
       }
       this.trackParamsMap.set(trackId, p);
@@ -386,7 +471,6 @@ export class BandWorkletNode {
 
     const articulationNorm = event.techniqueModifier === 'staccato' ? 0.9 : event.techniqueModifier === 'legato' ? 0.1 : 0.4;
     params.articulation = articulationNorm;
-    params.decay = Math.max(0.1, Math.min(8.0, event.duration || 0.5));
 
     let voices = this.trackVoicesMap.get(trackId);
     if (!voices) {
@@ -404,17 +488,23 @@ export class BandWorkletNode {
       this.trackVoicesMap.set(trackId, voices);
     }
 
-    // Round-robin voice allocation: always pick the oldest triggered voice
-    let voice = voices.reduce((oldest, current) => {
-      const oSeq = (oldest as any).triggerSeq ?? 0;
-      const cSeq = (current as any).triggerSeq ?? 0;
-      return cSeq < oSeq ? current : oldest;
-    }, voices[0]);
-
-    if (voice.gate === 1) {
-      voice.retriggerId = (voice.retriggerId || 0) + 1;
+    // Round-robin voice allocation: prefer idle voice, then oldest triggered voice
+    let bestVIdx = 0;
+    let oldestSeq = Infinity;
+    for (let i = 0; i < voices.length; i++) {
+      const v = voices[i];
+      if (v.gate === 0) {
+        bestVIdx = i;
+        break;
+      }
+      const seq = (v as any).triggerSeq ?? 0;
+      if (seq < oldestSeq) {
+        oldestSeq = seq;
+        bestVIdx = i;
+      }
     }
 
+    const voice = voices[bestVIdx];
     voice.note = noteMidi;
     const targetFreq = Math.max(20, event.frequencyHz ?? midiToFreq(noteMidi));
     voice.frequencyHz = targetFreq;
@@ -422,15 +512,33 @@ export class BandWorkletNode {
     (voice as any).triggerSeq = ++this.voiceSeq;
     voice.velocity = velScaled;
     voice.gate = 1;
-    
-    // Copy envelope overrides
+
     voice.attack = event.attack;
     voice.decay = event.decay;
     voice.sustain = event.sustain;
     voice.release = event.release;
 
-    this.markDirty(trackId);
-    if (!deferSync) this.requestSync();
+    // Apply parameter updates to static DSP nodes directly without core.render()
+    const pk = `track_${trackId}_voice_${bestVIdx}`;
+    this.queueParamUpdate(`${pk}_freq`, targetFreq);
+    this.queueParamUpdate(`${pk}_vel`, velScaled * (1 - 0.58 * params.mute));
+    this.queueParamUpdate(`${pk}_gate`, 1);
+    this.queueParamUpdate(`${pk}_art`, articulationNorm);
+
+    const velBoost = 0.55 + 0.6 * Math.max(0, Math.min(1, velScaled));
+    const b = Math.max(0, Math.min(1, params.brightness * velBoost));
+    const decayTime = Math.max(0.05, params.decay);
+    const isMuted = params.mute > 0.4;
+    const attack = event.attack !== undefined ? event.attack : (0.0008 + (1 - b) * 0.01);
+    const release = event.release !== undefined ? event.release : (isMuted ? 0.012 : 0.03 + decayTime * 0.25);
+    const sustain = event.sustain !== undefined ? event.sustain : (isMuted ? 0.05 : 0.35 + 0.3 * params.body);
+    const envDecay = event.decay !== undefined ? event.decay : (decayTime * (isMuted ? 0.1 : 0.3));
+
+    this.queueParamUpdate(`${pk}_attack`, attack);
+    this.queueParamUpdate(`${pk}_decay`, envDecay);
+    this.queueParamUpdate(`${pk}_sustain`, sustain);
+    this.queueParamUpdate(`${pk}_release`, release);
+    this.queueParamUpdate(`track_${trackId}_vol`, params.volume);
   }
 
   postRelease(trackId: string, midi: number, atTime?: number) {
@@ -439,22 +547,21 @@ export class BandWorkletNode {
     }, atTime);
   }
 
-  private executeNoteOff(trackId: string, midi: number, deferSync = false) {
+  private executeNoteOff(trackId: string, midi: number) {
     const voices = this.trackVoicesMap.get(trackId);
     if (!voices) return;
 
     const roundedMidi = Math.round(midi);
-    const activeVoices = voices.filter(v => (v.note === midi || Math.round(v.note) === roundedMidi) && v.gate === 1);
-    for (const voice of activeVoices) {
-      voice.gate = 0;
-      if ((voice as any).baseFrequencyHz) {
-        voice.frequencyHz = (voice as any).baseFrequencyHz;
+    for (let vIdx = 0; vIdx < voices.length; vIdx++) {
+      const v = voices[vIdx];
+      if ((v.note === midi || Math.round(v.note) === roundedMidi) && v.gate === 1) {
+        v.gate = 0;
+        if ((v as any).baseFrequencyHz) {
+          v.frequencyHz = (v as any).baseFrequencyHz;
+        }
+        const pk = `track_${trackId}_voice_${vIdx}`;
+        this.queueParamUpdate(`${pk}_gate`, 0);
       }
-    }
-
-    if (activeVoices.length > 0) {
-      this.markDirty(trackId);
-      if (!deferSync) this.requestSync();
     }
   }
 
@@ -464,7 +571,7 @@ export class BandWorkletNode {
     }, atTime);
   }
 
-  private executeCC(trackId: string, cc: number, value: number, deferSync = false) {
+  private executeCC(trackId: string, cc: number, value: number) {
     const params = this.trackParamsMap.get(trackId);
     if (!params) return;
 
@@ -474,10 +581,21 @@ export class BandWorkletNode {
       const effectiveModelForGain = isElectronic ? 9 : params.model;
       const baseGain = makeupGainFor(effectiveModelForGain, params.instrumentId);
       params.volume = Math.max(0.01, Math.min(35, norm * baseGain));
-    }
-    else if (cc === 10) params.pan = norm;
-    else if (cc === 74) params.brightness = norm;
-    else if (cc === 16) params.articulation = norm;
+      this.queueParamUpdate(`track_${trackId}_vol`, params.volume);
+    } else if (cc === 10) {
+      params.pan = norm;
+      const clampedPan = Math.max(0, Math.min(1, params.pan));
+      const leftGain = Math.cos(clampedPan * Math.PI * 0.5);
+      const rightGain = Math.sin(clampedPan * Math.PI * 0.5);
+      this.queueParamUpdate(`track_${trackId}_panL`, leftGain);
+      this.queueParamUpdate(`track_${trackId}_panR`, rightGain);
+    } else if (cc === 16) {
+      params.articulation = norm;
+      const voices = this.trackVoicesMap.get(trackId) ?? [];
+      for (let vIdx = 0; vIdx < voices.length; vIdx++) {
+        this.queueParamUpdate(`track_${trackId}_voice_${vIdx}_art`, norm);
+      }
+    } else if (cc === 74) params.brightness = norm;
     else if (cc === 17) params.contact = norm;
     else if (cc === 18) params.mute = norm;
     else if (cc === 19) params.bowPressure = norm;
@@ -486,9 +604,6 @@ export class BandWorkletNode {
     else if (cc === 22) params.pluckPosition = norm;
     else if (cc === 24) params.pressure = norm;
     else if (cc === 25) params.resonance = norm;
-
-    this.markDirty(trackId);
-    if (!deferSync) this.requestSync();
   }
 
   postBend(trackId: string, value: number, targetMidi?: number, atTime?: number) {
@@ -497,65 +612,67 @@ export class BandWorkletNode {
     }, atTime);
   }
 
-  private executeBend(trackId: string, value: number, targetMidi?: number, deferSync = false) {
+  private executeBend(trackId: string, value: number, targetMidi?: number) {
     const voices = this.trackVoicesMap.get(trackId);
     if (!voices || voices.length === 0) return;
 
-    const activeVoices = voices.filter(v => v.gate === 1);
+    const activeVoices: { voice: VoiceState; index: number }[] = [];
+    for (let i = 0; i < voices.length; i++) {
+      if (voices[i].gate === 1) activeVoices.push({ voice: voices[i], index: i });
+    }
     if (activeVoices.length === 0) return;
 
-    let targetVoice: VoiceState | undefined;
+    let target = activeVoices[0];
     if (targetMidi !== undefined) {
-      const roundedTarget = Math.round(targetMidi);
-      targetVoice = activeVoices.find(v => v.note === targetMidi || Math.round(v.note) === roundedTarget);
-    }
-    if (!targetVoice) {
-      targetVoice = activeVoices.reduce((latest, current) => {
-        const tSeq = (current as any).triggerSeq ?? 0;
-        const lSeq = (latest as any).triggerSeq ?? 0;
-        return tSeq >= lSeq ? current : latest;
-      }, activeVoices[0]);
+      const rounded = Math.round(targetMidi);
+      const found = activeVoices.find(item => item.voice.note === targetMidi || Math.round(item.voice.note) === rounded);
+      if (found) target = found;
     }
 
     const semitones = ((value - 8192) / 8192) * 2;
     const bendRatio = Math.pow(2, semitones / 12);
+    const base = (target.voice as any).baseFrequencyHz ?? target.voice.frequencyHz ?? midiToFreq(target.voice.note);
+    (target.voice as any).baseFrequencyHz = base;
+    const targetFreq = base * bendRatio;
+    target.voice.frequencyHz = targetFreq;
 
-    const base = (targetVoice as any).baseFrequencyHz ?? targetVoice.frequencyHz ?? midiToFreq(targetVoice.note);
-    (targetVoice as any).baseFrequencyHz = base;
-    targetVoice.frequencyHz = base * bendRatio;
-
-    this.markDirty(trackId);
-    if (!deferSync) this.requestSync();
+    this.queueParamUpdate(`track_${trackId}_voice_${target.index}_freq`, targetFreq);
   }
 
   softNotesOff() {
     for (const id of this.timerIds) window.clearTimeout(id);
     this.timerIds.clear();
 
-    for (const voices of this.trackVoicesMap.values()) {
-      for (const v of voices) {
-        if (v.gate === 1) v.gate = 0;
+    for (const [trackId, voices] of this.trackVoicesMap.entries()) {
+      for (let vIdx = 0; vIdx < voices.length; vIdx++) {
+        if (voices[vIdx].gate === 1) {
+          voices[vIdx].gate = 0;
+          this.queueParamUpdate(`track_${trackId}_voice_${vIdx}_gate`, 0);
+        }
       }
     }
-    this.syncGraph();
+    this.flushParamUpdates();
   }
 
   clear() {
     for (const id of this.timerIds) window.clearTimeout(id);
     this.timerIds.clear();
 
-    for (const voices of this.trackVoicesMap.values()) {
-      for (const v of voices) v.gate = 0;
+    for (const [trackId, voices] of this.trackVoicesMap.entries()) {
+      for (let vIdx = 0; vIdx < voices.length; vIdx++) {
+        voices[vIdx].gate = 0;
+        this.queueParamUpdate(`track_${trackId}_voice_${vIdx}_gate`, 0);
+      }
     }
-    this.syncGraph();
-    this.trackVoicesMap.clear();
-    this.trackParamsMap.clear();
-    this.trackSignalsCache.clear();
-    this.dirtyTracks.clear();
+    this.flushParamUpdates();
   }
 
   dispose() {
     this.clear();
+    this.trackVoicesMap.clear();
+    this.trackParamsMap.clear();
+    this.trackSignalsCache.clear();
+    this.dirtyTracks.clear();
     try { this.audioNode?.disconnect(); } catch { }
     this.masterChain?.dispose();
     this.masterChain = undefined;

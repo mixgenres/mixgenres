@@ -64,12 +64,13 @@ function saturationCurve(drive: number, type: 'tape' | 'tube' | 'hard-clip' = 't
       curve[i] = Math.max(-thresh, Math.min(thresh, x * (1 + amount * 1.5)));
     } else if (type === 'tube') {
       // Asymmetric saturation adding warm 2nd harmonics
-      const asym = x + 0.15 * amount * (x * x - 1);
-      curve[i] = Math.tanh(asym * (1 + amount * 1.2));
+      const asym = x + 0.2 * amount * (x * x - 1);
+      curve[i] = Math.tanh(asym * (1 + amount * 1.5));
     } else {
       // Tape saturation: smooth polynomial compression
-      const gain = 1 + amount * 0.8;
-      curve[i] = Math.sin(Math.max(-1, Math.min(1, x * gain)) * (Math.PI / 2));
+      const gain = 1 + amount * 0.6;
+      const soft = x * gain;
+      curve[i] = soft / Math.sqrt(1 + soft * soft);
     }
   }
   return curve;
@@ -110,6 +111,8 @@ export function createMasterChain(ctx: BaseAudioContext, initialMixCharacter?: M
   input.gain.value = 1.0;
   input.connect(instBus);
 
+  const isSalsa = /salsa/i.test(genreId || '');
+
   // 2. Drum Bus Saturation ("Knock") with Saturation Type
   const drumShaper = ctx.createWaveShaper();
   const initialKnock = calculateDrumKnock(initialMixCharacter);
@@ -117,20 +120,10 @@ export function createMasterChain(ctx: BaseAudioContext, initialMixCharacter?: M
   drumShaper.curve = saturationCurve(initialKnock, initialSatType);
   drumShaper.oversample = '2x';
 
-  // 3. Sub-Harmonic Exciter on Sub Bus
+  // 3. Clean Sub Bus Filter (Sub-Harmonic Exciter removed for pure, weighty low-end)
   const subFilter = ctx.createBiquadFilter();
   subFilter.type = 'lowpass';
   subFilter.frequency.value = 80;
-
-  const subExciterShaper = ctx.createWaveShaper();
-  const subExciteGain = ctx.createGain();
-  const initialSubHarm = initialMixCharacter?.subHarmonics ?? 0.0;
-  subExciterShaper.curve = saturationCurve(initialSubHarm, 'hard-clip');
-  subExciteGain.gain.value = initialSubHarm * 0.4;
-
-  subBus.connect(subFilter);
-  subFilter.connect(subExciterShaper);
-  subExciterShaper.connect(subExciteGain);
 
   // 4. Sidechain Ducking
   const kickFilter = ctx.createBiquadFilter();
@@ -141,35 +134,39 @@ export function createMasterChain(ctx: BaseAudioContext, initialMixCharacter?: M
   const subDuckingGain = ctx.createGain();
   subDuckingGain.gain.value = 1.0;
 
-  // 5. Acoustic Crosstalk with frequency-dependent bleed (low-pass) and M/S widening (Haas)
-  const instToDrumDelay = ctx.createDelay(0.05);
-  instToDrumDelay.delayTime.value = 0.012;
-  const instToDrumFilter = ctx.createBiquadFilter();
-  instToDrumFilter.type = 'lowpass';
-  instToDrumFilter.frequency.value = 4500;
-  instToDrumFilter.Q.value = 0.5;
+  subBus.connect(subFilter);
+  subFilter.connect(subDuckingGain);
 
-  const bleedLeftDelay = ctx.createDelay(0.05);
-  bleedLeftDelay.delayTime.value = 0.002;
-  const bleedRightDelay = ctx.createDelay(0.05);
-  bleedRightDelay.delayTime.value = 0.015;
+  // 5. Lush Room Reverb (FDN Network for Live Playback)
+  const initialRoomDepth = isSalsa ? 0.04 : (initialMixCharacter ? (1.0 - initialMixCharacter.dryness) * 0.45 : 0.25);
 
-  const bleedMerger = ctx.createChannelMerger(2);
+  const rev1 = ctx.createDelay(0.5); rev1.delayTime.value = 0.037;
+  const rev2 = ctx.createDelay(0.5); rev2.delayTime.value = 0.043;
+  const rev3 = ctx.createDelay(0.5); rev3.delayTime.value = 0.053;
+  const rev4 = ctx.createDelay(0.5); rev4.delayTime.value = 0.067;
 
-  const instToDrumGain = ctx.createGain();
+  const revFb1 = ctx.createGain(); revFb1.gain.value = 0.45;
+  const revFb2 = ctx.createGain(); revFb2.gain.value = 0.45;
+  const revFb3 = ctx.createGain(); revFb3.gain.value = 0.45;
+  const revFb4 = ctx.createGain(); revFb4.gain.value = 0.45;
 
-  const drumToInstDelay = ctx.createDelay(0.05);
-  drumToInstDelay.delayTime.value = 0.012;
-  const drumToInstFilter = ctx.createBiquadFilter();
-  drumToInstFilter.type = 'lowpass';
-  drumToInstFilter.frequency.value = 4500;
-  drumToInstFilter.Q.value = 0.5;
-  const drumToInstGain = ctx.createGain();
+  rev1.connect(revFb1); revFb1.connect(rev2);
+  rev2.connect(revFb2); revFb2.connect(rev3);
+  rev3.connect(revFb3); revFb3.connect(rev4);
+  rev4.connect(revFb4); revFb4.connect(rev1);
 
-  const isSalsa = /salsa/i.test(genreId || '');
-  const initialCrosstalk = isSalsa ? 0.0 : calculateAcousticCrosstalk(initialMixCharacter);
-  instToDrumGain.gain.value = initialCrosstalk;
-  drumToInstGain.gain.value = initialCrosstalk;
+  const revMixL = ctx.createGain(); revMixL.gain.value = initialRoomDepth;
+  const revMixR = ctx.createGain(); revMixR.gain.value = initialRoomDepth;
+
+  const revFilterL = ctx.createBiquadFilter(); revFilterL.type = 'lowpass'; revFilterL.frequency.value = 3500;
+  const revFilterR = ctx.createBiquadFilter(); revFilterR.type = 'lowpass'; revFilterR.frequency.value = 3500;
+
+  rev1.connect(revFilterL); revFilterL.connect(revMixL);
+  rev2.connect(revFilterR); revFilterR.connect(revMixR);
+
+  const revMerger = ctx.createChannelMerger(2);
+  revMixL.connect(revMerger, 0, 0);
+  revMixR.connect(revMerger, 0, 1);
 
   // 6. Master Summing
   const masterSum = ctx.createGain();
@@ -179,31 +176,20 @@ export function createMasterChain(ctx: BaseAudioContext, initialMixCharacter?: M
   drumBus.connect(kickFilter);
   drumShaper.connect(masterSum);
 
-  instBus.connect(instToDrumDelay);
-  instToDrumDelay.connect(instToDrumFilter);
-  instToDrumFilter.connect(bleedLeftDelay);
-  instToDrumFilter.connect(bleedRightDelay);
-  bleedLeftDelay.connect(bleedMerger, 0, 0);
-  bleedRightDelay.connect(bleedMerger, 0, 1);
-  bleedMerger.connect(instToDrumGain);
-  instToDrumGain.connect(masterSum);
-
-  drumBus.connect(drumToInstDelay);
-  drumToInstDelay.connect(drumToInstFilter);
-  drumToInstFilter.connect(drumToInstGain);
-  drumToInstGain.connect(instBus);
-
-  subBus.connect(subDuckingGain);
   subDuckingGain.connect(masterSum);
-  subExciteGain.connect(masterSum);
-
   instBus.connect(masterSum);
+
+  // Feed reverb
+  instBus.connect(rev1);
+  instBus.connect(rev3);
+  drumBus.connect(rev2);
+  revMerger.connect(masterSum);
 
   // 7. Subsonic Filter & Master EQ
   const hp = ctx.createBiquadFilter();
   hp.type = 'highpass';
-  hp.frequency.value = 22;
-  hp.Q.value = 0.7;
+  hp.frequency.value = 28;
+  hp.Q.value = 0.6;
 
   const lowGainInit = initialMixCharacter ? (initialMixCharacter.bassForward - 0.5) * 4.0 : 0.5;
   const presGainInit = initialMixCharacter ? (initialMixCharacter.dryness - 0.5) * 3.0 : 0.8;
@@ -264,13 +250,13 @@ export function createMasterChain(ctx: BaseAudioContext, initialMixCharacter?: M
   const initWidth = initialMixCharacter?.width ?? 0.5;
   sideGain.gain.value = Math.max(0.0, Math.min(1.8, initWidth * 1.2));
 
-  // 10. Transparent Limiter & Output
+  // 9. Transparent Limiter & Output
   const limiter = ctx.createDynamicsCompressor();
-  limiter.threshold.value = -0.5;
-  limiter.knee.value = 1;
-  limiter.ratio.value = 8;
-  limiter.attack.value = 0.005;
-  limiter.release.value = 0.12;
+  limiter.threshold.value = -0.2;
+  limiter.knee.value = 0.5;
+  limiter.ratio.value = 20;
+  limiter.attack.value = 0.001;
+  limiter.release.value = 0.05;
 
   const makeup = ctx.createGain();
   makeup.gain.value = 1;
@@ -279,17 +265,14 @@ export function createMasterChain(ctx: BaseAudioContext, initialMixCharacter?: M
   tap.gain.value = 1;
 
   const output = ctx.createGain();
-  output.gain.value = 0.92;
+  output.gain.value = 0.95;
 
-  // Signal routing
+  // Signal routing (clean, linear, phase-coherent chain)
   masterSum.connect(hp);
   hp.connect(low);
   low.connect(pres);
   pres.connect(air);
   air.connect(glue);
-  glue.connect(sideHighPass);
-  sideHighPass.connect(sideGain);
-  sideGain.connect(makeup);
   glue.connect(makeup);
   makeup.connect(limiter);
   limiter.connect(tap);
@@ -311,7 +294,7 @@ export function createMasterChain(ctx: BaseAudioContext, initialMixCharacter?: M
     output,
     tap,
     setVolume(v: number) {
-      output.gain.setTargetAtTime(Math.max(0, Math.min(1.5, v * 0.92)), ctx.currentTime, 0.02);
+      output.gain.setTargetAtTime(Math.max(0, Math.min(1.5, v * 0.95)), ctx.currentTime, 0.02);
     },
     setMixCharacter(char: MixCharacter, genId?: string) {
       const gId = genId || genreId;
@@ -335,31 +318,27 @@ export function createMasterChain(ctx: BaseAudioContext, initialMixCharacter?: M
         glue.attack.setTargetAtTime(0.01, now, 0.05);
         glue.release.setTargetAtTime(0.15, now, 0.05);
       } else if (ratio <= 2.0) {
-        glue.threshold.setTargetAtTime(-8, now, 0.05);
-        glue.ratio.setTargetAtTime(Math.max(1.1, ratio), now, 0.05);
-        glue.attack.setTargetAtTime(0.08, now, 0.05);
+        glue.threshold.setTargetAtTime(-10, now, 0.05);
+        glue.ratio.setTargetAtTime(Math.max(1.2, ratio), now, 0.05);
+        glue.attack.setTargetAtTime(0.06, now, 0.05);
       } else {
         glue.threshold.setTargetAtTime(-16, now, 0.05);
         glue.ratio.setTargetAtTime(ratio, now, 0.05);
         glue.attack.setTargetAtTime(Math.max(0.003, 0.03 * (1 - snap)), now, 0.05);
       }
 
+      // Room Depth (Reverb)
+      const rDepth = isSalsaActive ? 0.05 : (1.0 - char.dryness) * 0.45;
+      revMixL.gain.setTargetAtTime(rDepth, now, 0.05);
+      revMixR.gain.setTargetAtTime(rDepth, now, 0.05);
+
       // Drum Bus Saturation & Saturation Type
       const knock = calculateDrumKnock(char);
       const satType = char.saturationType ?? 'tape';
       drumShaper.curve = saturationCurve(knock, satType);
 
-      // Sub-Harmonics Exciter
-      const subHarm = char.subHarmonics ?? 0.0;
-      subExciteGain.gain.setTargetAtTime(subHarm * 0.4, now, 0.05);
-
       // Mid-Side Width
       sideGain.gain.setTargetAtTime(Math.max(0.0, Math.min(1.8, char.width * 1.2)), now, 0.05);
-
-      // Acoustic Crosstalk
-      const crosstalk = isSalsaActive ? 0.0 : calculateAcousticCrosstalk(char);
-      instToDrumGain.gain.setTargetAtTime(crosstalk, now, 0.05);
-      drumToInstGain.gain.setTargetAtTime(crosstalk, now, 0.05);
     },
     dispose() {
       try {
@@ -369,20 +348,22 @@ export function createMasterChain(ctx: BaseAudioContext, initialMixCharacter?: M
         subBus.disconnect();
         drumShaper.disconnect();
         subFilter.disconnect();
-        subExciterShaper.disconnect();
-        subExciteGain.disconnect();
         kickFilter.disconnect();
         subDuckingGain.disconnect();
-        instToDrumDelay.disconnect();
-        instToDrumFilter.disconnect();
-        bleedLeftDelay.disconnect();
-        bleedRightDelay.disconnect();
-        bleedMerger.disconnect();
-        instToDrumGain.disconnect();
-        drumToInstDelay.disconnect();
-        drumToInstFilter.disconnect();
-        drumToInstGain.disconnect();
         masterSum.disconnect();
+        rev1.disconnect();
+        rev2.disconnect();
+        rev3.disconnect();
+        rev4.disconnect();
+        revFb1.disconnect();
+        revFb2.disconnect();
+        revFb3.disconnect();
+        revFb4.disconnect();
+        revFilterL.disconnect();
+        revFilterR.disconnect();
+        revMixL.disconnect();
+        revMixR.disconnect();
+        revMerger.disconnect();
         hp.disconnect();
         low.disconnect();
         pres.disconnect();

@@ -33,6 +33,28 @@ class BiquadFilter {
     this.a2 = a2 / a0;
   }
 
+  /**
+   * @static
+   * Factory for Stage 1 K-weighting high-shelving filter.
+   */
+  static createStage1(): BiquadFilter {
+    return new BiquadFilter(
+      1.53512485958697, -2.69169618940638, 1.19839281085285,
+      1.0, -1.69065929318241, 0.73248077421585
+    );
+  }
+
+  /**
+   * @static
+   * Factory for Stage 2 K-weighting high-pass filter.
+   */
+  static createStage2(): BiquadFilter {
+    return new BiquadFilter(
+      1.0, -2.0, 1.0,
+      1.0, -1.99004745483398, 0.99007225036621
+    );
+  }
+
   process(x: Float32Array): Float32Array {
     const out = new Float32Array(x.length);
     for (let i = 0; i < x.length; i++) {
@@ -145,7 +167,7 @@ async function renderNote(
 }
 
 // Representative pitch matrix per instrument category
-function getPitchesForInstrument(instId: string, model: number): number[] {
+function getPitchesForInstrument(instId: string, _model: number): number[] {
   if (/bass|tuba|surdo|kick|contrabajo/.test(instId)) {
     return [36, 43, 48];
   }

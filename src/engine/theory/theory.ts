@@ -86,18 +86,33 @@ const QUALITY_TENSION: Record<ChordQuality, number> = {
 };
 
 /* scale shapes as semitone offsets from the chord root */
-const IONIAN     = [0, 2, 4, 5, 7, 9, 11];
-const DORIAN     = [0, 2, 3, 5, 7, 9, 10];
-const AEOLIAN    = [0, 2, 3, 5, 7, 8, 10];
-const MIXOLYDIAN = [0, 2, 4, 5, 7, 9, 10];
-const LYDIAN     = [0, 2, 4, 6, 7, 9, 11];
-const PHRYGIAN_D = [0, 1, 4, 5, 7, 8, 10];   // the flamenco/andalusian colour
-const ALTERED    = [0, 1, 3, 4, 6, 8, 10];
-const LOCRIAN    = [0, 1, 3, 5, 6, 8, 10];
-const WHOLE_TONE = [0, 2, 4, 6, 8, 10];
-const DIMINISHED = [0, 2, 3, 5, 6, 8, 9, 11];
-const MIXO_B9B13 = [0, 1, 4, 5, 7, 8, 10];
-const MAJ_PENTA  = [0, 2, 4, 7, 9];
+export const IONIAN     = [0, 2, 4, 5, 7, 9, 11];
+export const DORIAN     = [0, 2, 3, 5, 7, 9, 10];
+export const AEOLIAN    = [0, 2, 3, 5, 7, 8, 10];
+export const MIXOLYDIAN = [0, 2, 4, 5, 7, 9, 10];
+export const LYDIAN     = [0, 2, 4, 6, 7, 9, 11];
+export const PHRYGIAN_D = [0, 1, 4, 5, 7, 8, 10];   // the flamenco/andalusian colour
+export const ALTERED    = [0, 1, 3, 4, 6, 8, 10];
+export const LOCRIAN    = [0, 1, 3, 5, 6, 8, 10];
+export const WHOLE_TONE = [0, 2, 4, 6, 8, 10];
+export const DIMINISHED = [0, 2, 3, 5, 6, 8, 9, 11];
+export const MIXO_B9B13 = [0, 1, 4, 5, 7, 8, 10];
+export const MAJ_PENTA  = [0, 2, 4, 7, 9];
+
+export const SCALES = {
+  IONIAN,
+  DORIAN,
+  AEOLIAN,
+  MIXOLYDIAN,
+  LYDIAN,
+  PHRYGIAN_D,
+  ALTERED,
+  LOCRIAN,
+  WHOLE_TONE,
+  DIMINISHED,
+  MIXO_B9B13,
+  MAJ_PENTA,
+};
 
 const cache = new Map<string, ParsedChord>();
 
@@ -122,11 +137,11 @@ export function validateChordSymbol(symbol: string): { valid: boolean; error?: s
   return { valid: true };
 }
 
-export function assertValidChordProgression(chords: string[], context = 'progression'): void {
+export function assertValidChordProgression(chords: string[], _context = 'progression'): void {
   if (!Array.isArray(chords) || !chords.length) return;
 }
 
-export function assertValidChordSymbol(symbol: string): void {
+export function assertValidChordSymbol(_symbol: string): void {
   return;
 }
 
@@ -276,7 +291,7 @@ function doParse(symbolRaw: string): ParsedChord {
       tensions,
       bassPc: effectiveBass,
       isPower,
-      scale: minor ? AEOLIAN : IONIAN,
+      scale: alt ? ALTERED : dim ? DIMINISHED : halfDim ? LOCRIAN : quality === 'dominant' ? MIXOLYDIAN : minor ? AEOLIAN : IONIAN,
       tension: QUALITY_TENSION[quality] ?? 0.2,
       harmony: {
         root: rootPc,

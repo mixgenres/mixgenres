@@ -99,13 +99,16 @@ export const violin: InstrumentDef = {
       "tremolo",
       "pizzicato",
       "vibrato",
-      "spiccato"
+      "spiccato",
+      "chicharra",
+      "tambor",
+      "latigo"
     ],
-    techniqueMethods: ["détaché", "spiccato", "sul ponticello", "sul tasto", "martelé", "ricochet"],
+    techniqueMethods: ["détaché", "spiccato", "sul ponticello", "sul tasto", "martelé", "ricochet", "chicharra scrape", "tambor snap", "látigo whip"],
     playingStyles: ["orchestral", "folk", "tango", "gypsy", "bluegrass", "celtic"],
     genreTechniques: {
       orchestral: ["legato", "tremolo", "vibrato"],
-      tango: ["staccato", "accent", "pizzicato"],
+      tango: ["staccato", "accent", "pizzicato", "chicharra", "tambor", "latigo"],
       folk: ["staccato", "pizzicato", "accent"]
     }
   }

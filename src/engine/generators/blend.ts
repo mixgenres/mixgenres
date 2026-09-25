@@ -319,19 +319,14 @@ function mergeStringListMaps(
 /**
  * Infer a lens from a pattern choice. Returns undefined when the pattern is
  * native to the section's genre, which is the overwhelmingly common case.
- *
- * `adventure` (the user's experiment dial, 0..1) sets how strongly an inferred
- * lens is applied. At 0 a foreign cell is merely transcribed into host phrasing;
- * at 1 it arrives with its home accent intact.
  */
 export function inferLensFromPattern(
   pattern: MusicalPattern | undefined,
   sectionGenreId: string,
-  adventure: number,
 ): GuestLens | undefined {
   if (!pattern) return undefined;
   if (!pattern.worldId || pattern.worldId === sectionGenreId) return undefined;
-  const weight = Math.max(0.3, Math.min(1, 0.35 + adventure * 0.6));
+  const weight = 0.5;
   return {
     genreId: pattern.worldId,
     styleId: pattern.styleIds?.[0],

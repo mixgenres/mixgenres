@@ -1151,8 +1151,17 @@ export const FLAMENCO_WORLD: GenreWorld = {
         0.85
       ],
       "articulations": [
-        "pulgar-apoyando",
-        "brush-up"
+        "alzapua",
+        "golpe",
+        "pulgar-apoyando"
+      ],
+      "hitGrid": [
+        "alzapua",
+        "alzapua",
+        "golpe",
+        "alzapua",
+        "alzapua",
+        "golpe"
       ],
       "supportedEnergy": [4, 5],
       "phrasePosition": [
@@ -4101,7 +4110,18 @@ export const FLAMENCO_WORLD: GenreWorld = {
       ],
       "syncopationRating": 0.57,
       "articulations": [
-        "rasgueado"
+        "rasgueado",
+        "golpe",
+        "alzapua"
+      ],
+      "hitGrid": [
+        "rasgueado",
+        "golpe",
+        "rasgueado",
+        "rasgueado",
+        "golpe",
+        "rasgueado",
+        "golpe"
       ],
       "supportedEnergy": [4, 5],
       "phrasePosition": [

@@ -3,9 +3,8 @@ import type { WorldContract } from '../../data/styles/contracts';
 import { Region } from '../../types';
 import { Voice } from './arrange';
 import { VoiceProfile } from '../theory/instrumentProfile';
-import type { RhythmicContext } from '../sequencing/grid';
 import type { SectionEnergy, SpotlightMode } from '../../types';
-import { clampEnergy, energyOf, shapeScalarOf } from '../metadata/energy';
+import { clampEnergy } from '../metadata/energy';
 
 import { INSTRUMENTS_BY_ID } from '../../data/instruments';
 
@@ -248,7 +247,6 @@ export function decide(
   voice: Voice,
   prof: VoiceProfile,
   shape: SectionShape,
-  lift: number,
   bandSize: number,
   context?: ArrangementContext,
 ): ArrangementDecision {
@@ -257,7 +255,7 @@ export function decide(
   const spotlighted = context?.spotlightedTrackIds.includes(voice.id) ?? false;
   const sectionEnergy = context?.energyByTrack[voice.id] ?? 3;
 
-  let thin = (1 - shape.intensity) * (0.4 + lift * 1.2);
+  let thin = (1 - shape.intensity);
   if (shape.kind === 'breakdown') thin += 0.25;
   if (shape.kind === 'intro') thin += 0.2;
   if (shape.isOpening) thin += 0.1;
@@ -334,7 +332,7 @@ export function decide(
   }
 
   const centred = shape.intensity - 0.55;
-  let drive = 1 + centred * (0.35 + lift * 0.75);
+  let drive = 1 + centred * 0.725;
 
   if (shape.isBuild) drive *= 1.04;
   if (shape.isClosing) drive *= 0.92;
@@ -359,7 +357,7 @@ export function decide(
   if (shape.kind === 'breakdown') brightness *= 0.82;
   if (shape.kind === 'intro') brightness *= 0.9;
   if (shape.isBuild) brightness += 8;
-  brightness = Math.max(18, Math.min(127, brightness + (lift - 0.5) * 12));
+  brightness = Math.max(18, Math.min(127, brightness));
 
   let wet = mapped?.fxWetness ?? (1.35 - sectionEnergy * 0.1);
   if (shape.kind === 'breakdown' || shape.kind === 'intro') wet *= 1.12;

@@ -9,7 +9,6 @@ import { Region } from '../types';
 import { CHORD_PALETTE, CHORD_MOODS, CHORD_MOOD_ORDER, ChordMood, JAZZ_CHORD_LIBRARY, suggestedPaletteForStyle } from '../data/chordPalette';
 import { parseChord } from '../engine/theory/theory';
 import { formSummary } from '../data/genreForms';
-import { grooveSummary } from '../engine/generators/groove';
 import type { SectionEnergy } from '../types';
 import { ENERGY_LABELS } from '../engine/metadata/energy';
 
@@ -1439,127 +1438,7 @@ export function DownloadSheet({
   );
 }
 
-/* ---------------------------------------------------------------------------
-   PERFORMANCE
-   --------------------------------------------------------------------------- */
 
-function Dial({
-  label, hint, value, onChange, marks,
-}: {
-  label: string;
-  hint: string;
-  value: number;
-  onChange: (v: number) => void;
-  marks: [string, string, string];
-}) {
-  return (
-    <div className="mb-5">
-      <div className="flex items-baseline justify-between mb-1">
-        <div className="slab" style={{ fontSize: 15 }}>{label}</div>
-        <div className="micro opacity-70">{describe(value, marks)}</div>
-      </div>
-      <div className="micro opacity-70 mb-2" style={{ lineHeight: 1.4 }}>{hint}</div>
-      <input
-        type="range"
-        min={0}
-        max={100}
-        value={Math.round(value * 100)}
-        onChange={e => onChange(Number(e.target.value) / 100)}
-        className="w-full"
-        style={{ accentColor: 'var(--signal)' }}
-        aria-label={label}
-      />
-      <div className="flex justify-between micro opacity-50 mt-1" style={{ fontSize: 10 }}>
-        <span>{marks[0]}</span><span>{marks[1]}</span><span>{marks[2]}</span>
-      </div>
-    </div>
-  );
-}
-
-function describe(v: number, marks: [string, string, string]): string {
-  if (v < 0.22) return marks[0];
-  if (v > 0.78) return marks[2];
-  if (v > 0.4 && v < 0.6) return marks[1];
-  return v < 0.5 ? `toward ${marks[0]}` : `toward ${marks[2]}`;
-}
-
-export function PerformanceSheet({
-  open, onClose, worldId, pocket, lift,
-  adventure, development, expression,
-  onSetPocket, onSetLift,
-  onSetAdventure, onSetDevelopment, onSetExpression,
-}: {
-  open: boolean;
-  onClose: () => void;
-  worldId: string;
-  pocket: number;
-  lift: number;
-  adventure: number;
-  development: number;
-  expression: number;
-  onSetPocket: (v: number) => void;
-  onSetLift: (v: number) => void;
-  onSetAdventure: (v: number) => void;
-  onSetDevelopment: (v: number) => void;
-  onSetExpression: (v: number) => void;
-}) {
-  const groove = grooveSummary(worldId);
-
-  return (
-    <Sheet open={open} onClose={onClose} title="Performance">
-      <div
-        className="px-4 py-3 mb-5 rounded-[3px]"
-        style={{
-          background: 'color-mix(in srgb, var(--ink) 6%, transparent)',
-          boxShadow: 'inset 0 0 0 1px color-mix(in srgb, var(--ink) 12%, transparent)',
-        }}
-      >
-        <div className="slab" style={{ fontSize: 15 }}>{groove.name}</div>
-        <div className="micro opacity-75 mt-0.5" style={{ lineHeight: 1.4 }}>{groove.description}</div>
-      </div>
-
-      <Dial
-        label="Pocket"
-        hint="Human timing and swing feel."
-        value={pocket}
-        onChange={onSetPocket}
-        marks={['tight', 'authentic', 'loose']}
-      />
-
-      <Dial
-        label="Lift"
-        hint="Dynamic range and contrast between parts."
-        value={lift}
-        onChange={onSetLift}
-        marks={['flat', 'natural', 'dramatic']}
-      />
-
-      <Dial
-        label="Expression"
-        hint="How strongly ornaments, bends and swells are played. Left plays it straight."
-        value={expression}
-        onChange={onSetExpression}
-        marks={['plain', 'idiomatic', 'florid']}
-      />
-
-      <Dial
-        label="Development"
-        hint="How much a part changes each time it repeats."
-        value={development}
-        onChange={onSetDevelopment}
-        marks={['hypnotic', 'natural', 'restless']}
-      />
-
-      <Dial
-        label="Adventure"
-        hint="How far the engine may stray from this style's usual vocabulary. Right lets other genres in."
-        value={adventure}
-        onChange={onSetAdventure}
-        marks={['strict', 'idiomatic', 'open']}
-      />
-    </Sheet>
-  );
-}
 
 /* ========================================================================== */
 /*  Start Over / Fresh Song Modal                                             */

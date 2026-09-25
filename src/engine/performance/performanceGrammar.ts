@@ -31,6 +31,9 @@ export interface MicrotimingPolicy {
 }
 
 export interface PerformanceGrammar {
+  worldId?: string;
+  styleId?: string;
+
   /** Target density bounds (attacks per bar) by role. */
   densityByRole?: Record<string, {
     min: number;
@@ -275,7 +278,7 @@ export function resolveHybridGrammar(
 /**
  * Extracts or constructs a PerformanceGrammar from a style specification.
  */
-export function getPerformanceGrammar(style: any, role?: string): PerformanceGrammar {
+export function getPerformanceGrammar(style: any, _role?: string): PerformanceGrammar {
   if (!style) return DEFAULT_PERFORMANCE_GRAMMAR;
 
   const baseGrammar: PerformanceGrammar = style.performanceGrammar ?? {

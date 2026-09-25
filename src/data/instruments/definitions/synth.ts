@@ -8,7 +8,7 @@ export const synth: InstrumentDef = {
   voicing: "single",
   elementaryModel: 9,
   makeupGain: 0.39,
-  polyphony: 4,
+  polyphony: 8,
   note: "Lead synth voice",
   acousticProfile: {
     sustain: "sustained",
