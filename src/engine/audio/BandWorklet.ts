@@ -3,7 +3,7 @@ import WebRenderer from '@elemaudio/web-renderer';
 import { el } from '@elemaudio/core';
 import type { LuthierPhysicalParameters } from './LuthierAPI';
 import type { MasterChain } from './mixer';
-import { createMasterChain } from './mixer';
+import { createMasterChain, getRoleGainLinear } from './mixer';
 import { CulturalAcousticEvent } from '../theory/CulturalAcousticEvent';
 import {
   defaultTrackParams,
@@ -301,6 +301,8 @@ export class BandWorkletNode {
           if (dialect.bodyMultiplier !== undefined) params.body *= dialect.bodyMultiplier;
           if (dialect.bendGlideMs !== undefined) params.bendGlideMs = dialect.bendGlideMs;
         }
+        const role = instDef?.acousticProfile?.role || 'comp';
+        params.roleGain = getRoleGainLinear(role, this.activeStyleId || 'default');
         this.trackParamsMap.set(trackId, params);
 
         const voiceCount = getPolyphonyForTrack(instrumentId);
@@ -466,8 +468,9 @@ export class BandWorkletNode {
     else if (hitType === 'ghost') hitGainMultiplier = 0.45;
     else if (hitType === 'snare' || hitType === 'rim' || hitType === 'slap') hitGainMultiplier = 1.1;
 
+    const roleGain = (event as any).roleGain ?? params.roleGain ?? getRoleGainLinear(instDef?.acousticProfile?.role || 'comp', this.activeStyleId || 'default');
     const velScaled = Math.max(0.01, Math.min(1.0, (event.velocity ?? 90) / 127)) * hitGainMultiplier;
-    params.volume = Math.max(0.01, Math.min(35, velScaled * baseGain));
+    params.volume = Math.max(0.01, Math.min(35, velScaled * baseGain * roleGain));
 
     const articulationNorm = event.techniqueModifier === 'staccato' ? 0.9 : event.techniqueModifier === 'legato' ? 0.1 : 0.4;
     params.articulation = articulationNorm;
@@ -512,6 +515,9 @@ export class BandWorkletNode {
     (voice as any).triggerSeq = ++this.voiceSeq;
     voice.velocity = velScaled;
     voice.gate = 1;
+
+    voice.actionType = event.action?.type || (event as any).actionType;
+    voice.excitationType = (event as any).excitationType || params.excitationType;
 
     voice.attack = event.attack;
     voice.decay = event.decay;

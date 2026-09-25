@@ -10,7 +10,7 @@ export const acoustic_guitar: InstrumentDef = {
   bodyConstruction: "wood-box",
   excitationType: "hard-pick",
   elementaryModel: 0,
-  makeupGain: 4.053,
+  makeupGain: 30.000,
   polyphony: 8,
   note: "Steel-string dreadnought acoustic guitar with solid Sitka spruce top and phosphor bronze strings delivering crisp projection",
   acousticProfile: {

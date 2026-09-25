@@ -7,7 +7,7 @@ export const music_box: InstrumentDef = {
   program: 10,
   voicing: "single",
   elementaryModel: 8,
-  makeupGain: 1.357,
+  makeupGain: 0.985,
   polyphony: 4,
   acousticProfile: {
     sustain: "decaying",

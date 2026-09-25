@@ -8,6 +8,51 @@ import type {
 } from './phraseMemory';
 import { rand01, seedOf } from '../generators/groove';
 import type { ParsedChord } from '../theory/theory';
+import { resolveCrossInstrumentArticulation, applyGenreArticulationInfluence } from '../theory/articulation';
+
+export function applyArticulationDynamics(_baseVelocity: number, articulation: string): number {
+  switch (articulation) {
+    case 'bartok-pizzicato':
+    case 'sfz-accent':
+    case 'slap':
+    case 'pop':
+    case 'golpe':
+    case 'noise-burst':
+    case 'fm-bite':
+      return 25; // Heavy emphasis
+    case 'ghost-note':
+    case 'muted-key-thump':
+    case 'con-sordino':
+    case 'high-register-pp':
+      return -30; // De-emphasis
+    default:
+      return 0;
+  }
+}
+
+function getTargetInstrumentFamily(instrumentId?: string, role?: string): string {
+  const inst = (instrumentId || '').toLowerCase();
+  const r = (role || '').toLowerCase();
+  if (inst.includes('piano') || inst.includes('rhodes') || inst.includes('clavinet') || inst.includes('organ') || inst.includes('harpsichord') || inst.includes('celeste') || r === 'piano' || r === 'keyboard') {
+    return 'piano';
+  }
+  if (inst.includes('synth') || inst.includes('lead') || inst.includes('pad') || inst.includes('303') || inst.includes('polysynth') || inst.includes('saw')) {
+    return 'synth';
+  }
+  if (inst.includes('guitar') || inst.includes('tres') || inst.includes('cuatro') || inst.includes('cavaquinho') || inst.includes('requinto') || inst.includes('banjo') || inst.includes('mandolin') || inst.includes('oud') || inst.includes('sitar') || inst.includes('ukulele')) {
+    return 'guitar';
+  }
+  if (inst.includes('bass') || r === 'bass') {
+    return 'bass';
+  }
+  if (inst.includes('violin') || inst.includes('viola') || inst.includes('cello') || inst.includes('strings') || inst.includes('fiddle') || inst.includes('erhu') || r === 'strings') {
+    return 'strings';
+  }
+  if (inst.includes('trumpet') || inst.includes('trombone') || inst.includes('sax') || inst.includes('horn') || inst.includes('brass') || inst.includes('tuba') || inst.includes('flute') || inst.includes('clarinet') || inst.includes('oboe') || inst.includes('pipe') || r === 'brass' || r === 'woodwinds') {
+    return 'brass';
+  }
+  return 'piano';
+}
 
 export interface PerformanceExplanation {
   trackId: string;
@@ -407,29 +452,37 @@ export function interpretPattern(options: InterpretPatternOptions): Interpretati
 
     const calculatedVelocity = Math.max(20, Math.min(127, Math.round(o.accent * 100 * velocityMultiplier)));
 
+    const targetFamily = getTargetInstrumentFamily(instrumentId, role);
+    const genreContext = grammar.styleId || (grammar as any).genre || (options as any).genre || 'default';
+    const rawArticulation = contextualArticulation(
+      activeVariant?.articulation,
+      isCadenceBar,
+      isStructural,
+      grammar,
+      role,
+      instrumentId,
+      sectionKind,
+      beat,
+      o.duration,
+      seedOf(seed, barIndex, i, 'articulation'),
+      isPhraseEnd
+    );
+    const genreArticulation = rawArticulation ? applyGenreArticulationInfluence(rawArticulation, genreContext) : undefined;
+    const fusedArticulation = genreArticulation ? resolveCrossInstrumentArticulation(genreArticulation, targetFamily) : undefined;
+    const dynamicOffset = fusedArticulation ? applyArticulationDynamics(calculatedVelocity, fusedArticulation) : 0;
+    const finalVelocity = Math.max(1, Math.min(127, calculatedVelocity + dynamicOffset));
+
     attacks.push({
       beat,
       durationSteps: o.duration,
       accent: o.accent,
-      velocity: calculatedVelocity,
+      velocity: finalVelocity,
       source: 'authored',
       kind: baseKind,
       pitchIntent,
       structural: isStructural,
       hitType: o.hitType,
-      articulation: contextualArticulation(
-        activeVariant?.articulation,
-        isCadenceBar,
-        isStructural,
-        grammar,
-        role,
-        instrumentId,
-        sectionKind,
-        beat,
-        o.duration,
-        seedOf(seed, barIndex, i, 'articulation'),
-        isPhraseEnd
-      ),
+      articulation: fusedArticulation,
       onsetIndex: o.originalIdx,
       registerOffset,
     });

@@ -11,7 +11,7 @@ export const requinto: InstrumentDef = {
   bodyConstruction: "wood-box",
   excitationType: "plectrum",
   elementaryModel: 0,
-  makeupGain: 3.916,
+  makeupGain: 30.000,
   polyphony: 4,
   note: "High-register lead guitar color",
   acousticProfile: {

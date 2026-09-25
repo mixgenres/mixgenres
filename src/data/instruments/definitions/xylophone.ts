@@ -7,7 +7,7 @@ export const xylophone: InstrumentDef = {
   program: 13,
   voicing: "single",
   elementaryModel: 8,
-  makeupGain: 2.853,
+  makeupGain: 2.175,
   polyphony: 4,
   acousticProfile: {
     sustain: "decaying",

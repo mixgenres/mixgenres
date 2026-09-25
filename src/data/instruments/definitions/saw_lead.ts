@@ -8,7 +8,7 @@ export const saw_lead: InstrumentDef = {
   octave: 12,
   voicing: "single",
   elementaryModel: 9,
-  makeupGain: 0.391,
+  makeupGain: 0.415,
   polyphony: 4,
   acousticProfile: {
     sustain: "sustained",

@@ -11,7 +11,7 @@ export const kane: InstrumentDef = {
   },
   voicing: "unpitched",
   elementaryModel: 18,
-  makeupGain: 0.944,
+  makeupGain: 0.209,
   polyphony: 8,
   note: "Small handheld bronze gong of Japanese festival music struck inside the rim with deer-antler mallet (shumoku)",
   acousticProfile: {

@@ -7,7 +7,7 @@ export const synth_strings: InstrumentDef = {
   program: 50,
   voicing: "chord",
   elementaryModel: 6,
-  makeupGain: 0.255,
+  makeupGain: 0.361,
   polyphony: 8,
   acousticProfile: {
     sustain: "sustained",

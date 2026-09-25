@@ -7,7 +7,7 @@ export const concertina: InstrumentDef = {
   program: 21,
   voicing: "chord",
   elementaryModel: 10,
-  makeupGain: 0.63,
+  makeupGain: 0.685,
   polyphony: 8,
   note: "Hexagonal Anglo-Celtic concertina with bright reedy punch and lively dance ornamentation",
   acousticProfile: {

@@ -9,7 +9,7 @@ export const slide_guitar: InstrumentDef = {
   bodyConstruction: "wood-box",
   excitationType: "hard-pick",
   elementaryModel: 0,
-  makeupGain: 4.282,
+  makeupGain: 30.000,
   polyphony: 4,
   note: "fretted string guitar played with slide; continuous portamento and vocal bends",
   acousticProfile: {

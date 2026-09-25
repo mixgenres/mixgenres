@@ -510,10 +510,11 @@ To launch the live developer **Style Inspector**, append `?dev=style` to the URL
 Mix Genres includes a comprehensive suite of offline verification and diagnostic tools:
 
 ```bash
-# Type check the codebase without emitting artifacts
+# Type check the codebase without emitting artifacts (strict TypeScript)
+npm run check
 npm run lint
 
-# Run unit tests (DSP filter test & microtiming consistency)
+# Run all test suites (DSP filters, microtiming consistency, instrument audit & audio regression)
 npm test
 
 # Run microtiming consistency verification only

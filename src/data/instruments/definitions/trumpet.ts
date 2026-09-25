@@ -9,7 +9,7 @@ export const trumpet: InstrumentDef = {
   bodyConstruction: "metal-shell",
   excitationType: "breath",
   elementaryModel: 15,
-  makeupGain: 0.55,
+  makeupGain: 0.404,
   polyphony: 4,
   note: "Bb brass trumpet providing piercing mambo brass stabs, screaming lead lines, and warm cup-muted ballad tones",
   acousticProfile: {
@@ -88,7 +88,9 @@ export const trumpet: InstrumentDef = {
       "doit",
       "fall",
       "shake",
-      "cup-mute"
+      "cup-mute",
+      "bend",
+      "vibrato"
     ],
     techniqueMethods: [
       "lip buzzing lip-trills",

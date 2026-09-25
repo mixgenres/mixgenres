@@ -7,7 +7,7 @@ export const synth: InstrumentDef = {
   program: 81,
   voicing: "single",
   elementaryModel: 9,
-  makeupGain: 0.39,
+  makeupGain: 0.415,
   polyphony: 8,
   note: "Lead synth voice",
   acousticProfile: {

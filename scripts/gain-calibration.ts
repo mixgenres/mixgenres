@@ -308,6 +308,41 @@ async function main() {
     console.log(`  '${instId}': ${ov.gainMultiplier.toFixed(3)}, // ${ov.lufsDiff > 0 ? '+' : ''}${ov.lufsDiff.toFixed(1)} dB deviation from model ${ov.model}`);
   }
   console.log('};');
+
+  if (process.argv.includes('--apply')) {
+    console.log('\n--- Applying Calibration to Instrument Definitions ---');
+    const fs = await import('fs');
+    const path = await import('path');
+    const defsDir = path.resolve(process.cwd(), 'src/data/instruments/definitions');
+    if (fs.existsSync(defsDir)) {
+      const files = fs.readdirSync(defsDir);
+      let updatedCount = 0;
+      for (const file of files) {
+        if (!file.endsWith('.ts')) continue;
+        const filePath = path.join(defsDir, file);
+        let content = fs.readFileSync(filePath, 'utf8');
+
+        // Extract instrument ID
+        const idMatch = content.match(/id:\s*["']([^"']+)["']/);
+        if (idMatch) {
+          const id = idMatch[1].toLowerCase();
+          const luthier = getLuthierModelForInstrument(id);
+          const model = modelForInstrument(id, luthier);
+          const override = instrumentOverrides[id];
+          const gain = override ? override.gainMultiplier : (gainByModel[model] ?? 1.0);
+
+          if (/makeupGain:\s*[\d.]+/.test(content)) {
+            content = content.replace(/makeupGain:\s*[\d.]+/, `makeupGain: ${gain.toFixed(3)}`);
+          } else {
+            content = content.replace(/(elementaryModel:\s*\d+,)/, `$1\n  makeupGain: ${gain.toFixed(3)},`);
+          }
+          fs.writeFileSync(filePath, content, 'utf8');
+          updatedCount++;
+        }
+      }
+      console.log(`Updated ${updatedCount} instrument definition files with ITU-R BS.1770 calibrated makeupGain.`);
+    }
+  }
 }
 
 main().catch(err => {

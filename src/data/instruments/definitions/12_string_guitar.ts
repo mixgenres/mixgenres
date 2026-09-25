@@ -10,7 +10,7 @@ export const i_12_string_guitar: InstrumentDef = {
   bodyConstruction: "wood-box",
   excitationType: "hard-pick",
   elementaryModel: 0,
-  makeupGain: 3.384,
+  makeupGain: 30.000,
   polyphony: 8,
   note: "Double-course steel acoustic guitar with octave-doubled lower strings and unison trebles",
   acousticProfile: {

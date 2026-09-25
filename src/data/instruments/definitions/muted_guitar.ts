@@ -10,7 +10,7 @@ export const muted_guitar: InstrumentDef = {
   bodyConstruction: "solid-electric",
   excitationType: "hard-pick",
   elementaryModel: 23,
-  makeupGain: 7.116,
+  makeupGain: 30.000,
   polyphony: 8,
   acousticProfile: {
     sustain: "short",

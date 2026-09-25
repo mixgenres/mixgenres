@@ -114,6 +114,7 @@ function voiceId(trackId: string | number, midi: number): string {
 
 import { resolveDialect } from '../theory/dialects';
 import { resolveTuningSystem } from '../theory/tuning';
+import { getRoleGainLinear } from './mixer';
 
 export function createSink(): TransportSink {
   return {
@@ -177,6 +178,52 @@ export function createSink(): TransportSink {
         }
       }
 
+      let excitationType = instDef?.excitationType ?? instDef?.luthierPhysics?.excitationType ?? 'fingerpad';
+
+      // Comprehensive physical excitation mappings based on cultural techniques and fusion output
+      const FINGERPAD_ARTS = [
+        'fingerstyle', 'pizzicato', 'thumb-slap', 'thumb-sweep', 'tirando', 'apoyando',
+        'short-decay-pluck', 'tight-env-pluck', 'finger-snap'
+      ];
+      const HARD_PICK_ARTS = [
+        'flatpick', 'pick', 'fast-picking', 'tremolo-picking', 'ricochet', 'heavy-detaché', 
+        'hard-pizzicato', 'bartok-pizzicato', 'fm-bite'
+      ];
+      const NAIL_ARTS = [
+        'rasgueado', 'golpe', 'alzapúa', 'alzapua', 'picado', 'fast-arpeggiato', 'fast-chord-rake',
+        'noise-burst', 'noise-transient', 'cluster-tap'
+      ];
+      const HAMMER_ARTS = [
+        'staccato', 'staccatissimo', 'bass-cluster-staccato', 'accented-staccato-octave',
+        'muted-key-thump', 'trill'
+      ];
+      const BOW_ARTS = [
+        'arco', 'e-bow-sustain', 'tremolo-bow', 'sul-ponticello-heavy', 'glissando-down', 'glissando-up'
+      ];
+      const AIR_ARTS = [
+        'flutter-tongue', 'rip', 'tongue-slap', 'stopped', 'double-tongue', 'fp-crescendo'
+      ];
+
+      const artLow = (effectiveArticulation || actionType || '').toLowerCase();
+
+      // Forward the vastly expanded articulation map to physical model triggers
+      if (FINGERPAD_ARTS.includes(actionType) || FINGERPAD_ARTS.includes(artLow)) {
+        excitationType = 'fingerpad';
+      } else if (HARD_PICK_ARTS.includes(actionType) || HARD_PICK_ARTS.includes(artLow)) {
+        excitationType = 'hard-pick';
+      } else if (NAIL_ARTS.includes(actionType) || NAIL_ARTS.includes(artLow)) {
+        excitationType = 'nail';
+      } else if (HAMMER_ARTS.includes(actionType) || HAMMER_ARTS.includes(artLow)) {
+        excitationType = 'hammer'; // Native mapping for Piano, Dulcimer, Mallets
+      } else if (BOW_ARTS.includes(actionType) || BOW_ARTS.includes(artLow)) {
+        excitationType = 'bow';    // Native mapping for Strings, continuous pads
+      } else if (AIR_ARTS.includes(actionType) || AIR_ARTS.includes(artLow)) {
+        excitationType = 'breath'; // Native mapping for Brass, Woodwinds
+      }
+
+      const role = instDef?.acousticProfile?.role || 'comp';
+      const roleGain = getRoleGainLinear(role, activeWorldId || 'default');
+
       const contactPoint = Math.max(0.05, Math.min(0.95, dialect?.contactPointOverride ?? (0.5 - (vel01 - 0.5) * 0.3 + (Math.random() - 0.5) * 0.12)));
       const mass = Math.max(0.1, Math.min(0.95, 0.35 + vel01 * 0.5 + (Math.random() - 0.5) * 0.1));
 
@@ -195,7 +242,10 @@ export function createSink(): TransportSink {
         frequencyHz: freqHz,
         duration: 0.5,
         techniqueModifier: effectiveArticulation,
-      }, time);
+        actionType,
+        excitationType,
+        roleGain,
+      } as any, time);
     },
     noteOff(trackId, midi, time) {
       // Releases sustain-capable voices (bowed/reed/wind/held synth); a

@@ -120,6 +120,7 @@ actionType?: 'strike' | 'pluck' | 'bow_drag' | 'abanico' | 'rasgueado' | 'tap' |
 technique?: string;
 hitType?: string;
 articulation?: string;
+excitationType?: 'plectrum' | 'nail' | 'fingerpad' | 'hard-pick' | 'hammer' | 'stick' | 'mallet' | 'breath' | 'bow' | string;
 contactPoint?: number;
 mass?: number;
 frequencyHz?: number;
@@ -156,6 +157,7 @@ courses?: number;
 bodyConstruction?: 'wood-box' | 'gourd' | 'skin-faced' | 'board' | 'solid-electric' | 'metal-shell' | 'brass-tube';
 excitationType?: 'plectrum' | 'nail' | 'fingerpad' | 'hard-pick' | 'hammer' | 'stick' | 'mallet' | 'breath' | 'bow';
 sympatheticStrings?: boolean;
+roleGain?: number;
 }
 export interface PluckedPreset {
 courses: number;
@@ -1196,7 +1198,7 @@ case 1:
 default: {
   const B = 0.00015;
   const isRasgueado = action === 'abanico' || action === 'rasgueado' || params.articulation > 0.6;
-  const excitation = params.excitationType ?? 'fingerpad';
+  const excitation = voice.excitationType ?? params.excitationType ?? 'fingerpad';
   const construction = params.bodyConstruction ?? 'wood-box';
   const numCourses = params.courses ?? 1;
   const hasSympathetic = Boolean(params.sympatheticStrings);
@@ -1352,7 +1354,7 @@ if (voices.length === 0) {
 const zero = el.const({ value: 0 });
 return { left: zero, right: zero };
 }
-const voiceNodes = voices.map((v, idx) => renderVoice(trackId, idx, v, params));
+const voiceNodes = voices.map((v, idx) => el.tanh(renderVoice(trackId, idx, v, params)));
 const sum = voiceNodes.length === 1 ? voiceNodes[0] : el.add(...voiceNodes);
 const trackVol = el.mul(el.const({ key: `track_${trackId}_vol`, value: params.volume }), sum);
 const pan = Math.max(0, Math.min(1, params.pan));
@@ -1361,8 +1363,8 @@ const rightGain = Math.sin(pan * Math.PI * 0.5);
 const left = el.mul(el.const({ key: `track_${trackId}_panL`, value: leftGain }), trackVol);
 const right = el.mul(el.const({ key: `track_${trackId}_panR`, value: rightGain }), trackVol);
 return {
-left: el.tanh(left),
-right: el.tanh(right),
+left,
+right,
 };
 }
 export interface CategorizedTrackSignal {

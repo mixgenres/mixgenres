@@ -10,7 +10,7 @@ export const fiddle: InstrumentDef = {
   bodyConstruction: "wood-box",
   excitationType: "bow",
   elementaryModel: 6,
-  makeupGain: 6.667,
+  makeupGain: 32.362,
   polyphony: 4,
   note: "Fiddle for folk and country",
   acousticProfile: {

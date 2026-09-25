@@ -11,7 +11,7 @@ export const cuica: InstrumentDef = {
   },
   voicing: "unpitched",
   elementaryModel: 0,
-  makeupGain: 4.282,
+  makeupGain: 30.000,
   polyphony: 8,
   note: "Brazilian friction drum; internal bamboo cane rubbed with moist cloth producing singing, expressive pitch glissandi",
   acousticProfile: {

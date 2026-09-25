@@ -7,7 +7,7 @@ export const halo_pad: InstrumentDef = {
   program: 94,
   voicing: "chord",
   elementaryModel: 9,
-  makeupGain: 0.236,
+  makeupGain: 0.415,
   polyphony: 8,
   note: "Ethereal synthesizer pad with high-frequency crystalline overtone halo and celestial shimmer",
   acousticProfile: {

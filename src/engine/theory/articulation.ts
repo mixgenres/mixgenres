@@ -592,6 +592,138 @@ const SPECS: ArticulationSpec[] = [
     durationScale: 1.25,
     onsetMs: 9,
   },
+  {
+    id: 'montuno',
+    family: 'reiteration',
+    aliases: ['montuno', 'guajeo', 'piano-montuno', 'tumbao-piano'],
+    uses: ['note-length', 'velocity'],
+    fidelity: 'faithful',
+    durationScale: 0.85,
+    velocityScale: 1.05,
+    instrumentFamilies: ['bellows-and-keys', 'plucked'],
+  },
+  {
+    id: 'repique',
+    family: 'reiteration',
+    aliases: ['repique', 'repiqueteo', 'tres-repique'],
+    uses: ['extra-notes', 'velocity'],
+    fidelity: 'faithful',
+    reiteration: { count: 3, distribution: 'front', decay: 0.95 },
+    velocityScale: 1.1,
+    instrumentFamilies: ['plucked', 'hand-drums'],
+  },
+  {
+    id: 'palhetada',
+    family: 'reiteration',
+    aliases: ['palhetada', 'fast-cavaquinho-picking'],
+    uses: ['extra-notes', 'velocity'],
+    fidelity: 'faithful',
+    reiteration: { count: 4, distribution: 'even', decay: 0.96 },
+    velocityScale: 1.05,
+    instrumentFamilies: ['plucked'],
+  },
+  {
+    id: 'pop',
+    family: 'attack',
+    aliases: ['pop', 'slap-pop', 'hard-pop', 'thumb-slap', 'string-pop'],
+    uses: ['velocity', 'note-length'],
+    fidelity: 'faithful',
+    velocityScale: 1.28,
+    durationScale: 0.45,
+    instrumentFamilies: ['plucked'],
+  },
+  {
+    id: 'hammer-on',
+    family: 'pitch-gesture',
+    aliases: ['hammer-on', 'hammer', 'pull-off', 'slur-hammer'],
+    uses: ['velocity', 'note-length'],
+    fidelity: 'faithful',
+    velocityScale: 0.88,
+    durationScale: 1.15,
+    instrumentFamilies: ['plucked'],
+  },
+  {
+    id: 'flutter-tongue',
+    family: 'timbre',
+    aliases: ['flutter-tongue', 'flutter', 'frullato'],
+    uses: ['cc-automation', 'extra-notes'],
+    fidelity: 'faithful',
+    reiteration: { count: 6, distribution: 'even', decay: 0.98 },
+    velocityScale: 1.08,
+    instrumentFamilies: ['winds'],
+  },
+  {
+    id: 'subtone',
+    family: 'timbre',
+    aliases: ['subtone', 'warm-subtone', 'breathy-subtone'],
+    uses: ['velocity', 'cc-automation'],
+    fidelity: 'faithful',
+    velocityScale: 0.72,
+    durationScale: 1.2,
+    instrumentFamilies: ['winds'],
+  },
+  {
+    id: 'growl',
+    family: 'timbre',
+    aliases: ['growl', 'throat-growl', 'wind-growl'],
+    uses: ['cc-automation', 'velocity'],
+    fidelity: 'faithful',
+    velocityScale: 1.18,
+    durationScale: 0.9,
+    instrumentFamilies: ['winds'],
+  },
+  {
+    id: 'altissimo',
+    family: 'pitch-gesture',
+    aliases: ['altissimo', 'high-register', 'overblow'],
+    uses: ['velocity', 'pitch-bend'],
+    fidelity: 'faithful',
+    velocityScale: 1.22,
+    instrumentFamilies: ['winds'],
+  },
+  {
+    id: 'toe',
+    family: 'attack',
+    aliases: ['toe', 'heel-toe', 'toe-touch', 'tap'],
+    uses: ['velocity', 'note-length'],
+    fidelity: 'faithful',
+    velocityScale: 0.48,
+    durationScale: 0.35,
+    instrumentFamilies: ['hand-drums'],
+  },
+  {
+    id: 'chacha',
+    family: 'attack',
+    aliases: ['chachá', 'chacha', 'bata-chacha'],
+    uses: ['velocity', 'note-length'],
+    fidelity: 'faithful',
+    velocityScale: 0.75,
+    durationScale: 0.45,
+    instrumentFamilies: ['hand-drums'],
+  },
+  {
+    id: 'choke',
+    family: 'duration',
+    aliases: ['choke', 'cymbal-choke', 'timbale-choke', 'damped-choke'],
+    uses: ['note-length'],
+    fidelity: 'faithful',
+    durationScale: 0.18,
+    gapFill: 0.15,
+    instrumentFamilies: ['metal-and-wood', 'hand-drums'],
+  },
+  {
+    id: 'meend',
+    family: 'pitch-gesture',
+    aliases: ['meend', 'mind', 'gamak', 'bayan-meend'],
+    uses: ['pitch-bend'],
+    fidelity: 'faithful',
+    bend: [
+      { at: 0, semitones: 0 },
+      { at: 0.5, semitones: 1.2 },
+      { at: 1, semitones: 0 },
+    ],
+    instrumentFamilies: ['plucked', 'hand-drums', 'bowed'],
+  },
 ];
 
 /* ------------------------------------------------------------------------- */
@@ -610,6 +742,132 @@ const ALIAS_INDEX: Map<string, ArticulationSpec> = (() => {
   }
   return m;
 })();
+
+/**
+ * Cross-Instrument Articulation Fusion Mappings
+ * Translates genre-specific techniques to idiomatic equivalents on different instrument families.
+ * Ensures that a Flamenco pattern assigned to a Synth creatively interprets 'rasgueado' correctly.
+ */
+export const ARTICULATION_FUSION_MAP: Record<string, Record<string, string>> = {
+  piano: {
+    'rasgueado': 'arpeggiato-fast',
+    'golpe': 'bass-cluster-staccato',
+    'alzapúa': 'stride-bass-sweep',
+    'palm-mute': 'staccato',
+    'tremolo': 'trill',
+    'harmonics': 'high-register-pp',
+    'slap': 'accented-staccato-octave',
+    'pop': 'high-accent',
+    'ghost-note': 'muted-key-thump',
+    'pizzicato': 'staccato',
+    'spiccato': 'staccatissimo',
+    'col-legno': 'cluster-tap',
+    'bartok-pizzicato': 'sfz-accent',
+    'flutter-tongue': 'tremolo-trill',
+    'fall': 'downward-glissando',
+    'doit': 'upward-glissando',
+    'growl': 'cluster-tremolo',
+  },
+  synth: {
+    'rasgueado': 'filter-sweep-fast',
+    'golpe': 'noise-burst',
+    'alzapúa': 'arp-down-up',
+    'palm-mute': 'low-cutoff-pluck',
+    'tremolo': 'lfo-amp-fast',
+    'harmonics': 'high-resonance-ping',
+    'slap': 'fm-bite',
+    'pop': 'resonance-spike',
+    'ghost-note': 'noise-click',
+    'pizzicato': 'short-decay-pluck',
+    'spiccato': 'tight-env-pluck',
+    'col-legno': 'noise-transient',
+    'bartok-pizzicato': 'pitch-env-snap',
+    'flutter-tongue': 'lfo-rate-max',
+    'fall': 'pitch-env-down',
+    'doit': 'pitch-env-up',
+    'growl': 'fm-mod-heavy',
+  },
+  guitar: {
+    'fast-arpeggiato': 'rasgueado',
+    'glissando': 'fret-slide',
+    'slap': 'thumb-slap',
+    'pop': 'finger-snap',
+    'arco': 'e-bow-sustain',
+    'pizzicato': 'tirando',
+    'spiccato': 'palm-mute',
+    'col-legno': 'golpe',
+    'bartok-pizzicato': 'string-snap',
+    'flutter-tongue': 'tremolo-picking',
+    'fall': 'whammy-dive',
+    'doit': 'whammy-pull',
+    'growl': 'fuzz-overdrive',
+  },
+  bass: {
+    'rasgueado': 'fast-chord-rake',
+    'golpe': 'ghost-note-thump',
+    'alzapúa': 'thumb-sweep',
+    'tremolo': 'fast-picking',
+    'pizzicato': 'fingerstyle',
+    'spiccato': 'palm-mute',
+    'col-legno': 'slap-dead-note',
+    'bartok-pizzicato': 'hard-pop',
+    'flutter-tongue': 'fast-slap-pop',
+    'fall': 'slide-down',
+    'doit': 'slide-up',
+  },
+  strings: {
+    'rasgueado': 'ricochet',
+    'golpe': 'col-legno-battuto',
+    'alzapúa': 'heavy-detaché',
+    'palm-mute': 'con-sordino',
+    'slap': 'bartok-pizzicato',
+    'pop': 'hard-pizzicato',
+    'ghost-note': 'muted-scrape',
+    'flutter-tongue': 'tremolo-bow',
+    'fall': 'glissando-down',
+    'doit': 'glissando-up',
+    'growl': 'sul-ponticello-heavy',
+    'pitch-bend': 'portamento',
+  },
+  brass: {
+    'rasgueado': 'rip',
+    'golpe': 'tongue-slap',
+    'alzapúa': 'fast-valve-sweep',
+    'palm-mute': 'stopped',
+    'slap': 'fp-crescendo',
+    'pop': 'staccatissimo-accent',
+    'pizzicato': 'staccato',
+    'spiccato': 'double-tongue',
+    'col-legno': 'key-click',
+    'tremolo': 'flutter-tongue',
+    'bartok-pizzicato': 'sfz-staccato',
+  },
+};
+
+// Pre-fusion genre influences.
+// This intercepts generic techniques and applies stylistic interpretation BEFORE
+// it reaches the physical instrument model. A generic 'strum' becomes a 'rasgueado' in Flamenco,
+// which the physical model will creatively interpret via the ARTICULATION_FUSION_MAP.
+export const GENRE_ARTICULATION_INFLUENCE: Record<string, Record<string, string>> = {
+  flamenco: { 'normal': 'tirando', 'strum': 'rasgueado', 'accent': 'golpe', 'arpeggio': 'alzapúa' },
+  jazz: { 'normal': 'swing-eighth', 'accent': 'ghost-note', 'strum': 'comp-chord' },
+  electronic: { 'normal': 'tight-env-pluck', 'strum': 'filter-sweep-fast', 'accent': 'fm-bite' },
+  rock: { 'normal': 'down-pick', 'strum': 'power-chord', 'accent': 'palm-mute' },
+};
+
+export function applyGenreArticulationInfluence(articulation: string, genre: string): string {
+  const baseArt = articulation || 'normal';
+  const genreKey = (genre || '').toLowerCase();
+  const genreMap = GENRE_ARTICULATION_INFLUENCE[genreKey];
+  return (genreMap && genreMap[baseArt]) ? genreMap[baseArt] : baseArt;
+}
+
+export function resolveCrossInstrumentArticulation(articulation: string, targetFamily: string): string {
+  if (!articulation) return 'normal';
+  const familyKey = (targetFamily || '').toLowerCase();
+  const familyMap = ARTICULATION_FUSION_MAP[familyKey];
+  return (familyMap && familyMap[articulation]) ? familyMap[articulation] : articulation;
+}
 
 /**
  * Resolve a free-text articulation name from a catalog or style grammar.

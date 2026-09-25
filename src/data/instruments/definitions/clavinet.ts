@@ -7,7 +7,7 @@ export const clavinet: InstrumentDef = {
   program: 7,
   voicing: "chord",
   elementaryModel: 19,
-  makeupGain: 9.706,
+  makeupGain: 30.000,
   polyphony: 8,
   acousticProfile: {
     sustain: "short",

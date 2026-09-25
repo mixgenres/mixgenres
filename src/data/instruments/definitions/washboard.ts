@@ -11,7 +11,7 @@ export const washboard: InstrumentDef = {
   },
   voicing: "unpitched",
   elementaryModel: 0,
-  makeupGain: 4.282,
+  makeupGain: 30.000,
   polyphony: 8,
   note: "corrugated metal scraper; dry brushed rhythmic subdivision",
   acousticProfile: {

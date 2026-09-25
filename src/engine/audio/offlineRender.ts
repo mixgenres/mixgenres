@@ -5,7 +5,7 @@ import OfflineRenderer from '@elemaudio/offline-renderer';
 import type { Performance, PerfNote, PerfCC } from '../sequencing/perform';
 import { getLuthierModelForInstrument } from './LuthierAPI';
 import { resolveDialect, performanceModeForContext } from '../theory/dialects';
-import { createMasterChain } from './mixer';
+import { createMasterChain, getRoleGainLinear } from './mixer';
 import { contractForGenre } from '../../data/styles/contracts';
 import {
   defaultTrackParams,
@@ -227,6 +227,10 @@ export async function renderPerformanceToMp3(
       if (dialect.bendGlideMs !== undefined) params.bendGlideMs = dialect.bendGlideMs;
     }
 
+    const role = instDef?.acousticProfile?.role || 'comp';
+    const roleGain = getRoleGainLinear(role, options.styleId || 'default');
+    params.roleGain = roleGain;
+
     let trackMixVolume = 1.0;
     if (options.mixState) {
       if (options.mixState.volume?.[trackId] !== undefined) {
@@ -382,12 +386,56 @@ export async function renderPerformanceToMp3(
             else if (hitType === 'ghost') hitGainMultiplier = 0.45;
             else if (hitType === 'snare' || hitType === 'rim' || hitType === 'slap') hitGainMultiplier = 1.1;
 
+            const role = instDef?.acousticProfile?.role || 'comp';
+            const roleGain = params.roleGain ?? getRoleGainLinear(role, options.styleId || 'default');
             const velScaled = Math.max(0.01, Math.min(1.0, event.note.vel / 127)) * hitGainMultiplier;
-            params.volume = Math.max(0.01, Math.min(35, velScaled * baseGain * trackMixVolume));
+            params.volume = Math.max(0.01, Math.min(35, velScaled * baseGain * roleGain * trackMixVolume));
 
             const articulationNorm =
               event.note.articulation === 'staccato' ? 0.9 : event.note.articulation === 'legato' ? 0.1 : 0.4;
             params.articulation = articulationNorm;
+
+            // FIX: Apply actionType and excitationType for offline rendering parity
+            const actionType = (event.note as any).actionType || event.note.articulation;
+            let excitationType = (event.note as any).excitationType || instDef?.excitationType || instDef?.luthierPhysics?.excitationType || 'fingerpad';
+
+            const FINGERPAD_ARTS = [
+              'fingerstyle', 'pizzicato', 'thumb-slap', 'thumb-sweep', 'tirando', 'apoyando',
+              'short-decay-pluck', 'tight-env-pluck', 'finger-snap'
+            ];
+            const HARD_PICK_ARTS = [
+              'flatpick', 'pick', 'fast-picking', 'tremolo-picking', 'ricochet', 'heavy-detaché', 
+              'hard-pizzicato', 'bartok-pizzicato', 'fm-bite'
+            ];
+            const NAIL_ARTS = [
+              'rasgueado', 'golpe', 'alzapúa', 'alzapua', 'picado', 'fast-arpeggiato', 'fast-chord-rake',
+              'noise-burst', 'noise-transient', 'cluster-tap'
+            ];
+            const HAMMER_ARTS = [
+              'staccato', 'staccatissimo', 'bass-cluster-staccato', 'accented-staccato-octave',
+              'muted-key-thump', 'trill'
+            ];
+            const BOW_ARTS = [
+              'arco', 'e-bow-sustain', 'tremolo-bow', 'sul-ponticello-heavy', 'glissando-down', 'glissando-up'
+            ];
+            const AIR_ARTS = [
+              'flutter-tongue', 'rip', 'tongue-slap', 'stopped', 'double-tongue', 'fp-crescendo'
+            ];
+
+            const artLow = (event.note.articulation || actionType || '').toLowerCase();
+            if (FINGERPAD_ARTS.includes(actionType) || FINGERPAD_ARTS.includes(artLow)) {
+              excitationType = 'fingerpad';
+            } else if (HARD_PICK_ARTS.includes(actionType) || HARD_PICK_ARTS.includes(artLow)) {
+              excitationType = 'hard-pick';
+            } else if (NAIL_ARTS.includes(actionType) || NAIL_ARTS.includes(artLow)) {
+              excitationType = 'nail';
+            } else if (HAMMER_ARTS.includes(actionType) || HAMMER_ARTS.includes(artLow)) {
+              excitationType = 'hammer';
+            } else if (BOW_ARTS.includes(actionType) || BOW_ARTS.includes(artLow)) {
+              excitationType = 'bow';
+            } else if (AIR_ARTS.includes(actionType) || AIR_ARTS.includes(artLow)) {
+              excitationType = 'breath';
+            }
 
             // Prefer idle voice; if all busy, steal oldest
             const idleVoices = voices.filter(v => v.gate === 0);
@@ -414,6 +462,9 @@ export async function renderPerformanceToMp3(
             (voice as any).triggerSeq = ++eventSeq;
             voice.velocity = velScaled;
             voice.gate = 1;
+
+            voice.actionType = actionType;
+            voice.excitationType = excitationType;
 
             voice.attack = (event.note as any).attack;
             voice.decay = (event.note as any).decay;

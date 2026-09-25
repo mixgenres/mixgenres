@@ -7,7 +7,7 @@ export const horn_section: InstrumentDef = {
   program: 61,
   voicing: "chord",
   elementaryModel: 15,
-  makeupGain: 0.467,
+  makeupGain: 0.404,
   polyphony: 8,
   note: "Tight funk and soul brass section (trumpet, tenor sax, trombone) with laser-accurate syncopated hits",
   acousticProfile: {

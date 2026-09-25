@@ -7,7 +7,7 @@ export const sho: InstrumentDef = {
   program: 16,
   voicing: "chord",
   elementaryModel: 10,
-  makeupGain: 0.638,
+  makeupGain: 0.685,
   polyphony: 8,
   note: "Sustained Japanese reed-organ cluster",
   acousticProfile: {

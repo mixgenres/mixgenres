@@ -11,7 +11,7 @@ export const castanets: InstrumentDef = {
   },
   voicing: "unpitched",
   elementaryModel: 18,
-  makeupGain: 26.921,
+  makeupGain: 0.209,
   polyphony: 8,
   note: "Pair of concave hardwood shells clapped together by flamenco dancers and orchestral percussionists",
   acousticProfile: {

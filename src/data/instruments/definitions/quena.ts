@@ -8,7 +8,7 @@ export const quena: InstrumentDef = {
   octave: 12,
   voicing: "single",
   elementaryModel: 7,
-  makeupGain: 19.438,
+  makeupGain: 0.356,
   polyphony: 4,
   acousticProfile: {
     sustain: "blown",

@@ -10,7 +10,7 @@ export const jazz_guitar: InstrumentDef = {
   bodyConstruction: "wood-box",
   excitationType: "fingerpad",
   elementaryModel: 22,
-  makeupGain: 1.813,
+  makeupGain: 30.000,
   polyphony: 8,
   acousticProfile: {
     sustain: "decaying",

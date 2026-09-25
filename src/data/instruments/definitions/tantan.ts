@@ -11,7 +11,7 @@ export const tantan: InstrumentDef = {
   },
   voicing: "unpitched",
   elementaryModel: 0,
-  makeupGain: 4.282,
+  makeupGain: 30.000,
   polyphony: 8,
   note: "Brazilian pagode bass drum; low open tone and damped syncopated strokes",
   acousticProfile: {

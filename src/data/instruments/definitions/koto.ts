@@ -10,7 +10,7 @@ export const koto: InstrumentDef = {
   bodyConstruction: "board",
   excitationType: "fingerpad",
   elementaryModel: 0,
-  makeupGain: 3.289,
+  makeupGain: 30.000,
   polyphony: 4,
   note: "Standard Koto timbre (GM Program 107)",
   acousticProfile: {

@@ -10,7 +10,7 @@ export const guitarron: InstrumentDef = {
   bodyConstruction: "wood-box",
   excitationType: "fingerpad",
   elementaryModel: 0,
-  makeupGain: 3.577,
+  makeupGain: 30.000,
   polyphony: 4,
   note: "Large acoustic bass guitar from Mexico used in mariachi and folk music",
   acousticProfile: {

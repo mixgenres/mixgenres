@@ -8,7 +8,7 @@ export const melodica: InstrumentDef = {
   octave: 12,
   voicing: "single",
   elementaryModel: 10,
-  makeupGain: 0.697,
+  makeupGain: 0.685,
   polyphony: 4,
   note: "Breathy melodica line",
   acousticProfile: {

@@ -10,7 +10,7 @@ export const harp: InstrumentDef = {
   bodyConstruction: "wood-box",
   excitationType: "fingerpad",
   elementaryModel: 0,
-  makeupGain: 3.356,
+  makeupGain: 30.000,
   polyphony: 8,
   note: "Acoustic concert harp sounding rich polyphonic arpeggiations and sustained lyrical chords",
   acousticProfile: {

@@ -14,7 +14,7 @@ export const drums: InstrumentDef = {
   bodyConstruction: "wood-box",
   excitationType: "stick",
   elementaryModel: 4,
-  makeupGain: 1.2,
+  makeupGain: 0.901,
   polyphony: 16,
   note: "Studio acoustic drum kit featuring punchy 22-inch maple kick, crisp 14-inch maple snare with 20-strand snare wires, rack/floor toms, and hammered B20 bronze cymbals",
   acousticProfile: {

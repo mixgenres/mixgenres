@@ -10,7 +10,7 @@ export const violin: InstrumentDef = {
   bodyConstruction: "wood-box",
   excitationType: "bow",
   elementaryModel: 6,
-  makeupGain: 6.557,
+  makeupGain: 22.818,
   polyphony: 4,
   note: "Acoustic orchestral and folk violin bowed with horsehair over spruce soundboard, delivering expressive cantabile phrasing and spiccato accents",
   acousticProfile: {

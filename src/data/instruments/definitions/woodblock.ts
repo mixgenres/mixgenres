@@ -11,7 +11,7 @@ export const woodblock: InstrumentDef = {
   },
   voicing: "unpitched",
   elementaryModel: 18,
-  makeupGain: 21.768,
+  makeupGain: 0.209,
   polyphony: 8,
   acousticProfile: {
     sustain: "percussive",

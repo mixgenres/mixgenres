@@ -10,7 +10,7 @@ export const guzheng: InstrumentDef = {
   bodyConstruction: "board",
   excitationType: "nail",
   elementaryModel: 0,
-  makeupGain: 3.147,
+  makeupGain: 30.000,
   polyphony: 4,
   note: "Chinese long zither",
   acousticProfile: {

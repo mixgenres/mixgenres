@@ -11,7 +11,7 @@ export const tamborim: InstrumentDef = {
   },
   voicing: "unpitched",
   elementaryModel: 4,
-  makeupGain: 6.115,
+  makeupGain: 4.346,
   polyphony: 8,
   note: "High Brazilian drum punctuation",
   acousticProfile: {

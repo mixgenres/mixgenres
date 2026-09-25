@@ -11,7 +11,7 @@ export const zapateado: InstrumentDef = {
   },
   voicing: "unpitched",
   elementaryModel: 18,
-  makeupGain: 22.173,
+  makeupGain: 0.209,
   polyphony: 8,
   note: "Footwork percussion",
   acousticProfile: {

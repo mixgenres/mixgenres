@@ -11,7 +11,7 @@ export const jarana: InstrumentDef = {
   bodyConstruction: "wood-box",
   excitationType: "nail",
   elementaryModel: 0,
-  makeupGain: 3.757,
+  makeupGain: 30.000,
   polyphony: 8,
   note: "Carved Mexican cedar guitar-like instrument providing the rhythmic motor of Son Jarocho",
   acousticProfile: {

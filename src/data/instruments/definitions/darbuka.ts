@@ -12,7 +12,7 @@ export const darbuka: InstrumentDef = {
   voicing: "unpitched",
   bodyConstruction: "skin-faced",
   elementaryModel: 4,
-  makeupGain: 2.468,
+  makeupGain: 1.548,
   polyphony: 8,
   note: "Middle Eastern goblet drum made of cast aluminum or ceramic with synthetic head, delivering booming resonant center Doums and lightning finger-snap Teks and Kaks",
   acousticProfile: {

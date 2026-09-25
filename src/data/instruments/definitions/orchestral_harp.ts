@@ -10,7 +10,7 @@ export const orchestral_harp: InstrumentDef = {
   bodyConstruction: "wood-box",
   excitationType: "fingerpad",
   elementaryModel: 0,
-  makeupGain: 3.338,
+  makeupGain: 30.000,
   polyphony: 8,
   note: "Concert grand pedal harp with expansive resonant spruce soundboard and sweeping glissandi",
   acousticProfile: {

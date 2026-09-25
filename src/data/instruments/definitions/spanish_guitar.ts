@@ -10,7 +10,7 @@ export const spanish_guitar: InstrumentDef = {
   bodyConstruction: "wood-box",
   excitationType: "nail",
   elementaryModel: 0,
-  makeupGain: 3.013,
+  makeupGain: 30.000,
   polyphony: 8,
   note: "Handcrafted concert nylon-string acoustic guitar for flamenco, bossa nova, classical, and tango",
   bank: 1,

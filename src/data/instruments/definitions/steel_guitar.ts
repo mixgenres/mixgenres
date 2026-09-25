@@ -10,7 +10,7 @@ export const steel_guitar: InstrumentDef = {
   bodyConstruction: "wood-box",
   excitationType: "hard-pick",
   elementaryModel: 0,
-  makeupGain: 2.971,
+  makeupGain: 30.000,
   polyphony: 8,
   note: "Spun metal cone resonator acoustic guitar played with a steel slide bar, producing piercing metallic bite, singing sustain, and crying glissandi",
   acousticProfile: {

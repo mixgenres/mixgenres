@@ -9,7 +9,7 @@ export const upright_bass: InstrumentDef = {
   bodyConstruction: "wood-box",
   excitationType: "fingerpad",
   elementaryModel: 3,
-  makeupGain: 7.372,
+  makeupGain: 30.722,
   polyphony: 4,
   note: "Acoustic 3/4 spruce/maple double bass delivering deep woody resonance, pizzicato growl, tango arrastre slides, and walking basslines",
   acousticProfile: {

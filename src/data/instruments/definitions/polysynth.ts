@@ -7,7 +7,7 @@ export const polysynth: InstrumentDef = {
   program: 90,
   voicing: "chord",
   elementaryModel: 9,
-  makeupGain: 0.282,
+  makeupGain: 0.415,
   polyphony: 8,
   acousticProfile: {
     sustain: "sustained",

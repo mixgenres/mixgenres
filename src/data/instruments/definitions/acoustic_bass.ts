@@ -10,7 +10,7 @@ export const acoustic_bass: InstrumentDef = {
   bodyConstruction: "wood-box",
   excitationType: "fingerpad",
   elementaryModel: 3,
-  makeupGain: 7.429,
+  makeupGain: 29.522,
   polyphony: 4,
   note: "Hollow-body acoustic bass guitar with resonant woody body decay and round warmth",
   acousticProfile: {

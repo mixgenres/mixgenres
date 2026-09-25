@@ -13,7 +13,7 @@ export const timbales: InstrumentDef = {
   bodyConstruction: "skin-faced",
   excitationType: "stick",
   elementaryModel: 4,
-  makeupGain: 2.125,
+  makeupGain: 1.245,
   polyphony: 12,
   note: "Single-headed metal shell drums (Macho 13-inch, Hembra 14-inch) played with wooden dowels for explosive cáscara shell tapping and mambo bell riffs",
   acousticProfile: {

@@ -11,7 +11,7 @@ export const vihuela: InstrumentDef = {
   bodyConstruction: "wood-box",
   excitationType: "nail",
   elementaryModel: 0,
-  makeupGain: 4.781,
+  makeupGain: 30.000,
   polyphony: 8,
   note: "Mexican son guitar-family",
   acousticProfile: {

@@ -11,7 +11,7 @@ export const tape_echo: InstrumentDef = {
   },
   voicing: "unpitched",
   elementaryModel: 0,
-  makeupGain: 4.282,
+  makeupGain: 30.000,
   polyphony: 8,
   note: "magnetic tape delay; softened repeats with wow/flutter and feedback",
   acousticProfile: {

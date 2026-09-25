@@ -20,6 +20,38 @@ export const DEFAULT_ROLE_PROFILES: Record<string, MixRoleProfile> = {
   percussion: { level: 0.75, pan: 0.25, width: 0.4, densityLimit: 16 },
 };
 
+export const ROLE_DB_PROFILES: Record<string, number> = {
+  bass: -3.0,
+  lead: -1.5,
+  melody: -1.5,
+  pad: -4.0,
+  comp: -3.5,
+  harmony: -3.5,
+  drums: -2.0,
+  percussion: -2.5,
+};
+
+// Genre-specific mixing rules to properly balance out-of-genre instruments.
+// Ensures a synth dropped into Flamenco sits correctly in the acoustic space,
+// or an orchestral string in Electronic EDM doesn't get buried.
+export const GENRE_MIX_OFFSETS: Record<string, Record<string, number>> = {
+  flamenco: { lead: 1.5, comp: 2.0, bass: -2.5, pad: -4.0 },
+  electronic: { bass: 3.0, lead: 0.0, comp: -1.5, pad: 1.0 },
+  jazz: { lead: 1.0, bass: 1.0, comp: -0.5, pad: -3.0 },
+  rock: { comp: 2.0, bass: 1.5, lead: 1.0, pad: -2.0 },
+  orchestral: { pad: 2.0, lead: 0.0, comp: 0.0, bass: 0.0 },
+};
+
+export function getRoleGainLinear(role: string, genre: string = 'default'): number {
+  const r = (role || '').toLowerCase();
+  const baseDb = ROLE_DB_PROFILES[r] ?? -3.0;
+  const genreOffsets = GENRE_MIX_OFFSETS[genre.toLowerCase()] || {};
+  const offsetDb = genreOffsets[r] ?? 0.0;
+  
+  // Combine structural role profile with stylistic genre mix offset
+  return Math.pow(10, (baseDb + offsetDb) / 20);
+}
+
 export function roleProfileForGenre(role: string, mixCharacter?: MixCharacter): MixRoleProfile {
   const base = DEFAULT_ROLE_PROFILES[role] || { level: 0.8, pan: 0, width: 0.3, densityLimit: 8 };
   if (!mixCharacter) return base;
