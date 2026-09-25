@@ -2,7 +2,7 @@ import type { InstrumentDef } from '../types';
 
 export const upright_bass: InstrumentDef = {
   id: "upright-bass",
-  name: "Upright Double Bass",
+  name: "Upright Bass",
   family: "plucked",
   program: 32,
   voicing: "bass",

@@ -4,11 +4,6 @@ export const spring_reverb: InstrumentDef = {
   id: "spring-reverb",
   name: "Spring reverb",
   family: "electronic",
-  drum: {
-    low: 36,
-    mid: 38,
-    high: 42
-  },
   voicing: "unpitched",
   elementaryModel: 0,
   makeupGain: 30.000,
@@ -16,7 +11,7 @@ export const spring_reverb: InstrumentDef = {
   note: "spring tank reverb; boingy metallic decay",
   acousticProfile: {
     sustain: "sustained",
-    role: "perc",
+    role: "effect",
     centre: 60,
     low: 36,
     high: 90,

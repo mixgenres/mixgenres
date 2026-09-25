@@ -3,7 +3,7 @@ import type { InstrumentDef } from '../types';
 export const palmas: InstrumentDef = {
   id: "palmas",
   name: "Palmas",
-  family: "metal-and-wood",
+  family: "body-percussion",
   drum: {
     low: 39,
     mid: 39,
@@ -27,7 +27,7 @@ export const palmas: InstrumentDef = {
     ensembleSmearMs: 18
   },
   luthierPhysics: {
-    category: "resonator_struck_metal_wood",
+    category: "body_impact",
     materialDensity: 0.5,
     tension: 0.6,
     bodyResonanceVolume: 0.3,

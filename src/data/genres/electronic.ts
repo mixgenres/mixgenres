@@ -181,7 +181,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
         "synth",
         "drums",
         "sub-bass",
-        "synth"
+        "drum-machine"
       ],
       "preferredMeters": [
         "4/4",
@@ -252,7 +252,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
         "drums",
         "synth",
         "sampler",
-        "synth"
+        "drum-machine"
       ],
       "preferredMeters": [
         "4/4"
@@ -413,7 +413,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
         "drums",
         "bass",
         "electric-guitar",
-        "synth"
+        "drum-machine"
       ],
       "preferredMeters": [
         "4/4"
@@ -563,7 +563,7 @@ export const ELECTRONIC_WORLD: GenreWorld = {
         "synth",
         "sub-bass",
         "sampler",
-        "synth"
+        "drum-machine"
       ],
       "preferredMeters": [
         "4/4"

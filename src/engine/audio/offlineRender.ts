@@ -7,6 +7,8 @@ import { getLuthierModelForInstrument } from './LuthierAPI';
 import { resolveDialect, performanceModeForContext } from '../theory/dialects';
 import { createMasterChain, getRoleGainLinear } from './mixer';
 import { contractForGenre } from '../../data/styles/contracts';
+import { FORM_BLUEPRINTS } from '../../data/genreForms';
+import { processOfflineAudioDSP } from '../dsp/processor';
 import {
   defaultTrackParams,
   modelForInstrument,
@@ -640,6 +642,11 @@ export async function renderPerformanceToMp3(
 
   const renderedLeft = rendered.getChannelData(0);
   const renderedRight = rendered.numberOfChannels > 1 ? rendered.getChannelData(1) : renderedLeft;
+
+  const styleBlueprint = options.styleId ? FORM_BLUEPRINTS[options.styleId] : (options.worldId ? FORM_BLUEPRINTS[options.worldId] : undefined);
+  if (styleBlueprint?.dspProfile) {
+    processOfflineAudioDSP(renderedLeft, renderedRight, styleBlueprint.dspProfile);
+  }
 
   let maxPeak = 0;
   for (let i = 0; i < totalSamples; i++) {

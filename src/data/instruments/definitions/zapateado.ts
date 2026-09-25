@@ -3,7 +3,7 @@ import type { InstrumentDef } from '../types';
 export const zapateado: InstrumentDef = {
   id: "zapateado",
   name: "Zapateado footwork",
-  family: "metal-and-wood",
+  family: "body-percussion",
   drum: {
     low: 39,
     mid: 76,

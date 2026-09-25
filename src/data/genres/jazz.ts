@@ -7,6 +7,7 @@ export const JAZZ_WORLD: GenreWorld = {
   "color": "#5f83bb",
   "level": "world",
   "description": "The monumental Jazz style: Swing and",
+  "prominentChords": ['Maj 7', 'Min 7', 'Dom 9', 'Min 7b5', 'Dim 7'],
   "styleDefinitions": [
     {
       "id": "jazz-bebop",

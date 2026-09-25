@@ -463,7 +463,7 @@ export const ENRICHED_INSTRUMENT_CATALOG = INSTRUMENT_CATALOG.map(enrichInstrume
 
 export const INSTRUMENTS_BY_ID: Record<string, InstrumentDef> = Object.fromEntries(ENRICHED_INSTRUMENT_CATALOG.map(i => [i.id, i]));
 INSTRUMENTS_BY_ID['nylon-guitar'] = INSTRUMENTS_BY_ID['guitar'];
-INSTRUMENTS_BY_ID['steel-drums'] = INSTRUMENTS_BY_ID['steel_drums'];
+INSTRUMENTS_BY_ID['steel_drums'] = INSTRUMENTS_BY_ID['steel-drums'];
 INSTRUMENTS_BY_ID['slide_guitar'] = INSTRUMENTS_BY_ID['slide-guitar'];
 INSTRUMENTS_BY_ID['12_string_guitar'] = INSTRUMENTS_BY_ID['12-string-guitar'];
 INSTRUMENTS_BY_ID['sho'] = INSTRUMENTS_BY_ID['shō'];
@@ -483,11 +483,15 @@ export const FAMILY_LABELS: Record<InstrumentFamily, string> = {
   'metal-and-wood': 'Metal & wood',
   kit: 'Kit pieces',
   electronic: 'Electronic',
+  'free-reed': 'Free reed',
+  'plucked-string': 'Plucked strings',
+  'body-percussion': 'Body percussion',
 };
 
 export const FAMILY_ORDER: InstrumentFamily[] = [
   'bellows-and-keys', 'plucked', 'bowed', 'winds', 'brass',
   'voice', 'hand-drums', 'metal-and-wood', 'kit', 'electronic',
+  'free-reed', 'plucked-string', 'body-percussion',
 ];
 
 export function instrument(id: string): InstrumentDef {
@@ -544,7 +548,7 @@ export function instrumentPatternKinds(id: string): string[] {
   if (id === 'koto') { out.add('koto'); out.add('plucked'); out.add('harmony'); }
   if (id === 'shamisen') { out.add('shamisen'); out.add('plucked'); out.add('lead'); }
   if (id === 'shakuhachi') { out.add('shakuhachi'); out.add('flute'); out.add('lead'); }
-  if (id === 'steel-drums' || id === 'steel_drums') { out.add('steel-drums'); out.add('percussion'); out.add('melody'); }
+  if (id === 'steel-drums') { out.add('steel-drums'); out.add('percussion'); out.add('melody'); }
   if (id === 'slide-guitar' || id === 'slide_guitar') { out.add('slide-guitar'); out.add('guitar'); out.add('lead'); }
   if (id === 'harmonium') { out.add('harmonium'); out.add('keys'); out.add('drone'); }
   if (id === 'drone') { out.add('drone'); out.add('pad'); out.add('texture'); }
@@ -575,7 +579,7 @@ export const WORLD_INSTRUMENT_HINTS: Record<string, string[]> = {
   afrobeats: ['sub-bass', 'log-drum', 'electric-guitar', 'shaker', 'tenor-sax'],
   bachata: ['requinto', 'guitar', 'bass', 'bongos', 'guiro'],
   blues: ['electric-guitar', 'bass', 'drums', 'piano', 'harmonica'],
-  brazilian: ['spanish-guitar', 'surdo', 'pandeiro', 'cavaquinho', 'cuica'],
+  brazilian: ['acoustic-guitar', 'surdo', 'pandeiro', 'cavaquinho', 'cuica'],
   country: ['steel-guitar', 'upright-bass', 'brush-kit', 'fiddle', 'banjo'],
   cumbia: ['bass', 'accordion', 'guacharaca', 'tambora', 'guitar'],
   disco: ['bass', 'electric-guitar', 'drums', 'piano', 'horn-section'],

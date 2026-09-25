@@ -4,11 +4,6 @@ export const tape_echo: InstrumentDef = {
   id: "tape-echo",
   name: "Tape echo",
   family: "electronic",
-  drum: {
-    low: 36,
-    mid: 38,
-    high: 42
-  },
   voicing: "unpitched",
   elementaryModel: 0,
   makeupGain: 30.000,
@@ -16,7 +11,7 @@ export const tape_echo: InstrumentDef = {
   note: "magnetic tape delay; softened repeats with wow/flutter and feedback",
   acousticProfile: {
     sustain: "sustained",
-    role: "perc",
+    role: "effect",
     centre: 60,
     low: 36,
     high: 90,

@@ -32,6 +32,19 @@ export interface ChordOption {
   origin?: string;
 }
 
+export const CHORD_TAXONOMY = [
+  { id: 'maj7', name: 'Maj 7', symbol: 'Cmaj7', quality: 'major' },
+  { id: 'min7', name: 'Min 7', symbol: 'Cm7', quality: 'minor' },
+  { id: 'dom7', name: 'Dom 7', symbol: 'C7', quality: 'dominant' },
+  { id: 'min7b5', name: 'Min 7b5', symbol: 'Cm7b5', quality: 'halfDiminished' },
+  { id: 'minmaj7', name: 'Min Maj 7', symbol: 'Cm(maj7)', quality: 'minor' },
+  { id: 'phrygian-dom', name: 'Phrygian Dom', symbol: 'C7(b9)', quality: 'dominant' },
+  { id: 'dom7b9', name: 'Dom 7b9', symbol: 'C7b9', quality: 'dominant' },
+  { id: 'aug7', name: 'Aug 7', symbol: 'C7#5', quality: 'augmented' },
+  { id: 'sus4', name: 'Sus 4', symbol: 'Csus4', quality: 'suspended' },
+  { id: 'andalusian', name: 'Andalusian', symbol: 'Am-G-F-E7', quality: 'minor' },
+] as const;
+
 export const CHORD_MOOD_ORDER_RAW: ChordMood[] = [
   'warm-resolved','bittersweet','smooth-jazzy','floating-modal',
   'tense-dramatic','earthy-bluesy','festive-celebratory','aggressive-driving',

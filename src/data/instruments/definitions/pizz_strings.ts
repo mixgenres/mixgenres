@@ -3,7 +3,7 @@ import type { InstrumentDef } from '../types';
 export const pizz_strings: InstrumentDef = {
   id: "pizz-strings",
   name: "Pizzicato strings",
-  family: "bowed",
+  family: "plucked-string",
   program: 45,
   voicing: "chord",
   elementaryModel: 6,
@@ -22,7 +22,7 @@ export const pizz_strings: InstrumentDef = {
     letRingAcrossSections: true
   },
   luthierPhysics: {
-    category: "continuous_bowed_friction",
+    category: "plucked_resonance",
     materialDensity: 0.5,
     tension: 0.7,
     bodyResonanceVolume: 45,

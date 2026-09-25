@@ -93,6 +93,7 @@ export interface GraceSpec {
 
 export interface ArticulationSpec {
   id: string;
+  name?: string;
   family: ArticulationFamily;
   /** Names in catalogs and style grammars that resolve to this spec. */
   aliases: string[];
@@ -191,8 +192,9 @@ const SPECS: ArticulationSpec[] = [
   },
   {
     id: 'marcato',
+    name: 'Marcato 4',
     family: 'attack',
-    aliases: ['marcato', 'marcado', 'marked', 'en 4', 'marcato en 4', 'octave marcato', 'variación', 'variacion'],
+    aliases: ['marcato', 'marcato-4', 'marcato 4', 'Marcato in 4 Pattern', 'marcado', 'marked', 'en 4', 'marcato en 4', 'octave marcato', 'variación', 'variacion'],
     uses: ['velocity', 'note-length'],
     fidelity: 'faithful',
     velocityScale: 1.16,
@@ -236,8 +238,9 @@ const SPECS: ArticulationSpec[] = [
   /* --- pitch gestures --------------------------------------------------- */
   {
     id: 'arrastre',
+    name: 'Arrastre',
     family: 'pitch-gesture',
-    aliases: ['arrastre', 'drag-into', 'yumba-drag'],
+    aliases: ['arrastre', 'Tango Arrastre Technique', 'drag-into', 'yumba-drag'],
     uses: ['extra-notes', 'pitch-bend', 'velocity'],
     fidelity: 'approximate',
     caveat: 'The performance layer realizes the approach with lead-in notes and a pitch trajectory; the Faust instrument also receives the arrastre articulation code so its exciter can change with the gesture.',
@@ -248,6 +251,17 @@ const SPECS: ArticulationSpec[] = [
     ],
     velocityScale: 1.1,
     instrumentFamilies: ['bellows-and-keys', 'bowed', 'plucked'],
+  },
+  {
+    id: 'sincopa',
+    name: 'Síncopa',
+    family: 'attack',
+    aliases: ['síncopa', 'sincopa', 'Tango Sincopa Rhythm', 'syncopation', 'syncopated'],
+    uses: ['velocity', 'onset-offset'],
+    fidelity: 'faithful',
+    velocityScale: 1.18,
+    durationScale: 0.85,
+    onsetMs: -8,
   },
   {
     id: 'scoop',
@@ -334,8 +348,9 @@ const SPECS: ArticulationSpec[] = [
   },
   {
     id: 'rasgueado',
+    name: 'Rasgueado',
     family: 'reiteration',
-    aliases: ['rasgueado', 'rasgueo', 'strum-roll', 'abanico'],
+    aliases: ['rasgueado', 'Flamenco Rasgueado Strum', 'rasgueo', 'strum-roll', 'abanico'],
     uses: ['extra-notes', 'velocity'],
     fidelity: 'approximate',
     caveat: 'The performance layer realizes the finger sequence as separate attacks; the Faust guitar model changes its excitation/timbre for the rasgueado/abanico gesture.',
@@ -345,8 +360,9 @@ const SPECS: ArticulationSpec[] = [
   },
   {
     id: 'alzapua',
+    name: 'Alzapúa',
     family: 'reiteration',
-    aliases: ['alzapúa', 'alzapua', 'thumb-sweep', 'thumb-apoyando', 'pulgar-apoyando'],
+    aliases: ['alzapúa', 'alzapua', 'Thumb Alzapua Technique', 'thumb-sweep', 'thumb-apoyando', 'pulgar-apoyando'],
     uses: ['extra-notes', 'velocity'],
     fidelity: 'approximate',
     caveat: 'The performance layer realizes the thumb sweep as alternating attacks while the Faust plucked-string model changes excitation emphasis.',
@@ -496,8 +512,9 @@ const SPECS: ArticulationSpec[] = [
   },
   {
     id: 'golpe',
+    name: 'Golpe',
     family: 'timbre',
-    aliases: ['golpe', 'golpe-caja', 'tap-plate', 'body-tap', 'golpe-tap', 'golpe/corte', 'zapateado'],
+    aliases: ['golpe', 'Flamenco Golpe Tap', 'golpe-caja', 'tap-plate', 'body-tap', 'golpe-tap', 'golpe/corte', 'zapateado'],
     uses: ['velocity', 'preset-swap'],
     fidelity: 'approximate',
     durationScale: 0.3,
@@ -594,13 +611,25 @@ const SPECS: ArticulationSpec[] = [
   },
   {
     id: 'montuno',
+    name: 'Montuno',
     family: 'reiteration',
-    aliases: ['montuno', 'guajeo', 'piano-montuno', 'tumbao-piano'],
+    aliases: ['montuno', 'Piano Montuno Pattern', 'guajeo', 'piano-montuno', 'tumbao-piano'],
     uses: ['note-length', 'velocity'],
     fidelity: 'faithful',
     durationScale: 0.85,
     velocityScale: 1.05,
     instrumentFamilies: ['bellows-and-keys', 'plucked'],
+  },
+  {
+    id: 'clave-3-2',
+    name: 'Clave 3-2',
+    family: 'attack',
+    aliases: ['clave 3-2', 'clave-3-2', 'Afro-Cuban Clave 3-2', 'clave-strike', 'clave'],
+    uses: ['velocity', 'note-length'],
+    fidelity: 'faithful',
+    velocityScale: 1.25,
+    durationScale: 0.5,
+    instrumentFamilies: ['metal-and-wood', 'hand-drums'],
   },
   {
     id: 'repique',

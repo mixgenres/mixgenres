@@ -1,11 +1,11 @@
 import type { InstrumentDef } from '../types';
 
 export const steel_drums: InstrumentDef = {
-  id: "steel_drums",
+  id: "steel-drums",
   name: "Steel pan",
   family: "metal-and-wood",
   voicing: "single",
-  elementaryModel: 4,
+  elementaryModel: 8,
   makeupGain: 0.666,
   polyphony: 4,
   note: "tuned steel pan; struck convex notes with bright partials",

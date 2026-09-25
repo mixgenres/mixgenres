@@ -325,6 +325,7 @@ export interface GenreStyleDefinition {
   tuningSystem?: TuningSystemTag;
   signatureCell?: string;
   grooveMechanics?: GrooveMechanics;
+  prominentChords?: string[];
   sectionProgressions?: Partial<Record<SectionType | string, string[]>>;
 }
 
@@ -350,6 +351,7 @@ export interface GenreWorld {
   tuningSystem?: TuningSystemTag;
   signatureCell?: string;
   grooveMechanics?: GrooveMechanics;
+  prominentChords?: string[];
   crossLinks?: string[];
 }
 
@@ -494,5 +496,7 @@ export interface GrooveFusionSpec {
   /** For call-and-response, how often (in bars) tracks alternate which genre they speak */
   rotatesEveryBars?: number;
 }
+
+export * from './types/style';
 
 

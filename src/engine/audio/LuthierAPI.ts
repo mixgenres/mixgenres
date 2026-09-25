@@ -14,7 +14,11 @@ export type LuthierModelCategory =
   | 'bellows_free_reed'
   | 'aerophone_lip_tension'
   | 'resonator_struck_metal_wood'
-  | 'electro_acoustic_algorithmic';
+  | 'electro_acoustic_algorithmic'
+  | 'breath_free_reed'
+  | 'plucked_resonance'
+  | 'body_impact'
+  | 'scraped_friction';
 
 export interface LuthierPhysicalParameters {
   category: LuthierModelCategory;
@@ -80,9 +84,6 @@ if (INSTRUMENTS_BY_ID['bass']?.luthierPhysics) {
 }
 if (INSTRUMENTS_BY_ID['upright-bass']?.luthierPhysics) {
   LUTHIER_INSTRUMENT_MAP['double-bass'] = INSTRUMENTS_BY_ID['upright-bass'].luthierPhysics;
-}
-if (INSTRUMENTS_BY_ID['steel_drums']?.luthierPhysics) {
-  LUTHIER_INSTRUMENT_MAP['steel-drums'] = INSTRUMENTS_BY_ID['steel_drums'].luthierPhysics;
 }
 
 /**

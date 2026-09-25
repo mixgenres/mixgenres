@@ -353,7 +353,7 @@ export const COUNTRY_WORLD: GenreWorld = {
         "steel-guitar",
         "bass",
         "drums",
-        "steel-guitar"
+        "fiddle"
       ],
       "preferredMeters": [
         "4/4"

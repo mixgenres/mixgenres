@@ -18,7 +18,7 @@ export const FOLK_WORLD: GenreWorld = {
       "characteristicInstruments": [
         "acoustic-guitar",
         "banjo",
-        "acoustic-guitar",
+        "upright-bass",
         "piano",
         "drums"
       ],
@@ -101,7 +101,7 @@ export const FOLK_WORLD: GenreWorld = {
         "banjo",
         "fiddle",
         "acoustic-guitar",
-        "acoustic-guitar",
+        "upright-bass",
         "hand-percussion"
       ],
       "preferredMeters": [
@@ -181,7 +181,7 @@ export const FOLK_WORLD: GenreWorld = {
       "characteristicInstruments": [
         "acoustic-guitar",
         "harmonica",
-        "acoustic-guitar",
+        "upright-bass",
         "hand-percussion",
         "drums"
       ],
@@ -341,7 +341,7 @@ export const FOLK_WORLD: GenreWorld = {
       "characteristicInstruments": [
         "acoustic-guitar",
         "piano",
-        "acoustic-guitar",
+        "upright-bass",
         "drums",
         "bass"
       ],
@@ -507,7 +507,7 @@ export const FOLK_WORLD: GenreWorld = {
       "description": "Pure • Modal • Fingerstyle\nRefined preservation",
       "characteristicInstruments": [
         "acoustic-guitar",
-        "acoustic-guitar",
+        "upright-bass",
         "fiddle",
         "harmonium",
         "flute"

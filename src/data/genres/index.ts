@@ -24,6 +24,120 @@ import { FOLK_WORLD } from './folk';
 import { REGGAE_DUB_WORLD } from './reggaeDub';
 import { SKA_WORLD } from './ska';
 import { SAMBA_BOSSA_WORLD } from './sambaBossa';
+import { gospel } from './gospel';
+import { industrial } from './industrial';
+
+export const GOSPEL_WORLD: GenreWorld = {
+  ...FOLK_WORLD,
+  id: 'gospel',
+  name: 'Gospel',
+  family: 'Vocal / Church / Soul',
+  color: '#c29b38',
+  description: 'Devotional spirit, church pocket, call-and-response choirs, and Hammond organ swells.',
+  substyles: ['Traditional Gospel', 'Contemporary Gospel', 'Southern Gospel', 'Choir Gospel'],
+  artists: ['Mahalia Jackson', 'Aretha Franklin', 'Andraé Crouch', 'The Edwin Hawkins Singers'],
+  concepts: ['Call and response', 'Hammond organ swells', 'Vocal shouting', 'Church pocket swing'],
+  roles: {
+    lead: ['choir', 'piano', 'organ'],
+    harmony: ['piano', 'hammond-organ', 'organ'],
+    bass: ['bass', 'electric-bass'],
+    rhythm: ['drum-kit', 'drums', 'tambourine'],
+    percussion: ['tambourine', 'hand-percussion'],
+  },
+  styleDefinitions: [
+    {
+      id: 'gospel-traditional',
+      worldId: 'gospel',
+      name: 'Traditional Gospel',
+      origin: 'Chicago / Deep South',
+      era: '1930s–1950s',
+      description: 'Handclaps, foot-stomps, and soaring vocal passion.',
+      characteristicInstruments: gospel.characteristicInstruments,
+      preferredMeters: ['4/4'],
+      tempoRange: [80, 120],
+      keySubstyles: ['Traditional Gospel', 'Choir Gospel'],
+      coreConcepts: ['Call and response', 'Hammond organ swells', 'Vocal shouting'],
+      rhythmicGrammar: ['4/4 swing church pocket'],
+      danceTags: ['spiritual'],
+      tuningSystem: '12-tet',
+      signatureCell: 'Gospel shuffle with tambourine on 2 and 4',
+      grooveMechanics: { swingPercentage: 54, anticipationOffsetSteps: 0, microtimingFeel: 'laid-back' },
+    } as any,
+  ],
+  patterns: [
+    {
+      id: 'gospel-church-pocket',
+      worldId: 'gospel',
+      name: 'Gospel Church Pocket',
+      meter: '4/4',
+      cycleLength: 16,
+      subdivisions: 16,
+      category: 'groove',
+      family: 'gospel',
+      description: 'Dynamic church swing with tambourine and organ swell',
+      onsetGrid: [1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0],
+      instruments: gospel.characteristicInstruments,
+      roles: ['rhythm', 'percussion'],
+      tags: ['pocket', 'swing', 'church'],
+    } as any,
+  ],
+};
+
+export const INDUSTRIAL_WORLD: GenreWorld = {
+  ...METAL_WORLD,
+  id: 'industrial',
+  name: 'Industrial',
+  family: 'Electronic / Mechanical / Noise',
+  color: '#4f5459',
+  description: 'Mechanical rhythms, distorted synthesizers, harsh noise sampling, and relentless electronic drive.',
+  substyles: ['EBM', 'Industrial Techno', 'Noise Industrial', 'Dark Industrial'],
+  artists: ['Front 242', 'Nitzer Ebb', 'Skinny Puppy', 'Ministry', 'Nine Inch Nails'],
+  concepts: ['Sequenced 16th bass', 'Distorted drums', 'Sampled metallic noise', 'Harsh sequencing'],
+  roles: {
+    lead: ['synth', 'noise'],
+    harmony: ['synth', 'sampler'],
+    bass: ['distorted-bass', 'sub-bass', 'synth'],
+    rhythm: ['drum-machine', 'drums'],
+    percussion: ['sampler', 'noise'],
+  },
+  styleDefinitions: [
+    {
+      id: 'industrial-ebm',
+      worldId: 'industrial',
+      name: 'EBM',
+      origin: 'Belgium / Germany',
+      era: '1980s–1990s',
+      description: 'Electronic Body Music: sequencing, harsh beats, and aggressive synth bass.',
+      characteristicInstruments: industrial.characteristicInstruments,
+      preferredMeters: ['4/4'],
+      tempoRange: [115, 132],
+      keySubstyles: ['EBM', 'Industrial Techno', 'Noise Industrial', 'Dark Industrial'],
+      coreConcepts: ['Sequenced 16th-note basslines', 'Aggressive drum machines', 'Sampled metallic noise'],
+      rhythmicGrammar: ['Driving four-on-the-floor mechanical pulse'],
+      danceTags: ['club-dark'],
+      tuningSystem: '12-tet',
+      signatureCell: 'Mechanical 16th bass with cold industrial beat',
+      grooveMechanics: { swingPercentage: 50, anticipationOffsetSteps: 0, microtimingFeel: 'quantized' },
+    } as any,
+  ],
+  patterns: [
+    {
+      id: 'industrial-mechanical-pulse',
+      worldId: 'industrial',
+      name: 'Industrial Mechanical Pulse',
+      meter: '4/4',
+      cycleLength: 16,
+      subdivisions: 16,
+      category: 'groove',
+      family: 'industrial',
+      description: 'Relentless sequenced electronic kick and distorted synth pulse',
+      onsetGrid: [1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0],
+      instruments: industrial.characteristicInstruments,
+      roles: ['rhythm', 'bass'],
+      tags: ['mechanical', 'driving', 'electronic'],
+    } as any,
+  ],
+};
 
 /**
  * Canonical public genre hierarchy.  Missing leaves deliberately borrow an
@@ -32,12 +146,12 @@ import { SAMBA_BOSSA_WORLD } from './sambaBossa';
 export const GENRE_SOURCE_MAP: Record<string, string> = {
   afrobeats: 'afrobeats', bachata: 'bachata', blues: 'blues', brazilian: 'samba-bossa',
   country: 'country', cumbia: 'cumbia', disco: 'funk', electronic: 'electronic',
-  folk: 'folk', funk: 'funk', gospel: 'folk', 'hip-hop': 'hip-hop', house: 'house-techno',
+  folk: 'folk', funk: 'funk', 'hip-hop': 'hip-hop', house: 'house-techno',
   jazz: 'jazz', kizomba: 'kizomba', tango: 'tango',
   flamenco: 'flamenco', metal: 'metal', 'r-and-b': 'funk', reggae: 'reggae-dub',
   reggaeton: 'reggaeton-dembow', rock: 'rock', salsa: 'salsa', ska: 'ska', soul: 'funk',
   swing: 'swing', timba: 'timba', zouk: 'zouk', 'drum-and-bass': 'electronic',
-  industrial: 'metal', 'punk-hardcore': 'rock', 'uk-bass': 'electronic',
+  'punk-hardcore': 'rock', 'uk-bass': 'electronic',
 };
 
 export const GENRE_NAMES: Record<string, string> = {
@@ -61,7 +175,7 @@ const GENRE_STRICTNESS: Record<string, 'strict'|'flexible'|'open'> = {
   metal:'strict', 'punk-hardcore':'strict', rock:'flexible', 'drum-and-bass':'strict', industrial:'strict', 'uk-bass':'strict',
 };
 const PROMOTED_FROM: Record<string,string> = {
-  disco:'funk', gospel:'folk', timba:'salsa', ska:'reggae', 'drum-and-bass':'electronic',
+  disco:'funk', timba:'salsa', ska:'reggae', 'drum-and-bass':'electronic',
 };
 
 const SOURCE_WORLDS: Record<string, GenreWorld> = Object.fromEntries([
@@ -69,6 +183,7 @@ const SOURCE_WORLDS: Record<string, GenreWorld> = Object.fromEntries([
   REGGAETON_DEMBOW_WORLD, ZOUK_WORLD, KIZOMBA_WORLD, BLUES_WORLD, JAZZ_WORLD, SWING_WORLD,
   FUNK_WORLD, ROCK_WORLD, METAL_WORLD, HIP_HOP_WORLD, ELECTRONIC_WORLD, HOUSE_TECHNO_WORLD, AFROBEATS_WORLD,
   COUNTRY_WORLD, FOLK_WORLD, REGGAE_DUB_WORLD, SKA_WORLD, SAMBA_BOSSA_WORLD,
+  GOSPEL_WORLD, INDUSTRIAL_WORLD,
 ].map(world => [world.id, world]));
 
 function cloneStyleSeeds(source: GenreWorld, genreId: string): GenreWorld['styleDefinitions'] {
@@ -80,8 +195,11 @@ function cloneStyleSeeds(source: GenreWorld, genreId: string): GenreWorld['style
 }
 
 function makeGenreWorld(genreId: string): GenreWorld {
-  const source = SOURCE_WORLDS[GENRE_SOURCE_MAP[genreId]];
+  const source = SOURCE_WORLDS[genreId] || (GENRE_SOURCE_MAP[genreId] ? SOURCE_WORLDS[GENRE_SOURCE_MAP[genreId]] : undefined);
   if (!source) throw new Error(`Missing source world for ${genreId}`);
+  if (source.id === genreId) {
+    return source;
+  }
   return {
     ...source,
     id: genreId,
@@ -158,7 +276,7 @@ export const PATTERNS_BY_WORLD: Record<string, MusicalPattern[]> = Object.fromEn
     // within a musical world. It must never make the pattern globally visible
     // to unrelated genres. Cross-genre material is admitted explicitly by the
     // adventure/blend layer, where the originating world is retained.
-    ALL_PATTERNS.filter(p => p.worldId === GENRE_SOURCE_MAP[world.id]),
+    ALL_PATTERNS.filter(p => p.worldId === (GENRE_SOURCE_MAP[world.id] || world.id)),
   ])
 );
 export const PATTERNS_BY_GENRE = PATTERNS_BY_WORLD;

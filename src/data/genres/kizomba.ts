@@ -179,7 +179,7 @@ export const KIZOMBA_WORLD: GenreWorld = {
         "drums",
         "sub-bass",
         "sampler",
-        "synth"
+        "drum-machine"
       ],
       "preferredMeters": [
         "4/4"
@@ -260,7 +260,7 @@ export const KIZOMBA_WORLD: GenreWorld = {
         "drums",
         "synth",
         "sampler",
-        "synth"
+        "drum-machine"
       ],
       "preferredMeters": [
         "4/4"
@@ -314,7 +314,7 @@ export const KIZOMBA_WORLD: GenreWorld = {
         "drums",
         "synth",
         "sampler",
-        "synth"
+        "drum-machine"
       ],
       "preferredMeters": [
         "4/4"
@@ -451,7 +451,7 @@ export const KIZOMBA_WORLD: GenreWorld = {
         "drums",
         "sub-bass",
         "piano",
-        "synth"
+        "drum-machine"
       ],
       "preferredMeters": [
         "4/4"

@@ -12,7 +12,7 @@ export const noise_sweep: InstrumentDef = {
   note: "Build and riser sweep",
   acousticProfile: {
     sustain: "sustained",
-    role: "lead",
+    role: "effect",
     centre: 60,
     low: 36,
     high: 90,

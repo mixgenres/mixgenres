@@ -2,7 +2,7 @@ import type { InstrumentDef } from '../types';
 
 export const spanish_guitar: InstrumentDef = {
   id: "spanish-guitar",
-  name: "Spanish Nylon Guitar",
+  name: "Flamenco Guitar",
   family: "plucked",
   program: 24,
   voicing: "chord",

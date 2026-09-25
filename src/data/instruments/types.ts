@@ -1,6 +1,7 @@
 export type InstrumentFamily =
   | 'bellows-and-keys' | 'plucked' | 'bowed' | 'winds' | 'brass' | 'voice'
-  | 'hand-drums' | 'metal-and-wood' | 'kit' | 'electronic';
+  | 'hand-drums' | 'metal-and-wood' | 'kit' | 'electronic'
+  | 'free-reed' | 'plucked-string' | 'body-percussion';
 
 export interface DrumVoice { low: number; mid: number; high: number; }
 
@@ -11,7 +12,11 @@ export type LuthierModelCategory =
   | 'bellows_free_reed'
   | 'aerophone_lip_tension'
   | 'resonator_struck_metal_wood'
-  | 'electro_acoustic_algorithmic';
+  | 'electro_acoustic_algorithmic'
+  | 'breath_free_reed'
+  | 'plucked_resonance'
+  | 'body_impact'
+  | 'scraped_friction';
 
 export interface LuthierPhysicsProfile {
   category: LuthierModelCategory;
@@ -39,7 +44,7 @@ export interface LuthierPhysicsProfile {
 
 export interface AcousticProfile {
   sustain: 'decaying' | 'sustained' | 'blown' | 'short' | 'percussive';
-  role?: 'bass' | 'harmony' | 'melody' | 'rhythm' | 'pad' | 'percussion' | 'lead' | 'comp' | 'perc';
+  role?: 'bass' | 'harmony' | 'melody' | 'rhythm' | 'pad' | 'percussion' | 'lead' | 'comp' | 'perc' | 'effect';
   centre: number;
   low: number;
   high: number;

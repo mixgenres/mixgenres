@@ -7,6 +7,7 @@ export const FLAMENCO_WORLD: GenreWorld = {
   "color": "#d9914e",
   "level": "world",
   "description": "Deep Flamenco compás architectures: Soleá and",
+  "prominentChords": ['Phrygian Dom', 'Maj (bII)', 'Min 9', 'Andalusian'],
   "styleDefinitions": [
     {
       "id": "flamenco-solea-style",

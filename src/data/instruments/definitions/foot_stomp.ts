@@ -3,7 +3,7 @@ import type { InstrumentDef } from '../types';
 export const foot_stomp: InstrumentDef = {
   id: "foot-stomp",
   name: "Foot stomp",
-  family: "metal-and-wood",
+  family: "body-percussion",
   drum: {
     low: 35,
     mid: 36,
@@ -26,7 +26,7 @@ export const foot_stomp: InstrumentDef = {
     ring: 0.5
   },
   luthierPhysics: {
-    category: "membrane_tension_2d",
+    category: "body_impact",
     materialDensity: 0.85,
     tension: 0.5,
     bodyResonanceVolume: 30,

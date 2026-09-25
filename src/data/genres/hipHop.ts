@@ -96,7 +96,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
         "drums",
         "synth",
         "sampler",
-        "synth"
+        "piano"
       ],
       "preferredMeters": [
         "4/4"
@@ -254,7 +254,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
         "drums",
         "synth",
         "piano",
-        "synth"
+        "sampler"
       ],
       "preferredMeters": [
         "4/4"
@@ -334,7 +334,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
         "bass",
         "drums",
         "electric-guitar",
-        "synth"
+        "sampler"
       ],
       "preferredMeters": [
         "4/4"
@@ -414,7 +414,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
         "drums",
         "sub-bass",
         "synth",
-        "synth"
+        "distortion-guitar"
       ],
       "preferredMeters": [
         "4/4",
@@ -487,7 +487,7 @@ export const HIP_HOP_WORLD: GenreWorld = {
         "sampler",
         "sub-bass",
         "drums",
-        "synth"
+        "piano"
       ],
       "preferredMeters": [
         "4/4"

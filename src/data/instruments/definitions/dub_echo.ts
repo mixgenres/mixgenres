@@ -12,7 +12,7 @@ export const dub_echo: InstrumentDef = {
   note: "Single transient audio throw fed into high-feedback tape delay with resonant filter sweeps",
   acousticProfile: {
     sustain: "sustained",
-    role: "lead",
+    role: "effect",
     centre: 60,
     low: 36,
     high: 90,

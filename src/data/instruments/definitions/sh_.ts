@@ -3,7 +3,7 @@ import type { InstrumentDef } from '../types';
 export const sho: InstrumentDef = {
   id: "shō",
   name: "Sho",
-  family: "bellows-and-keys",
+  family: "free-reed",
   program: 16,
   voicing: "chord",
   elementaryModel: 10,
@@ -23,7 +23,7 @@ export const sho: InstrumentDef = {
     letRingAcrossSections: true
   },
   luthierPhysics: {
-    category: "bellows_free_reed",
+    category: "breath_free_reed",
     materialDensity: 0.6,
     tension: 0.6,
     bodyResonanceVolume: 1,

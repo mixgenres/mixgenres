@@ -3,7 +3,7 @@ import type { InstrumentDef } from '../types';
 export const hand_percussion: InstrumentDef = {
   id: "hand-percussion",
   name: "Hand percussion",
-  family: "metal-and-wood",
+  family: "body-percussion",
   drum: {
     low: 39,
     mid: 54,
@@ -26,7 +26,7 @@ export const hand_percussion: InstrumentDef = {
     ring: 0.5
   },
   luthierPhysics: {
-    category: "membrane_tension_2d",
+    category: "body_impact",
     materialDensity: 0.75,
     tension: 0.8,
     bodyResonanceVolume: 4,

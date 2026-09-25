@@ -106,7 +106,7 @@ export const BLUES_WORLD: GenreWorld = {
       "characteristicInstruments": [
         "acoustic-guitar",
         "harmonica",
-        "harmonica",
+        "piano",
         "foot-stomp",
         "slide-guitar"
       ],
@@ -268,7 +268,7 @@ export const BLUES_WORLD: GenreWorld = {
         "acoustic-guitar",
         "harmonica",
         "washboard",
-        "harmonica",
+        "piano",
         "upright-bass"
       ],
       "preferredMeters": [
@@ -517,7 +517,7 @@ export const BLUES_WORLD: GenreWorld = {
         "harmonica",
         "bass",
         "drums",
-        "harmonica"
+        "piano"
       ],
       "preferredMeters": [
         "4/4"

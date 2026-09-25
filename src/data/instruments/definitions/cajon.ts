@@ -2,7 +2,7 @@ import type { InstrumentDef } from '../types';
 
 export const cajon: InstrumentDef = {
   id: "cajon",
-  name: "Cajón (Flamenco / Afro-Peruvian)",
+  name: "Cajón",
   family: "hand-drums",
   drum: {
     low: 36,

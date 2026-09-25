@@ -100,7 +100,7 @@ export const ZOUK_WORLD: GenreWorld = {
         "bass",
         "drums",
         "electric-guitar",
-        "synth"
+        "drum-machine"
       ],
       "preferredMeters": [
         "4/4"
@@ -180,7 +180,7 @@ export const ZOUK_WORLD: GenreWorld = {
         "drums",
         "sub-bass",
         "piano",
-        "synth"
+        "drum-machine"
       ],
       "preferredMeters": [
         "4/4"
@@ -260,7 +260,7 @@ export const ZOUK_WORLD: GenreWorld = {
         "sub-bass",
         "drums",
         "sampler",
-        "synth"
+        "drum-machine"
       ],
       "preferredMeters": [
         "4/4"

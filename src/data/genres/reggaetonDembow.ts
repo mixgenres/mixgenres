@@ -20,7 +20,7 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
         "sub-bass",
         "synth",
         "sampler",
-        "synth"
+        "drum-machine"
       ],
       "preferredMeters": [
         "4/4"
@@ -100,7 +100,7 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
         "drums",
         "sub-bass",
         "electric-guitar",
-        "synth"
+        "drum-machine"
       ],
       "preferredMeters": [
         "4/4"
@@ -179,7 +179,7 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
         "drums",
         "sub-bass",
         "synth",
-        "synth"
+        "drum-machine"
       ],
       "preferredMeters": [
         "4/4"
@@ -418,7 +418,7 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
         "drums",
         "synth",
         "sampler",
-        "synth"
+        "drum-machine"
       ],
       "preferredMeters": [
         "4/4"
@@ -497,7 +497,7 @@ export const REGGAETON_DEMBOW_WORLD: GenreWorld = {
         "drums",
         "synth",
         "turntable",
-        "synth"
+        "drum-machine"
       ],
       "preferredMeters": [
         "4/4"

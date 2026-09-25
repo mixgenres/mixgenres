@@ -66,10 +66,8 @@ const SOURCE_STYLE_OVERRIDES: Record<string, Record<string, string>> = {
   },
   brazilian: { 'Samba': 'Samba de Enredo', 'Bossa Nova': 'Bossa Nova', 'Pagode': 'Pagode', 'Choro': 'Choro', 'Samba-Rock': 'Samba Reggae', 'Forró': 'Samba de Roda' },
   disco: { 'Studio Disco': 'Disco', 'Eurodisco': 'Disco', 'Hi-NRG': 'Disco', 'Disco-Funk': 'Boogie', 'Italo Disco': 'Synth Funk', 'Nu-Disco': 'Boogie' },
-  gospel: { 'Traditional Gospel': 'Old-Time', 'Contemporary Gospel': 'Indie Folk', 'Southern Gospel': 'Neo-Traditional', 'Choir Gospel': 'Chamber Folk', 'Gospel Soul': 'Indie Folk', 'Gospel Funk': 'Boogie' },
   house: { 'Deep House': 'Dub Techno', 'Classic House': 'Detroit Techno', 'Soulful House': 'Melodic Techno', 'Tech House': 'Peak Time', 'Garage House': 'Minimal', 'Acid House': 'Acid Techno', 'French House': 'Detroit Techno' },
   'drum-and-bass': { 'Liquid DnB': 'Downtempo', 'Jungle': 'IDM', 'Jump-Up': 'Breakbeat', 'Neurofunk': 'IDM', 'Dancefloor DnB': 'Techno', 'Minimal DnB': 'Techno' },
-  industrial: { 'Industrial Metal': 'Thrash', 'EBM': 'Black Metal', 'Industrial Rock': 'Heavy Metal', 'Industrial Techno': 'Doom Metal', 'Noise Industrial': 'Sludge', 'Dark Industrial': 'Death Metal' },
   'punk-hardcore': { 'Punk Rock': 'Hard Rock', 'Hardcore Punk': 'Hard Rock', 'Post-Hardcore': 'Grunge', 'Skate Punk': 'Garage Rock', 'Crust Punk': 'Grunge', 'Melodic Hardcore': 'Alternative Rock', 'Pop Punk': 'Hard Rock' },
   'uk-bass': { 'UK Garage': 'Electro', '2-Step': 'Breakbeat', 'Grime': 'Techno', 'Dubstep': 'Downtempo', 'Future Garage': 'Ambient', 'Bassline': 'Electro', 'Breaks': 'Breakbeat' },
 };

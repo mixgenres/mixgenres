@@ -7,6 +7,7 @@ export const TANGO_WORLD: GenreWorld = {
   "color": "#c87561",
   "level": "world",
   "description": "A deep architectural Tango lens: marcato",
+  "prominentChords": ['Min', 'Min Maj 7', 'Dim 7', 'Dom 7b9', 'Aug'],
   "styleDefinitions": [
     {
       "id": "tango-tango-tradicional",
@@ -20,7 +21,7 @@ export const TANGO_WORLD: GenreWorld = {
         "violin",
         "piano",
         "upright-bass",
-        "bandoneon"
+        "double-bass"
       ],
       "preferredMeters": [
         "4/4",
@@ -231,7 +232,7 @@ export const TANGO_WORLD: GenreWorld = {
         "bandoneon",
         "piano",
         "upright-bass",
-        "bandoneon"
+        "double-bass"
       ],
       "preferredMeters": [
         "3/4"
