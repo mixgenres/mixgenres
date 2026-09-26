@@ -9,7 +9,7 @@ export const harmonica: InstrumentDef = {
   bodyConstruction: "wood-box",
   excitationType: "breath",
   elementaryModel: 10,
-  makeupGain: 0.685,
+  makeupGain: 0.404,
   polyphony: 4,
   note: "10-hole diatonic blues harp with brass reeds, draw reed bending, tongue-blocking, and hand wah",
   acousticProfile: {

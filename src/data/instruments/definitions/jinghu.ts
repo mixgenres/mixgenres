@@ -8,7 +8,7 @@ export const jinghu: InstrumentDef = {
   octave: 12,
   voicing: "single",
   elementaryModel: 6,
-  makeupGain: 22.818,
+  makeupGain: 23.865,
   polyphony: 4,
   note: "Small high-pitched two-string Chinese bamboo fiddle leading Beijing Opera with piercing expressive tone",
   acousticProfile: {

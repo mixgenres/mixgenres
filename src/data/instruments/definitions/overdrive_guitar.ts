@@ -10,7 +10,7 @@ export const overdrive_guitar: InstrumentDef = {
   bodyConstruction: "solid-electric",
   excitationType: "hard-pick",
   elementaryModel: 25,
-  makeupGain: 7.954,
+  makeupGain: 7.975,
   polyphony: 8,
   acousticProfile: {
     sustain: "sustained",

@@ -10,7 +10,7 @@ export const piano: InstrumentDef = {
   excitationType: "hammer",
   sympatheticStrings: true,
   elementaryModel: 11,
-  makeupGain: 13.165,
+  makeupGain: 2.802,
   polyphony: 8,
   note: "Concert grand piano with felt hammers striking steel strings over a spruce soundboard, providing dynamic montunos, comping, and solos",
   acousticProfile: {

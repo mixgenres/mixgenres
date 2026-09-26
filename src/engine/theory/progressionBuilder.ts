@@ -1,54 +1,68 @@
-export interface KeyContext {
-  root: string;
-  mode?: string;
-  getScale(type: string): string[];
-}
+import { VoiceLeadingResolver } from './voiceLeading';
 
-export interface TheoryContextProgression {
-  key: KeyContext;
-  rng: { float(): number };
-  genre?: {
-    idiomaticProgressions?: string[][];
-    culturalHarmony?: {
-      voicingRule?: string;
+export class RomanNumeralParser {
+  public parse(numeral: string, _key?: any, _voicingRule?: string): any {
+    const rootOffsets: Record<string, number> = {
+      I: 0, i: 0,
+      II: 2, ii: 2,
+      III: 4, iii: 4,
+      IV: 5, iv: 5,
+      V: 7, v: 7,
+      VI: 9, vi: 9,
+      VII: 11, vii: 11,
     };
-    [key: string]: any;
-  };
-  [key: string]: any;
+    const offset = rootOffsets[numeral.replace(/[^a-zA-Z]/g, '')] ?? 0;
+    const baseMidi = 60 + offset;
+    return {
+      numeral,
+      notes: [baseMidi, baseMidi + 4, baseMidi + 7].map(m => ({
+        midiValue: m,
+        pitch: m,
+      })),
+    };
+  }
 }
 
 export class ProgressionBuilder {
-  public parseRomanNumeral(numeral: string, key: KeyContext, _voicingRule?: string): string {
-    // Basic roman numeral translation placeholder returning named chord relative to key
-    return `${key.root} ${numeral}`;
+  public romanParser: RomanNumeralParser;
+  public voiceLeader: VoiceLeadingResolver;
+
+  constructor() {
+    this.romanParser = new RomanNumeralParser();
+    this.voiceLeader = new VoiceLeadingResolver();
   }
 
-  public generateFunctionalHarmony(length: number, key: KeyContext, rng: { float(): number }): string[] {
-    const scale = key.getScale ? key.getScale('major') : ['C', 'Dm', 'Em', 'F', 'G', 'Am', 'Bdim'];
-    const chords: string[] = [];
+  public parseRomanNumeral(numeral: string, key?: any, voicingRule?: string): any {
+    return this.romanParser.parse(numeral, key, voicingRule);
+  }
+
+  public generateFunctionalHarmony(length: number, key?: any, _rng?: any): any[] {
+    const defaultNumerals = ['I', 'IV', 'V', 'I', 'ii', 'V', 'I', 'IV'];
+    const chords: any[] = [];
     for (let i = 0; i < length; i++) {
-      const idx = Math.floor(rng.float() * scale.length);
-      chords.push(scale[idx]);
+      const numeral = defaultNumerals[i % defaultNumerals.length];
+      chords.push(this.parseRomanNumeral(numeral, key));
     }
     return chords;
   }
 
-  public generateProgression(length: number, ctx: TheoryContextProgression): string[] {
-    // A student of a genre knows its idiomatic progressions. 
-    // We now pull authentically mapped cadences directly from the cultural metadata.
-    const idiomaticPool = ctx.genre?.idiomaticProgressions;
-    
+  public generateProgression(length: number, ctx: any): any[] {
+    const idiomaticPool = ctx?.genre?.idiomaticProgressions;
     if (idiomaticPool && idiomaticPool.length > 0) {
-      // Pick an authentic progression based on the deterministic seed
-      const index = Math.floor(ctx.rng.float() * idiomaticPool.length);
-      const selectedNumerals = idiomaticPool[index];
-      
-      return selectedNumerals.map(numeral => 
+      const rngFloat = ctx.rng?.float ? ctx.rng.float() : Math.random();
+      const index = Math.floor(rngFloat * idiomaticPool.length);
+      const chosen = idiomaticPool[index];
+      const resolvedChords = chosen.map((numeral: string) =>
         this.parseRomanNumeral(numeral, ctx.key, ctx.genre?.culturalHarmony?.voicingRule)
       );
+      for (let i = 1; i < resolvedChords.length; i++) {
+        resolvedChords[i].notes = this.voiceLeader.applySmoothVoiceLeading(
+          resolvedChords[i].notes,
+          resolvedChords[i - 1].notes
+        );
+      }
+      return resolvedChords;
     }
-    
-    // Smart diatonic fallback with functional harmony rules (Tonic -> Subdominant -> Dominant)
-    return this.generateFunctionalHarmony(length, ctx.key, ctx.rng);
+    return this.generateFunctionalHarmony(length, ctx?.key, ctx?.rng);
   }
 }

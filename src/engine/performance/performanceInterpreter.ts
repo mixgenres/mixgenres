@@ -10,33 +10,38 @@ import { rand01, seedOf } from '../generators/groove';
 import type { ParsedChord } from '../theory/theory';
 import { resolveCrossInstrumentArticulation, applyGenreArticulationInfluence } from '../theory/articulation';
 import { INSTRUMENTS_BY_ID } from '../../data/instruments';
-import { GENRE_WORLDS } from '../../data/genres';
 import { resolveInstrumentArticulation, translateRhythmToInstrument } from './musicSemantics';
+import { ArticulationInterpreter } from './articulation';
+import { StrummingInterpreter } from './strumming';
+import { PhraseDynamicsInterpreter } from './phraseDynamics';
 
-export function interpretEventVelocity(
-  event: { velocity?: number; metadata?: any; [key: string]: any },
-  ctx: { rng: { float(): number }; [key: string]: any }
-) {
-  // Remove arbitrary caps; treat velocity as an additive base
-  let dynamicLevel = event.velocity || 70;
+export class PerformanceInterpreter {
+  public articulation: ArticulationInterpreter;
+  public strumming: StrummingInterpreter;
+  public phrasing: PhraseDynamicsInterpreter;
 
-  // Utilize sophisticated genre-specific cultural harmonies and dynamics
-  const styleData = event.metadata?.genre;
-  if (styleData && styleData.culturalHarmony) {
-    // Additive enhancement rather than destructive override
-    const { tensionBoost = 0, dynamicSwell = 0 } = styleData.culturalHarmony;
-    dynamicLevel = Math.min(127, dynamicLevel + tensionBoost * 10 + dynamicSwell);
+  constructor() {
+    this.articulation = new ArticulationInterpreter();
+    this.strumming = new StrummingInterpreter();
+    this.phrasing = new PhraseDynamicsInterpreter();
   }
 
-  // Use deterministic phrasing variation instead of flat random overrides
-  const dynamicVariation = ctx.rng.float() * 10 - 5; // +/- 5 velocity nuance
+  public interpretEventVelocity(event: any, ctx: any): any {
+    let dynamicLevel = event.velocity || 70;
+    const styleData = event.metadata?.genre;
 
-  return {
-    ...event,
-    velocity: Math.max(1, Math.min(127, Math.round(dynamicLevel + dynamicVariation)))
-  };
+    if (styleData && styleData.culturalHarmony) {
+      const { tensionBoost = 0, dynamicSwell = 0 } = styleData.culturalHarmony;
+      dynamicLevel = Math.min(127, dynamicLevel + tensionBoost * 10 + dynamicSwell);
+    }
+
+    const rngFloat = ctx?.rng?.float ? ctx.rng.float() : Math.random();
+    const dynamicVariation = rngFloat * 10 - 5;
+    event = this.phrasing.applyMacroPhrasing(event, ctx);
+
+    return { ...event, velocity: Math.max(1, Math.min(127, Math.round(dynamicLevel + dynamicVariation))) };
+  }
 }
-
 
 export function applyArticulationDynamics(_baseVelocity: number, articulation: string): number {
   switch (articulation) {
@@ -517,19 +522,7 @@ export function interpretPattern(options: InterpretPatternOptions): Interpretati
     const fusedArticulation = supportedArticulation;
     const translatedHitType = rhythmTranslation.hitType || o.hitType;
     const dynamicOffset = fusedArticulation ? applyArticulationDynamics(calculatedVelocity, fusedArticulation) : 0;
-    
-    // Utilize sophisticated genre-specific cultural harmonies and dynamics
-    const genreWorld = GENRE_WORLDS.find(w => w.id === genreContext || w.id === grammar.worldId);
-    const culturalHarmony = (grammar as any).culturalHarmony || genreWorld?.culturalHarmony;
-    let dynamicLevel = calculatedVelocity;
-    if (culturalHarmony) {
-      // Additive enhancement rather than destructive override
-      const { tensionBoost = 0, dynamicSwell = 0 } = culturalHarmony;
-      dynamicLevel = Math.min(127, dynamicLevel + (tensionBoost || 0) * 10 + (dynamicSwell || 0));
-    }
-    // Use deterministic phrasing variation (+/- 5 velocity nuance)
-    const dynamicVariation = (rand01(seedOf(seed, barIndex, i, 'dyn-nuance')) * 10) - 5;
-    const finalVelocity = Math.max(1, Math.min(127, Math.round(dynamicLevel + dynamicOffset + dynamicVariation)));
+    const finalVelocity = Math.max(1, Math.min(127, calculatedVelocity + dynamicOffset));
 
     attacks.push({
       beat,

@@ -7,7 +7,7 @@ export const bass_lead: InstrumentDef = {
   program: 87,
   voicing: "single",
   elementaryModel: 3,
-  makeupGain: 0.547,
+  makeupGain: 0.565,
   polyphony: 4,
   note: "Aggressive synthesized bass lead with resonant lowpass filter envelope and distortion drive",
   acousticProfile: {

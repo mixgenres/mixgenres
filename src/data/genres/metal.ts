@@ -3917,48 +3917,5 @@ export const METAL_WORLD: GenreWorld = {
     "Metal ↔ Rock",
     "Metal ↔ Classical / Symphonic",
     "Metal ↔ Math Rock"
-  ],
-  tempoRange: { min: 90, max: 180, default: 130 },
-  culturalHarmony: {
-    tensionBoost: 1.0,
-    dynamicSwell: 0, // Everything is played at maximum velocity
-    voicingRule: "cluster" // Condensed power chords and dissonant minor 2nds
-  },
-  idiomaticProgressions: [
-    ["i", "bII", "i", "bIII"],              // Phrygian/Locrian riffing 
-    ["i", "VI", "III", "VII"]               // Epic chorus progression
-  ],
-  rhythmicPatterns: {
-    guitar: "djent_syncopation",            // Complex polyrhythmic chugging (0-00-0-000)
-    bass: "djent_syncopation",              // Locks perfectly with guitar
-    drums: "metal_blast_or_groove"          // Double kick mirroring the guitar riff
-  },
-  timbrePalette: {
-    guitar: "electric_dist_chug",           // Ultra-high gain, noise-gated amp sim
-    bass: "bass_dist_sub",                  // Distorted darkglass tone blended with clean sub
-    drums: "drums_metal_trigger"            // Sample-replaced, perfectly consistent shells
-  },
-  microTiming: {
-    instrumentRoles: {
-      drums: "strict",                    // Hyper-quantized modern metal grid
-      bass: "strict",
-      guitar: "strict"
-    },
-    strumSpeed: 0.0                         // 0.0 strum means hyper-tight aggressive downpicking
-  },
-  expressiveModulation: {
-    guitar: { depth: 0.8, rate: 6.0, delay: 0.0, slideSpeed: 0.05 } // Fast, wide aggressive vibrato
-  },
-  acousticSpace: {
-    roomSize: 0.15,                         // Very dry drum room to maintain clarity
-    hfDamping: 12000,                       // Bright, modern production
-    preDelay: 0.00,
-    mixAmount: 0.1,                         // Mostly dry signals
-    analogWarmth: 0.9,                      // Amp simulation overdrive on the master bus
-    sidechainDucking: 0.2,                  // Cymbals duck slightly to kick/snare
-    eqCurve: { low: 3.0, midFreq: 500, mid: -4.0, high: 5.0 } // Massive scooped mids, extreme highs/lows
-  }
+  ]
 };
-
-export const metalWorld = METAL_WORLD;
-

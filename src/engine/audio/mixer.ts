@@ -1,6 +1,112 @@
 /* --- Master Signal Chain & Ensemble Balance --- */
 
 import type { MixCharacter } from '../../data/styles/contracts';
+import { StereoFieldManager } from './panning';
+import type { AcousticSpace } from '../../data/types';
+import type { Track } from '../../types';
+
+export class Compressor {
+  public threshold: number;
+  public ratio: number;
+  public release: number;
+  public sidechain: any;
+
+  constructor(options: { threshold?: number; ratio?: number; release?: number } = {}) {
+    this.threshold = options.threshold ?? -14;
+    this.ratio = options.ratio ?? 2.5;
+    this.release = options.release ?? 0.3;
+  }
+
+  public connect(node: any) {
+    return node;
+  }
+
+  public setSidechain(params: { ratio: number; attack: number; release: number }) {
+    this.ratio = params.ratio;
+  }
+}
+
+export class MasterMixer {
+  public masterBus: GainNode;
+  public instrumentBus: GainNode;
+  public drumBus: GainNode;
+  public bassBus: GainNode;
+  private compressor: any;
+  private limiter: any;
+  private ctx: AudioContext;
+  private stereoField: StereoFieldManager;
+  private sidechainAmount: number = 0;
+
+  constructor(context: AudioContext) {
+    this.ctx = context;
+    this.stereoField = new StereoFieldManager();
+
+    this.masterBus = context.createGain();
+    this.instrumentBus = context.createGain();
+    this.drumBus = context.createGain();
+    this.bassBus = context.createGain();
+
+    // Restored full dynamic range
+    this.masterBus.gain.value = 0.85;
+    this.instrumentBus.gain.value = 0.9;
+    this.drumBus.gain.value = 1.0;
+
+    // Transparent bus glue
+    this.compressor = new Compressor({ threshold: -14, ratio: 2.5, release: 0.3 });
+
+    // Mastering Limiter
+    this.limiter = context.createDynamicsCompressor();
+    this.limiter.threshold.value = -0.5;
+    this.limiter.ratio.value = 20.0;
+    this.limiter.attack.value = 0.001;
+
+    this.instrumentBus.connect(this.compressor as any);
+    this.drumBus.connect(this.compressor as any);
+    this.bassBus.connect(this.compressor as any);
+
+    this.compressor.connect(this.limiter);
+    this.limiter.connect(this.masterBus);
+  }
+
+  public activateHarmonicExciter(_drive: number) {
+    // Optional harmonic saturation
+  }
+
+  public configureGenreMix(space: AcousticSpace) {
+    const tapeSaturation = space.analogWarmth || 0.0;
+    if (tapeSaturation > 0) this.activateHarmonicExciter(tapeSaturation);
+
+    this.sidechainAmount = space.sidechainDucking || 0.0;
+    if (this.sidechainAmount > 0) {
+      if (this.compressor.sidechain) {
+        this.bassBus.connect(this.compressor.sidechain);
+      }
+      this.compressor.setSidechain({
+        ratio: 4 + this.sidechainAmount * 6,
+        attack: 0.005,
+        release: 0.1,
+      });
+    }
+  }
+
+  public assignTrackToBus(track: Track | { instrument: string }): GainNode {
+    const trackGain = this.ctx.createGain();
+    const panner = this.ctx.createStereoPanner();
+
+    panner.pan.value = this.stereoField.resolveInstrumentPan(track.instrument);
+    trackGain.connect(panner);
+
+    if (track.instrument.includes('drum') || track.instrument.includes('perc')) {
+      panner.connect(this.drumBus);
+    } else if (track.instrument.includes('bass')) {
+      panner.connect(this.bassBus);
+    } else {
+      panner.connect(this.instrumentBus);
+    }
+
+    return trackGain;
+  }
+}
 
 export interface MixRoleProfile {
   level: number;
@@ -50,90 +156,6 @@ export function getRoleGainLinear(role: string, genre: string = 'default'): numb
   
   // Combine structural role profile with stylistic genre mix offset
   return Math.pow(10, (baseDb + offsetDb) / 20);
-}
-
-export interface AcousticSpace {
-  roomSize?: number;
-  hfDamping?: number;
-  preDelay?: number;
-  mixAmount?: number;
-  analogWarmth?: number;
-  vinylNoise?: number;
-  sidechainDucking?: number;
-  eqCurve?: {
-    low: number;
-    midFreq: number;
-    mid: number;
-    high: number;
-  };
-}
-
-export class Compressor {
-  threshold: number;
-  ratio: number;
-  release: number;
-  attack: number;
-  sidechain: any;
-
-  constructor(opts: { threshold: number; ratio: number; release: number; attack?: number }) {
-    this.threshold = opts.threshold;
-    this.ratio = opts.ratio;
-    this.release = opts.release;
-    this.attack = opts.attack ?? 0.01;
-    this.sidechain = {};
-  }
-
-  setSidechain(opts: { ratio: number; attack: number; release: number }) {
-    this.ratio = opts.ratio;
-    this.attack = opts.attack;
-    this.release = opts.release;
-  }
-}
-
-export class MasterMixer {
-  masterGain: number;
-  instrumentBusLevel: number;
-  drumBusLevel: number;
-  compressor: Compressor;
-  tapeSaturation: number = 0;
-  vinylCrackLevel: number = 0;
-  sidechainAmount: number = 0;
-  bassBus: { connect(target: any): void } = { connect: () => {} };
-
-  constructor() {
-    // Restored full dynamic range, allowing natural resonance and powerful drums
-    this.masterGain = 0.85;
-    this.instrumentBusLevel = 0.9;
-    this.drumBusLevel = 1.0;
-
-    // Transparent bus glue to prevent squashing and let strikes pop
-    this.compressor = new Compressor({ threshold: -14, ratio: 2.5, release: 0.3 });
-  }
-
-  activateHarmonicExciter(amount: number) {
-    this.tapeSaturation = amount;
-  }
-
-  public configureGenreMix(space: AcousticSpace) {
-    // Apply authentic analog imperfections based on genre demands
-    this.tapeSaturation = space.analogWarmth || 0.0;
-    this.vinylCrackLevel = space.vinylNoise || 0.0;
-
-    if (this.tapeSaturation > 0) {
-      this.activateHarmonicExciter(this.tapeSaturation);
-    }
-
-    // Solve Bass/Kick frequency masking issues on a genre-by-genre basis
-    this.sidechainAmount = space.sidechainDucking || 0.0;
-    if (this.sidechainAmount > 0) {
-      this.bassBus.connect(this.compressor.sidechain);
-      this.compressor.setSidechain({
-        ratio: 4 + (this.sidechainAmount * 6), // scales up to 10:1
-        attack: 0.005,
-        release: 0.1,
-      });
-    }
-  }
 }
 
 export function roleProfileForGenre(role: string, mixCharacter?: MixCharacter): MixRoleProfile {
@@ -218,7 +240,7 @@ export function createMasterChain(ctx: BaseAudioContext, initialMixCharacter?: M
   drumBus.gain.value = 1.0;
 
   const instBus = ctx.createGain();
-  instBus.gain.value = 0.9;
+  instBus.gain.value = 1.0;
 
   const subBus = ctx.createGain();
   subBus.gain.value = 1.0;
@@ -286,7 +308,7 @@ export function createMasterChain(ctx: BaseAudioContext, initialMixCharacter?: M
 
   // 6. Master Summing
   const masterSum = ctx.createGain();
-  masterSum.gain.value = 0.85;
+  masterSum.gain.value = 1.0;
 
   drumBus.connect(drumShaper);
   drumBus.connect(kickFilter);
@@ -341,12 +363,11 @@ export function createMasterChain(ctx: BaseAudioContext, initialMixCharacter?: M
     glue.release.value = 0.15;
   } else if (ratioInit <= 2.0) {
     // Slow, transparent compressor (Folk, Jazz)
-    // Transparent bus glue to prevent squashing and let strikes pop
-    glue.threshold.value = -14;
+    glue.threshold.value = -8;
     glue.knee.value = 18;
-    glue.ratio.value = 2.5;
+    glue.ratio.value = Math.max(1.1, ratioInit);
     glue.attack.value = 0.08;
-    glue.release.value = 0.3;
+    glue.release.value = 0.35;
   } else {
     // Fast, punchy, or aggressive compressor (Metal, Trap, House)
     glue.threshold.value = -16;

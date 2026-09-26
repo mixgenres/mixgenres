@@ -7,7 +7,7 @@ export const turntable: InstrumentDef = {
   program: 95,
   voicing: "single",
   elementaryModel: 9,
-  makeupGain: 0.415,
+  makeupGain: 0.505,
   polyphony: 4,
   note: "DJ scratch / sampled texture",
   acousticProfile: {

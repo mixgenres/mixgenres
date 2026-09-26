@@ -7,7 +7,7 @@ export const pizz_strings: InstrumentDef = {
   program: 45,
   voicing: "chord",
   elementaryModel: 6,
-  makeupGain: 34.945,
+  makeupGain: 33.995,
   polyphony: 8,
   acousticProfile: {
     sustain: "short",

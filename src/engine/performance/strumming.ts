@@ -1,56 +1,22 @@
-export interface SequenceEvent {
-  time: number;
-  pitch: number;
-  velocity: number;
-  duration?: number;
-  dur?: number;
-  instrument?: string;
-  beat?: number;
-  metadata?: any;
-  [key: string]: any;
-}
-
-export interface PerformanceContext {
-  genre?: {
-    microTiming?: {
-      strumSpeed?: number;
-      instrumentRoles?: Record<string, string>;
-    };
-    expressiveModulation?: Record<string, {
-      depth?: number;
-      rate?: number;
-      delay?: number;
-      slideSpeed?: number;
-      wowAndFlutter?: number;
-    }>;
-    [key: string]: any;
-  };
-  rng: {
-    float(): number;
-  };
-  [key: string]: any;
-}
-
 export class StrummingInterpreter {
-  // Solves the "Piano Block Chord" syndrome on stringed instruments
-  public applyStrumOffset(chordNotes: SequenceEvent[], ctx: PerformanceContext): SequenceEvent[] {
-    const strumSpeed = ctx.genre?.microTiming?.strumSpeed || 0; // 0 means simultaneous
-    if (strumSpeed === 0) return chordNotes;
+  public applyStrumOffset(chordNotes: any[], ctx: any): any[] {
+    const strumSpeed = ctx?.genre?.microTiming?.strumSpeed || 0;
+    if (strumSpeed === 0 || !chordNotes || chordNotes.length === 0) return chordNotes;
 
-    // Sort notes by pitch so the strum goes low-to-high (downstroke) or high-to-low (upstroke)
-    const isUpstroke = ctx.rng.float() > 0.8; 
-    const sorted = [...chordNotes].sort((a, b) => 
-      isUpstroke ? b.pitch - a.pitch : a.pitch - b.pitch
-    );
+    const isUpstroke = ctx?.rng?.float ? ctx.rng.float() > 0.8 : Math.random() > 0.8;
+    const sorted = [...chordNotes].sort((a, b) => {
+      const pitchA = a.pitch ?? a.midi ?? a.midiValue ?? 0;
+      const pitchB = b.pitch ?? b.midi ?? b.midiValue ?? 0;
+      return isUpstroke ? pitchB - pitchA : pitchA - pitchB;
+    });
 
     return sorted.map((note, index) => {
-      // Add progressive millisecond delay per string hit
-      const stringDelay = index * strumSpeed;
+      const baseTime = note.time ?? note.beat ?? 0;
+      const baseVel = note.velocity ?? 80;
       return {
         ...note,
-        time: note.time + stringDelay,
-        // Slight velocity falloff as the pick drags across strings
-        velocity: Math.max(10, note.velocity - (index * 4))
+        time: baseTime + index * strumSpeed,
+        velocity: Math.max(10, baseVel - index * 4),
       };
     });
   }

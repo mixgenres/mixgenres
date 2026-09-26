@@ -1,38 +1,27 @@
-import type { SequenceEvent, PerformanceContext } from './strumming';
+import type { SequenceEvent } from '../sequencing/timing';
 
 export interface ModulationParams {
   vibratoDepth: number;
   vibratoRate: number;
-  vibratoDelay: number;
   portamentoTime: number;
+  vibratoDelay?: number;
   pitchWobble?: number;
 }
 
 export class ArticulationInterpreter {
-  public applyModulation(event: SequenceEvent, ctx: PerformanceContext): ModulationParams {
-    // Extract expressive modulation rules from the genre world
-    const modulationMeta = event.instrument ? ctx.genre?.expressiveModulation?.[event.instrument] : undefined;
-    
+  public applyModulation(event: SequenceEvent, ctx: any): ModulationParams {
+    const modulationMeta = ctx?.genre?.expressiveModulation?.[event.instrument || ''];
     if (!modulationMeta) {
-      return { vibratoDepth: 0.05, vibratoRate: 5.0, portamentoTime: 0, vibratoDelay: 0, pitchWobble: 0.0 };
+      return { vibratoDepth: 0.05, vibratoRate: 5.0, portamentoTime: 0, vibratoDelay: 0 };
     }
-    
-    // Scale vibrato based on note duration (long notes get more expression)
-    const duration = event.duration ?? event.dur ?? 0.5;
-    const durationMultiplier = Math.min(1.0, duration / 2.0);
-    
+
+    const durationMultiplier = Math.min(1.0, (event.duration || 1) / 2.0);
+    const rngFloat = ctx?.rng?.float ? ctx.rng.float() : Math.random();
     return {
-      // Allow genres to dictate heavy, slow vibrato (Tango) vs fast, tight vibrato (Gypsy Jazz)
-      vibratoDepth: (modulationMeta.depth ?? 0.1) * durationMultiplier,
-      vibratoRate: (modulationMeta.rate ?? 5.0) + (ctx.rng.float() * 0.5 - 0.25),
-      
-      // Delay vibrato onset for authentic string/wind phrasing
+      vibratoDepth: modulationMeta.depth * durationMultiplier,
+      vibratoRate: modulationMeta.rate + (rngFloat * 0.5 - 0.25),
       vibratoDelay: modulationMeta.delay || 0.15,
-      
-      // Slide/Glissando mechanics tied directly to arrangement metadata
-      portamentoTime: event.metadata?.isSlide ? (modulationMeta.slideSpeed || 0.1) : 0,
-      
-      // Applies a slow, un-synced LFO to pitch, emulating warped tape motors (Wow/Flutter)
+      portamentoTime: event.metadata?.isSlide ? modulationMeta.slideSpeed || 0.1 : 0,
       pitchWobble: modulationMeta.wowAndFlutter || 0.0,
     };
   }

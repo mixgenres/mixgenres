@@ -100,33 +100,7 @@ export interface Performance {
 }
 
 export interface CompileOptions {
-  seed?: number;
 }
-
-export class RNG {
-  private s: number;
-  constructor(seed: number = 1) {
-    this.s = Math.abs(seed) || 1;
-  }
-  float(): number {
-    this.s = (this.s * 16807) % 2147483647;
-    return (this.s - 1) / 2147483646;
-  }
-}
-
-export type Timeline = Performance;
-
-export class SongCompiler {
-  public compile(song: Sheet, options: CompileOptions = {}): Timeline {
-    // Always use the song's intrinsic locked seed for deterministic rendering
-    // This guarantees that the UI performance and offline MP3 bouncer are 100% identical
-    const renderSeed = options.seed || song.lockedSeed || 1;
-    const rng = new RNG(renderSeed);
-    void rng;
-    return compile(song, { ...options, seed: renderSeed });
-  }
-}
-
 
 /* --- meter and grid ------------------------------------------------------- */
 
@@ -384,12 +358,6 @@ export function tempoMultiplierAt(
 }
 
 export function compile(sheet: Sheet, _opts: CompileOptions = {}): Performance {
-  // Always use the song's intrinsic locked seed for deterministic rendering
-  // This guarantees that the UI performance and offline MP3 bouncer are 100% identical
-  const renderSeed = _opts.seed || (sheet as any).lockedSeed || seedOf(sheet.id, sheet.worldId, sheet.title);
-  const rng = new RNG(renderSeed);
-  void rng;
-
   const bars = buildBarTimes(sheet);
   const tracks = sheet.tracks as Voice[];
   const { channelOf } = allocateChannels(tracks);

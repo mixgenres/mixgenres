@@ -7,7 +7,7 @@ export const tubular_bells: InstrumentDef = {
   program: 14,
   voicing: "single",
   elementaryModel: 8,
-  makeupGain: 0.616,
+  makeupGain: 0.675,
   polyphony: 4,
   acousticProfile: {
     sustain: "decaying",

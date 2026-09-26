@@ -2045,47 +2045,4 @@ export const HOUSE_TECHNO_WORLD: GenreWorld = {
     "House ↔ Funk / Disco",
     "Techno ↔ Electronic / Ambient"
   ],
-  tempoRange: { min: 118, max: 126, default: 122 },
-  culturalHarmony: {
-    tensionBoost: 0.3,
-    dynamicSwell: 10, // Swells happen macroscopically via filter cutoffs, not velocity
-    voicingRule: "jazz_extended" // Minor 9ths and 11ths are mandatory for Deep House
-  },
-  idiomaticProgressions: [
-    ["i9", "iv9", "v9", "i9"],              // Classic minor 9th parallel planing
-    ["vi7", "IVmaj7", "ii7", "iii7"]        // Soulful uplifting sequence
-  ],
-  rhythmicPatterns: {
-    keys: "syncopated_stabs",               // House chords playing on the "and" of 2, 4
-    bass: "offbeat_bounce",                 // Bouncing on the 16th notes between kicks
-    drums: "four_on_the_floor"              // Relentless kick on 1, 2, 3, 4 with offbeat hats
-  },
-  timbrePalette: {
-    keys: "synth_chord_stab",               // Classic PCM organ or detuned saw stab
-    bass: "synth_fm_solid",                 // Punchy DX7 style FM bass
-    drums: "drums_909_punchy"               // Classic 909 analog kit
-  },
-  microTiming: {
-    instrumentRoles: {
-      drums: "strict",                    // The kick is absolute law
-      bass: "strict", 
-      keys: "pushed"                      // Slight MPC swing / rush on chords
-    },
-    strumSpeed: 0.0                         // Block chords hit perfectly simultaneously
-  },
-  expressiveModulation: {
-    keys: { depth: 0.2, rate: 0.5, delay: 0.0, wowAndFlutter: 0.3 } // Slow LFO on filter/pitch
-  },
-  acousticSpace: {
-    roomSize: 0.5,                          // Mid-size Club room
-    hfDamping: 8000,                        // Moderately bright
-    preDelay: 0.02,
-    mixAmount: 0.25,
-    analogWarmth: 0.5,                      // Akai sampler crunch
-    sidechainDucking: 0.85,                 // Heavy pumping: everything ducks the kick
-    eqCurve: { low: 4.0, midFreq: 1000, mid: -1.0, high: 3.0 } // Club smile EQ
-  }
 };
-
-export const houseWorld = HOUSE_TECHNO_WORLD;
-

@@ -11,7 +11,7 @@ export const triangle: InstrumentDef = {
   },
   voicing: "unpitched",
   elementaryModel: 18,
-  makeupGain: 0.209,
+  makeupGain: 0.281,
   polyphony: 8,
   acousticProfile: {
     sustain: "percussive",

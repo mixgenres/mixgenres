@@ -11,7 +11,7 @@ export const zabumba: InstrumentDef = {
   },
   voicing: "unpitched",
   elementaryModel: 4,
-  makeupGain: 0.772,
+  makeupGain: 0.753,
   polyphony: 8,
   note: "Brazilian folk bass drum",
   acousticProfile: {

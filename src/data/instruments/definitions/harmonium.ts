@@ -7,7 +7,7 @@ export const harmonium: InstrumentDef = {
   program: 20,
   voicing: "chord",
   elementaryModel: 0,
-  makeupGain: 30.000,
+  makeupGain: 16.042,
   polyphony: 8,
   note: "Hand-pumped free-reed keyboard with sustained drone registers and warm bellows dynamics",
   acousticProfile: {

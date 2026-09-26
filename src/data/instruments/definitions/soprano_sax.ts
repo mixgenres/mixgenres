@@ -8,7 +8,7 @@ export const soprano_sax: InstrumentDef = {
   octave: 12,
   voicing: "single",
   elementaryModel: 16,
-  makeupGain: 0.297,
+  makeupGain: 0.360,
   polyphony: 4,
   acousticProfile: {
     sustain: "blown",

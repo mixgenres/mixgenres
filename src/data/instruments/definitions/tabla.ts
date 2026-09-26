@@ -13,7 +13,7 @@ export const tabla: InstrumentDef = {
   bodyConstruction: "skin-faced",
   excitationType: "fingerpad",
   elementaryModel: 4,
-  makeupGain: 0.974,
+  makeupGain: 0.940,
   polyphony: 8,
   note: "North Indian classical hand drum pair consisting of wooden Dayān (treble drum with black Syāhī paste) and metal Bayān (bass drum with pitch bends)",
   acousticProfile: {

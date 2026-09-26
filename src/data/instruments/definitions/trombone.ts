@@ -7,7 +7,7 @@ export const trombone: InstrumentDef = {
   program: 57,
   voicing: "single",
   elementaryModel: 15,
-  makeupGain: 0.404,
+  makeupGain: 0.461,
   polyphony: 4,
   acousticProfile: {
     sustain: "blown",

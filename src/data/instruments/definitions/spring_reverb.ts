@@ -29,7 +29,7 @@ export const spring_reverb: InstrumentDef = {
     harmonicRichness: 0.65
   },
   techniques: {
-    articulations: [],
+    articulations: ["sustain", "accent"],
     techniqueMethods: ["feedback level", "decay and tone control", "spring excitation response"],
     playingStyles: ["dub", "surf", "ambient", "rock", "studio effect"],
     genreTechniques: {}

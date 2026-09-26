@@ -10,7 +10,7 @@ export const cello: InstrumentDef = {
   bodyConstruction: "wood-box",
   excitationType: "bow",
   elementaryModel: 6,
-  makeupGain: 22.818,
+  makeupGain: 23.865,
   polyphony: 4,
   note: "Acoustic violoncello with resonant spruce body and warm, expressive, lyrical tenor/bass voice",
   acousticProfile: {

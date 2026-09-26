@@ -9,7 +9,7 @@ export const bandoneon: InstrumentDef = {
   bodyConstruction: "wood-box",
   excitationType: "breath",
   elementaryModel: 10,
-  makeupGain: 0.685,
+  makeupGain: 0.404,
   polyphony: 8,
   note: "Bisonoric bellows instrument featuring thick zinc reed plates and long cardboard bellows, producing melancholic soul and aggressive marcato",
   acousticProfile: {

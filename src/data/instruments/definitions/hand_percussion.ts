@@ -11,7 +11,7 @@ export const hand_percussion: InstrumentDef = {
   },
   voicing: "unpitched",
   elementaryModel: 4,
-  makeupGain: 2.905,
+  makeupGain: 2.808,
   polyphony: 8,
   note: "Auxiliary hand percussion ensemble including claps, snaps, shaker accents, and small acoustic idiophones",
   acousticProfile: {

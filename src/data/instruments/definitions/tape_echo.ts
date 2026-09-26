@@ -29,7 +29,7 @@ export const tape_echo: InstrumentDef = {
     harmonicRichness: 0.8
   },
   techniques: {
-    articulations: [],
+    articulations: ["sustain", "accent"],
     techniqueMethods: ["delay-time setting", "feedback control", "wow/flutter and saturation"],
     playingStyles: ["dub", "rockabilly", "surf", "ambient", "studio effect"],
     genreTechniques: {}

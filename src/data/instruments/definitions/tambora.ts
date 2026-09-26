@@ -11,7 +11,7 @@ export const tambora: InstrumentDef = {
   },
   voicing: "unpitched",
   elementaryModel: 4,
-  makeupGain: 0.816,
+  makeupGain: 0.792,
   polyphony: 8,
   note: "Colombian cumbia drum",
   acousticProfile: {

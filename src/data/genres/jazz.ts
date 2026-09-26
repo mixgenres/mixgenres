@@ -3165,53 +3165,5 @@ export const JAZZ_WORLD: GenreWorld = {
     "Jazz ↔ Swing",
     "Jazz ↔ Funk",
     "Jazz ↔ Bossa Nova"
-  ],
-  tempoRange: { min: 110, max: 240, default: 145 },
-  culturalHarmony: {
-    tensionBoost: 0.6,
-    dynamicSwell: 15,
-    voicingRule: "jazz_extended" // Converts basic 7ths into lush 9ths, 11ths, and 13ths
-  },
-  idiomaticProgressions: [
-    ["ii7", "V7", "Imaj7", "Imaj7"],        // Classic ii-V-I
-    ["Imaj7", "VI7", "ii7", "V7"],          // Rhythm changes turnaround
-    ["Imaj7", "iv7", "bVII7", "Imaj7"]      // Tadd Dameron / backdoor turnaround
-  ],
-  rhythmicPatterns: {
-    piano: "swing_comping",                 // Syncopated jabs anticipating the beat
-    guitar: "swing_comping",
-    bass: "walking_bass",                   // Constant quarter notes leading into chord tones
-    drums: "ride_spang_a_lang"              // Traditional swung cymbal pattern
-  },
-  timbrePalette: {
-    piano: "piano_grand_dark",              // Warm, muted felt grand piano
-    bass: "upright_bass_plucked",           // Heavy finger attack, woody resonance
-    drums: "studio_kit_brushes",            // Soft snare, highly dynamic cymbals
-    horn: "brass_sax_breathy"               // Expressive tenor sax
-  },
-  microTiming: {
-    instrumentRoles: {
-      bass: "strict",                     // Anchors the swinging band
-      piano: "pushed",                    // Comping pushes the groove forward
-      horn: "rubato",                     // Plays heavily behind/ahead of the beat
-      drums: "laid_back"                  // Wide, lazy swing pocket
-    },
-    strumSpeed: 0.035                       // Smooth jazz guitar rolls
-  },
-  expressiveModulation: {
-    horn: { depth: 0.4, rate: 4.5, delay: 0.3, slideSpeed: 0.15 }, // Delayed vibrato on long notes
-    bass: { depth: 0.1, rate: 3.0, delay: 0.1, slideSpeed: 0.25 }  // Occasional fretless/upright slides
-  },
-  acousticSpace: {
-    roomSize: 0.25,                         // Intimate Jazz Club (Village Vanguard size)
-    hfDamping: 6500,                        // Dark room, absorbed by crowd/curtains
-    preDelay: 0.015,
-    mixAmount: 0.15,
-    analogWarmth: 0.3,                      // Mild vintage tube saturation
-    sidechainDucking: 0.0,
-    eqCurve: { low: 1.5, midFreq: 600, mid: 2.0, high: -3.0 } // Mid-focused, warm
-  }
+  ]
 };
-
-export const jazzWorld = JAZZ_WORLD;
-

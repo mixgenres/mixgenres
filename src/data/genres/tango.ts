@@ -3208,58 +3208,5 @@ export const TANGO_WORLD: GenreWorld = {
     "Tango ↔ Blues Fusion",
     "Tango ↔ Flamenco",
     "Tango ↔ Jazz"
-  ],
-  decorations: {
-    bandoneon: [
-      { type: "arrastre", chance: 0.4, effect: "pitch_swell_up", timingOffset: -0.15 },
-      { type: "síncopa", chance: 0.35, effect: "accent_syncopated", timingOffset: 0.0 },
-      { type: "staccato_marcato", chance: 0.25, effect: "sharp_breath", releaseCap: 0.1 }
-    ],
-    bass: [
-      { type: "marcato_pesado", chance: 0.6, effect: "heavy_attack_resonant_release" },
-      { type: "golpe", chance: 0.2, effect: "percussive_body_strike", isResonant: true }
-    ]
-  },
-  culturalHarmony: {
-    tensionBoost: 0.85,
-    dynamicSwell: 15,
-    dissonanceResolution: "delayed_milonga",
-    voicingRule: "cluster"
-  },
-  idiomaticProgressions: [
-    ["i", "V7", "V7", "i"],             // Classic dramatic resolution
-    ["i", "iv", "ii°", "V7"],           // Minor ii-V-i
-    ["i", "i7", "VI", "V7"]             // Descending lament bass line
-  ],
-  rhythmicPatterns: {
-    piano: "sincopa",
-    bass: "marcato_tango"
-  },
-  timbrePalette: {
-    bandoneon: "bellows_reed_resonant", // Breathes dynamically, not a flat accordion
-    piano: "acoustic_upright_honky",    // Slightly detuned bar piano
-    bass: "upright_bowed_heavy"         // Aggressive arco bass for marcatos
-  },
-  microTiming: {
-    instrumentRoles: {
-      bandoneon: "rubato",
-      violin: "rubato",
-      bass: "strict",
-      piano: "pushed"
-    }
-  },
-  expressiveModulation: {
-    bandoneon: { depth: 0.6, rate: 4.2, delay: 0.2, slideSpeed: 0.15 },
-    violin: { depth: 0.5, rate: 5.5, delay: 0.1, slideSpeed: 0.12 }
-  },
-  acousticSpace: {
-    roomSize: 0.35,
-    hfDamping: 2500,
-    preDelay: 0.02,
-    mixAmount: 0.18,
-    eqCurve: { low: 2.0, midFreq: 800, mid: -1.5, high: -2.0 }
-  }
+  ]
 };
-
-export const tangoWorld = TANGO_WORLD;
-

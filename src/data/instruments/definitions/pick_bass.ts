@@ -7,7 +7,7 @@ export const pick_bass: InstrumentDef = {
   program: 34,
   voicing: "bass",
   elementaryModel: 3,
-  makeupGain: 0.547,
+  makeupGain: 0.565,
   polyphony: 4,
   acousticProfile: {
     sustain: "decaying",

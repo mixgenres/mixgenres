@@ -9,19 +9,14 @@ export type VoicingStyle =
   | 'close'
   /** the second voice from the top dropped an octave — the standard piano/guitar comp */
   | 'drop2'
-  | 'drop_2'
   /** wide, for pads and string beds */
   | 'spread'
-  | 'open_spread'
   /** just the notes that define the chord: third and seventh */
   | 'shell'
   /** root and fifth only */
   | 'power'
   /** a single line */
-  | 'unison'
-  | 'jazz_extended'
-  | 'cluster';
-
+  | 'unison';
 
 export interface VoicingRequest {
   chord: ParsedChord;
@@ -575,7 +570,7 @@ export function voiceChord(req: VoicingRequest): number[] {
   }
 
   // Drop-2 & Drop-3 Refinement: Check and avoid minor 9th (13 semitones) between inner voices
-  if ((req.style === 'drop2' || req.style === 'drop_2') && notes.length >= 3) {
+  if (req.style === 'drop2' && notes.length >= 3) {
     const idx = notes.length - 2;
     const dropped = notes[idx] - 12;
     let candidate = [...notes.slice(0, idx), ...notes.slice(idx + 1), dropped].sort((a, b) => a - b);
@@ -596,36 +591,6 @@ export function voiceChord(req: VoicingRequest): number[] {
       candidate = [...notes.slice(0, idx3), ...notes.slice(idx3 + 1), dropped3].sort((a, b) => a - b);
     }
     notes = candidate;
-  } else if (req.style === 'open_spread') {
-    if (notes.length >= 3) {
-      notes[1] = notes[1] + 12;
-      if (notes[3]) notes[3] = notes[3] + 12;
-    }
-    notes.sort((a, b) => a - b);
-  } else if (req.style === 'jazz_extended') {
-    const root = nearestPc(chord.rootPc, profile.centre);
-    const hasDom7 = chord.intervals.includes(10) && chord.intervals.includes(4);
-    const hasMaj7 = chord.intervals.includes(11);
-    const hasMin7 = chord.intervals.includes(10) && chord.intervals.includes(3);
-    if (hasMin7) {
-      notes.push(root + 14); // 9th
-    } else if (hasMaj7) {
-      notes.push(root + 14); // 9th
-      if (notes.length > 1) notes[1] = notes[1] - 12; // Drop 3rd to bass
-    } else if (hasDom7) {
-      notes.push(root + 13); // Flat 9 for tension
-    }
-    notes.sort((a, b) => a - b);
-  } else if (req.style === 'cluster') {
-    if (notes.length > 1) {
-      const base = notes[0];
-      notes = notes.map(n => {
-        let m = n;
-        while (m - base > 12) m -= 12;
-        while (m - base < 0) m += 12;
-        return m;
-      }).sort((a, b) => a - b);
-    }
   } else if (req.style === 'spread' && notes.length >= 3) {
     notes = [notes[0] - 12, ...notes.slice(1)];
     if (intensity > 0.7 && notes.length >= 2) notes.push(notes[notes.length - 1] + 12);

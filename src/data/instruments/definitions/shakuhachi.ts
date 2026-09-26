@@ -8,7 +8,7 @@ export const shakuhachi: InstrumentDef = {
   octave: 12,
   voicing: "single",
   elementaryModel: 7,
-  makeupGain: 0.356,
+  makeupGain: 0.422,
   polyphony: 4,
   note: "Japanese end-blown flute",
   acousticProfile: {

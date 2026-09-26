@@ -11,7 +11,7 @@ export const hats: InstrumentDef = {
   },
   voicing: "unpitched",
   elementaryModel: 18,
-  makeupGain: 0.209,
+  makeupGain: 0.281,
   polyphony: 12,
   note: "Pair of matched cymbals mounted on foot pedal stand; controls rhythmic timekeeping from closed clicks to open sizzles",
   acousticProfile: {

@@ -329,53 +329,6 @@ export interface GenreStyleDefinition {
   sectionProgressions?: Partial<Record<SectionType | string, string[]>>;
 }
 
-export interface GenreAcousticSpace {
-  roomSize: number;
-  hfDamping: number;
-  preDelay?: number;
-  mixAmount: number;
-  analogWarmth?: number;
-  vinylNoise?: number;
-  sidechainDucking?: number;
-  eqCurve?: {
-    low: number;
-    midFreq: number;
-    mid: number;
-    high: number;
-  };
-}
-
-export interface GenreCulturalHarmony {
-  tensionBoost?: number;
-  dynamicSwell?: number;
-  dissonanceResolution?: string;
-  voicingRule?: string;
-  tensionLevel?: string;
-  dissonance?: string;
-}
-
-export interface GenreMicroTiming {
-  instrumentRoles?: Record<string, string>;
-  strumSpeed?: number;
-}
-
-export interface GenreExpressiveModulation {
-  depth?: number;
-  rate?: number;
-  delay?: number;
-  slideSpeed?: number;
-  wowAndFlutter?: number;
-}
-
-export interface GenreDecoration {
-  type: string;
-  chance?: number;
-  effect?: string;
-  timingOffset?: number;
-  releaseCap?: number;
-  isResonant?: boolean;
-}
-
 export interface GenreWorld {
   id: LensId;
   name: string;
@@ -400,16 +353,6 @@ export interface GenreWorld {
   grooveMechanics?: GrooveMechanics;
   prominentChords?: string[];
   crossLinks?: string[];
-  tempoRange?: { min: number; max: number; default: number } | [number, number];
-  decorations?: Record<string, GenreDecoration[]>;
-  culturalHarmony?: GenreCulturalHarmony;
-  microTiming?: GenreMicroTiming;
-  expressiveModulation?: Record<string, GenreExpressiveModulation>;
-  acousticSpace?: GenreAcousticSpace;
-  harmonicLanguage?: { voicingRule?: string; [key: string]: any };
-  idiomaticProgressions?: string[][];
-  rhythmicPatterns?: Record<string, string>;
-  timbrePalette?: Record<string, string>;
 }
 
 // Backward compatibility alias
@@ -534,7 +477,6 @@ export interface Song {
   applied: AppliedLens[];
   preferences?: UserPatternPreference[];
   generationSeed?: number;
-  lockedSeed?: number;
   styleId?: string;
   styleInfluences?: any[];
   styleOverrides?: Record<string, unknown>;

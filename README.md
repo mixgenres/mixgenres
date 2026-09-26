@@ -277,6 +277,11 @@ Mix Genres utilizes Elementary Audio (`@elemaudio/web-renderer` and `@elemaudio/
 
 - **Real-Time Web Audio**: Operates via `transport.ts` and `BandWorklet.ts`, scheduling audio events ahead of the playback cursor with sub-millisecond precision.
 - **`offlineRender.ts`**: Provides deterministic, high-speed rendering using an offline audio buffer and an embedded LAME MP3 encoder (`@breezystack/lamejs`).
+- **`panning.ts` & `StereoFieldManager`**: Authoritative stereo placement and panning management according to acoustic role and frequency spectrum.
+- **`spatial.ts` & `SpatialProcessor`**: Reverb damping, room sizing, pre-delay, and 3-band acoustic space EQ per musical genre.
+- **`instrumentBank.ts` & `synthDefinitions.js`**: Timbre palette resolution, physical modeling, and Tone.js synthesis layers.
+- **`phraseDynamics.ts` & `strumming.ts`**: Macro phrasing dynamic swells, expression CC generation, and micro-strum velocity offsets.
+- **`voiceLeading.ts` & `progressionBuilder.ts`**: Voice leading distance optimization, smooth inversion selection, and idiomatic harmonic progression generation.
 - **Culturally Grounded Mix Character**: Master summing and per-track role profiles dynamically adapt to each genre's acoustic environment (`mixCharacter`):
   - *Dryness*: Direct, intimate wood/percussion detail vs. spacious room resonance.
   - *Bass Forwardness*: Sub/low-end dominance in Dembow, Hip-Hop, and Dub vs. restrained acoustic bass balance in Folk and Jazz.

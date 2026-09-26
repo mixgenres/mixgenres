@@ -13,7 +13,7 @@ export const cajon: InstrumentDef = {
   bodyConstruction: "wood-box",
   excitationType: "fingerpad",
   elementaryModel: 4,
-  makeupGain: 1.548,
+  makeupGain: 0.942,
   polyphony: 12,
   note: "Wooden box drum with internal guitar string snares or wire tension, played with hands for deep bass thump and high snare slap",
   acousticProfile: {

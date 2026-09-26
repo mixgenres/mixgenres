@@ -11,7 +11,7 @@ export const sitar: InstrumentDef = {
   excitationType: "plectrum",
   sympatheticStrings: true,
   elementaryModel: 0,
-  makeupGain: 17.635,
+  makeupGain: 6.003,
   polyphony: 4,
   note: "Standard Sitar timbre (GM Program 104)",
   acousticProfile: {
