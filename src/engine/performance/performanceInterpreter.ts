@@ -10,7 +10,33 @@ import { rand01, seedOf } from '../generators/groove';
 import type { ParsedChord } from '../theory/theory';
 import { resolveCrossInstrumentArticulation, applyGenreArticulationInfluence } from '../theory/articulation';
 import { INSTRUMENTS_BY_ID } from '../../data/instruments';
+import { GENRE_WORLDS } from '../../data/genres';
 import { resolveInstrumentArticulation, translateRhythmToInstrument } from './musicSemantics';
+
+export function interpretEventVelocity(
+  event: { velocity?: number; metadata?: any; [key: string]: any },
+  ctx: { rng: { float(): number }; [key: string]: any }
+) {
+  // Remove arbitrary caps; treat velocity as an additive base
+  let dynamicLevel = event.velocity || 70;
+
+  // Utilize sophisticated genre-specific cultural harmonies and dynamics
+  const styleData = event.metadata?.genre;
+  if (styleData && styleData.culturalHarmony) {
+    // Additive enhancement rather than destructive override
+    const { tensionBoost = 0, dynamicSwell = 0 } = styleData.culturalHarmony;
+    dynamicLevel = Math.min(127, dynamicLevel + tensionBoost * 10 + dynamicSwell);
+  }
+
+  // Use deterministic phrasing variation instead of flat random overrides
+  const dynamicVariation = ctx.rng.float() * 10 - 5; // +/- 5 velocity nuance
+
+  return {
+    ...event,
+    velocity: Math.max(1, Math.min(127, Math.round(dynamicLevel + dynamicVariation)))
+  };
+}
+
 
 export function applyArticulationDynamics(_baseVelocity: number, articulation: string): number {
   switch (articulation) {
@@ -491,7 +517,19 @@ export function interpretPattern(options: InterpretPatternOptions): Interpretati
     const fusedArticulation = supportedArticulation;
     const translatedHitType = rhythmTranslation.hitType || o.hitType;
     const dynamicOffset = fusedArticulation ? applyArticulationDynamics(calculatedVelocity, fusedArticulation) : 0;
-    const finalVelocity = Math.max(1, Math.min(127, calculatedVelocity + dynamicOffset));
+    
+    // Utilize sophisticated genre-specific cultural harmonies and dynamics
+    const genreWorld = GENRE_WORLDS.find(w => w.id === genreContext || w.id === grammar.worldId);
+    const culturalHarmony = (grammar as any).culturalHarmony || genreWorld?.culturalHarmony;
+    let dynamicLevel = calculatedVelocity;
+    if (culturalHarmony) {
+      // Additive enhancement rather than destructive override
+      const { tensionBoost = 0, dynamicSwell = 0 } = culturalHarmony;
+      dynamicLevel = Math.min(127, dynamicLevel + (tensionBoost || 0) * 10 + (dynamicSwell || 0));
+    }
+    // Use deterministic phrasing variation (+/- 5 velocity nuance)
+    const dynamicVariation = (rand01(seedOf(seed, barIndex, i, 'dyn-nuance')) * 10) - 5;
+    const finalVelocity = Math.max(1, Math.min(127, Math.round(dynamicLevel + dynamicOffset + dynamicVariation)));
 
     attacks.push({
       beat,

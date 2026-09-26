@@ -721,7 +721,7 @@ export function realizePerformanceCell(params: RealizeCellParams): PerformanceCe
         vel,
         trackId: t.id,
         bar: a.bar,
-        articulation: a.articulation,
+        articulation: translatedArticulation || a.articulation,
       });
 
       // Keyboard pedaling CC64

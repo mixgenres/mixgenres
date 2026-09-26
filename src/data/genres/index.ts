@@ -26,6 +26,31 @@ import { SKA_WORLD } from './ska';
 import { SAMBA_BOSSA_WORLD } from './sambaBossa';
 import { gospel } from './gospel';
 import { industrial } from './industrial';
+import { lofiWorld, LOFI_WORLD } from './lofi_hiphop';
+import { synthwaveWorld, SYNTHWAVE_WORLD } from './synthwave';
+import { cinematicWorld, CINEMATIC_WORLD } from './cinematic';
+import { bossaNovaWorld, BOSSA_NOVA_WORLD } from './bossa_nova';
+import { tangoWorld } from './tango';
+import { flamencoWorld } from './flamenco';
+
+export {
+  tangoWorld,
+  flamencoWorld,
+  lofiWorld,
+  LOFI_WORLD,
+  synthwaveWorld,
+  SYNTHWAVE_WORLD,
+  cinematicWorld,
+  CINEMATIC_WORLD,
+  bossaNovaWorld,
+  BOSSA_NOVA_WORLD,
+  JAZZ_WORLD as jazzWorld,
+  REGGAE_DUB_WORLD as reggaeWorld,
+  HOUSE_TECHNO_WORLD as houseWorld,
+  METAL_WORLD as metalWorld,
+  AFROBEATS_WORLD as afrobeatWorld,
+};
+
 
 export const GOSPEL_WORLD: GenreWorld = {
   ...FOLK_WORLD,

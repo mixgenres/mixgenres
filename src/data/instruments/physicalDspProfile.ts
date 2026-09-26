@@ -313,8 +313,6 @@ const membrane = (d: InstrumentDef): InstrumentDSPProfile => {
 const bellows = (d: InstrumentDef): InstrumentDSPProfile => {
   const id = d.id.toLowerCase();
   const bandoneon = id === 'bandoneon';
-  const accordion = /accordion/.test(id);
-  const concertina = /concertina/.test(id);
   return {
     familyModel: 'bellows',
     excitationDynamics: {
@@ -496,7 +494,7 @@ const electronic = (d: InstrumentDef): InstrumentDSPProfile => {
   };
 };
 
-const voice = (d: InstrumentDef): InstrumentDSPProfile => ({
+const voice = (_d: InstrumentDef): InstrumentDSPProfile => ({
   familyModel: 'voice',
   excitationDynamics: {
     hardness: 0.18, pressureSensitivity: 0.92, nonlinearDrive: 0.12,

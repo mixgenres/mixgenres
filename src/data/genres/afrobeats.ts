@@ -3984,5 +3984,51 @@ export const AFROBEATS_WORLD: GenreWorld = {
     "Kizomba ↔ Afrobeats (Afro-Kiz festival room)",
     "Afrobeats ↔ Global Urban Beat",
     "Afrobeats ↔ Funk (Fela Kuti / James Brown shared DNA)"
-  ]
+  ],
+  tempoRange: { min: 100, max: 130, default: 115 },
+  culturalHarmony: {
+    tensionBoost: 0.5,
+    dynamicSwell: 20,
+    voicingRule: "jazz_extended" // Fela Kuti style dominant 9ths and min11ths
+  },
+  idiomaticProgressions: [
+    ["i7", "i7", "IV7", "IV7"],             // Endless hypnotic 2-chord vamp
+    ["i7", "i7", "i7", "i7"]                // Single chord polyrhythmic trance
+  ],
+  rhythmicPatterns: {
+    guitar: "poly_interlock",               // Interlocking cyclical 16th note riffs
+    bass: "syncopated_groove",              // Melodic, dancing bass lines playing off the kick
+    horn: "staccato_punches",               // Aggressive horn section stabs
+    drums: "clave_6_8_over_4_4"             // Shaker/bell polyrhythms over steady kick
+  },
+  timbrePalette: {
+    guitar: "electric_clean_plucked",       // DI stratocaster, very dry and bright
+    bass: "bass_electric_finger",           // Vintage Fender Jazz bass tone
+    horn: "brass_section_punchy",           // Trumpet/Sax/Trombone layered section
+    drums: "drums_afro_perc"                // Dry kit heavily layered with shekere and congas
+  },
+  microTiming: {
+    instrumentRoles: {
+      drums: "strict",                    // Clave and bell hold the unmoving center
+      bass: "laid_back",                  // Bass pulls back to create a deep pocket
+      guitar: "pushed",                   // Guitars lean forward to create kinetic energy
+      horn: "rubato"
+    },
+    strumSpeed: 0.015                       // Quick rhythmic rakes
+  },
+  expressiveModulation: {
+    horn: { depth: 0.3, rate: 5.0, delay: 0.1, slideSpeed: 0.1 } // Fall-offs and scoops on brass
+  },
+  acousticSpace: {
+    roomSize: 0.3,                          // 70s Lagos Studio (dry and woody)
+    hfDamping: 5000,                        // Rolled off highs for vintage warmth
+    preDelay: 0.02,
+    mixAmount: 0.15,
+    analogWarmth: 0.6,                      // Tape saturation and console coloration
+    sidechainDucking: 0.0,                  // Natural dynamics, no pumping
+    eqCurve: { low: 2.0, midFreq: 1500, mid: 2.5, high: -1.0 } // Punchy mids to cut through polyrhythms
+  }
 };
+
+export const afrobeatWorld = AFROBEATS_WORLD;
+

@@ -52,6 +52,90 @@ export function getRoleGainLinear(role: string, genre: string = 'default'): numb
   return Math.pow(10, (baseDb + offsetDb) / 20);
 }
 
+export interface AcousticSpace {
+  roomSize?: number;
+  hfDamping?: number;
+  preDelay?: number;
+  mixAmount?: number;
+  analogWarmth?: number;
+  vinylNoise?: number;
+  sidechainDucking?: number;
+  eqCurve?: {
+    low: number;
+    midFreq: number;
+    mid: number;
+    high: number;
+  };
+}
+
+export class Compressor {
+  threshold: number;
+  ratio: number;
+  release: number;
+  attack: number;
+  sidechain: any;
+
+  constructor(opts: { threshold: number; ratio: number; release: number; attack?: number }) {
+    this.threshold = opts.threshold;
+    this.ratio = opts.ratio;
+    this.release = opts.release;
+    this.attack = opts.attack ?? 0.01;
+    this.sidechain = {};
+  }
+
+  setSidechain(opts: { ratio: number; attack: number; release: number }) {
+    this.ratio = opts.ratio;
+    this.attack = opts.attack;
+    this.release = opts.release;
+  }
+}
+
+export class MasterMixer {
+  masterGain: number;
+  instrumentBusLevel: number;
+  drumBusLevel: number;
+  compressor: Compressor;
+  tapeSaturation: number = 0;
+  vinylCrackLevel: number = 0;
+  sidechainAmount: number = 0;
+  bassBus: { connect(target: any): void } = { connect: () => {} };
+
+  constructor() {
+    // Restored full dynamic range, allowing natural resonance and powerful drums
+    this.masterGain = 0.85;
+    this.instrumentBusLevel = 0.9;
+    this.drumBusLevel = 1.0;
+
+    // Transparent bus glue to prevent squashing and let strikes pop
+    this.compressor = new Compressor({ threshold: -14, ratio: 2.5, release: 0.3 });
+  }
+
+  activateHarmonicExciter(amount: number) {
+    this.tapeSaturation = amount;
+  }
+
+  public configureGenreMix(space: AcousticSpace) {
+    // Apply authentic analog imperfections based on genre demands
+    this.tapeSaturation = space.analogWarmth || 0.0;
+    this.vinylCrackLevel = space.vinylNoise || 0.0;
+
+    if (this.tapeSaturation > 0) {
+      this.activateHarmonicExciter(this.tapeSaturation);
+    }
+
+    // Solve Bass/Kick frequency masking issues on a genre-by-genre basis
+    this.sidechainAmount = space.sidechainDucking || 0.0;
+    if (this.sidechainAmount > 0) {
+      this.bassBus.connect(this.compressor.sidechain);
+      this.compressor.setSidechain({
+        ratio: 4 + (this.sidechainAmount * 6), // scales up to 10:1
+        attack: 0.005,
+        release: 0.1,
+      });
+    }
+  }
+}
+
 export function roleProfileForGenre(role: string, mixCharacter?: MixCharacter): MixRoleProfile {
   const base = DEFAULT_ROLE_PROFILES[role] || { level: 0.8, pan: 0, width: 0.3, densityLimit: 8 };
   if (!mixCharacter) return base;
@@ -134,7 +218,7 @@ export function createMasterChain(ctx: BaseAudioContext, initialMixCharacter?: M
   drumBus.gain.value = 1.0;
 
   const instBus = ctx.createGain();
-  instBus.gain.value = 1.0;
+  instBus.gain.value = 0.9;
 
   const subBus = ctx.createGain();
   subBus.gain.value = 1.0;
@@ -202,7 +286,7 @@ export function createMasterChain(ctx: BaseAudioContext, initialMixCharacter?: M
 
   // 6. Master Summing
   const masterSum = ctx.createGain();
-  masterSum.gain.value = 1.0;
+  masterSum.gain.value = 0.85;
 
   drumBus.connect(drumShaper);
   drumBus.connect(kickFilter);
@@ -257,11 +341,12 @@ export function createMasterChain(ctx: BaseAudioContext, initialMixCharacter?: M
     glue.release.value = 0.15;
   } else if (ratioInit <= 2.0) {
     // Slow, transparent compressor (Folk, Jazz)
-    glue.threshold.value = -8;
+    // Transparent bus glue to prevent squashing and let strikes pop
+    glue.threshold.value = -14;
     glue.knee.value = 18;
-    glue.ratio.value = Math.max(1.1, ratioInit);
+    glue.ratio.value = 2.5;
     glue.attack.value = 0.08;
-    glue.release.value = 0.35;
+    glue.release.value = 0.3;
   } else {
     // Fast, punchy, or aggressive compressor (Metal, Trap, House)
     glue.threshold.value = -16;

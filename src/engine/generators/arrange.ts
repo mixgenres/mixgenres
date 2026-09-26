@@ -914,6 +914,7 @@ export function rebuild(sheet: Sheet): Sheet {
 
   return {
     ...sheet,
+    lockedSeed: sheet.lockedSeed ?? Math.floor(Math.random() * 1000000000),
     regions,
     measures,
     durationMeasures: measures.length,

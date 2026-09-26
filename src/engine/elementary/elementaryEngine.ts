@@ -1376,18 +1376,20 @@ default: {
   if (physical) {
     const sys = physical.system;
     const r = physical.response;
+    const xHardness = dspProfile?.excitationDynamics?.hardness ?? r.contactHardness ?? 0.5;
+    const collisionEnv = el.adsr(0.0001, Math.max(0.0015, 0.004 + (1 - xHardness) * 0.008), 0, 0.002, gateSignal);
     if (sys === 'long-zither') {
-      const ji = el.svf({ mode: 'bandpass' }, 980 + safeFreqSignal * 0.55, 5.2, stringSignal);
+      const ji = el.svf({ mode: 'bandpass' }, Math.min(19000, 980 + freq * 0.55), 5.2, stringSignal);
       const board = el.svf({ mode: 'bandpass' }, 165, 2.8, stringSignal);
       const tsume = el.mul(0.08 + r.contactHardness * 0.10, el.mul(el.highpass(3200, 1.1, el.noise()), collisionEnv));
       bodyOut = el.add(bodyOut, el.mul(r.bodyCoupling * 0.18, board), el.mul(0.10, ji), tsume);
     } else if (sys === 'bridge-less-long-zither') {
       const softBody = el.svf({ mode: 'bandpass' }, 120, 1.8, stringSignal);
-      const floatingHarmonic = el.svf({ mode: 'bandpass' }, safeFreqSignal * 2, 7.0, stringSignal);
+      const floatingHarmonic = el.svf({ mode: 'bandpass' }, Math.min(19000, freq * 2), 7.0, stringSignal);
       bodyOut = el.add(el.mul(0.82, bodyOut), el.mul(r.bodyCoupling * 0.16, softBody), el.mul(0.12, floatingHarmonic));
     } else if (sys === 'multi-string-bridge-zither') {
       const bridge = el.svf({ mode: 'bandpass' }, 1150, 3.8, stringSignal);
-      const afterlength = el.svf({ mode: 'bandpass' }, safeFreqSignal * 1.5, 18, stringSignal);
+      const afterlength = el.svf({ mode: 'bandpass' }, Math.min(19000, freq * 1.5), 18, stringSignal);
       bodyOut = el.add(bodyOut, el.mul(0.12 + r.bodyCoupling * 0.08, bridge), el.mul(0.10, afterlength));
     } else if (sys === 'fretted-lute') {
       const fretClick = el.mul(0.06 + r.contactHardness * 0.06, el.mul(el.highpass(2600, 1.2, el.noise()), collisionEnv));
@@ -1396,7 +1398,7 @@ default: {
       const skinRing = el.svf({ mode: 'bandpass' }, 520, 4.2, stringSignal);
       bodyOut = el.add(bodyOut, el.mul(0.18, skinRing));
     } else if (sys === 'fretted-lute-with-sympathetics') {
-      const jawari = el.svf({ mode: 'bandpass' }, Math.min(9000, safeFreqSignal * 3.8), 8.0, stringSignal);
+      const jawari = el.svf({ mode: 'bandpass' }, Math.min(9000, freq * 3.8), 8.0, stringSignal);
       bodyOut = el.add(bodyOut, el.mul(r.nonlinearTransfer * 0.28, jawari));
     } else if (sys === 'five-string-plucked-membrane-resonator') {
       const head = el.svf({ mode: 'bandpass' }, 900, 5.5, stringSignal);

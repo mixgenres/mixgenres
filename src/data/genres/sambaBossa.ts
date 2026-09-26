@@ -1748,4 +1748,27 @@ export const SAMBA_BOSSA_WORLD: GenreWorld = {
     "Samba ↔ Funk / Latin",
     "Bossa ↔ Jazz"
   ],
+  culturalHarmony: {
+    tensionBoost: 0.2,
+    dynamicSwell: 5,
+    voicingRule: "drop_2"
+  },
+  microTiming: {
+    instrumentRoles: {
+      bass: "laid_back",
+      guitar: "pushed",
+      drums: "laid_back"
+    }
+  },
+  expressiveModulation: {
+    guitar: { depth: 0.1, rate: 3.0, delay: 0.0, slideSpeed: 0.05 }
+  },
+  acousticSpace: {
+    roomSize: 0.2,
+    hfDamping: 6000,
+    preDelay: 0.0,
+    mixAmount: 0.1,
+    eqCurve: { low: 1.0, midFreq: 2500, mid: 1.5, high: 2.0 }
+  }
 };
+

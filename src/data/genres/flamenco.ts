@@ -5284,5 +5284,50 @@ export const FLAMENCO_WORLD: GenreWorld = {
     "Flamenco ↔ Tango",
     "Flamenco ↔ Jazz",
     "Flamenco ↔ Arabic / Mediterranean"
-  ]
+  ],
+  tempoRange: { min: 140, max: 200, default: 160 },
+  culturalHarmony: {
+    tensionBoost: 0.9,
+    dynamicSwell: 20,
+    voicingRule: "standard"
+  },
+  idiomaticProgressions: [
+    ["iv", "III", "II", "I"],           // The definitive Andalusian Cadence
+    ["I", "bII", "I", "bII"]            // Phrygian dominant tension
+  ],
+  rhythmicPatterns: {
+    palmas: "sincopa"                   // Complex handclapping off-beats
+  },
+  timbrePalette: {
+    guitar: "nylon_spanish_rasgueado",  // Hard attack with body resonance
+    cajon: "wood_box_resonant"          // Deep boom and sharp snare snap
+  },
+  microTiming: {
+    instrumentRoles: {
+      guitar: "rubato",
+      palmas: "pushed",
+      cajon: "strict"
+    },
+    strumSpeed: 0.015
+  },
+  expressiveModulation: {
+    guitar: {
+      depth: 0.3,
+      rate: 5.0,
+      delay: 0.1,
+      slideSpeed: 0.05
+    }
+  },
+  acousticSpace: {
+    roomSize: 0.4,
+    hfDamping: 4000,
+    preDelay: 0.01,
+    mixAmount: 0.2,
+    analogWarmth: 0.1,
+    sidechainDucking: 0.0,
+    eqCurve: { low: -2.0, midFreq: 1500, mid: 3.0, high: 1.0 }
+  }
 };
+
+export const flamencoWorld = FLAMENCO_WORLD;
+

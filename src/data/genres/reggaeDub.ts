@@ -2035,4 +2035,50 @@ export const REGGAE_DUB_WORLD: GenreWorld = {
     "Reggae ↔ Ska",
     "Dub ↔ House/Techno"
   ],
+  tempoRange: { min: 65, max: 95, default: 75 },
+  culturalHarmony: {
+    tensionBoost: 0.1,
+    dynamicSwell: 5,
+    voicingRule: "standard" // Simple triads and basic 7ths work best for skanking
+  },
+  idiomaticProgressions: [
+    ["i", "i", "iv", "iv"],                 // Classic minor one-drop loop
+    ["I", "V", "vi", "IV"]                  // Uplifting major progression
+  ],
+  rhythmicPatterns: {
+    guitar: "skank_chop",                   // Staccato stabs exclusively on beats 2 and 4
+    keys: "bubble_organ",                   // 16th note off-beat rhythmic bubbling
+    bass: "dub_line",                       // Sparse, highly syncopated heavy riffing
+    drums: "one_drop"                       // Kick and snare hit together on beat 3
+  },
+  timbrePalette: {
+    guitar: "electric_strat_mute",          // Bridge pickup, heavily muted
+    keys: "organ_tonewheel_perc",           // Hammond B3 with percussion engaged
+    bass: "bass_sub_heavy",                 // Absolute massive low end, tone rolled off
+    drums: "drums_steppers_dry"             // High tuned timbales, tightly tuned snare
+  },
+  microTiming: {
+    instrumentRoles: {
+      drums: "laid_back",                 // Extremely deep, lazy pocket
+      bass: "laid_back",
+      guitar: "strict",                   // Skanks must be perfectly locked
+      keys: "pushed"                      // Bubbling anticipates the groove slightly
+    },
+    strumSpeed: 0.01                        // Extremely fast downstrokes for the skank
+  },
+  expressiveModulation: {
+    keys: { depth: 0.0, rate: 0.0, delay: 0.0, wowAndFlutter: 0.4 }, // Warped tape echo feel
+  },
+  acousticSpace: {
+    roomSize: 0.8,                          // Massive Dub space / Spring Reverb simulation
+    hfDamping: 3000,                        // Very dark, analog delay style wash
+    preDelay: 0.1,
+    mixAmount: 0.45,
+    analogWarmth: 0.85,                     // Heavy tape desk overdrive
+    sidechainDucking: 0.3,                  // Bass slightly pumps with the kick
+    eqCurve: { low: 6.0, midFreq: 250, mid: -2.0, high: -4.0 } // Overwhelming sub-bass EQ
+  }
 };
+
+export const reggaeWorld = REGGAE_DUB_WORLD;
+
